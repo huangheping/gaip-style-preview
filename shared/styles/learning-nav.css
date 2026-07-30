@@ -1,0 +1,21 @@
+/* 学习中心作为公共主导航频道；尺寸、间距和状态沿用原 Ant Design 菜单。 */
+
+.gaip-learning-menu-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.gaip-learning-menu-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.ant-menu-item.gaip-learning-menu-item.ant-menu-item-selected {
+  color: #025b52 !important;
+  background: rgba(36, 212, 201, 0.1) !important;
+}

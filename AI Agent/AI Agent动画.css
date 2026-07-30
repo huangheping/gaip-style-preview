@@ -1,0 +1,5 @@
+/* GAIP Agent animations */
+@keyframes spin___QQN1g{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes shimmerText___YG5Mx{0%{left:-100%}to{left:100%}}
+@keyframes dotsLoop____LEXX{0%{content:"."}33%{content:".."}66%{content:"..."}to{content:"."}}
+@keyframes processDot___tzrMT{0%,to{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}

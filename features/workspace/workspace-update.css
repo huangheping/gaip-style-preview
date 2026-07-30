@@ -1,0 +1,498 @@
+/* 仅作用于工作台总览，样式取自用户提供的 index 参考文件。 */
+.banner___n4b1A {
+  height: 205px !important;
+}
+
+.statsRow___qThlc {
+  height: 110px !important;
+  background: #fbf9f6 !important;
+}
+
+.statsRow___qThlc .statCard___to1WS {
+  padding: 16px 30px !important;
+}
+
+.statsRow___qThlc .statCard___to1WS .statValue___QPSfg {
+  line-height: 32px !important;
+}
+
+.statsRow___qThlc .statCard___to1WS:first-child {
+  background: #f3ece0 !important;
+}
+
+.statsRow___qThlc .statCard___to1WS:first-child .statValue___QPSfg {
+  color: #bc9850 !important;
+  font-size: 48px !important;
+}
+
+.homeMarket {
+  display: flex;
+  align-items: stretch;
+  min-height: 46px;
+  margin: 22px 24px 0;
+  border: 2px solid #fff;
+  background: #fff;
+  color: #2f3640;
+  box-shadow: 0 2px 12px rgba(23, 54, 48, 0.025);
+}
+
+.homeMarketHeading {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 160px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 18px;
+  background: linear-gradient(90deg, rgba(201, 255, 251, 0.52), rgba(255, 255, 255, 0.52));
+}
+
+.homeMarketHeading strong {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.homeMarketTitleToday {
+  color: #02938a;
+}
+
+.homeMarketTitleCore {
+  color: #2f3640;
+}
+
+.homeMarketUpdated {
+  color: #2f3640;
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.homeMarketViewport {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+  contain: layout paint;
+  transform: translateZ(0);
+}
+
+.homeMarketMarquee {
+  display: flex;
+  width: max-content;
+  min-height: 46px;
+  animation: homeMarketScroll 34s linear infinite;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.homeMarketTrack {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 46px;
+  backface-visibility: hidden;
+}
+
+.homeMarketItem {
+  display: flex;
+  box-sizing: border-box;
+  flex: 0 0 170px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  backface-visibility: hidden;
+  white-space: nowrap;
+}
+
+.homeMarketItem img {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.homeMarketPair {
+  color: #3b4248;
+  font-size: 12px;
+}
+
+.homeMarketValue {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.homeMarketValue b {
+  margin-left: 2px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.homeMarketValue.up { color: #00a879; }
+.homeMarketValue.down { color: #e78345; }
+.homeMarketValue.flat { color: #697277; }
+
+.homeMarket:hover .homeMarketMarquee,
+.homeMarket:focus-within .homeMarketMarquee {
+  animation-play-state: paused;
+}
+
+@keyframes homeMarketScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.panels___HtwQH {
+  padding-top: 22px !important;
+  padding-bottom: 36px !important;
+}
+
+.pannel___jPegV,
+.card___os13G {
+  background: #fff !important;
+}
+
+[data-gaip-fyp-hidden="true"] {
+  display: none !important;
+}
+
+.homeInfoCenter {
+  overflow: hidden;
+  min-width: 0;
+  border: 1px solid rgba(47, 54, 64, 0.12);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.homeSectionHeader {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  padding: 24px 24px 24px 41px;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.09);
+}
+
+.homeSectionHeader h2 {
+  margin: 0;
+}
+
+.homeViewAll {
+  border: 0;
+  background: transparent;
+  color: #6d7479;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.homeViewAll:hover {
+  color: #007b6f;
+}
+
+.homeViewAll span {
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 22px;
+  line-height: 0;
+  transform: translateY(2px);
+}
+
+.homeInfoBody {
+  display: grid;
+  grid-template-columns: 154px minmax(0, 1fr);
+  min-height: 278px;
+}
+
+.homeInfoTabs {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  background: rgba(36, 212, 201, 0.15);
+}
+
+.homeInfoTab {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 69px;
+  padding: 8px 14px;
+  border: 0;
+  border-right: 1px solid #e5f4f3;
+  border-bottom: 2px solid #fff;
+  background: transparent;
+  color: #2f3b3d;
+  cursor: pointer;
+  text-align: left;
+}
+
+.homeInfoTab:last-child {
+  border-bottom: 0;
+}
+
+.homeInfoTab:hover {
+  background: #eafffd;
+}
+
+.homeInfoTab.is-active {
+  background: #fff;
+  color: #007c70;
+}
+
+.homeInfoTabIcon {
+  position: relative;
+  display: block !important;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.homeInfoTabIcon img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.homeInfoTabCountdown {
+  position: absolute;
+  inset: -2px;
+  display: none;
+  overflow: visible;
+  width: 44px;
+  height: 44px;
+  max-width: none !important;
+  pointer-events: none;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.homeInfoTabCountdown circle {
+  fill: none;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.homeInfoTabCountdownTrack { stroke: #fff; }
+.homeInfoTabCountdownProgress {
+  stroke: #02938a;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.homeInfoTab.is-active.is-counting .homeInfoTabCountdown {
+  display: block;
+}
+
+.homeInfoTab.is-active.is-counting .homeInfoTabCountdownProgress {
+  animation: homeInfoTabCountdown 8s linear forwards;
+}
+
+@keyframes homeInfoTabCountdown {
+  to { stroke-dashoffset: 0; }
+}
+
+.homeInfoTab .homeInfoIconActive { display: none; }
+.homeInfoTab .homeInfoIconInactive { display: block; }
+.homeInfoTab.is-active .homeInfoIconActive { display: block; }
+.homeInfoTab.is-active .homeInfoIconInactive { display: none; }
+
+.homeInfoTab > span:last-child {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.homeInfoTab small {
+  color: #69777a;
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.homeInfoTabTime { display: none; }
+.homeInfoTab.is-active .homeInfoTabTime { display: block; }
+
+.homeInfoArticle {
+  position: relative;
+  min-width: 0;
+  padding: 18px 22px 64px;
+  color: #394449;
+}
+
+.homeInfoQuote {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 96px;
+  height: 96px;
+  opacity: 0.8;
+}
+
+.homeInfoTitleRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  padding-right: 52px;
+}
+
+.homeInfoTitleRow > img {
+  flex: 0 0 38px;
+  margin-top: 1px;
+}
+
+.homeInfoTitleRow h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: #2f3640;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.homeInfoMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 15px;
+  margin: 7px 0 20px 46px;
+  color: #7a8387;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.homeInfoMetaIcon {
+  display: block;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-right: -7px;
+}
+
+.homeInfoMetaTopics {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.homeInfoMetaDivider {
+  color: #aeb6b9;
+}
+
+.homeInfoSummary,
+.homeInfoTakeaways {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 16px;
+  padding: 16px 10px;
+}
+
+.homeInfoSummary {
+  border-left: 3px solid #27cfc0;
+  background: #f5fffe;
+}
+
+.homeInfoSummary strong,
+.homeInfoTakeaways strong {
+  color: #025b52;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.homeInfoSummary p,
+.homeInfoTakeaways p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.homeInfoSummary p { color: #025b52; }
+.homeInfoTakeaways p { color: #2f3640; }
+.homeInfoTakeaways { padding-top: 16px; }
+
+.homeInfoActions {
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+}
+
+.homeInfoActions button {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.homeInfoSecondary {
+  border: 1px solid #025b52;
+  background: #fff;
+  color: #025b52;
+}
+
+.homeInfoPrimary {
+  border: 1px solid #025b52;
+  background: #025b52;
+  color: #fff;
+}
+
+.homeInfoActions button:hover {
+  filter: brightness(0.96);
+}
+
+@media (max-width: 1500px) {
+  .homeMarketHeading {
+    flex-basis: 142px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .homeMarketItem {
+    flex-basis: 156px;
+    gap: 5px;
+    padding: 0 8px;
+  }
+
+  .homeMarketPair,
+  .homeMarketValue {
+    font-size: 11px;
+  }
+
+  .homeInfoBody {
+    grid-template-columns: 148px minmax(0, 1fr);
+  }
+
+  .homeInfoArticle {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .homeInfoActions {
+    right: 18px;
+  }
+
+  .homeInfoSummary,
+  .homeInfoTakeaways {
+    grid-template-columns: 110px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+}

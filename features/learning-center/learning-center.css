@@ -1,0 +1,1185 @@
+/* 学习中心仅扩展 GAIP 频道内容；顶栏、侧栏和 AI Agent 均由原 Umi 应用渲染。 */
+
+html.gaip-learning-scroll-lock,
+html.gaip-learning-scroll-lock body {
+  overflow-y: hidden !important;
+}
+
+.gaip-learning-page {
+  --learning-ink: #2f3640;
+  --learning-muted: rgba(47, 54, 64, 0.85);
+  --learning-line: rgba(47, 54, 64, 0.12);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 56px);
+  min-height: 0;
+  overflow: hidden;
+  color: var(--learning-ink);
+  background: #fff;
+}
+
+.gaip-learning-page[data-gaip-learning-overlay="true"] {
+  position: absolute;
+  z-index: 20;
+  right: auto;
+  bottom: auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.gaip-learning-page[data-gaip-learning-overlay="true"] > .gaip-course-list-view,
+.gaip-learning-page[data-gaip-learning-overlay="true"] > .gaip-course-detail-page,
+.gaip-learning-page[data-gaip-learning-overlay="true"] > .gaip-course-player-page,
+.gaip-learning-page[data-gaip-learning-overlay="true"] > .gaip-course-reader-page {
+  min-width: var(--gaip-learning-min-page-width, 1236px);
+}
+
+.gaip-course-list-view {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.gaip-course-list-view[hidden] {
+  display: none;
+}
+
+.gaip-learning-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 103px;
+  flex: 0 0 103px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 20px 24px;
+  background:
+    radial-gradient(112% 94% at 82% 136%, transparent 51%, rgba(47, 54, 64, 0.045) 51.25%, transparent 51.6%),
+    radial-gradient(101% 86% at 82% 136%, transparent 51%, rgba(47, 54, 64, 0.04) 51.25%, transparent 51.6%),
+    radial-gradient(90% 78% at 82% 136%, transparent 51%, rgba(47, 54, 64, 0.035) 51.25%, transparent 51.6%),
+    linear-gradient(100deg, #f7f7f6 0%, #fafafa 46%, #f3f3f1 100%);
+  border-bottom: 1px solid var(--learning-line);
+}
+
+.gaip-learning-header::after {
+  position: absolute;
+  z-index: -1;
+  top: -88px;
+  right: 36px;
+  width: 620px;
+  height: 230px;
+  opacity: 0.22;
+  background: repeating-linear-gradient(164deg, transparent 0 9px, rgba(47, 54, 64, 0.19) 10px, transparent 11px 15px);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  transform: rotate(-3deg);
+}
+
+.gaip-learning-title {
+  margin: 0;
+  color: var(--learning-ink);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.gaip-learning-subtitle {
+  margin: 3px 0 0;
+  color: var(--learning-muted);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.gaip-learning-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 14px;
+}
+
+.gaip-learning-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
+}
+
+.gaip-learning-action-icon {
+  display: block;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.gaip-learning-action:hover,
+.gaip-learning-action:focus {
+  color: #fff;
+  opacity: 0.86;
+}
+
+.gaip-learning-action--progress {
+  background: #025B52;
+}
+
+.gaip-learning-action--course {
+  background: #190f07;
+}
+
+.gaip-learning-scroll {
+  flex: 1 1;
+  min-height: 0;
+  overflow: auto;
+  background: #F5F4F2;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.gaip-learning-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.gaip-learning-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gaip-learning-scroll::-webkit-scrollbar-thumb {
+  height: auto;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.gaip-learning-grid {
+  display: grid;
+  height: max-content;
+  min-height: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: 0;
+  background: #F5F4F2;
+}
+
+.gaip-course-card {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  padding: 24px 13% 23px;
+  background: #F5F4F2;
+  border-right: 1px solid var(--learning-line);
+  border-bottom: 1px solid var(--learning-line);
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.gaip-course-card:hover,
+.gaip-course-card:focus-visible {
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(47, 54, 64, 0.12);
+  transform: translateY(-2px);
+}
+
+.gaip-course-card:focus-visible {
+  box-shadow: inset 0 0 0 2px #24d4c9, 0 10px 28px rgba(47, 54, 64, 0.12);
+}
+
+.gaip-course-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: #f5f7f7;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(47, 54, 64, 0.05);
+}
+
+.gaip-course-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.gaip-course-card:hover .gaip-course-image,
+.gaip-course-card:focus-visible .gaip-course-image {
+  transform: scale(1.018);
+}
+
+.gaip-course-body {
+  display: flex;
+  min-height: 0;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding-top: 24px;
+}
+
+.gaip-course-title {
+  overflow: hidden;
+  margin: 0 0 4px;
+  color: var(--learning-ink);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-course-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--learning-muted);
+  font-size: 14px;
+  line-height: 21px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.gaip-course-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 0;
+}
+
+.gaip-course-tags {
+  display: flex;
+  min-height: 20px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.gaip-course-tag {
+  display: inline-flex;
+  height: 20px;
+  align-items: center;
+  padding: 0 8px;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.gaip-course-tag--gold {
+  color: #805b0d;
+  background: #f4d67c;
+}
+
+.gaip-course-tag--orange {
+  background: #E16E12;
+}
+
+.gaip-course-tag--green {
+  background: #389E0D;
+}
+
+.gaip-course-tag--bronze {
+  background: #ae852f;
+}
+
+.gaip-course-tag--gray {
+  color: #2F3640;
+  background: #e5e6e8;
+}
+
+.gaip-course-enter {
+  display: none;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 0;
+  background-color: #050505;
+  background-image: url("../../assets/learning/icon-course-enter.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.gaip-course-enter:hover,
+.gaip-course-enter:focus-visible {
+  background-color: #025b52;
+}
+
+.gaip-course-detail-page[hidden] {
+  display: none;
+}
+
+.gaip-course-detail-page {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  background: #F5F4F2;
+}
+
+.gaip-course-player-page[hidden] {
+  display: none;
+}
+
+.gaip-course-player-page {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  background: #F5F4F2;
+}
+
+.gaip-course-reader-page[hidden] {
+  display: none;
+}
+
+.gaip-course-reader-page {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  background: #F5F4F2;
+}
+
+.gaip-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.gaip-course-breadcrumb-back {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  line-height: inherit;
+  transition: color 0.2s ease;
+}
+
+.gaip-course-breadcrumb-back:hover,
+.gaip-course-breadcrumb-back:focus-visible {
+  color: #025b52;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.gaip-course-breadcrumb-back:focus-visible {
+  border-radius: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(2, 91, 82, 0.2);
+}
+
+.gaip-course-detail-title:focus {
+  outline: none;
+}
+
+.gaip-course-detail-header {
+  display: flex;
+  min-height: 68px;
+  flex: 0 0 68px;
+  align-items: center;
+  padding: 0;
+}
+
+.gaip-course-detail-back {
+  display: inline-flex;
+  height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px 0 28px;
+  color: #fff;
+  background: #025B52;
+  border: 0;
+  border-radius: 0 22px 22px 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gaip-course-detail-back:hover {
+  color: #fff;
+  background: #025b52;
+}
+
+.gaip-course-detail-back:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(2, 91, 82, 0.22);
+}
+
+.gaip-course-detail-back-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  background: url("../../assets/learning/icon-detail-back.svg") center / 18px 18px no-repeat;
+  transition: transform 0.2s ease;
+}
+
+.gaip-course-detail-back:hover .gaip-course-detail-back-icon,
+.gaip-course-detail-back:focus-visible .gaip-course-detail-back-icon {
+  transform: translateX(-2px);
+}
+
+.gaip-course-detail-scroll {
+  flex: 1 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0;
+}
+
+.gaip-course-player-scroll {
+  flex: 1 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 28px 40px;
+}
+
+.gaip-course-player-shell {
+  width: min(960px, 100%);
+  margin: 0 auto;
+}
+
+.gaip-course-reader-scroll {
+  flex: 1 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0 28px 48px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 91, 82, 0.3) transparent;
+}
+
+.gaip-course-reader-shell {
+  width: 100%;
+  margin: 0;
+}
+
+.gaip-course-reader-heading {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  padding: 14px 22px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(47, 54, 64, 0.1);
+  box-shadow: 0 5px 18px rgba(47, 54, 64, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.gaip-course-reader-type {
+  display: block;
+  margin-bottom: 4px;
+  color: #006d62;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.gaip-course-reader-title {
+  margin: 0;
+  color: #2f3640;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.gaip-course-reader-title:focus {
+  outline: none;
+}
+
+.gaip-course-reader-document {
+  overflow: hidden;
+  padding: 22px;
+  background: #e3e5e4;
+}
+
+.gaip-course-reader-frame {
+  display: block;
+  width: calc(100% + 18px);
+  height: 5100px;
+  background: #fff;
+  border: 0;
+  box-shadow: 0 2px 12px rgba(47, 54, 64, 0.12);
+  pointer-events: none;
+}
+
+.gaip-course-reader-complete {
+  display: flex;
+  min-height: 96px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: rgba(47, 54, 64, 0.58);
+  background: #fff;
+  border-top: 1px solid rgba(47, 54, 64, 0.1);
+}
+
+.gaip-course-reader-complete-icon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border: 2px solid rgba(47, 54, 64, 0.2);
+  border-radius: 50%;
+}
+
+.gaip-course-reader-complete-icon::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  content: "✓";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gaip-course-reader-complete strong {
+  color: #2f3640;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.gaip-course-reader-complete.is-complete {
+  color: #006d62;
+  background: rgba(0, 109, 98, 0.06);
+}
+
+.gaip-course-reader-complete.is-complete .gaip-course-reader-complete-icon {
+  border-color: #006d62;
+}
+
+.gaip-course-player-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #071d31;
+  border-radius: 4px;
+}
+
+.gaip-course-player-poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gaip-course-player-toggle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  background: url("../../assets/learning/icon-video-player-play.svg") center / 70px 70px no-repeat;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 8px 22px rgba(7, 29, 49, 0.24);
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+
+.gaip-course-player-toggle:hover,
+.gaip-course-player-toggle:focus-visible {
+  filter: brightness(1.08);
+  outline: none;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.gaip-course-player-toggle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7), 0 8px 22px rgba(7, 29, 49, 0.24);
+}
+
+.gaip-course-player-controls {
+  margin-top: 8px;
+  padding: 20px 24px 24px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.gaip-course-player-lesson-title {
+  margin: 0 0 18px;
+  color: #2f3640;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.gaip-course-player-progress {
+  --gaip-player-progress: 36.5%;
+  display: block;
+  width: 100%;
+  height: 8px;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    to right,
+    #006d62 0,
+    #006d62 var(--gaip-player-progress),
+    rgba(2, 91, 82, 0.16) var(--gaip-player-progress),
+    rgba(2, 91, 82, 0.16) 100%
+  );
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.gaip-course-player-progress::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.gaip-course-player-progress::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  margin-top: -4px;
+  appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  background: #006d62;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(2, 91, 82, 0.38);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  transform: scale(0.78);
+}
+
+.gaip-course-player-progress::-moz-range-track {
+  height: 8px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+}
+
+.gaip-course-player-progress::-moz-range-progress {
+  height: 8px;
+  background: transparent;
+}
+
+.gaip-course-player-progress::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  background: #006d62;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(2, 91, 82, 0.38);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  transform: scale(0.78);
+}
+
+.gaip-course-player-progress:hover::-webkit-slider-thumb,
+.gaip-course-player-progress:focus-visible::-webkit-slider-thumb,
+.gaip-course-player-progress:active::-webkit-slider-thumb,
+.gaip-course-player-progress:hover::-moz-range-thumb,
+.gaip-course-player-progress:focus-visible::-moz-range-thumb,
+.gaip-course-player-progress:active::-moz-range-thumb {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gaip-course-player-progress:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 109, 98, 0.16);
+}
+
+.gaip-course-player-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: rgba(47, 54, 64, 0.68);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.gaip-course-player-meta strong {
+  color: #2f3640;
+  font-weight: 400;
+}
+
+.gaip-course-player-meta em {
+  margin: 0 9px;
+  font-style: normal;
+}
+
+.gaip-course-player-speed-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+  color: #2f3640;
+  font-size: 14px;
+}
+
+.gaip-course-player-speeds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gaip-course-player-speed {
+  min-width: 80px;
+  height: 36px;
+  padding: 0 18px;
+  color: #2f3640;
+  background: #fff;
+  border: 1px solid rgba(47, 54, 64, 0.16);
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.gaip-course-player-speed:hover,
+.gaip-course-player-speed:focus-visible,
+.gaip-course-player-speed.is-selected {
+  color: #fff;
+  background: #006d62;
+  border-color: #006d62;
+  outline: none;
+}
+
+.gaip-course-player-lesson-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.gaip-course-player-lesson-nav button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  color: #2f3640;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.gaip-course-player-lesson-nav button:hover,
+.gaip-course-player-lesson-nav button:focus-visible {
+  color: #006d62;
+  outline: none;
+}
+
+.gaip-course-player-lesson-nav button:disabled {
+  color: rgba(47, 54, 64, 0.28);
+  cursor: not-allowed;
+}
+
+.gaip-course-player-lesson-nav button:disabled:hover,
+.gaip-course-player-lesson-nav button:disabled:focus-visible {
+  color: rgba(47, 54, 64, 0.28);
+}
+
+.gaip-course-player-nav-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  background: currentColor;
+  mask: url("../../assets/learning/icon-detail-back.svg") center / 14px 14px no-repeat;
+  -webkit-mask: url("../../assets/learning/icon-detail-back.svg") center / 14px 14px no-repeat;
+}
+
+.gaip-course-player-nav-icon--next {
+  transform: rotate(180deg);
+}
+
+.gaip-course-detail-layout {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: 330px minmax(0, 1fr);
+  background: #f5f4f2;
+  border-top: 1px solid rgba(47, 54, 64, 0.1);
+}
+
+.gaip-course-detail-layout::before {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 330px;
+  width: 1px;
+  background: rgba(47, 54, 64, 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.gaip-course-detail-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  min-width: 0;
+  padding: 24px 28px 40px;
+  background: #f5f4f2;
+}
+
+.gaip-course-detail-main {
+  min-width: 0;
+  padding: 24px 28px 40px;
+}
+
+.gaip-course-detail-visual {
+  display: flex;
+  align-items: flex-start;
+}
+
+.gaip-course-detail-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.gaip-course-detail-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  margin-top: 26px;
+}
+
+.gaip-course-detail-title {
+  margin: 0;
+  color: #2f3640;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.gaip-course-detail-tags {
+  display: flex;
+  min-height: 20px;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.gaip-course-detail-description {
+  margin: 12px 0 0;
+  color: rgba(47, 54, 64, 0.66);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.gaip-course-detail-summary {
+  padding: 0 0 22px;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.12);
+}
+
+.gaip-course-detail-stats {
+  display: grid;
+  width: min(650px, 100%);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gaip-course-detail-stat {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.gaip-course-detail-stat + .gaip-course-detail-stat {
+  border-left: 1px solid rgba(47, 54, 64, 0.12);
+}
+
+.gaip-course-detail-stat strong {
+  color: #006d62;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.gaip-course-detail-stat span {
+  margin-top: 5px;
+  color: rgba(47, 54, 64, 0.58);
+  font-size: 14px;
+}
+
+.gaip-course-lessons-heading {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  background: rgba(245, 244, 242, 0.96);
+  border-bottom: 1px solid rgba(47, 54, 64, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.gaip-course-lessons-heading h3 {
+  margin: 0;
+  color: #2f3640;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.gaip-course-lessons-count {
+  color: rgba(47, 54, 64, 0.52);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.gaip-course-lesson-list {
+  background: #fff;
+}
+
+.gaip-course-lesson {
+  display: grid;
+  min-height: 88px;
+  grid-template-columns: minmax(190px, 1.15fr) minmax(140px, 0.75fr) minmax(220px, 1fr);
+  align-items: center;
+  padding: 0 28px;
+  background: #fff;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.09);
+  cursor: pointer;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gaip-course-lesson:hover {
+  background: rgba(0, 109, 98, 0.045);
+}
+
+.gaip-course-lesson:focus-visible {
+  z-index: 1;
+  background: rgba(0, 109, 98, 0.055);
+  box-shadow: inset 0 0 0 2px rgba(0, 109, 98, 0.52);
+  outline: none;
+}
+
+.gaip-course-lesson:last-child {
+  border-bottom: 0;
+}
+
+.gaip-lesson-name {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.gaip-lesson-name span {
+  flex: 0 0 auto;
+  color: #006d62;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gaip-lesson-name i {
+  flex: 0 0 1px;
+  width: 1px;
+  height: 20px;
+  background: #006d62;
+}
+
+.gaip-lesson-name strong {
+  display: -webkit-box;
+  min-width: 0;
+  max-height: 44px;
+  flex: 1 1 auto;
+  overflow: hidden;
+  color: #2f3640;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.gaip-lesson-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: rgba(47, 54, 64, 0.58);
+  font-size: 14px;
+}
+
+.gaip-lesson-progress-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.gaip-lesson-progress-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  background: url("../../assets/learning/icon-lesson-progress.svg") center / 16px 16px no-repeat;
+}
+
+.gaip-lesson-progress-track {
+  display: block;
+  width: 64px;
+  height: 5px;
+  overflow: hidden;
+  background: rgba(47, 54, 64, 0.12);
+  border-radius: 3px;
+}
+
+.gaip-lesson-progress-track i {
+  display: block;
+  height: 100%;
+  background: #006d62;
+  border-radius: inherit;
+}
+
+.gaip-lesson-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.gaip-lesson-action {
+  display: inline-flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.gaip-lesson-action-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+.gaip-lesson-action-icon--play {
+  background: url("../../assets/learning/icon-lesson-play.svg") center / 18px 18px no-repeat;
+}
+
+.gaip-lesson-action-icon--review {
+  background: url("../../assets/learning/icon-lesson-review.svg") center / 18px 18px no-repeat;
+}
+
+.gaip-lesson-action--secondary {
+  color: #006d62;
+  background: #fff;
+  border: 1px solid #006d62;
+}
+
+.gaip-lesson-action--primary {
+  width: 108px;
+  padding-right: 12px;
+  padding-left: 12px;
+  color: #fff;
+  background: #006d62;
+  border: 1px solid #006d62;
+}
+
+.gaip-lesson-action--review {
+  color: #006d62;
+  background: rgba(0, 109, 98, 0.1);
+  border-color: transparent;
+}
+
+.gaip-lesson-action--reading {
+  color: #fff;
+  background: #190f07;
+  border-color: #006d62;
+}
+
+.gaip-lesson-action:hover,
+.gaip-lesson-action:focus {
+  opacity: 0.82;
+}
+
+.gaip-learning-toast {
+  position: fixed;
+  z-index: 1200;
+  bottom: 32px;
+  left: calc(50% + 106px);
+  padding: 10px 18px;
+  color: #fff;
+  background: rgba(47, 54, 64, 0.92);
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.gaip-learning-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 1519px) {
+  .gaip-learning-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gaip-course-card {
+    padding-right: 11%;
+    padding-left: 11%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gaip-learning-page *,
+  .gaip-learning-page *::before,
+  .gaip-learning-page *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
