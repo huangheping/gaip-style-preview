@@ -2,24 +2,22 @@
   'use strict';
 
   var rafId = 0;
+  var channelConfig = window.__GAIP_CHANNEL_CONFIG__;
+  var navIconKeys = {};
   var learningIconMarkup =
-    '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-      '<line x1="9" y1="4" x2="9" y2="9.25" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"></line>' +
-      '<line x1="12" y1="5.5" x2="12" y2="7.75" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"></line>' +
-      '<path d="M3 14.125V2.875A1.875 1.875 0 014.875 1h9.375a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H4.875a1.875 1.875 0 110-3.75H15" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"></path>' +
-      '<line x1="6" y1="5.5" x2="6" y2="7.75" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"></line>' +
-    '</svg>';
-  var channelRoutes = {
-    '工作台总览': '/workspace',
-    '客户中心360': '/customer',
-    '保单列表': '/policy',
-    '方案中心': '/proposal',
-    '产品中心': '/product',
-    '活动中心': '/activity',
-    '薄荷入职引导': '/induction',
-    '薄荷入职指引': '/induction',
-    '线索中心': '/clues'
-  };
+    '<span class="gaip-main-nav-icon" data-gaip-nav-icon="learning"></span>';
+  var channelRoutes = {};
+
+  if (channelConfig) {
+    channelConfig.list.forEach(function (channel) {
+      var labels = [channel.label].concat(channel.aliases || []);
+      labels.forEach(function (label) {
+        navIconKeys[label] = channel.icon;
+        if (!channel.virtual) channelRoutes[label] = channel.route;
+      });
+    });
+  }
+
   function isLearningPage() {
     var api = window.__GAIP_LEARNING_CENTER__;
     return window.__GAIP_PAGE_OVERRIDE__ === 'learning' ||
@@ -95,7 +93,31 @@
     }
   }
 
+  function updateMainNavigationIcons(menu) {
+    Array.prototype.forEach.call(menu.querySelectorAll('li.ant-menu-item'), function (item) {
+      var title = item.querySelector('.ant-menu-title-content');
+      var label = title && title.textContent.trim();
+      var iconKey = navIconKeys[label];
+      var icon;
+
+      if (!iconKey) return;
+
+      icon = item.querySelector('.gaip-main-nav-icon');
+      if (!icon) {
+        icon = item.querySelector('.ant-pro-base-menu-inline-item-icon > span');
+      }
+      if (!icon) return;
+
+      icon.removeAttribute('style');
+      icon.classList.add('gaip-main-nav-icon');
+      icon.setAttribute('data-gaip-nav-icon', iconKey);
+      icon.setAttribute('aria-hidden', 'true');
+    });
+  }
+
   function updateSelectedState(menu, item) {
+    var currentPath;
+    var matchedRoute;
     if (isLearningPage()) {
       Array.prototype.forEach.call(menu.querySelectorAll('.ant-menu-item-selected'), function (selectedItem) {
         if (selectedItem === item) return;
@@ -107,8 +129,25 @@
       return;
     }
 
-    item.classList.remove('ant-menu-item-selected');
-    item.setAttribute('aria-selected', 'false');
+    currentPath = (location.hash || '#/workspace')
+      .replace(/^#/, '')
+      .split('?')[0]
+      .replace(/\/+$/, '') || '/workspace';
+    matchedRoute = Object.keys(channelRoutes).some(function (label) {
+      var route = channelRoutes[label];
+      return currentPath === route || currentPath.indexOf(route + '/') === 0;
+    });
+
+    Array.prototype.forEach.call(menu.querySelectorAll('li.ant-menu-item'), function (menuItem) {
+      var title = menuItem.querySelector('.ant-menu-title-content');
+      var label = title && title.textContent.trim();
+      var route = label && channelRoutes[label];
+      var selected = matchedRoute &&
+        (currentPath === route || currentPath.indexOf(route + '/') === 0);
+
+      menuItem.classList.toggle('ant-menu-item-selected', selected);
+      menuItem.setAttribute('aria-selected', selected ? 'true' : 'false');
+    });
   }
 
   function bindChannelSwitching(menu) {
@@ -142,6 +181,7 @@
 
     item = menu.querySelector('.gaip-learning-menu-item') || createLearningMenuItem(menu);
     updateLearningMenuItem(item);
+    updateMainNavigationIcons(menu);
     updateSelectedState(menu, item);
     bindChannelSwitching(menu);
   }

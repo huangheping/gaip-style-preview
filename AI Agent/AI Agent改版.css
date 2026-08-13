@@ -1,0 +1,828 @@
+/* AI Agent 2026-08 redesign: persistent sessions sidebar + plan selector */
+.gaip-agent-redesign-wrapper {
+  /* 手动调方案选择模块高度：
+     - --gaip-agent-plan-body-height：整个方案/客户选择区域高度
+     - --gaip-agent-plan-list-height：左右列表可滚动区域高度
+     如果后续要手动调节高度，优先同步调整这两个值。 */
+  --gaip-agent-plan-body-height: 300px;
+  --gaip-agent-plan-list-height: 232px;
+  width: min(1314px, calc(100vw - 96px)) !important;
+  max-width: min(1314px, calc(100vw - 96px)) !important;
+}
+
+.modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  grid-template-rows: 162px minmax(0, 1fr);
+  width: 100%;
+  height: calc(100dvh - 40px);
+  max-height: calc(100dvh - 40px);
+  min-height: 0;
+  border-radius: 12px;
+  background: #fff;
+  transition: grid-template-columns .22s ease;
+  pointer-events: auto !important;
+}
+
+.modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed {
+  grid-template-columns: 0 minmax(0, 1fr);
+}
+
+.gaip-agent-redesign-wrapper .ant-modal-content {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100% !important;
+  max-height: none !important;
+  min-width: 0;
+  border: 0 0 0 1px solid rgba(47, 54, 64, .12);
+  border-left: 1px solid rgba(47, 54, 64, .12);
+  border-radius: 0 12px 12px 0;
+  box-shadow: none;
+  background: #fff;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed .ant-modal-content {
+  border-left: 0;
+  border-radius: 12px;
+}
+
+.gaip-agent-sidebar-head {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 20px 8px 0;
+  background: #fbfbfb;
+  border-right: 1px solid rgba(47, 54, 64, .1);
+  pointer-events: auto !important;
+}
+
+.gaip-agent-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px 18px 8px;
+}
+
+.gaip-agent-brand img {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.gaip-agent-brand strong {
+  display: block;
+  color: #005d56;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 20px;
+}
+
+.gaip-agent-brand span {
+  display: block;
+  color: rgba(47, 54, 64, .45);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.gaip-agent-new-session {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: calc(100% - 16px);
+  height: 46px;
+  margin: 0 8px 16px;
+  padding: 0 14px;
+  border: 1px solid rgba(47, 54, 64, .1);
+  border-radius: 12px;
+  background: #fff;
+  color: #2f3640;
+  font-size: 16px;
+  font-weight: 560;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(47, 54, 64, .025);
+}
+
+.gaip-agent-new-session:hover {
+  border-color: rgba(36, 212, 201, .55);
+  color: #025b52;
+}
+
+.gaip-agent-new-session img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  transition: filter .15s ease;
+}
+
+.gaip-agent-new-session:hover img {
+  filter: brightness(0) saturate(100%) invert(21%) sepia(57%) saturate(1168%) hue-rotate(135deg) brightness(88%) contrast(98%);
+}
+
+.gaip-agent-history-label {
+  padding: 0 20px;
+  color: rgba(47, 54, 64, .55);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W.gaip-agent-history-pinned {
+  position: relative !important;
+  inset: auto !important;
+  grid-column: 1;
+  grid-row: 2;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  pointer-events: auto;
+  contain: layout paint;
+  z-index: 1;
+  background: #fbfbfb;
+  border-right: 1px solid rgba(47, 54, 64, .1);
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .overlay___Uajj7,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .panelHeader___LQhLb {
+  display: none !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .panel___VKkEW {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  padding: 0 8px 20px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W.gaip-agent-history-pinned *,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W.gaip-agent-history-pinned *::before,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W.gaip-agent-history-pinned *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .listArea___SIvOY {
+  height: 100%;
+  overflow-y: auto;
+  padding: 0;
+  scrollbar-width: thin;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .itemList___mZ9pU {
+  margin: 0;
+  padding: 0;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN {
+  position: relative;
+  min-height: 66px;
+  margin: 0 0 2px;
+  padding: 10px 12px 10px 26px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  transition: background .15s ease;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN:hover {
+  background: #f0f0f0;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN.is-active,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN[aria-selected="true"] {
+  background: #eeeeee;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN.is-active::before,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN[aria-selected="true"]::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  height: 36px;
+  width: 3px;
+  border-radius: 999px;
+  background: #24d4c9;
+  transform: translateY(-50%);
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN.is-active .itemTitle___Rb48C,
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN[aria-selected="true"] .itemTitle___Rb48C {
+  font-weight: 560;
+  color: #190f07;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN[class*="historyItemActive___"]:not(.is-active):not([aria-selected="true"]) {
+  background: transparent !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .historyItem___pomxN[class*="historyItemActive___"]:not(.is-active):not([aria-selected="true"])::before {
+  content: none !important;
+  display: none !important;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .itemTitle___Rb48C {
+  max-width: 248px;
+  color: #2f3640;
+  font-size: 14px;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .itemTime___yUfy2 {
+  color: rgba(47, 54, 64, .4);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .moreBtn___oyzcW {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  color: rgba(47, 54, 64, .45);
+}
+
+.gaip-agent-redesign-wrapper .historyWrapper___KBX5W .moreBtn___oyzcW:hover {
+  background: #e7e7e7;
+  color: #2f3640;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed .gaip-agent-sidebar-head,
+.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed .historyWrapper___KBX5W.gaip-agent-history-pinned {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.gaip-agent-redesign-wrapper .ant-modal-header {
+  height: 64px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(47, 54, 64, .08);
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY {
+  height: 32px;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY > .icon___H2jXW,
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY > li:not(.icon___H2jXW):not(.endIcons___IOP5L) {
+  display: none !important;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .endIcons___IOP5L {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 32px;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .endIcons___IOP5L:after {
+  display: none;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+  color: #2f3640;
+  font-size: 19px;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU:hover {
+  background: #f2f4f5;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed .headerTitle___cXSkY .historyBtn___ElWTU img {
+  transform: rotate(180deg);
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .newChatIcon___cOc4u {
+  display: none !important;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .closeIcon___X96Lj {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  object-fit: contain;
+}
+
+.gaip-agent-redesign-wrapper .modalBody___sDOgp {
+  min-height: 0;
+  background: #fff;
+}
+
+.gaip-agent-redesign-wrapper .contentArea___p8GRa {
+  padding: 0;
+  background: #fff;
+}
+
+.gaip-agent-redesign-wrapper .skillCards___lM9mG {
+  display: none !important;
+}
+
+.agentModal___Nxp06 .textarea___GMXtD,
+.agentModal___Nxp06 textarea.ant-input {
+  font-size: 16px !important;
+}
+
+.agentModal___Nxp06 .skillToggle___OpRvz {
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid transparent !important;
+  color: #2f3640 !important;
+  transform: none !important;
+  outline: none !important;
+}
+
+.agentModal___Nxp06 .skillToggle___OpRvz::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #13B2BB 0%, #FBB08E 100%);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gaip-agent-redesign-wrapper .skillToggle___OpRvz.gaip-agent-skill-active {
+  position: relative;
+  color: #2f3640 !important;
+  border: 1px solid transparent !important;
+  background: rgba(36, 212, 201, .1) !important;
+}
+
+.gaip-agent-redesign-wrapper .skillToggle___OpRvz:hover,
+.gaip-agent-redesign-wrapper .skillToggle___OpRvz.gaip-agent-skill-active:hover {
+  position: relative;
+  color: #2f3640 !important;
+  border: 1px solid transparent !important;
+  background: rgba(36, 212, 201, .1) !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active,
+.agentModal___Nxp06 .skillToggle___OpRvz:hover,
+.agentModal___Nxp06 .skillToggle___OpRvz:focus,
+.agentModal___Nxp06 .skillToggle___OpRvz:active,
+.agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active:hover {
+  position: relative;
+  color: #2f3640 !important;
+  border: 1px solid transparent !important;
+  background: rgba(36, 212, 201, .1) !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.agentModal___Nxp06 .skillToggle___OpRvz,
+.agentModal___Nxp06 .attachmentToggle___m40lT {
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.agentModal___Nxp06 .skillToggle___OpRvz .anticon,
+.agentModal___Nxp06 .attachmentToggle___m40lT .anticon,
+.agentModal___Nxp06 .skillToggle___OpRvz svg,
+.agentModal___Nxp06 .attachmentToggle___m40lT svg,
+.agentModal___Nxp06 .skillToggle___OpRvz img:not(.gaip-agent-skill-icon),
+.agentModal___Nxp06 .attachmentToggle___m40lT img:not(.gaip-agent-attachment-icon) {
+  display: none !important;
+}
+
+.agentModal___Nxp06 .gaip-agent-skill-icon,
+.agentModal___Nxp06 .gaip-agent-attachment-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  object-fit: contain;
+}
+
+.gaip-agent-redesign-wrapper .chatPanel___qIDO_ {
+  padding: 0 40px 24px;
+}
+
+.gaip-agent-redesign-wrapper .chatPanel___qIDO_[data-gaip-empty-session="true"] {
+  display: none;
+}
+
+.gaip-agent-redesign-wrapper .contentArea___p8GRa[data-gaip-agent-empty="true"] {
+  overflow: hidden;
+}
+
+.gaip-agent-empty-session {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 36px;
+  padding: 24px;
+}
+
+.gaip-agent-empty-title {
+  display: block;
+  width: min(280px, 72%);
+  height: auto;
+  object-fit: contain;
+  transform-origin: center;
+  animation: gaipAgentEmptyTitleEnter .56s cubic-bezier(.2, .72, .18, 1) both;
+}
+
+.gaip-agent-suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  animation: gaipAgentSuggestionGroupEnter .44s cubic-bezier(.2, .72, .18, 1) both;
+  animation-delay: .08s;
+}
+
+.gaip-agent-suggestion {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: #fff;
+  color: #2f3640;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gaip-agent-suggestion::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #13B2BB 0%, #FBB08E 100%);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gaip-agent-suggestion > * {
+  position: relative;
+  z-index: 1;
+}
+
+.gaip-agent-suggestion:hover {
+  background: rgba(36, 212, 201, .07);
+}
+
+.gaip-agent-suggestion-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  object-fit: contain;
+}
+
+.gaip-agent-suggestion span:last-child {
+  min-width: 0;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+  line-height: 20px;
+}
+
+@keyframes gaipAgentEmptyTitleEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gaipAgentSuggestionGroupEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gaip-agent-empty-title,
+  .gaip-agent-suggestion-list {
+    animation: none !important;
+  }
+}
+
+.gaip-agent-plan-panel {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  min-height: calc(66px + var(--gaip-agent-plan-body-height));
+  margin: 0;
+  padding: 0;
+  border: 1px solid #d9dfe2;
+  background: #fff;
+  list-style: none;
+}
+
+.gaip-agent-plan-hero {
+  display: flex;
+  align-items: center;
+  height: 66px;
+  padding: 0 16px;
+  border-bottom: 1px solid #e4e8ea;
+  background-image: url("./素材/bg1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.gaip-agent-plan-hero h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #0BACBE;
+  background: linear-gradient(90deg, #0BACBE 0%, #6382FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gaip-agent-plan-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 242px;
+  height: var(--gaip-agent-plan-body-height);
+  min-height: var(--gaip-agent-plan-body-height);
+}
+
+.gaip-agent-plan-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px 8px 12px 16px;
+}
+
+.gaip-agent-client-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px 8px 8px;
+  border-left: 1px solid #e4e8ea;
+  background: #fbfbfb;
+}
+
+.gaip-agent-field-head {
+  margin-bottom: 12px;
+  color: #2f3640;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.gaip-agent-option-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 8px;
+  min-height: 0;
+  max-height: var(--gaip-agent-plan-list-height);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.gaip-agent-option,
+.gaip-agent-client-option {
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #2f3640;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.gaip-agent-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 0 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 560;
+}
+
+.gaip-agent-option:hover,
+.gaip-agent-client-option:hover {
+  border-color: rgba(36, 212, 201, .7);
+}
+
+.gaip-agent-option.is-selected,
+.gaip-agent-client-option.is-selected {
+  border-color: #24d4c9;
+  background: rgba(36, 212, 201, .1);
+  box-shadow: 0 0 0 1px rgba(36, 212, 201, .18) inset;
+}
+
+.gaip-agent-radio {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.gaip-agent-option.is-selected .gaip-agent-radio {
+  border-color: #24d4c9;
+  background: #24d4c9;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.gaip-agent-option-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-agent-client-option {
+  min-height: 64px;
+  padding: 0 14px;
+  border-radius: 4px;
+}
+
+.gaip-agent-client-main.is-disabled {
+  background: #fafafa;
+}
+
+.gaip-agent-client-main.is-disabled .gaip-agent-client-option {
+  cursor: not-allowed;
+  opacity: .48;
+  background: #f7f7f7;
+}
+
+.gaip-agent-client-main.is-disabled .gaip-agent-new-client {
+  pointer-events: none;
+  opacity: .45;
+}
+
+.gaip-agent-client-name {
+  display: block;
+  color: #2f3640;
+  font-size: 16px;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-agent-client-code {
+  display: block;
+  margin-top: 2px;
+  color: rgba(47, 54, 64, .55);
+  font-size: 13px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-agent-new-client-row {
+  margin-top: auto;
+  padding-top: 10px;
+  color: rgba(47, 54, 64, .65);
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.gaip-agent-new-client {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #007f70;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.gaip-agent-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px dashed #d9dfe2;
+  border-radius: 6px;
+  background: #fff;
+  color: rgba(47, 54, 64, .45);
+}
+
+.gaip-agent-history-menu {
+  position: fixed;
+  z-index: 99999;
+  width: 116px;
+  padding: 6px;
+  border: 1px solid rgba(47, 54, 64, .1);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(47, 54, 64, .14);
+}
+
+.gaip-agent-history-menu button {
+  display: block;
+  width: 100%;
+  height: 32px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #2f3640;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gaip-agent-history-menu button:hover {
+  background: rgba(47, 54, 64, .06);
+}
+
+.gaip-agent-history-menu button[data-action="delete"] {
+  color: #d14343;
+}
+
+@media (max-width: 980px) {
+  .gaip-agent-redesign-wrapper {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper {
+    grid-template-columns: minmax(260px, 32vw) minmax(0, 1fr);
+  }
+
+  .gaip-agent-plan-body {
+    grid-template-columns: 1fr;
+  }
+
+  .gaip-agent-client-main {
+    border-left: 0;
+    border-top: 1px solid #e4e8ea;
+  }
+}

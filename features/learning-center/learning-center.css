@@ -141,23 +141,6 @@ html.gaip-learning-scroll-lock body {
   min-height: 0;
   overflow: auto;
   background: #F5F4F2;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
-}
-
-.gaip-learning-scroll::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-.gaip-learning-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.gaip-learning-scroll::-webkit-scrollbar-thumb {
-  height: auto;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
 }
 
 .gaip-learning-grid {
@@ -235,7 +218,7 @@ html.gaip-learning-scroll-lock body {
   overflow: hidden;
   margin: 0 0 4px;
   color: var(--learning-ink);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 24px;
   text-overflow: ellipsis;
@@ -473,8 +456,6 @@ html.gaip-learning-scroll-lock body {
   min-height: 0;
   overflow: auto;
   padding: 0 28px 48px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(2, 91, 82, 0.3) transparent;
 }
 
 .gaip-course-reader-shell {
@@ -566,7 +547,7 @@ html.gaip-learning-scroll-lock body {
 
 .gaip-course-reader-complete strong {
   color: #2f3640;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -965,7 +946,7 @@ html.gaip-learning-scroll-lock body {
 
 .gaip-course-lessons-count {
   color: rgba(47, 54, 64, 0.52);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 20px;
 }
 

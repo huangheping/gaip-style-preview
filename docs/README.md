@@ -14,12 +14,25 @@
 
 - 根目录：可直接打开的 HTML 页面入口。
 - `shared/`：跨频道共用的样式与脚本。
+- `shared/config/channels.js`：频道名称、路由、入口文件、图标和页面类型的唯一配置源。
 - `features/`：学习中心、线索中心、工作台及频道本地 Mock 等功能专属代码。
 - `assets/`：字体、学习中心图片、图标和 PDF。
 - `docs/`：使用说明、结构规范和修改记录。
 - `qa/`：页面一致性审计截图。
 - `web/`：原始 Umi 构建产物，不手动改名或移动。
 - `AI Agent/`：AI 助手运行时文件。原构建包包含固定资源路径，因此保留原目录名称和位置。
+
+全局字体、字重、滚动条等跨页面调整统一记录在
+[`global-style-changelog.md`](./global-style-changelog.md)，后续可直接作为前端交接清单。
+
+频道首页的代码审计、结构命名和页面类型规范分别见：
+
+- [`channel-home-code-audit.md`](./channel-home-code-audit.md)
+- [`channel-home-standard.md`](./channel-home-standard.md)
+- [`channel-structure.md`](./channel-structure.md)
+
+新增或修改频道时，先更新 `shared/config/channels.js`，页面脚本不得再单独维护一份
+频道名称、路由或入口文件映射。
 
 ## 说明
 

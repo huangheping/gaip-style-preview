@@ -5,21 +5,19 @@
   var entryRoot = scriptUrl
     ? new URL('../../', scriptUrl)
     : new URL('./', location.href);
-  var routeEntries = {
-    '/workspace': '工作台.html',
-    '/customer': '客户中心360.html',
-    '/policy': '保单列表.html',
-    '/proposal': '方案中心.html',
-    '/product': '产品中心.html',
-    '/activity': '活动中心.html',
-    '/induction': '薄荷入职指引.html',
-    '/clues': '线索中心.html'
-  };
+  var channelConfig = window.__GAIP_CHANNEL_CONFIG__;
+  var routeEntries = {};
   var documentSession = [
     Date.now().toString(36),
     Math.random().toString(36).slice(2)
   ].join('-');
   var syncFrame = 0;
+
+  if (channelConfig) {
+    channelConfig.list.forEach(function (channel) {
+      if (!channel.virtual) routeEntries[channel.route] = channel.entry;
+    });
+  }
 
   function hashRoute() {
     return (location.hash || '')
@@ -36,7 +34,11 @@
   }
 
   function entryFile() {
-    if (learningRequested()) return '学习中心.html';
+    var learningChannel;
+    if (learningRequested()) {
+      learningChannel = channelConfig && channelConfig.getByKey('learning');
+      return learningChannel ? learningChannel.entry : '学习中心.html';
+    }
     return routeEntries[hashRoute()] || null;
   }
 

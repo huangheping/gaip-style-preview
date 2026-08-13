@@ -379,8 +379,16 @@
   }
 
   function updateDetailBreadcrumb(title) {
+    var controller = window.__GAIP_BREADCRUMB__;
     var breadcrumb = document.querySelector('.ant-breadcrumb');
     var back;
+    if (controller) {
+      controller.setDetail('learning', title, function () {
+        var page = document.querySelector('.gaip-learning-page[data-gaip-learning-overlay="true"]');
+        if (page) closeCourseDetail(page);
+      });
+      return;
+    }
     if (!breadcrumb) return;
     breadcrumb.setAttribute('data-gaip-learning', 'true');
     breadcrumb.innerHTML =
@@ -795,7 +803,13 @@
   }
 
   function updateBreadcrumb(force) {
+    var controller = window.__GAIP_BREADCRUMB__;
     var breadcrumb = document.querySelector('.ant-breadcrumb');
+    if (controller) {
+      controller.clearDetail('learning');
+      controller.refresh();
+      return;
+    }
     if (!breadcrumb) return;
     if (originalBreadcrumbHtml === null) originalBreadcrumbHtml = breadcrumb.innerHTML;
     if (!force && breadcrumb.getAttribute('data-gaip-learning') === 'true') return;
@@ -810,7 +824,13 @@
   }
 
   function restoreBreadcrumb() {
+    var controller = window.__GAIP_BREADCRUMB__;
     var breadcrumb = document.querySelector('.ant-breadcrumb');
+    if (controller) {
+      controller.clearDetail('learning');
+      controller.refresh();
+      return;
+    }
     if (!breadcrumb || originalBreadcrumbHtml === null) return;
     breadcrumb.innerHTML = originalBreadcrumbHtml;
     breadcrumb.removeAttribute('data-gaip-learning');
@@ -870,6 +890,7 @@
     var header = document.querySelector('[class*="header___tcVAl"]');
     var sidebar = document.querySelector('.ant-layout-sider');
     var page = document.querySelector('.gaip-learning-page[data-gaip-learning-overlay="true"]');
+    var detailOpen;
     if (!header || !sidebar) return false;
 
     if (!page) {
@@ -879,9 +900,18 @@
       bindPageActions(page);
     }
 
+    detailOpen = [
+      '.gaip-course-detail-page',
+      '.gaip-course-player-page',
+      '.gaip-course-reader-page'
+    ].some(function (selector) {
+      var view = page.querySelector(selector);
+      return view && !view.hidden;
+    });
+
     if (!originalTitle) originalTitle = document.title;
     lockUnderlyingPageScroll();
-    updateBreadcrumb(true);
+    if (!detailOpen) updateBreadcrumb(true);
     scheduleBoundsUpdate();
     document.title = '学习中心 - GAIP 本地原样版';
     document.body.setAttribute('data-gaip-page', 'learning');

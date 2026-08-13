@@ -27,17 +27,14 @@
     'ai-assistant-entry': 'AI 助手入口'
   };
 
-  var pageNames = {
-    workspace: '工作台总览',
-    customer: '客户中心360',
-    policy: '保单列表',
-    proposal: '方案中心',
-    product: '产品中心',
-    activity: '活动中心',
-    induction: '薄荷入职指引',
-    clues: '线索中心',
-    learning: '学习中心'
-  };
+  var channelConfig = window.__GAIP_CHANNEL_CONFIG__;
+  var pageNames = {};
+
+  if (channelConfig) {
+    channelConfig.list.forEach(function (channel) {
+      pageNames[channel.key] = channel.label;
+    });
+  }
 
   var pageRegions = {
     workspace: [
@@ -185,6 +182,7 @@
     if (!main || !pageKey) return;
 
     var channelPage;
+    var channel = channelConfig && channelConfig.getByKey(pageKey);
     if (pageKey === 'learning') {
       Array.prototype.forEach.call(
         main.querySelectorAll('[data-gaip-region="channel-page"]'),
@@ -199,6 +197,7 @@
     mark(channelPage, 'channel-page');
     channelPage.setAttribute('data-gaip-page', pageKey);
     channelPage.setAttribute('data-gaip-page-label', pageNames[pageKey]);
+    if (channel) channelPage.setAttribute('data-gaip-page-type', channel.type);
 
     var definitions = pageRegions[pageKey] || [];
     definitions.forEach(function (definition) {
@@ -213,11 +212,14 @@
 
     var pageKey = getPageKey();
     if (pageKey) {
+      var channel = channelConfig && channelConfig.getByKey(pageKey);
       document.body.setAttribute('data-gaip-page', pageKey);
       document.body.setAttribute('data-gaip-page-label', pageNames[pageKey]);
+      if (channel) document.body.setAttribute('data-gaip-page-type', channel.type);
     } else {
       document.body.removeAttribute('data-gaip-page');
       document.body.removeAttribute('data-gaip-page-label');
+      document.body.removeAttribute('data-gaip-page-type');
     }
 
     var main = markGlobalRegions();

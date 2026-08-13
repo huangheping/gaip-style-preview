@@ -1,0 +1,1405 @@
+    /* 方案中心 2026-08 改版：仅作用于方案中心频道。 */
+    [data-gaip-page="proposal"] .gaip-proposal-app,
+    [data-gaip-page="proposal"] .gaip-proposal-app * {
+      box-sizing: border-box;
+    }
+
+    [data-gaip-region="channel-page"][data-gaip-page="proposal"] {
+      min-height: calc(100vh - 56px);
+      background: #f7f8f8;
+      color: #2f3640;
+    }
+
+    .gaip-proposal-app {
+      --proposal-accent: #3ba297;
+      --proposal-ink: #2f3640;
+      --proposal-muted: #7f8790;
+      --proposal-line: #e5e8ea;
+      --proposal-deep: #005b52;
+      min-height: calc(100vh - 56px);
+      background: #f7f8f8;
+      font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .gaip-proposal-hero {
+      height: 116px;
+      padding: 26px 24px;
+      background: #eeeae7 url("../../web/static/headerBg.02590de9.jpg") center / cover no-repeat;
+    }
+
+    .gaip-proposal-hero h1 {
+      margin: 0 0 6px;
+      color: var(--proposal-ink);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 29px;
+    }
+
+    .gaip-proposal-hero p {
+      margin: 0;
+      color: #737b84;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .gaip-proposal-tabs {
+      display: flex;
+      align-items: stretch;
+      height: 68px;
+      padding: 0 24px;
+      background: #fff;
+      border-bottom: 1px solid rgba(47, 54, 64, .08);
+    }
+
+    .gaip-proposal-tab {
+      position: relative;
+      min-width: 124px;
+      height: 68px;
+      padding: 0 14px;
+      border: 0;
+      background: transparent;
+      color: var(--proposal-ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .gaip-proposal-tab + .gaip-proposal-tab {
+      margin-left: 16px;
+    }
+
+    .gaip-proposal-tab::after {
+      position: absolute;
+      right: 22px;
+      bottom: 0;
+      left: 22px;
+      height: 4px;
+      background: transparent;
+      content: "";
+    }
+
+    .gaip-proposal-tab.is-active {
+      color: #20272f;
+      font-weight: 600;
+    }
+
+    .gaip-proposal-tab.is-active::after {
+      background: var(--proposal-accent);
+    }
+
+    .gaip-proposal-tab:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .gaip-proposal-tab:focus-visible,
+    .gaip-proposal-generate:focus-visible,
+    .gaip-record-action:focus-visible,
+    .gaip-record-status:focus-visible,
+    .gaip-record-category:focus-visible {
+      outline: 2px solid var(--proposal-accent);
+      outline-offset: 2px;
+    }
+
+    .gaip-proposal-tab:focus-visible {
+      outline: none;
+      color: #00695f;
+      box-shadow: none;
+    }
+
+    .gaip-proposal-panel[hidden] {
+      display: none !important;
+    }
+
+    .gaip-proposal-catalog {
+      min-height: calc(100vh - 240px);
+      padding: 27px 24px 56px;
+      background: #f8f9f9;
+    }
+
+    .gaip-proposal-section-head {
+      margin-bottom: 18px;
+    }
+
+    .gaip-proposal-section-head h2 {
+      margin: 0 0 4px;
+      color: var(--proposal-ink);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+    }
+
+    .gaip-proposal-section-head p {
+      margin: 0;
+      color: #8a9199;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .gaip-proposal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .gaip-proposal-card {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 158px;
+      padding: 8px 23px 8px 8px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e1e5e7;
+      border-radius: 4px;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .gaip-proposal-card:hover {
+      border-color: rgba(59, 162, 151, .48);
+      box-shadow: 0 8px 22px rgba(25, 52, 58, .08);
+      transform: translateY(-1px);
+    }
+
+    .gaip-proposal-cover {
+      width: 142px;
+      height: 142px;
+      object-fit: cover;
+      border-radius: 5px;
+      background: #eef1f2;
+    }
+
+    .gaip-proposal-card-copy {
+      min-width: 0;
+      padding: 0 24px;
+    }
+
+    .gaip-proposal-card h3 {
+      display: -webkit-box;
+      margin: 0 0 8px;
+      overflow: hidden;
+      color: var(--proposal-ink);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .gaip-proposal-card p {
+      display: -webkit-box;
+      margin: 0;
+      overflow: hidden;
+      color: #59616a;
+      font-size: 14px;
+      line-height: 22px;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .gaip-proposal-generate {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 13px;
+      white-space: nowrap;
+      border: 1px solid #00695f;
+      border-radius: 4px;
+      background: #fff;
+      color: #00695f;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .16s ease, color .16s ease;
+    }
+
+    .gaip-proposal-generate:hover {
+      background: #00695f;
+      color: #fff;
+    }
+
+    .gaip-proposal-generate img {
+      width: 15px;
+      height: 15px;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(29%) sepia(52%) saturate(1167%) hue-rotate(130deg) brightness(87%) contrast(101%);
+    }
+
+    .gaip-proposal-generate:hover img {
+      filter: brightness(0) invert(1);
+    }
+
+    .gaip-proposal-generate[disabled] {
+      cursor: wait;
+      opacity: .65;
+    }
+
+    .gaip-record-layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      min-height: calc(100vh - 240px);
+      background: #fff;
+    }
+
+    .gaip-record-sidebar {
+      padding: 20px 12px 48px;
+      border-right: 1px solid #eceeef;
+      background: #fff;
+    }
+
+    .gaip-record-category {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 12px 16px 12px 24px;
+      border: 0;
+      border-bottom: 1px solid #eceeef;
+      background: #fff;
+      color: #303740;
+      cursor: pointer;
+      font: inherit;
+      font-size: 15px;
+      line-height: 21px;
+      text-align: left;
+    }
+
+    .gaip-record-category:first-child {
+      border-top: 1px solid transparent;
+    }
+
+    .gaip-record-category.is-active {
+      border-bottom-color: transparent;
+      background: #edfafa;
+      color: #00695f;
+      font-weight: 600;
+    }
+
+    .gaip-record-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      height: 24px;
+      margin-left: 12px;
+      padding: 0 8px;
+      border-radius: 12px;
+      background: #eef0f1;
+      color: #4f5861;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .gaip-record-main {
+      min-width: 0;
+      padding: 18px 24px 64px;
+      background: #fafbfb;
+    }
+
+    .gaip-record-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 48px;
+      margin-bottom: 11px;
+    }
+
+    .gaip-record-statuses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .gaip-record-status {
+      min-height: 38px;
+      padding: 0 16px;
+      border: 1px solid #e1e4e6;
+      border-radius: 20px;
+      background: #fff;
+      color: #343b44;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .gaip-record-status.is-active {
+      border-color: #2f3640;
+      background: #2f3640;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .gaip-record-search {
+      position: relative;
+      flex: 0 1 390px;
+      min-width: 280px;
+    }
+
+    .gaip-record-search img {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .gaip-record-search input {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px 0 43px;
+      border: 1px solid #d9dde0;
+      border-radius: 4px;
+      background: #fff;
+      color: #313840;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .gaip-record-search input::placeholder {
+      color: #b5b9bd;
+    }
+
+    .gaip-record-search input:focus {
+      border-color: var(--proposal-accent);
+      box-shadow: 0 0 0 2px rgba(59, 162, 151, .12);
+    }
+
+    .gaip-record-summary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 31px;
+      color: #626a72;
+      font-size: 13px;
+    }
+
+    .gaip-record-summary img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .gaip-record-summary strong {
+      color: #00695f;
+      font-weight: 600;
+    }
+
+    .gaip-record-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .gaip-record-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 130px;
+      padding: 20px 24px;
+      background: #fff;
+      border: 1px solid #e1e5e7;
+      border-radius: 4px;
+    }
+
+    .gaip-record-card h3 {
+      margin: 0 0 6px;
+      color: var(--proposal-ink);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 25px;
+    }
+
+    .gaip-record-id {
+      color: #8a9199;
+      font-size: 13px;
+    }
+
+    .gaip-record-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 24px;
+    }
+
+    .gaip-record-client {
+      color: #00695f;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .gaip-record-owner-status {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 9px;
+      border-radius: 12px;
+      background: #fff3dc;
+      color: #9a6411;
+      font-size: 13px;
+    }
+
+    .gaip-record-card.is-linked .gaip-record-owner-status {
+      background: #e8f6f4;
+      color: #00695f;
+    }
+
+    .gaip-record-side {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding-left: 24px;
+    }
+
+    .gaip-record-date {
+      white-space: nowrap;
+      color: #848b93;
+      font-size: 13px;
+    }
+
+    .gaip-record-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .gaip-record-action {
+      height: 38px;
+      padding: 0 13px;
+      border: 1px solid #00695f;
+      border-radius: 4px;
+      background: #fff;
+      color: #00695f;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .gaip-record-action.is-primary {
+      background: #00695f;
+      color: #fff;
+    }
+
+    .gaip-record-action.is-attention {
+      border-color: #d99624;
+      background: #fff3dc;
+      color: #875507;
+    }
+
+    .gaip-record-action:hover {
+      background: #edf8f7;
+    }
+
+    .gaip-record-action.is-primary:hover {
+      background: #004e47;
+    }
+
+    .gaip-record-action.is-attention:hover {
+      border-color: #c17b12;
+      background: #ffe8bb;
+      color: #754805;
+    }
+
+    .gaip-record-empty {
+      padding: 72px 24px;
+      border: 1px solid #e4e7e9;
+      border-radius: 4px;
+      background: #fff;
+      color: #8a9199;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .gaip-owner-overlay,
+    .gaip-owner-confirm-overlay {
+      position: fixed;
+      z-index: 1500;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(31, 38, 45, .42);
+      backdrop-filter: blur(2px);
+    }
+
+    .gaip-owner-confirm-overlay {
+      z-index: 1510;
+      background: rgba(31, 38, 45, .28);
+    }
+
+    body[data-gaip-global-customer-open="true"] .ant-drawer {
+      z-index: 1600 !important;
+    }
+
+    body[data-gaip-global-customer-open="true"] .ant-select-dropdown,
+    body[data-gaip-global-customer-open="true"] .ant-picker-dropdown {
+      z-index: 1610 !important;
+    }
+
+    .gaip-global-new-customer-bridge {
+      position: fixed !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      border: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      clip-path: inset(50%) !important;
+    }
+
+    .gaip-owner-overlay[hidden],
+    .gaip-owner-confirm-overlay[hidden] {
+      display: none !important;
+    }
+
+    .gaip-owner-dialog {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      width: min(640px, calc(100vw - 48px));
+      height: min(600px, calc(100vh - 48px));
+      overflow: hidden;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(17, 35, 39, .22);
+    }
+
+    .gaip-owner-header {
+      position: relative;
+      padding: 24px 64px 18px 24px;
+    }
+
+    .gaip-owner-header h2 {
+      margin: 0 0 7px;
+      color: #2f3640;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+    .gaip-owner-subtitle {
+      max-width: 100%;
+      overflow: hidden;
+      color: #858c94;
+      font-size: 14px;
+      line-height: 20px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gaip-owner-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .gaip-owner-close:hover {
+      background: #f2f4f5;
+    }
+
+    .gaip-owner-close img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .gaip-owner-search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      padding: 0 24px 14px;
+    }
+
+    .gaip-owner-search {
+      position: relative;
+    }
+
+    .gaip-owner-search img {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .gaip-owner-search input {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px 0 48px;
+      border: 1px solid #d9dde0;
+      border-radius: 4px;
+      background: #fafbfb;
+      color: #303740;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .gaip-owner-search input::placeholder {
+      color: #b5babf;
+    }
+
+    .gaip-owner-search input:focus {
+      border-color: #2bc9be;
+      box-shadow: 0 0 0 2px rgba(43, 201, 190, .12);
+    }
+
+    .gaip-owner-new-copy {
+      color: #2f3640;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .gaip-owner-link {
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: #00695f;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .gaip-owner-list {
+      min-height: 0;
+      margin: 0;
+      padding: 0 4px 0 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      list-style: none;
+      scrollbar-color: #dedede transparent;
+      scrollbar-width: thin;
+    }
+
+    .gaip-owner-option {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      width: 100%;
+      min-height: 58px;
+      padding: 0 24px;
+      border: 0;
+      border-bottom: 1px solid #eef0f1;
+      background: #fff;
+      color: #353c44;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .gaip-owner-option:hover {
+      background: #f7fbfb;
+    }
+
+    .gaip-owner-option.is-selected {
+      border-top: 1px solid #61ded6;
+      border-bottom-color: #61ded6;
+      background: #edfbfa;
+    }
+
+    .gaip-owner-option-name {
+      margin-right: 8px;
+      color: #303740;
+      font-weight: 500;
+    }
+
+    .gaip-owner-option-code {
+      color: #858c94;
+      font-weight: 400;
+    }
+
+    .gaip-owner-option img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .gaip-owner-empty {
+      padding: 52px 24px;
+      color: #8b9299;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .gaip-owner-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      min-height: 82px;
+      padding: 16px 20px 18px 24px;
+      border-top: 1px solid #f0f1f2;
+      background: #fff;
+    }
+
+    .gaip-owner-unlink {
+      margin-right: auto;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: #e54343;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    .gaip-owner-button {
+      height: 38px;
+      padding: 0 16px;
+      border: 1px solid #00695f;
+      border-radius: 4px;
+      background: #fff;
+      color: #00695f;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .gaip-owner-button.is-primary {
+      min-width: 88px;
+      background: #00695f;
+      color: #fff;
+    }
+
+    .gaip-owner-button.is-danger {
+      border-color: #d83b3b;
+      background: #d83b3b;
+      color: #fff;
+    }
+
+    .gaip-owner-button:hover:not(:disabled) {
+      background: #eef8f7;
+    }
+
+    .gaip-owner-button.is-primary:hover:not(:disabled) {
+      background: #004f48;
+    }
+
+    .gaip-owner-button.is-danger:hover:not(:disabled) {
+      background: #bb2d2d;
+    }
+
+    .gaip-owner-button:disabled {
+      border-color: #dfe2e4;
+      background: #e9ebec;
+      color: #a2a7ac;
+      cursor: not-allowed;
+    }
+
+    .gaip-owner-confirm-dialog {
+      width: min(430px, calc(100vw - 48px));
+      padding: 24px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(17, 35, 39, .24);
+    }
+
+    .gaip-owner-confirm-dialog h3 {
+      margin: 0 0 12px;
+      color: #2f3640;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .gaip-owner-confirm-dialog p {
+      margin: 0;
+      color: #69717a;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .gaip-owner-confirm-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .gaip-owner-close:focus-visible,
+    .gaip-owner-link:focus-visible,
+    .gaip-owner-option:focus-visible,
+    .gaip-owner-unlink:focus-visible,
+    .gaip-owner-button:focus-visible {
+      outline: 2px solid #2bc9be;
+      outline-offset: 2px;
+    }
+
+    .gaip-file-overlay {
+      position: fixed;
+      z-index: 1500;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: rgba(25, 29, 33, .78);
+    }
+
+    .gaip-file-overlay[hidden] {
+      display: none !important;
+    }
+
+    .gaip-file-dialog {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      width: min(1080px, calc(100vw - 80px));
+      height: min(680px, calc(100vh - 80px));
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 7px;
+      background: #fff;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .28);
+    }
+
+    .gaip-file-dialog-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 80px;
+      padding: 16px 72px 15px 24px;
+      border-bottom: 1px solid #e3e6e8;
+      background: #fff;
+    }
+
+    .gaip-file-dialog-title {
+      min-width: 0;
+    }
+
+    .gaip-file-dialog-title h2 {
+      max-width: 720px;
+      margin: 0 0 5px;
+      overflow: hidden;
+      color: #2f3640;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 23px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gaip-file-dialog-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: #858c94;
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    .gaip-file-dialog-client {
+      color: #00695f;
+      font-weight: 500;
+    }
+
+    .gaip-file-dialog-status {
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 11px;
+      background: #e8f6f4;
+      color: #00695f;
+    }
+
+    .gaip-file-dialog-status.is-pending {
+      background: #fff3dc;
+      color: #9a6411;
+    }
+
+    .gaip-file-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 0;
+      border-left: 1px solid #e3e6e8;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .gaip-file-close:hover {
+      background: #f3f5f5;
+    }
+
+    .gaip-file-close img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .gaip-file-dialog-body {
+      display: grid;
+      grid-template-columns: 336px minmax(0, 1fr);
+      min-height: 0;
+    }
+
+    .gaip-file-sidebar {
+      display: grid;
+      grid-template-rows: 56px minmax(0, 1fr);
+      min-width: 0;
+      border-right: 1px solid #e3e6e8;
+      background: #fafbfb;
+    }
+
+    .gaip-file-sidebar-head,
+    .gaip-file-preview-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 56px;
+      padding: 0 24px;
+      border-bottom: 1px solid #e3e6e8;
+      background: #fff;
+    }
+
+    .gaip-file-sidebar-head h3 {
+      margin: 0;
+      color: #2f3640;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .gaip-file-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      white-space: nowrap;
+      border: 0;
+      background: transparent;
+      color: #00695f;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .gaip-file-download:hover {
+      color: #004e47;
+    }
+
+    .gaip-file-download img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .gaip-file-groups {
+      min-height: 0;
+      margin: 0;
+      padding: 12px 10px 20px 16px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      list-style: none;
+      scrollbar-color: #d5d9dc transparent;
+      scrollbar-width: thin;
+    }
+
+    .gaip-file-group + .gaip-file-group {
+      margin-top: 10px;
+    }
+
+    .gaip-file-group-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr) auto;
+      align-items: center;
+      width: 100%;
+      min-height: 72px;
+      padding: 10px 12px;
+      border: 1px solid #e1e5e7;
+      border-radius: 5px;
+      background: #fff;
+      color: #2f3640;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .gaip-file-group-row:hover {
+      border-color: rgba(43, 201, 190, .66);
+      background: #f7fcfb;
+    }
+
+    .gaip-file-group-row.is-selected {
+      border-color: #2bc9be;
+      background: #edfafa;
+      box-shadow: 0 0 0 1px rgba(43, 201, 190, .08);
+    }
+
+    .gaip-file-type-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .gaip-file-name-wrap {
+      min-width: 0;
+      padding-right: 8px;
+    }
+
+    .gaip-file-name-line {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 6px;
+    }
+
+    .gaip-file-name {
+      min-width: 0;
+      overflow: hidden;
+      color: #303740;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gaip-file-version-meta {
+      margin-top: 3px;
+      color: #858c94;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .gaip-file-history-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #747c85;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .gaip-file-history-toggle:hover {
+      background: rgba(0, 91, 82, .08);
+      color: #00695f;
+    }
+
+    .gaip-file-history-toggle span {
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform .18s ease;
+    }
+
+    .gaip-file-group-row[aria-expanded="true"] .gaip-file-history-toggle span {
+      transform: rotate(90deg);
+    }
+
+    .gaip-file-versions {
+      margin: 6px 0 0 26px;
+      padding: 0;
+      border-left: 1px solid #dfe5e5;
+      list-style: none;
+    }
+
+    .gaip-file-version-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      width: calc(100% - 8px);
+      min-height: 48px;
+      margin-left: 8px;
+      padding: 6px 11px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #5f6770;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .gaip-file-version-row:hover,
+    .gaip-file-version-row.is-selected {
+      background: #eef7f6;
+      color: #00695f;
+    }
+
+    .gaip-file-version-time {
+      color: #93999f;
+      font-size: 11px;
+    }
+
+    .gaip-file-preview {
+      display: grid;
+      grid-template-rows: 56px minmax(0, 1fr);
+      min-width: 0;
+      min-height: 0;
+      background: #f3f5f5;
+    }
+
+    .gaip-file-preview-title {
+      min-width: 0;
+      overflow: hidden;
+      color: #4b535c;
+      font-size: 13px;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gaip-file-preview-stage {
+      min-width: 0;
+      min-height: 0;
+      padding: 24px;
+      overflow: auto;
+      scrollbar-color: #d3d7da transparent;
+      scrollbar-width: thin;
+    }
+
+    .gaip-file-paper {
+      width: min(100%, 680px);
+      min-height: 780px;
+      margin: 0 auto;
+      padding: 50px 56px 64px;
+      background: #fff;
+      color: #303740;
+      box-shadow: 0 4px 18px rgba(42, 53, 58, .12);
+    }
+
+    .gaip-file-paper-kicker {
+      margin-bottom: 14px;
+      color: #00766b;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+
+    .gaip-file-paper h4 {
+      margin: 0 0 10px;
+      color: #263039;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .gaip-file-paper-subtitle {
+      margin: 0 0 32px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #2bc9be;
+      color: #7b838b;
+      font-size: 13px;
+    }
+
+    .gaip-file-paper-section + .gaip-file-paper-section {
+      margin-top: 28px;
+    }
+
+    .gaip-file-paper-section h5 {
+      margin: 0 0 12px;
+      color: #27313a;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .gaip-file-paper-section p,
+    .gaip-file-paper-section li {
+      color: #5f6871;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .gaip-file-paper-section p {
+      margin: 0;
+    }
+
+    .gaip-file-paper-section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .gaip-file-paper-highlight {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .gaip-file-paper-stat {
+      padding: 15px 12px;
+      border: 1px solid #dce8e6;
+      border-radius: 4px;
+      background: #f7fbfa;
+    }
+
+    .gaip-file-paper-stat strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #00695f;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .gaip-file-paper-stat span {
+      color: #7b838b;
+      font-size: 11px;
+    }
+
+    .gaip-file-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      color: #92989e;
+      font-size: 14px;
+    }
+
+    .gaip-file-close:focus-visible,
+    .gaip-file-download:focus-visible,
+    .gaip-file-group-row:focus-visible,
+    .gaip-file-history-toggle:focus-visible,
+    .gaip-file-version-row:focus-visible {
+      outline: 2px solid #2bc9be;
+      outline-offset: 2px;
+    }
+
+    .gaip-proposal-toast {
+      position: fixed;
+      z-index: 1200;
+      top: 76px;
+      left: 50%;
+      padding: 10px 18px;
+      border-radius: 4px;
+      background: rgba(37, 44, 52, .94);
+      color: #fff;
+      font-size: 14px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .16);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -10px);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .gaip-proposal-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 1380px) {
+      .gaip-proposal-card {
+        grid-template-columns: 112px minmax(0, 1fr);
+        padding-right: 14px;
+      }
+
+      .gaip-proposal-cover {
+        width: 104px;
+        height: 118px;
+      }
+
+      .gaip-proposal-card-copy {
+        padding: 0 16px;
+      }
+
+      .gaip-proposal-generate {
+        grid-column: 2;
+        justify-self: start;
+        margin: 10px 0 0 16px;
+      }
+
+      .gaip-record-side {
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .gaip-proposal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gaip-record-layout {
+        grid-template-columns: 250px minmax(0, 1fr);
+      }
+
+      .gaip-record-toolbar,
+      .gaip-record-card {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .gaip-record-toolbar {
+        display: flex;
+      }
+
+      .gaip-record-search {
+        flex-basis: auto;
+        min-width: 0;
+      }
+
+      .gaip-record-card {
+        grid-template-columns: 1fr;
+      }
+
+      .gaip-record-side {
+        align-items: flex-start;
+        margin-top: 18px;
+        padding-left: 0;
+      }
+
+      .gaip-owner-search-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .gaip-file-dialog {
+        width: calc(100vw - 32px);
+        height: calc(100vh - 32px);
+        min-height: 0;
+      }
+
+      .gaip-file-dialog-body {
+        grid-template-columns: 290px minmax(0, 1fr);
+      }
+
+      .gaip-file-paper {
+        padding: 40px 34px 56px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gaip-proposal-card,
+      .gaip-proposal-toast,
+      .gaip-owner-dialog,
+      .gaip-file-history-toggle span {
+        transition: none;
+      }
+    }

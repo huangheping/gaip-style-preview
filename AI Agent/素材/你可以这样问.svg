@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="190px" height="31px" viewBox="0 0 190 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>你可以这样问</title>
+    <defs>
+        <linearGradient x1="-50%" y1="50%" x2="150%" y2="50%" id="linearGradient-1" spreadMethod="repeat">
+            <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0;1 0" keyTimes="0;.333333;1" dur="12s" calcMode="linear" repeatCount="indefinite"></animateTransform>
+            <stop stop-color="#0BACBE" offset="0%"></stop>
+            <stop stop-color="#25B8D8" offset="18%"></stop>
+            <stop stop-color="#6382FF" offset="38%"></stop>
+            <stop stop-color="#FBB08E" offset="60%">
+                <animate attributeName="stop-color" values="#FBB08E;#FFD08A;#FBB08E;#FBB08E" keyTimes="0;.166667;.333333;1" dur="12s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1;0 0 1 1" repeatCount="indefinite"></animate>
+            </stop>
+            <stop stop-color="#6382FF" offset="78%"></stop>
+            <stop stop-color="#0BACBE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="AI对话" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="PingFangSC-Semibold, PingFang SC" font-size="32" font-weight="500">
+        <g id="聊天对话框备份-2" transform="translate(-803, -327)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="编组-36备份" transform="translate(688, 320)">
+                <text id="你可以这样问">
+                    <tspan x="115" y="34">你可以这样问</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
