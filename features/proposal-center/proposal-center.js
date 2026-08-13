@@ -287,6 +287,14 @@
         if (primary) primary.disabled = !ownerSelectionChanged(record);
       }
 
+      function scrollOwnerSelectionIntoView(root) {
+        var modal = root.querySelector('[data-owner-modal]');
+        var list = modal && modal.querySelector('[data-owner-list]');
+        var selected = list && list.querySelector('.gaip-owner-option.is-selected');
+        if (!list || !selected) return;
+        list.scrollTop = Math.max(0, selected.offsetTop - (list.clientHeight - selected.offsetHeight) / 2);
+      }
+
       function closeOwnerModal(root) {
         var modal = root.querySelector('[data-owner-modal]');
         var confirm = root.querySelector('[data-unlink-confirm]');
@@ -460,7 +468,10 @@
           state.ownerSelectedClientId = option.getAttribute('data-owner-client-id');
           updateOwnerDialog(root);
         };
-        modal.querySelector('[data-owner-search]').focus();
+        window.requestAnimationFrame(function () {
+          scrollOwnerSelectionIntoView(root);
+          modal.querySelector('[data-owner-search]').focus({ preventScroll: true });
+        });
       }
 
       function getFileRecord() {

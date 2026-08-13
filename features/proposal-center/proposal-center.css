@@ -1313,6 +1313,57 @@
       transform: translate(-50%, 0);
     }
 
+    .agentModal___Nxp06 .skillToggle___OpRvz:not(.gaip-agent-skill-active):focus,
+    .agentModal___Nxp06 .skillToggle___OpRvz:not(.gaip-agent-skill-active):active {
+      background: transparent !important;
+    }
+
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active,
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active:hover,
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active:focus,
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active:active {
+      color: #fff !important;
+      background: #2f3640 !important;
+    }
+
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active::before {
+      display: none;
+    }
+
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active::after {
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      flex: 0 0 12px;
+      margin-left: 2px;
+      background: center / 12px 12px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 2l8 8M10 2L2 10' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .agentModal___Nxp06 .skillToggle___OpRvz.gaip-agent-skill-active .gaip-agent-skill-icon {
+      filter: brightness(0) invert(1);
+    }
+
+    .agentModal___Nxp06 .footerArea___MESP6 {
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .agentModal___Nxp06 .footerArea___MESP6:has(textarea.textarea___GMXtD:focus) {
+      border-color: rgba(47, 54, 64, .62) !important;
+      box-shadow: 0 0 0 1px rgba(47, 54, 64, .08);
+    }
+
+    .agentModal___Nxp06 .gaip-agent-plan-tag .close___ZupBD {
+      width: 14px;
+      height: 14px;
+      background: center / 14px 14px no-repeat url("./plan-tag-close.svg");
+    }
+
+    .agentModal___Nxp06 .gaip-agent-plan-tag .close___ZupBD svg {
+      display: none !important;
+    }
+
     @media (max-width: 1380px) {
       .gaip-proposal-card {
         grid-template-columns: 112px minmax(0, 1fr);

@@ -1,27 +1,6 @@
 (function () {
   'use strict';
 
-  var localPreviewScriptUrl = document.currentScript && document.currentScript.src;
-  var localPreviewRoot = localPreviewScriptUrl
-    ? new URL('../../', localPreviewScriptUrl)
-    : new URL('./', location.href);
-
-  // 方案中心改版原本只写在“方案中心.html”里，其他频道无刷新切到
-  // #/proposal 时不会重新读取该 HTML。非方案中心入口预先加载同一份
-  // 改版资源，保持主导航的 SPA 切换体验。
-  if (document.title.indexOf('方案中心') !== 0) {
-    var proposalStyle = document.createElement('link');
-    proposalStyle.id = 'gaip-proposal-center-style';
-    proposalStyle.rel = 'stylesheet';
-    proposalStyle.href = new URL('features/proposal-center/proposal-center.css', localPreviewRoot).href;
-    document.head.appendChild(proposalStyle);
-
-    var proposalScript = document.createElement('script');
-    proposalScript.id = 'gaip-proposal-center-script';
-    proposalScript.src = new URL('features/proposal-center/proposal-center.js', localPreviewRoot).href;
-    document.head.appendChild(proposalScript);
-  }
-
   function createMemoryStorage() {
     var values = Object.create(null);
     return {
@@ -130,11 +109,6 @@
   }, function (webpackRequire) {
     // 立即写入模块缓存；后续分包即使覆盖同 ID 的工厂也不会替换现有导出。
     webpackRequire(90894);
-  }]);
-
-  // 供方案中心改版里的“关联客户”等桥接交互复用原应用组件。
-  self.webpackChunk.push([['gaip-proposal-runtime-bridge'], {}, function (webpackRequire) {
-    window.__GAIP_WEBPACK_REQUIRE__ = webpackRequire;
   }]);
 
   var menuCodes = [

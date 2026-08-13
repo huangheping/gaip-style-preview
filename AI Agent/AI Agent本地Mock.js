@@ -1016,11 +1016,41 @@
   }
 
   function applyAgentHeaderAssets(modal) {
+    var wrapper = modal.querySelector('.modalRenderWrapper___qz3XP');
+    var endIcons = modal.querySelector('.endIcons___IOP5L');
     var historyButton = modal.querySelector('.historyBtn___ElWTU');
     var closeIcon = modal.querySelector('.closeIcon___X96Lj');
     var attachmentToggle = modal.querySelector('.attachmentToggle___m40lT');
+    var fullscreenButton = modal.querySelector('.gaip-agent-fullscreen-toggle');
     if (historyButton && !historyButton.querySelector('.gaip-agent-collapse-icon')) {
       historyButton.innerHTML = '<img class="gaip-agent-collapse-icon" src="./AI Agent/素材/收起.svg" alt="">';
+    }
+    if (endIcons && !fullscreenButton) {
+      fullscreenButton = document.createElement('button');
+      fullscreenButton.type = 'button';
+      fullscreenButton.className = 'gaip-agent-fullscreen-toggle';
+      fullscreenButton.innerHTML =
+        '<svg class="gaip-agent-fullscreen-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">' +
+          '<g class="gaip-agent-icon-expand" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M7.2 3.5H3.5v3.7"></path><path d="M12.8 3.5h3.7v3.7"></path>' +
+            '<path d="M7.2 16.5H3.5v-3.7"></path><path d="M12.8 16.5h3.7v-3.7"></path>' +
+          '</g>' +
+          '<g class="gaip-agent-icon-collapse" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M3.8 7.2h3.4V3.8"></path><path d="M16.2 7.2h-3.4V3.8"></path>' +
+            '<path d="M3.8 12.8h3.4v3.4"></path><path d="M16.2 12.8h-3.4v3.4"></path>' +
+          '</g>' +
+        '</svg>';
+      if (closeIcon) {
+        endIcons.insertBefore(fullscreenButton, closeIcon);
+      } else {
+        endIcons.appendChild(fullscreenButton);
+      }
+    }
+    if (fullscreenButton) {
+      var isFullscreen = wrapper && wrapper.classList.contains('gaip-agent-fullscreen');
+      fullscreenButton.setAttribute('aria-label', isFullscreen ? '退出全屏' : '全屏');
+      fullscreenButton.setAttribute('title', isFullscreen ? '退出全屏' : '全屏');
+      fullscreenButton.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
     }
     if (closeIcon && closeIcon.getAttribute('src') !== './AI Agent/素材/最小化.svg') {
       closeIcon.setAttribute('src', './AI Agent/素材/最小化.svg');
@@ -1037,7 +1067,13 @@
     if (!wrapper || !historyButton) return;
     if (!wrapper.classList.contains('gaip-agent-redesign-wrapper')) wrapper.classList.add('gaip-agent-redesign-wrapper');
     var modalWidth = Math.max(720, Math.min(1314, window.innerWidth - 96));
-    if (modal.__gaipAgentAppliedWidth !== modalWidth) {
+    if (wrapper.classList.contains('gaip-agent-fullscreen')) {
+      if (modal.__gaipAgentAppliedWidth !== 'fullscreen') {
+        modal.style.setProperty('width', '100vw', 'important');
+        modal.style.setProperty('max-width', '100vw', 'important');
+        modal.__gaipAgentAppliedWidth = 'fullscreen';
+      }
+    } else if (modal.__gaipAgentAppliedWidth !== modalWidth) {
       modal.style.setProperty('width', modalWidth + 'px', 'important');
       modal.style.setProperty('max-width', modalWidth + 'px', 'important');
       modal.__gaipAgentAppliedWidth = modalWidth;
@@ -1068,6 +1104,7 @@
     hideNativeSkillCards(modal);
     applyAgentHeaderAssets(modal);
     var newSessionButton = wrapper.querySelector('.gaip-agent-new-session');
+    var fullscreenButton = modal.querySelector('.gaip-agent-fullscreen-toggle');
     var skillToggle = modal.querySelector('.skillToggle___OpRvz');
     if (newSessionButton) {
       newSessionButton.onclick = function (event) {
@@ -1083,6 +1120,16 @@
         event.stopPropagation();
         skillToggle.focus();
         togglePlanPanel(modal);
+      };
+    }
+    if (fullscreenButton) {
+      fullscreenButton.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        wrapper.classList.toggle('gaip-agent-fullscreen');
+        modal.classList.toggle('gaip-agent-modal-fullscreen', wrapper.classList.contains('gaip-agent-fullscreen'));
+        modal.__gaipAgentAppliedWidth = null;
+        ensureAgentSidebar(modal);
       };
     }
   }

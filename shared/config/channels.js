@@ -32,7 +32,11 @@
       route: '/proposal',
       entry: '方案中心.html',
       icon: 'proposal-center',
-      type: 'master-detail'
+      type: 'master-detail',
+      assets: {
+        styles: ['features/proposal-center/proposal-center.css'],
+        scripts: ['features/proposal-center/proposal-center.js']
+      }
     },
     {
       key: 'product',

@@ -24,6 +24,30 @@
   pointer-events: auto !important;
 }
 
+.agentModal___Nxp06.gaip-agent-modal-fullscreen {
+  top: 0 !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+.modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper.gaip-agent-fullscreen {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-fullscreen .ant-modal-content {
+  border-radius: 0;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-fullscreen.gaip-agent-sidebar-collapsed .ant-modal-content {
+  border-radius: 0;
+}
+
 .modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper.gaip-agent-sidebar-collapsed {
   grid-template-columns: 0 minmax(0, 1fr);
 }
@@ -315,7 +339,8 @@
   font-size: 19px;
 }
 
-.gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU:hover {
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU:hover,
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-fullscreen-toggle:hover {
   background: #f2f4f5;
 }
 
@@ -334,10 +359,44 @@
   display: none !important;
 }
 
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-fullscreen-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 10px 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #2f3640;
+  cursor: pointer;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-fullscreen-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-icon-collapse {
+  display: none;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-fullscreen .headerTitle___cXSkY .gaip-agent-icon-expand {
+  display: none;
+}
+
+.gaip-agent-redesign-wrapper.gaip-agent-fullscreen .headerTitle___cXSkY .gaip-agent-icon-collapse {
+  display: block;
+}
+
 .gaip-agent-redesign-wrapper .headerTitle___cXSkY .closeIcon___X96Lj {
   width: 30px;
   height: 30px;
-  margin-left: auto;
+  margin-left: 0;
   object-fit: contain;
 }
 

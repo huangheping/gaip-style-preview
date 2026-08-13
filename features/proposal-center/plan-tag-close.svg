@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 3</title>
+    <g id="AI对话" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="聊天对话框" transform="translate(-858, -663)">
+            <g id="编组-31" transform="translate(431, 646)">
+                <g id="编组-33备份" transform="translate(266, 8)">
+                    <g id="编组-3" transform="translate(161, 9)">
+                        <circle id="椭圆形" fill="#2F3640" cx="7" cy="7" r="7"></circle>
+                        <g id="编组-32" transform="translate(4, 4)" stroke="#FFFFFF">
+                            <line x1="0" y1="0" x2="6" y2="6" id="路径-2"></line>
+                            <line x1="0" y1="0" x2="6" y2="6" id="路径-2" transform="translate(3, 3) scale(-1, 1) translate(-3, -3)"></line>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
