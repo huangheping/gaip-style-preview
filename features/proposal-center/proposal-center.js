@@ -291,8 +291,14 @@
         var modal = root.querySelector('[data-owner-modal]');
         var list = modal && modal.querySelector('[data-owner-list]');
         var selected = list && list.querySelector('.gaip-owner-option.is-selected');
+        var listRect;
+        var selectedRect;
+        var selectedTop;
         if (!list || !selected) return;
-        list.scrollTop = Math.max(0, selected.offsetTop - (list.clientHeight - selected.offsetHeight) / 2);
+        listRect = list.getBoundingClientRect();
+        selectedRect = selected.getBoundingClientRect();
+        selectedTop = selectedRect.top - listRect.top + list.scrollTop;
+        list.scrollTop = Math.max(0, selectedTop - (list.clientHeight - selectedRect.height) / 2);
       }
 
       function closeOwnerModal(root) {
