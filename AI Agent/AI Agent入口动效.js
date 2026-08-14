@@ -375,6 +375,9 @@ const gaipAgentEntryAssets = {
   lottieRuntime: './AI Agent/素材/lottie.min.js',
   processing: './AI Agent/素材/ai-agent-radar.json',
   completed: './AI Agent/素材/ai-agent-completed.json',
+  version1: './AI Agent/素材/creative-3.04cea590.png',
+  version2Poster: './AI Agent/素材/入口版本2.png',
+  version2Video: './AI Agent/素材/机器人猫客服悬浮入口循环动画v2.mp4',
 };
 
 let gaipAgentEntryObserver = null;
@@ -382,6 +385,106 @@ let gaipAgentEntryLottieRuntimePromise = null;
 let gaipAgentEntryAnimation = null;
 let gaipAgentEntryAnimationState = '';
 let gaipAgentEntryRequestedState = 'idle';
+let gaipAgentEntryVersion = 1;
+
+function readGaipAgentEntryVersion() {
+  let stored = '';
+  try {
+    stored = window.localStorage && window.localStorage.getItem('gaip-agent-entry-version');
+  } catch (error) {
+    stored = '';
+  }
+  return stored === '2' ? 2 : 1;
+}
+
+function saveGaipAgentEntryVersion(version) {
+  gaipAgentEntryVersion = version === 2 ? 2 : 1;
+  try {
+    if (window.localStorage) window.localStorage.setItem('gaip-agent-entry-version', String(gaipAgentEntryVersion));
+  } catch (error) {
+    // 本地预览环境可能禁用 localStorage，禁用时只保留当前页面状态。
+  }
+}
+
+function applyGaipAgentEntryVersion(entry) {
+  const targetEntry = entry || document.querySelector('[class*="globalButton___"]');
+  const icon = targetEntry && targetEntry.querySelector('[data-gaip-agent-entry-orb-ready="true"]');
+  const fallback = icon && icon.querySelector('.gaip-agent-entry-orb-fallback');
+  const video = icon && icon.querySelector('.gaip-agent-entry-orb-video');
+  const version = gaipAgentEntryVersion === 2 ? 2 : 1;
+  const imagePath = version === 2 ? gaipAgentEntryAssets.version2Poster : gaipAgentEntryAssets.version1;
+
+  if (targetEntry) {
+    targetEntry.setAttribute('data-gaip-agent-entry-version', String(version));
+    targetEntry.setAttribute('title', 'AI Agent入口样式 V' + version);
+  }
+  if (icon) icon.setAttribute('data-gaip-agent-entry-version', String(version));
+  if (fallback && fallback.getAttribute('src') !== imagePath) fallback.setAttribute('src', imagePath);
+  if (video) {
+    if (video.getAttribute('src') !== gaipAgentEntryAssets.version2Video) video.setAttribute('src', gaipAgentEntryAssets.version2Video);
+    if (version === 2) {
+      video.play && video.play().catch(function () {});
+    } else {
+      video.pause && video.pause();
+    }
+  }
+}
+
+function toggleGaipAgentEntryVersion() {
+  saveGaipAgentEntryVersion(gaipAgentEntryVersion === 1 ? 2 : 1);
+  applyGaipAgentEntryVersion();
+}
+
+function isGaipAgentHeaderTimeText(text) {
+  const normalizedText = String(text || '').replace(/\s+/g, ' ').trim();
+  return /(\d{4}[年/-]\d{1,2}[月/-]\d{1,2})|(\d{1,2}:\d{2})|(星期|周)[一二三四五六日天]/.test(normalizedText);
+}
+
+function findGaipAgentHeaderTimeTarget() {
+  const hosts = Array.prototype.slice.call(document.querySelectorAll('[data-gaip-region="user-actions"], [class*="right___"], .umi-plugin-layout-right'));
+  let match = null;
+
+  hosts.some(function (host) {
+    const nodes = Array.prototype.slice.call(host.querySelectorAll('time, span, div, p'));
+    return nodes.some(function (node) {
+      const text = node.textContent || '';
+      const hasInteractiveChild = !!node.querySelector('button, a, input, textarea, select, [role="button"], .umi-plugin-layout-avatar, [class*="avatar"]');
+      const hasNestedTimeText = Array.prototype.slice.call(node.children || []).some(function (child) {
+        return isGaipAgentHeaderTimeText(child.textContent || '');
+      });
+      if (hasInteractiveChild || hasNestedTimeText || !isGaipAgentHeaderTimeText(text)) return false;
+      match = node;
+      return true;
+    });
+    return !!match;
+  });
+
+  return match;
+}
+
+function ensureGaipAgentEntryVersionTimeToggle() {
+  const oldButton = document.querySelector('.gaip-agent-entry-version-switch');
+  const timeTarget = findGaipAgentHeaderTimeTarget();
+  if (oldButton) oldButton.remove();
+  if (!timeTarget || timeTarget.__gaipAgentEntryVersionTimeBound) return;
+
+  timeTarget.__gaipAgentEntryVersionTimeBound = true;
+  timeTarget.setAttribute('data-gaip-agent-entry-version-trigger', 'time');
+  timeTarget.addEventListener('click', function (event) {
+    event.stopPropagation();
+    toggleGaipAgentEntryVersion();
+  });
+
+  const host = timeTarget.closest('[data-gaip-region="user-actions"], [class*="right___fv3yS"]');
+  if (host && !host.__gaipAgentEntryVersionTimeCleanupBound) {
+    host.__gaipAgentEntryVersionTimeCleanupBound = true;
+    host.addEventListener('click', function () {
+      window.setTimeout(ensureGaipAgentEntryVersionTimeToggle, 0);
+    });
+  }
+
+  applyGaipAgentEntryVersion();
+}
 
 function normalizeGaipAgentEntryState(state) {
   return ['idle', 'processing', 'completed'].includes(state) ? state : 'idle';
@@ -473,9 +576,24 @@ function mountGaipAgentEntryOrb() {
 
   const image = document.createElement('img');
   image.className = 'gaip-agent-entry-orb-fallback';
-  image.src = './AI Agent/素材/creative-3.04cea590.png';
+  image.src = gaipAgentEntryVersion === 2 ? gaipAgentEntryAssets.version2Poster : gaipAgentEntryAssets.version1;
   image.alt = '';
   orb.append(image);
+
+  const video = document.createElement('video');
+  video.className = 'gaip-agent-entry-orb-video';
+  video.src = gaipAgentEntryAssets.version2Video;
+  video.poster = gaipAgentEntryAssets.version2Poster;
+  video.muted = true;
+  video.loop = true;
+  video.autoplay = true;
+  video.playsInline = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('loop', '');
+  video.setAttribute('autoplay', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('aria-hidden', 'true');
+  orb.append(video);
 
   const host = document.createElement('div');
   host.className = 'gaip-agent-entry-orb-shader';
@@ -488,6 +606,7 @@ function mountGaipAgentEntryOrb() {
   icon.insertBefore(orb, icon.firstChild);
   icon.insertBefore(lottieHost, orb.nextSibling);
   new VoiceOrb(host, './AI Agent/素材/creative-3.b08cc4fe.webp');
+  applyGaipAgentEntryVersion(entry);
   setGaipAgentEntryState(gaipAgentEntryRequestedState);
 
   if (gaipAgentEntryObserver) {
@@ -503,9 +622,12 @@ function scheduleGaipAgentEntryOrb() {
   gaipAgentEntryOrbScheduled = true;
   requestAnimationFrame(function () {
     gaipAgentEntryOrbScheduled = false;
+    ensureGaipAgentEntryVersionTimeToggle();
     mountGaipAgentEntryOrb();
   });
 }
+
+gaipAgentEntryVersion = readGaipAgentEntryVersion();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', scheduleGaipAgentEntryOrb, { once: true });
@@ -522,6 +644,13 @@ gaipAgentEntryObserver.observe(document.documentElement, {
 document.addEventListener('gaip-agent-entry-state', function (event) {
   setGaipAgentEntryState(event && event.detail && event.detail.state);
 });
+
+window.setGaipAgentEntryVersion = function (version) {
+  saveGaipAgentEntryVersion(version);
+  applyGaipAgentEntryVersion();
+};
+
+window.toggleGaipAgentEntryVersion = toggleGaipAgentEntryVersion;
 
 window.setGaipAgentState = function (state) {
   setGaipAgentEntryState(state);
