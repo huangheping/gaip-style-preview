@@ -106,6 +106,25 @@
     return sessionId;
   }
 
+  var agentEntryIdleTimer = null;
+
+  function emitAgentEntryState(state) {
+    if (agentEntryIdleTimer) {
+      window.clearTimeout(agentEntryIdleTimer);
+      agentEntryIdleTimer = null;
+    }
+    document.dispatchEvent(new CustomEvent('gaip-agent-entry-state', {
+      detail: { state: state }
+    }));
+  }
+
+  function scheduleAgentEntryIdle() {
+    if (agentEntryIdleTimer) window.clearTimeout(agentEntryIdleTimer);
+    agentEntryIdleTimer = window.setTimeout(function () {
+      emitAgentEntryState('idle');
+    }, 1400);
+  }
+
   function createAgentChatResponse(signal, sessionId) {
     var encoder = new TextEncoder();
     var events = [
@@ -122,10 +141,12 @@
     var timer = null;
     var stream = new ReadableStream({
       start: function (controller) {
+        emitAgentEntryState('processing');
         var index = 0;
         function pushNext() {
           if (signal && signal.aborted) {
             try { controller.close(); } catch (_) {}
+            emitAgentEntryState('idle');
             return;
           }
           if (index < events.length) {
@@ -136,11 +157,14 @@
           }
           controller.enqueue(encoder.encode('data: [DONE]\n\n'));
           controller.close();
+          emitAgentEntryState('completed');
+          scheduleAgentEntryIdle();
         }
         pushNext();
       },
       cancel: function () {
         if (timer) clearTimeout(timer);
+        emitAgentEntryState('idle');
       }
     });
     return new Response(stream, {
@@ -232,6 +256,7 @@
   var agentRedesignObserver = null;
   var agentDocumentClickBound = false;
   var agentLastMountedModal = null;
+  var agentMinimizedModal = null;
   var agentEmptySuggestions = [
     '帮李宁做一份兼顾子女教育和全球通行的身份规划方案',
     '查一款适合香港高净值客户、偏稳健、兼顾传承的保险产品'
@@ -244,6 +269,34 @@
     GUARANTEE: '家庭保障方案',
     THREE_DEGREE: '三度需求分析方案'
   };
+
+  var agentProposalCenterTemplates = [
+    {
+      id: 'bermuda-fna',
+      name: '百慕大-离岸保险 FNA（财务需求分析）问卷与产品配置',
+      description: '百慕大及离岸保险FNA问卷与产品配置'
+    },
+    {
+      id: 'hongkong-fna',
+      name: '香港保险FNA问卷生成与产品配置方案',
+      description: '香港保险FNA问卷生成与产品配置方案 Skill v2'
+    },
+    {
+      id: 'usa-insurance-ppt',
+      name: '美国保险配置方案PPT（中国客户专用）',
+      description: '基于FNA信息生成美国保险配置方案PPT'
+    },
+    {
+      id: 'singapore-insurance',
+      name: '新加坡保险计划书对比分析方案',
+      description: '对比分析新加坡保险计划书并形成建议'
+    },
+    {
+      id: 'glory-insurance-insight',
+      name: 'GLORY国内保险方向洞察',
+      description: '基于客户KYC判断国内外保险配置方向'
+    }
+  ];
 
   function unwrapPreviewPayload(payload) {
     if (payload && payload.code && Object.prototype.hasOwnProperty.call(payload, 'data')) return payload.data;
@@ -284,6 +337,20 @@
     });
   }
 
+  function normalizeProposalTemplateList(list) {
+    return (Array.isArray(list) ? list : []).map(function (item, index) {
+      return {
+        id: item.id || ('template-' + index),
+        name: item.name || item.title || ('方案模板 ' + (index + 1)),
+        typeLabel: item.name || item.title || ('方案模板 ' + (index + 1)),
+        description: item.description || '',
+        clientName: '',
+        updatedDt: '',
+        score: 0
+      };
+    });
+  }
+
   function normalizeClientList(list) {
     return (Array.isArray(list) ? list : []).map(function (item, index) {
       return {
@@ -304,10 +371,10 @@
       return;
     }
     Promise.all([
-      fetchPreviewJson('/api/gaip/proposal/list', []),
+      Promise.resolve(agentProposalCenterTemplates),
       fetchPreviewJson('/api/gaip/client/list', [])
     ]).then(function (result) {
-      agentPlanSelectionState.proposals = normalizeProposalList(result[0]);
+      agentPlanSelectionState.proposals = normalizeProposalTemplateList(result[0]);
       agentPlanSelectionState.clients = normalizeClientList(result[1]);
       agentPlanSelectionState.loaded = true;
       callback();
@@ -618,8 +685,8 @@
     var plan = state && state.plan;
     var client = state && state.client;
     if (!plan) return '';
-    if (client) return '请为客户「' + client.name + '」生成「' + plan.typeLabel + '」，并结合当前对话上下文给出方案重点。';
-    return '请生成「' + plan.typeLabel + '」，并结合当前对话上下文给出方案重点。';
+    if (client) return '请为客户「' + client.name + '」生成「' + plan.name + '」，并结合当前对话上下文给出方案重点。';
+    return '请生成「' + plan.name + '」，并结合当前对话上下文给出方案重点。';
   }
 
   function persistAgentDraft(modal) {
@@ -672,7 +739,7 @@
       container.insertAdjacentHTML('beforeend',
         '<span class="tag___PKl7Z skillTag___g4XXW gaip-agent-plan-tag" data-tag="plan" data-plan-id="' + escapeHtml(plan.id) + '">' +
           '<span class="icon___uCSIV" aria-hidden="true">◇</span>' +
-          '<span class="text___u9Ggi">' + escapeHtml(plan.typeLabel) + '</span>' +
+          '<span class="text___u9Ggi">' + escapeHtml(plan.name) + '</span>' +
           '<span role="button" tabindex="0" class="close___ZupBD" data-clear="plan" aria-label="清除方案">' +
             '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false">' +
               '<path d="M3.1 2.4 6 5.3l2.9-2.9.7.7L6.7 6l2.9 2.9-.7.7L6 6.7 3.1 9.6l-.7-.7L5.3 6 2.4 3.1z" fill="currentColor"></path>' +
@@ -713,6 +780,35 @@
     skillToggle.setAttribute('aria-pressed', state.planPanelVisible ? 'true' : 'false');
   }
 
+  function captureAgentPlanScroll(modal) {
+    var contentArea = modal && modal.querySelector('#agentModalContentArea');
+    var chatPanel = modal && modal.querySelector('.chatPanel___qIDO_');
+    var messageList = chatPanel && (chatPanel.querySelector('.msgBox___NYtlO') || chatPanel);
+    var planList = modal && modal.querySelector('.gaip-agent-option-list-plan');
+    var clientList = modal && modal.querySelector('.gaip-agent-option-list-client');
+    return {
+      contentTop: contentArea ? contentArea.scrollTop : 0,
+      chatTop: chatPanel ? chatPanel.scrollTop : 0,
+      messageTop: messageList ? messageList.scrollTop : 0,
+      planTop: planList ? planList.scrollTop : 0,
+      clientTop: clientList ? clientList.scrollTop : 0
+    };
+  }
+
+  function restoreAgentPlanScroll(modal, snapshot) {
+    var contentArea = modal && modal.querySelector('#agentModalContentArea');
+    var chatPanel = modal && modal.querySelector('.chatPanel___qIDO_');
+    var messageList = chatPanel && (chatPanel.querySelector('.msgBox___NYtlO') || chatPanel);
+    var planList = modal && modal.querySelector('.gaip-agent-option-list-plan');
+    var clientList = modal && modal.querySelector('.gaip-agent-option-list-client');
+    if (!snapshot) return;
+    if (contentArea) contentArea.scrollTop = snapshot.contentTop;
+    if (chatPanel) chatPanel.scrollTop = snapshot.chatTop;
+    if (messageList) messageList.scrollTop = snapshot.messageTop;
+    if (planList) planList.scrollTop = snapshot.planTop;
+    if (clientList) clientList.scrollTop = snapshot.clientTop;
+  }
+
   function renderPlanPanel(modal) {
     var contentArea = modal.querySelector('#agentModalContentArea');
     var chatPanel = modal.querySelector('.chatPanel___qIDO_');
@@ -722,6 +818,7 @@
     var state = getAgentSessionState(modal);
     var plan = state.plan;
     var client = state.client;
+    var scrollSnapshot = captureAgentPlanScroll(modal);
     if (!contentArea || !chatPanel || !messageList) return;
     if (!state.planPanelVisible) {
       if (panel) panel.remove();
@@ -756,7 +853,10 @@
             (agentPlanSelectionState.proposals.length ? agentPlanSelectionState.proposals.map(function (item) {
               return '<button type="button" class="gaip-agent-option' + (plan && String(plan.id) === String(item.id) ? ' is-selected' : '') + '" data-plan-id="' + escapeHtml(item.id) + '">' +
                 '<span class="gaip-agent-radio" aria-hidden="true"></span>' +
-                '<span class="gaip-agent-option-text">' + escapeHtml(item.name) + '</span>' +
+                '<span class="gaip-agent-option-text">' +
+                  '<span class="gaip-agent-option-title">' + escapeHtml(item.name) + '</span>' +
+                  '<span class="gaip-agent-option-desc">' + escapeHtml(item.description || '') + '</span>' +
+                '</span>' +
               '</button>';
             }).join('') : '<div class="gaip-agent-empty">暂无可选方案</div>') +
           '</div>' +
@@ -808,6 +908,10 @@
       };
     }
     updateSkillToggleState(modal);
+    restoreAgentPlanScroll(modal, scrollSnapshot);
+    window.requestAnimationFrame(function () {
+      restoreAgentPlanScroll(modal, scrollSnapshot);
+    });
   }
 
   function removeEmptyState(modal) {
@@ -1052,11 +1156,54 @@
       fullscreenButton.setAttribute('title', isFullscreen ? '退出全屏' : '全屏');
       fullscreenButton.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
     }
-    if (closeIcon && closeIcon.getAttribute('src') !== './AI Agent/素材/最小化.svg') {
-      closeIcon.setAttribute('src', './AI Agent/素材/最小化.svg');
-      closeIcon.setAttribute('alt', '最小化');
+    if (closeIcon) {
+      if (closeIcon.getAttribute('src') !== './AI Agent/素材/最小化.svg') {
+        closeIcon.setAttribute('src', './AI Agent/素材/最小化.svg');
+        closeIcon.setAttribute('alt', '最小化');
+      }
+      closeIcon.setAttribute('role', 'button');
+      closeIcon.setAttribute('aria-label', '最小化');
+      closeIcon.setAttribute('title', '最小化');
     }
     ensureAgentButtonIcon(attachmentToggle, 'gaip-agent-attachment-icon', './AI Agent/素材/上传附件.svg', '上传附件');
+  }
+
+  function getAgentModalWrap(modal) {
+    return modal && modal.closest && modal.closest('.ant-modal-wrap');
+  }
+
+  function getAgentModalMask(modal) {
+    var root = modal && modal.closest && modal.closest('.ant-modal-root');
+    return root && root.querySelector('.ant-modal-mask');
+  }
+
+  function minimizeAgentModal(modal) {
+    var wrap = getAgentModalWrap(modal);
+    var mask = getAgentModalMask(modal);
+    if (!modal || !wrap) return;
+    agentMinimizedModal = modal;
+    wrap.setAttribute('data-gaip-agent-minimized', 'true');
+    wrap.style.setProperty('display', 'none', 'important');
+    if (mask) {
+      mask.setAttribute('data-gaip-agent-minimized', 'true');
+      mask.style.setProperty('display', 'none', 'important');
+    }
+  }
+
+  function restoreMinimizedAgentModal() {
+    var modal = agentMinimizedModal || document.querySelector('.agentModal___Nxp06');
+    var wrap = getAgentModalWrap(modal);
+    var mask = getAgentModalMask(modal);
+    if (!wrap || wrap.getAttribute('data-gaip-agent-minimized') !== 'true') return false;
+    wrap.removeAttribute('data-gaip-agent-minimized');
+    wrap.style.removeProperty('display');
+    if (mask) {
+      mask.removeAttribute('data-gaip-agent-minimized');
+      mask.style.removeProperty('display');
+    }
+    agentMinimizedModal = null;
+    scheduleAgentRedesign();
+    return true;
   }
 
   function ensureAgentSidebar(modal) {
@@ -1199,6 +1346,15 @@
     if (modal.__gaipAgentRedesignBound) return;
     modal.__gaipAgentRedesignBound = true;
     modal.addEventListener('click', function (event) {
+      var closeIcon = event.target.closest && event.target.closest('.closeIcon___X96Lj');
+      if (!closeIcon) return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      minimizeAgentModal(modal);
+    }, true);
+
+    modal.addEventListener('click', function (event) {
       var historyButton = event.target.closest && event.target.closest('.historyBtn___ElWTU');
       var historyItem = event.target.closest && event.target.closest('.historyWrapper___KBX5W .historyItem___pomxN');
       var historyMenu = event.target.closest && event.target.closest('.historyWrapper___KBX5W .moreBtn___oyzcW, .historyWrapper___KBX5W .ant-dropdown-trigger');
@@ -1314,6 +1470,12 @@
   }
   document.addEventListener('click', function (event) {
     if (event.target && event.target.closest && event.target.closest('.globalButton___DVYbX')) {
+      if (restoreMinimizedAgentModal()) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        return;
+      }
       window.setTimeout(scheduleAgentRedesign, 0);
       window.setTimeout(scheduleAgentRedesign, 160);
     }

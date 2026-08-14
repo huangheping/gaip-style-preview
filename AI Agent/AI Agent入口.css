@@ -1,30 +1,55 @@
 [data-gaip-agent-entry="true"] [data-gaip-agent-entry-orb-ready="true"] {
+  --gaip-agent-entry-ring: linear-gradient(135deg, #ffae8b 0%, #67ffd4 48%, #6fb7ff 100%);
   position: relative;
   isolation: isolate;
   overflow: visible;
   background: #00453e;
+  border-color: transparent !important;
 }
 
 [data-gaip-agent-entry="true"] [data-gaip-agent-entry-orb-ready="true"] > img:not(.gaip-agent-entry-orb-fallback) {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   width: 37px;
   height: 22px;
   object-fit: contain;
 }
 
+[data-gaip-agent-entry="true"] [data-gaip-agent-entry-orb-ready="true"]::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 4;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--gaip-agent-entry-ring);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
 [data-gaip-agent-entry="true"] [data-gaip-agent-entry-orb-ready="true"]::after {
-  z-index: 3;
+  z-index: 6;
+}
+
+.gaip-agent-entry-orb,
+.gaip-agent-entry-orb-fallback,
+.gaip-agent-entry-orb-shader,
+.gaip-agent-entry-lottie,
+.gaip-agent-entry-orb-shader canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .gaip-agent-entry-orb,
 .gaip-agent-entry-orb-fallback,
 .gaip-agent-entry-orb-shader,
 .gaip-agent-entry-orb-shader canvas {
-  position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .gaip-agent-entry-orb {
@@ -33,6 +58,7 @@
   border-radius: 50%;
   pointer-events: none;
   background: #00453e;
+  transition: opacity 0.2s ease;
 }
 
 .gaip-agent-entry-orb-fallback {
@@ -50,8 +76,37 @@
   border-radius: 50%;
 }
 
+.gaip-agent-entry-lottie {
+  inset: -4px;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(0);
+  transition: opacity 0.18s ease;
+}
+
+.gaip-agent-entry-lottie svg {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+[data-gaip-agent-entry="true"][data-agent-state="processing"] .gaip-agent-entry-lottie,
+[data-gaip-agent-entry="true"][data-agent-state="completed"] .gaip-agent-entry-lottie {
+  opacity: 1;
+}
+
+[data-gaip-agent-entry="true"][data-agent-state="processing"] .gaip-agent-entry-orb,
+[data-gaip-agent-entry="true"][data-agent-state="completed"] .gaip-agent-entry-orb {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gaip-agent-entry-orb-shader {
+    display: none;
+  }
+
+  .gaip-agent-entry-lottie {
     display: none;
   }
 }

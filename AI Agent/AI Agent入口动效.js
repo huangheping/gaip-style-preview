@@ -371,7 +371,92 @@ void main() {
   outColor = vec4(color, 1.0);
 }`;
 
+const gaipAgentEntryAssets = {
+  lottieRuntime: './AI Agent/素材/lottie.min.js',
+  processing: './AI Agent/素材/ai-agent-radar.json',
+  completed: './AI Agent/素材/ai-agent-completed.json',
+};
+
 let gaipAgentEntryObserver = null;
+let gaipAgentEntryLottieRuntimePromise = null;
+let gaipAgentEntryAnimation = null;
+let gaipAgentEntryAnimationState = '';
+let gaipAgentEntryRequestedState = 'idle';
+
+function normalizeGaipAgentEntryState(state) {
+  return ['idle', 'processing', 'completed'].includes(state) ? state : 'idle';
+}
+
+function loadGaipAgentEntryLottieRuntime() {
+  if (window.lottie) return Promise.resolve(window.lottie);
+  if (gaipAgentEntryLottieRuntimePromise) return gaipAgentEntryLottieRuntimePromise;
+
+  gaipAgentEntryLottieRuntimePromise = new Promise(function (resolve, reject) {
+    const script = document.createElement('script');
+    script.src = gaipAgentEntryAssets.lottieRuntime;
+    script.async = true;
+    script.onload = function () { resolve(window.lottie); };
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+  return gaipAgentEntryLottieRuntimePromise;
+}
+
+function mountGaipAgentEntryStateAnimation(icon, state) {
+  const host = icon && icon.querySelector('.gaip-agent-entry-lottie');
+  if (!host || state === 'idle') {
+    if (gaipAgentEntryAnimation) gaipAgentEntryAnimation.goToAndStop(0, true);
+    gaipAgentEntryAnimationState = 'idle';
+    return;
+  }
+
+  loadGaipAgentEntryLottieRuntime().then(function (lottie) {
+    if (!lottie || !host.isConnected) return;
+    const latestState = normalizeGaipAgentEntryState(gaipAgentEntryRequestedState);
+    if (latestState !== state || latestState === 'idle') return;
+    const isCompleted = latestState === 'completed';
+    const animationPath = isCompleted ? gaipAgentEntryAssets.completed : gaipAgentEntryAssets.processing;
+
+    if (gaipAgentEntryAnimationState !== latestState) {
+      if (gaipAgentEntryAnimation) gaipAgentEntryAnimation.destroy();
+      host.replaceChildren();
+      gaipAgentEntryAnimation = lottie.loadAnimation({
+        container: host,
+        renderer: 'svg',
+        loop: !isCompleted,
+        autoplay: !isCompleted,
+        path: animationPath,
+      });
+      gaipAgentEntryAnimationState = latestState;
+      if (isCompleted) {
+        gaipAgentEntryAnimation.addEventListener('DOMLoaded', function () {
+          gaipAgentEntryAnimation.goToAndStop(0, true);
+        });
+      }
+      return;
+    }
+
+    if (isCompleted) gaipAgentEntryAnimation.goToAndStop(0, true);
+    else gaipAgentEntryAnimation.play();
+  }).catch(function () {
+    gaipAgentEntryAnimationState = 'idle';
+  });
+}
+
+function setGaipAgentEntryState(state) {
+  const normalizedState = normalizeGaipAgentEntryState(state);
+  const entry = document.querySelector('[class*="globalButton___"]');
+  const icon = entry && entry.querySelector('[data-gaip-agent-entry-orb-ready="true"]');
+
+  gaipAgentEntryRequestedState = normalizedState;
+  if (!entry || !icon) return;
+
+  entry.dataset.agentState = normalizedState;
+  entry.setAttribute('data-gaip-agent-entry-state', normalizedState);
+  icon.setAttribute('data-gaip-agent-entry-state', normalizedState);
+  mountGaipAgentEntryStateAnimation(icon, normalizedState);
+}
 
 function mountGaipAgentEntryOrb() {
   const entry = document.querySelector('[class*="globalButton___"]');
@@ -396,8 +481,14 @@ function mountGaipAgentEntryOrb() {
   host.className = 'gaip-agent-entry-orb-shader';
   orb.append(host);
 
+  const lottieHost = document.createElement('div');
+  lottieHost.className = 'gaip-agent-entry-lottie';
+  lottieHost.setAttribute('aria-hidden', 'true');
+
   icon.insertBefore(orb, icon.firstChild);
+  icon.insertBefore(lottieHost, orb.nextSibling);
   new VoiceOrb(host, './AI Agent/素材/creative-3.b08cc4fe.webp');
+  setGaipAgentEntryState(gaipAgentEntryRequestedState);
 
   if (gaipAgentEntryObserver) {
     gaipAgentEntryObserver.disconnect();
@@ -427,4 +518,20 @@ gaipAgentEntryObserver.observe(document.documentElement, {
   childList: true,
   subtree: true,
 });
+
+document.addEventListener('gaip-agent-entry-state', function (event) {
+  setGaipAgentEntryState(event && event.detail && event.detail.state);
+});
+
+window.setGaipAgentState = function (state) {
+  setGaipAgentEntryState(state);
+};
+
+window.setGaipAgentProcessing = function (processing) {
+  setGaipAgentEntryState(processing ? 'processing' : 'idle');
+};
+
+window.setGaipAgentCompleted = function (completed) {
+  setGaipAgentEntryState(completed === false ? 'idle' : 'completed');
+};
 })();
