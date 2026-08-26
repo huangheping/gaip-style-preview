@@ -68,10 +68,10 @@
       virtual: true,
       query: 'gaip-channel=news',
       assets: {
-        styles: ['features/news-center/news-center.css?v=20260826-13'],
+        styles: ['features/news-center/news-center.css?v=20260826-14'],
         scripts: [
           'features/news-center/mock-data.js?v=20260826-2',
-          'features/news-center/news-center.js?v=20260826-12'
+          'features/news-center/news-center.js?v=20260826-13'
         ]
       }
     },

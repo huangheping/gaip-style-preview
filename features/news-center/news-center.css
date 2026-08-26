@@ -7,9 +7,12 @@ html.gaip-news-scroll-lock body {
 
 .gaip-news-page {
   position: fixed;
-  z-index: 11;
+  z-index: 1000;
   overflow: auto;
-  min-width: 1228px;
+  min-width: 0;
+  min-height: 0;
+  background: #fafafa;
+  isolation: isolate;
 }
 
 .gaip-news-page * {

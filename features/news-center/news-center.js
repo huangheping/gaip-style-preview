@@ -603,7 +603,7 @@
     sidebarRect = sidebar.getBoundingClientRect();
     page.style.top = Math.max(0, Math.round(headerRect.height)) + 'px';
     page.style.left = Math.max(0, Math.round(sidebarRect.width)) + 'px';
-    page.style.width = Math.max(1228, window.innerWidth - Math.round(sidebarRect.width)) + 'px';
+    page.style.width = Math.max(0, window.innerWidth - Math.round(sidebarRect.width)) + 'px';
     page.style.height = Math.max(0, window.innerHeight - Math.round(headerRect.height)) + 'px';
   }
 
