@@ -11,7 +11,7 @@ updated: 2026-08-26
 ## 当前基线
 
 - 分支：`main`
-- 最近已发布功能提交：`7575d44`（Fix news center asset dependencies；主发布提交为 `08a950b`）
+- 最近已发布功能提交：`6e6fbe0`（Fix news center overlay layout）
 - 运行形态：本地静态预览，根目录 HTML 薄壳 + Umi Hash SPA + 本地 Mock
 - 频道配置唯一来源：`shared/config/channels.js`
 - 原始构建产物：`web/`，默认只读
@@ -19,7 +19,6 @@ updated: 2026-08-26
 ## 正在进行
 
 - [[knowledge/变更/当前未发布变更|当前未发布变更]]
-- 资讯中心线上层叠错乱已修复并完成本地回归，待推送 GitHub Pages。
 - 登录页视频英雄图测试入口已完成，但用户明确本次不同步，继续保留本地。
 - AI Agent 试验素材和资讯中心参考站分包继续保留本地，不属于正式页面依赖。
 
@@ -29,7 +28,6 @@ updated: 2026-08-26
 
 ## 待发布
 
-- 资讯中心覆盖层修复：不透明主内容背景、正确层级、按可用视口计算宽高，并更新频道资源缓存版本。
 - 登录页视频英雄图测试入口：`index-login-video-test.html`、`features/login-video-test/`、`assets/login-hero-test/`；用户明确本次不同步。
 - 其余本地保留文件见 [[knowledge/变更/当前未发布变更|当前未发布变更]]。
 
