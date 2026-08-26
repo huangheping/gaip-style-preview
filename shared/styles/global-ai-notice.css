@@ -1,0 +1,54 @@
+.gaip-ai-notice-root,
+.gaip-ai-notice-root * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.gaip-ai-notice-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.gaip-ai-notice {
+  position: relative;
+  display: block;
+  width: min(640px, calc(100vw - 40px));
+  max-height: calc(100vh - 40px);
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gaip-ai-notice-surface {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 40px);
+  padding: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.gaip-ai-notice-body {
+  display: flow-root;
+  width: 100%;
+  min-height: 200px;
+  overflow: visible;
+}
+
+.gaip-ai-notice-copy {
+  white-space: normal;
+}
+
+@media (max-width: 680px) {
+  .gaip-ai-notice {
+    width: calc(100vw - 32px);
+  }
+}

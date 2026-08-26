@@ -16,7 +16,11 @@
       route: '/customer',
       entry: '客户中心360.html',
       icon: 'customer-360',
-      type: 'master-detail'
+      type: 'master-detail',
+      assets: {
+        styles: ['features/customer/customer-center.css?v=20260825-1'],
+        scripts: ['features/customer/customer-center.js?v=20260825-1']
+      }
     },
     {
       key: 'policy',
@@ -53,6 +57,41 @@
       entry: '活动中心.html',
       icon: 'news-center',
       type: 'dashboard'
+    },
+    {
+      key: 'news',
+      label: '资讯中心',
+      route: '/workspace',
+      entry: '资讯中心.html',
+      icon: 'news-center',
+      type: 'dashboard',
+      virtual: true,
+      query: 'gaip-channel=news',
+      assets: {
+        styles: ['features/news-center/news-center.css?v=20260826-13'],
+        scripts: [
+          'features/news-center/mock-data.js?v=20260826-2',
+          'features/news-center/news-center.js?v=20260826-12'
+        ]
+      }
+    },
+    {
+      key: 'wealth',
+      label: '财富值中心',
+      route: '/workspace',
+      entry: '财富值中心.html',
+      icon: 'wealth',
+      type: 'operations',
+      virtual: true,
+      query: 'gaip-channel=wealth',
+      assets: {
+        styles: ['features/wealth-center/wealth-center.css?v=20260825-9'],
+        scripts: [
+          'features/wealth-center/mock-data.js?v=20260825-9',
+          'features/wealth-center/wealth-center.js?v=20260825-9',
+          'features/wealth-center/wealth-nav.js?v=20260825-9'
+        ]
+      }
     },
     {
       key: 'induction',

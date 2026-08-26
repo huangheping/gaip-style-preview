@@ -26,19 +26,18 @@
       .replace(/\/+$/, '') || '/';
   }
 
-  function learningRequested() {
+  function requestedVirtualChannel() {
     var query = (location.hash || '').split('?')[1] || '';
-    return new URLSearchParams(query).get('gaip-channel') === 'learning'
-      || window.__GAIP_PAGE_OVERRIDE__ === 'learning'
-      || document.body.getAttribute('data-gaip-page') === 'learning';
+    var requestedKey = new URLSearchParams(query).get('gaip-channel') ||
+      window.__GAIP_PAGE_OVERRIDE__ ||
+      document.body.getAttribute('data-gaip-page');
+    var channel = requestedKey && channelConfig && channelConfig.getByKey(requestedKey);
+    return channel && channel.virtual ? channel : null;
   }
 
   function entryFile() {
-    var learningChannel;
-    if (learningRequested()) {
-      learningChannel = channelConfig && channelConfig.getByKey('learning');
-      return learningChannel ? learningChannel.entry : '学习中心.html';
-    }
+    var virtualChannel = requestedVirtualChannel();
+    if (virtualChannel) return virtualChannel.entry;
     return routeEntries[hashRoute()] || null;
   }
 
@@ -97,6 +96,8 @@
   window.addEventListener('hashchange', scheduleEntrySync);
   window.addEventListener('popstate', scheduleEntrySync);
   window.addEventListener('gaip:learning-change', scheduleEntrySync);
+  window.addEventListener('gaip:wealth-change', scheduleEntrySync);
+  window.addEventListener('gaip:news-change', scheduleEntrySync);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', syncEntryPath, { once: true });

@@ -197,7 +197,13 @@
       tab.addEventListener('click', function () { tab.blur(); });
     });
     section.querySelectorAll('.homeInfoActions button, .homeViewAll').forEach(function (button) {
-      button.addEventListener('click', function () { button.blur(); });
+      button.addEventListener('click', function () {
+        var newsCenter = window.__GAIP_NEWS_CENTER__;
+        button.blur();
+        if (newsCenter && typeof newsCenter.open === 'function') {
+          newsCenter.open();
+        }
+      });
     });
     activate(tabs[0]);
     syncArticleHeight(section);

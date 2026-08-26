@@ -24,19 +24,23 @@
       .replace(/\/+$/, '') || '/workspace';
   }
 
-  function learningRequested() {
+  function requestedVirtualChannel() {
     var rawHash = location.hash || '';
     var queryIndex = rawHash.indexOf('?');
-    if (window.__GAIP_PAGE_OVERRIDE__ === 'learning') return true;
-    if (queryIndex < 0) return false;
-    return new URLSearchParams(rawHash.slice(queryIndex + 1))
-      .get('gaip-channel') === 'learning';
+    var key = window.__GAIP_PAGE_OVERRIDE__ || '';
+    var channel;
+    if (!key && queryIndex >= 0) {
+      key = new URLSearchParams(rawHash.slice(queryIndex + 1)).get('gaip-channel') || '';
+    }
+    channel = key && channelConfig.getByKey(key);
+    return channel && channel.virtual ? channel : null;
   }
 
   function currentChannel() {
     var path;
     var exact;
-    if (learningRequested()) return channelConfig.getByKey('learning');
+    var virtualChannel = requestedVirtualChannel();
+    if (virtualChannel) return virtualChannel;
     path = routePath();
     exact = channelConfig.getByRoute(path);
     if (exact) return exact;
@@ -88,12 +92,14 @@
 
     if (rootLink && channel && channel.virtual) {
       rootLink.addEventListener('click', function (event) {
-        var learningApi = window.__GAIP_LEARNING_CENTER__;
+        var virtualApis = window.__GAIP_VIRTUAL_CHANNELS__ || {};
+        var virtualApi = virtualApis[channel.key] ||
+          (channel.key === 'learning' ? window.__GAIP_LEARNING_CENTER__ : null);
         var targetHash = '#' + workspace.route;
         event.preventDefault();
 
-        if (learningApi && typeof learningApi.closeForNavigation === 'function') {
-          learningApi.closeForNavigation(workspace.route);
+        if (virtualApi && typeof virtualApi.closeForNavigation === 'function') {
+          virtualApi.closeForNavigation(workspace.route);
         }
         if (location.hash !== targetHash) location.hash = targetHash;
         scheduleRender();
@@ -181,6 +187,8 @@
   window.addEventListener('hashchange', scheduleRender);
   window.addEventListener('popstate', scheduleRender);
   window.addEventListener('gaip:learning-change', scheduleRender);
+  window.addEventListener('gaip:wealth-change', scheduleRender);
+  window.addEventListener('gaip:news-change', scheduleRender);
 
   observer = new MutationObserver(scheduleRender);
   observer.observe(document.documentElement, { childList: true, subtree: true });

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>全局组件目录 - GAIP</title>
+  <link rel="shortcut icon" href="../web/favicon.ico">
+  <link rel="stylesheet" href="../web/umi.c6286171.css">
+  <link rel="stylesheet" href="../shared/styles/global-font.css?v=20260731-1">
+  <link rel="stylesheet" href="../shared/styles/global-ai-notice.css?v=20260826-4">
+  <link rel="stylesheet" href="../shared/styles/global-multi-select.css?v=20260826-1">
+  <link rel="stylesheet" href="./components-preview.css?v=20260826-2">
+</head>
+<body>
+  <div class="catalogShell">
+    <aside class="catalogSidebar" aria-label="全局组件导航">
+      <div class="catalogBrand">
+        <span class="catalogBrandMark" aria-hidden="true">G</span>
+        <div>
+          <strong>GAIP</strong>
+          <span>全局组件</span>
+        </div>
+      </div>
+      <nav class="catalogNav" id="componentNav"></nav>
+      <div class="catalogSidebarFooter">
+        <span>已登记组件</span>
+        <strong id="componentCount">0</strong>
+      </div>
+    </aside>
+
+    <main class="catalogMain">
+      <header class="catalogHeader">
+        <div>
+          <p>GLOBAL COMPONENTS</p>
+          <h1>全局组件目录</h1>
+        </div>
+        <span class="catalogStatus">本地组件预览</span>
+      </header>
+
+      <section class="catalogSummary" aria-label="组件目录概览">
+        <div>
+          <span>组件数量</span>
+          <strong id="summaryComponentCount">0</strong>
+        </div>
+        <div>
+          <span>当前使用位置</span>
+          <strong id="summaryUsageCount">0</strong>
+        </div>
+        <div>
+          <span>组件来源</span>
+          <strong>本地共享文件</strong>
+        </div>
+      </section>
+
+      <section class="componentCatalog" id="componentCatalog" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <script src="./components-registry.js?v=20260826-2"></script>
+  <script src="../shared/scripts/global-ai-notice.js?v=20260826-2"></script>
+  <script src="../shared/scripts/global-multi-select.js?v=20260826-1"></script>
+  <script src="./components-preview.js?v=20260826-2"></script>
+</body>
+</html>

@@ -378,6 +378,7 @@ const gaipAgentEntryAssets = {
   version1: './AI Agent/素材/creative-3.04cea590.png',
   version2Poster: './AI Agent/素材/入口版本2.png',
   version2Video: './AI Agent/素材/机器人猫客服悬浮入口循环动画v2.mp4',
+  version2ProcessingVideo: './AI Agent/素材/机器人猫小面罩代码滚动悬浮入口循环动画v2.mp4',
 };
 
 let gaipAgentEntryObserver = null;
@@ -385,16 +386,34 @@ let gaipAgentEntryLottieRuntimePromise = null;
 let gaipAgentEntryAnimation = null;
 let gaipAgentEntryAnimationState = '';
 let gaipAgentEntryRequestedState = 'idle';
-let gaipAgentEntryVersion = 1;
+let gaipAgentEntryVersion = 2;
+let gaipAgentEntryModalMinimized = false;
+let gaipAgentEntryTipTimer = null;
+let gaipAgentEntryTipIndex = 0;
+
+const gaipAgentEntryProcessingTips = [
+  '自动化AI正在处理中',
+  '正在加速处理中',
+  '方案内容生成中',
+];
 
 function readGaipAgentEntryVersion() {
   let stored = '';
+  let defaultV2Applied = false;
   try {
-    stored = window.localStorage && window.localStorage.getItem('gaip-agent-entry-version');
+    if (window.localStorage) {
+      stored = window.localStorage.getItem('gaip-agent-entry-version');
+      defaultV2Applied = window.localStorage.getItem('gaip-agent-entry-default-v2-applied') === 'true';
+      if (!defaultV2Applied) {
+        window.localStorage.setItem('gaip-agent-entry-version', '2');
+        window.localStorage.setItem('gaip-agent-entry-default-v2-applied', 'true');
+        return 2;
+      }
+    }
   } catch (error) {
     stored = '';
   }
-  return stored === '2' ? 2 : 1;
+  return stored === '1' ? 1 : 2;
 }
 
 function saveGaipAgentEntryVersion(version) {
@@ -410,24 +429,24 @@ function applyGaipAgentEntryVersion(entry) {
   const targetEntry = entry || document.querySelector('[class*="globalButton___"]');
   const icon = targetEntry && targetEntry.querySelector('[data-gaip-agent-entry-orb-ready="true"]');
   const fallback = icon && icon.querySelector('.gaip-agent-entry-orb-fallback');
-  const video = icon && icon.querySelector('.gaip-agent-entry-orb-video');
+  const videos = icon ? Array.prototype.slice.call(icon.querySelectorAll('.gaip-agent-entry-orb-video')) : [];
   const version = gaipAgentEntryVersion === 2 ? 2 : 1;
   const imagePath = version === 2 ? gaipAgentEntryAssets.version2Poster : gaipAgentEntryAssets.version1;
 
   if (targetEntry) {
     targetEntry.setAttribute('data-gaip-agent-entry-version', String(version));
     targetEntry.setAttribute('title', 'AI Agent入口样式 V' + version);
+    targetEntry.setAttribute('data-gaip-agent-modal-minimized', gaipAgentEntryModalMinimized ? 'true' : 'false');
   }
   if (icon) icon.setAttribute('data-gaip-agent-entry-version', String(version));
   if (fallback && fallback.getAttribute('src') !== imagePath) fallback.setAttribute('src', imagePath);
-  if (video) {
-    if (video.getAttribute('src') !== gaipAgentEntryAssets.version2Video) video.setAttribute('src', gaipAgentEntryAssets.version2Video);
+  videos.forEach(function (video) {
     if (version === 2) {
       video.play && video.play().catch(function () {});
     } else {
       video.pause && video.pause();
     }
-  }
+  });
 }
 
 function toggleGaipAgentEntryVersion() {
@@ -488,6 +507,63 @@ function ensureGaipAgentEntryVersionTimeToggle() {
 
 function normalizeGaipAgentEntryState(state) {
   return ['idle', 'processing', 'completed'].includes(state) ? state : 'idle';
+}
+
+function findGaipAgentEntryTipCard(entry) {
+  return entry && entry.querySelector('[class*="tipCard___"]');
+}
+
+function setGaipAgentEntryTipMessage(message) {
+  const entry = document.querySelector('[class*="globalButton___"]');
+  const tipCard = findGaipAgentEntryTipCard(entry);
+  const tipText = tipCard && (tipCard.querySelector('[class*="tipText___"]') || tipCard.firstElementChild || tipCard);
+  if (!entry || !tipCard) return;
+  if (!tipText.__gaipAgentOriginalTipHTML) {
+    tipText.__gaipAgentOriginalTipHTML = tipText.innerHTML;
+  }
+
+  if (message) {
+    entry.setAttribute('data-gaip-agent-tip-mode', 'custom');
+    tipText.textContent = message;
+    return;
+  }
+
+  entry.removeAttribute('data-gaip-agent-tip-mode');
+  tipText.innerHTML = tipText.__gaipAgentOriginalTipHTML;
+}
+
+function syncGaipAgentEntryTipMessage() {
+  if (gaipAgentEntryRequestedState === 'processing') {
+    setGaipAgentEntryTipMessage(gaipAgentEntryProcessingTips[gaipAgentEntryTipIndex % gaipAgentEntryProcessingTips.length]);
+    return;
+  }
+
+  if (gaipAgentEntryRequestedState === 'completed' && gaipAgentEntryModalMinimized) {
+    setGaipAgentEntryTipMessage('AI自动化处理已完成');
+    return;
+  }
+
+  setGaipAgentEntryTipMessage('');
+}
+
+function syncGaipAgentEntryTipTimer() {
+  if (gaipAgentEntryRequestedState !== 'processing') {
+    if (gaipAgentEntryTipTimer) {
+      window.clearInterval(gaipAgentEntryTipTimer);
+      gaipAgentEntryTipTimer = null;
+    }
+    return;
+  }
+
+  if (gaipAgentEntryTipTimer) return;
+  gaipAgentEntryTipTimer = window.setInterval(function () {
+    if (gaipAgentEntryRequestedState !== 'processing') {
+      syncGaipAgentEntryTipTimer();
+      return;
+    }
+    gaipAgentEntryTipIndex = (gaipAgentEntryTipIndex + 1) % gaipAgentEntryProcessingTips.length;
+    syncGaipAgentEntryTipMessage();
+  }, 1800);
 }
 
 function loadGaipAgentEntryLottieRuntime() {
@@ -553,12 +629,16 @@ function setGaipAgentEntryState(state) {
   const icon = entry && entry.querySelector('[data-gaip-agent-entry-orb-ready="true"]');
 
   gaipAgentEntryRequestedState = normalizedState;
+  syncGaipAgentEntryTipTimer();
+  syncGaipAgentEntryTipMessage();
   if (!entry || !icon) return;
 
   entry.dataset.agentState = normalizedState;
   entry.setAttribute('data-gaip-agent-entry-state', normalizedState);
   icon.setAttribute('data-gaip-agent-entry-state', normalizedState);
+  applyGaipAgentEntryVersion(entry);
   mountGaipAgentEntryStateAnimation(icon, normalizedState);
+  syncGaipAgentEntryTipMessage();
 }
 
 function mountGaipAgentEntryOrb() {
@@ -580,20 +660,27 @@ function mountGaipAgentEntryOrb() {
   image.alt = '';
   orb.append(image);
 
-  const video = document.createElement('video');
-  video.className = 'gaip-agent-entry-orb-video';
-  video.src = gaipAgentEntryAssets.version2Video;
-  video.poster = gaipAgentEntryAssets.version2Poster;
-  video.muted = true;
-  video.loop = true;
-  video.autoplay = true;
-  video.playsInline = true;
-  video.setAttribute('muted', '');
-  video.setAttribute('loop', '');
-  video.setAttribute('autoplay', '');
-  video.setAttribute('playsinline', '');
-  video.setAttribute('aria-hidden', 'true');
-  orb.append(video);
+  function createEntryVideo(className, src) {
+    const video = document.createElement('video');
+    video.className = className;
+    video.src = src;
+    video.poster = gaipAgentEntryAssets.version2Poster;
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('preload', 'auto');
+    video.setAttribute('aria-hidden', 'true');
+    return video;
+  }
+
+  orb.append(createEntryVideo('gaip-agent-entry-orb-video gaip-agent-entry-orb-video-idle', gaipAgentEntryAssets.version2Video));
+  orb.append(createEntryVideo('gaip-agent-entry-orb-video gaip-agent-entry-orb-video-processing', gaipAgentEntryAssets.version2ProcessingVideo));
 
   const host = document.createElement('div');
   host.className = 'gaip-agent-entry-orb-shader';
@@ -643,6 +730,25 @@ gaipAgentEntryObserver.observe(document.documentElement, {
 
 document.addEventListener('gaip-agent-entry-state', function (event) {
   setGaipAgentEntryState(event && event.detail && event.detail.state);
+});
+
+document.addEventListener('gaip-agent-entry-modal-minimized', function (event) {
+  gaipAgentEntryModalMinimized = !!(event && event.detail && event.detail.minimized);
+  applyGaipAgentEntryVersion();
+  syncGaipAgentEntryTipMessage();
+});
+
+document.addEventListener('click', function (event) {
+  if (!event.target || !event.target.closest || !event.target.closest('[class*="globalButton___"]')) return;
+  if (gaipAgentEntryRequestedState === 'completed') {
+    setGaipAgentEntryState('idle');
+  }
+}, true);
+
+document.addEventListener('gaip-agent-entry-completed-consumed', function () {
+  if (gaipAgentEntryRequestedState === 'completed') {
+    setGaipAgentEntryState('idle');
+  }
 });
 
 window.setGaipAgentEntryVersion = function (version) {

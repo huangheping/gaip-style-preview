@@ -1,0 +1,23 @@
+/* 客户中心：同步参考站中客户卡片“已关联保单”标签的位置与样式。 */
+[data-gaip-page="customer"] [class*="customerCard"] [class*="bindTag"] {
+  position: static;
+  right: auto;
+  top: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  background: rgba(47, 54, 64, .12);
+  color: rgba(0, 0, 0, .85);
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+[data-gaip-page="customer"] [class*="customerCard"] [class*="cTags"] [data-gaip-customer-policy-tag="true"] {
+  position: static;
+  margin: 0;
+  background: rgba(47, 54, 64, .12);
+  color: rgba(0, 0, 0, .85);
+  border-radius: 3px;
+}

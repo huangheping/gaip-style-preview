@@ -58,13 +58,30 @@
   --gaip-nav-icon-mask: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMThweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSIwIDAgMTggMTgiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+SUNPTi/kvqfovrnmoI8v5a2m5LmgPC90aXRsZT4KICAgIDxnIGlkPSJJQ09OL+S+p+i+ueagjy/lrabkuaAiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxyZWN0IGlkPSLnn6nlvaIiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PC9yZWN0PgogICAgICAgIDxsaW5lIHgxPSI5IiB5MT0iNCIgeDI9IjkiIHkyPSI5LjI1IiBpZD0i6Lev5b6EIiBzdHJva2U9IiMyRjM2NDAiIHN0cm9rZS13aWR0aD0iMS4zNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L2xpbmU+CiAgICAgICAgPGxpbmUgeDE9IjEyIiB5MT0iNS41IiB4Mj0iMTIiIHkyPSI3Ljc1IiBpZD0i6Lev5b6EIiBzdHJva2U9IiMyRjM2NDAiIHN0cm9rZS13aWR0aD0iMS4zNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L2xpbmU+CiAgICAgICAgPHBhdGggZD0iTTMsMTQuMTI1IEwzLDIuODc1IEMzLDEuODM5NDY2MDkgMy44Mzk0NjYwOSwxIDQuODc1LDEgTDE0LjI1LDEgQzE0LjY2NDIxMzYsMSAxNSwxLjMzNTc4NjQ0IDE1LDEuNzUgTDE1LDE1LjI1IEMxNSwxNS42NjQyMTM2IDE0LjY2NDIxMzYsMTYgMTQuMjUsMTYgTDQuODc1LDE2IEMzLjgzOTQ2NjA5LDE2IDMsMTUuMTYwNTMzOSAzLDE0LjEyNSBDMywxMy4wODk0NjYxIDMuODM5NDY2MDksMTIuMjUgNC44NzUsMTIuMjUgTDE1LDEyLjI1IiBpZD0i6Lev5b6EIiBzdHJva2U9IiMyRjM2NDAiIHN0cm9rZS13aWR0aD0iMS4zNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BhdGg+CiAgICAgICAgPGxpbmUgeDE9IjYiIHkxPSI1LjUiIHgyPSI2IiB5Mj0iNy43NSIgaWQ9Iui3r+W+hCIgc3Ryb2tlPSIjMkYzNjQwIiBzdHJva2Utd2lkdGg9IjEuMzUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9saW5lPgogICAgPC9nPgo8L3N2Zz4=");
 }
 
+.gaip-learning-menu-item .ant-menu-title-content {
+  display: block;
+  min-width: 0;
+}
+
+.gaip-learning-menu-link {
+  display: block;
+  color: inherit;
+}
+
+.gaip-learning-menu-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
 .gaip-learning-menu-icon {
-  display: inline-block;
+  display: grid;
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
   color: inherit;
-  vertical-align: middle;
+  place-items: center;
 }
 
 .gaip-learning-menu-icon .gaip-main-nav-icon {

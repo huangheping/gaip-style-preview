@@ -12,7 +12,7 @@
 
 .modalRenderWrapper___qz3XP.gaip-agent-redesign-wrapper {
   display: grid;
-  grid-template-columns: 400px minmax(0, 1fr);
+  grid-template-columns: 360px minmax(0, 1fr);
   grid-template-rows: 162px minmax(0, 1fr);
   width: 100%;
   height: calc(100dvh - 40px);
@@ -61,8 +61,8 @@
   height: 100% !important;
   max-height: none !important;
   min-width: 0;
-  border: 0 0 0 1px solid rgba(47, 54, 64, .12);
-  border-left: 1px solid rgba(47, 54, 64, .12);
+  border: 0;
+  border-left: 0;
   border-radius: 0 12px 12px 0;
   box-shadow: none;
   background: #fff;
@@ -267,7 +267,7 @@
 }
 
 .gaip-agent-redesign-wrapper .historyWrapper___KBX5W .itemTitle___Rb48C {
-  max-width: 248px;
+  max-width: 216px;
   color: #2f3640;
   font-size: 14px;
   line-height: 22px;

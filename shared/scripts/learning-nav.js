@@ -25,6 +25,12 @@
       document.body.getAttribute('data-gaip-page') === 'learning';
   }
 
+  function requestedVirtualChannelKey() {
+    var query = (location.hash || '').split('?')[1] || '';
+    return new URLSearchParams(query).get('gaip-channel') ||
+      window.__GAIP_PAGE_OVERRIDE__ || '';
+  }
+
   function learningHash() {
     var baseHash = (location.hash || '#/workspace').split('?')[0] || '#/workspace';
     return baseHash + '?gaip-channel=learning';
@@ -52,36 +58,25 @@
   }
 
   function updateLearningMenuItem(item) {
-    var icon = item.querySelector('.ant-menu-item-icon');
-    var title = item.querySelector('.ant-menu-title-content');
+    var title;
     var link;
 
-    if (!icon) {
-      icon = document.createElement('span');
-      item.insertBefore(icon, item.firstChild);
-    }
-    icon.className = 'ant-menu-item-icon gaip-learning-menu-icon';
-    icon.removeAttribute('style');
-    icon.setAttribute('aria-hidden', 'true');
-    if (icon.getAttribute('data-gaip-learning-icon-ready') !== 'true') {
-      icon.innerHTML = learningIconMarkup;
-      icon.setAttribute('data-gaip-learning-icon-ready', 'true');
-    }
-
-    if (!title) {
-      title = document.createElement('span');
-      title.className = 'ant-menu-title-content';
-      item.appendChild(title);
+    if (item.getAttribute('data-gaip-learning-structure-ready') !== 'true') {
+      item.innerHTML =
+        '<span class="ant-menu-title-content" data-gaip-learning-title-ready="true">' +
+          '<a class="gaip-learning-menu-link" href="' + learningHash() + '">' +
+            '<span class="ant-pro-base-menu-inline-item-title gaip-learning-menu-title">' +
+              '<span class="ant-pro-base-menu-inline-item-icon gaip-learning-menu-icon" aria-hidden="true">' + learningIconMarkup + '</span>' +
+              '<span class="ant-pro-base-menu-inline-item-text ant-pro-base-menu-inline-item-text-has-icon">学习中心</span>' +
+            '</span>' +
+          '</a>' +
+        '</span>';
+      item.setAttribute('data-gaip-learning-structure-ready', 'true');
     }
 
+    title = item.querySelector('.ant-menu-title-content');
     link = title.querySelector('a');
-    if (!link) {
-      title.textContent = '';
-      link = document.createElement('a');
-      title.appendChild(link);
-    }
     link.setAttribute('href', learningHash());
-    if (link.textContent !== '学习中心') link.textContent = '学习中心';
 
     if (item.getAttribute('data-gaip-learning-bound') !== 'true') {
       item.setAttribute('data-gaip-learning-bound', 'true');
@@ -118,6 +113,8 @@
   function updateSelectedState(menu, item) {
     var currentPath;
     var matchedRoute;
+    var virtualKey = requestedVirtualChannelKey();
+    if (virtualKey && virtualKey !== 'learning') return;
     if (isLearningPage()) {
       Array.prototype.forEach.call(menu.querySelectorAll('.ant-menu-item-selected'), function (selectedItem) {
         if (selectedItem === item) return;

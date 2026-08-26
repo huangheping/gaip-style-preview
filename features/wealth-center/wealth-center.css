@@ -1,0 +1,1260 @@
+html.gaip-wealth-scroll-lock,
+html.gaip-wealth-scroll-lock body {
+  overflow: hidden !important;
+}
+
+.gaip-wealth-page,
+.gaip-wealth-page * {
+  box-sizing: border-box;
+}
+
+.gaip-wealth-page {
+  --wealth-ink: #182126;
+  --wealth-text: #2f3640;
+  --wealth-muted: #66747b;
+  --wealth-faint: #8c989e;
+  --wealth-line: #dfe5e7;
+  --wealth-canvas: #f5f7f7;
+  --wealth-brand: #087966;
+  --wealth-brand-deep: #025b52;
+  position: fixed;
+  z-index: 1000;
+  min-width: 1180px;
+  overflow: hidden;
+  color: var(--wealth-text);
+  background: var(--wealth-canvas);
+}
+
+.gaip-wealth-view {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: var(--wealth-canvas);
+}
+
+.gaip-wealth-workbench,
+.gaip-wealth-records {
+  min-height: 100%;
+  padding: 24px;
+}
+
+.gaip-wealth-page-header {
+  display: flex;
+  min-height: 56px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.gaip-wealth-page-header h1 {
+  margin: 0;
+  color: var(--wealth-ink);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.gaip-wealth-page-header p,
+.gaip-wealth-panel-head p {
+  margin: 3px 0 0;
+  color: var(--wealth-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.gaip-wealth-page-header--row {
+  gap: 20px;
+}
+
+.gaip-wealth-page-actions,
+.gaip-wealth-action-cell,
+.gaip-wealth-my-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gaip-wealth-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+}
+
+.gaip-wealth-primary,
+.gaip-wealth-secondary,
+.gaip-wealth-link,
+.gaip-wealth-filter-buttons button,
+.gaip-wealth-pagination button,
+.gaip-wealth-range-tabs button {
+  font: inherit;
+}
+
+.gaip-wealth-primary,
+.gaip-wealth-secondary {
+  display: inline-flex;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.gaip-wealth-primary {
+  color: #fff;
+  background: var(--wealth-brand);
+  border: 1px solid var(--wealth-brand);
+}
+
+.gaip-wealth-primary:hover:not(:disabled),
+.gaip-wealth-primary:focus-visible {
+  background: #066654;
+  border-color: #066654;
+}
+
+.gaip-wealth-primary:disabled {
+  color: #a8b1b3;
+  background: #eef1f1;
+  border-color: #d9dfdf;
+  cursor: default;
+}
+
+.gaip-wealth-secondary {
+  color: var(--wealth-text);
+  background: #fff;
+  border: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-secondary:hover,
+.gaip-wealth-secondary:focus-visible {
+  color: var(--wealth-brand-deep);
+  border-color: var(--wealth-brand-deep);
+}
+
+.gaip-wealth-workflow,
+.gaip-wealth-panel {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--wealth-line);
+  border-radius: 6px;
+}
+
+.gaip-wealth-workflow {
+  margin-bottom: 20px;
+}
+
+.gaip-wealth-workflow ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gaip-wealth-step {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  padding: 10px 12px;
+  color: var(--wealth-muted);
+}
+
+.gaip-wealth-step + .gaip-wealth-step {
+  border-left: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-step--active {
+  color: var(--wealth-brand);
+  background: #e8f5f1;
+}
+
+.gaip-wealth-step-index {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  margin-right: 10px;
+  color: var(--wealth-muted);
+  background: #fff;
+  border: 1px solid #cbd5d8;
+  border-radius: 50%;
+  font-size: 13px;
+}
+
+.gaip-wealth-step--done .gaip-wealth-step-index {
+  color: #fff;
+  background: var(--wealth-brand);
+  border-color: var(--wealth-brand);
+}
+
+.gaip-wealth-step--active .gaip-wealth-step-index {
+  color: var(--wealth-brand);
+}
+
+.gaip-wealth-step strong,
+.gaip-wealth-step small {
+  display: block;
+  white-space: nowrap;
+}
+
+.gaip-wealth-step strong {
+  color: var(--wealth-ink);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.gaip-wealth-step small {
+  margin-top: 2px;
+  color: var(--wealth-faint);
+  font-size: 12px;
+}
+
+.gaip-wealth-panel + .gaip-wealth-panel,
+.gaip-wealth-result-panel {
+  margin-top: 16px;
+}
+
+.gaip-wealth-panel-head {
+  display: flex;
+  min-height: 64px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+}
+
+.gaip-wealth-panel-head h2 {
+  margin: 0;
+  color: var(--wealth-ink);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.gaip-wealth-batch-body {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.gaip-wealth-month-card {
+  display: flex;
+  min-height: 132px;
+  flex: 0 0 238px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px;
+  color: var(--wealth-muted);
+  background: #f9fbfb;
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.gaip-wealth-month-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 0 12px;
+}
+
+.gaip-wealth-month-value strong {
+  display: grid;
+  min-width: 78px;
+  height: 38px;
+  place-items: center;
+  color: var(--wealth-ink);
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.gaip-wealth-month-value strong:nth-of-type(2) {
+  min-width: 58px;
+}
+
+.gaip-wealth-month-value em {
+  color: var(--wealth-muted);
+  font-size: 14px;
+  font-style: normal;
+}
+
+.gaip-wealth-upload-zone {
+  display: flex;
+  min-width: 0;
+  flex: 1 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--wealth-ink);
+  background: #f9fbfb;
+  border: 1px dashed #b7c6c7;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.gaip-wealth-upload-zone:hover,
+.gaip-wealth-upload-zone:focus-visible {
+  background: #f3faf8;
+  border-color: var(--wealth-brand);
+}
+
+.gaip-wealth-upload-zone .gaip-wealth-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--wealth-brand);
+}
+
+.gaip-wealth-upload-zone strong {
+  margin-top: 9px;
+  font-size: 14px;
+}
+
+.gaip-wealth-upload-zone span {
+  margin-top: 4px;
+  color: var(--wealth-faint);
+  font-size: 12px;
+}
+
+.gaip-wealth-notice {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 20px 20px;
+  padding: 8px 12px;
+  color: #51706b;
+  background: #f1faf7;
+  border: 1px solid #c7e8df;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.gaip-wealth-notice .gaip-wealth-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--wealth-brand);
+}
+
+.gaip-wealth-result-head {
+  align-items: center;
+  border-bottom: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-filter-buttons {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+}
+
+.gaip-wealth-filter-buttons button {
+  height: 34px;
+  padding: 0 10px;
+  color: var(--wealth-muted);
+  background: #fff;
+  border: 0;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.gaip-wealth-filter-buttons button.is-active {
+  color: var(--wealth-brand);
+  background: #edf8f5;
+}
+
+.gaip-wealth-summary {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-summary > div {
+  min-width: 0;
+  padding: 0 16px;
+  border-right: 1px solid #edf1f1;
+}
+
+.gaip-wealth-summary > div:first-child {
+  padding-left: 0;
+}
+
+.gaip-wealth-summary > div:last-child {
+  border: 0;
+}
+
+.gaip-wealth-summary strong,
+.gaip-wealth-summary span,
+.gaip-wealth-summary small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-wealth-summary strong {
+  color: var(--wealth-ink);
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.gaip-wealth-summary strong.is-money {
+  color: var(--wealth-brand);
+  font-size: 18px;
+}
+
+.gaip-wealth-summary span {
+  margin-top: 4px;
+  color: var(--wealth-muted);
+  font-size: 12px;
+}
+
+.gaip-wealth-summary small {
+  margin-top: 2px;
+  color: var(--wealth-faint);
+  font-size: 11px;
+}
+
+.gaip-wealth-table-scroll {
+  width: 100%;
+  overflow: auto;
+}
+
+.gaip-wealth-table {
+  width: 100%;
+  min-width: 1120px;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.gaip-wealth-table th {
+  height: 42px;
+  padding: 9px 14px;
+  color: rgba(47, 54, 64, 0.86);
+  background: #f8f9fa;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.08);
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gaip-wealth-table td {
+  height: 50px;
+  padding: 10px 14px;
+  color: var(--wealth-text);
+  background: #fff;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.07);
+  font-size: 13px;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+.gaip-wealth-table tbody tr:hover td {
+  background: #fafcfc;
+}
+
+.gaip-wealth-table tbody tr.is-selected td {
+  background: #eef8f5;
+}
+
+.gaip-wealth-table tbody tr.is-selected td:first-child {
+  box-shadow: inset 3px 0 var(--wealth-brand-deep);
+}
+
+.gaip-wealth-table th:first-child,
+.gaip-wealth-table td:first-child {
+  width: 300px;
+}
+
+.gaip-wealth-table th:nth-last-child(2),
+.gaip-wealth-table td:nth-last-child(2) {
+  width: 230px;
+}
+
+.gaip-wealth-table th:last-child,
+.gaip-wealth-table td:last-child {
+  width: 96px;
+}
+
+.gaip-wealth-record-table {
+  min-width: 1540px;
+}
+
+.gaip-wealth-record-table th:first-child,
+.gaip-wealth-record-table td:first-child {
+  width: 150px;
+}
+
+.gaip-wealth-record-table th:nth-last-child(2),
+.gaip-wealth-record-table td:nth-last-child(2) {
+  width: 150px;
+}
+
+.gaip-wealth-record-table th:last-child,
+.gaip-wealth-record-table td:last-child {
+  width: 140px;
+}
+
+.gaip-wealth-cell-main,
+.gaip-wealth-table td small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-wealth-cell-main {
+  color: var(--wealth-ink);
+}
+
+.gaip-wealth-table td small {
+  margin-top: 2px;
+  color: var(--wealth-faint);
+  font-size: 11px;
+}
+
+.gaip-wealth-issue {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--wealth-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.gaip-wealth-issue--warning { color: #a86314; }
+.gaip-wealth-issue--danger { color: #c43f4d; }
+
+.gaip-wealth-tag {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.gaip-wealth-tag--success { color: #087966; background: #eaf7f2; }
+.gaip-wealth-tag--warning { color: #a86314; background: #fff3e0; }
+.gaip-wealth-tag--danger { color: #c43f4d; background: #fbe7ea; }
+.gaip-wealth-tag--blue { color: #3568d4; background: #eef1ff; }
+.gaip-wealth-tag--neutral { color: var(--wealth-muted); background: #eef1f1; }
+
+.gaip-wealth-link {
+  padding: 0;
+  color: var(--wealth-brand-deep);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.gaip-wealth-link:hover,
+.gaip-wealth-link:focus-visible {
+  text-decoration: underline;
+}
+
+.gaip-wealth-delta--positive { color: var(--wealth-brand-deep); }
+.gaip-wealth-delta--negative { color: #c43f4d; }
+
+.gaip-wealth-empty {
+  display: flex;
+  min-height: 90px;
+  align-items: center;
+  justify-content: center;
+  color: var(--wealth-faint);
+  font-size: 13px;
+}
+
+.gaip-wealth-records .gaip-wealth-page-header {
+  margin-bottom: 16px;
+}
+
+.gaip-wealth-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #f9fbfb;
+  border-bottom: 1px solid rgba(47, 54, 64, 0.08);
+}
+
+.gaip-wealth-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: rgba(47, 54, 64, 0.65);
+  font-size: 12px;
+}
+
+.gaip-wealth-filters select,
+.gaip-wealth-my-actions select,
+.gaip-wealth-search {
+  height: 36px;
+  color: var(--wealth-text);
+  background: #fff;
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.gaip-wealth-filters select {
+  min-width: 160px;
+  padding: 0 30px 0 10px;
+}
+
+.gaip-wealth-pagination {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 16px;
+  color: var(--wealth-muted);
+  font-size: 12px;
+}
+
+.gaip-wealth-pagination button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: var(--wealth-muted);
+  background: #fff;
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+}
+
+.gaip-wealth-pagination button.is-current {
+  color: var(--wealth-brand);
+  border-color: #9fd9cf;
+}
+
+.gaip-wealth-record-detail {
+  margin-bottom: 24px;
+}
+
+.gaip-wealth-overview {
+  display: flex;
+  min-height: 212px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 28px 5%;
+  color: #fff;
+  background: #313437 url("../../assets/wealth-center/wealth-overview.jpg") center / cover no-repeat;
+}
+
+.gaip-wealth-overview-stats {
+  display: flex;
+  min-width: 470px;
+  align-items: center;
+}
+
+.gaip-wealth-big-stat {
+  min-width: 178px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.gaip-wealth-big-stat > span {
+  position: relative;
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.gaip-wealth-big-stat > span::before {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 10px;
+  height: 10px;
+  background: #24d4c9;
+  border-radius: 2px;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.gaip-wealth-big-stat > strong {
+  display: block;
+  margin-top: 4px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 56px;
+}
+
+.gaip-wealth-big-stat > strong em {
+  position: relative;
+  top: -5px;
+  margin-right: 6px;
+  font-size: 13px;
+  font-style: normal;
+}
+
+.gaip-wealth-big-stat > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.gaip-wealth-big-stat small {
+  display: inline-flex;
+  min-width: 78px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  color: #d8d8d9;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.gaip-wealth-currency-chip {
+  gap: 5px;
+}
+
+.gaip-wealth-currency-chip img {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+}
+
+.gaip-wealth-stat-divider {
+  width: 1px;
+  height: 130px;
+  margin: 0 48px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.gaip-wealth-breakdown {
+  width: min(632px, 44%);
+  min-width: 500px;
+  overflow: hidden;
+  color: var(--wealth-text);
+  background: #fff;
+  border-radius: 6px;
+}
+
+.gaip-wealth-breakdown > header {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(2, 91, 82, 0.95), rgba(0, 0, 0, 0.85));
+}
+
+.gaip-wealth-breakdown > header b {
+  padding: 2px 9px;
+  color: #fff;
+  background: #dc5a29;
+  border-radius: 11px;
+  font-size: 12px;
+}
+
+.gaip-wealth-breakdown > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 48px;
+  padding: 16px 24px 18px;
+}
+
+.gaip-wealth-breakdown article p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  color: #909499;
+  font-size: 13px;
+}
+
+.gaip-wealth-breakdown article strong {
+  color: var(--wealth-text);
+}
+
+.gaip-wealth-breakdown article i {
+  position: relative;
+  display: block;
+  height: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+  background: #e3e3e3;
+  border-radius: 4px;
+}
+
+.gaip-wealth-breakdown article i::before {
+  display: block;
+  width: var(--wealth-progress);
+  height: 100%;
+  background: #24d4c9;
+  border-radius: inherit;
+  content: "";
+}
+
+.gaip-wealth-content-card {
+  min-height: calc(100vh - 268px);
+  padding-bottom: 24px;
+  background: var(--wealth-canvas);
+}
+
+.gaip-wealth-my-filters {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+}
+
+.gaip-wealth-range-tabs {
+  display: flex;
+  width: 330px;
+  height: 48px;
+  padding: 5px 6px;
+  background: #fff;
+  border: 1px solid rgba(47, 54, 64, 0.08);
+  border-radius: 8px;
+}
+
+.gaip-wealth-range-tabs button {
+  width: 159px;
+  color: var(--wealth-text);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.gaip-wealth-range-tabs button.is-active {
+  color: #fff;
+  background: var(--wealth-text);
+}
+
+.gaip-wealth-my-actions select,
+.gaip-wealth-search {
+  height: 48px;
+}
+
+.gaip-wealth-my-actions select {
+  width: 185px;
+  padding: 0 12px;
+}
+
+.gaip-wealth-search {
+  display: flex;
+  width: 348px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+}
+
+.gaip-wealth-search input {
+  min-width: 0;
+  flex: 1 1;
+  height: 100%;
+  outline: 0;
+  background: transparent;
+  border: 0;
+}
+
+.gaip-wealth-my-table {
+  min-height: 360px;
+  padding: 0 24px;
+}
+
+.gaip-wealth-my-table .gaip-wealth-table {
+  min-width: 1050px;
+  background: #fff;
+}
+
+.gaip-wealth-my-table .gaip-wealth-table th:first-child,
+.gaip-wealth-my-table .gaip-wealth-table td:first-child {
+  width: 130px;
+}
+
+.gaip-wealth-my-table .gaip-wealth-table th:nth-last-child(2),
+.gaip-wealth-my-table .gaip-wealth-table td:nth-last-child(2) {
+  width: 150px;
+}
+
+.gaip-wealth-empty--large {
+  min-height: 310px;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gaip-wealth-empty--large::before {
+  width: 48px;
+  height: 36px;
+  margin-bottom: 8px;
+  border: 1px solid var(--wealth-line);
+  border-radius: 6px;
+  content: "";
+}
+
+.gaip-wealth-empty--large small {
+  color: #a8b1b3;
+}
+
+.gaip-wealth-drawer-layer,
+.gaip-wealth-modal-layer {
+  position: fixed;
+  z-index: 2100;
+  inset: 0;
+  background: rgba(24, 33, 38, 0.48);
+  animation: gaip-wealth-fade 160ms ease both;
+}
+
+.gaip-wealth-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(540px, 92vw);
+  height: 100%;
+  background: #fff;
+  box-shadow: -14px 0 36px rgba(24, 33, 38, 0.18);
+  animation: gaip-wealth-drawer-in 220ms ease-out both;
+}
+
+.gaip-wealth-drawer > header,
+.gaip-wealth-modal > header {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-drawer h2,
+.gaip-wealth-modal h2 {
+  margin: 0;
+  color: var(--wealth-ink);
+  font-size: 20px;
+}
+
+.gaip-wealth-drawer > header button,
+.gaip-wealth-modal > header button {
+  width: 36px;
+  height: 36px;
+  color: var(--wealth-muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.gaip-wealth-drawer-body {
+  padding: 20px 36px;
+}
+
+.gaip-wealth-drawer-file {
+  padding: 16px;
+  background: #f8fbfa;
+  border-radius: 6px;
+}
+
+.gaip-wealth-drawer-file h3 {
+  overflow: hidden;
+  margin: 9px 0 2px;
+  color: var(--wealth-ink);
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaip-wealth-drawer-file p {
+  margin: 0;
+  color: var(--wealth-faint);
+  font-size: 12px;
+}
+
+.gaip-wealth-drawer dl {
+  margin: 18px 0;
+}
+
+.gaip-wealth-drawer dl > div {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--wealth-line);
+}
+
+.gaip-wealth-drawer dt { color: var(--wealth-muted); }
+.gaip-wealth-drawer dd { margin: 0; color: var(--wealth-ink); text-align: right; }
+
+.gaip-wealth-validation {
+  padding: 12px 14px;
+  color: var(--wealth-muted);
+  background: #fff;
+  border: 1px solid var(--wealth-line);
+  border-left-width: 3px;
+  border-radius: 4px;
+}
+
+.gaip-wealth-validation--success { background: #f2faf6; border-left-color: var(--wealth-brand-deep); }
+.gaip-wealth-validation--warning { background: #fcf7ef; border-left-color: #a86314; }
+.gaip-wealth-validation--danger { background: #fbf2f3; border-left-color: #c43f4d; }
+
+.gaip-wealth-validation strong {
+  display: block;
+  color: var(--wealth-ink);
+}
+
+.gaip-wealth-validation p {
+  margin: 8px 0 0;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.gaip-wealth-modal-layer {
+  display: grid;
+  place-items: center;
+}
+
+.gaip-wealth-modal {
+  width: min(540px, 92vw);
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(24, 33, 38, 0.24);
+}
+
+.gaip-wealth-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+}
+
+.gaip-wealth-modal-body label {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  color: var(--wealth-muted);
+}
+
+.gaip-wealth-modal-body input {
+  height: 36px;
+  padding: 0 10px;
+  color: var(--wealth-text);
+  border: 1px solid var(--wealth-line);
+  border-radius: 4px;
+}
+
+.gaip-wealth-callout {
+  margin: 0 0 4px;
+  padding: 12px 14px;
+  color: #405778;
+  background: #eef1ff;
+  border-left: 4px solid #3568d4;
+}
+
+.gaip-wealth-modal footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 24px 24px;
+}
+
+.gaip-wealth-toast {
+  position: fixed;
+  z-index: 2200;
+  top: 76px;
+  left: 50%;
+  max-width: 520px;
+  padding: 10px 16px;
+  color: #fff;
+  background: rgba(24, 33, 38, 0.92);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(24, 33, 38, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -10px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.gaip-wealth-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.gaip-wealth-menu-group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title {
+  position: relative;
+  display: flex;
+  width: calc(100% - 8px);
+  height: 40px;
+  align-items: center;
+  margin: 4px 0;
+  padding: 0 28px 0 24px !important;
+  color: rgba(0, 0, 0, 0.65);
+  background: transparent;
+  border-left: 4px solid transparent !important;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 40px;
+  pointer-events: auto;
+  text-align: left;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:hover,
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-parent.ant-menu-submenu-title {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-parent.ant-menu-submenu-title {
+  background-color: rgba(36, 212, 201, 0.1) !important;
+  border-left-color: #24d4c9 !important;
+  color: #025b52;
+}
+
+.gaip-wealth-menu-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.gaip-wealth-menu-icon {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  place-items: center;
+  color: currentColor;
+}
+
+.gaip-wealth-menu-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-caret.ant-menu-submenu-arrow {
+  position: absolute;
+  top: 50% !important;
+  right: 16px !important;
+  display: grid !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin-top: 0 !important;
+  color: rgba(0, 0, 0, 0.65);
+  place-items: center;
+  transform: translateY(-50%) !important;
+  transition: color 160ms ease;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-caret.ant-menu-submenu-arrow::before,
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-caret.ant-menu-submenu-arrow::after {
+  display: none !important;
+}
+
+.gaip-wealth-menu-caret-icon {
+  display: block;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.gaip-wealth-menu-caret-icon--up {
+  display: none;
+}
+
+.gaip-wealth-menu-group.is-open .gaip-wealth-menu-caret-icon--down {
+  display: none;
+}
+
+.gaip-wealth-menu-group.is-open .gaip-wealth-menu-caret-icon--up {
+  display: block;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:active .gaip-wealth-menu-caret,
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:hover .gaip-wealth-menu-caret {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-caret {
+  color: #025b52;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group > .gaip-wealth-submenu {
+  display: none !important;
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+  background: transparent !important;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-open > .gaip-wealth-submenu {
+  display: block !important;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group > .gaip-wealth-submenu > .gaip-wealth-subitem.ant-menu-item {
+  width: 100% !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 0 0 55px !important;
+  border-left: 4px solid transparent !important;
+  border-radius: 0 !important;
+  line-height: 40px !important;
+}
+
+.gaip-wealth-subitem.ant-menu-item::after {
+  display: none !important;
+}
+
+.gaip-wealth-subitem a {
+  display: block;
+  height: 100%;
+  color: inherit;
+}
+
+.gaip-wealth-subitem.ant-menu-item-selected {
+  color: #025b52 !important;
+  background: rgba(36, 212, 201, 0.1) !important;
+  border-left-color: #24d4c9 !important;
+}
+
+@keyframes gaip-wealth-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gaip-wealth-drawer-in {
+  from { transform: translateX(24px); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 1500px) {
+  .gaip-wealth-overview { gap: 28px; padding-inline: 4%; }
+  .gaip-wealth-big-stat > strong { font-size: 32px; }
+  .gaip-wealth-stat-divider { margin-inline: 24px; }
+  .gaip-wealth-breakdown { min-width: 460px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gaip-wealth-page *,
+  .gaip-wealth-menu-group * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

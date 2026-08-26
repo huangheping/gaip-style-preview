@@ -95,15 +95,32 @@
       ['page-actions', '.gaip-learning-actions'],
       ['page-content', '.gaip-learning-scroll'],
       ['content-main', '.gaip-learning-grid']
+    ],
+    news: [
+      ['page-header', '.pageHeader___SFDaB'],
+      ['page-nav', '.categoryTabs___RG5Za'],
+      ['filter-toolbar', '.filterRow___Ka9qV'],
+      ['page-content', '[data-news-list]'],
+      ['content-main', '.articles___H5GX6']
+    ],
+    wealth: [
+      ['page-header', '.gaip-wealth-page-header, .gaip-wealth-overview'],
+      ['page-nav', '.gaip-wealth-subnav'],
+      ['page-actions', '.gaip-wealth-page-actions'],
+      ['filter-toolbar', '.gaip-wealth-filters'],
+      ['metric-overview', '.gaip-wealth-summary, .gaip-wealth-overview'],
+      ['page-content', '.gaip-wealth-view'],
+      ['content-main', '.gaip-wealth-panel, .gaip-wealth-content-card']
     ]
   };
 
   function getPageKey() {
     var rawHash = location.hash || '';
     var queryIndex = rawHash.indexOf('?');
-    if (queryIndex >= 0 &&
-        new URLSearchParams(rawHash.slice(queryIndex + 1)).get('gaip-channel') === 'learning') {
-      return 'learning';
+    if (queryIndex >= 0) {
+      var virtualKey = new URLSearchParams(rawHash.slice(queryIndex + 1)).get('gaip-channel');
+      var virtualChannel = virtualKey && channelConfig && channelConfig.getByKey(virtualKey);
+      if (virtualChannel && virtualChannel.virtual) return virtualChannel.key;
     }
 
     if (window.__GAIP_PAGE_OVERRIDE__ && pageNames[window.__GAIP_PAGE_OVERRIDE__]) {
@@ -183,12 +200,12 @@
 
     var channelPage;
     var channel = channelConfig && channelConfig.getByKey(pageKey);
-    if (pageKey === 'learning') {
+    if (pageKey === 'learning' || pageKey === 'wealth' || pageKey === 'news') {
       Array.prototype.forEach.call(
         main.querySelectorAll('[data-gaip-region="channel-page"]'),
         unmark
       );
-      channelPage = document.querySelector('[data-gaip-page-root="learning"]');
+      channelPage = document.querySelector('[data-gaip-page-root="' + pageKey + '"]');
     } else {
       channelPage = find(main, '[class*="pageContainer___"], [data-gaip-page-root]');
     }

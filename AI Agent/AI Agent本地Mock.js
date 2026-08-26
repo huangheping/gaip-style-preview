@@ -107,14 +107,22 @@
   }
 
   var agentEntryIdleTimer = null;
+  var agentEntryCurrentState = 'idle';
 
   function emitAgentEntryState(state) {
     if (agentEntryIdleTimer) {
       window.clearTimeout(agentEntryIdleTimer);
       agentEntryIdleTimer = null;
     }
+    agentEntryCurrentState = state || 'idle';
     document.dispatchEvent(new CustomEvent('gaip-agent-entry-state', {
       detail: { state: state }
+    }));
+  }
+
+  function emitAgentEntryMinimized(minimized) {
+    document.dispatchEvent(new CustomEvent('gaip-agent-entry-modal-minimized', {
+      detail: { minimized: !!minimized }
     }));
   }
 
@@ -123,6 +131,12 @@
     agentEntryIdleTimer = window.setTimeout(function () {
       emitAgentEntryState('idle');
     }, 1400);
+  }
+
+  function shouldKeepAgentEntryCompleted() {
+    var modal = agentMinimizedModal || document.querySelector('.agentModal___Nxp06');
+    var wrap = getAgentModalWrap(modal);
+    return !!(wrap && wrap.getAttribute('data-gaip-agent-minimized') === 'true');
   }
 
   function createAgentChatResponse(signal, sessionId) {
@@ -158,7 +172,9 @@
           controller.enqueue(encoder.encode('data: [DONE]\n\n'));
           controller.close();
           emitAgentEntryState('completed');
-          scheduleAgentEntryIdle();
+          if (!shouldKeepAgentEntryCompleted()) {
+            scheduleAgentEntryIdle();
+          }
         }
         pushNext();
       },
@@ -1182,6 +1198,7 @@
     var mask = getAgentModalMask(modal);
     if (!modal || !wrap) return;
     agentMinimizedModal = modal;
+    emitAgentEntryMinimized(true);
     wrap.setAttribute('data-gaip-agent-minimized', 'true');
     wrap.style.setProperty('display', 'none', 'important');
     if (mask) {
@@ -1202,6 +1219,11 @@
       mask.style.removeProperty('display');
     }
     agentMinimizedModal = null;
+    emitAgentEntryMinimized(false);
+    if (agentEntryCurrentState === 'completed') {
+      emitAgentEntryState('idle');
+      document.dispatchEvent(new CustomEvent('gaip-agent-entry-completed-consumed'));
+    }
     scheduleAgentRedesign();
     return true;
   }
@@ -1456,6 +1478,10 @@
       agentRedesignScheduled = false;
       mountAgentRedesign();
     });
+  }
+
+  if (window.__GAIP_AI_NOTICE__) {
+    window.__GAIP_AGENT_AI_NOTICE__ = window.__GAIP_AI_NOTICE__;
   }
 
   window.__GAIP_AGENT_MOCK__ = {
