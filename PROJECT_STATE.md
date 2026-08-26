@@ -11,7 +11,7 @@ updated: 2026-08-26
 ## 当前基线
 
 - 分支：`main`
-- 最近已发布提交：`08a950b`（Publish GAIP channel and shared UI updates）
+- 最近已发布功能提交：`7575d44`（Fix news center asset dependencies；主发布提交为 `08a950b`）
 - 运行形态：本地静态预览，根目录 HTML 薄壳 + Umi Hash SPA + 本地 Mock
 - 频道配置唯一来源：`shared/config/channels.js`
 - 原始构建产物：`web/`，默认只读
