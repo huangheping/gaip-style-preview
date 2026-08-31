@@ -1,7 +1,7 @@
 ---
 type: project-state
 project: GAIP 本地静态预览版
-updated: 2026-08-26
+updated: 2026-08-31
 ---
 
 # 当前项目状态
@@ -11,7 +11,7 @@ updated: 2026-08-26
 ## 当前基线
 
 - 分支：`main`
-- 最近已发布功能提交：`6e6fbe0`（Fix news center overlay layout）
+- 最近已发布功能提交：`29e9a8a`（AI Agent 用户消息气泡深色底白字；见 [[knowledge/变更/2026-08-31-AI-Agent用户气泡配色]]）
 - 运行形态：本地静态预览，根目录 HTML 薄壳 + Umi Hash SPA + 本地 Mock
 - 频道配置唯一来源：`shared/config/channels.js`
 - 原始构建产物：`web/`，默认只读
