@@ -382,6 +382,8 @@ const gaipAgentEntryAssets = {
 };
 
 let gaipAgentEntryObserver = null;
+let gaipAgentEntryMountedIcon = null;
+let gaipAgentEntryVoiceOrb = null;
 let gaipAgentEntryLottieRuntimePromise = null;
 let gaipAgentEntryAnimation = null;
 let gaipAgentEntryAnimationState = '';
@@ -641,13 +643,37 @@ function setGaipAgentEntryState(state) {
   syncGaipAgentEntryTipMessage();
 }
 
+function releaseGaipAgentEntryOrb() {
+  if (gaipAgentEntryVoiceOrb) gaipAgentEntryVoiceOrb.destroy();
+  gaipAgentEntryVoiceOrb = null;
+  if (gaipAgentEntryAnimation) gaipAgentEntryAnimation.destroy();
+  gaipAgentEntryAnimation = null;
+  gaipAgentEntryAnimationState = '';
+  if (gaipAgentEntryTipTimer) window.clearInterval(gaipAgentEntryTipTimer);
+  gaipAgentEntryTipTimer = null;
+  if (gaipAgentEntryMountedIcon) {
+    gaipAgentEntryMountedIcon.querySelectorAll('.gaip-agent-entry-orb-video').forEach(function (video) {
+      video.pause();
+    });
+    gaipAgentEntryMountedIcon.querySelectorAll('.gaip-agent-entry-orb, .gaip-agent-entry-lottie').forEach(function (node) {
+      node.remove();
+    });
+    gaipAgentEntryMountedIcon.removeAttribute('data-gaip-agent-entry-orb-ready');
+  }
+  gaipAgentEntryMountedIcon = null;
+}
+
 function mountGaipAgentEntryOrb() {
   const entry = document.querySelector('[class*="globalButton___"]');
-  if (!entry) return;
+  const icon = entry && entry.querySelector('[class*="aiIcon___"]');
+  if (icon && icon === gaipAgentEntryMountedIcon &&
+      icon.querySelector('.gaip-agent-entry-orb') && icon.querySelector('.gaip-agent-entry-lottie')) return;
 
-  const icon = entry.querySelector('[class*="aiIcon___"]');
-  if (!icon || icon.getAttribute('data-gaip-agent-entry-orb-ready') === 'true') return;
+  // SPA 重建会产生新节点；销毁旧动画，再在当前节点恢复版本与处理状态。
+  releaseGaipAgentEntryOrb();
+  if (!entry || !icon) return;
 
+  gaipAgentEntryMountedIcon = icon;
   entry.setAttribute('data-gaip-agent-entry', 'true');
   icon.setAttribute('data-gaip-agent-entry-orb-ready', 'true');
 
@@ -692,14 +718,9 @@ function mountGaipAgentEntryOrb() {
 
   icon.insertBefore(orb, icon.firstChild);
   icon.insertBefore(lottieHost, orb.nextSibling);
-  new VoiceOrb(host, './AI Agent/素材/creative-3.b08cc4fe.webp');
+  gaipAgentEntryVoiceOrb = new VoiceOrb(host, './AI Agent/素材/creative-3.b08cc4fe.webp');
   applyGaipAgentEntryVersion(entry);
   setGaipAgentEntryState(gaipAgentEntryRequestedState);
-
-  if (gaipAgentEntryObserver) {
-    gaipAgentEntryObserver.disconnect();
-    gaipAgentEntryObserver = null;
-  }
 }
 
 let gaipAgentEntryOrbScheduled = false;
@@ -722,11 +743,29 @@ if (document.readyState === 'loading') {
   scheduleGaipAgentEntryOrb();
 }
 
-gaipAgentEntryObserver = new MutationObserver(scheduleGaipAgentEntryOrb);
+// 持续监听，但只处理顶栏/入口结构变化，不响应业务列表或 Lottie 内部重绘。
+const gaipAgentEntryStructureSelector = '[class*="globalButton___"], [class*="aiIcon___"], ' +
+  '[data-gaip-region="user-actions"], [class*="right___"], .umi-plugin-layout-right';
+gaipAgentEntryObserver = new MutationObserver(function (records) {
+  if (gaipAgentEntryMountedIcon && (!gaipAgentEntryMountedIcon.isConnected ||
+      !gaipAgentEntryMountedIcon.querySelector('.gaip-agent-entry-orb') ||
+      !gaipAgentEntryMountedIcon.querySelector('.gaip-agent-entry-lottie'))) {
+    scheduleGaipAgentEntryOrb();
+    return;
+  }
+  const relevant = records.some(function (record) {
+    if (record.target.nodeType === 1 && record.target.closest('[data-gaip-region="user-actions"], [class*="right___"], .umi-plugin-layout-right')) return true;
+    return Array.from(record.addedNodes).concat(Array.from(record.removedNodes)).some(function (node) {
+      return node.nodeType === 1 && (node.matches(gaipAgentEntryStructureSelector) || node.querySelector(gaipAgentEntryStructureSelector));
+    });
+  });
+  if (relevant) scheduleGaipAgentEntryOrb();
+});
 gaipAgentEntryObserver.observe(document.documentElement, {
   childList: true,
   subtree: true,
 });
+window.addEventListener('hashchange', scheduleGaipAgentEntryOrb);
 
 document.addEventListener('gaip-agent-entry-state', function (event) {
   setGaipAgentEntryState(event && event.detail && event.detail.state);
