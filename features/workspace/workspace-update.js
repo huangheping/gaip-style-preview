@@ -97,7 +97,7 @@
           '<h2 id="homeInfoTitle" class="tit___E3vkN">资讯中心</h2>' +
           '<p class="homeSectionTip">资讯来源于公开网络 AI 检索整理，内容请自行甄别参考</p>' +
         '</div>' +
-        '<button type="button" class="homeViewAll">查看全部 <span aria-hidden="true">›</span></button>' +
+        '<button type="button" class="homeViewAll">查看全部<svg class="homeViewAllIcon" viewBox="0 0 12 16" width="12" height="16" aria-hidden="true" focusable="false"><path d="m4 4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
       '</header>' +
       '<div class="homeInfoBody">' +
         '<div class="homeInfoTabs" role="tablist" aria-label="资讯时段">' +
@@ -115,7 +115,8 @@
           '<div class="homeInfoActions">' +
             '<button type="button" class="homeInfoSecondary">查看原文</button>' +
             '<button type="button" class="homeInfoShare" aria-label="分享">' +
-              '<svg viewBox="0 0 1024 1024" width="22" height="22" aria-hidden="true" focusable="false"><path d="M646.43333336 653.73333332c-16.8 0-30.3 13.6-30.3 30.3l0.2 182-546.3 0.3-0.2-546.4h182.3c16.8 0 30.3-13.6 30.3-30.3S268.83333336 259.33333332 252.03333336 259.33333332H69.73333336c-33.3 0-60.4 27-60.4 60.4V866.33333332c0 33.3 27.1 60.4 60.4 60.4H616.33333336c33.4-0.1 60.4-27.1 60.4-60.4V684.03333332c0.1-16.7-13.5-30.3-30.3-30.3"></path><path d="M616.63333336 259.33333332H464.43333336c-16.8 0-30.3 13.6-30.3 30.3s13.6 30.3 30.3 30.3l109-0.2-251.9 251.9c-11.8 11.9-11.8 31.1 0 42.9 11.9 11.8 31.1 11.8 42.9 0L616.33333336 362.63333332v109.3c0 16.8 13.6 30.3 30.3 30.3s30.3-13.6 30.3-30.3V319.73333332c0.1-33.4-26.9-60.4-60.3-60.4"></path></svg>' +
+              // 原图路径中心约为 (343, 593)，校正视窗留白，保持图形与尺寸不变。
+              '<svg viewBox="-169 81 1024 1024" width="18" height="18" aria-hidden="true" focusable="false"><path d="M646.43333336 653.73333332c-16.8 0-30.3 13.6-30.3 30.3l0.2 182-546.3 0.3-0.2-546.4h182.3c16.8 0 30.3-13.6 30.3-30.3S268.83333336 259.33333332 252.03333336 259.33333332H69.73333336c-33.3 0-60.4 27-60.4 60.4V866.33333332c0 33.3 27.1 60.4 60.4 60.4H616.33333336c33.4-0.1 60.4-27.1 60.4-60.4V684.03333332c0.1-16.7-13.5-30.3-30.3-30.3"></path><path d="M616.63333336 259.33333332H464.43333336c-16.8 0-30.3 13.6-30.3 30.3s13.6 30.3 30.3 30.3l109-0.2-251.9 251.9c-11.8 11.9-11.8 31.1 0 42.9 11.9 11.8 31.1 11.8 42.9 0L616.33333336 362.63333332v109.3c0 16.8 13.6 30.3 30.3 30.3s30.3-13.6 30.3-30.3V319.73333332c0.1-33.4-26.9-60.4-60.3-60.4"></path></svg>' +
               '<span>分享</span>' +
             '</button>' +
             '<button type="button" class="homeInfoPrimary">打开详情</button>' +

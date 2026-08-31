@@ -103,6 +103,43 @@ async function main() {
   assert.equal(svg.querySelector('script, foreignObject, image'), null);
   click('.gaip-log-trigger');
   assert.equal(find('dialog').open, true);
+  // Reuse the baseline Ant Design geometry, rather than drawing lookalike icons.
+  const baselineIcons = read('web/umi.0b0663b5.js');
+  for (const name of ['down', 'search', 'calendar']) {
+    const end = baselineIcons.indexOf('name:"' + name + '",theme:"outlined"');
+    assert.ok(end > 0);
+    const definition = baselineIcons.slice(baselineIcons.lastIndexOf('icon:{', end), end);
+    const iconDoc = new w.DOMParser().parseFromString(read('shared/assets/control-' + name + '.svg'), 'image/svg+xml');
+    assert.equal(iconDoc.querySelector('parsererror'), null);
+    assert.equal(iconDoc.documentElement.getAttribute('viewBox'), definition.match(/viewBox:"([^"]+)"/)[1]);
+    assert.equal(iconDoc.querySelector('path').getAttribute('d'), definition.match(/d:"([^"]+)"/)[1]);
+  }
+  for (const select of d.querySelectorAll('.gaip-log-filters select, .gaip-log-footer select')) {
+    const css = w.getComputedStyle(select);
+    assert.ok(css.backgroundImage.includes('control-down.svg'));
+    assert.equal(css.paddingRight, '36px');
+    assert.equal(css.appearance, 'none');
+  }
+  const searchStyle = w.getComputedStyle(find('.gaip-log-search'));
+  assert.ok(searchStyle.backgroundImage.includes('control-search.svg'));
+  assert.equal(searchStyle.paddingLeft, '36px');
+  const focusRule = foundationRules.find(rule => rule.selectorText && rule.selectorText.includes('.gaip-log-footer select:focus'));
+  assert.ok(focusRule.selectorText.includes('.gaip-log-filters input:focus'));
+  assert.ok(focusRule.selectorText.includes('.gaip-log-filters select:focus'));
+  assert.equal(focusRule.style.getPropertyValue('border-color'), 'var(--log-brand)');
+  assert.equal(focusRule.style.outline, 'none');
+  assert.equal(focusRule.style.getPropertyValue('box-shadow'), 'none');
+  const invalidRule = foundationRules.find(rule => rule.selectorText === '.gaip-log-filters input[aria-invalid="true"]');
+  assert.equal(invalidRule.style.getPropertyValue('border-color'), '#b63d3d');
+  const dateRules = foundationRules.find(rule => rule.conditionText === 'selector(input::-webkit-calendar-picker-indicator)');
+  assert.ok(dateRules);
+  const dateInputRule = Array.from(dateRules.cssRules).find(rule => rule.selectorText === '.gaip-log-dates input[type="date"]');
+  assert.ok(dateInputRule.style.getPropertyValue('background-image').includes('control-calendar.svg'));
+  assert.equal(dateInputRule.style.getPropertyValue('padding-right'), '36px');
+  const dateIndicatorRule = Array.from(dateRules.cssRules).find(rule => rule.selectorText.includes('::-webkit-calendar-picker-indicator'));
+  assert.equal(dateIndicatorRule.style.opacity, '0');
+  assert.notEqual(dateIndicatorRule.style.display, 'none');
+  assert.notEqual(dateIndicatorRule.style.getPropertyValue('pointer-events'), 'none');
   assert.equal(find('dialog').getAttribute('aria-labelledby'), 'gaip-log-title');
   assert.equal(d.querySelectorAll('tbody tr').length, 10);
   assert.match(text('[data-log-summary]'), /共 28 条，第 1 \/ 3 页/);
@@ -225,6 +262,7 @@ async function main() {
   // Root shells all load exactly one copy in the correct data/export/UI order.
   for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {
     const source = read(entry);
+    assert.ok(source.includes('global-operation-log.css?v=20260831-6'), entry + ': latest filter styles CSS');
     let previous = -1;
     for (const resource of ['shared/styles/global-operation-log.css', ...loaded]) {
       assert.equal(source.split(resource).length - 1, 1, entry + ': ' + resource);

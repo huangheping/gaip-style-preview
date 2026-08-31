@@ -57,8 +57,59 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
   border-radius: 4px; color: #2f3640; background: #fff; font-size: 14px;
 }
 .gaip-log-filters select { flex: 1; cursor: pointer; }
+/* 复用原站 Ant Design 图形；背景图不拦截原生控件的鼠标或键盘操作。 */
+.gaip-log-filters select, .gaip-log-footer select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  background-image: url('../assets/control-down.svg');
+  background-position: right 12px center;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+}
+.gaip-log-filters .gaip-log-search {
+  padding-left: 36px;
+  background-image: url('../assets/control-search.svg');
+  background-position: left 12px center;
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+}
+/* 不支持此原生指示器的浏览器保留自身日历入口，避免叠加两个图标。 */
+@supports selector(input::-webkit-calendar-picker-indicator) {
+  .gaip-log-dates input[type="date"] {
+    position: relative;
+    padding-right: 36px;
+    background-image: url('../assets/control-calendar.svg');
+    background-position: right 12px center;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+  }
+  .gaip-log-dates input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
 .gaip-log-filters input::placeholder { color: #9aa1aa; }
-.gaip-log-filters input:focus, .gaip-log-filters select:focus { border-color: #00bfb4; }
+/* 与项目 Ant 控件一致：品牌绿边框、无阴影；键盘聚焦仍由清晰边框标识。 */
+.gaip-log-filters input:hover:not(:disabled),
+.gaip-log-filters select:hover:not(:disabled),
+.gaip-log-footer select:hover:not(:disabled) { border-color: var(--log-brand); }
+.gaip-log-filters input:focus,
+.gaip-log-filters select:focus,
+.gaip-log-footer select:focus {
+  border-color: var(--log-brand);
+  outline: none;
+  box-shadow: none;
+}
+.gaip-log-filters input[aria-invalid="true"] { border-color: #b63d3d; }
 .gaip-log-dates { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .gaip-log-dates input { width: 152px; }
 .gaip-log-dates > span, .gaip-log-dates > label { color: #7a848e; white-space: nowrap; }
