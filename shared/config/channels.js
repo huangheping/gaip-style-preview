@@ -48,7 +48,10 @@
       route: '/product',
       entry: '产品中心.html',
       icon: 'sales-enablement',
-      type: 'catalog'
+      type: 'catalog',
+      assets: {
+        styles: ['web/p__dashboard__product__index.48332667.chunk.css?v=20260831-2']
+      }
     },
     {
       key: 'activity',
@@ -68,10 +71,10 @@
       virtual: true,
       query: 'gaip-channel=news',
       assets: {
-        styles: ['features/news-center/news-center.css?v=20260826-14'],
+        styles: ['features/news-center/news-center.css?v=20260827-1'],
         scripts: [
           'features/news-center/mock-data.js?v=20260826-2',
-          'features/news-center/news-center.js?v=20260826-13'
+          'features/news-center/news-center.js?v=20260827-1'
         ]
       }
     },

@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>GAIP 文章海报分享</title>
+  <style>
+    @font-face {
+      font-family: "GAIP PuHui";
+      src: url("./assets/gaip-light.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #2f3640;
+      --muted: rgba(47, 54, 64, 0.65);
+      --line: #e7e7e7;
+      --line-strong: #dddddd;
+      --paper: #ffffff;
+      --canvas: #fafafa;
+      --teal: #025b52;
+      --teal-strong: #025b52;
+      --teal-soft: rgba(36, 212, 201, 0.1);
+      --cyan: #24d4c9;
+      --cyan: #24d4c9;
+      --gold: #c8964a;
+      --danger: #ff4d4f;
+      --danger-soft: rgba(255, 77, 79, 0.06);
+      --shadow: 0 0 48px rgba(47, 54, 64, 0.16), 0 2px 8px rgba(47, 54, 64, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      letter-spacing: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-width: 320px;
+      height: 100%;
+      margin: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      color: var(--ink);
+      background: #f4f6f6;
+      font-family: "GAIP PuHui", "Noto Sans SC", sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      font-synthesis: weight;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 216px 1fr;
+      min-height: 100%;
+      background: #f6f8f8;
+    }
+
+    .app-sidebar {
+      border-right: 1px solid #dce2e2;
+      background: #fff;
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      height: 58px;
+      padding: 0 28px;
+      border-bottom: 1px solid #eef1f1;
+      font-family: Georgia, serif;
+      font-size: 20px;
+    }
+
+    .app-brand span {
+      margin: 0 10px;
+      color: #a4acad;
+      font-size: 12px;
+    }
+
+    .nav-caption {
+      margin: 18px 20px 9px;
+      color: #99a2a5;
+      font-size: 12px;
+    }
+
+    .app-nav {
+      display: grid;
+      gap: 4px;
+      padding: 0 10px;
+    }
+
+    .app-nav div {
+      display: flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 15px;
+      border-left: 3px solid transparent;
+      color: #5d686c;
+    }
+
+    .app-nav div::before {
+      width: 19px;
+      margin-right: 11px;
+      color: #879194;
+      font-size: 16px;
+      text-align: center;
+      content: "◇";
+    }
+
+    .app-nav .active {
+      border-left-color: #00a99d;
+      color: #075b55;
+      background: #e7f3f1;
+    }
+
+    .app-main {
+      min-width: 0;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      padding: 0 28px;
+      border-bottom: 1px solid #e2e6e6;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .crumbs {
+      color: #7e898c;
+    }
+
+    .crumbs b {
+      margin-left: 18px;
+      color: #344248;
+      font-weight: 500;
+    }
+
+    .app-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #d5e2e0;
+    }
+
+    .dashboard-ghost {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+      gap: 18px;
+      padding: 30px;
+    }
+
+    .ghost-card {
+      height: 168px;
+      border: 1px solid #e0e5e5;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    .ghost-card::before,
+    .ghost-card::after {
+      display: block;
+      width: 38%;
+      height: 12px;
+      margin: 24px;
+      background: #edf0f0;
+      content: "";
+    }
+
+    .ghost-card::after {
+      width: 64%;
+      height: 36px;
+      margin-top: 38px;
+    }
+
+    .scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      padding: 22px 30px;
+      background: rgba(18, 26, 28, 0.52);
+      backdrop-filter: blur(1px);
+    }
+
+    .share-dialog {
+      display: grid;
+      grid-template-columns: 248px minmax(560px, 1fr) 0;
+      width: min(1460px, calc(100vw - 60px));
+      height: min(850px, calc(100vh - 44px));
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.46);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transition: grid-template-columns 220ms ease;
+    }
+
+    .share-dialog.card-enabled {
+      grid-template-columns: 248px minmax(530px, 1fr) 320px;
+    }
+
+    .template-rail {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .rail-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 21px 18px 14px;
+    }
+
+    .rail-title h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .rail-count {
+      color: #8a9699;
+      font-size: 12px;
+    }
+
+    .template-list {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 2px 16px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: #cdd6d6 transparent;
+    }
+
+    .template-option {
+      position: relative;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 11px;
+      align-items: center;
+      min-height: 116px;
+      padding: 8px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    .template-option:hover {
+      border-color: rgba(2, 91, 82, 0.35);
+      background: var(--teal-soft);
+    }
+
+    .template-option.is-active {
+      border-color: #24D4C9;
+      background: var(--teal-soft);
+    }
+
+    .template-option:focus-visible,
+    .icon-btn:focus-visible,
+    .primary-btn:focus-visible,
+    .switch:focus-visible,
+    .upload-card:focus-visible,
+    .small-btn:focus-visible,
+    input:focus-visible {
+      outline: 2px solid rgba(36, 212, 201, 0.36);
+      outline-offset: 2px;
+    }
+
+    .template-thumb {
+      position: relative;
+      width: 72px;
+      height: 96px;
+      overflow: hidden;
+      border: 1px solid #d9e0e0;
+      border-radius: 3px;
+      background: white;
+    }
+
+    .template-thumb > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .template-thumb .thumb-image {
+      height: 35px;
+      background-image: var(--thumb-image);
+      background-position: center;
+      background-size: cover;
+    }
+
+    .template-thumb .thumb-brand {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 6px;
+    }
+
+    .template-thumb .thumb-lines {
+      padding: 8px 7px;
+    }
+
+    .template-thumb .thumb-lines::before {
+      display: block;
+      width: 90%;
+      height: 4px;
+      margin-bottom: 6px;
+      background: #34434a;
+      box-shadow: 0 8px 0 #e2e7e7, 0 14px 0 #e2e7e7, 0 20px 0 #e2e7e7;
+      content: "";
+    }
+
+    .template-copy strong,
+    .template-copy span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .template-copy strong {
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .template-copy span {
+      color: #7c888c;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .selected-mark {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      display: none;
+      width: 16px;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .selected-mark img {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+
+    .template-option.is-active .selected-mark {
+      display: flex;
+    }
+
+    .rail-footer {
+      padding: 16px 18px 17px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .toggle-copy strong,
+    .toggle-copy span {
+      display: block;
+    }
+
+    .toggle-copy strong {
+      margin-bottom: 4px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .toggle-copy span {
+      color: #8a9497;
+      font-size: 12px;
+    }
+
+    .switch {
+      position: relative;
+      flex: 0 0 auto;
+      width: 44px;
+      height: 22px;
+      padding: 0;
+      border: 0;
+      border-radius: 100px;
+      background: rgba(47, 54, 64, 0.25);
+      cursor: pointer;
+      transition: background 180ms ease;
+    }
+
+    .switch::after {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 3px rgba(47, 54, 64, 0.28);
+      content: "";
+      transition: transform 180ms ease;
+    }
+
+    .switch[aria-checked="true"] {
+      background: var(--teal);
+    }
+
+    .switch[aria-checked="true"]::after {
+      transform: translateX(22px);
+    }
+
+    .preview-stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255,255,255,0.64), rgba(255,255,255,0.8)),
+        linear-gradient(90deg, #e8f5f3 1px, transparent 1px),
+        linear-gradient(#e8f5f3 1px, transparent 1px),
+        #f4f9f8;
+      background-size: auto, 28px 28px, 28px 28px, auto;
+    }
+
+    .stage-toolbar {
+      position: absolute;
+      z-index: 5;
+      top: 16px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .toolbar-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      color: #617175;
+      font-size: 12px;
+    }
+
+    .toolbar-label::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 4px rgba(22,199,193,0.12);
+      content: "";
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .icon-btn,
+    .primary-btn,
+    .small-btn,
+    .text-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .gaip-icon {
+      display: block;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+    }
+
+    .gaip-icon-close {
+      width: 32px;
+      height: 32px;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .icon-btn:hover {
+      background: var(--teal-soft);
+    }
+
+    .primary-btn {
+      font-size:16px;
+      gap: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 4px;
+      color: white;
+      background: var(--teal);
+    }
+
+    .primary-btn:hover {
+      background: var(--teal-strong);
+      opacity: 0.85;
+    }
+
+    .primary-btn:disabled {
+      cursor: wait;
+      opacity: 0.66;
+      transform: none;
+    }
+
+    .stage-center {
+      display: grid;
+      grid-template-columns: 420px 126px;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 56px 24px 22px;
+      transition: grid-template-columns 180ms ease, gap 180ms ease;
+      background: #FAFAFA;
+    }
+
+    .card-enabled .stage-center {
+      grid-template-columns: 420px 126px;
+      gap: 16px;
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    .poster-wrap {
+      position: relative;
+      width: 420px;
+      min-height: 0;
+      flex: 0 0 auto;
+    }
+
+    .card-enabled .poster-wrap {
+      width: 420px;
+    }
+
+    .poster-column {
+      display: grid;
+      width: 100%;
+      min-width: 0;
+      gap: 24px;
+      justify-items: center;
+    }
+
+    .poster-actions {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .poster-actions .primary-btn {
+      width: 220px;
+      height: 44px;
+      font-size: 14px;
+    }
+
+    .poster {
+      position: relative;
+      width: 420px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(22,37,43,0.14);
+      border-radius: 2px;
+      color: #26353b;
+      background: #fff;
+      box-shadow: 0 4px 24px rgba(31, 38, 42, 0.1);
+      transition: transform 180ms ease;
+    }
+
+    .poster-source {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .poster.article-content .poster-source {
+      display: block;
+    }
+
+    .poster-identity-layer {
+      position: relative;
+      z-index: 3;
+      height: 95px;
+      padding: 0 13px;
+      border-top: 1px solid #f0f0f0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), #f0faf9 72%, #e8f5f4);
+    }
+
+    .poster.is-changing {
+      opacity: 0.92;
+    }
+
+    .poster-hero {
+      position: relative;
+      z-index: 1;
+      min-height: 240px;
+      flex-shrink: 0;
+      overflow: hidden;
+      color: white;
+      pointer-events: none;
+    }
+
+    .poster-hero::after {
+      display: none;
+    }
+
+    .theme-editorial .poster-hero::after {
+      background: linear-gradient(90deg, rgba(21,27,31,0.82), rgba(21,27,31,0.16));
+    }
+
+    .theme-gold .poster-hero::after {
+      background: linear-gradient(90deg, rgba(57,35,11,0.78), rgba(111,71,13,0.06));
+    }
+
+    .theme-cyan .poster-hero::after {
+      background: linear-gradient(90deg, rgba(0,64,72,0.82), rgba(0,64,72,0.08));
+    }
+
+    .poster-brand {
+      display: none;
+    }
+
+    .poster-brand i {
+      margin: 0 7px;
+      color: rgba(255,255,255,0.66);
+      font-style: normal;
+    }
+
+    .poster-date {
+      position: absolute;
+      z-index: 2;
+      top: 90px;
+      left: 17px;
+      bottom: auto;
+      padding-left: 10px;
+      border-left: 0;
+    }
+
+    .poster-date::before {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 3px;
+      height: calc(100% - 8px);
+      background: #24d4c9;
+      content: "";
+    }
+
+    .poster-date b,
+    .poster-date span {
+      display: block;
+    }
+
+    .poster-date b {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    .poster-date span {
+      margin-top: 0;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .poster-body {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      margin: -85px 16px 0;
+      padding: 16px 17px;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .poster-body::before {
+      display: none;
+    }
+
+    .poster-title {
+      margin: 0 0 7px;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 32px;
+    }
+
+    .poster-featured-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 20px;
+      margin-right: 8px;
+      vertical-align: 0;
+      position: relative;
+      top: -4px;
+    }
+
+    .poster-featured-badge[hidden] {
+      display: none;
+    }
+
+    .poster-featured-badge img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .poster-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 13px;
+      color: #899397;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .poster-meta-icon {
+      width: 12px;
+      height: 14px;
+      flex: 0 0 auto;
+    }
+
+    .poster-summary {
+      margin: 0;
+      color: #47565c;
+      font-size: 15px;
+      line-height: 27px;
+      flex: 1 1 auto;
+      min-height: 164px;
+    }
+
+    .poster-card {
+      position: absolute;
+      right: 13px;
+      bottom: 25px;
+      left: 13px;
+      display: none;
+      grid-template-columns: 55px 1fr 36px;
+      gap: 10px;
+      align-items: center;
+      min-height: 63px;
+      padding-top: 0;
+      border-top: 1px solid #dbe4e4;
+    }
+
+    .poster-card.is-visible {
+      display: grid;
+      animation: cardIn 220ms ease both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .poster-qr,
+    .poster-avatar {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #7a878a;
+      background: #eef3f3;
+    }
+
+    .poster-qr {
+      width: 55px;
+      height: 55px;
+      border: 1px solid #d4dddd;
+      font-size: 8px;
+      text-align: center;
+    }
+
+    .poster-avatar {
+      width: 34px;
+      height: 34px;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #d5dddd;
+      font-family: Georgia, serif;
+      font-size: 14px;
+    }
+
+    .poster-qr img,
+    .poster-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .poster-card-copy strong,
+    .poster-card-copy span {
+      display: block;
+    }
+
+    .poster-card-copy strong {
+      margin-bottom: 5px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .poster-card-copy span {
+      max-width: 210px;
+      overflow: hidden;
+      color: #737f83;
+      font-size: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .poster-disclaimer {
+      position: absolute;
+      right: 20px;
+      bottom: 9px;
+      left: 20px;
+      color: #a5adaf;
+      font-size: 8px;
+      text-align: center;
+    }
+
+    .poster-identity-layer .poster-card {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      grid-template-columns: 55px 1fr 36px;
+      min-height: 62px;
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .poster-identity-layer .poster-card.has-qr:not(.has-avatar) {
+      grid-template-columns: 55px 1fr;
+    }
+
+    .poster-identity-layer .poster-card:not(.has-qr) {
+      top: 12px;
+    }
+
+    .poster-identity-layer .poster-card:not(.has-qr).has-name.has-avatar {
+      grid-template-columns: 1fr 36px;
+    }
+
+    .poster-identity-layer .poster-card:not(.has-qr).has-name:not(.has-avatar) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .poster-identity-layer .poster-card:not(.has-qr):not(.has-name).has-avatar {
+      grid-template-columns: 36px;
+      justify-content: center;
+      justify-items: center;
+    }
+
+    .poster-card.signature-only .poster-card-copy span {
+      color: #49585d;
+      font-size: 12px;
+    }
+
+    .poster-identity-layer .poster-disclaimer {
+      right: 18px;
+      bottom: 8px;
+      left: 18px;
+    }
+
+    .phone-preview {
+      align-self: center;
+      padding: 10px;
+      border: 1px solid #dbe3e3;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 8px 24px rgba(22,39,43,0.08);
+      text-align: center;
+    }
+
+    .preview-qr {
+      display: block;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 10px;
+      padding: 6px;
+      border: 1px solid #dbe3e3;
+      border-radius: 4px;
+      background: #fff;
+      image-rendering: pixelated;
+    }
+
+    .phone-preview strong,
+    .phone-preview span {
+      display: block;
+    }
+
+    .phone-preview strong {
+      font-size: 12px;
+    }
+
+    .phone-preview span {
+      margin-top: 3px;
+      color: #8b9699;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .card-panel {
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-left: 0 solid var(--line);
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(14px);
+      transition: opacity 180ms ease, transform 180ms ease, border-width 180ms ease;
+    }
+
+    .card-enabled .card-panel {
+      overflow-y: auto;
+      border-left-width: 1px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .panel-inner {
+      width: 320px;
+      padding: 22px 20px 28px;
+    }
+
+    .panel-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 21px;
+    }
+
+    .panel-heading h2 {
+      margin: 0 0 7px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .panel-heading p {
+      margin: 0;
+      color: #7c888b;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .field-group {
+      margin-bottom: 21px;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .field-label span {
+      color: #96a0a3;
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .text-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 2px;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .text-input:hover,
+    .text-input:focus {
+      border-color: var(--teal);
+      box-shadow: none;
+    }
+
+    .input-meta {
+      margin-top: 6px;
+      color: #9aa3a5;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .upload-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 12px;
+      align-items: center;
+      min-height: 92px;
+      padding: 12px;
+      border: 1px dashed #dddddd;
+      border-radius: 4px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .upload-card:hover,
+    .upload-card.is-dragging {
+      border-color: var(--teal);
+      background: var(--teal-soft);
+      box-shadow: none;
+    }
+
+    .upload-visual {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      overflow: hidden;
+      border: 1px solid rgba(2, 91, 82, 0.16);
+      color: var(--teal);
+      background: #f2f8f7;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .upload-visual .upload-placeholder-icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      object-fit: contain;
+    }
+
+    .upload-card:hover .upload-visual,
+    .upload-card.is-dragging .upload-visual {
+      border-color: rgba(2, 91, 82, 0.35);
+      background: #fff;
+    }
+
+    .upload-visual.avatar {
+      border-radius: 50%;
+    }
+
+    .upload-visual.qr {
+      border-radius: 4px;
+    }
+
+    .upload-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .upload-copy strong,
+    .upload-copy span {
+      display: block;
+    }
+
+    .upload-copy {
+      min-width: 0;
+    }
+
+    .upload-copy strong {
+      overflow: hidden;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .upload-copy span {
+      color: #879295;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .upload-actions {
+      display: none;
+      gap: 7px;
+      margin-top: 9px;
+    }
+
+    .upload-card.has-image .upload-actions {
+      display: flex;
+    }
+
+    .upload-card.has-image .empty-hint {
+      display: none;
+    }
+
+    .small-btn {
+      gap: 5px;
+      height: 28px;
+      padding: 0 9px;
+      border: 1px solid #d1dada;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .small-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-soft);
+    }
+
+    .small-btn.danger {
+      color: var(--danger);
+    }
+
+    .delete-btn svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+      transform: none;
+      stroke-width: 1.8;
+    }
+
+    .small-btn.danger:hover {
+      border-color: var(--danger);
+      background: var(--danger-soft);
+    }
+
+    .panel-tip {
+      display: flex;
+      gap: 8px;
+      padding: 11px 12px;
+      border-left: 2px solid rgb(36 212 201);
+      color: rgba(47, 54, 64, 0.65);
+      background: var(--teal-soft);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .panel-tip-icon {
+      display: block;
+      width: 12px;
+      height: 12px;
+      flex: 0 0 12px;
+      margin-top: 2px;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 50;
+      left: 50%;
+      bottom: 32px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      min-width: 260px;
+      max-width: calc(100vw - 32px);
+      padding: 11px 14px;
+      border-radius: 5px;
+      color: white;
+      background: #203034;
+      box-shadow: 0 10px 30px rgba(13,31,35,0.28);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 14px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    .toast button {
+      padding: 0;
+      border: 0;
+      color: #67ded8;
+      background: none;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .toast button:empty {
+      display: none;
+    }
+
+    svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    @media (max-width: 1180px) {
+      .scrim {
+        padding: 0;
+      }
+
+      .share-dialog,
+      .share-dialog.card-enabled {
+        grid-template-columns: 220px minmax(500px, 1fr) 290px;
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .share-dialog:not(.card-enabled) {
+        grid-template-columns: 220px minmax(500px, 1fr) 0;
+      }
+
+      .panel-inner {
+        width: 290px;
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .stage-center {
+        grid-template-columns: 435px;
+      }
+
+      .poster-wrap,
+      .card-enabled .poster-wrap {
+        width: 420px;
+      }
+
+      .phone-preview {
+        display: none;
+      }
+
+      .template-option {
+        grid-template-columns: 64px 1fr;
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+
+      .template-thumb {
+        width: 64px;
+        height: 86px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --mobile-action-safe: max(8px, env(safe-area-inset-bottom));
+        --mobile-action-height: calc(57px + var(--mobile-action-safe));
+      }
+
+      html,
+      body {
+        overflow: auto;
+        overscroll-behavior-y: none;
+        background: #f4f8f7;
+      }
+
+      .app-shell {
+        display: none;
+      }
+
+      .scrim {
+        position: static;
+        display: block;
+        background: #f4f8f7;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        filter: none;
+        transform: none;
+        contain: none;
+      }
+
+      .share-dialog,
+      .share-dialog.card-enabled,
+      .share-dialog:not(.card-enabled) {
+        display: flex;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: var(--mobile-action-height);
+        flex-direction: column;
+        overflow: visible;
+      }
+
+      .template-rail {
+        display: block;
+        order: 1;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .rail-title {
+        padding: 16px 16px 10px;
+      }
+
+      .template-list {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 0 16px 14px;
+      }
+
+      .template-option {
+        grid-template-columns: 54px 92px;
+        flex: 0 0 162px;
+        min-height: 88px;
+      }
+
+      .template-thumb {
+        width: 52px;
+        height: 70px;
+      }
+
+      .template-copy span {
+        display: none;
+      }
+
+      .rail-footer {
+        padding: 12px 16px;
+      }
+
+      .preview-stage {
+        order: 2;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .stage-toolbar {
+        display: none;
+      }
+
+      .toolbar-label {
+        display: none;
+      }
+
+      .poster-actions {
+        position: fixed !important;
+        z-index: 2147483647;
+        top: auto !important;
+        right: 0;
+        bottom: 0 !important;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        transform: none !important;
+        padding: 8px 16px var(--mobile-action-safe);
+        border-top: 1px solid var(--line);
+        background: #fff;
+        box-shadow: 0 -4px 16px rgba(47, 54, 64, 0.1);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+
+      .poster-actions .primary-btn {
+        width: 100%;
+        height: 48px;
+      }
+
+      #closeBtn {
+        display: none;
+      }
+
+      .stage-center,
+      .card-enabled .stage-center {
+        display: block;
+        height: auto;
+        padding: 18px 14px 28px;
+      }
+
+      .poster-wrap,
+      .card-enabled .poster-wrap {
+        width: min(100%, 420px);
+      }
+
+      .poster {
+        width: 100%;
+      }
+
+      .card-panel {
+        display: none;
+        order: 3;
+        min-height: 0;
+        scroll-margin-top: 12px;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      .card-enabled .card-panel {
+        display: block;
+        overflow: visible;
+        border-left: 0;
+      }
+
+      .panel-inner {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 16px 16px 20px;
+      }
+
+      .panel-heading {
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .panel-heading h2 {
+        margin-bottom: 4px;
+        font-size: 16px;
+      }
+
+      .panel-heading p {
+        line-height: 1.5;
+      }
+
+      .field-group {
+        margin-bottom: 16px;
+      }
+
+      .field-label {
+        margin-bottom: 6px;
+      }
+
+      .text-input {
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .input-meta {
+        margin-top: 4px;
+      }
+
+      .upload-card {
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 72px;
+        padding: 10px;
+      }
+
+      .upload-visual {
+        width: 48px;
+        height: 48px;
+      }
+
+      .upload-copy strong {
+        margin-bottom: 2px;
+      }
+
+      .panel-tip {
+        padding: 10px;
+      }
+
+      .phone-preview {
+        display: none;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .poster-title {
+        font-size: 18px;
+      }
+
+      .poster-summary {
+        font-size: 12px;
+      }
+
+      .poster-body {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .poster-card {
+        right: 17px;
+        left: 17px;
+      }
+
+      .poster-identity-layer {
+        height: 22%;
+        padding: 8px 14px 18px;
+      }
+
+      .poster-identity-layer .poster-card {
+        grid-template-columns: 46px 1fr 30px;
+        gap: 8px;
+        min-height: 50px;
+      }
+
+      .poster-identity-layer .poster-card.has-qr:not(.has-avatar) {
+        grid-template-columns: 46px 1fr;
+      }
+
+      .poster-identity-layer .poster-card:not(.has-qr).has-name.has-avatar {
+        grid-template-columns: 1fr 30px;
+      }
+
+      .poster-identity-layer .poster-card:not(.has-qr).has-name:not(.has-avatar) {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-identity-layer .poster-card:not(.has-qr):not(.has-name).has-avatar {
+        grid-template-columns: 30px;
+      }
+
+      .poster-qr {
+        width: 46px;
+        height: 46px;
+        font-size: 8px;
+      }
+
+      .poster-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+
+      .poster-card-copy strong {
+        margin-bottom: 3px;
+        font-size: 10px;
+      }
+
+      .poster-card-copy span {
+        font-size: 8px;
+      }
+
+      .poster-identity-layer .poster-disclaimer {
+        right: 10px;
+        bottom: 5px;
+        left: 10px;
+        font-size: 6px;
+      }
+
+      .primary-btn {
+        padding: 0 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body.embedded-share {
+      background: transparent;
+    }
+
+    body.embedded-share .app-shell {
+      display: none;
+    }
+
+    body.embedded-share .scrim {
+      position: static;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      background: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    body.embedded-share .share-dialog,
+    body.embedded-share .share-dialog.card-enabled,
+    body.embedded-share .share-dialog:not(.card-enabled) {
+      display: grid;
+      grid-template-columns: 248px minmax(560px, 1fr) 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+      flex-direction: initial;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    body.embedded-share .share-dialog.card-enabled {
+      grid-template-columns: 248px minmax(530px, 1fr) 320px;
+    }
+
+    body.embedded-share .template-rail {
+      display: grid;
+      order: initial;
+      border-right: 1px solid var(--line);
+      border-bottom: 0;
+    }
+
+    body.embedded-share .phone-preview {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    if (new URLSearchParams(window.location.search).get("embed") === "1") {
+      document.body.classList.add("embedded-share");
+    }
+  </script>
+  <div class="app-shell" aria-hidden="true">
+    <aside class="app-sidebar">
+      <div class="app-brand">GLORY <span>|</span> GAIP</div>
+      <div class="nav-caption">核心功能</div>
+      <div class="app-nav">
+        <div class="active">工作台总览</div>
+        <div>客户中心360</div>
+        <div>保单列表</div>
+        <div>方案中心</div>
+        <div>产品中心</div>
+        <div>活动中心</div>
+      </div>
+    </aside>
+    <main class="app-main">
+      <header class="app-header">
+        <div class="crumbs">首页 <b>/　工作台总览</b></div>
+        <div class="app-avatar"></div>
+      </header>
+      <div class="dashboard-ghost">
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="scrim">
+    <main class="share-dialog" id="shareDialog" aria-label="文章海报分享弹窗">
+      <aside class="template-rail">
+        <div class="rail-title">
+          <h2>选择分享模板</h2>
+          <span class="rail-count">13 款</span>
+        </div>
+
+        <div class="template-list" id="templateList" role="listbox" aria-label="分享海报模板"></div>
+
+        <div class="rail-footer">
+          <div class="toggle-row">
+            <div class="toggle-copy">
+              <strong>展示个人名片</strong>
+              <span>在海报底部添加联系方式</span>
+            </div>
+            <button class="switch" id="cardSwitch" type="button" role="switch" aria-checked="false" aria-label="展示个人名片"></button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="preview-stage" aria-label="海报预览">
+        <div class="stage-toolbar">
+          <div class="toolbar-label">海报内容将随设置实时更新</div>
+          <div class="toolbar-actions">
+            <button class="icon-btn" id="closeBtn" type="button" aria-label="关闭弹窗" title="关闭">
+              <img class="gaip-icon gaip-icon-close" src="./assets/gaip-icon-close.svg" alt="">
+            </button>
+          </div>
+        </div>
+
+        <div class="stage-center">
+          <div class="poster-column">
+            <div class="poster-wrap">
+              <article class="poster article-content" id="poster">
+                <img class="poster-source" id="posterSource" src="./assets/poster-01-news.jpg" alt="当前分享海报模板">
+                <section class="poster-hero" aria-hidden="true">
+                  <div class="poster-brand">GLORY <i>|</i> GAIP</div>
+                  <div class="poster-date">
+                    <b id="posterDateDay">08/25</b>
+                    <span id="posterDateYear">2026 资讯洞察</span>
+                  </div>
+                </section>
+                <section class="poster-body">
+                  <h1 class="poster-title">
+                    <span class="poster-featured-badge" id="posterFeaturedBadge" hidden><img src="../../features/news-center/assets/featured-ai.svg" alt=""></span><span id="posterTitle">企业主传承讨论前置，信托架构更强调治理规则</span>
+                  </h1>
+                  <div class="poster-meta">
+                    <img class="poster-meta-icon" src="../../features/news-center/assets/tag.svg" alt="">
+                    <span id="posterMeta">家族信托 | 受益人安排 / 企业传承</span>
+                  </div>
+                  <p class="poster-summary" id="posterSummary">越来越多企业主把家族治理、企业股权和现金流安排同时纳入传承设计，单一资产隔离已不能满足复杂需求。</p>
+                </section>
+                <div class="poster-identity-layer">
+                  <div class="poster-card" id="posterCard">
+                    <div class="poster-qr" id="posterQr" hidden></div>
+                    <div class="poster-card-copy" id="posterCardCopy" hidden>
+                      <strong id="posterCardTitle" hidden>扫码添加我的微信</strong>
+                      <span id="posterShare" hidden>由 <b id="posterName"></b> 分享</span>
+                    </div>
+                    <div class="poster-avatar" id="posterAvatar" hidden></div>
+                  </div>
+                  <div class="poster-disclaimer">以上内容由 AI 辅助生成，仅供参考，不构成具体产品收益承诺</div>
+                </div>
+              </article>
+            </div>
+            <div class="poster-actions">
+              <button class="primary-btn" id="downloadBtn" type="button">
+                <img class="gaip-icon" src="./assets/gaip-icon-download.svg" alt="">
+                <span>保存海报</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="phone-preview" aria-label="手机预览提示">
+            <img class="preview-qr" src="./assets/fake-qr.svg" alt="演示二维码，不可识别">
+            <strong>手机端效果</strong>
+            <span>使用手机扫码查看</span>
+          </aside>
+        </div>
+      </section>
+
+      <aside class="card-panel" aria-label="个人名片设置">
+        <div class="panel-inner">
+          <div class="panel-heading">
+            <div>
+              <h2>个人名片</h2>
+              <p>填写即可展示，未填写内容不会出现在海报中。</p>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="nameInput">分享人姓名 <span>选填</span></label>
+            <input class="text-input" id="nameInput" type="text" maxlength="20" placeholder="请输入姓名" autocomplete="name">
+            <div class="input-meta"><span id="nameCount">0</span>/20</div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">头像 <span>建议 1:1</span></div>
+            <div class="upload-card" id="avatarUploader" data-kind="avatar" role="button" tabindex="0" aria-label="上传头像">
+              <div class="upload-visual avatar" id="avatarVisual">
+                <img class="upload-placeholder-icon" src="./assets/up-load-icon1.svg" alt="">
+              </div>
+              <div class="upload-copy">
+                <strong id="avatarTitle">上传头像</strong>
+                <span class="empty-hint">点击或拖入图片，JPG/PNG，最大 5MB</span>
+                <div class="upload-actions">
+                  <button class="small-btn replace-btn" type="button" data-kind="avatar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66L20 8M20 3v5h-5"/></svg>
+                    更换
+                  </button>
+                  <button class="small-btn danger delete-btn" type="button" data-kind="avatar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M10 11v6M14 11v6"/></svg>
+                    删除
+                  </button>
+                </div>
+              </div>
+            </div>
+            <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">个人微信二维码 <span>清晰完整</span></div>
+            <div class="upload-card" id="qrUploader" data-kind="qr" role="button" tabindex="0" aria-label="上传微信二维码">
+              <div class="upload-visual qr" id="qrVisual">
+                <img class="upload-placeholder-icon" src="./assets/up-load-icon2.svg" alt="">
+              </div>
+              <div class="upload-copy">
+                <strong id="qrTitle">上传二维码</strong>
+                <span class="empty-hint">点击或拖入图片，请勿裁掉二维码边缘</span>
+                <div class="upload-actions">
+                  <button class="small-btn replace-btn" type="button" data-kind="qr">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66L20 8M20 3v5h-5"/></svg>
+                    更换
+                  </button>
+                  <button class="small-btn danger delete-btn" type="button" data-kind="qr">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M10 11v6M14 11v6"/></svg>
+                    删除
+                  </button>
+                </div>
+              </div>
+            </div>
+            <input id="qrInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          </div>
+
+          <div class="panel-tip">
+            <img class="panel-tip-icon" src="./assets/tishi-icon.svg" alt="">
+            <span>头像及个人微信二维码建议使用1:1比例的图片，保证图片不会被裁切。</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toastMessage"></span>
+    <button id="toastAction" type="button"></button>
+  </div>
+
+  <script>
+    const templates = [
+      { id: "medal", name: "金色勋章", note: "稳重 · 财富洞察", image: "./assets/poster-04-bull.jpg", accent: "#16c7c1" },
+      { id: "partner", name: "合作共赢", note: "柔和 · 客户关系", image: "./assets/poster-01-news.jpg", accent: "#16c7c1" },
+      { id: "global", name: "全球脉络", note: "开放 · 全球视野", image: "./assets/poster-05-globe.jpg", accent: "#16c7c1" },
+      { id: "compass", name: "财富罗盘", note: "温暖 · 方向指引", image: "./assets/poster-02-global.jpg", accent: "#c89a45" },
+      { id: "key", name: "传承之钥", note: "经典 · 家族传承", image: "./assets/poster-08-key.jpg", accent: "#c89a45" },
+      { id: "bull", name: "财富向上", note: "力量 · 市场趋势", image: "./assets/poster-03-medal.jpg", accent: "#c89a45" },
+      { id: "globe", name: "全球坐标", note: "专业 · 跨境配置", image: "./assets/poster-13-digital.jpg", accent: "#16c7c1" },
+      { id: "news", name: "新闻聚焦", note: "醒目 · 重点资讯", image: "./assets/poster-07-water.jpg", accent: "#16c7c1" },
+      { id: "digital", name: "数字资讯", note: "科技 · 快速阅读", image: "./assets/poster-06-sail.jpg", accent: "#16c7c1" },
+      { id: "sail", name: "乘风而行", note: "清朗 · 长期主义", image: "./assets/poster-12-partner.jpg", accent: "#16c7c1" },
+      { id: "water", name: "流动趋势", note: "深邃 · 市场观察", image: "./assets/poster-09-shadow.jpg", accent: "#16c7c1" },
+      { id: "shadow", name: "洞见未来", note: "克制 · 人物观点", image: "./assets/poster-10-data.jpg", accent: "#16c7c1" },
+      { id: "data", name: "数据纹理", note: "理性 · 行业分析", image: "./assets/poster-11-compass.jpg", accent: "#16c7c1" }
+    ];
+
+    const fallbackArticle = {
+      title: "企业主传承讨论前置，信托架构更强调治理规则",
+      summary: "越来越多企业主把家族治理、企业股权和现金流安排同时纳入传承设计，单一资产隔离已不能满足复杂需求。",
+      category: "家族信托",
+      tags: "受益人安排 / 企业传承",
+      date: "2026-08-25 21:00",
+      score: "89",
+      slot: "夜间深度",
+      featured: false
+    };
+
+    function queryValue(params, key, fallback) {
+      const value = params.get(key);
+      return value == null || value === "" ? fallback : value;
+    }
+
+    function readArticleFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        title: queryValue(params, "title", fallbackArticle.title),
+        summary: queryValue(params, "summary", fallbackArticle.summary),
+        category: queryValue(params, "category", fallbackArticle.category),
+        tags: queryValue(params, "tags", fallbackArticle.tags),
+        date: queryValue(params, "date", fallbackArticle.date),
+        score: queryValue(params, "score", fallbackArticle.score),
+        slot: queryValue(params, "slot", fallbackArticle.slot),
+        featured: queryValue(params, "featured", String(fallbackArticle.featured)) === "true"
+      };
+    }
+
+    const state = {
+      template: templates[0],
+      article: readArticleFromQuery(),
+      cardEnabled: false,
+      name: "",
+      avatar: null,
+      qr: null,
+      deleted: null
+    };
+
+    const dialog = document.getElementById("shareDialog");
+    const templateList = document.getElementById("templateList");
+    const poster = document.getElementById("poster");
+    const posterSource = document.getElementById("posterSource");
+    const posterTitle = document.getElementById("posterTitle");
+    const posterFeaturedBadge = document.getElementById("posterFeaturedBadge");
+    const posterMeta = document.getElementById("posterMeta");
+    const posterSummary = document.getElementById("posterSummary");
+    const posterDateDay = document.getElementById("posterDateDay");
+    const posterDateYear = document.getElementById("posterDateYear");
+    const posterCard = document.getElementById("posterCard");
+    const posterCardCopy = document.getElementById("posterCardCopy");
+    const posterCardTitle = document.getElementById("posterCardTitle");
+    const posterShare = document.getElementById("posterShare");
+    const posterName = document.getElementById("posterName");
+    const posterAvatar = document.getElementById("posterAvatar");
+    const posterQr = document.getElementById("posterQr");
+    const cardSwitch = document.getElementById("cardSwitch");
+    const cardPanel = document.querySelector(".card-panel");
+    const nameInput = document.getElementById("nameInput");
+    const nameCount = document.getElementById("nameCount");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastAction = document.getElementById("toastAction");
+    const uploaders = {
+      avatar: {
+        root: document.getElementById("avatarUploader"),
+        input: document.getElementById("avatarInput"),
+        visual: document.getElementById("avatarVisual"),
+        title: document.getElementById("avatarTitle")
+      },
+      qr: {
+        root: document.getElementById("qrUploader"),
+        input: document.getElementById("qrInput"),
+        visual: document.getElementById("qrVisual"),
+        title: document.getElementById("qrTitle")
+      }
+    };
+    let toastTimer;
+
+    function renderTemplates() {
+      templateList.innerHTML = templates.map((template) => `
+        <button
+          class="template-option ${template.id === state.template.id ? "is-active" : ""}"
+          type="button"
+          role="option"
+          aria-selected="${template.id === state.template.id}"
+          data-template="${template.id}"
+        >
+          <span class="template-thumb">
+            <img src="${template.image}" alt="" loading="lazy">
+          </span>
+          <span class="template-copy">
+            <strong>${template.name}</strong>
+            <span>${template.note}</span>
+          </span>
+          <span class="selected-mark" aria-hidden="true">
+            <img src="./assets/gaip-icon-complete.svg" alt="">
+          </span>
+        </button>
+      `).join("");
+    }
+
+    function setTemplate(id) {
+      const nextTemplate = templates.find((template) => template.id === id);
+      if (!nextTemplate || nextTemplate.id === state.template.id) return;
+      state.template = nextTemplate;
+      poster.classList.add("is-changing");
+      setTimeout(() => {
+        posterSource.src = nextTemplate.image;
+        poster.style.setProperty("--cyan", nextTemplate.accent);
+        poster.style.setProperty("--poster-image", `url("${nextTemplate.image}")`);
+        requestAnimationFrame(() => poster.classList.remove("is-changing"));
+      }, 90);
+      renderTemplates();
+    }
+
+    function posterDateParts(dateText) {
+      const match = String(dateText).match(/^(\d{4})-(\d{2})-(\d{2})(?:\s+(.+))?/);
+      if (!match) return { day: "资讯", year: dateText };
+      return {
+        day: `${match[2]}/${match[3]}`,
+        year: match[1]
+      };
+    }
+
+    function articleMeta() {
+      return [
+        state.article.category,
+        state.article.tags
+      ].filter(Boolean).join(" | ");
+    }
+
+    function renderArticlePoster() {
+      const dateParts = posterDateParts(state.article.date);
+      posterTitle.textContent = state.article.title;
+      posterFeaturedBadge.hidden = !state.article.featured;
+      posterMeta.textContent = articleMeta();
+      posterSummary.textContent = state.article.summary;
+      posterDateDay.textContent = dateParts.day;
+      posterDateYear.textContent = dateParts.year;
+      poster.style.setProperty("--poster-image", `url("${state.template.image}")`);
+    }
+
+    function setCardEnabled(enabled) {
+      state.cardEnabled = enabled;
+      dialog.classList.toggle("card-enabled", enabled);
+      cardSwitch.setAttribute("aria-checked", String(enabled));
+      renderPosterIdentity();
+      if (enabled && window.matchMedia("(min-width: 821px)").matches) {
+        setTimeout(() => nameInput.focus(), 220);
+      } else if (enabled) {
+        setTimeout(() => {
+          cardPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      }
+    }
+
+    function renderPosterIdentity() {
+      const name = state.name.trim();
+      const hasName = Boolean(name);
+      const hasAvatar = Boolean(state.avatar);
+      const hasQr = Boolean(state.qr);
+      const hasIdentity = hasName || hasAvatar || hasQr;
+
+      posterCard.classList.toggle("is-visible", state.cardEnabled && hasIdentity);
+      posterCard.classList.toggle("has-name", hasName);
+      posterCard.classList.toggle("has-avatar", hasAvatar);
+      posterCard.classList.toggle("has-qr", hasQr);
+      posterCard.classList.toggle("signature-only", hasName && !hasQr);
+
+      posterName.textContent = name;
+      posterCardTitle.hidden = !hasQr;
+      posterShare.hidden = !hasName;
+      posterCardCopy.hidden = !hasQr && !hasName;
+      nameCount.textContent = state.name.length;
+      nameInput.value = state.name;
+
+      posterAvatar.hidden = !hasAvatar;
+      posterAvatar.replaceChildren();
+      if (hasAvatar) {
+        const avatarImage = document.createElement("img");
+        avatarImage.src = state.avatar.url;
+        avatarImage.alt = hasName ? `${name}的头像` : "分享人头像";
+        posterAvatar.appendChild(avatarImage);
+      }
+
+      posterQr.hidden = !hasQr;
+      posterQr.replaceChildren();
+      if (hasQr) {
+        const qrImage = document.createElement("img");
+        qrImage.src = state.qr.url;
+        qrImage.alt = "个人微信二维码";
+        posterQr.appendChild(qrImage);
+      }
+    }
+
+    function renderUploader(kind) {
+      const uploader = uploaders[kind];
+      const image = state[kind];
+      uploader.root.classList.toggle("has-image", Boolean(image));
+      uploader.root.setAttribute("role", image ? "group" : "button");
+      uploader.root.setAttribute("tabindex", image ? "-1" : "0");
+      uploader.root.setAttribute("aria-label", image
+        ? `${kind === "avatar" ? "头像" : "二维码"}预览与操作`
+        : `上传${kind === "avatar" ? "头像" : "微信二维码"}`
+      );
+
+      if (image) {
+        uploader.visual.innerHTML = `<img src="${image.url}" alt="${kind === "avatar" ? "头像预览" : "二维码预览"}">`;
+        uploader.title.textContent = image.name;
+      } else if (kind === "avatar") {
+        uploader.visual.innerHTML = `<img class="upload-placeholder-icon" src="./assets/up-load-icon1.svg" alt="">`;
+        uploader.title.textContent = "上传头像";
+      } else {
+        uploader.visual.innerHTML = `<img class="upload-placeholder-icon" src="./assets/up-load-icon2.svg" alt="">`;
+        uploader.title.textContent = "上传二维码";
+      }
+      renderPosterIdentity();
+    }
+
+    function showToast(message, actionLabel = "", action = null) {
+      clearTimeout(toastTimer);
+      toastMessage.textContent = message;
+      toastAction.textContent = actionLabel;
+      toastAction.onclick = action;
+      toast.classList.add("is-visible");
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), action ? 8000 : 2600);
+    }
+
+    function validateFile(file) {
+      if (!file) return "未选择图片";
+      if (!/^image\/(png|jpeg|webp)$/.test(file.type)) return "仅支持 JPG、PNG 或 WEBP 图片";
+      if (file.size > 5 * 1024 * 1024) return "图片不能超过 5MB";
+      return "";
+    }
+
+    function handleFile(kind, file) {
+      const error = validateFile(file);
+      if (error) {
+        showToast(error);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        state[kind] = { url: reader.result, name: file.name, file };
+        renderUploader(kind);
+        showToast(kind === "avatar" ? "头像已更新" : "二维码已更新");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage(kind) {
+      const previous = state[kind];
+      if (!previous) return;
+      state[kind] = null;
+      renderUploader(kind);
+      showToast(kind === "avatar" ? "头像已移除" : "二维码已移除", "撤销", () => {
+        state[kind] = previous;
+        renderUploader(kind);
+        toast.classList.remove("is-visible");
+      });
+    }
+
+    function bindUploader(kind) {
+      const uploader = uploaders[kind];
+      const openPicker = () => {
+        uploader.input.value = "";
+        uploader.input.click();
+      };
+
+      uploader.root.addEventListener("click", (event) => {
+        if (event.target.closest(".delete-btn")) return;
+        openPicker();
+      });
+
+      uploader.root.addEventListener("keydown", (event) => {
+        if (!state[kind] && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          openPicker();
+        }
+      });
+
+      uploader.input.addEventListener("change", () => handleFile(kind, uploader.input.files[0]));
+
+      ["dragenter", "dragover"].forEach((eventName) => {
+        uploader.root.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          uploader.root.classList.add("is-dragging");
+        });
+      });
+
+      ["dragleave", "drop"].forEach((eventName) => {
+        uploader.root.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          uploader.root.classList.remove("is-dragging");
+        });
+      });
+
+      uploader.root.addEventListener("drop", (event) => handleFile(kind, event.dataTransfer.files[0]));
+    }
+
+    function loadCanvasImage(src) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = src;
+      });
+    }
+
+    function drawImageCover(ctx, image, x, y, width, height) {
+      const imageRatio = image.width / image.height;
+      const frameRatio = width / height;
+      let sourceWidth = image.width;
+      let sourceHeight = image.height;
+      let sourceX = 0;
+      let sourceY = 0;
+      if (imageRatio > frameRatio) {
+        sourceWidth = image.height * frameRatio;
+        sourceX = (image.width - sourceWidth) / 2;
+      } else {
+        sourceHeight = image.width / frameRatio;
+        sourceY = (image.height - sourceHeight) / 2;
+      }
+      ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
+    }
+
+    function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+      let line = "";
+      let lineIndex = 0;
+      for (const character of text) {
+        const testLine = line + character;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          ctx.fillText(line, x, y + lineIndex * lineHeight);
+          line = character;
+          lineIndex += 1;
+          if (lineIndex >= maxLines) return y + lineIndex * lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line && lineIndex < maxLines) {
+        ctx.fillText(line, x, y + lineIndex * lineHeight);
+        lineIndex += 1;
+      }
+      return y + lineIndex * lineHeight;
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + width, y, r);
+      ctx.closePath();
+    }
+
+    function drawArticleContent(ctx, sourcePoster) {
+      const dateParts = posterDateParts(state.article.date);
+      ctx.drawImage(sourcePoster, 0, 0, 750, 981);
+
+      ctx.fillStyle = state.template.accent;
+      ctx.fillRect(30, 172, 5, 61);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "600 36px sans-serif";
+      ctx.fillText(dateParts.day, 48, 207);
+      ctx.font = "23px sans-serif";
+      ctx.fillText(dateParts.year, 48, 240);
+
+      const cardSurface = ctx.createLinearGradient(0, 277, 0, 889);
+      cardSurface.addColorStop(0, "#ffffff");
+      cardSurface.addColorStop(0.72, "#ffffff");
+      cardSurface.addColorStop(1, "rgba(255,255,255,0.96)");
+      ctx.fillStyle = cardSurface;
+      ctx.fillRect(29, 277, 693, 612);
+
+      ctx.fillStyle = "#26353b";
+      ctx.font = "600 34px sans-serif";
+      let titleX = 64;
+      if (state.article.featured) {
+        ctx.fillStyle = "#f2ca61";
+        roundRect(ctx, 59, 310, 86, 36, 5);
+        ctx.fill();
+        ctx.fillStyle = "#8a6515";
+        ctx.font = "600 21px sans-serif";
+        ctx.fillText("AI精选", 69, 335);
+        titleX = 159;
+      }
+      ctx.fillStyle = "#26353b";
+      ctx.font = "600 36px sans-serif";
+      let nextY = drawWrappedText(ctx, state.article.title, titleX, 342, 633 - (titleX - 59), 57, 3) + 13;
+
+      ctx.fillStyle = "#899397";
+      ctx.font = "18px sans-serif";
+      nextY = drawWrappedText(ctx, articleMeta(), 59, nextY, 633, 28, 2) + 23;
+
+      ctx.fillStyle = "#47565c";
+      ctx.font = "27px sans-serif";
+      drawWrappedText(ctx, state.article.summary, 59, nextY, 633, 48, 6);
+    }
+
+    async function downloadPoster() {
+      const button = document.getElementById("downloadBtn");
+      const shareName = state.name.trim();
+      const hasName = Boolean(shareName);
+      const hasAvatar = Boolean(state.avatar);
+      const hasQr = Boolean(state.qr);
+      const hasIdentity = hasName || hasAvatar || hasQr;
+      const saveWithIdentity = state.cardEnabled && hasIdentity;
+      button.disabled = true;
+      button.querySelector("span").textContent = "生成中...";
+
+      try {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 750;
+        canvas.height = 981;
+        const sourcePoster = await loadCanvasImage(state.template.image);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, 750, 981);
+        drawArticleContent(ctx, sourcePoster);
+
+        const cardSurface = ctx.createLinearGradient(0, 800, 0, 981);
+        cardSurface.addColorStop(0, "rgba(255,255,255,0.99)");
+        cardSurface.addColorStop(0.72, "#f0faf9");
+        cardSurface.addColorStop(1, "#e8f5f4");
+        ctx.fillStyle = cardSurface;
+        ctx.fillRect(0, 800, 750, 181);
+
+        if (saveWithIdentity) {
+          const noQrOffsetY = hasQr ? 0 : 22;
+          ctx.strokeStyle = "#dbe4e4";
+          ctx.beginPath();
+          ctx.moveTo(46, 822);
+          ctx.lineTo(704, 822);
+          ctx.stroke();
+          if (hasQr) {
+            const qrImage = await loadCanvasImage(state.qr.url);
+            ctx.fillStyle = "#eef3f3";
+            ctx.fillRect(46, 842, 82, 82);
+            drawImageCover(ctx, qrImage, 46, 842, 82, 82);
+
+            ctx.fillStyle = "#26353b";
+            ctx.font = "600 24px sans-serif";
+            ctx.fillText("扫码添加我的微信", 150, 872);
+          }
+
+          if (hasName) {
+            const nameOnly = !hasQr && !hasAvatar;
+            ctx.fillStyle = hasQr ? "#738084" : "#49585d";
+            ctx.font = hasQr ? "20px sans-serif" : "600 24px sans-serif";
+            ctx.textAlign = nameOnly ? "center" : "left";
+            ctx.fillText(`由 ${shareName} 分享`, nameOnly ? 375 : (hasQr ? 150 : 46), (hasQr ? 907 : 889) + noQrOffsetY);
+            ctx.textAlign = "left";
+          }
+
+          if (hasAvatar) {
+            const avatarCenterX = !hasQr && !hasName ? 375 : 666;
+            const avatarLeft = avatarCenterX - 31;
+            const avatarImage = await loadCanvasImage(state.avatar.url);
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(avatarCenterX, 884 + noQrOffsetY, 31, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.fillStyle = "#e2e9e8";
+            ctx.fillRect(avatarLeft, 853 + noQrOffsetY, 62, 62);
+            drawImageCover(ctx, avatarImage, avatarLeft, 853 + noQrOffsetY, 62, 62);
+            ctx.restore();
+          }
+        }
+
+        ctx.fillStyle = "#a4adaf";
+        ctx.font = "16px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("以上内容由 AI 辅助生成，仅供参考，不构成具体产品收益承诺", 375, 963);
+
+        const blob = await new Promise((resolve, reject) => {
+          canvas.toBlob((result) => result ? resolve(result) : reject(new Error("PNG 生成失败")), "image/png", 1);
+        });
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = `GAIP-文章海报-${Date.now()}.png`;
+        link.href = downloadUrl;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+        showToast(state.cardEnabled && !hasIdentity
+          ? "未填写名片信息，已按无名片海报保存"
+          : "海报已生成并开始下载"
+        );
+      } catch (error) {
+        console.error(error);
+        showToast("海报生成失败，请刷新页面后重试");
+      } finally {
+        button.disabled = false;
+        button.querySelector("span").textContent = "保存海报";
+      }
+    }
+
+    templateList.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-template]");
+      if (option) setTemplate(option.dataset.template);
+    });
+
+    cardSwitch.addEventListener("click", () => setCardEnabled(!state.cardEnabled));
+    function postToHost(message) {
+      if (!window.parent || window.parent === window) return;
+      window.parent.postMessage(
+        message,
+        window.location.protocol === "file:" ? "*" : window.location.origin
+      );
+    }
+
+    window.addEventListener("message", (event) => {
+      if (!event.data || event.data.type !== "gaip-poster-share:update") return;
+      state.article = Object.assign({}, fallbackArticle, event.data.article || {});
+      renderArticlePoster();
+    });
+
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      if (window.parent && window.parent !== window) {
+        postToHost({ type: "gaip-poster-share:close" });
+        return;
+      }
+      showToast("这是原型预览，弹窗暂不关闭");
+    });
+    document.getElementById("downloadBtn").addEventListener("click", downloadPoster);
+
+    nameInput.addEventListener("input", (event) => {
+      state.name = event.target.value;
+      renderPosterIdentity();
+    });
+
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        removeImage(button.dataset.kind);
+      });
+    });
+
+    bindUploader("avatar");
+    bindUploader("qr");
+    posterSource.src = state.template.image;
+    poster.style.setProperty("--cyan", state.template.accent);
+    poster.style.setProperty("--poster-image", `url("${state.template.image}")`);
+    renderTemplates();
+    renderUploader("avatar");
+    renderUploader("qr");
+    renderArticlePoster();
+    renderPosterIdentity();
+    postToHost({ type: "gaip-poster-share:ready" });
+  </script>
+</body>
+</html>

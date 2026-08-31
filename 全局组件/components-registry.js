@@ -55,6 +55,39 @@
         '其他频道：需要多项筛选并折叠已选标签的场景'
       ],
       updatedAt: '2026-08-26'
+    },
+    {
+      id: 'poster-share',
+      name: '文章海报分享',
+      category: '分享与导出',
+      status: '已启用',
+      description: '统一展示文章海报模板、个人名片设置、精细预览和高清 PNG 导出。',
+      api: 'window.__GAIP_POSTER_SHARE__.open(article)',
+      trigger: 'data-gaip-poster-share-trigger',
+      previewAction: 'showPosterShare',
+      previewKind: 'posterShare',
+      sources: [
+        {
+          label: '全局脚本',
+          path: 'shared/scripts/global-poster-share.js',
+          href: '../shared/scripts/global-poster-share.js'
+        },
+        {
+          label: '全局样式',
+          path: 'shared/styles/global-poster-share.css',
+          href: '../shared/styles/global-poster-share.css'
+        },
+        {
+          label: '独立组件项目',
+          path: '全局组件/海报分享/index.html',
+          href: './海报分享/index.html'
+        }
+      ],
+      usages: [
+        '资讯中心：列表与文章详情的“分享”入口',
+        '全局组件目录：真实海报数据与模板预览'
+      ],
+      updatedAt: '2026-08-27'
     }
   ];
 }());

@@ -205,16 +205,48 @@
   };
 
   function detailHtml(product) {
+    var detailItems = [
+      '适配客户画像：' + (product.customerProfile || []).join('、'),
+      '签约前请核对客户身份、资金来源、受益安排和跨境合规要求。',
+      '本地 mock 内容用于产品中心样式预览，正式材料以后台上传文件为准。'
+    ];
     return [
       '<div class="gaip-product-detail">',
-      '<section id="m1"><h2>产品特点</h2><ul>',
+      '<section id="m1" class="gaip-product-section">',
+      '<h2 class="gaip-product-heading">产品特点（vs行业竞品差异）</h2>',
+      '<div class="gaip-product-card">',
+      '<h3>产品特点（vs行业竞品差异）</h3>',
+      '<h4>【核心卖点】</h4>',
+      '<ul>',
       '<li>' + product.feature1 + '</li>',
       '<li>' + product.feature2 + '</li>',
       '<li>' + product.feature3 + '</li>',
-      '</ul></section>',
-      '<section id="m2"><h2>签约要素</h2><p>' + product.signing + '</p></section>',
-      '<section id="m3"><h2>营销亮点</h2><p>' + product.marketing + '</p></section>',
-      '<section id="m4"><h2>详细信息</h2><p>' + product.detail + '</p></section>',
+      '</ul>',
+      '<h4>【适配场景】</h4>',
+      '<ul>',
+      detailItems.map(function (item) { return '<li>' + item + '</li>'; }).join(''),
+      '</ul>',
+      '</div>',
+      '</section>',
+      '<section id="m2" class="gaip-product-section">',
+      '<h2 class="gaip-product-heading">签单要素（条件 · 需求与愿景 · 风险）</h2>',
+      '<div class="gaip-product-card">',
+      '<h4>条件（签单核实 · 防退件）</h4>',
+      '<p class="gaip-product-plain">' + product.signing + '</p>',
+      '</div>',
+      '</section>',
+      '<section id="m3" class="gaip-product-section">',
+      '<h2 class="gaip-product-heading">营销亮点</h2>',
+      '<div class="gaip-product-card">',
+      '<p class="gaip-product-plain">' + product.marketing + '</p>',
+      '</div>',
+      '</section>',
+      '<section id="m4" class="gaip-product-section">',
+      '<h2 class="gaip-product-heading">详细信息</h2>',
+      '<div class="gaip-product-card">',
+      '<p class="gaip-product-plain">' + product.detail + '</p>',
+      '</div>',
+      '</section>',
       '</div>'
     ].join('');
   }

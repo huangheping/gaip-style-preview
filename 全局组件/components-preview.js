@@ -53,6 +53,17 @@
       '</div>';
     }
 
+    if (component.previewKind === 'posterShare') {
+      return '<div class="componentPreviewBand">' +
+        '<div>' +
+          '<span>真实组件预览</span>' +
+          '<strong>文章海报分享</strong>' +
+          '<p>打开资讯中心正在使用的模板选择、海报预览与保存组件。</p>' +
+        '</div>' +
+        '<button class="componentPreviewButton" type="button" data-preview-action="' + escapeHtml(component.previewAction) + '">打开预览</button>' +
+      '</div>';
+    }
+
     return '<div class="componentPreviewBand">' +
       '<div>' +
         '<span>真实组件预览</span>' +
@@ -128,6 +139,19 @@
   function runPreview(action) {
     if (action === 'showAiNotice' && window.__GAIP_AI_NOTICE__) {
       window.__GAIP_AI_NOTICE__.show();
+    }
+    if (action === 'showPosterShare' && window.__GAIP_POSTER_SHARE__) {
+      window.__GAIP_POSTER_SHARE__.open({
+        id: 'catalog-preview',
+        title: '全球资金重估 AI 投资周期，美元利率窗口进入观察期',
+        summary: '主要市场继续围绕 AI 资本开支、美元利率路径和能源价格重新定价，短债收益与权益主题之间的轮动加快。',
+        category: '宏观经济',
+        tags: ['AI投资', '美元趋势'],
+        date: '2026-08-26 09:12',
+        score: 94,
+        slot: '晨间快讯',
+        featured: true
+      });
     }
   }
 

@@ -93,7 +93,10 @@
     section.setAttribute('aria-labelledby', 'homeInfoTitle');
     section.innerHTML =
       '<header class="homeSectionHeader pannelHeader___uIyRz">' +
-        '<h2 id="homeInfoTitle" class="tit___E3vkN">资讯中心</h2>' +
+        '<div class="homeSectionHeaderLeft">' +
+          '<h2 id="homeInfoTitle" class="tit___E3vkN">资讯中心</h2>' +
+          '<p class="homeSectionTip">资讯来源于公开网络 AI 检索整理，内容请自行甄别参考</p>' +
+        '</div>' +
         '<button type="button" class="homeViewAll">查看全部 <span aria-hidden="true">›</span></button>' +
       '</header>' +
       '<div class="homeInfoBody">' +
@@ -109,10 +112,30 @@
           '<div class="homeInfoMeta"></div>' +
           '<div class="homeInfoSummary"><strong>核心摘要</strong><p></p></div>' +
           '<div class="homeInfoTakeaways"><strong>经纪人可用要点</strong><p></p></div>' +
-          '<div class="homeInfoActions"><button type="button" class="homeInfoSecondary">查看原文</button><button type="button" class="homeInfoPrimary">打开详情</button></div>' +
+          '<div class="homeInfoActions">' +
+            '<button type="button" class="homeInfoSecondary">查看原文</button>' +
+            '<button type="button" class="homeInfoShare" aria-label="分享">' +
+              '<svg viewBox="0 0 1024 1024" width="22" height="22" aria-hidden="true" focusable="false"><path d="M646.43333336 653.73333332c-16.8 0-30.3 13.6-30.3 30.3l0.2 182-546.3 0.3-0.2-546.4h182.3c16.8 0 30.3-13.6 30.3-30.3S268.83333336 259.33333332 252.03333336 259.33333332H69.73333336c-33.3 0-60.4 27-60.4 60.4V866.33333332c0 33.3 27.1 60.4 60.4 60.4H616.33333336c33.4-0.1 60.4-27.1 60.4-60.4V684.03333332c0.1-16.7-13.5-30.3-30.3-30.3"></path><path d="M616.63333336 259.33333332H464.43333336c-16.8 0-30.3 13.6-30.3 30.3s13.6 30.3 30.3 30.3l109-0.2-251.9 251.9c-11.8 11.9-11.8 31.1 0 42.9 11.9 11.8 31.1 11.8 42.9 0L616.33333336 362.63333332v109.3c0 16.8 13.6 30.3 30.3 30.3s30.3-13.6 30.3-30.3V319.73333332c0.1-33.4-26.9-60.4-60.3-60.4"></path></svg>' +
+              '<span>分享</span>' +
+            '</button>' +
+            '<button type="button" class="homeInfoPrimary">打开详情</button>' +
+          '</div>' +
         '</article>' +
       '</div>';
     return section;
+  }
+
+  function posterSharePayload(item, index) {
+    return {
+      id: 'workspace-' + index,
+      title: item.headline,
+      summary: item.summary,
+      category: item.meta[0],
+      tags: item.meta.slice(1, 3),
+      date: String(item.meta[3] || '').replace(/^原文时间：/, ''),
+      slot: ['晨间必读', '午间谈资', '下午茶', '夜间深度'][index] || '',
+      featured: true
+    };
   }
 
   function renderMeta(meta) {
@@ -174,6 +197,7 @@
       });
       void tab.offsetWidth;
       tab.classList.add('is-counting');
+      section.setAttribute('data-active-news-index', tab.getAttribute('data-news-index') || '0');
       renderNews(article, item);
     }
 
@@ -196,7 +220,15 @@
       tab.addEventListener('focus', activateFromInteraction);
       tab.addEventListener('click', function () { tab.blur(); });
     });
-    section.querySelectorAll('.homeInfoActions button, .homeViewAll').forEach(function (button) {
+    section.querySelector('.homeInfoShare').addEventListener('click', function (event) {
+      var index = Number(section.getAttribute('data-active-news-index') || 0);
+      var posterShare = window.__GAIP_POSTER_SHARE__;
+      event.currentTarget.blur();
+      if (posterShare && typeof posterShare.open === 'function') {
+        posterShare.open(posterSharePayload(homeNews[index], index));
+      }
+    });
+    section.querySelectorAll('.homeInfoSecondary, .homeInfoPrimary, .homeViewAll').forEach(function (button) {
       button.addEventListener('click', function () {
         var newsCenter = window.__GAIP_NEWS_CENTER__;
         button.blur();

@@ -356,61 +356,35 @@
     }) || activeArticle() || filteredArticles()[0] || mock.articles[0];
   }
 
-  function shareFrameSrc(article) {
+  function posterSharePayload(article) {
     var day = dayByKey(article.dateKey);
-    var params = new URLSearchParams();
-    params.set('embed', '1');
-    params.set('articleId', article.id);
-    params.set('title', article.title);
-    params.set('summary', article.summary);
-    params.set('category', article.category);
-    params.set('tags', article.tags.join(' / '));
-    params.set('date', day.date + ' ' + article.time);
-    params.set('score', article.score);
-    params.set('slot', article.slot);
-    params.set('featured', String(!!article.featured));
-    return '../GAIP文章海报分享弹窗/index.html?' + params.toString();
-  }
-
-  function renderShare(article) {
-    return '<div class="gaip-news-bridge-backdrop" role="presentation" data-news-close-share>' +
-      '<div class="gaip-news-bridge-share" role="dialog" aria-modal="true" aria-label="分享海报" data-news-share-panel data-news-share-article-id="' + escapeHtml(article.id) + '">' +
-        '<iframe title="GAIP文章海报分享弹窗" src="' + escapeHtml(shareFrameSrc(article)) + '"></iframe>' +
-      '</div>' +
-    '</div>';
-  }
-
-  function shareRoot() {
-    var root = document.querySelector('[data-news-global-share-root]');
-    if (root) return root;
-    root = document.createElement('div');
-    root.className = 'gaip-news-global-share-root';
-    root.setAttribute('data-news-global-share-root', 'true');
-    root.addEventListener('click', function (event) {
-      if (event.target.closest('[data-news-close-share]') && !event.target.closest('[data-news-share-panel]')) {
-        closeShareModal();
-      }
-    });
-    document.body.appendChild(root);
-    return root;
+    return {
+      id: article.id,
+      title: article.title,
+      summary: article.summary,
+      category: article.category,
+      tags: article.tags,
+      date: day.date + ' ' + article.time,
+      score: article.score,
+      slot: article.slot,
+      featured: article.featured
+    };
   }
 
   function renderShareLayer() {
-    var root = shareRoot();
-    var article = shareArticle();
-    var panel = root.querySelector('[data-news-share-panel]');
+    var api = window.__GAIP_POSTER_SHARE__;
+    if (!api) return;
     if (state.shareOpen) {
-      if (!panel || panel.getAttribute('data-news-share-article-id') !== String(article.id)) {
-        root.innerHTML = renderShare(article);
-      }
+      api.open(posterSharePayload(shareArticle()));
       return;
     }
-    if (root.innerHTML) root.innerHTML = '';
+    api.close({ notify: false });
   }
 
   function removeShareLayer() {
-    var root = document.querySelector('[data-news-global-share-root]');
-    if (root) root.remove();
+    if (window.__GAIP_POSTER_SHARE__) {
+      window.__GAIP_POSTER_SHARE__.close({ notify: false });
+    }
   }
 
   function closeShareModal() {
@@ -419,7 +393,9 @@
     state.shareOpen = false;
     state.shareArticleId = null;
     page = currentPage();
-    renderShareLayer();
+    if (window.__GAIP_POSTER_SHARE__) {
+      window.__GAIP_POSTER_SHARE__.close({ notify: false });
+    }
     if (page) renderPage(page);
   }
 
@@ -787,10 +763,8 @@
     navFrame = requestAnimationFrame(ensureNewsMenu);
   }
 
-  function handleMessage(event) {
-    if (event.data && event.data.type === 'gaip-news-share-close') {
-      closeShareModal();
-    }
+  function handlePosterShareClose() {
+    closeShareModal();
   }
 
   var api = {
@@ -814,7 +788,7 @@
       }).observe(root, { childList: true, subtree: true });
     }
     window.addEventListener('resize', scheduleBounds);
-    window.addEventListener('message', handleMessage);
+    window.addEventListener('gaip:poster-share-close', handlePosterShareClose);
     window.addEventListener('hashchange', function () {
       scheduleSync();
       scheduleNav();

@@ -551,6 +551,97 @@
   padding-top:10%
 }
 
+.modalContent___x4Glg .gaip-product-detail {
+  padding:24px 24px 56px;
+  color:#2f3640;
+  font-size:14px;
+  line-height:1.8
+}
+
+.modalContent___x4Glg .gaip-product-section {
+  margin-bottom:34px
+}
+
+.modalContent___x4Glg .gaip-product-heading {
+  position:relative;
+  margin:0 0 12px;
+  padding-left:12px;
+  font-size:18px;
+  font-weight:600;
+  line-height:26px;
+  color:#111827
+}
+
+.modalContent___x4Glg .gaip-product-heading:before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:4px;
+  width:4px;
+  height:18px;
+  background:#025b52;
+  border-radius:1px
+}
+
+.modalContent___x4Glg .gaip-product-heading:after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-12px;
+  height:2px;
+  background:#04766a
+}
+
+.modalContent___x4Glg .gaip-product-card {
+  margin-top:22px;
+  padding:22px 24px;
+  border:1px solid rgba(2,91,82,.18);
+  border-radius:8px;
+  background:#eef8fa
+}
+
+.modalContent___x4Glg .gaip-product-card h3 {
+  margin:0 0 12px;
+  font-size:16px;
+  font-weight:600;
+  line-height:24px;
+  color:#111827
+}
+
+.modalContent___x4Glg .gaip-product-card h4 {
+  margin:16px 0 8px;
+  font-size:14px;
+  font-weight:600;
+  line-height:22px;
+  color:#025b52
+}
+
+.modalContent___x4Glg .gaip-product-card p {
+  margin:0 0 8px
+}
+
+.modalContent___x4Glg .gaip-product-card ul {
+  margin:0;
+  padding:0;
+  list-style:none
+}
+
+.modalContent___x4Glg .gaip-product-card li {
+  margin:0 0 8px;
+  color:#2f3640
+}
+
+.modalContent___x4Glg .gaip-product-card li:before {
+  content:"· ";
+  font-weight:700
+}
+
+.modalContent___x4Glg .gaip-product-plain {
+  margin:0;
+  color:#2f3640
+}
+
 .modalContent___x4Glg .tabContent___O1Pv7 {
   line-height:1.8
 }

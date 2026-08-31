@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>gaip-icon-complete</title>
+    <g id="资讯" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="资讯中心管理备份" transform="translate(-476, -100)">
+            <g id="画板备份-8-+-画板备份-9-+-画板备份-10-+-画板备份-11-+-画板备份-12蒙版" transform="translate(270, 28)">
+                <g id="编组-4" transform="translate(16, 61)">
+                    <g id="gaip-icon-complete" transform="translate(190, 11)">
+                        <path d="M7,0 C3.13400675,0 0,3.13400675 0,7 C0,10.8659932 3.13400675,14 7,14 C10.8659932,14 14,10.8659932 14,7 C14,3.13400675 10.8659932,0 7,0 Z" id="路径" fill="#24D4C9" fill-rule="nonzero"></path>
+                        <polyline id="路径" stroke="#FFFEFE" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round" points="4.4 7.227 6.113 9 9.6 5.4"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

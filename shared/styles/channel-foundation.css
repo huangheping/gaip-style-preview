@@ -32,6 +32,51 @@
   --gaip-section-gap: 24px;
 }
 
+/* 顶栏三个操作组使用同一中心线，用户区分割线额外留白。 */
+.header___tcVAl .right___fv3yS {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header___tcVAl .right___fv3yS > .gaip-log-trigger,
+.header___tcVAl .right___fv3yS > .date___mF83s,
+.header___tcVAl .right___fv3yS .userInfo___Kwuov {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  margin-block: 0;
+  flex-shrink: 0;
+}
+.header___tcVAl .right___fv3yS > .date___mF83s,
+.header___tcVAl .right___fv3yS .username___DiNR6 {
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+.header___tcVAl .right___fv3yS .userInfo___Kwuov {
+  position: relative;
+  gap: 8px;
+  margin-left: 28px;
+}
+/* 20px 组间距 + 28px 用户区外边距，线两侧各 24px；高度沿用顶栏 token。 */
+.header___tcVAl .right___fv3yS .userInfo___Kwuov::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: var(--gaip-app-header-height);
+  background: rgba(47, 54, 64, 0.16);
+  pointer-events: none;
+}
+@media (max-width: 1000px) {
+  .header___tcVAl .right___fv3yS { gap: 12px; }
+  .header___tcVAl .right___fv3yS .userInfo___Kwuov { margin-left: 20px; }
+  .header___tcVAl .right___fv3yS .userInfo___Kwuov::before { left: -16px; }
+}
+
 [data-gaip-region="app-main"],
 [data-gaip-region="channel-page"],
 [data-gaip-region="page-content"],
@@ -94,4 +139,22 @@
 .ant-breadcrumb[data-gaip-breadcrumb-managed="true"] .ant-breadcrumb-separator {
   margin-inline: var(--gaip-space-2);
   color: rgba(47, 54, 64, 0.35);
+}
+
+.gaip-sidebar-hub-link {
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  width: 176px;
+  margin: 0 auto;
+  border-radius: 11px;
+}
+
+.gaip-sidebar-hub-link .gaip-sidebar-hub-image {
+  display: block;
+  width: 176px !important;
+  height: auto !important;
+  margin: 0 !important;
+  object-fit: cover;
 }

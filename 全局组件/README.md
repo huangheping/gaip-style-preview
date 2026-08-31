@@ -8,6 +8,7 @@
 - `components-registry.js`：组件名称、来源、调用方式和使用位置清单。
 - `components-preview.js`：目录渲染和真实组件预览动作。
 - `components-preview.css`：仅负责组件目录页面的布局样式。
+- `海报分享/`：文章海报分享的独立组件项目、模板图片和导出实现。
 - `../shared/scripts/global-multi-select.js`：折叠式多选下拉的真实共享逻辑。
 - `../shared/styles/global-multi-select.css`：折叠式多选下拉的真实共享样式。
 
@@ -24,3 +25,4 @@
 | --- | --- | --- |
 | AI 内容重要提示 | `window.__GAIP_AI_NOTICE__.show(options)` | AI Agent、资讯中心 |
 | 折叠式多选下拉 | `window.__GAIP_MULTI_SELECT__.mount(root, options)` | 活动中心筛选视觉标准、其他多选筛选场景 |
+| 文章海报分享 | `window.__GAIP_POSTER_SHARE__.open(article)` | 资讯中心列表、文章详情、全局组件目录 |

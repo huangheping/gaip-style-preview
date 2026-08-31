@@ -3,6 +3,10 @@
 
   var observer = null;
   var rafId = 0;
+  var script = document.currentScript;
+  var sidebarHubImageUrl = script && script.src
+    ? new URL('../assets/sidebar-hub.7ade03a1.png', script.src).href
+    : './shared/assets/sidebar-hub.7ade03a1.png';
 
   var regionLabels = {
     'app-shell': '应用框架',
@@ -170,6 +174,23 @@
     element.removeAttribute('data-gaip-region-label');
   }
 
+  function syncSidebarHub(sidebar) {
+    var image;
+    var link;
+    var footer;
+    if (!sidebar) return;
+
+    image = sidebar.querySelector('img[alt="GLORY百宝箱"]');
+    link = image && image.closest('a');
+    footer = image && image.closest('[class*="layoutMenuFooter___"]');
+    if (!image || !link) return;
+
+    image.classList.add('gaip-sidebar-hub-image');
+    link.classList.add('gaip-sidebar-hub-link');
+    if (footer) footer.classList.add('gaip-sidebar-hub');
+    if (image.src !== sidebarHubImageUrl) image.src = sidebarHubImageUrl;
+  }
+
   function markGlobalRegions() {
     var shell = document.querySelector('.ant-pro-layout');
     var header = document.querySelector('[class*="header___tcVAl"]');
@@ -189,6 +210,7 @@
 
     if (sidebar) {
       mark(find(sidebar, '.ant-pro-sider-menu') || find(sidebar, '.ant-menu'), 'primary-nav');
+      syncSidebarHub(sidebar);
     }
 
     mark(document.querySelector('[class*="globalButton___"]'), 'ai-assistant-entry');
