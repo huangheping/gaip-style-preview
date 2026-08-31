@@ -862,6 +862,15 @@
   color: rgba(47, 54, 64, .45);
 }
 
+.msgRow___wswRS.msgUser___WR23E .msgBubble___W9da6 {
+  background: #2F3640 !important;
+  color: #FFFFFF !important;
+}
+
+.msgRow___wswRS.msgUser___WR23E .userPre___VegVA {
+  color: #FFFFFF !important;
+}
+
 .gaip-agent-history-menu {
   position: fixed;
   z-index: 99999;
