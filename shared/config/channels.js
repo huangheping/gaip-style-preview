@@ -88,7 +88,7 @@
       virtual: true,
       query: 'gaip-channel=wealth',
       assets: {
-        styles: ['features/wealth-center/wealth-center.css?v=20260901-19'],
+        styles: ['features/wealth-center/wealth-center.css?v=20260902-2'],
         scripts: [
           'features/wealth-center/mock-data.js?v=20260825-9',
           'features/wealth-center/wealth-center.js?v=20260901-1',

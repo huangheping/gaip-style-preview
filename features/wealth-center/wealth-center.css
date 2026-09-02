@@ -649,7 +649,7 @@ html.gaip-wealth-scroll-lock body {
   gap: 48px;
   padding: 28px 5%;
   color: #fff;
-  background: #302a26 url("../../assets/wealth-center/wealth-overview-user-wide-20260901.jpg") center / cover no-repeat;
+  background: #302a26 url("../../assets/wealth-center/wealth-overview-user-wide.jpg?v=20260902-2") center / cover no-repeat;
 }
 
 .gaip-wealth-overview-stats {
