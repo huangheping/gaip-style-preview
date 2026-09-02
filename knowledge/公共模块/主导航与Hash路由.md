@@ -21,6 +21,7 @@ risk: high
 - 主导航继续使用 Umi Hash SPA。
 - 禁止 `location.href`、`location.assign()`、`location.replace()` 进行频道切换。
 - Hash 可变，文档不能整页刷新。
+- 当前 Hash 是频道识别的唯一权威来源；财富值、资讯、学习等虚拟频道入口只在没有 Hash 时补自己的默认 `gaip-channel`，不得通过入口文件写入持久的 `__GAIP_PAGE_OVERRIDE__`。这样即使 `file://` 无法同步地址栏文件名，刷新也仍保留当前频道。
 - 新增/改名频道先修改频道注册表，不维护第二份映射。
 - 虚拟频道统一通过 `gaip-channel` 识别；资讯中心使用 `news`，财富值中心使用 `wealth` 并通过 `gaip-view` 记录子频道。配置中心使用 `config`，二级项由注册表 `views` 定义，`gaip-view` 为 `organization` / `operation-log`。
 - 带 `[data-gaip-main-menu-toggle]` 的一级父项只切换子菜单，不能改变 Hash，也不能触发其他虚拟频道的 `closeForNavigation()`；真实导航只发生在一级叶子项或二级项。

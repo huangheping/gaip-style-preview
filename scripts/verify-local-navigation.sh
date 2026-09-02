@@ -29,9 +29,24 @@ for page in "$ROOT"/*.html; do
   fi
 done
 
+for virtual_page in "$ROOT/财富值中心.html" "$ROOT/资讯中心.html" "$ROOT/学习中心.html"; do
+  if grep -q '__GAIP_PAGE_OVERRIDE__' "$virtual_page"; then
+    echo "错误：$(basename "$virtual_page") 仍会用入口文件强制覆盖当前 Hash，跨频道刷新可能回到错误页面。"
+    exit 1
+  fi
+done
+
+if ! grep -q "gaip-channel=wealth" "$ROOT/财富值中心.html" ||
+   ! grep -q "gaip-channel=news" "$ROOT/资讯中心.html" ||
+   ! grep -q "gaip-channel=learning" "$ROOT/学习中心.html"; then
+  echo "错误：虚拟频道入口缺少无 Hash 时的默认频道参数。"
+  exit 1
+fi
+
 node --check "$ROOT/shared/config/channels.js"
 node --check "$ROOT/shared/scripts/channel-entry-navigation.js"
 node --check "$ROOT/shared/scripts/channel-features.js"
 node --check "$ROOT/features/proposal-center/proposal-center.js"
+node "$ROOT/scripts/test-virtual-entry-refresh.cjs"
 
 echo "通过：频道资源为单一源码，主导航保持 Hash 无刷新切换。"
