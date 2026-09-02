@@ -11,7 +11,7 @@ updated: 2026-09-02
 ## 当前基线
 
 - 分支：`main`
-- 最近已发布功能提交：`119d196`（财富值概览背景替换、同系列旧图清理及缓存更新；见 [[knowledge/变更/2026-09-02-财富值概览背景替换]]）
+- 最近已发布功能提交：`ac68be7`（虚拟频道跨页面刷新路由修复；见 [[knowledge/变更/2026-09-02-虚拟频道刷新路由修复]]）
 - GitHub Pages：`https://huangheping.github.io/gaip-style-preview/`
 - 运行形态：根目录 HTML 薄壳 + Umi Hash SPA + 本地 Mock；“本地”默认指项目文件和既有 `file://` 预览。
 - 主导航为项目级强制契约：新增频道前必须读取 [[knowledge/公共模块/主导航与Hash路由#主导航交互与样式契约|主导航交互与样式契约]]。
@@ -30,7 +30,7 @@ updated: 2026-09-02
 ## 待发布
 
 - 登录页视频英雄图测试入口：`index-login-video-test.html`、`features/login-video-test/`、`assets/login-hero-test/`；用户明确不随本次发布。
-- 其余未发布候选文件见 [[knowledge/变更/当前未发布变更|当前未发布变更]]；它们没有进入正式提交 `119d196`。
+- 其余未发布候选文件见 [[knowledge/变更/当前未发布变更|当前未发布变更]]；它们没有进入正式提交 `ac68be7`。
 
 ## 已知高风险区域
 
