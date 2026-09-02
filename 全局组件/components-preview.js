@@ -40,6 +40,23 @@
   }
 
   function renderPreview(component) {
+    if (component.previewKind === 'modalCatalog') {
+      var catalog = window.__GAIP_MODAL_SOURCE_CATALOG__ || { ready: [], pending: [], excluded: [] };
+      return '<div class="componentPreviewBand componentPreviewBand--catalog">' +
+        '<div class="componentPreviewCopy">' +
+          '<span>真实源集中预览</span>' +
+          '<strong>业务弹窗目录</strong>' +
+          '<p>单独打开预览页面；组件首页不会加载全部弹窗 iframe。</p>' +
+        '</div>' +
+        '<div class="modalCatalogMetrics" aria-label="弹窗目录状态">' +
+          '<span class="modalCatalogMetric"><small>可预览</small><strong>' + catalog.ready.length + '</strong></span>' +
+          '<span class="modalCatalogMetric"><small>待接入</small><strong>' + catalog.pending.length + '</strong></span>' +
+          '<span class="modalCatalogMetric is-muted"><small>不展示</small><strong>' + catalog.excluded.length + '</strong></span>' +
+        '</div>' +
+        '<a class="componentPreviewButton componentPreviewLink" href="./弹窗预览.html" target="_blank" rel="noopener">打开弹窗预览</a>' +
+      '</div>';
+    }
+
     if (component.previewKind === 'multiSelect') {
       return '<div class="componentPreviewBand componentPreviewBand--interactive">' +
         '<div class="componentPreviewCopy">' +
@@ -75,6 +92,10 @@
   }
 
   function renderComponent(component) {
+    var state = component.status;
+    if (component.previewKind === 'modalCatalog' && window.__GAIP_MODAL_SOURCE_CATALOG__) {
+      state = window.__GAIP_MODAL_SOURCE_CATALOG__.ready.length + ' 个可预览';
+    }
     return '<article class="componentEntry' + (component.previewKind === 'multiSelect' ? ' componentEntry--interactive' : '') + '" id="' + escapeHtml(component.id) + '">' +
       '<header class="componentEntryHeader">' +
         '<div>' +
@@ -82,7 +103,7 @@
           '<h2>' + escapeHtml(component.name) + '</h2>' +
           '<p>' + escapeHtml(component.description) + '</p>' +
         '</div>' +
-        '<span class="componentState">' + escapeHtml(component.status) + '</span>' +
+        '<span class="componentState">' + escapeHtml(state) + '</span>' +
       '</header>' +
       renderPreview(component) +
       '<div class="componentDetails">' +

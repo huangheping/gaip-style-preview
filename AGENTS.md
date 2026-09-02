@@ -32,6 +32,15 @@
 - `shared/scripts/channel-features.js` 会在每个入口预加载已登记资源，保证从任何 HTML 通过 Hash 无刷新切换时都显示同一新版。
 - 不要直接修改 `web/` 中下载的 Umi 主包和分包；这些是原站基线文件。
 
+## 新增或修改弹窗的强制契约
+
+- 新增可预览业务弹窗时，必须在真实弹窗源 JS 中加入一个合法的 `/* @gaip-modal { ... } */` JSON 登记块，并暴露同一真实 `open()` / `show()` / `create()` 入口；禁止只在频道页面内新增未登记弹窗，也禁止在预览页复制第二套 DOM 或样式。
+- 登记块至少包含 `id`、`title`、`channel`、`type`、`status`。直接源预览还必须包含 `invoke.path`、`styles`、`scripts`；返回未挂载节点的工厂使用 `resultMode: "append"`，需要入场类时使用 `resultMode: "append-open-class"`。
+- `id` 必须全项目唯一并使用小写字母、数字和连字符。抽屉使用 `type: "drawer"` 且不进入当前弹窗预览；明确不展示、已下线或不可达项使用 `status: "excluded"` 并写明 `reason`。
+- 修改登记块后必须运行 `node scripts/generate-modal-catalog.cjs`，并将生成的 `全局组件/弹窗自动索引.generated.js` 一并保留；禁止手工编辑生成文件。
+- 完成弹窗任务前必须运行 `node scripts/generate-modal-catalog.cjs --check` 与 `node scripts/test-popup-preview.cjs`。测试会阻止过期索引、重复 ID、缺失资源和预览页手写分支重新出现。
+- 现有只读 Umi 分包中的路由触发项和历史排除项暂由 `全局组件/弹窗源登记.js` 保留基线盘点；新增本地源码弹窗不得继续写入这份基线表。
+
 ## 新增或修改主导航的强制契约
 
 - 开始新增频道、二级导航或调整主导航前，必须先读取 `knowledge/公共模块/主导航与Hash路由.md` 的“主导航交互与样式契约”，不得在频道内另写一套父项交互或对齐规则。

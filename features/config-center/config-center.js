@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var config = window.__GAIP_CHANNEL_CONFIG__.getByKey('config');
-  var views = config.views, frame = 0, page, mountedView, logPanel;
+  var views = config.views, frame = 0, page, mountedView, logPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState;
   var dialogPreviewMode = !!window.__GAIP_CONFIG_DIALOG_PREVIEW__, dialogController;
   var menuOpen = false, oldTitle = '', contentHost, hiddenContent = [];
   var state = { channel: 0, department: 'all', query: '', page: 1 };
@@ -17,7 +17,9 @@
   });
   var departments = departmentSets[0], departmentSequence = 0, departmentMenu, menuTrigger, dismissMenu;
   var currentOperatorRole = 'super-admin';
-  var adminRoleAssignments = {};
+  var adminRoleAssignments = {
+    '0:all': { commission: 1, clueAdmin: [1], clueFollower: [2] }
+  };
   var treeTemplate = document.createElement('template'); treeTemplate.innerHTML = source.tree;
   var rowTemplates = {};
   treeTemplate.content.querySelectorAll('[data-department]').forEach(function (row) { rowTemplates[row.dataset.department] = row; });
@@ -60,6 +62,454 @@
   }
   function sourceMarkup(html) { return html; }
   function escapeHtml(value) { return String(value).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var organizationLogRecords = (function () {
+    var operators = [
+      ['本地预览用户', 'demo_admin'], ['示例管理员', 'demo_manager'], ['组织管理员', 'demo_org_admin']
+    ];
+    var actions = [
+      ['设置管理员', '角色：无', '角色：组织架构管理员'],
+      ['编辑成员', '手机号：****0000', '手机号：****3307'],
+      ['新增成员', '-', '成员：示例成员25'],
+      ['修改成员身份', '身份：人管', '身份：人管、佣金'],
+      ['新增部门', '-', '部门：客户服务一部'],
+      ['修改部门', '部门名称：测试1部', '部门名称：客户服务一部'],
+      ['调整成员部门', '所属部门：测试部门', '所属部门：研发部'],
+      ['删除成员', '成员：示例成员12', '-']
+    ];
+    var paths = ['薄荷经纪人/测试部门/测试1部', '薄荷经纪人/研发部', 'Glory品牌顾问/顾问一部', '外部机构渠道/合作机构', '线上渠道/线上顾问', '小仓/运营组', '荣耀经纪人/经纪人团队'];
+    var records = Array.from({ length: 24 }, function (_, index) {
+      var operator = operators[index % operators.length], action = actions[index % actions.length];
+      var day = String(2 - Math.floor(index / 12)).padStart(2, '0');
+      var hour = String(17 - Math.floor((index % 12) / 2)).padStart(2, '0');
+      var minute = String((index * 7) % 60).padStart(2, '0');
+      return {
+        id: index + 1,
+        createdDt: '2026-09-' + day + ' ' + hour + ':' + minute + ':00',
+        operatorName: operator[0], createdBy: operator[1], operateType: action[0],
+        channelTab: channels[index % channels.length], nodeSource: paths[index % paths.length],
+        operatorSource: index % 3 === 0 ? '成员编辑' : index % 3 === 1 ? '组织树' : '角色设置',
+        updateBefore: action[1], updateAfter: action[2]
+      };
+    });
+    records.unshift({
+      id: 'export-members', createdDt: '2026-09-02 18:20:00', operatorName: '本地预览用户', createdBy: 'demo_admin',
+      operateType: '导出成员名单', channelTab: 'Glory品牌顾问', nodeSource: 'Glory品牌顾问/销售中心', operatorSource: '成员导出',
+      updateBefore: '—', updateAfter: '导出节点「Glory品牌顾问 / 销售中心」及其所有子节点成员名单，共 36 条'
+    });
+    return records;
+  })();
+
+  function organizationLogPath(path) {
+    return String(path || '-').split('/').map(function (part, index) {
+      return '<div class="nodePathItem___gCQoW">' + (index ? '<span class="nodePathPrefix___OG6Mm">└</span>' : '') + '<span>' + escapeHtml(part) + '</span></div>';
+    }).join('');
+  }
+  function organizationLogChange(record) {
+    return '<div class="changeCell___R8IRq"><div class="changeBefore___h4ODc">' + escapeHtml(record.updateBefore || '-') + '</div><div class="changeAfter___zedCG"><span class="changePrefix___njIZM">└</span><span>' + escapeHtml(record.updateAfter || '-') + '</span></div></div>';
+  }
+  function renderOrganizationOperationLog(pageNumber) {
+    if (!organizationLogDialog) return;
+    var pageSize = 10, totalPages = Math.ceil(organizationLogRecords.length / pageSize);
+    var currentPage = Math.max(1, Math.min(totalPages, Number(pageNumber) || 1));
+    organizationLogDialog.dataset.currentPage = String(currentPage);
+    var rows = organizationLogRecords.slice((currentPage - 1) * pageSize, currentPage * pageSize).map(function (record) {
+      return '<tr class="ant-table-row ant-table-row-level-0">' +
+        '<td class="ant-table-cell">' + escapeHtml(record.createdDt) + '</td>' +
+        '<td class="ant-table-cell"><div>' + escapeHtml(record.operatorName) + '</div><div class="subText___LYU2f">' + escapeHtml(record.createdBy) + '</div></td>' +
+        '<td class="ant-table-cell"><span class="ant-tag organizationLogType___d8KpQ">' + escapeHtml(record.operateType) + '</span></td>' +
+        '<td class="ant-table-cell">' + escapeHtml(record.channelTab) + '</td>' +
+        '<td class="ant-table-cell"><div class="nodePath___leilu">' + organizationLogPath(record.nodeSource) + '</div></td>' +
+        '<td class="ant-table-cell">' + escapeHtml(record.operatorSource) + '</td>' +
+        '<td class="ant-table-cell">' + organizationLogChange(record) + '</td></tr>';
+    }).join('');
+    organizationLogDialog.querySelector('tbody').innerHTML = rows;
+    var input = organizationLogDialog.querySelector('[data-organization-log-page]');
+    input.value = String(currentPage);
+    input.setAttribute('aria-valuenow', String(currentPage));
+    organizationLogDialog.querySelector('[data-organization-log-pages]').textContent = String(totalPages);
+    var previous = organizationLogDialog.querySelector('[data-organization-log-prev]');
+    var next = organizationLogDialog.querySelector('[data-organization-log-next]');
+    previous.disabled = currentPage === 1; next.disabled = currentPage === totalPages;
+    previous.classList.toggle('pageArrowDisabled___m6h14', previous.disabled);
+    next.classList.toggle('pageArrowDisabled___m6h14', next.disabled);
+  }
+  function closeOrganizationOperationLog() {
+    if (!organizationLogDialog) return;
+    if (organizationLogDialog.open) organizationLogDialog.close();
+    else { organizationLogDialog.remove(); organizationLogDialog = null; }
+  }
+
+  function closeBulkImportDialog() {
+    if (!bulkImportDialog) return;
+    if (bulkImportDialog.open) bulkImportDialog.close();
+    else { bulkImportDialog.remove(); bulkImportDialog = null; }
+  }
+
+  function bulkDepartmentPath(channelIndex, departmentId) {
+    var set = departmentSets[channelIndex] || departmentSets[0], path = [], current = set.find(function (item) { return item.id === departmentId; }) || set[0];
+    while (current) {
+      path.unshift(current.name);
+      current = set.find(function (item) { return item.id === current.parent; });
+    }
+    path[0] = channels[channelIndex];
+    return path.join(' / ');
+  }
+
+  function bulkImportCollapsedMap() {
+    var channelKey = String(bulkImportState.channel), set = departmentSets[bulkImportState.channel];
+    if (!bulkImportState.collapsedByChannel[channelKey]) {
+      var collapsedMap = {};
+      set.forEach(function (item) {
+        if (item.depth > 0 && set.some(function (candidate) { return candidate.parent === item.id; })) collapsedMap[item.id] = true;
+      });
+      var selected = set.find(function (item) { return item.id === bulkImportState.department; });
+      while (selected && selected.parent) {
+        delete collapsedMap[selected.parent];
+        selected = set.find(function (item) { return item.id === selected.parent; });
+      }
+      bulkImportState.collapsedByChannel[channelKey] = collapsedMap;
+    }
+    return bulkImportState.collapsedByChannel[channelKey];
+  }
+
+  function bulkImportVisibleDepartments() {
+    var set = departmentSets[bulkImportState.channel], query = bulkImportState.nodeQuery.trim().toLowerCase(), collapsedMap = bulkImportCollapsedMap();
+    if (query) {
+      var visibleIds = {};
+      set.forEach(function (item) {
+        var name = item.depth ? item.name : channels[bulkImportState.channel];
+        if (name.toLowerCase().indexOf(query) === -1) return;
+        var current = item;
+        while (current) {
+          visibleIds[current.id] = true;
+          current = set.find(function (candidate) { return candidate.id === current.parent; });
+        }
+      });
+      return set.filter(function (item) { return visibleIds[item.id]; });
+    }
+    return set.filter(function (item) {
+      var parentId = item.parent;
+      while (parentId) {
+        if (collapsedMap[parentId]) return false;
+        var parent = set.find(function (candidate) { return candidate.id === parentId; });
+        parentId = parent && parent.parent;
+      }
+      return true;
+    });
+  }
+
+  function bulkImportDepartmentTreeMarkup() {
+    var set = departmentSets[bulkImportState.channel], collapsedMap = bulkImportCollapsedMap(), visible = bulkImportVisibleDepartments();
+    if (!visible.length) return '<div class="gaip-bulk-node-empty">未找到匹配的目标节点</div>';
+    return visible.map(function (item) {
+      var name = item.depth ? item.name : channels[bulkImportState.channel];
+      var hasChildren = set.some(function (candidate) { return candidate.parent === item.id; });
+      var expanded = !collapsedMap[item.id] || !!bulkImportState.nodeQuery;
+      return '<div class="gaip-bulk-node-row' + (item.id === bulkImportState.department ? ' is-selected' : '') + '" role="treeitem" aria-level="' + (item.depth + 1) + '" aria-selected="' + (item.id === bulkImportState.department) + '"' + (hasChildren ? ' aria-expanded="' + expanded + '"' : '') + ' style="--bulk-node-depth:' + item.depth + '">' +
+        (hasChildren ? '<button type="button" class="gaip-bulk-node-toggle" data-bulk-node-toggle="' + escapeHtml(item.id) + '" aria-label="' + (expanded ? '收起' : '展开') + escapeHtml(name) + '" aria-expanded="' + expanded + '"><span aria-hidden="true"></span></button>' : '<span class="gaip-bulk-node-toggle-placeholder" aria-hidden="true"></span>') +
+        '<button type="button" class="gaip-bulk-node-option" data-bulk-department-option="' + escapeHtml(item.id) + '" title="' + escapeHtml(name) + '"><span class="gaip-bulk-node-folder" aria-hidden="true"></span><span class="gaip-bulk-node-name">' + escapeHtml(name) + '</span><span class="gaip-bulk-node-check" aria-hidden="true">✓</span></button></div>';
+    }).join('');
+  }
+
+  function updateBulkImportDepartmentTree() {
+    if (!bulkImportDialog || bulkImportState.step !== 1) return;
+    var tree = bulkImportDialog.querySelector('[data-bulk-node-tree]');
+    if (tree) tree.innerHTML = bulkImportDepartmentTreeMarkup();
+    var path = bulkImportDialog.querySelector('[data-bulk-path] strong');
+    if (path) path.textContent = bulkDepartmentPath(bulkImportState.channel, bulkImportState.department);
+    var clear = bulkImportDialog.querySelector('[data-bulk-search-clear]');
+    if (clear) clear.hidden = !bulkImportState.nodeQuery;
+  }
+
+  function bulkImportMockRows() {
+    return [
+      { row: 2, enteredName: '批量示例成员01', account: 'bulk_demo_101', uaName: '批量示例成员01', regions: '香港、新加坡', referrer: '内部', admin: '是', valid: true, reason: '-' },
+      { row: 3, enteredName: '批量示例成员02', account: 'bulk_demo_102', uaName: '批量示例成员02', regions: '美国', referrer: '无', admin: '否', valid: true, reason: '-' },
+      { row: 4, enteredName: '已存在成员', account: 'demo_001', uaName: '示例成员01', regions: '大陆', referrer: '外部', admin: '否', valid: false, reason: '该成员已存在于当前渠道' },
+      { row: 5, enteredName: '未知账号成员', account: 'not_found_001', uaName: '-', regions: '香港', referrer: '内部', admin: '否', valid: false, reason: '未查询到有效 UA 用户' },
+      { row: 6, enteredName: '离职成员', account: 'former_001', uaName: '离职示例用户', regions: '新加坡', referrer: '无', admin: '否', valid: false, reason: '该账号已离职或处于停用状态' },
+      { row: 7, enteredName: '地区填写错误', account: 'bulk_demo_107', uaName: '地区填写错误', regions: '英国', referrer: '无', admin: '否', valid: false, reason: '持牌地区必须按模板选项填写' },
+      { row: 8, enteredName: '文件内重复成员', account: 'bulk_demo_101', uaName: '批量示例成员01', regions: '香港', referrer: '内部', admin: '否', valid: false, reason: '域账号在文件内重复' },
+      { row: 9, enteredName: '-', account: '-', uaName: '-', regions: '-', referrer: '无', admin: '否', valid: false, reason: '域账号和用户姓名至少填写一项' },
+      { row: 10, enteredName: '选项填写错误', account: 'bulk_demo_110', uaName: '选项填写错误', regions: '百慕大', referrer: '其他', admin: '管理员', valid: false, reason: '转介绍人或管理员选项不符合模板' },
+      { row: 11, enteredName: '重复渠道成员', account: 'demo_002', uaName: '示例成员02', regions: '香港', referrer: '无', admin: '否', valid: false, reason: '该成员已存在于当前渠道' },
+      { row: 12, enteredName: '无效账号示例', account: 'not_found_002', uaName: '-', regions: '美国', referrer: '内部', admin: '否', valid: false, reason: '未查询到有效 UA 用户' },
+      { row: 13, enteredName: '停用账号示例', account: 'former_002', uaName: '停用示例用户', regions: '大陆', referrer: '无', admin: '否', valid: false, reason: '该账号已离职或处于停用状态' },
+      { row: 14, enteredName: '地区格式错误', account: 'bulk_demo_114', uaName: '地区格式错误', regions: '中国香港', referrer: '无', admin: '否', valid: false, reason: '持牌地区必须按模板选项填写' },
+      { row: 15, enteredName: '文件重复账号', account: 'bulk_demo_102', uaName: '批量示例成员02', regions: '美国', referrer: '无', admin: '否', valid: false, reason: '域账号在文件内重复' },
+      { row: 16, enteredName: '-', account: '-', uaName: '-', regions: '-', referrer: '外部', admin: '否', valid: false, reason: '域账号和用户姓名至少填写一项' },
+      { row: 17, enteredName: '管理员选项错误', account: 'bulk_demo_117', uaName: '管理员选项错误', regions: '新加坡', referrer: '内部', admin: '超级管理员', valid: false, reason: '转介绍人或管理员选项不符合模板' },
+      { row: 18, enteredName: '转介绍选项错误', account: 'bulk_demo_118', uaName: '转介绍选项错误', regions: '百慕大', referrer: '推荐', admin: '否', valid: false, reason: '转介绍人或管理员选项不符合模板' },
+      { row: 19, enteredName: '空白域账号示例', account: '-', uaName: '-', regions: '香港', referrer: '无', admin: '否', valid: false, reason: '未查询到有效 UA 用户' }
+    ];
+  }
+
+  function bulkImportAssetUrl(fileName) {
+    var script = document.querySelector('script[src*="features/config-center/config-center.js"]');
+    return script ? new URL('./assets/' + fileName, script.src).href : './features/config-center/assets/' + fileName;
+  }
+
+  function bulkImportTemplateUrl() {
+    return bulkImportAssetUrl('批量人员导入模板.xlsx');
+  }
+
+  function bulkImportIcon(kind) {
+    if (kind === 'success') return '<span class="gaip-bulk-check" aria-hidden="true">✓</span>';
+    var template = document.createElement('template');
+    template.innerHTML = sourceMarkup(source.toolbar);
+    var icon = template.content.querySelector('[data-config-export] .ant-btn-icon svg').cloneNode(true);
+    icon.removeAttribute('width'); icon.removeAttribute('height'); icon.setAttribute('aria-hidden', 'true');
+    return icon.outerHTML;
+  }
+
+  function bulkImportSearchIcon(kind) {
+    var template = document.createElement('template');
+    template.innerHTML = sourceMarkup(source.toolbar);
+    var selector = kind === 'clear' ? '.ant-input-clear-icon svg' : '.searchIcon___p0zF2';
+    var icon = template.content.querySelector(selector).cloneNode(true);
+    var title = icon.querySelector('title');
+    if (title) title.remove();
+    icon.removeAttribute('width'); icon.removeAttribute('height'); icon.setAttribute('aria-hidden', 'true');
+    return icon.outerHTML;
+  }
+
+  function bulkImportAttachmentIcon() {
+    return '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.2 8.8 9.7 4.3a2.15 2.15 0 0 1 3.05 3.05L7.3 12.8a3.3 3.3 0 0 1-4.67-4.67l5.4-5.4" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  function bulkImportSummary(label, value, tone) {
+    return '<div class="gaip-bulk-summary is-' + tone + '"><span>' + escapeHtml(label) + '</span><strong>' + escapeHtml(value) + '</strong></div>';
+  }
+
+  function renderBulkImportStep() {
+    if (!bulkImportDialog || !bulkImportState) return;
+    var body = bulkImportDialog.querySelector('[data-bulk-body]'), footer = bulkImportDialog.querySelector('[data-bulk-footer]');
+    bulkImportDialog.querySelectorAll('[data-bulk-step]').forEach(function (step) {
+      var number = Number(step.dataset.bulkStep), active = number === bulkImportState.step, complete = number < bulkImportState.step;
+      step.classList.toggle('is-active', active); step.classList.toggle('is-complete', complete);
+      step.setAttribute('aria-current', active ? 'step' : 'false');
+    });
+    body.classList.toggle('is-validation-step', bulkImportState.step === 2);
+    if (bulkImportState.step === 1) {
+      var channelOptions = channels.map(function (name, index) {
+        return '<option value="' + index + '"' + (index === bulkImportState.channel ? ' selected' : '') + '>' + escapeHtml(name) + '</option>';
+      }).join('');
+      body.innerHTML = '<section class="gaip-bulk-section gaip-bulk-location-section" aria-labelledby="bulk-target-title"><div class="gaip-bulk-section-heading gaip-bulk-target-heading"><h3 id="bulk-target-title">选择导入范围</h3><div class="gaip-bulk-current-target" data-bulk-path><span>当前目标：</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div></div><div class="gaip-bulk-field-label">渠道</div><label class="gaip-bulk-channel-select"><select aria-label="导入渠道" data-bulk-channel-select>' + channelOptions + '</select><span class="gaip-bulk-select-arrow" aria-hidden="true"></span></label><div class="gaip-bulk-node-heading"><span class="gaip-bulk-field-label">目标节点</span><label class="gaip-bulk-node-search">' + bulkImportSearchIcon('search') + '<input type="search" value="' + escapeHtml(bulkImportState.nodeQuery) + '" placeholder="搜索目标节点" aria-label="搜索目标节点" data-bulk-node-search><button type="button" data-bulk-search-clear aria-label="清除节点搜索"' + (bulkImportState.nodeQuery ? '' : ' hidden') + '>' + bulkImportSearchIcon('clear') + '</button></label></div><div class="gaip-bulk-node-tree" role="tree" aria-label="目标节点" data-bulk-node-tree>' + bulkImportDepartmentTreeMarkup() + '</div></section>' +
+        '<section class="gaip-bulk-section gaip-bulk-upload-section" aria-labelledby="bulk-file-title"><div class="gaip-bulk-section-heading gaip-bulk-upload-heading"><h3 id="bulk-file-title">上传识别导入</h3><button type="button" class="gaip-bulk-sample" data-bulk-sample>使用示例文件预览完整流程</button></div><div class="gaip-bulk-upload-content"><div class="gaip-bulk-upload-picker"><label class="gaip-bulk-upload-button" data-bulk-dropzone aria-label="上传 Excel 文件"><input type="file" accept=".xlsx,.xls" data-bulk-file><span class="gaip-bulk-upload-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt="" aria-hidden="true"></span><span>上传文件</span></label><span class="gaip-bulk-upload-limit">文件大小不得超过10MB</span></div>' + (bulkImportState.fileName ? '<div class="gaip-bulk-upload-file" data-bulk-upload-file><span class="gaip-bulk-attachment-icon">' + bulkImportAttachmentIcon() + '</span><span>' + escapeHtml(bulkImportState.fileName) + '</span></div>' : '') + '<div class="gaip-bulk-file-error" data-bulk-file-error' + (bulkImportState.fileError ? '' : ' hidden') + '>' + escapeHtml(bulkImportState.fileError || '') + '</div></div><div class="gaip-bulk-template-bar"><a class="gaip-bulk-template-link" href="' + escapeHtml(bulkImportTemplateUrl()) + '" download="批量人员导入模板.xlsx"><span class="gaip-bulk-template-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-template-xlsx.svg')) + '" alt="" aria-hidden="true"></span><span class="gaip-bulk-template-copy"><strong>下载导入模板</strong><small>请勿修改表头；单次最多导入 100 人，支持 .xlsx、.xls</small></span></a></div></section>';
+      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-close>取消</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-validate' + (bulkImportState.fileName ? '' : ' disabled') + '>开始校验</button>';
+    } else if (bulkImportState.step === 2) {
+      var validCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
+      var invalidCount = bulkImportState.rows.length - validCount;
+      var rows = bulkImportState.rows.map(function (item) {
+        return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(item.referrer) + '</td><td>' + escapeHtml(item.admin) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
+      }).join('');
+      body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名 / 备注</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-link" data-bulk-download-fail>下载失败明细</button><span class="gaip-bulk-footer-spacer"></span><button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
+    } else {
+      var importedCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
+      var failedCount = bulkImportState.rows.length - importedCount;
+      body.innerHTML = '<div class="gaip-bulk-result"><span class="gaip-bulk-result-icon">' + bulkImportIcon('success') + '</span><h3>批量导入已完成</h3><p>有效成员已导入，失败记录未写入成员列表。</p><div class="gaip-bulk-result-target"><span>导入节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-summary-grid">' + bulkImportSummary('文件总数', bulkImportState.rows.length + ' 人', 'neutral') + bulkImportSummary('成功导入', importedCount + ' 人', 'success') + bulkImportSummary('导入失败', failedCount + ' 人', 'error') + '</div><div class="gaip-bulk-result-note">成功成员会分别生成“新增成员”组织架构操作记录。下载失败明细并修正后，可继续发起下一次导入。</div></div>';
+      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-download-fail>下载失败明细</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-again>继续导入</button>';
+    }
+  }
+
+  function showBulkImportReturnConfirm() {
+    if (!bulkImportDialog || bulkImportDialog.querySelector('[data-bulk-confirm-layer]')) return;
+    var layer = document.createElement('div');
+    layer.className = 'gaip-bulk-confirm-layer'; layer.setAttribute('data-bulk-confirm-layer', '');
+    layer.innerHTML = '<div class="gaip-bulk-confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="bulk-return-title"><h3 id="bulk-return-title">返回重新选择？</h3><p>返回后当前文件和校验结果将被清空，需要重新上传。</p><div><button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-return-cancel>取消</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-return-confirm>确认返回</button></div></div>';
+    bulkImportDialog.querySelector('.ant-modal-content').appendChild(layer);
+    layer.querySelector('[data-bulk-return-cancel]').focus();
+  }
+
+  function resetBulkImportState() {
+    bulkImportState = { step: 1, channel: state.channel, department: state.department, nodeQuery: '', collapsedByChannel: {}, fileName: '', fileError: '', rows: bulkImportMockRows(), imported: false };
+  }
+
+  function addBulkImportMembers() {
+    if (bulkImportState.imported) return;
+    var importedAt = '2026-09-02 19:30:00';
+    bulkImportState.rows.filter(function (row) { return row.valid; }).forEach(function (item, index) {
+      var recordId = Math.max.apply(null, [0].concat(members.map(function (member) { return member.id; }))) + 1;
+      members.push({ id: recordId, name: item.uaName, account: item.account, channel: bulkImportState.channel, department: bulkImportState.department, html: source.rows[2], phone: '****' + String(2101 + index), email: '', admin: item.admin === '是', licensed: item.regions !== '-', regions: item.regions === '-' ? [] : item.regions.split('、'), referrer: item.referrer === '内部' ? 1 : item.referrer === '外部' ? 2 : 0 });
+      organizationLogRecords.unshift({
+        id: 'bulk-import-' + item.account, createdDt: importedAt, operatorName: '本地预览用户', createdBy: 'demo_admin',
+        operateType: '新增成员', channelTab: channels[bulkImportState.channel], nodeSource: bulkDepartmentPath(bulkImportState.channel, bulkImportState.department).replace(/ \/ /g, '/'),
+        operatorSource: '批量导入', updateBefore: '-', updateAfter: '成员：' + item.uaName + '（' + item.account + '）'
+      });
+    });
+    bulkImportState.imported = true;
+    if (bulkImportState.channel === state.channel && bulkImportState.department === state.department && mountedView === 'organization') renderMembers();
+  }
+
+  function downloadBulkImportFailures() {
+    var rows = [['Excel 行', '用户姓名 / 备注', '域账号', '失败原因']].concat(bulkImportState.rows.filter(function (row) { return !row.valid; }).map(function (row) { return [row.row, row.enteredName, row.account, row.reason]; }));
+    var content = rows.map(function (row) { return row.map(function (cell) { return '"' + String(cell).replace(/"/g, '""') + '"'; }).join('\t'); }).join('\n');
+    var link = document.createElement('a'), url = URL.createObjectURL(new Blob(['\ufeff' + content], { type: 'application/vnd.ms-excel;charset=utf-8' }));
+    link.href = url; link.download = '批量导入失败明细.xls'; link.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+  }
+
+  function openBulkImportDialog(trigger) {
+    closeBulkImportDialog();
+    bulkImportTrigger = trigger || document.activeElement;
+    resetBulkImportState();
+    var dialog = document.createElement('dialog'); bulkImportDialog = dialog;
+    dialog.className = 'ant-modal css-10wz6x1 gaip-bulk-import-dialog';
+    dialog.setAttribute('aria-label', '批量导入成员');
+    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-bulk-modal-header"><h2>批量导入成员</h2><button type="button" class="gaip-bulk-close" data-bulk-close aria-label="关闭批量导入成员"><span aria-hidden="true">×</span></button></header><ol class="gaip-bulk-steps" aria-label="批量导入进度"><li data-bulk-step="1"><span>1</span><strong>选择导入范围</strong></li><li data-bulk-step="2"><span>2</span><strong>校验并确认</strong></li><li data-bulk-step="3"><span>3</span><strong>导入结果</strong></li></ol><div class="gaip-bulk-modal-body" data-bulk-body></div><footer class="gaip-bulk-modal-footer" data-bulk-footer></footer></div>';
+    dialog.addEventListener('click', function (event) {
+      var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-return-cancel],[data-bulk-return-confirm],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
+      if (!target) return;
+      if (target.hasAttribute('data-bulk-close')) closeBulkImportDialog();
+      else if (target.hasAttribute('data-bulk-sample')) { bulkImportState.fileName = '组织成员批量导入示例.xlsx'; bulkImportState.fileError = ''; renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-validate') && !target.disabled) { bulkImportState.step = 2; renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-back')) showBulkImportReturnConfirm();
+      else if (target.hasAttribute('data-bulk-return-cancel')) target.closest('[data-bulk-confirm-layer]').remove();
+      else if (target.hasAttribute('data-bulk-return-confirm')) { target.closest('[data-bulk-confirm-layer]').remove(); resetBulkImportState(); renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-download-fail')) downloadBulkImportFailures();
+      else if (target.hasAttribute('data-bulk-confirm')) { addBulkImportMembers(); bulkImportState.step = 3; renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-again')) { resetBulkImportState(); renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-department-option')) { bulkImportState.department = target.dataset.bulkDepartmentOption; updateBulkImportDepartmentTree(); }
+      else if (target.hasAttribute('data-bulk-node-toggle')) {
+        var collapsedMap = bulkImportCollapsedMap(), nodeId = target.dataset.bulkNodeToggle;
+        collapsedMap[nodeId] = !collapsedMap[nodeId]; updateBulkImportDepartmentTree();
+      }
+      else if (target.hasAttribute('data-bulk-search-clear')) {
+        bulkImportState.nodeQuery = '';
+        var searchInput = bulkImportDialog.querySelector('[data-bulk-node-search]');
+        if (searchInput) { searchInput.value = ''; searchInput.focus(); }
+        updateBulkImportDepartmentTree();
+      }
+    });
+    dialog.addEventListener('change', function (event) {
+      if (event.target.matches('[data-bulk-channel-select]')) {
+        var nextChannel = Number(event.target.value);
+        if (nextChannel !== bulkImportState.channel) {
+          bulkImportState.channel = nextChannel; bulkImportState.department = 'all'; bulkImportState.nodeQuery = '';
+          renderBulkImportStep();
+        }
+      } else if (event.target.matches('[data-bulk-file]')) {
+        var file = event.target.files && event.target.files[0];
+        if (!file) return;
+        if (!/\.(xlsx|xls)$/i.test(file.name)) { bulkImportState.fileName = ''; bulkImportState.fileError = '请上传 .xlsx 或 .xls 格式文件'; }
+        else if (file.size > 10 * 1024 * 1024) { bulkImportState.fileName = ''; bulkImportState.fileError = '文件大小不能超过 10MB'; }
+        else { bulkImportState.fileName = file.name; bulkImportState.fileError = ''; }
+        renderBulkImportStep();
+      }
+    });
+    dialog.addEventListener('input', function (event) {
+      if (!event.target.matches('[data-bulk-node-search]')) return;
+      bulkImportState.nodeQuery = event.target.value;
+      updateBulkImportDepartmentTree();
+    });
+    dialog.addEventListener('dragover', function (event) { if (event.target.closest('[data-bulk-dropzone]')) event.preventDefault(); });
+    dialog.addEventListener('drop', function (event) {
+      if (!event.target.closest('[data-bulk-dropzone]')) return;
+      event.preventDefault();
+      var file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
+      if (!file) return;
+      if (!/\.(xlsx|xls)$/i.test(file.name) || file.size > 10 * 1024 * 1024) { bulkImportState.fileName = ''; bulkImportState.fileError = '请上传不超过 10MB 的 .xlsx 或 .xls 文件'; }
+      else { bulkImportState.fileName = file.name; bulkImportState.fileError = ''; }
+      renderBulkImportStep();
+    });
+    dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeBulkImportDialog(); });
+    dialog.addEventListener('close', function () {
+      dialog.remove(); if (bulkImportDialog === dialog) bulkImportDialog = null;
+      bulkImportState = null;
+      if (bulkImportTrigger && bulkImportTrigger.isConnected) bulkImportTrigger.focus();
+      bulkImportTrigger = null;
+    }, { once: true });
+    page.appendChild(dialog); renderBulkImportStep(); dialog.showModal();
+    return dialog;
+  }
+  /* @gaip-modal
+  {
+    "id": "config-organization-log",
+    "title": "组织架构操作日志",
+    "channel": "配置中心 / 组织架构",
+    "type": "modal",
+    "status": "ready",
+    "height": 900,
+    "after": "config-admin",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openOrganizationLog()",
+    "previewMode": "config-dialog",
+    "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openOrganizationLog", "args": [] },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css"
+    ],
+    "scripts": [
+      "shared/config/channels.js",
+      "features/config-center/source-markup.js",
+      "features/config-center/config-center.js"
+    ]
+  }
+  */
+  /* @gaip-modal
+  {
+    "id": "config-bulk-import-members",
+    "title": "批量导入成员",
+    "channel": "配置中心 / 组织架构",
+    "type": "modal",
+    "status": "ready",
+    "height": 900,
+    "after": "config-organization-log",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openBulkImport()",
+    "previewMode": "config-dialog",
+    "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openBulkImport", "args": [] },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css"
+    ],
+    "scripts": [
+      "shared/config/channels.js",
+      "features/config-center/source-markup.js",
+      "features/config-center/config-center.js"
+    ]
+  }
+  */
+  function openOrganizationOperationLog(trigger) {
+    closeOrganizationOperationLog();
+    organizationLogTrigger = trigger || document.activeElement;
+    var dialog = document.createElement('dialog');
+    organizationLogDialog = dialog;
+    dialog.className = 'ant-modal css-10wz6x1 operateLogModal___ea4sh gaip-organization-log-dialog';
+    dialog.setAttribute('aria-label', '组织架构操作日志');
+    dialog.innerHTML = '<div class="ant-modal-content"><div class="ant-modal-body"><header class="modalHeader___Wsw0V"><h2 class="modalTitle___VpG1S">操作日志</h2><button type="button" class="closeIcon___zxceU" data-organization-log-close aria-label="关闭操作日志"><span role="img" aria-hidden="true" class="anticon anticon-close"><svg viewBox="64 64 896 896" focusable="false" width="1em" height="1em" fill="currentColor"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7a16 16 0 0 0-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1a16 16 0 0 0 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg></span></button></header><div class="modalBody___wVPfn"><div class="ant-table-wrapper logTable___m61B9"><div class="ant-table ant-table-fixed-header"><div class="ant-table-container"><div class="ant-table-content"><table style="min-width:960px"><thead class="ant-table-thead"><tr><th class="ant-table-cell" style="width:120px">时间</th><th class="ant-table-cell" style="width:120px">操作人</th><th class="ant-table-cell" style="width:120px">操作类型</th><th class="ant-table-cell" style="width:130px">渠道</th><th class="ant-table-cell">节点路径</th><th class="ant-table-cell" style="width:96px">来源</th><th class="ant-table-cell">变更前 / 变更后</th></tr></thead><tbody class="ant-table-tbody"></tbody></table></div></div></div></div><div class="paginationWrap___GPhUS"><button type="button" class="pageArrow___j26JA" data-organization-log-prev aria-label="上一页">‹</button><span class="pageInput___CXjOu"><input type="number" min="1" class="pageInputInner___qJqBD" data-organization-log-page aria-label="当前页"></span><span class="pageSeparator___XiRN6">/</span><span class="pageTotal___CJfoR" data-organization-log-pages></span><button type="button" class="pageArrow___j26JA" data-organization-log-next aria-label="下一页">›</button></div></div></div></div>';
+    var organizationLogTable = dialog.querySelector('table');
+    var organizationLogColumns = document.createElement('colgroup');
+    organizationLogColumns.innerHTML = '<col style="width:150px"><col style="width:120px"><col style="width:112px"><col style="width:128px"><col style="width:220px"><col style="width:96px"><col style="width:280px">';
+    organizationLogTable.style.minWidth = '1106px';
+    organizationLogTable.prepend(organizationLogColumns);
+    dialog.addEventListener('click', function (event) {
+      if (event.target.closest('[data-organization-log-close]')) closeOrganizationOperationLog();
+      else if (event.target.closest('[data-organization-log-prev]')) renderOrganizationOperationLog(Number(dialog.dataset.currentPage) - 1);
+      else if (event.target.closest('[data-organization-log-next]')) renderOrganizationOperationLog(Number(dialog.dataset.currentPage) + 1);
+    });
+    dialog.addEventListener('change', function (event) {
+      if (event.target.matches('[data-organization-log-page]')) renderOrganizationOperationLog(event.target.value);
+    });
+    dialog.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' && event.target.matches('[data-organization-log-page]')) { event.preventDefault(); renderOrganizationOperationLog(event.target.value); }
+    });
+    dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeOrganizationOperationLog(); });
+    dialog.addEventListener('close', function () {
+      dialog.remove();
+      if (organizationLogDialog === dialog) organizationLogDialog = null;
+      if (organizationLogTrigger && organizationLogTrigger.isConnected) organizationLogTrigger.focus();
+      organizationLogTrigger = null;
+    }, { once: true });
+    page.appendChild(dialog);
+    renderOrganizationOperationLog(1);
+    dialog.showModal();
+  }
   function adminRoleKey(id) { return state.channel + ':' + id; }
   function adminRoleState(id, currentMembers) {
     var key = adminRoleKey(id), validIds = currentMembers.map(function (member) { return member.id; });
@@ -74,6 +524,38 @@
     if (currentOperatorRole === 'super-admin') return true;
     if (currentOperatorRole === 'organization-admin') return role === 'organization' || role === 'commission';
     return currentOperatorRole === 'clue-admin' && role === 'clue-follower';
+  }
+  function memberIdentityRoles(member) {
+    var departmentMembers = members.filter(function (item) {
+      return item.channel === member.channel && item.department === member.department;
+    });
+    var roles = adminRoleState(member.department, departmentMembers);
+    var identities = [];
+    if (member.admin) identities.push({ key: 'organization', label: '人管' });
+    if (roles.commission === member.id) identities.push({ key: 'commission', label: '佣金' });
+    if (roles.clueAdmin.includes(member.id)) identities.push({ key: 'clue-admin', label: '线索管理' });
+    if (roles.clueFollower.includes(member.id)) identities.push({ key: 'clue-follower', label: '线索跟进' });
+    return identities;
+  }
+  function createMemberIdentityCell(member) {
+    var cell = document.createElement('td');
+    cell.className = 'ant-table-cell memberIdentityCell___u7N4q';
+    var identities = memberIdentityRoles(member);
+    if (!identities.length) {
+      cell.classList.add('is-empty');
+      cell.textContent = '-';
+      return cell;
+    }
+    var tags = document.createElement('div');
+    tags.className = 'memberIdentityTags___f8Q2m';
+    identities.forEach(function (identity) {
+      var tag = document.createElement('span');
+      tag.className = 'memberIdentityTag___v3J6p is-' + identity.key;
+      tag.textContent = identity.label;
+      tags.appendChild(tag);
+    });
+    cell.appendChild(tags);
+    return cell;
   }
   function departmentPath(department) {
     var path = [], current = department;
@@ -131,6 +613,8 @@
   function closeForNavigation() {
     if (!page) return;
     closeDepartmentMenu();
+    closeOrganizationOperationLog();
+    closeBulkImportDialog();
     if (logPanel) { logPanel.destroy(); logPanel = null; }
     page.remove(); page = null; mountedView = null;
     restoreUnderlyingContent();
@@ -242,6 +726,7 @@
     closeDepartmentMenu();
     departments = departmentSets[state.channel];
     var tree = page.querySelector('[data-config-tree]');
+    if (!tree) return;
     var scrollTop = tree.scrollTop;
     tree.innerHTML = sourceMarkup(source.tree).replace(/^<div[^>]*>|<\/div>$/g, '');
     var holder = tree.querySelector('.ant-tree-list-holder-inner');
@@ -523,6 +1008,7 @@
     var list = filtered(), pages = Math.max(1, Math.ceil(list.length / 10));
     state.page = Math.min(state.page, pages);
     var tbody = page.querySelector('tbody');
+    if (!tbody) return;
     tbody.innerHTML = '';
     list.slice((state.page - 1) * 10, state.page * 10).forEach(function (m) {
       var template = document.createElement('template'); template.innerHTML = '<table><tbody>' + sourceMarkup(m.html) + '</tbody></table>';
@@ -534,12 +1020,13 @@
         var emailCell = row.children[3].firstElementChild || row.children[3];
         emailCell.textContent = m.email || '-'; emailCell.title = row.children[3].title = m.email || '';
       }
+      row.children[0].after(createMemberIdentityCell(m));
       row.querySelector('.editBtn___jN6Rq').dataset.edit = m.id;
       row.querySelector('.moreBtn___LI6Xo').dataset.more = m.id;
       row.querySelectorAll('[data-edit], [data-more]').forEach(function (el) { el.setAttribute('role', 'button'); el.tabIndex = 0; });
       tbody.appendChild(row);
     });
-    if (!list.length) tbody.innerHTML = '<tr><td colspan="7" class="emptyState___B87_m">暂无数据</td></tr>';
+    if (!list.length) tbody.innerHTML = '<tr><td colspan="8" class="emptyState___B87_m">暂无数据</td></tr>';
     page.querySelector('[data-config-summary]').textContent = '共 ' + list.length + ' 条，第 ' + state.page + ' / ' + pages + ' 页';
     page.querySelector('[data-config-current]').textContent = state.page;
     ['prev', 'next'].forEach(function (key) {
@@ -578,6 +1065,21 @@
     button.lastElementChild.textContent = '设置管理员';
     toolbar.insertBefore(button, actions);
   }
+  function insertBulkImportButton(actions) {
+    var logButton = actions.querySelector('[data-config-log]');
+    var uploadIcon = document.createElement('img');
+    uploadIcon.src = bulkImportAssetUrl('bulk-import-upload.svg');
+    uploadIcon.alt = '';
+    uploadIcon.setAttribute('aria-hidden', 'true');
+    var button = logButton.cloneNode(true);
+    button.removeAttribute('data-config-log');
+    button.setAttribute('data-config-bulk-import', '');
+    button.setAttribute('aria-label', '批量导入成员');
+    button.classList.add('gaip-config-bulk-import-button');
+    button.querySelector('.ant-btn-icon').replaceChildren(uploadIcon);
+    button.lastElementChild.textContent = '批量导入成员';
+    actions.insertBefore(button, logButton);
+  }
   function syncMemberSearchClear() {
     var input = page.querySelector('input[aria-label="搜索成员"]');
     var clear = page.querySelector('[data-config-clear]');
@@ -593,6 +1095,7 @@
     var organizationHeaderActions = organizationHeader.querySelector('.headerRight___Fe2zg');
     var memberSearch = page.querySelector('.mainHeader___QGD6D .searchWrap___gp0a3');
     organizationHeader.insertBefore(memberSearch, organizationHeaderActions);
+    insertBulkImportButton(organizationHeaderActions);
     insertAdminToolbarButton();
     page.querySelectorAll('[data-config-channel]').forEach(function (tab) {
       var selected = Number(tab.dataset.configChannel) === state.channel;
@@ -713,7 +1216,7 @@
   function handleClick(event) {
     var departmentTrigger = event.target.closest('[data-department-menu]');
     if (departmentTrigger) { event.stopPropagation(); showDepartmentMenu(departmentTrigger, event.detail === 0); return; }
-    var target = event.target.closest('[data-config-channel], [data-department], [data-collapse], [data-config-prev], [data-config-next], [data-config-add], [data-edit], [data-more], [data-config-admin], [data-config-export], [data-config-clear], [data-config-log]');
+    var target = event.target.closest('[data-config-channel], [data-department], [data-collapse], [data-config-prev], [data-config-next], [data-config-add], [data-edit], [data-more], [data-config-admin], [data-config-export], [data-config-clear], [data-config-bulk-import], [data-config-log]');
     if (!target) return;
     if (event.target.closest('[data-collapse]')) {
       var collapseId = event.target.closest('[data-collapse]').dataset.collapse;
@@ -738,7 +1241,8 @@
     else if (target.hasAttribute('data-config-admin')) dialogController.openDepartment(state.department, 'admin', target);
     else if (target.hasAttribute('data-config-export')) exportMembers();
     else if (target.hasAttribute('data-config-clear')) { state.query = ''; page.querySelector('input[aria-label="搜索成员"]').value = ''; syncMemberSearchClear(); renderMembers(); }
-    else if (target.hasAttribute('data-config-log')) window.__GAIP_OPERATION_LOG__.show();
+    else if (target.hasAttribute('data-config-bulk-import')) dialogController.openBulkImport(target);
+    else if (target.hasAttribute('data-config-log')) openOrganizationOperationLog(target);
   }
   function sync() {
     frame = 0;
@@ -763,6 +1267,8 @@
     var current = view();
     if (mountedView !== current) {
       closeDepartmentMenu();
+      closeOrganizationOperationLog();
+      closeBulkImportDialog();
       if (logPanel) { logPanel.destroy(); logPanel = null; }
       page.replaceChildren();
       if (current === 'organization') renderOrganization();
@@ -789,7 +1295,6 @@
     page.style.inset = '0';
     page.addEventListener('click', handleClick);
     document.body.appendChild(page);
-    renderOrganization();
   }
   dialogController = {
     openMember: function (id) {
@@ -799,6 +1304,15 @@
     openDepartment: function (id, action, trigger) {
       ensureDialogPreviewHost();
       return editDepartment(id, action, trigger);
+    },
+    openOrganizationLog: function (trigger) {
+      ensureDialogPreviewHost();
+      openOrganizationOperationLog(trigger);
+      return organizationLogDialog;
+    },
+    openBulkImport: function (trigger) {
+      ensureDialogPreviewHost();
+      return openBulkImportDialog(trigger);
     }
   };
   window.__GAIP_CONFIG_DIALOGS__ = dialogController;

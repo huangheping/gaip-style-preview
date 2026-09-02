@@ -312,6 +312,58 @@ body {
   background: #014940;
 }
 
+.componentPreviewLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.componentPreviewBand--catalog {
+  background:
+    linear-gradient(100deg, rgba(2, 91, 82, 0.07), rgba(36, 212, 201, 0.025) 58%, rgba(255, 255, 255, 0.82));
+}
+
+.modalCatalogMetrics {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #d7e7e4;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.modalCatalogMetric {
+  display: grid;
+  min-width: 76px;
+  padding: 10px 14px;
+  border-right: 1px solid #e2ecea;
+  text-align: center;
+}
+
+.modalCatalogMetric:last-child {
+  border-right: 0;
+}
+
+.modalCatalogMetric small {
+  color: #7d898f;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.modalCatalogMetric strong {
+  color: #025b52;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.modalCatalogMetric.is-muted strong {
+  color: #6e7a81;
+}
+
 .componentDetails {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -501,6 +553,14 @@ body {
 
   .componentPreviewButton {
     width: 100%;
+  }
+
+  .modalCatalogMetrics {
+    width: 100%;
+  }
+
+  .modalCatalogMetric {
+    flex: 1 1 0;
   }
 
   .componentLivePreview {

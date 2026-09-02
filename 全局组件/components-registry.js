@@ -88,6 +88,38 @@
         '全局组件目录：真实海报数据与模板预览'
       ],
       updatedAt: '2026-08-27'
+    },
+    {
+      id: 'modal-catalog',
+      name: '真实弹窗预览',
+      category: '弹窗与确认',
+      status: '自动同步',
+      description: '集中查看当前项目可由真实源打开的业务弹窗；新增源登记后，数量和预览项自动同步。',
+      api: 'window.__GAIP_MODAL_SOURCE_CATALOG__',
+      trigger: '全局组件/弹窗预览.html',
+      previewKind: 'modalCatalog',
+      sources: [
+        {
+          label: '预览页面',
+          path: '全局组件/弹窗预览.html',
+          href: './弹窗预览.html'
+        },
+        {
+          label: '运行时注册器',
+          path: 'shared/scripts/modal-registry.js',
+          href: '../shared/scripts/modal-registry.js'
+        },
+        {
+          label: '自动索引',
+          path: '全局组件/弹窗自动索引.generated.js',
+          href: './弹窗自动索引.generated.js'
+        }
+      ],
+      usages: [
+        '全局组件目录：查看弹窗数量和进入集中预览',
+        '弹窗样式维护：对照真实源统一标题、间距、按钮、遮罩与滚动'
+      ],
+      updatedAt: '2026-09-02'
     }
   ];
 }());

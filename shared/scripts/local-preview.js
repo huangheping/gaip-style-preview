@@ -684,7 +684,7 @@
   if (popupPreviewId) {
     window.__GAIP_POPUP_PREVIEW__ = popupPreviewId;
     var popupPreviewBridge = document.createElement('script');
-    popupPreviewBridge.src = './shared/scripts/popup-preview-bridge.js?v=20260901-3';
+    popupPreviewBridge.src = './shared/scripts/popup-preview-bridge.js?v=20260902-7';
     popupPreviewBridge.setAttribute('data-gaip-popup-preview-bridge', popupPreviewId);
     document.head.appendChild(popupPreviewBridge);
   }

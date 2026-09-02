@@ -4,7 +4,7 @@
   var popupId = window.__GAIP_POPUP_PREVIEW__;
   if (!popupId) return;
 
-  var timeout = 15000;
+  var timeout = 45000;
   var pollInterval = 120;
 
   function notifyParent(status, message) {
@@ -112,7 +112,7 @@
   }
 
   function selectFirstCustomer() {
-    return clickSelector('[class*="customerList___"] [class*="customerCard___"]');
+    return clickSelector('[class*="customerList___"] [class*="customerCard___"] [class*="cName___"]');
   }
 
   function customerTab(label) {
@@ -140,32 +140,37 @@
     return candidates[0] || null;
   }
 
-  function isolatePopup(surface) {
+  function prunePageBehindPopup(surface) {
     var style = document.getElementById('gaip-popup-preview-isolation-style');
     if (!style) {
       style = document.createElement('style');
       style.id = 'gaip-popup-preview-isolation-style';
       style.textContent =
-        '#gaip-popup-preview-clean-background{position:fixed;inset:0;z-index:2147482000;background:#f5f7f6;}' +
+        'html.gaip-popup-preview-isolated,html.gaip-popup-preview-isolated body{background:#f5f7f6!important;}' +
         '.gaip-popup-preview-foreground{z-index:2147483000!important;}' +
         '.ant-modal-root.gaip-popup-preview-foreground,.ant-drawer-root.gaip-popup-preview-foreground{position:relative!important;}';
       document.head.appendChild(style);
     }
-    var background = document.getElementById('gaip-popup-preview-clean-background');
-    if (!background) {
-      background = document.createElement('div');
-      background.id = 'gaip-popup-preview-clean-background';
-      background.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(background);
-    }
     var foreground = surface.closest('.ant-modal-root, .ant-drawer-root, dialog[open]') || surface;
+    var branch = foreground;
+    while (branch.parentElement && branch.parentElement !== document.body) {
+      var parent = branch.parentElement;
+      Array.prototype.slice.call(parent.children).forEach(function (child) {
+        if (child !== branch) child.remove();
+      });
+      branch = parent;
+    }
+    Array.prototype.slice.call(document.body.children).forEach(function (child) {
+      if (child !== branch) child.remove();
+    });
     foreground.classList.add('gaip-popup-preview-foreground');
     document.documentElement.classList.add('gaip-popup-preview-isolated');
+    document.documentElement.setAttribute('data-gaip-popup-preview-pruned', popupId);
   }
 
   function markOpened(title) {
     return waitFor(function () { return popupSurface(title); }, title + '弹窗').then(function (surface) {
-      isolatePopup(surface);
+      prunePageBehindPopup(surface);
       document.documentElement.setAttribute('data-gaip-popup-preview-open', popupId);
       notifyParent('opened');
     });
@@ -173,9 +178,10 @@
 
   var flows = {
     'agent-session-rename': async function () {
-      await clickExistingSelector('button[aria-label="更多操作"]');
+      await clickSelector('[class*="globalButton___"]');
+      await clickExistingSelector('.agentModal___Nxp06 button[aria-label="更多操作"]');
       await clickText('修改名称');
-      await markOpened('修改会话名称');
+      await markOpened('编辑对话名称');
     },
     'clues-create': async function () {
       await clickText('新增线索');
@@ -190,8 +196,7 @@
       await markOpened('基础信息');
     },
     'clues-terminal': async function () {
-      await clickText('详情', { selector: 'button, a, span' });
-      await clickText('标记已转化', { selector: 'button, a, span' });
+      await clickText('转化', { selector: 'button, a, span' });
       await markOpened('标记已转化');
     },
     'customer-intro': async function () {
@@ -228,16 +233,30 @@
       await markOpened('报名记录');
     },
     'product-detail': async function () {
-      await clickSelector('[class*="productCard___"]');
+      await clickSelector('[class*="productCard___"] [class*="moreAction___"]');
       await markOpened('产品详情');
     },
     'product-expert': async function () {
       await clickText('联系产品专家');
-      await markOpened('联系产品专家');
+      await markOpened('业务线对接专家');
     },
     'induction-complete': async function () {
-      await clickText('完成', { selector: 'button, span' });
-      await markOpened('您已完成所有入职引导');
+      var attempts;
+      for (attempts = 0; attempts < 24; attempts += 1) {
+        var nextButton = await waitFor(function () {
+          return selectorNode('[class*="nextBtn___"]');
+        }, '入职引导下一步');
+        var label = normalize(nextButton.textContent).replace(/\s/g, '');
+        clickNode(nextButton);
+        if (label === '完成') {
+          await markOpened('您已完成所有入职引导');
+          return;
+        }
+        // Ant 按钮会在进度请求完成后才更新。并发预览时必须给 React
+        // 足够时间提交下一节，避免重复点击同一个“下一步”节点。
+        await pause(650);
+      }
+      throw new Error('入职引导未能推进到完成步骤');
     },
     'account-switch': async function () {
       await waitText('本地预览用户');
