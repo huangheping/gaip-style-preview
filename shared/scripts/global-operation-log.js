@@ -3,7 +3,10 @@
   if (window.__GAIP_OPERATION_LOG__) return;
   var script = document.currentScript;
   var rootUrl = new URL('../../', script.src);
-  var dialog, form, previousFocus, syncPending = false;
+  var panelSequence = 0;
+  function createController(inlineHost) {
+  var idPrefix = inlineHost ? 'gaip-log-page-' + (++panelSequence) + '-' : 'gaip-log-';
+  var dialog, form, previousFocus;
   var page = 1, pageSize = 10;
   var columns = ['序号', '操作时间', '操作人 / IP 地址', '功能模块', '操作类型', '操作内容', '变更前', '变更后'];
 
@@ -71,9 +74,9 @@
         '</span><span>' + escapeHtml(r.account) + '</span><span class="gaip-log-ip">' + escapeHtml(r.ip) +
         '</span></td><td>' + escapeHtml(r.module) + '</td><td><span class="gaip-log-tag" data-type="' +
         escapeHtml(r.type) + '">' + escapeHtml(r.type) + '</span></td><td>' +
-        copyCell(r.content, null, 'gaip-log-content-' + i) + '</td><td>' +
-        copyCell(r.before, null, 'gaip-log-before-' + i) + '</td><td>' +
-        copyCell(r.after, r.before, 'gaip-log-after-' + i) + '</td></tr>';
+        copyCell(r.content, null, idPrefix + 'content-' + i) + '</td><td>' +
+        copyCell(r.before, null, idPrefix + 'before-' + i) + '</td><td>' +
+        copyCell(r.after, r.before, idPrefix + 'after-' + i) + '</td></tr>';
     }).join('') || '<tr><td colspan="8" class="gaip-log-empty"><strong>' +
       (invalidDate(f) ? '请检查操作时间范围' : '暂无匹配的操作日志') +
       '</strong>' + (invalidDate(f) ? '开始日期不能晚于结束日期。' : '试试调整筛选条件，或点击“重置”查看全部模拟记录。') + '</td></tr>';
@@ -112,9 +115,9 @@
   }
   function makeDialog() {
     if (dialog) return;
-    dialog = document.createElement('dialog');
+    dialog = document.createElement(inlineHost ? 'section' : 'dialog');
     dialog.className = 'gaip-log-dialog';
-    dialog.id = 'gaip-operation-log';
+    dialog.id = inlineHost ? idPrefix + 'panel' : 'gaip-operation-log';
     dialog.setAttribute('aria-labelledby', 'gaip-log-title');
     dialog.setAttribute('aria-describedby', 'gaip-log-description');
     dialog.innerHTML =
@@ -143,7 +146,17 @@
       '<nav class="gaip-log-pages" aria-label="日志分页"><button type="button" class="gaip-log-button" data-log-prev>上一页</button>' +
       '<span class="gaip-log-page-current" aria-current="page" data-log-current>1</span>' +
       '<button type="button" class="gaip-log-button" data-log-next>下一页</button></nav></footer>';
-    document.body.appendChild(dialog);
+    if (inlineHost) {
+      dialog.classList.add('gaip-log-inline');
+      dialog.querySelector('[data-log-close]').remove();
+      ['title', 'description', 'start'].forEach(function (key) {
+        dialog.querySelector('#gaip-log-' + key).id = idPrefix + key;
+      });
+      dialog.querySelector('label').htmlFor = idPrefix + 'start';
+      dialog.setAttribute('aria-labelledby', idPrefix + 'title');
+      dialog.setAttribute('aria-describedby', idPrefix + 'description');
+    }
+    (inlineHost || document.body).appendChild(dialog);
     form = dialog.querySelector('form');
     form.addEventListener('submit', function (event) { event.preventDefault(); page = 1; render(); });
     form.addEventListener('input', function () { page = 1; render(); });
@@ -171,62 +184,31 @@
     dialog.addEventListener('cancel', function (event) { event.preventDefault(); hide(); });
     dialog.addEventListener('close', function () {
       document.documentElement.classList.remove('gaip-log-scroll-lock');
-      var trigger = document.querySelector('.gaip-log-trigger');
+      var trigger = document.querySelector('[data-config-log]');
       if (trigger) trigger.setAttribute('aria-expanded', 'false');
       if (previousFocus && previousFocus.isConnected) previousFocus.focus({ preventScroll: true });
     });
   }
   function show() {
-    if (!document.querySelector('.gaip-log-trigger')) return;
     makeDialog();
     if (dialog.open) return;
     previousFocus = document.activeElement;
     render();
     dialog.showModal();
     document.documentElement.classList.add('gaip-log-scroll-lock');
-    document.querySelector('.gaip-log-trigger').setAttribute('aria-expanded', 'true');
+    var trigger = document.querySelector('[data-config-log]');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
   }
   function hide() { if (dialog && dialog.open) dialog.close(); }
-  function syncTrigger() {
-    syncPending = false;
-    var header = document.querySelector('[data-gaip-region="user-actions"], [class*="right___fv3yS"]');
-    var user = header && header.querySelector('[class*="userInfo___"]');
-    var button = document.querySelector('.gaip-log-trigger');
-    var login = /#\/(?:user\/)?login(?:[/?]|$)/.test(location.hash);
-    if (!header || !user || login) {
-      if (button) button.remove();
-      hide();
-      return;
-    }
-    // DOM 顺序与视觉顺序一致：操作日志 → 日期 → 用户区。
-    // 日期暂不存在时回退到用户区前；后续顶栏重绘会重新校正位置。
-    var anchor = header.querySelector('[class*="date___mF83s"]') || user;
-    while (anchor.parentElement !== header) anchor = anchor.parentElement;
-    if (button && button.parentElement === header) {
-      if (button.nextElementSibling !== anchor) header.insertBefore(button, anchor);
-      return;
-    }
-    if (button) button.remove();
-    button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'gaip-log-trigger';
-    button.setAttribute('aria-label', '操作日志');
-    button.setAttribute('aria-haspopup', 'dialog');
-    button.setAttribute('aria-controls', 'gaip-operation-log');
-    button.setAttribute('aria-expanded', 'false');
-    button.title = '操作日志';
-    button.innerHTML = '<img alt="" src="' + asset('shared/assets/operation-log.svg') + '"><span>操作日志</span>';
-    button.addEventListener('click', show);
-    header.insertBefore(button, anchor);
+  if (inlineHost) {
+    makeDialog();
+    render();
+    return { destroy: function () { dialog.remove(); } };
   }
-  function scheduleSync() {
-    if (syncPending) return;
-    syncPending = true;
-    requestAnimationFrame(syncTrigger);
+  var api = { show: show, hide: hide, mount: createController };
+  document.querySelectorAll('.gaip-log-trigger').forEach(function (button) { button.remove(); });
+  window.addEventListener('hashchange', hide);
+  return api;
   }
-  window.__GAIP_OPERATION_LOG__ = { show: show, hide: hide };
-  var observer = new MutationObserver(scheduleSync);
-  observer.observe(document.body, { childList: true, subtree: true });
-  window.addEventListener('hashchange', function () { hide(); scheduleSync(); });
-  syncTrigger();
+  window.__GAIP_OPERATION_LOG__ = createController(null);
 }());

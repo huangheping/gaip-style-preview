@@ -937,6 +937,44 @@
         return true;
       }
 
+      function createPreviewRoot() {
+        var root = document.createElement('div');
+        root.className = 'gaip-proposal-app';
+        root.innerHTML = '<div class="gaip-owner-overlay" data-owner-modal hidden></div><div class="gaip-owner-confirm-overlay" data-unlink-confirm hidden></div><div class="gaip-file-overlay" data-file-modal hidden></div><div class="gaip-proposal-toast" data-proposal-toast></div>';
+        return root;
+      }
+
+      function createOwnerDialogPreview() {
+        var root = createPreviewRoot();
+        var record = records.find(function (entry) { return entry.status === 'linked'; }) || records[0];
+        openOwnerModal(root, record, null);
+        document.body.style.overflow = '';
+        return root.querySelector('[data-owner-modal]');
+      }
+
+      function createUnlinkConfirmPreview() {
+        var root = createPreviewRoot();
+        var record = records.find(function (entry) { return entry.status === 'linked'; }) || records[0];
+        openOwnerModal(root, record, null);
+        openUnlinkConfirm(root);
+        document.body.style.overflow = '';
+        return root.querySelector('[data-unlink-confirm]');
+      }
+
+      function createFileDialogPreview() {
+        var root = createPreviewRoot();
+        var record = records[0];
+        openFileModal(root, record, null);
+        document.body.style.overflow = '';
+        return root.querySelector('[data-file-modal]');
+      }
+
+      window.__GAIP_PROPOSAL_PREVIEW__ = {
+        createOwnerDialog: createOwnerDialogPreview,
+        createUnlinkConfirm: createUnlinkConfirmPreview,
+        createFileDialog: createFileDialogPreview
+      };
+
       function scheduleMount() {
         window.requestAnimationFrame(function () {
           if (mount()) return;
@@ -947,5 +985,6 @@
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scheduleMount);
       else scheduleMount();
 
-      new MutationObserver(function () { mount(); }).observe(document.getElementById('root'), { childList: true, subtree: true });
+      var applicationRoot = document.getElementById('root');
+      if (applicationRoot) new MutationObserver(function () { mount(); }).observe(applicationRoot, { childList: true, subtree: true });
     }());

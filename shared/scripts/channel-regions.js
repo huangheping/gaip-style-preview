@@ -107,6 +107,13 @@
       ['page-content', '[data-news-list]'],
       ['content-main', '.articles___H5GX6']
     ],
+    config: [
+      ['page-header', '.header___Vhyog, .gaip-log-header'],
+      ['page-nav', '[role="tablist"]'],
+      ['content-sidebar', '.sidebar___zkFeC'],
+      ['content-main', '.main___CWrje, .gaip-log-inline'],
+      ['filter-toolbar', '.mainHeader___QGD6D, .gaip-log-filters']
+    ],
     wealth: [
       ['page-header', '.gaip-wealth-page-header, .gaip-wealth-overview'],
       ['page-nav', '.gaip-wealth-subnav'],
@@ -191,6 +198,16 @@
     if (image.src !== sidebarHubImageUrl) image.src = sidebarHubImageUrl;
   }
 
+  function syncSidebarNavScroll(sidebar) {
+    var menu;
+    var scroll;
+    if (!sidebar) return;
+    menu = sidebar.querySelector('.ant-pro-sider-menu, .ant-menu-root');
+    scroll = menu && menu.parentElement;
+    if (!scroll || !scroll.parentElement || !scroll.parentElement.classList.contains('ant-layout-sider-children')) return;
+    scroll.classList.add('gaip-sidebar-nav-scroll');
+  }
+
   function markGlobalRegions() {
     var shell = document.querySelector('.ant-pro-layout');
     var header = document.querySelector('[class*="header___tcVAl"]');
@@ -210,6 +227,7 @@
 
     if (sidebar) {
       mark(find(sidebar, '.ant-pro-sider-menu') || find(sidebar, '.ant-menu'), 'primary-nav');
+      syncSidebarNavScroll(sidebar);
       syncSidebarHub(sidebar);
     }
 
@@ -222,7 +240,7 @@
 
     var channelPage;
     var channel = channelConfig && channelConfig.getByKey(pageKey);
-    if (pageKey === 'learning' || pageKey === 'wealth' || pageKey === 'news') {
+    if (channel && channel.virtual) {
       Array.prototype.forEach.call(
         main.querySelectorAll('[data-gaip-region="channel-page"]'),
         unmark

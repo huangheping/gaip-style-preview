@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>真实弹窗预览 - GAIP</title>
+  <link rel="shortcut icon" href="../web/favicon.ico">
+  <link rel="stylesheet" href="../shared/styles/global-font.css">
+  <style>
+    :root { --ink:#2f3640; --muted:rgba(47,54,64,.62); --line:rgba(47,54,64,.12); --brand:#025b52; --paper:#f5f7f6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); }
+    button { font: inherit; }
+    .page { width: min(1680px, calc(100% - 48px)); margin: 0 auto; padding: 40px 0 80px; }
+    .hero { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:28px; align-items:end; padding-bottom:24px; border-bottom:1px solid var(--line); }
+    .eyebrow { margin:0 0 8px; color:var(--brand); font-size:12px; letter-spacing:.14em; }
+    h1 { margin:0; font-size:clamp(28px,3vw,42px); font-weight:500; line-height:1.2; }
+    .intro { max-width:900px; margin:12px 0 0; color:var(--muted); font-size:14px; line-height:1.75; }
+    .counts { display:flex; gap:10px; }
+    .count { min-width:116px; padding:14px 16px; border:1px solid rgba(2,91,82,.2); border-radius:8px; background:#fff; }
+    .count span { display:block; color:var(--muted); font-size:12px; }
+    .count strong { display:block; margin-top:4px; color:var(--brand); font-size:28px; font-weight:500; line-height:1; }
+    .rule { margin:24px 0 32px; padding:13px 16px; border-left:3px solid #d5b980; background:#fffcf5; color:var(--muted); font-size:13px; line-height:1.7; }
+    .rule strong { color:var(--ink); }
+    .sectionTitle { margin:40px 0 6px; font-size:22px; font-weight:500; }
+    .sectionIntro { margin:0 0 20px; color:var(--muted); font-size:13px; }
+    .previewCard { overflow:hidden; margin-top:24px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 12px 36px rgba(35,52,50,.05); }
+    .previewCardHeader { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:center; min-height:82px; padding:17px 22px; border-bottom:1px solid var(--line); }
+    .titleRow { display:flex; align-items:center; gap:12px; }
+    .index { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; color:#fff; background:var(--brand); font-size:12px; }
+    .previewCard h2 { margin:0; font-size:20px; font-weight:500; }
+    .previewCard p { margin:5px 0 0 40px; color:var(--muted); font-size:13px; }
+    code { padding:3px 7px; border-radius:4px; color:var(--brand); background:rgba(2,91,82,.06); font-size:11px; }
+    .frameWrap { position:relative; background:#e9eeec; }
+    .frameWrap iframe { display:block; width:100%; border:0; background:#fff; }
+    .frameStatus { position:absolute; inset:0; z-index:3; display:grid; place-items:center; padding:24px; color:var(--muted); background:#f5f7f6; font-size:14px; text-align:center; }
+    .frameStatus[hidden] { display:none; }
+    .frameStatus.is-error { color:#a63d3d; background:#fff8f8; }
+    .pendingGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .pendingItem { min-width:0; padding:16px; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,.78); }
+    .pendingItem h3 { margin:0; font-size:15px; font-weight:500; }
+    .pendingItem p { margin:6px 0 10px; color:var(--muted); font-size:12px; line-height:1.55; }
+    .pendingItem code { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .embedStatus { position:fixed; inset:0; display:grid; place-items:center; padding:24px; color:#58616b; background:#f5f7f6; font-size:14px; text-align:center; }
+    .embedStatus.is-error { color:#a63d3d; }
+    @media (max-width:900px) {
+      .page { width:calc(100% - 24px); padding-top:24px; }
+      .hero,.previewCardHeader { grid-template-columns:1fr; align-items:start; }
+      .counts { width:100%; }
+      .count { flex:1; }
+      .pendingGrid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main id="app"></main>
+  <script src="./弹窗源登记.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var catalog = window.__GAIP_MODAL_SOURCE_CATALOG__;
+      var app = document.getElementById('app');
+      var embedId = new URLSearchParams(window.location.search).get('embed');
+
+      function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function (character) {
+          return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[character];
+        });
+      }
+
+      function loadStyle(href) {
+        return new Promise(function (resolve, reject) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet'; link.href = href; link.onload = resolve;
+          link.onerror = function () { reject(new Error('样式加载失败：' + href)); };
+          document.head.appendChild(link);
+        });
+      }
+
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var script = document.createElement('script');
+          script.src = src; script.onload = resolve;
+          script.onerror = function () { reject(new Error('脚本加载失败：' + src)); };
+          document.body.appendChild(script);
+        });
+      }
+
+      function appendSourceNode(node) {
+        if (!node) throw new Error('真实源入口没有返回弹窗节点');
+        node.hidden = false;
+        document.body.appendChild(node);
+        return node;
+      }
+
+      function openEntry(entry) {
+        if (entry.id === 'ai-notice') return window.__GAIP_AI_NOTICE__.show();
+        if (entry.id === 'poster-share') return window.__GAIP_POSTER_SHARE__.open({
+          id:'source-preview', title:'全球资金重估 AI 投资周期，美元利率窗口进入观察期',
+          summary:'主要市场继续围绕 AI 资本开支、美元利率路径和能源价格重新定价。',
+          category:'宏观经济', tags:['AI投资','美元趋势'], date:'2026-09-01 09:12', score:94, slot:'晨间快讯', featured:true
+        });
+        if (entry.id === 'operation-log') return window.__GAIP_OPERATION_LOG__.show();
+        if (entry.id === 'proposal-owner') return appendSourceNode(window.__GAIP_PROPOSAL_PREVIEW__.createOwnerDialog());
+        if (entry.id === 'proposal-unlink') return appendSourceNode(window.__GAIP_PROPOSAL_PREVIEW__.createUnlinkConfirm());
+        if (entry.id === 'proposal-file') return appendSourceNode(window.__GAIP_PROPOSAL_PREVIEW__.createFileDialog());
+        if (entry.id === 'activity-signup') {
+          var activity = appendSourceNode(window.__GAIP_ACTIVITY_SYNC__.createSignupModal('兑现之年 · 全球配置新程'));
+          requestAnimationFrame(function () { activity.classList.add('is-open'); });
+          return activity;
+        }
+        if (entry.id === 'wealth-keyword') return appendSourceNode(window.__GAIP_WEALTH_CENTER__.createKeywordDialog());
+        if (entry.id === 'news-article') return appendSourceNode(window.__GAIP_NEWS_CENTER__.createArticleModal());
+        if (entry.id === 'config-member') return window.__GAIP_CONFIG_DIALOGS__.openMember(1);
+        if (entry.id === 'config-department') return window.__GAIP_CONFIG_DIALOGS__.openDepartment('department-18', 'rename');
+        if (entry.id === 'config-delete') return window.__GAIP_CONFIG_DIALOGS__.openDepartment('department-18', 'delete');
+        if (entry.id === 'config-admin') return window.__GAIP_CONFIG_DIALOGS__.openDepartment('all', 'admin');
+        throw new Error('未登记真实打开入口：' + entry.id);
+      }
+
+      async function renderEmbed(entry) {
+        if (entry.previewMode === 'route-trigger') {
+          location.replace('../登录.html#' + entry.route + '?gaip-popup-preview=' + encodeURIComponent(entry.id));
+          return;
+        }
+        var base = document.createElement('base');
+        base.href = '../';
+        document.head.insertBefore(base, document.head.firstChild);
+        app.className = 'embedStatus';
+        app.textContent = '正在从真实源入口加载“' + entry.title + '”…';
+        try {
+          if (entry.previewMode === 'config-dialog') window.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
+          await Promise.all(entry.styles.map(loadStyle));
+          for (var index = 0; index < entry.scripts.length; index += 1) await loadScript(entry.scripts[index]);
+          openEntry(entry);
+          app.remove();
+        } catch (error) {
+          app.classList.add('is-error');
+          app.textContent = '真实弹窗加载失败：' + error.message;
+          throw error;
+        }
+      }
+
+      function renderParent() {
+        var ready = catalog.ready;
+        var pending = catalog.pending;
+        var excluded = catalog.excluded;
+        app.className = 'page';
+        app.innerHTML =
+          '<header class="hero"><div><p class="eyebrow">GAIP · SOURCE-CONNECTED MODAL PREVIEW</p><h1>真实弹窗预览</h1>' +
+          '<p class="intro">这里只展示能够调用真实源入口的当前弹窗。每项在独立 iframe 中运行：共享组件直接调用原控制器，频道弹窗打开正式 Hash 页面并执行真实按钮流程；预览页不保存弹窗 DOM 或视觉样式。</p></div>' +
+          '<div class="counts"><div class="count"><span>真实可预览</span><strong>' + ready.length + '</strong></div><div class="count"><span>待接入</span><strong>' + pending.length + '</strong></div><div class="count"><span>不进入预览</span><strong>' + excluded.length + '</strong></div></div></header>' +
+          '<aside class="rule"><strong>当前约束：</strong>已明确排除的业务主面板和抽屉不展示；已被现行页面替换、页面不可达或并非独立弹层的旧登记项也不生成假预览。其余项目全部调用当前真实源。</aside>' +
+          '<section><h2 class="sectionTitle">真实源预览</h2><p class="sectionIntro">源组件修改结构或 CSS 后，刷新本页即可同步；各 iframe 之间不会发生频道 CSS 串扰。</p><div id="readyList"></div></section>' +
+          (pending.length ? '<section><h2 class="sectionTitle">待接入真实入口</h2><p class="sectionIntro">这些弹窗已盘点，但在拥有完整 open()/mount() 入口前不展示视觉结果。</p><div class="pendingGrid" id="pendingList"></div></section>' : '');
+
+        var readyList = document.getElementById('readyList');
+        var routeQueue = [];
+        var routeActive = 0;
+        var routeConcurrency = 2;
+
+        function pumpRouteQueue() {
+          while (routeActive < routeConcurrency && routeQueue.length) {
+            var frame = routeQueue.shift();
+            routeActive += 1;
+            frame.dataset.queueState = 'running';
+            frame.src = frame.dataset.source;
+            frame._gaipPreviewTimeout = window.setTimeout(function (target) {
+              return function () {
+                if (target.dataset.queueState !== 'running') return;
+                var status = target.parentElement.querySelector('.frameStatus');
+                status.hidden = false;
+                status.classList.add('is-error');
+                status.textContent = '真实弹窗未能打开：页面加载超时';
+                settleRouteFrame(target);
+              };
+            }(frame), 60000);
+          }
+        }
+
+        function settleRouteFrame(frame) {
+          if (!frame || frame.dataset.queueState !== 'running') return;
+          frame.dataset.queueState = 'done';
+          window.clearTimeout(frame._gaipPreviewTimeout);
+          routeActive = Math.max(0, routeActive - 1);
+          pumpRouteQueue();
+        }
+
+        window.addEventListener('message', function (event) {
+          var data = event.data;
+          if (!data || data.type !== 'gaip-popup-preview') return;
+          var frame = Array.prototype.find.call(document.querySelectorAll('iframe'), function (candidate) {
+            return candidate.contentWindow === event.source && candidate.dataset.popupId === data.id;
+          });
+          if (!frame) return;
+          var status = frame.parentElement.querySelector('.frameStatus');
+          if (!status) return;
+          if (data.status === 'opened') {
+            status.hidden = true;
+            status.classList.remove('is-error');
+            settleRouteFrame(frame);
+          } else if (data.status === 'error') {
+            status.hidden = false;
+            status.classList.add('is-error');
+            status.textContent = '真实弹窗未能打开：' + (data.message || '未找到当前页面入口');
+            settleRouteFrame(frame);
+          }
+        });
+        ready.forEach(function (entry, index) {
+          var article = document.createElement('article');
+          article.className = 'previewCard';
+          article.innerHTML = '<header class="previewCardHeader"><div><div class="titleRow"><span class="index">' + String(index + 1).padStart(2, '0') + '</span><h2>' + escapeHtml(entry.title) + '</h2></div><p>' + escapeHtml(entry.channel) + '</p></div><code>' + escapeHtml(entry.source) + '</code></header>' +
+            '<div class="frameWrap"><div class="frameStatus">正在打开真实弹窗…</div><iframe data-popup-id="' + escapeHtml(entry.id) + '" data-preview-mode="' + escapeHtml(entry.previewMode || 'source') + '" title="' + escapeHtml(entry.title) + '真实源预览" loading="eager" style="height:' + entry.height + 'px"></iframe></div>';
+          readyList.appendChild(article);
+          var frame = article.querySelector('iframe');
+          if (entry.previewMode === 'route-trigger') {
+            frame.dataset.source = '?embed=' + encodeURIComponent(entry.id);
+            routeQueue.push(frame);
+          } else {
+            frame.addEventListener('load', function () {
+              var status = frame.parentElement.querySelector('.frameStatus');
+              window.setTimeout(function () { status.hidden = true; }, 120);
+            });
+            frame.src = '?embed=' + encodeURIComponent(entry.id);
+          }
+        });
+        pumpRouteQueue();
+
+        var pendingList = document.getElementById('pendingList');
+        if (pendingList) pending.forEach(function (entry) {
+          var item = document.createElement('article');
+          item.className = 'pendingItem';
+          item.innerHTML = '<h3>' + escapeHtml(entry.title) + '</h3><p>' + escapeHtml(entry.channel) + (entry.reason ? ' · ' + escapeHtml(entry.reason) : ' · 尚未暴露完整真实打开入口。') + '</p><code>' + escapeHtml(entry.source) + '</code>';
+          pendingList.appendChild(item);
+        });
+      }
+
+      if (embedId) {
+        var entry = catalog.ready.find(function (candidate) { return candidate.id === embedId; });
+        if (!entry) { app.className = 'embedStatus is-error'; app.textContent = '该项目不是可预览弹窗，或已被排除。'; }
+        else renderEmbed(entry);
+      } else renderParent();
+    }());
+  </script>
+</body>
+</html>

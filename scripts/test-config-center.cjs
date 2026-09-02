@@ -1,0 +1,378 @@
+/* Local DOM integration tests; visual alignment/native dialogs require browser QA.
+   Use the same temporary jsdom NODE_PATH as test-operation-log.cjs. */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { JSDOM } = require('jsdom');
+const root = path.resolve(__dirname, '..');
+const tick = () => new Promise(resolve => setTimeout(resolve, 45));
+
+async function main() {
+  const dom = new JSDOM('<!doctype html><div id="root"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><ul class="ant-menu-root"></ul></aside><main class="ant-pro-layout-content"><div data-test-config-underlay></div><button type="button" class="globalButton___TEST" data-gaip-region="ai-assistant-entry">AI Agent</button></main></div>', {
+    url: 'file://' + root + '/index.html#/workspace?gaip-channel=config&gaip-view=organization',
+    runScripts: 'outside-only', pretendToBeVisual: true
+  });
+  const w = dom.window, d = w.document;
+  w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
+  w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
+  let logOpened = 0;
+  w.__GAIP_OPERATION_LOG__ = {
+    show() { logOpened++; },
+    mount(host) {
+      host.innerHTML = '<section class="gaip-log-inline"><button type="button" class="gaip-log-button gaip-log-export" data-log-export><img alt="" src="fallback.svg">导出 Excel</button></section>';
+      return { destroy() { host.replaceChildren(); } };
+    }
+  };
+  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  await tick();
+  const one = selector => { const el = d.querySelector(selector); assert.ok(el, selector); return el; };
+  const click = selector => one(selector).click();
+  const menu = id => click('[data-department-menu="' + id + '"]');
+  const action = name => click('.gaip-department-menu [data-department-action="' + name + '"]');
+  const save = () => click('[data-department-save]');
+  const cancel = () => click('[data-department-cancel]');
+  const name = value => {
+    const input = one('.gaip-department-editor input'); input.value = value;
+    input.dispatchEvent(new w.Event('input', { bubbles: true }));
+  };
+  const rowByName = value => Array.from(d.querySelectorAll('[data-department]')).find(el => el.querySelector('.treeNodeName___mtuTp').textContent === value);
+  const select = id => click('[data-department="' + id + '"] .treeNodeName___mtuTp');
+
+  const mainContent = one('.ant-pro-layout-content');
+  const underlay = one('[data-test-config-underlay]');
+  const aiEntry = one('[data-gaip-region="ai-assistant-entry"]');
+  let aiClicks = 0;
+  aiEntry.addEventListener('click', () => { aiClicks++; });
+  assert.equal(one('.gaip-config-page').parentElement, mainContent, 'config page mounts inside the content host');
+  assert.notEqual(mainContent.inert, true, 'content host stays interactive for global entries');
+  assert.equal(mainContent.hasAttribute('aria-hidden'), false, 'content host stays exposed for global entries');
+  assert.equal(underlay.inert, true, 'underlying page content is inert');
+  assert.equal(underlay.getAttribute('aria-hidden'), 'true', 'underlying page content is hidden from assistive technology');
+  assert.notEqual(aiEntry.inert, true, 'AI Agent entry is not made inert');
+  assert.equal(aiEntry.hasAttribute('aria-hidden'), false, 'AI Agent entry stays exposed');
+  aiEntry.click();
+  assert.equal(aiClicks, 1, 'AI Agent entry remains clickable');
+
+  assert.equal(d.querySelectorAll('[data-department]').length, 19);
+  assert.equal(one('[data-department="all"]').getAttribute('aria-expanded'), 'true', 'root channel is expanded initially');
+  assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'), 'false', 'first-level department starts collapsed');
+  assert.equal(one('[data-department="department-2"]').hidden, true, 'second-level department is hidden initially');
+  assert.equal(one('[data-department="department-11"]').hidden, false, 'first-level leaf remains visible');
+  assert.equal(d.querySelectorAll('tbody tr').length, 10, 'member table keeps ten rows per page');
+  assert.equal(one('[data-config-summary]').textContent, '共 24 条，第 1 / 3 页');
+  click('[data-collapse="department-1"]');
+  assert.equal(one('[data-department="department-2"]').hidden, false, 'first-level department can expand');
+  click('[data-collapse="department-1"]');
+  assert.equal(one('[data-department="department-2"]').hidden, true, 'first-level department can collapse again');
+  assert.equal(one('.ant-table').classList.contains('ant-table-ping-left'), false, 'table at its left edge has no left shadow');
+  const configCss = fs.readFileSync(path.join(root, 'features/config-center/config-center.css'), 'utf8');
+  const configContentCss = fs.readFileSync(path.join(root, 'features/config-center/config-center-content.css'), 'utf8');
+  assert.match(configCss, /tab___UxqK9\.tabActive___H5olV::after\s*\{\s*width:\s*71px/);
+  assert.match(configCss, /tab___UxqK9::after\s*\{\s*height:\s*4px/);
+  assert.match(configContentCss, /exportBtn___RDhet[\s\S]*font-size:\s*16px/);
+  assert.match(configContentCss, /mainHeader___QGD6D\s*\{[\s\S]*justify-content:\s*space-between;[\s\S]*padding-top:\s*16px/);
+  assert.match(configContentCss, /gaip-config-admin-button\s*\{[\s\S]*background:\s*#2f3640;[\s\S]*border-color:\s*#2f3640;[\s\S]*color:\s*#fff/);
+  assert.match(configContentCss, /gaip-config-admin-button:hover,[\s\S]*background:\s*#464c55\s*!important;[\s\S]*color:\s*#fff\s*!important/);
+  assert.match(configContentCss, /gaip-config-admin-button:active\s*\{[\s\S]*background:\s*#20262e\s*!important/);
+  assert.match(configContentCss, /gaip-config-admin-button[\s\S]*stroke:\s*currentColor/);
+  assert.match(configContentCss, /adminRoleWorkspace___u4P8e\s*\{[\s\S]*grid-template-columns:\s*220px minmax\(0,1fr\)/);
+  assert.match(configContentCss, /adminRoleTabs___jN6xA\s*\{[\s\S]*flex-direction:\s*column/);
+  assert.match(configContentCss, /adminRoleTab___K2yTe:before\s*\{[\s\S]*top:\s*0;[\s\S]*bottom:\s*0;[\s\S]*width:\s*4px/);
+  assert.match(configContentCss, /adminRoleTab___K2yTe\.is-active\s*\{\s*background:\s*#fff;\s*color:\s*#2f3640/);
+  assert.match(configContentCss, /adminRoleTab___K2yTe\.is-active:before\s*\{\s*background:\s*#24d4c9/);
+  assert.doesNotMatch(configContentCss, /adminChoiceMark___Sj4vQ/, 'administrator choices use the project Ant controls');
+  assert.doesNotMatch(configContentCss, /adminRoleAccent___ofwP4/, 'right-side role headers omit the redundant green accent');
+  assert.match(configContentCss, /adminRoleMode___m71Db\s*\{[\s\S]*border:\s*1px solid rgba\(47,54,64,\.12\);[\s\S]*background:\s*rgba\(47,54,64,\.075\);[\s\S]*font-size:\s*12px;[\s\S]*font-weight:\s*500/);
+  assert.match(configContentCss, /adminRoleHeader___FKk8u\s*\{\s*padding:\s*16px;/);
+  assert.doesNotMatch(configContentCss, /adminRoleHeader___FKk8u\s*\{[^}]*min-height/, 'role panel headers use content height plus 16px vertical padding');
+  assert.doesNotMatch(configContentCss, /adminRoleClear___pV6Et/, 'commission selection no longer needs a separate clear action');
+  assert.match(configContentCss, /adminMemberGrid___Vne3q\s*\{[^}]*overflow:\s*auto;[^}]*overscroll-behavior:\s*contain;[^}]*scrollbar-width:\s*thin;[^}]*scrollbar-color:\s*rgba\(47,54,64,\.18\) transparent/);
+  assert.match(configContentCss, /adminMemberGrid___Vne3q::\-webkit-scrollbar\s*\{\s*width:\s*6px/);
+  assert.match(configContentCss, /adminMemberGrid___Vne3q:hover::\-webkit-scrollbar-thumb\s*\{\s*background:\s*rgba\(47,54,64,\.3\)/);
+  assert.match(configContentCss, /memberRoleModule___W8rjP[^}]*grid-template-columns:\s*112px minmax\(0,1fr\)/);
+  assert.match(configContentCss, /memberRoleOptions___kP3tN[^}]*grid-template-columns:\s*minmax\(0,1fr\) minmax\(0,1fr\)/);
+  assert.match(configContentCss, /memberRoleOptions___kP3tN \.ant-checkbox-label[^}]*white-space:\s*nowrap/);
+  assert.doesNotMatch(configContentCss, /clueRoleOptions___Y4mLs[^}]*grid-template-columns/, 'clue roles reuse the same flex alignment as referrer roles');
+  assert.match(configContentCss, /formModal____MTrk \.ant-modal-content[^}]*display:\s*flex;[^}]*flex-direction:\s*column;[^}]*overflow:\s*hidden/);
+  assert.match(configContentCss, /formModal____MTrk \.ant-modal-header[^}]*flex:\s*0 0 auto/);
+  assert.match(configContentCss, /formModal____MTrk \.ant-modal-body[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain;[^}]*flex:\s*1 1 auto/);
+  assert.match(configContentCss, /footer___UhMLM[^}]*border-top:[^}]*flex:\s*0 0 auto/);
+  assert.match(configContentCss, /adminRolePanel___bd8Dz\[hidden\]\s*\{\s*display:\s*none/);
+  assert.match(configContentCss, /@media \(max-width:\s*960px\)[\s\S]*adminRoleWorkspace___u4P8e\s*\{\s*grid-template-columns:\s*190px minmax\(0,\s*1fr\)/);
+  assert.match(configContentCss, /@media \(max-width:\s*640px\)[\s\S]*adminMemberGrid___Vne3q\s*\{\s*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+  assert.match(configCss, /tabs___U1Hwt\s*\{[^}]*flex:\s*0 0 auto;[^}]*overflow:\s*visible/);
+  assert.doesNotMatch(configCss, /tabs___U1Hwt[^}]*overflow-x:\s*auto|tabs___U1Hwt::\-webkit-scrollbar/, 'channel tabs do not create a scrollbar');
+  assert.match(configCss, /tab___UxqK9\s*\{[^}]*flex:\s*0 0 auto;[^}]*white-space:\s*nowrap/);
+  assert.match(configCss, /headerRight___Fe2zg\s*\{[^}]*flex:\s*0 0 auto/);
+  assert.match(configCss, /header___Vhyog > \.searchWrap___gp0a3\s*\{[\s\S]*flex:\s*1 1 333px;[\s\S]*min-width:\s*120px;[\s\S]*margin-left:\s*auto;[\s\S]*margin-right:\s*24px/);
+  assert.match(configCss, /header___Vhyog > \.searchWrap___gp0a3 \.searchInput___VaHgy\s*\{[\s\S]*height:\s*72px;[\s\S]*border-width:\s*0 1px;[\s\S]*background:\s*rgba\(47,54,64,\.03\)/);
+  assert.match(configCss, /searchInput___VaHgy:hover,[\s\S]*searchInput___VaHgy:focus-within\s*\{[\s\S]*border-width:\s*0 1px;[\s\S]*border-color:\s*rgba\(47,54,64,\.12\);[\s\S]*background:\s*rgba\(47,54,64,\.03\)/);
+  assert.match(configContentCss, /tagAdmin___YTyPD[\s\S]*height:\s*20px;[\s\S]*padding:\s*0 8px;[\s\S]*font-size:\s*12px/);
+  assert.match(configCss, /gaip-config-original\s*\{\s*min-width:\s*0;\s*width:\s*100%/);
+  assert.doesNotMatch(configCss, /\.sidebar___zkFeC|\.mainHeader___QGD6D|\.table___BX44I|\.gaip-config-editor/, 'shell stylesheet excludes content overrides');
+  assert.doesNotMatch(configContentCss, /\.gaip-config-menu|\.header___Vhyog|\.tab___UxqK9/, 'content stylesheet excludes main navigation and top header');
+  assert.match(configContentCss, /\.content___r0pMd\{/);
+  assert.match(configContentCss, /\.sidebar___zkFeC\{/);
+  assert.match(configContentCss, /\.table___BX44I \.ant-table-thead/);
+  assert.match(configContentCss, /\.formModal____MTrk \.ant-modal-content/);
+  assert.doesNotMatch(configContentCss, /\.searchWrap___gp0a3|\.logBtn____S6Zh/, 'content stylesheet excludes top search and log action');
+  assert.match(configContentCss, /gaip-log-inline \.gaip-log-export\s*\{[^}]*width:\s*147px;[^}]*height:\s*48px;[^}]*background:\s*#025b52;[^}]*color:\s*#fff;[^}]*font-size:\s*16px/);
+  assert.match(configContentCss, /gaip-log-inline \.gaip-log-export:hover[^}]*\{[^}]*background:\s*#155347;[^}]*color:\s*#fff/);
+  assert.match(configContentCss, /gaip-log-inline \.gaip-log-export svg\s*\{[^}]*fill:\s*currentColor/);
+  assert.match(configContentCss, /gaip-log-inline \.gaip-log-table th\s*\{[^}]*padding:\s*10px 16px;[^}]*background:\s*#f5f5f5;[^}]*color:\s*#2f3640;[^}]*font-size:\s*14px;[^}]*font-weight:\s*500/);
+  const configAssets = w.__GAIP_CHANNEL_CONFIG__.getByKey('config').assets.styles;
+  assert.ok(configAssets.some(asset => asset.includes('config-center-content.css')), 'content stylesheet is registered');
+  assert.ok(configAssets.some(asset => asset.includes('config-center.css')), 'shell stylesheet is registered');
+  assert.equal(configAssets.some(asset => asset.includes('organization-source.css')), false, 'full source snapshot is not loaded at runtime');
+  assert.equal(one('.pageContainer___QCUaw > .header___Vhyog > .searchWrap___gp0a3').nextElementSibling, one('.pageContainer___QCUaw > .header___Vhyog > .headerRight___Fe2zg'));
+  assert.equal(d.querySelector('.mainHeader___QGD6D .searchWrap___gp0a3'), null, 'search leaves the table toolbar');
+  const toolbar = one('.mainHeader___QGD6D');
+  const adminButton = one('[data-config-admin]');
+  const exportButton = one('[data-config-export]');
+  const adminMenuTemplate = d.createElement('template');
+  adminMenuTemplate.innerHTML = w.__GAIP_CONFIG_SOURCE__.departmentUi.menu;
+  const sourceAdminIcon = adminMenuTemplate.content.querySelector('[data-department-action="admin"] > svg');
+  assert.equal(toolbar.firstElementChild, adminButton, 'administrator action aligns to the toolbar/table left edge');
+  assert.equal(toolbar.lastElementChild, one('.mainHeader___QGD6D > .headerRight___Fe2zg'), 'export and add actions remain aligned at the right edge');
+  assert.equal(adminButton.lastElementChild.textContent.trim(), '设置管理员');
+  assert.equal(adminButton.getAttribute('aria-label'), '设置管理员');
+  assert.equal(adminButton.className.replace(' gaip-config-admin-button', ''), exportButton.className, 'administrator action reuses the export button structure and styling');
+  assert.equal(adminButton.querySelector('.ant-btn-icon > svg').outerHTML, sourceAdminIcon.outerHTML, 'administrator action reuses the department menu icon');
+  adminButton.click();
+  const toolbarAdminDialog = one('.gaip-department-editor[aria-label="设置管理员"]');
+  assert.equal(toolbarAdminDialog.querySelectorAll('[data-admin-role-panel] h3').length, 0, 'right-side role panels omit repeated titles');
+  assert.deepEqual(Array.from(toolbarAdminDialog.querySelectorAll('[data-admin-role-panel] .adminRoleHeading___fR73p p'), el => el.textContent), ['管理当前组织节点与下级组织，支持多选。', '当前节点允许不设置，或指定 1 名归属人。', '仅超级管理员可设置，与线索跟进人互斥。', '负责可见范围内的线索跟进，与线索管理员互斥。']);
+  assert.deepEqual(Array.from(toolbarAdminDialog.querySelectorAll('[data-admin-role-tab] strong'), el => el.textContent), ['组织架构管理员', '上级佣金归属人', '线索管理员', '线索跟进人']);
+  assert.equal(toolbarAdminDialog.querySelectorAll('[data-admin-role-tab] small').length, 0, 'role tabs omit redundant type captions');
+  assert.equal(toolbarAdminDialog.querySelectorAll('.adminRoleAccent___ofwP4').length, 0, 'role panel headers omit green accents');
+  assert.deepEqual(Array.from(toolbarAdminDialog.querySelectorAll('.adminRoleMode___m71Db'), el => el.textContent), ['多选', '单选', '多选', '多选']);
+  assert.equal(one('[role="tablist"][aria-orientation="vertical"]').children.length, 4);
+  assert.deepEqual(Array.from(toolbarAdminDialog.querySelectorAll('[data-admin-role-count]'), el => el.textContent), ['已选 2 人', '已选 0 人', '已选 0 人', '已选 0 人']);
+  assert.equal(toolbarAdminDialog.querySelectorAll('[data-admin-role-list="organization"] .adminMemberCard___2fWc8').length, 24);
+  assert.equal(toolbarAdminDialog.querySelector('[data-admin-role-list="organization"] .adminMemberCard___2fWc8:last-child .memberName___en782').textContent, '示例成员24');
+  assert.equal(toolbarAdminDialog.querySelector('[data-admin-role="commission"]').type, 'checkbox');
+  assert.equal(toolbarAdminDialog.querySelector('[data-admin-role="clue-admin"]').type, 'checkbox');
+  assert.ok(toolbarAdminDialog.querySelector('[data-admin-role="organization"]').classList.contains('ant-checkbox-input'));
+  assert.ok(toolbarAdminDialog.querySelector('[data-admin-role="organization"]').parentElement.classList.contains('ant-checkbox'));
+  assert.ok(toolbarAdminDialog.querySelector('[data-admin-role="commission"]').classList.contains('ant-checkbox-input'));
+  assert.ok(toolbarAdminDialog.querySelector('[data-admin-role="commission"]').parentElement.classList.contains('ant-checkbox'));
+  assert.equal(toolbarAdminDialog.querySelector('[data-admin-role-clear="commission"]'), null);
+  assert.match(toolbarAdminDialog.querySelector('[data-admin-role-panel="clue-admin"]').textContent, /仅超级管理员可设置/);
+  assert.equal(one('[data-admin-role-tab="organization"]').getAttribute('aria-selected'), 'true');
+  assert.equal(one('[data-admin-role-panel="organization"]').hidden, false);
+  assert.equal(one('[data-admin-role-panel="commission"]').hidden, true);
+  click('[data-admin-role-tab="commission"]');
+  assert.equal(one('[data-admin-role-tab="commission"]').getAttribute('aria-selected'), 'true');
+  assert.equal(one('[data-admin-role-panel="organization"]').hidden, true);
+  assert.equal(one('[data-admin-role-panel="commission"]').hidden, false);
+  one('[data-admin-role-tab="commission"]').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+  assert.equal(one('[data-admin-role-tab="clue-admin"]').getAttribute('aria-selected'), 'true', 'vertical tabs support arrow-key switching');
+  click('[data-admin-role-tab="organization"]');
+  const toolbarAdminSignature = Array.from(toolbarAdminDialog.querySelectorAll('[data-admin-role-tab]'), tab => [tab.dataset.adminRoleTab, tab.querySelector('strong').textContent, tab.querySelector('[data-admin-role-count]').textContent]);
+  cancel();
+  menu('all'); action('admin');
+  assert.deepEqual(Array.from(one('.gaip-department-editor[aria-label="设置管理员"]').querySelectorAll('[data-admin-role-tab]'), tab => [tab.dataset.adminRoleTab, tab.querySelector('strong').textContent, tab.querySelector('[data-admin-role-count]').textContent]), toolbarAdminSignature, 'toolbar and department menu open the same administrator dialog');
+  cancel();
+  select('department-11');
+  adminButton.click();
+  assert.equal(one('.gaip-department-editor[aria-label="设置管理员"] [data-department-save]').disabled, true, 'toolbar administrator action follows the currently selected department');
+  cancel();
+  select('all');
+  const memberSearch = one('input[aria-label="搜索成员"]');
+  const memberSearchClear = one('[data-config-clear]');
+  assert.equal(memberSearchClear.classList.contains('ant-input-clear-icon-hidden'), true, 'empty unfocused search hides the clear icon');
+  assert.equal(memberSearchClear.getAttribute('aria-label'), '清除搜索内容');
+  memberSearch.focus();
+  assert.equal(memberSearchClear.classList.contains('ant-input-clear-icon-hidden'), false, 'focused search reveals the clear icon');
+  memberSearch.value = '示例成员01';
+  memberSearch.dispatchEvent(new w.Event('input', { bubbles: true }));
+  assert.equal(memberSearchClear.classList.contains('ant-input-clear-icon-hidden'), false, 'search clear icon stays visible after input');
+  memberSearchClear.click();
+  assert.equal(memberSearch.value, '');
+  assert.equal(memberSearchClear.classList.contains('ant-input-clear-icon-hidden'), false, 'focused search keeps the clear icon immediately after clearing');
+  memberSearch.blur(); await tick();
+  assert.equal(memberSearchClear.classList.contains('ant-input-clear-icon-hidden'), true, 'cleared search hides the icon after focus leaves');
+  click('[data-config-add]');
+  const addMemberDialog = one('.gaip-config-editor[aria-label="添加成员"]');
+  assert.equal(addMemberDialog.querySelector('.footer___UhMLM').parentElement, addMemberDialog.querySelector('.ant-modal-content'), 'member footer is fixed outside the scrolling body');
+  assert.equal(addMemberDialog.querySelector('.ant-modal-body .footer___UhMLM'), null);
+  assert.deepEqual(Array.from(addMemberDialog.querySelectorAll('.memberRoleOptions___kP3tN [data-member-editor-role]'), input => input.dataset.memberEditorRole), ['organization', 'commission']);
+  assert.deepEqual(Array.from(addMemberDialog.querySelectorAll('.memberRoleOptions___kP3tN .ant-checkbox-label'), label => label.textContent), ['组织架构管理员（人管）', '上级佣金归属人（佣金）']);
+  assert.equal(addMemberDialog.querySelector('.memberRoleLabel___sY1qM').textContent, '管理员');
+  assert.equal(addMemberDialog.querySelector('#clueRole').closest('.ant-form-item').previousElementSibling.querySelector('#referrerType') !== null, true, 'clue role is a separate module immediately after referrer');
+  assert.deepEqual(Array.from(addMemberDialog.querySelectorAll('input[name="clueRole"]'), input => input.value), ['none', 'clue-admin', 'clue-follower']);
+  assert.equal(addMemberDialog.querySelector('input[name="clueRole"]:checked').value, 'none');
+  click('[data-editor-cancel]');
+  menu('all');
+  assert.deepEqual(Array.from(d.querySelectorAll('[data-department-action]'), e => e.dataset.departmentAction), ['add', 'admin']);
+  assert.equal(one('.ant-tree-treenode-selected').dataset.department, 'all');
+  one('[data-department-action="add"]').dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+  assert.equal(d.querySelector('.gaip-department-menu'), null);
+  assert.equal(d.activeElement, one('[data-department-menu="all"]'));
+  menu('all'); click('.gaip-config-original .header___Vhyog');
+  assert.equal(d.querySelector('.gaip-department-menu'), null, 'outside click closes');
+
+  menu('all'); action('add'); name('   '); save();
+  assert.equal(one('.gaip-department-error').hidden, false);
+  name('测试部门'); save(); assert.match(one('.gaip-department-error').textContent, /已存在/);
+  name('本地新部门'); save();
+  const createdId = rowByName('本地新部门').dataset.department;
+  assert.equal(rowByName('本地新部门').dataset.depth, '1');
+  menu(createdId);
+  assert.deepEqual(Array.from(d.querySelectorAll('[data-department-action]'), e => e.dataset.departmentAction), ['rename', 'add', 'admin', 'delete']);
+  assert.equal(one('.ant-tree-treenode-selected').dataset.department, 'all', 'menu click does not select department');
+  action('rename'); name('取消修改'); cancel();
+  assert.ok(rowByName('本地新部门'));
+  menu(createdId); action('rename'); name('本地重命名'); save();
+  assert.equal(rowByName('本地重命名').querySelector('.treeNodeName___mtuTp').title, '本地重命名');
+
+  menu(createdId); action('add'); name('下级部门'); save();
+  const childId = rowByName('下级部门').dataset.department;
+  assert.equal(rowByName('下级部门').dataset.depth, '2');
+  click('[data-collapse="' + createdId + '"]'); assert.equal(rowByName('下级部门').hidden, true);
+  menu(createdId); action('delete'); assert.equal(one('[data-department-save]').disabled, true); cancel();
+  click('[data-collapse="' + createdId + '"]');
+  menu(childId); action('delete'); cancel(); assert.ok(rowByName('下级部门'));
+  select(childId); menu(childId); action('delete'); save();
+  assert.equal(rowByName('下级部门'), undefined);
+  assert.equal(one('.ant-tree-treenode-selected').dataset.department, createdId);
+  menu(createdId); action('admin'); assert.equal(one('[data-department-save]').disabled, true); cancel();
+  menu(createdId); action('delete'); save(); assert.equal(rowByName('本地重命名'), undefined);
+
+  // Administrator changes update the same member model as the member editor.
+  select('all'); menu('all'); action('admin');
+  click('[data-admin-member="3"]'); cancel();
+  assert.equal(d.querySelectorAll('tbody tr')[2].querySelector('.tagAdmin___YTyPD'), null);
+  menu('all'); action('admin'); click('[data-admin-member="3"]'); save();
+  assert.ok(d.querySelectorAll('tbody tr')[2].querySelector('.tagAdmin___YTyPD'));
+  click('[data-edit="3"]');
+  assert.equal(one('#isAdmin').checked, true);
+  assert.equal(one('#isCommissionOwner').checked, false);
+  assert.equal(one('input[name="clueRole"]:checked').value, 'none');
+  click('#isCommissionOwner'); click('#clueRoleFollower'); click('[data-editor-save]');
+  menu('all'); action('admin');
+  click('[data-admin-role-tab="commission"]');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="3"]').checked, true, 'member editor and administrator dialog share commission state');
+  click('[data-admin-role="commission"][data-admin-member="3"]');
+  click('[data-admin-role-tab="clue-follower"]');
+  assert.equal(one('[data-admin-role="clue-follower"][data-admin-member="3"]').checked, true, 'member editor and administrator dialog share clue state');
+  click('[data-admin-role="clue-follower"][data-admin-member="3"]'); save();
+  click('[data-edit="3"]');
+  assert.equal(one('#isCommissionOwner').checked, false);
+  assert.equal(one('input[name="clueRole"]:checked').value, 'none');
+  click('[data-editor-cancel]');
+  menu('all'); action('admin'); click('[data-admin-member="3"]'); save();
+  assert.equal(d.querySelectorAll('tbody tr')[2].querySelector('.tagAdmin___YTyPD'), null);
+
+  // Role rules: commission is zero-or-one, clue roles are mutually exclusive, cancel does not save and save persists locally.
+  menu('all'); action('admin');
+  click('[data-admin-role-tab="clue-admin"]');
+  click('[data-admin-role="clue-admin"][data-admin-member="4"]');
+  assert.equal(one('[data-admin-role-count="clue-admin"]').textContent, '已选 1 人');
+  cancel();
+  menu('all'); action('admin');
+  click('[data-admin-role-tab="clue-admin"]');
+  assert.equal(one('[data-admin-role="clue-admin"][data-admin-member="4"]').checked, false, 'cancel discards role changes');
+  click('[data-admin-role-tab="commission"]');
+  click('[data-admin-role="commission"][data-admin-member="3"]');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="3"]').disabled, false, 'selected commission member remains available for deselection');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="4"]').disabled, true, 'other commission members become unavailable after one selection');
+  click('[data-admin-role="commission"][data-admin-member="4"]');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="3"]').checked, true, 'disabled commission members cannot replace the current selection');
+  assert.equal(d.querySelectorAll('[data-admin-role="commission"]:checked').length, 1, 'commission role stays single-select');
+  click('[data-admin-role="commission"][data-admin-member="3"]');
+  assert.equal(d.querySelectorAll('[data-admin-role="commission"]:checked').length, 0, 'clicking the selected commission member clears the role');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="4"]').disabled, false, 'other commission members return after deselection');
+  click('[data-admin-role="commission"][data-admin-member="4"]');
+  click('[data-admin-role-tab="clue-admin"]');
+  click('[data-admin-role="clue-admin"][data-admin-member="4"]');
+  click('[data-admin-role-tab="clue-follower"]');
+  click('[data-admin-role="clue-follower"][data-admin-member="4"]');
+  assert.equal(one('[data-admin-role="clue-admin"][data-admin-member="4"]').checked, false, 'clue follower removes mutually exclusive clue administrator role');
+  assert.equal(one('[data-admin-role="clue-follower"][data-admin-member="4"]').checked, true);
+  save();
+  menu('all'); action('admin');
+  click('[data-admin-role-tab="commission"]');
+  assert.equal(one('[data-admin-role="commission"][data-admin-member="4"]').checked, true, 'commission role persists after save');
+  click('[data-admin-role-tab="clue-follower"]');
+  assert.equal(one('[data-admin-role="clue-follower"][data-admin-member="4"]').checked, true, 'clue follower role persists after save');
+  click('[data-admin-role-tab="clue-admin"]');
+  assert.equal(one('[data-admin-role="clue-admin"][data-admin-member="4"]').checked, false);
+  cancel();
+
+  menu('all'); action('add'); name('渠道隔离部门'); save();
+  click('[data-config-channel="1"]'); assert.equal(rowByName('渠道隔离部门'), undefined);
+  click('[data-config-channel="0"]'); assert.ok(rowByName('渠道隔离部门'));
+  click('[data-config-log]'); assert.equal(logOpened, 1);
+  w.location.hash = '#/workspace?gaip-channel=config&gaip-view=operation-log'; await tick();
+  const logExportButton = one('.gaip-log-inline [data-log-export]');
+  const organizationExportTemplate = d.createElement('template');
+  organizationExportTemplate.innerHTML = w.__GAIP_CONFIG_SOURCE__.toolbar;
+  assert.equal(logExportButton.classList.contains('exportBtn___RDhet'), true, 'inline log export receives the config export contract');
+  assert.equal(logExportButton.classList.contains('gaip-config-log-export'), true);
+  assert.equal(logExportButton.getAttribute('aria-label'), '导出Excel');
+  assert.equal(logExportButton.textContent.trim(), '导出Excel');
+  assert.equal(logExportButton.querySelector('img'), null, 'shared-log image icon is replaced');
+  assert.equal(logExportButton.querySelector('.ant-btn-icon').outerHTML, organizationExportTemplate.content.querySelector('[data-config-export] .ant-btn-icon').outerHTML, 'inline log export reuses the organization export icon');
+  w.location.hash = '#/workspace?gaip-channel=config&gaip-view=organization'; await tick();
+  const docRoot = one('#root'); menu('all'); w.location.hash = '#/product'; await tick();
+  assert.equal(d.querySelector('.gaip-department-menu'), null);
+  assert.equal(d.querySelector('.gaip-config-page'), null);
+  assert.equal(underlay.inert, false, 'underlying page content is restored after navigation');
+  assert.equal(underlay.hasAttribute('aria-hidden'), false, 'underlying page accessibility state is restored');
+  assert.equal(aiEntry.isConnected, true, 'AI Agent entry is not moved or removed');
+  assert.equal(one('#root'), docRoot, 'navigation keeps the document');
+  d.body.click(); // no stale popup listener throws after unmount
+  dom.window.close();
+  console.log('PASS: department menu, dismissal, validation, create/rename/delete, nonempty guard, admin save/cancel, channel isolation, log trigger and navigation cleanup.');
+}
+
+async function testDialogPreviewController() {
+  const dom = new JSDOM('<!doctype html><html><body></body></html>', {
+    url: 'file://' + root + '/全局组件/弹窗预览.html?embed=config-member',
+    runScripts: 'outside-only', pretendToBeVisual: true
+  });
+  const w = dom.window, d = w.document;
+  w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
+  w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
+  w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
+  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
+    w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  }
+  const controller = w.__GAIP_CONFIG_DIALOGS__;
+  assert.equal(typeof controller.openMember, 'function', 'complete member dialog entry is public');
+  assert.equal(typeof controller.openDepartment, 'function', 'complete department dialog entry is public');
+
+  let dialog = controller.openMember(1);
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.getAttribute('aria-label'), '编辑成员');
+  assert.equal(dialog.querySelector('#domainAccount').value, 'demo_001');
+  assert.equal(dialog.querySelector('.footer___UhMLM').parentElement, dialog.querySelector('.ant-modal-content'));
+  dialog.querySelector('[data-editor-cancel]').click();
+
+  dialog = controller.openDepartment('department-18', 'rename');
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.getAttribute('aria-label'), '修改部门名称');
+  assert.equal(dialog.querySelector('input').value, '测试256');
+  dialog.querySelector('[data-department-cancel]').click();
+
+  dialog = controller.openDepartment('department-18', 'delete');
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.getAttribute('aria-label'), '删除部门');
+  assert.match(dialog.querySelector('.ant-modal-body').textContent, /确认删除部门/);
+  assert.equal(dialog.querySelector('[data-department-save]').disabled, false);
+  dialog.querySelector('[data-department-cancel]').click();
+
+  dialog = controller.openDepartment('all', 'admin');
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.getAttribute('aria-label'), '设置管理员');
+  assert.equal(dialog.querySelectorAll('[data-admin-role-panel]').length, 4);
+  assert.equal(dialog.querySelectorAll('[data-admin-role-list="organization"] .adminMemberCard___2fWc8').length, 24);
+  dialog.querySelector('[data-department-cancel]').click();
+  assert.equal(d.querySelectorAll('dialog[open]').length, 0);
+  assert.ok(d.querySelector('[data-gaip-dialog-preview-host] .pageContainer___QCUaw'), 'preview uses the fully initialized organization host');
+  dom.window.close();
+  console.log('PASS: four config dialogs use the public full-flow controller in isolated preview mode.');
+}
+
+main().then(testDialogPreviewController).catch(error => { console.error(error); process.exit(1); });

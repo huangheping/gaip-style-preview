@@ -1,20 +1,5 @@
 /* 操作日志唯一共享样式；不覆盖业务页面、全局字体或原站构建产物。 */
-.gaip-log-trigger {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  box-sizing: border-box; height: 32px; padding: 0 12px; flex-shrink: 0;
-  border: 1px solid transparent; border-radius: 32px;
-  color: #2f3640; background: #f4f6f6;
-  font-size: 14px; line-height: 1; white-space: nowrap; cursor: pointer;
-  appearance: none; box-shadow: none;
-  transition: color .16s ease, background-color .16s ease, border-color .16s ease;
-}
-.gaip-log-trigger:hover, .gaip-log-trigger[aria-expanded="true"] {
-  color: #2f3640; background: #edf6f4; border-color: #dceae6;
-}
-.gaip-log-trigger:active { background: #e2eeeb; }
-.gaip-log-trigger img { display: block; width: 16px; height: 16px; flex-shrink: 0; opacity: 1; }
-.gaip-log-trigger span { line-height: 20px; }
-.gaip-log-trigger:focus-visible, .gaip-log-dialog :focus-visible {
+.gaip-log-dialog :focus-visible {
   outline: 2px solid #00bfb4; outline-offset: 3px;
 }
 html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !important; }
@@ -152,7 +137,6 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
 @media (max-width: 1000px) {
   .gaip-log-filter-row:last-child { flex-wrap: wrap; }
   .gaip-log-search { flex-basis: 160px; }
-  .gaip-log-trigger { padding: 0 6px; }
 }
 @media (max-width: 600px) {
   .gaip-log-dialog { width: calc(100vw - 16px); height: calc(100dvh - 16px); }
@@ -168,9 +152,7 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
   .gaip-log-feedback { margin: 0 12px 8px; }
   .gaip-log-table-wrap { margin: 0 12px; }
   .gaip-log-footer { margin: 0 12px 12px; padding: 10px; flex-wrap: wrap; gap: 8px; }
-  .gaip-log-trigger span { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gaip-log-dialog[open] { animation: none; }
-  .gaip-log-trigger { transition: none; }
 }

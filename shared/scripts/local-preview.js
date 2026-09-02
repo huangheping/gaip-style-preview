@@ -578,7 +578,12 @@
     }
     if (value.indexOf('/api/gaip/workspace/focus') >= 0) return [];
     if (value.indexOf('/api/gaip/policy/expiring/list') >= 0) return [];
-    if (value.indexOf('/api/gaip/induction/query') >= 0) return { completeStatus: 'Y' };
+    if (value.indexOf('/api/gaip/induction/query') >= 0) {
+      if (window.__GAIP_POPUP_PREVIEW__ === 'induction-complete') {
+        return { completeStatus: 'N', chapter: 5, section: 1 };
+      }
+      return { completeStatus: 'Y' };
+    }
     if (/\/(list|page|query|all)(\?|$)/i.test(value)) return [];
     return {};
   }
@@ -671,4 +676,16 @@
   }
 
   window.__GAIP_FILE_PREVIEW__ = true;
+
+  // 弹窗预览只传递“打开哪个真实业务入口”的信号。真正的弹层仍由正式频道
+  // 和既有点击处理器创建；普通页面没有该 Hash 参数时不会加载这段桥接逻辑。
+  var popupPreviewQuery = (location.hash || '').split('?')[1] || '';
+  var popupPreviewId = new URLSearchParams(popupPreviewQuery).get('gaip-popup-preview');
+  if (popupPreviewId) {
+    window.__GAIP_POPUP_PREVIEW__ = popupPreviewId;
+    var popupPreviewBridge = document.createElement('script');
+    popupPreviewBridge.src = './shared/scripts/popup-preview-bridge.js?v=20260901-3';
+    popupPreviewBridge.setAttribute('data-gaip-popup-preview-bridge', popupPreviewId);
+    document.head.appendChild(popupPreviewBridge);
+  }
 })();

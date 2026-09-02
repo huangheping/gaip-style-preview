@@ -39,7 +39,7 @@
       type: 'master-detail',
       assets: {
         styles: ['features/proposal-center/proposal-center.css'],
-        scripts: ['features/proposal-center/proposal-center.js']
+        scripts: ['features/proposal-center/proposal-center.js?v=20260901-1']
       }
     },
     {
@@ -74,7 +74,7 @@
         styles: ['features/news-center/news-center.css?v=20260827-1'],
         scripts: [
           'features/news-center/mock-data.js?v=20260826-2',
-          'features/news-center/news-center.js?v=20260827-1'
+          'features/news-center/news-center.js?v=20260901-1'
         ]
       }
     },
@@ -88,12 +88,30 @@
       virtual: true,
       query: 'gaip-channel=wealth',
       assets: {
-        styles: ['features/wealth-center/wealth-center.css?v=20260825-9'],
+        styles: ['features/wealth-center/wealth-center.css?v=20260901-19'],
         scripts: [
           'features/wealth-center/mock-data.js?v=20260825-9',
-          'features/wealth-center/wealth-center.js?v=20260825-9',
-          'features/wealth-center/wealth-nav.js?v=20260825-9'
+          'features/wealth-center/wealth-center.js?v=20260901-1',
+          'features/wealth-center/wealth-nav.js?v=20260901-3'
         ]
+      }
+    },
+    {
+      key: 'config',
+      label: '配置中心',
+      route: '/workspace',
+      entry: '配置中心.html',
+      icon: 'organization',
+      type: 'operations',
+      virtual: true,
+      query: 'gaip-channel=config',
+      views: [
+        { key: 'organization', label: '组织架构' },
+        { key: 'operation-log', label: '操作日志' }
+      ],
+      assets: {
+        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260901-18', 'features/config-center/config-center.css?v=20260901-16'],
+        scripts: ['features/config-center/source-markup.js?v=20260901-7', 'features/config-center/config-center.js?v=20260901-23']
       }
     },
     {

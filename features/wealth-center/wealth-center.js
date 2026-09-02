@@ -469,12 +469,36 @@
     syncFrame = requestAnimationFrame(sync);
   }
 
+  function nodeFromMarkup(markup) {
+    var template = document.createElement('template');
+    template.innerHTML = markup.trim();
+    return template.content.firstElementChild;
+  }
+
+  function createFileDrawer(file) {
+    var previous = state.drawerFile;
+    state.drawerFile = file || state.workbenchFiles[0] || null;
+    var node = nodeFromMarkup(drawerMarkup());
+    state.drawerFile = previous;
+    return node;
+  }
+
+  function createKeywordDialog() {
+    var previous = state.dialog;
+    state.dialog = 'keywords';
+    var node = nodeFromMarkup(dialogMarkup());
+    state.dialog = previous;
+    return node;
+  }
+
   var api = {
     open: openView,
     closeForNavigation: closeForNavigation,
     isOpen: function () { return !!document.querySelector('.gaip-wealth-page[data-gaip-wealth-overlay="true"]'); },
     currentView: currentView,
-    sync: scheduleSync
+    sync: scheduleSync,
+    createFileDrawer: createFileDrawer,
+    createKeywordDialog: createKeywordDialog
   };
   window.__GAIP_WEALTH_CENTER__ = api;
   window.__GAIP_VIRTUAL_CHANNELS__ = window.__GAIP_VIRTUAL_CHANNELS__ || {};

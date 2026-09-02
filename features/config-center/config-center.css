@@ -1,0 +1,81 @@
+/* 配置中心外壳：主导航、顶部栏、顶部搜索和 Hash 页面挂载骨架。 */
+@scope (.gaip-config-page) {
+/* 从原站样式快照抽出的顶部区域基线。 */
+.pageContainer___QCUaw{height:calc(100vh - 56px);display:flex;flex-direction:column;background:#fff;overflow:hidden}
+.header___Vhyog{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:72px;min-height:72px;background:#fff;border-top:1px solid rgba(47,54,64,.12);position:-webkit-sticky;position:-webkit-sticky;position:sticky;top:0;z-index:10;flex-shrink:0}
+.tabs___U1Hwt{display:flex;gap:0;flex:0 0 auto;min-width:0;overflow:visible}
+.tab___UxqK9{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;height:72px;padding:0 12px;font-size:16px;font-weight:400;white-space:nowrap;color:#2f3640;background:transparent;border:none;cursor:pointer;transition:color .2s}
+.tab___UxqK9:after{content:"";position:absolute;bottom:0;left:50%;transform:translate(-50%);width:0;height:3px;background:#3ba297;border-radius:2px;transition:width .2s}
+.tab___UxqK9:hover{color:#025b52}
+.tab___UxqK9.tabActive___H5olV{color:#025b52;font-weight:500}
+.tab___UxqK9.tabActive___H5olV:after{width:32px}
+.headerRight___Fe2zg{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.logBtn____S6Zh{display:inline-flex;align-items:center;height:48px;padding:0 0 0 20px;background:transparent;border:none;box-shadow:none;font-weight:400;font-size:16px;color:#190f07;cursor:pointer}
+.logBtn____S6Zh:hover{color:#025b52!important;background:transparent!important;border-color:transparent!important}
+.logIcon___craLw{width:20px;height:20px}
+.searchWrap___gp0a3{position:relative;display:flex;align-items:center}
+.searchInput___VaHgy{max-width:333px;min-width:200px;height:48px;border-radius:4px;border:1px solid #dddddd;font-size:16px;color:#2f3640;padding:4px 20px}
+.searchInput___VaHgy::placeholder{color:#bbb}
+.searchInput___VaHgy:hover,.searchInput___VaHgy:focus-within{border-color:#24d4c9;box-shadow:none}
+.searchInput___VaHgy .searchIcon___p0zF2{margin-right:6px;color:#898d92}
+.dropdown___hTmR7{position:absolute;top:52px;left:0;width:100%;max-height:320px;overflow-y:auto;background:#fff;border-radius:8px;box-shadow:0 4px 16px #0000002b;z-index:1050;padding:16px 10px;border:1px solid rgba(47,54,64,.1)}
+.loadingWrap___KgNEA{display:flex;justify-content:center;align-items:center;padding:16px}
+.group___p8qQH{margin-bottom:2px}
+.group___p8qQH+.group___p8qQH{border-top:1px solid #f0f0f0;margin-top:14px}
+.groupTitle___b9fv5{padding:8px 8px 4px;font-size:14px;font-weight:400;color:#2f3640a6;line-height:20px;background:#2f36400d}
+.memberItem___Qgwvx{display:flex;align-items:flex-start;justify-content:space-between;padding:8px 0 0 8px;cursor:pointer;transition:background-color .15s}
+.memberItem___Qgwvx:hover{color:#025b52}
+.memberInfo___oO3GZ{display:flex;flex-direction:column}
+.memberName___Uct9f{font-size:16px;font-weight:500;color:#2f3640;line-height:22px}
+.memberNode___QobYO{font-weight:400;font-size:14px;color:#2f3640a6;line-height:20px;margin-top:2px}
+.memberAccount___jUGaL{font-size:14px;color:#2f3640a6;line-height:22px}
+.emptyWrap___T3f5a{padding:16px;text-align:center;font-size:14px;color:#9ca3af}
+}
+
+.gaip-config-menu { list-style: none; }
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-toggle.ant-menu-submenu-title {
+  pointer-events: auto !important; background: transparent; border-left: 4px solid transparent !important;
+  color: rgba(0,0,0,.65); border-radius: 0;
+}
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-toggle.ant-menu-submenu-title:hover {
+  color: rgba(0,0,0,.88); background-color: rgba(0,0,0,.03) !important;
+}
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-menu.is-current .gaip-config-toggle.ant-menu-submenu-title {
+  color: #025b52 !important; background-color: transparent !important; border-left-color: transparent !important;
+}
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-menu.is-current .gaip-config-toggle.ant-menu-submenu-title:hover {
+  color: #025b52 !important; background-color: rgba(0,0,0,.03) !important;
+}
+.gaip-config-original-icon { display: grid; width: 18px; height: 18px; color: currentColor; place-items: center; }
+.gaip-config-original-icon img { display: block; width: 18px; height: 18px; opacity: 1; transition: filter 160ms ease; }
+.gaip-config-menu.is-current .gaip-config-original-icon img {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(30%) saturate(2232%) hue-rotate(128deg) brightness(77%) contrast(98%);
+}
+#root .gaip-config-menu .ant-menu-sub .ant-pro-base-menu-inline-item-icon { display: none; }
+#root .gaip-config-menu .ant-menu-sub { background: transparent !important; padding: 0 !important; }
+#gaip-config-submenu[hidden] { display: none !important; }
+#root .gaip-config-menu .ant-menu-sub > .ant-menu-item { height: 40px; line-height: 40px; margin: 0 !important; padding: 0 0 0 55px !important; width: 100% !important; border-left: 4px solid transparent !important; border-radius: 0 !important; }
+#root .gaip-config-menu .ant-menu-sub > .ant-menu-item-selected { color: #025b52 !important; background: rgba(36,212,201,.1) !important; border-left-color: #24d4c9 !important; }
+.gaip-config-menu .ant-menu-item a { display: block; color: inherit; }
+
+html.gaip-config-open, html.gaip-config-open body { overflow: hidden !important; }
+.gaip-config-page[data-gaip-page-root] { width: auto; }
+.gaip-config-page { position: fixed; right: 0; bottom: 0; z-index: 12; display: flex; flex-direction: column; min-width: 0; overflow: auto; background: #fff; color: #2f3640; }
+.gaip-config-original { min-width: 0; width: 100%; flex: 1; }
+
+.gaip-config-original .tab___UxqK9::after { height: 4px; }
+.gaip-config-original .tab___UxqK9.tabActive___H5olV::after { width: 71px; }
+.gaip-config-original .header___Vhyog > .searchWrap___gp0a3 {
+  flex: 1 1 333px; width: auto; max-width: 333px; min-width: 120px; margin-left: auto; margin-right: 24px;
+}
+.gaip-config-original .header___Vhyog > .searchWrap___gp0a3 .searchInput___VaHgy {
+  width: 100%; max-width: 100%; min-width: 0; height: 72px; border-width: 0 1px; border-style: solid;
+  border-color: rgba(47,54,64,.12); border-radius: 0; background: rgba(47,54,64,.03);
+}
+.gaip-config-original .header___Vhyog > .searchWrap___gp0a3 .searchInput___VaHgy:hover,
+.gaip-config-original .header___Vhyog > .searchWrap___gp0a3 .searchInput___VaHgy:focus-within {
+  border-width: 0 1px; border-color: rgba(47,54,64,.12); background: rgba(47,54,64,.03); box-shadow: none;
+}
+.gaip-config-page .logBtn____S6Zh { align-items: center; gap: 8px; line-height: 24px; }
+.gaip-config-page .logBtn____S6Zh > .ant-btn-icon { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; line-height: 0; }
+.gaip-config-page .logBtn____S6Zh .logIcon___craLw { display: block; flex-shrink: 0; vertical-align: initial; }

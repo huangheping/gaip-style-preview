@@ -11,7 +11,7 @@ const tick = () => new Promise(resolve => setTimeout(resolve, 60));
 
 async function main() {
   const html = '<!doctype html><html><body><main id="root"><header class="header___tcVAl"><div class="right___fv3yS">' +
-    '<span class="date___mF83s">2026年08月31日</span><div class="userInfo___Kwuov">本地预览用户</div>' +
+    '<button class="gaip-log-trigger">旧日志入口</button><span class="date___mF83s">2026年08月31日</span><div class="userInfo___Kwuov">本地预览用户</div>' +
     '</div></header><input id="retained-value" value="未提交内容"></main></body></html>';
   const dom = new JSDOM(html, {
     url: 'file://' + root + '/工作台.html#/workspace',
@@ -59,17 +59,10 @@ async function main() {
   };
   const initialUrl = w.location.href;
   const originalRoot = find('#root');
-  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 1);
-  assert.equal(find('.gaip-log-trigger').previousElementSibling, null);
-  assert.equal(find('.gaip-log-trigger').nextElementSibling.className, 'date___mF83s');
+  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 0);
+  assert.equal(find('.right___fv3yS').firstElementChild.className, 'date___mF83s');
   assert.equal(find('.date___mF83s').nextElementSibling.className, 'userInfo___Kwuov');
-  const triggerStyle = w.getComputedStyle(find('.gaip-log-trigger'));
-  assert.equal(triggerStyle.fontSize, '14px');
-  assert.equal(triggerStyle.borderRadius, '32px');
-  assert.equal(triggerStyle.paddingLeft, '12px');
-  assert.equal(triggerStyle.paddingRight, '12px');
-  assert.equal(triggerStyle.color, 'rgb(47, 54, 64)');
-  for (const selector of ['.gaip-log-trigger', '.date___mF83s', '.userInfo___Kwuov']) {
+  for (const selector of ['.date___mF83s', '.userInfo___Kwuov']) {
     const computed = w.getComputedStyle(find(selector));
     assert.equal(computed.height, '32px');
     assert.equal(computed.alignItems, 'center');
@@ -81,7 +74,7 @@ async function main() {
   const foundationRules = Array.from(d.styleSheets[0].cssRules);
   const divider = foundationRules.find(rule => rule.selectorText === dividerSelector).style;
   assert.equal(divider.width, '1px');
-  assert.equal(divider.height, 'var(--gaip-app-header-height)');
+  assert.equal(divider.height, '20px');
   assert.equal(divider.left, '-24px');
   assert.equal(divider.top, '50%');
   assert.equal(divider.position, 'absolute');
@@ -90,18 +83,7 @@ async function main() {
     Array.from(rule.cssRules).some(child => child.selectorText === dividerSelector));
   assert.equal(Array.from(compactHeader.cssRules).find(rule => rule.selectorText === dividerSelector).style.left, '-16px');
   assert.equal(Array.from(compactHeader.cssRules).find(rule => rule.selectorText === '.header___tcVAl .right___fv3yS .userInfo___Kwuov').style.getPropertyValue('margin-left'), '20px');
-  const icon = find('.gaip-log-trigger img');
-  assert.ok(icon.src.endsWith('/shared/assets/operation-log.svg'));
-  const iconStyle = w.getComputedStyle(icon);
-  assert.equal(iconStyle.width, '16px');
-  assert.equal(iconStyle.height, '16px');
-  assert.equal(iconStyle.opacity, '1');
-  const svg = new w.DOMParser().parseFromString(read('shared/assets/operation-log.svg'), 'image/svg+xml');
-  assert.equal(svg.querySelector('parsererror'), null);
-  assert.equal(svg.querySelectorAll('path').length, 2);
-  assert.ok(Array.from(svg.querySelectorAll('path')).every(p => p.getAttribute('fill') === '#2F3640'));
-  assert.equal(svg.querySelector('script, foreignObject, image'), null);
-  click('.gaip-log-trigger');
+  w.__GAIP_OPERATION_LOG__.show();
   assert.equal(find('dialog').open, true);
   // Reuse the baseline Ant Design geometry, rather than drawing lookalike icons.
   const baselineIcons = read('web/umi.0b0663b5.js');
@@ -223,46 +205,67 @@ async function main() {
   assert.equal(find('dialog').open, false);
   assert.equal(d.documentElement.classList.contains('gaip-log-scroll-lock'), false);
   assert.equal(find('#retained-value').value, '未提交内容');
-  click('.gaip-log-trigger');
+  w.__GAIP_OPERATION_LOG__.show();
   assert.equal(find('[name="module"]').value, '资讯中心');
   const cancel = new w.Event('cancel', { cancelable: true });
   find('dialog').dispatchEvent(cancel);
   assert.equal(find('dialog').open, false);
   assert.equal(cancel.defaultPrevented, true);
-  // Simulated Hash changes and header replacements: not an end-to-end Umi test.
+  // Global header stays free of log triggers across Hash changes and header replacements.
   for (const route of ['#/customer', '#/policy', '#/workspace?gaip-channel=learning']) {
     w.location.hash = route;
     await tick();
     assert.equal(find('#root'), originalRoot);
-    assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 1);
-    click('.gaip-log-trigger');
+    assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 0);
+    w.__GAIP_OPERATION_LOG__.show();
     assert.equal(find('dialog').open, true);
     click('[data-log-close]');
   }
   const header = find('.right___fv3yS');
-  // Recover the requested order if another renderer moves the existing trigger.
-  const originalTrigger = find('.gaip-log-trigger');
-  header.appendChild(originalTrigger);
-  await tick();
-  assert.equal(header.firstElementChild, originalTrigger);
   header.innerHTML = '<span class="date___mF83s">日期</span><div class="userInfo___Kwuov">用户</div>';
   await tick();
-  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 1);
-  assert.equal(find('.gaip-log-trigger').nextElementSibling.className, 'date___mF83s');
+  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 0);
   w.location.hash = '#/user/login';
   await tick();
   assert.equal(find('.gaip-log-trigger'), null);
   w.location.hash = '#/workspace';
   await tick();
-  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 1);
-  click('.gaip-log-trigger');
+  assert.equal(d.querySelectorAll('.gaip-log-trigger').length, 0);
+  w.__GAIP_OPERATION_LOG__.show();
+  // A mounted page and the existing modal must have independent filters and IDs.
+  const host = d.createElement('main');
+  d.body.appendChild(host);
+  const inline = w.__GAIP_OPERATION_LOG__.mount(host);
+  assert.equal(host.querySelector('dialog'), null);
+  assert.equal(host.querySelector('[data-log-close]'), null);
+  assert.equal(host.querySelectorAll('tbody tr').length, 10);
+  const modalModuleBefore = find('dialog [name="module"]').value;
+  const pageModule = host.querySelector('[name="module"]');
+  pageModule.value = '资讯中心';
+  pageModule.dispatchEvent(new w.Event('input', { bubbles: true }));
+  assert.ok([...host.querySelectorAll('tbody tr')].every(row => row.children[3].textContent === '资讯中心'));
+  assert.equal(find('dialog [name="module"]').value, modalModuleBefore);
+  const ids = [...d.querySelectorAll('[id]')].map(node => node.id);
+  assert.equal(new Set(ids).size, ids.length, 'modal/page IDs must be unique');
+  assert.equal(host.querySelector('label').htmlFor, host.querySelector('[name="start"]').id);
+  const pageExpand = host.querySelector('[data-log-expand]');
+  if (pageExpand) {
+    pageExpand.click();
+    assert.equal(pageExpand.getAttribute('aria-expanded'), 'true');
+    assert.equal(d.getElementById(pageExpand.getAttribute('aria-controls')).classList.contains('is-collapsed'), false);
+  }
+  inline.destroy();
+  assert.equal(host.children.length, 0);
+  assert.equal(find('dialog').open, true, 'destroying page must preserve modal');
+  host.remove();
+  click('[data-log-close]');
   header.remove();
   await tick();
-  assert.equal(find('dialog').open, false);
   // Root shells all load exactly one copy in the correct data/export/UI order.
   for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {
     const source = read(entry);
-    assert.ok(source.includes('global-operation-log.css?v=20260831-6'), entry + ': latest filter styles CSS');
+    assert.ok(source.includes('global-operation-log.css?v=20260901-1'), entry + ': latest inline log CSS');
+    assert.ok(source.includes('global-operation-log.js?v=20260901-1'), entry + ': top trigger removed');
     let previous = -1;
     for (const resource of ['shared/styles/global-operation-log.css', ...loaded]) {
       assert.equal(source.split(resource).length - 1, 1, entry + ': ' + resource);
@@ -279,7 +282,7 @@ async function main() {
   observers.forEach(observer => observer.disconnect());
   await tick();
   w.close();
-  console.log('PASS: trigger, filters, dates, search, pagination, details, XLSX/XML/CRC, lifecycle, mock Hash changes and all 15 shells.');
+  console.log('PASS: no global trigger, retained log controller/page, filters, XLSX, lifecycle and all root shells.');
   console.log('NOT VERIFIED: native dialog focus/top-layer, actual Umi transitions and browser visual layout.');
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1484,9 +1484,16 @@
     window.__GAIP_AGENT_AI_NOTICE__ = window.__GAIP_AI_NOTICE__;
   }
 
+  function createPreviewModal() {
+    var template = document.createElement('template');
+    template.innerHTML = '<section class="agentModal___Nxp06" role="dialog" aria-modal="true" aria-labelledby="agentModalTitle"><div class="ant-modal-content"><header class="ant-modal-header"><div class="headerTitle___cXSkY"><span class="icon___H2jXW"><img src="AI Agent/素材/Agent头像.svg" alt=""></span><div><div class="title___LmvBU" id="agentModalTitle">GAIP Agent 助手</div><div class="subtitle___S5Xy7">我能帮到您自动化 AI 处理方案</div></div><div class="endIcons___IOP5L"><button class="historyBtn___ElWTU" type="button" aria-label="历史对话">◷</button><img class="newChatIcon___cOc4u" src="AI Agent/素材/新建对话.svg" alt="新建对话"><img class="closeIcon___X96Lj" src="AI Agent/素材/关闭弹窗.svg" alt="关闭"></div></div></header><div class="modalBody___sDOgp"><div class="bodyWrapper___o9oTx"><div class="contentArea___p8GRa"><div class="gaip-agent-preview-welcome"><div><img src="AI Agent/素材/Agent头像.svg" alt=""><h3>今天想从哪里开始？</h3><p>可以创建客户、规划方案，也可以继续一段历史对话。</p></div></div></div><div class="footerArea___MESP6"><div class="footerBox___QzN5g"><textarea class="textarea___GMXtD" placeholder="输入你想让 Agent 协助处理的任务"></textarea><div class="gaip-agent-preview-actions"><span>附件　技能</span><button type="button">发送</button></div></div></div></div></div></div></section>';
+    return template.content.firstElementChild;
+  }
+
   window.__GAIP_AGENT_MOCK__ = {
     dataFor: dataFor,
-    fetch: fetchAgent
+    fetch: fetchAgent,
+    createPreviewModal: createPreviewModal
   };
 
   if (document.readyState === 'loading') {

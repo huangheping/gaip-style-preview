@@ -32,13 +32,12 @@
   --gaip-section-gap: 24px;
 }
 
-/* 顶栏三个操作组使用同一中心线，用户区分割线额外留白。 */
+/* 顶栏日期与用户区使用同一中心线，用户区分割线额外留白。 */
 .header___tcVAl .right___fv3yS {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-.header___tcVAl .right___fv3yS > .gaip-log-trigger,
 .header___tcVAl .right___fv3yS > .date___mF83s,
 .header___tcVAl .right___fv3yS .userInfo___Kwuov {
   box-sizing: border-box;
@@ -59,7 +58,7 @@
   gap: 8px;
   margin-left: 28px;
 }
-/* 20px 组间距 + 28px 用户区外边距，线两侧各 24px；高度沿用顶栏 token。 */
+/* 20px 组间距 + 28px 用户区外边距，线两侧各 24px；分割线与文字行高一致。 */
 .header___tcVAl .right___fv3yS .userInfo___Kwuov::before {
   content: "";
   position: absolute;
@@ -67,7 +66,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 1px;
-  height: var(--gaip-app-header-height);
+  height: 20px;
   background: rgba(47, 54, 64, 0.16);
   pointer-events: none;
 }
@@ -157,4 +156,154 @@
   height: auto !important;
   margin: 0 !important;
   object-fit: cover;
+}
+
+/* 菜单滚动层贴近侧栏右缘，并始终显示在百宝箱的上延底图之上。 */
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin-right: -8px;
+  padding-right: 12px;
+  scrollbar-color: rgba(47, 54, 64, 0.14) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb {
+  min-height: 40px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(47, 54, 64, 0.14) !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(47, 54, 64, 0.28) !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb:active {
+  background: rgba(47, 54, 64, 0.4) !important;
+}
+
+.ant-layout-sider-children > .ant-pro-sider-footer {
+  position: relative;
+  z-index: 0;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-hub::before {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 可展开的主导航父项共用同一布局和箭头动效。 */
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-main-menu-parent.ant-menu-submenu-title {
+  position: relative;
+  display: flex !important;
+  box-sizing: border-box;
+  width: calc(100% - 8px) !important;
+  height: 40px !important;
+  align-items: center;
+  margin: 4px 0 !important;
+  padding: 0 40px 0 24px !important;
+  cursor: pointer;
+  line-height: 40px !important;
+  text-align: left;
+}
+
+#root .gaip-main-menu-parent > .ant-menu-title-content {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+#root .gaip-main-menu-title {
+  display: grid !important;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 13px !important;
+}
+
+#root .gaip-main-menu-leading-icon {
+  display: grid !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  align-items: center;
+  justify-items: center;
+  line-height: 0;
+}
+
+#root .gaip-main-menu-label {
+  min-width: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow {
+  position: absolute !important;
+  inset-inline-end: 16px !important;
+  top: 50% !important;
+  right: 16px !important;
+  display: grid !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 !important;
+  color: currentColor;
+  place-items: center;
+  transform: translateY(-50%) rotate(0deg) !important;
+  transform-origin: 50% 50%;
+  transition: transform 180ms cubic-bezier(.2, 0, 0, 1), color 160ms ease;
+}
+
+#root .gaip-main-menu-group.is-open .gaip-main-menu-caret.ant-menu-submenu-arrow {
+  transform: translateY(-50%) rotate(180deg) !important;
+}
+
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow::before,
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow::after {
+  display: none !important;
+}
+
+#root .gaip-main-menu-caret-icon {
+  display: block;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-parent.ant-menu-submenu-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0 !important;
+}
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-parent > .ant-menu-title-content,
+#root .ant-layout-sider-collapsed .gaip-main-menu-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-label,
+#root .ant-layout-sider-collapsed .gaip-main-menu-caret {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow {
+    transition: none;
+  }
 }

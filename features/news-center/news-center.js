@@ -767,11 +767,18 @@
     closeShareModal();
   }
 
+  function createArticleModal(article) {
+    var template = document.createElement('template');
+    template.innerHTML = renderModal(article || mock.articles[0]).trim();
+    return template.content.firstElementChild;
+  }
+
   var api = {
     open: openFromNavigation,
     closeForNavigation: closeForNavigation,
     isOpen: function () { return !!document.querySelector('.gaip-news-page[data-gaip-news-overlay="true"]'); },
-    sync: scheduleSync
+    sync: scheduleSync,
+    createArticleModal: createArticleModal
   };
 
   window.__GAIP_NEWS_CENTER__ = api;
