@@ -24,7 +24,7 @@ async function main() {
       return { destroy() { host.replaceChildren(); } };
     }
   };
-  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   await tick();
   const one = selector => { const el = d.querySelector(selector); assert.ok(el, selector); return el; };
   const click = selector => one(selector).click();
@@ -40,13 +40,7 @@ async function main() {
   const select = id => click('[data-department="' + id + '"] .treeNodeName___mtuTp');
   const collectMemberIds = id => {
     select(id);
-    const ids = [];
-    do {
-      ids.push(...Array.from(d.querySelectorAll('tbody [data-edit]'), element => Number(element.dataset.edit)));
-      if (one('[data-config-next]').disabled) break;
-      click('[data-config-next]');
-    } while (true);
-    return ids;
+    return Array.from(d.querySelectorAll('.table___BX44I tbody [data-edit]'), element => Number(element.dataset.edit));
   };
 
   const mainContent = one('.ant-pro-layout-content');
@@ -69,8 +63,8 @@ async function main() {
   assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'), 'false', 'first-level department starts collapsed');
   assert.equal(one('[data-department="department-2"]').hidden, true, 'second-level department is hidden initially');
   assert.equal(one('[data-department="department-11"]').hidden, false, 'first-level leaf remains visible');
-  assert.equal(d.querySelectorAll('tbody tr').length, 10, 'member table keeps ten rows per page');
-  assert.equal(one('[data-config-summary]').textContent, '共 24 条，第 1 / 3 页');
+  assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 24, 'member table renders every member in the current scope');
+  assert.equal(d.querySelector('.table___BX44I .ant-pagination'), null, 'member table does not render pagination controls');
   click('[data-collapse="department-1"]');
   assert.equal(one('[data-department="department-2"]').hidden, false, 'first-level department can expand');
   assert.equal(one('[data-department="mock-level-3-east"]').hidden, true, 'third-level mock node stays hidden while its parent is collapsed');
@@ -90,21 +84,14 @@ async function main() {
   assert.match(one('tbody').textContent, /示例成员09.*线索跟进/s, 'the fourth third-level mock node contains a clue-follower member from the channel first page');
   select('department-2');
   assert.match(one('tbody').textContent, /示例成员10.*示例成员11/s, 'second-level result contains members assigned to its child nodes');
-  assert.equal(one('[data-config-summary]').textContent, '共 13 条，第 1 / 2 页', 'second-level node aggregates its own members and every deeper descendant');
-  assert.equal(one('[data-config-next]').disabled, false, 'aggregated second-level results keep the next page available');
-  assert.equal(one('[data-config-next]').parentElement.getAttribute('aria-disabled'), 'false');
-  click('[data-config-next]');
-  assert.equal(one('[data-config-summary]').textContent, '共 13 条，第 2 / 2 页');
-  assert.match(one('tbody').textContent, /示例成员22.*示例成员23.*示例成员24/s, 'the final descendants remain reachable on the second page');
-  assert.equal(one('[data-config-prev]').disabled, false);
-  assert.equal(one('[data-config-prev]').parentElement.getAttribute('aria-disabled'), 'false');
+  assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 13, 'second-level node aggregates its own members and every deeper descendant');
+  assert.match(one('tbody').textContent, /示例成员22.*示例成员23.*示例成员24/s, 'the final descendants remain visible in the unpaginated list');
   select('department-3');
   assert.match(one('tbody').textContent, /示例成员18.*示例成员19/s, 'existing third-level node contains directly assigned members');
-  assert.equal(one('[data-config-summary]').textContent, '共 4 条，第 1 / 1 页');
+  assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 4);
   select('department-1');
-  assert.equal(one('[data-config-summary]').textContent, '共 16 条，第 1 / 2 页', 'first-level parent aggregates both second-level branches and all deeper descendants');
-  click('[data-config-next]');
-  assert.match(one('tbody').textContent, /示例成员22.*示例成员23.*示例成员24/s, 'the parent node exposes every descendant across pagination');
+  assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 16, 'first-level parent aggregates both second-level branches and all deeper descendants');
+  assert.match(one('tbody').textContent, /示例成员22.*示例成员23.*示例成员24/s, 'the parent node exposes every descendant in one list');
   select('all');
   assert.deepEqual([6, 7, 8, 9].map(function (memberId) {
     return Array.from(one('[data-edit="' + memberId + '"]').closest('tr').querySelectorAll('.memberIdentityTag___v3J6p'), function (tag) { return tag.textContent; });
@@ -132,13 +119,13 @@ async function main() {
     assert.equal(d.querySelectorAll('[data-department]').length, 23, channelName + ' uses the same node count as its channel tree');
     assert.equal(one('[data-department="all"] .treeNodeName___mtuTp').textContent, channelName);
     assert.equal(d.querySelectorAll('[data-department^="mock-level-3-"]').length, 4, channelName + ' contains every shared third-level mock node');
-    assert.equal(one('[data-config-summary]').textContent, '共 4 条，第 1 / 1 页', channelName + ' root aggregates its second- and third-level members');
+    assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 4, channelName + ' root aggregates its second- and third-level members');
     select('department-2');
     assert.match(one('tbody').textContent, new RegExp(channelName + '示例成员1'), channelName + ' second-level node aggregates its leaf members');
-    assert.equal(one('[data-config-summary]').textContent, '共 3 条，第 1 / 1 页', channelName + ' second-level node aggregates two third-level members');
+    assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 3, channelName + ' second-level node aggregates two third-level members');
     select('mock-level-3-east');
     assert.match(one('tbody').textContent, new RegExp(channelName + '示例成员3'), channelName + ' third-level node contains a directly assigned member');
-    assert.equal(one('[data-config-summary]').textContent, '共 1 条，第 1 / 1 页');
+    assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 1);
     select('all');
     var channelAdjustDialog = w.__GAIP_CONFIG_DIALOGS__.openAdjustNode(25 + offset * 4);
     assert.equal(channelAdjustDialog.querySelectorAll('[data-adjust-node-option]').length, 23);
@@ -156,6 +143,10 @@ async function main() {
   assert.match(configContentCss, /mainHeader___QGD6D \.ant-btn-icon\s*\{[^}]*width:\s*16px;[^}]*height:\s*16px;[^}]*flex:\s*0 0 16px;[^}]*line-height:\s*0/);
   assert.match(configContentCss, /mainHeader___QGD6D \.ant-btn-icon svg\s*\{[^}]*width:\s*16px\s*!important;[^}]*height:\s*16px\s*!important/);
   assert.match(configContentCss, /mainHeader___QGD6D\s*\{[\s\S]*justify-content:\s*space-between;[\s\S]*padding-top:\s*16px/);
+  assert.match(configContentCss, /main___CWrje\{[^}]*display:flex;[^}]*flex-direction:column;[^}]*overflow:hidden/);
+  assert.match(configContentCss, /table___BX44I \.ant-spin-nested-loading,[^}]*width:100%;[^}]*min-width:0;[^}]*min-height:0/);
+  assert.match(configContentCss, /table___BX44I \.ant-table-content\{[^}]*height:100%;[^}]*overflow:auto!important;[^}]*overscroll-behavior:contain;[^}]*scrollbar-gutter:stable/);
+  assert.match(configContentCss, /table___BX44I \.ant-table-thead>tr>th\{[^}]*position:sticky!important;[^}]*top:0;[^}]*z-index:3/);
   assert.match(configContentCss, /gaip-config-admin-button\s*\{[\s\S]*background:\s*#2f3640;[\s\S]*border-color:\s*#2f3640;[\s\S]*color:\s*#fff/);
   assert.match(configContentCss, /gaip-config-admin-button:hover,[\s\S]*background:\s*#464c55\s*!important;[\s\S]*color:\s*#fff\s*!important/);
   assert.match(configContentCss, /gaip-config-admin-button:active\s*\{[\s\S]*background:\s*#20262e\s*!important/);
@@ -609,7 +600,7 @@ async function main() {
   assert.equal(one('.gaip-bulk-result-actions').firstElementChild, one('[data-bulk-again]'));
   assert.match(one('.gaip-bulk-summary-grid').textContent, /文件总数\s*18 人[\s\S]*成功导入\s*18 人/);
   assert.doesNotMatch(one('.gaip-bulk-summary-grid').textContent, /导入失败/);
-  assert.equal(one('[data-config-summary]').textContent, '共 26 条，第 1 / 3 页', 'valid mock rows enter the current node list');
+  assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 26, 'valid mock rows enter the current unpaginated node list');
   click('[data-bulk-again]');
   assert.equal(one('[data-bulk-step="1"]').getAttribute('aria-current'), 'step', 'continue import resets the flow');
   assert.equal(one('[data-bulk-result-preview-control]').hidden, true, 'local result switch is hidden outside step three');
@@ -696,7 +687,12 @@ async function main() {
   assert.equal(one('[data-organization-log-page]').value, '2');
   click('[data-organization-log-close]');
   assert.equal(d.querySelector('.gaip-organization-log-dialog'), null, 'organization log closes independently');
+  w.location.hash = '#/workspace?gaip-channel=config&gaip-view=announcement-management'; await tick();
+  assert.ok(d.querySelector('.gaip-announcement-page'), 'announcement management mounts as an independent config subpage');
+  assert.equal(d.querySelectorAll('.gaip-announcement-table tbody tr').length, 10, 'announcement first page renders its own paginated records');
+  assert.equal(sharedLogMounted, 0, 'announcement management never falls through to the shared operation log');
   w.location.hash = '#/workspace?gaip-channel=config&gaip-view=operation-log'; await tick();
+  assert.equal(d.querySelector('.gaip-announcement-page'), null, 'announcement controller is destroyed when leaving its subpage');
   assert.equal(sharedLogMounted, 1, 'config operation-log subpage mounts the shared log controller separately');
   assert.equal(sharedLogOpened, 0);
   const logExportButton = one('.gaip-log-inline [data-log-export]');
@@ -794,7 +790,7 @@ async function testDialogPreviewController() {
   assert.equal(previewHost.querySelector('.pageContainer___QCUaw'), null, 'preview must not render the organization page behind real dialogs');
   assert.equal(previewHost.children.length, 0, 'closing every preview dialog leaves no background-page DOM');
   dom.window.close();
-  console.log('PASS: seven config dialogs use the public full-flow controller with a background-free preview host.');
+  console.log('PASS: seven organization dialogs use the public full-flow controller with a background-free preview host.');
 }
 
 main().then(testDialogPreviewController).catch(error => { console.error(error); process.exit(1); });

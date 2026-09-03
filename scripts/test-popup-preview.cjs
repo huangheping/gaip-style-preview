@@ -28,8 +28,8 @@ vm.runInContext(fs.readFileSync(generatedRegistryPath, 'utf8'), context, { filen
 const catalog = context.window.__GAIP_MODAL_SOURCE_CATALOG__;
 
 assert.ok(catalog, '弹窗登记表应可执行');
-assert.equal(catalog.list.length, 48, '盘点总数应包含自动发现的组织架构日志、批量导入与调整节点弹窗');
-assert.equal(catalog.ready.length, 31, '真实可预览项应为 31');
+assert.equal(catalog.list.length, 51, '盘点总数应包含公告管理的新建、编辑与删除弹窗');
+assert.equal(catalog.ready.length, 34, '真实可预览项应为 34');
 assert.equal(catalog.pending.length, 0, '本轮完成后不得残留待接入项');
 assert.equal(catalog.excluded.length, 17, '不进入预览项应为 17');
 assert.equal(catalog.excludedDrawers.length, 6, '用户排除的抽屉必须保持 6');
@@ -49,6 +49,12 @@ assert.equal(byId['config-adjust-member-node'].definitionSource, 'features/confi
 assert.equal(byId['config-adjust-member-node'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openAdjustNode');
 assert.deepEqual(Array.from(byId['config-adjust-member-node'].invoke.args), [1]);
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-bulk-import-members') + 1].id, 'config-adjust-member-node', '调整节点应紧随批量导入进入配置中心弹窗组');
+assert.equal(byId['config-announcement-create'].definitionSource, 'features/config-center/announcement-management-view.js');
+assert.equal(byId['config-announcement-create'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate');
+assert.equal(byId['config-announcement-edit'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit');
+assert.equal(byId['config-announcement-delete'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete');
+assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-announcement-create') + 1].id, 'config-announcement-edit', '公告编辑应紧随新建弹窗');
+assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-announcement-edit') + 1].id, 'config-announcement-delete', '公告删除确认应紧随编辑弹窗');
 
 const routeEntries = catalog.ready.filter((entry) => entry.previewMode === 'route-trigger');
 assert.equal(routeEntries.length, 15, '应有 15 个正式页面真实点击预览');
@@ -66,7 +72,7 @@ catalog.ready.filter((entry) => entry.previewMode !== 'route-trigger').forEach((
     assert.ok(fs.existsSync(path.join(root, asset.split('?')[0])), `${entry.id} 资源不存在：${asset}`);
   });
 });
-assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260903-39'), '配置中心弹窗预览必须加载当前逻辑版本');
+assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260903-41'), '配置中心弹窗预览必须加载当前逻辑版本');
 
 const previewSource = fs.readFileSync(previewPath, 'utf8');
 assert.match(previewSource, /entry\.previewMode === 'route-trigger'/);

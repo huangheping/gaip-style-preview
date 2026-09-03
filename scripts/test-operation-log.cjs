@@ -32,6 +32,8 @@ async function main() {
   w.URL.createObjectURL = value => { blob = value; return 'blob:local-test'; };
   w.URL.revokeObjectURL = () => {};
   w.HTMLAnchorElement.prototype.click = function () { download = this.download; };
+  let datePickerCalls = 0;
+  w.HTMLInputElement.prototype.showPicker = function () { datePickerCalls++; };
   // jsdom doesn't implement the native dialog top layer; test only our lifecycle.
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () {
@@ -105,6 +107,8 @@ async function main() {
   const searchStyle = w.getComputedStyle(find('.gaip-log-search'));
   assert.ok(searchStyle.backgroundImage.includes('control-search.svg'));
   assert.equal(searchStyle.paddingLeft, '36px');
+  assert.equal(find('.gaip-log-search').placeholder, '请输入姓名/域账号/操作内容');
+  assert.equal(find('.gaip-log-search').getAttribute('aria-label'), '姓名、域账号或操作内容');
   const focusRule = foundationRules.find(rule => rule.selectorText && rule.selectorText.includes('.gaip-log-footer select:focus'));
   assert.ok(focusRule.selectorText.includes('.gaip-log-filters input:focus'));
   assert.ok(focusRule.selectorText.includes('.gaip-log-filters select:focus'));
@@ -122,6 +126,12 @@ async function main() {
   assert.equal(dateIndicatorRule.style.opacity, '0');
   assert.notEqual(dateIndicatorRule.style.display, 'none');
   assert.notEqual(dateIndicatorRule.style.getPropertyValue('pointer-events'), 'none');
+  assert.equal(w.getComputedStyle(find('[name="start"]')).cursor, 'pointer');
+  find('[name="start"]').click();
+  find('[name="end"]').click();
+  assert.equal(datePickerCalls, 2, 'clicking either date field should open its picker');
+  const tableHeaderRule = foundationRules.find(rule => rule.selectorText === '.gaip-log-table th');
+  assert.equal(tableHeaderRule.style.getPropertyValue('white-space'), 'nowrap');
   assert.equal(find('dialog').getAttribute('aria-labelledby'), 'gaip-log-title');
   assert.equal(d.querySelectorAll('tbody tr').length, 10);
   assert.match(text('[data-log-summary]'), /共 28 条，第 1 \/ 3 页/);
@@ -142,7 +152,7 @@ async function main() {
   set('module', '公告管理');
   set('type', '编辑');
   assert.equal(d.querySelectorAll('tbody tr').length, 4);
-  assert.equal(d.querySelectorAll('.gaip-log-changed').length, 8);
+  assert.equal(d.querySelectorAll('.gaip-log-changed').length, 0);
   set('start', '2026-08-31');
   set('end', '2026-08-31');
   assert.equal(d.querySelectorAll('tbody tr').length, 1);
@@ -158,12 +168,32 @@ async function main() {
   assert.equal(find('[name="query"]').value, '');
   assert.match(text('[data-log-summary]'), /共 28 条/);
   assert.equal(find('[name="start"]').getAttribute('aria-invalid'), 'false');
+  set('query', '查看原文');
+  assert.match(text('[data-log-summary]'), /共 4 条/);
+  assert.match(text('tbody'), /资讯标题：全球市场周报：汇率变化与资产配置观察/);
+  assert.match(text('tbody'), /原文链接：https:\/\/example\.com\/market-weekly/);
+  assert.match(text('tbody'), /资讯日期：2026-08-31/);
+  assert.match(text('tbody'), /查看：查看原文\/查看详情/);
+  const contentCopy = find('tbody td:nth-child(6) .gaip-log-copy');
+  const contentExpand = find('tbody td:nth-child(6) [data-log-expand]');
+  assert.equal(contentCopy.querySelectorAll(':scope > p').length, 4);
+  assert.equal(contentCopy.classList.contains('is-collapsed'), true);
+  assert.equal(contentExpand.textContent, '展开全部');
+  contentExpand.click();
+  assert.equal(contentCopy.classList.contains('is-collapsed'), false);
+  assert.equal(contentExpand.textContent, '收起全部');
+  contentExpand.click();
+  assert.equal(contentCopy.classList.contains('is-collapsed'), true);
+  assert.equal(contentExpand.textContent, '展开全部');
+  click('[data-log-reset]');
   const expand = find('[data-log-expand]');
   expand.click();
   assert.equal(expand.getAttribute('aria-expanded'), 'true');
+  assert.equal(expand.textContent, '收起全部');
   assert.equal(d.getElementById(expand.getAttribute('aria-controls')).classList.contains('is-collapsed'), false);
   expand.click();
   assert.equal(expand.getAttribute('aria-expanded'), 'false');
+  assert.equal(expand.textContent, '展开全部');
   set('module', '资讯中心');
   click('[data-log-export]');
   assert.match(download, /^操作日志_模拟数据_.*\.xlsx$/);
@@ -199,8 +229,11 @@ async function main() {
   assert.equal(sheet.querySelectorAll('c').length, 14 * 8);
   assert.equal(sheet.querySelector('autoFilter').getAttribute('ref'), 'A1:H14');
   assert.equal(sheet.querySelector('row[r="2"] c[r="D2"]').textContent, '资讯中心');
-  // Full text is exported even when the visual cell is collapsed.
-  assert.ok(files.get('xl/worksheets/sheet1.xml').includes('并非真实新闻或投资建议'));
+  assert.ok(files.get('xl/worksheets/sheet1.xml').includes('查看：查看原文/查看详情'));
+  assert.ok(files.get('xl/worksheets/sheet1.xml').includes('资讯标题：全球市场周报：汇率变化与资产配置观察'));
+  assert.ok(files.get('xl/worksheets/sheet1.xml').includes('原文链接：https://example.com/market-weekly'));
+  assert.ok(files.get('xl/worksheets/sheet1.xml').includes('资讯日期：2026-08-31'));
+  assert.ok(!files.get('xl/worksheets/sheet1.xml').includes('并非真实新闻或投资建议'));
   click('[data-log-close]');
   assert.equal(find('dialog').open, false);
   assert.equal(d.documentElement.classList.contains('gaip-log-scroll-lock'), false);
@@ -262,10 +295,11 @@ async function main() {
   header.remove();
   await tick();
   // Root shells all load exactly one copy in the correct data/export/UI order.
-  for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {
+  for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html') && file !== 'index-login-video-test.html')) {
     const source = read(entry);
-    assert.ok(source.includes('global-operation-log.css?v=20260901-1'), entry + ': latest inline log CSS');
-    assert.ok(source.includes('global-operation-log.js?v=20260901-1'), entry + ': top trigger removed');
+    assert.ok(source.includes('global-operation-log.css?v=20260903-1'), entry + ': latest inline log CSS');
+    assert.ok(source.includes('operation-log-mock.js?v=20260903-2'), entry + ': latest inline log mock');
+    assert.ok(source.includes('global-operation-log.js?v=20260903-2'), entry + ': top trigger removed');
     let previous = -1;
     for (const resource of ['shared/styles/global-operation-log.css', ...loaded]) {
       assert.equal(source.split(resource).length - 1, 1, entry + ': ' + resource);

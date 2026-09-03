@@ -1,10 +1,10 @@
 (function () {
   'use strict';
   var config = window.__GAIP_CHANNEL_CONFIG__.getByKey('config');
-  var views = config.views, frame = 0, page, mountedView, logPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState, adjustNodeDialog, adjustNodeTrigger, adjustNodeState, configToastTimer;
+  var views = config.views, frame = 0, page, mountedView, logPanel, announcementPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState, adjustNodeDialog, adjustNodeTrigger, adjustNodeState, configToastTimer;
   var dialogPreviewMode = !!window.__GAIP_CONFIG_DIALOG_PREVIEW__, dialogController;
   var menuOpen = false, oldTitle = '', contentHost, hiddenContent = [];
-  var state = { channel: 0, department: 'all', query: '', page: 1 };
+  var state = { channel: 0, department: 'all', query: '' };
   var source = window.__GAIP_CONFIG_SOURCE__;
   var channels = ['薄荷经纪人', 'Glory品牌顾问', '外部机构渠道', '线上渠道', '小仓', '荣耀经纪人'];
   var departmentSets = channels.map(function () {
@@ -296,7 +296,6 @@
       updateBefore: '成员：' + member.name + '（' + member.account + '）；所属节点：' + oldPath + (removedOrganizationAdmin ? '；组织架构管理员：是' : ''),
       updateAfter: '成员：' + member.name + '（' + member.account + '）；所属节点：' + targetPath + (removedOrganizationAdmin ? '；原节点管理员身份：已取消' : '')
     });
-    state.page = 1;
     closeAdjustNodeDialog();
     if (mountedView === 'organization' && page && page.querySelector('tbody')) renderMembers();
     showConfigToast('已将 ' + member.name + ' 调整至 ' + targetPath);
@@ -722,9 +721,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-52",
+      "shared/config/channels.js?v=20260903-60",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-39"
+      "features/config-center/config-center.js?v=20260903-41"
     ]
   }
   */
@@ -748,9 +747,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-52",
+      "shared/config/channels.js?v=20260903-60",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-39"
+      "features/config-center/config-center.js?v=20260903-41"
     ]
   }
   */
@@ -774,9 +773,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-52",
+      "shared/config/channels.js?v=20260903-60",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-39"
+      "features/config-center/config-center.js?v=20260903-41"
     ]
   }
   */
@@ -923,6 +922,7 @@
     closeAdjustNodeDialog();
     clearTimeout(configToastTimer);
     if (logPanel) { logPanel.destroy(); logPanel = null; }
+    if (announcementPanel) { announcementPanel.destroy(); announcementPanel = null; }
     page.remove(); page = null; mountedView = null;
     restoreUnderlyingContent();
     document.documentElement.classList.remove('gaip-config-open');
@@ -1326,12 +1326,11 @@
     return dialog;
   }
   function renderMembers() {
-    var list = filtered(), pages = Math.max(1, Math.ceil(list.length / 10));
-    state.page = Math.min(state.page, pages);
+    var list = filtered();
     var tbody = page.querySelector('tbody');
     if (!tbody) return;
     tbody.innerHTML = '';
-    list.slice((state.page - 1) * 10, state.page * 10).forEach(function (m) {
+    list.forEach(function (m) {
       var template = document.createElement('template'); template.innerHTML = '<table><tbody>' + sourceMarkup(m.html) + '</tbody></table>';
       var row = template.content.querySelector('tr');
       row.querySelector('.nameCell___QnGoz').firstElementChild.textContent = m.name;
@@ -1348,15 +1347,6 @@
       tbody.appendChild(row);
     });
     if (!list.length) tbody.innerHTML = '<tr><td colspan="8" class="emptyState___B87_m">暂无数据</td></tr>';
-    page.querySelector('[data-config-summary]').textContent = '共 ' + list.length + ' 条，第 ' + state.page + ' / ' + pages + ' 页';
-    page.querySelector('[data-config-current]').textContent = state.page;
-    ['prev', 'next'].forEach(function (key) {
-      var button = page.querySelector('[data-config-' + key + ']');
-      button.disabled = key === 'prev' ? state.page === 1 : state.page === pages;
-      button.tabIndex = button.disabled ? -1 : 0;
-      button.parentElement.classList.toggle('ant-pagination-disabled', button.disabled);
-      button.parentElement.setAttribute('aria-disabled', String(button.disabled));
-    });
     page.querySelector('[data-config-export]').disabled = !list.length;
   }
   function bindTableScrollState() {
@@ -1414,6 +1404,8 @@
     closeDepartmentMenu();
     page.innerHTML = '<div class="pageContainer___QCUaw gaip-config-original">' + sourceMarkup(source.header) +
       '<div class="content___r0pMd">' + sourceMarkup(source.tree) + '<div class="main___CWrje">' + sourceMarkup(source.toolbar) + sourceMarkup(source.table) + '</div></div></div>';
+    var memberPagination = page.querySelector('.table___BX44I .ant-pagination');
+    if (memberPagination) memberPagination.remove();
     var organizationHeader = page.querySelector('.pageContainer___QCUaw > .header___Vhyog');
     var organizationHeaderActions = organizationHeader.querySelector('.headerRight___Fe2zg');
     var memberSearch = page.querySelector('.mainHeader___QGD6D .searchWrap___gp0a3');
@@ -1553,7 +1545,7 @@
   function handleClick(event) {
     var departmentTrigger = event.target.closest('[data-department-menu]');
     if (departmentTrigger) { event.stopPropagation(); showDepartmentMenu(departmentTrigger, event.detail === 0); return; }
-    var target = event.target.closest('[data-config-channel], [data-department], [data-collapse], [data-config-prev], [data-config-next], [data-config-add], [data-edit], [data-more], [data-config-admin], [data-config-export], [data-config-clear], [data-config-bulk-import], [data-config-log]');
+    var target = event.target.closest('[data-config-channel], [data-department], [data-collapse], [data-config-add], [data-edit], [data-more], [data-config-admin], [data-config-export], [data-config-clear], [data-config-bulk-import], [data-config-log]');
     if (!target) return;
     if (event.target.closest('[data-collapse]')) {
       var collapseId = event.target.closest('[data-collapse]').dataset.collapse;
@@ -1562,10 +1554,8 @@
       collapsed[key] = !isDepartmentCollapsed(collapseDepartment);
       renderTree();
     }
-    else if (target.hasAttribute('data-config-channel')) { state.channel = Number(target.dataset.configChannel); state.department = 'all'; state.page = 1; renderOrganization(); }
-    else if (target.hasAttribute('data-department')) { state.department = target.dataset.department; state.page = 1; renderTree(); renderMembers(); }
-    else if (target.hasAttribute('data-config-prev')) { state.page--; renderMembers(); }
-    else if (target.hasAttribute('data-config-next')) { state.page++; renderMembers(); }
+    else if (target.hasAttribute('data-config-channel')) { state.channel = Number(target.dataset.configChannel); state.department = 'all'; renderOrganization(); }
+    else if (target.hasAttribute('data-department')) { state.department = target.dataset.department; renderTree(); renderMembers(); }
     else if (target.hasAttribute('data-config-add')) dialogController.openMember();
     else if (target.hasAttribute('data-edit')) dialogController.openMember(Number(target.dataset.edit));
     else if (target.hasAttribute('data-more')) {
@@ -1603,7 +1593,7 @@
       page = document.createElement('section'); page.className = 'gaip-config-page css-var-r0'; page.setAttribute('data-gaip-page-root', config.key);
       page.addEventListener('click', handleClick);
       page.addEventListener('keydown', function (event) { if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('[data-edit],[data-more],[data-department],[data-collapse],[data-department-menu]')) { event.preventDefault(); event.target.click(); } });
-      page.addEventListener('input', function (event) { if (event.target.matches('input[aria-label="搜索成员"]')) { state.query = event.target.value; state.page = 1; syncMemberSearchClear(); renderMembers(); } });
+      page.addEventListener('input', function (event) { if (event.target.matches('input[aria-label="搜索成员"]')) { state.query = event.target.value; syncMemberSearchClear(); renderMembers(); } });
       page.addEventListener('focusin', function (event) { if (event.target.matches('input[aria-label="搜索成员"], [data-config-clear]')) syncMemberSearchClear(); });
       page.addEventListener('focusout', function (event) { if (event.target.matches('input[aria-label="搜索成员"], [data-config-clear]')) requestAnimationFrame(syncMemberSearchClear); });
       document.documentElement.classList.add('gaip-config-open');
@@ -1620,9 +1610,13 @@
       closeBulkImportDialog();
       closeAdjustNodeDialog();
       if (logPanel) { logPanel.destroy(); logPanel = null; }
+      if (announcementPanel) { announcementPanel.destroy(); announcementPanel = null; }
       page.replaceChildren();
       if (current === 'organization') renderOrganization();
-      else if (window.__GAIP_OPERATION_LOG__) {
+      else if (current === 'announcement-management' && window.__GAIP_ANNOUNCEMENT_MANAGEMENT__) {
+        announcementPanel = window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.mount(page);
+      }
+      else if (current === 'operation-log' && window.__GAIP_OPERATION_LOG__) {
         logPanel = window.__GAIP_OPERATION_LOG__.mount(page);
         normalizeOperationLogExport();
       }

@@ -1,0 +1,515 @@
+.gaip-announcement-mount {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.gaip-announcement-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 24px;
+  border-top: 1px solid rgba(47, 54, 64, .12);
+  color: #2f3640;
+  background: #fff;
+}
+
+.gaip-announcement-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.gaip-announcement-header h1 {
+  margin: 0;
+  color: #20262e;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.gaip-announcement-header p {
+  margin: 6px 0 0;
+  color: #7c858f;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.gaip-announcement-create.ant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  height: 40px;
+  padding: 0 18px;
+  border-color: #00665c;
+  color: #fff;
+  background: #00665c;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.gaip-announcement-create.ant-btn:hover,
+.gaip-announcement-create.ant-btn:focus-visible {
+  border-color: #087a70;
+  color: #fff;
+  background: #087a70;
+}
+
+.gaip-announcement-create .ant-btn-icon,
+.gaip-announcement-create svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gaip-announcement-create svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.gaip-announcement-feedback {
+  position: fixed;
+  z-index: 1080;
+  top: 84px;
+  left: 50%;
+  padding: 9px 16px;
+  border: 1px solid #d7e9e6;
+  border-radius: 4px;
+  color: #075f56;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(47, 54, 64, .12);
+  transform: translateX(-50%);
+  font-size: 14px;
+}
+
+.gaip-announcement-feedback[hidden] { display: none; }
+
+.gaip-announcement-table-wrap {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #e5e8eb;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.gaip-announcement-table-wrap > .ant-table,
+.gaip-announcement-table-wrap .ant-table-container,
+.gaip-announcement-table-wrap .ant-table-content {
+  min-height: 0;
+}
+
+.gaip-announcement-table-wrap > .ant-table {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.gaip-announcement-table-wrap .ant-table-container,
+.gaip-announcement-table-wrap .ant-table-content {
+  height: 100%;
+}
+
+.gaip-announcement-table-wrap .ant-table-content {
+  overflow: auto;
+  scrollbar-color: rgba(47, 54, 64, .22) transparent;
+  scrollbar-width: thin;
+}
+
+.gaip-announcement-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.gaip-announcement-table .ant-table-thead {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+}
+
+.gaip-announcement-table .ant-table-thead > tr > th {
+  height: 48px;
+  padding: 0 16px;
+  border: 0;
+  color: #2f3640;
+  background: #f5f6f7;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gaip-announcement-table .ant-table-tbody > tr > td {
+  height: 64px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #edf0f2;
+  color: #2f3640;
+  background: #fff;
+  font-size: 14px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.gaip-announcement-table .ant-table-tbody > tr:hover > td { background: #fafbfb; }
+.gaip-announcement-index { color: #7c858f !important; }
+
+.gaip-announcement-title-text {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.gaip-announcement-title-text:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid rgba(36, 212, 201, .5);
+  outline-offset: 2px;
+}
+
+.gaip-announcement-title-tooltip.ant-tooltip {
+  position: fixed;
+  z-index: 1200;
+  width: min(520px, calc(100vw - 32px));
+  max-width: none;
+  pointer-events: none;
+}
+.gaip-announcement-title-tooltip .ant-tooltip-inner {
+  max-height: min(320px, calc(100vh - 32px));
+  padding: 14px 16px;
+  overflow-y: auto;
+  border-radius: 4px;
+  color: #fff;
+  background: #2f3640;
+  box-shadow: 0 8px 24px rgba(24,31,38,.2);
+}
+.gaip-announcement-title-tooltip-row + .gaip-announcement-title-tooltip-row {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.gaip-announcement-title-tooltip-row small {
+  display: block;
+  margin-bottom: 4px;
+  color: #8ee7df;
+  font-size: 12px;
+  line-height: 18px;
+}
+.gaip-announcement-title-tooltip-row p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #fff;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.gaip-announcement-period {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
+}
+.gaip-announcement-period-row { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: center; gap: 8px; white-space: nowrap; }
+.gaip-announcement-period-row small { color: #89919a; font-size: 12px; line-height: 20px; }
+.gaip-announcement-period-row span { color: #46505a; }
+
+.gaip-announcement-status.ant-tag {
+  min-width: 54px;
+  margin: 0;
+  padding: 2px 8px;
+  border: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.gaip-announcement-status.is-active { color: #08776b; background: #e5f6f3; }
+.gaip-announcement-status.is-upcoming { color: #536b88; background: #edf3fa; }
+.gaip-announcement-status.is-offline { color: #6f7780; background: #f0f1f2; }
+
+.gaip-announcement-actions { display: flex; align-items: center; gap: 12px; }
+.gaip-announcement-action.ant-btn {
+  height: auto;
+  padding: 0;
+  color: #00665c;
+  font-size: 14px;
+  line-height: 24px;
+}
+.gaip-announcement-action.ant-btn-dangerous { color: var(--ant-color-error, #ff4d4f); }
+.gaip-announcement-action.ant-btn:hover { color: #078176; background: transparent; }
+.gaip-announcement-action.ant-btn-dangerous:hover { color: var(--ant-color-error-hover, #ff7875); }
+.gaip-announcement-action.ant-btn[disabled],
+.gaip-announcement-action.ant-btn[disabled]:hover { color: #b7bdc3; background: transparent; cursor: not-allowed; }
+.gaip-announcement-disabled-action { display: inline-flex; cursor: help; }
+
+.gaip-announcement-pagination.ant-pagination {
+  display: flex;
+  flex: 0 0 56px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+  margin: 0;
+  border-top: 1px solid #e8ebed;
+  background: #fff;
+}
+.gaip-announcement-pagination .ant-pagination-total-text { margin-right: 8px; color: #66707a; font-size: 13px; }
+.gaip-announcement-pagination .ant-pagination-prev .ant-pagination-item-link,
+.gaip-announcement-pagination .ant-pagination-next .ant-pagination-item-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.gaip-announcement-pagination .ant-pagination-prev .anticon,
+.gaip-announcement-pagination .ant-pagination-next .anticon,
+.gaip-announcement-pagination .ant-pagination-prev svg,
+.gaip-announcement-pagination .ant-pagination-next svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+.gaip-announcement-pagination .gaip-announcement-page-jump .ant-pagination-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  color: #89919a;
+  background: transparent;
+  cursor: pointer;
+}
+.gaip-announcement-pagination .gaip-announcement-page-jump .ant-pagination-item-ellipsis {
+  display: block;
+  opacity: 1;
+  color: currentColor;
+  letter-spacing: 1px;
+}
+.gaip-announcement-pagination .gaip-announcement-page-jump:hover .ant-pagination-item-ellipsis { opacity: 1; color: var(--ant-color-primary, #24d4c9); }
+
+.gaip-announcement-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 300px;
+  color: #8c959e;
+}
+.gaip-announcement-empty-icon { width: 64px; height: 48px; color: #cfd5da; }
+.gaip-announcement-empty-icon svg { width: 100%; fill: #f4f5f6; stroke: currentColor; stroke-width: 1.5; }
+.gaip-announcement-empty p { margin: 14px 0 0; }
+
+.gaip-announcement-dialog.ant-modal {
+  position: fixed;
+  inset: 0;
+  width: min(850px, calc(100vw - 48px));
+  max-width: none;
+  max-height: calc(100dvh - 116px);
+  padding: 0;
+  margin: auto;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  color: #2f3640;
+  background: #fff;
+  box-shadow: 0 18px 54px rgba(24, 31, 38, .22);
+}
+
+.gaip-announcement-dialog::backdrop { background: rgba(25, 32, 38, .55); }
+.gaip-announcement-dialog .ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 116px);
+  padding: 0;
+  border-radius: inherit;
+  box-shadow: none;
+}
+
+.gaip-announcement-dialog .gaip-announcement-modal-header.ant-modal-header {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 24px 64px 24px 24px;
+  border-bottom: 0;
+  background: transparent;
+}
+.gaip-announcement-modal-header .ant-modal-title { margin: 0; color: #2f3640; font-size: 20px; font-weight: 500; line-height: 28px; }
+.gaip-announcement-modal-close.ant-modal-close {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: 18px;
+  width: 32px;
+  height: 32px;
+  color: #2f3640;
+  background: transparent;
+}
+.gaip-announcement-modal-close .ant-modal-close-x { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.gaip-announcement-modal-close svg { width: 16px; height: 16px; fill: currentColor; }
+
+.gaip-announcement-form { display: block; }
+.gaip-announcement-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(100dvh - 276px);
+  padding: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-color: rgba(47,54,64,.18) transparent;
+  scrollbar-width: thin;
+}
+.gaip-announcement-modal-body > .gaip-announcement-form {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 24px 24px;
+}
+
+.gaip-announcement-form-section + .gaip-announcement-form-section { margin-top: 24px; }
+.gaip-announcement-section-heading { margin-bottom: 16px; }
+.gaip-announcement-section-heading h3 { margin: 0; color: #2f3640; font-size: 16px; font-weight: 600; line-height: 24px; }
+.gaip-announcement-section-heading h3 span { color: #e04b4b; }
+.gaip-announcement-section-heading p { margin: 4px 0 0; color: #89919a; font-size: 12px; line-height: 20px; }
+
+.gaip-announcement-field.ant-form-item { display: block; margin: 0 0 16px; }
+.gaip-announcement-label { display: block; margin-bottom: 7px; color: #404852; font-size: 14px; line-height: 20px; }
+.gaip-announcement-input-wrap { position: relative; display: block; }
+.gaip-announcement-dialog .ant-input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #d9dde1;
+  border-radius: 2px;
+  color: #2f3640;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+}
+.gaip-announcement-dialog .ant-input:hover { border-color: #9aa5ad; }
+.gaip-announcement-dialog .ant-input:focus { border-color: #20bcb2; box-shadow: 0 0 0 2px rgba(36, 212, 201, .12); }
+.formModal____MTrk .gaip-announcement-title-input.ant-input {
+  display: block;
+  min-height: 48px;
+  max-height: 112px;
+  padding: 12px 62px 12px 18px;
+  overflow-y: hidden;
+  line-height: 22px;
+  resize: none;
+}
+.gaip-announcement-input-wrap small {
+  position: absolute;
+  right: 14px;
+  bottom: 13px;
+  color: #a0a7ae;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.gaip-announcement-time-grid { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); gap: 10px; align-items: end; }
+.gaip-announcement-time-group { min-width: 0; }
+.gaip-announcement-time-label { display: block; margin-bottom: 7px; color: #404852; font-size: 14px; line-height: 20px; }
+.gaip-announcement-time-controls { display: grid; grid-template-columns: minmax(140px, 1.2fr) minmax(112px, .8fr); gap: 8px; }
+.gaip-announcement-time-controls .ant-input { height: 48px; min-width: 0; padding: 0 10px; }
+.gaip-announcement-time-controls input[type="date"],
+.gaip-announcement-time-controls input[type="time"] {
+  padding-right: 42px;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px 20px;
+}
+.gaip-announcement-time-controls input[type="date"] { background-image: url("assets/announcement-calendar.svg"); }
+.gaip-announcement-time-controls input[type="time"] { background-image: url("assets/announcement-clock.svg"); }
+@supports selector(input::-webkit-calendar-picker-indicator) {
+  .gaip-announcement-time-controls input::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+.gaip-announcement-time-separator { display: flex; align-items: center; justify-content: center; height: 48px; color: #89919a; font-size: 14px; }
+
+.gaip-announcement-form-error { margin: 4px 0 0; color: #dc3f3f; font-size: 12px; }
+.gaip-announcement-form-error[hidden] { display: none; }
+.gaip-announcement-form-section.is-error .ant-input { border-color: #dc3f3f; }
+
+.gaip-announcement-dialog .ant-modal-footer.gaip-announcement-modal-footer {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-height: 72px;
+  margin: 0;
+  padding: 16px 24px 18px;
+  border-top: 1px solid rgba(47,54,64,.08);
+  background: #fff;
+}
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  height: 40px;
+  border: 1px solid #00665c;
+  border-radius: 4px;
+  color: #00665c;
+  background: #fff;
+  box-shadow: none;
+  font-size: 14px;
+}
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-primary { border-color: #00665c; color: #fff; background: #00665c; }
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-primary:hover,
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-primary:focus-visible { border-color: #155347; color: #fff; background: #155347; }
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-dangerous { border-color: var(--ant-color-error, #ff4d4f); color: #fff; background: var(--ant-color-error, #ff4d4f); }
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-dangerous:hover,
+.gaip-announcement-dialog .gaip-announcement-modal-footer .ant-btn-dangerous:focus-visible { border-color: var(--ant-color-error-hover, #ff7875); color: #fff; background: var(--ant-color-error-hover, #ff7875); }
+
+.gaip-announcement-confirm.ant-modal { width: min(520px, calc(100vw - 48px)); }
+.gaip-announcement-dialog .gaip-announcement-confirm-body { display: flex; gap: 14px; max-height: none; padding: 0 24px 24px; overflow: visible; }
+.gaip-announcement-confirm-body strong { display: block; overflow-wrap: anywhere; color: #2f3640; font-size: 15px; line-height: 24px; }
+.gaip-announcement-confirm-body p { margin: 6px 0 0; color: #7d8690; font-size: 13px; line-height: 22px; }
+.gaip-announcement-warning {
+  display: inline-flex;
+  flex: 0 0 22px;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  background: #e6a23c;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .gaip-announcement-page { padding: 16px; }
+  .gaip-announcement-header { align-items: flex-start; }
+  .gaip-announcement-time-grid { grid-template-columns: 1fr; }
+  .gaip-announcement-time-separator { display: none; }
+  .gaip-announcement-pagination .ant-pagination-total-text { display: none; }
+  .gaip-announcement-dialog.ant-modal { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
+  .gaip-announcement-modal-body > .gaip-announcement-form { padding: 0 16px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gaip-announcement-dialog { scroll-behavior: auto; }
+}

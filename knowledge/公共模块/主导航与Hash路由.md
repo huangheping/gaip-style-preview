@@ -12,7 +12,7 @@ risk: high
 - `shared/scripts/learning-nav.js`：学习中心虚拟频道和主导航图标。
 - `features/wealth-center/wealth-nav.js`：财富值中心的可展开一级菜单与三个子频道。
 - `features/news-center/news-center.js`：资讯中心虚拟频道入口与主导航项。
-- `features/config-center/config-center.js`：配置中心一级展开菜单、组织架构/操作日志二级页面与虚拟频道生命周期。
+- `features/config-center/config-center.js`：配置中心一级展开菜单、组织架构/公告管理/操作日志二级页面与虚拟频道生命周期。
 - `shared/styles/channel-foundation.css`：通过 `gaip-main-menu-*` 统一可展开父项的图标列、文字列、固定右侧箭头、旋转动效与折叠侧栏表现。
 - `shared/scripts/global-breadcrumb.js`：全局面包屑。
 
@@ -23,7 +23,7 @@ risk: high
 - Hash 可变，文档不能整页刷新。
 - 当前 Hash 是频道识别的唯一权威来源；财富值、资讯、学习等虚拟频道入口只在没有 Hash 时补自己的默认 `gaip-channel`，不得通过入口文件写入持久的 `__GAIP_PAGE_OVERRIDE__`。这样即使 `file://` 无法同步地址栏文件名，刷新也仍保留当前频道。
 - 新增/改名频道先修改频道注册表，不维护第二份映射。
-- 虚拟频道统一通过 `gaip-channel` 识别；资讯中心使用 `news`，财富值中心使用 `wealth` 并通过 `gaip-view` 记录子频道。配置中心使用 `config`，二级项由注册表 `views` 定义，`gaip-view` 为 `organization` / `operation-log`。
+- 虚拟频道统一通过 `gaip-channel` 识别；资讯中心使用 `news`，财富值中心使用 `wealth` 并通过 `gaip-view` 记录子频道。配置中心使用 `config`，二级项由注册表 `views` 定义，`gaip-view` 为 `organization` / `announcement-management` / `operation-log`。
 - 带 `[data-gaip-main-menu-toggle]` 的一级父项只切换子菜单，不能改变 Hash，也不能触发其他虚拟频道的 `closeForNavigation()`；真实导航只发生在一级叶子项或二级项。
 
 ## 主导航交互与样式契约

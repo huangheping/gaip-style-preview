@@ -37,7 +37,7 @@
       return (!f.module || record.module === f.module) &&
         (!f.type || record.type === f.type) &&
         (!f.start || date >= f.start) && (!f.end || date <= f.end) &&
-        (!f.query || (record.name + ' ' + record.account).toLowerCase().includes(f.query));
+        (!f.query || (record.name + ' ' + record.account + ' ' + textValue(record.content)).toLowerCase().includes(f.query));
     });
   }
   function message(text, error) {
@@ -50,14 +50,15 @@
     if (typeof value === 'string') return value;
     return Object.keys(value).map(function (key) { return key + '：' + value[key]; }).join('\n');
   }
-  function copyCell(value, previous, id) {
+  function copyCell(value, id) {
     if (!value) return '<span class="gaip-log-number">-</span>';
     var text = textValue(value);
-    var long = text.length > 100 || text.split('\n').length > 4;
-    var content = typeof value === 'string' ? escapeHtml(value) : Object.keys(value).map(function (key) {
-      var changed = previous && previous[key] !== value[key];
+    var long = text.length > 80 || text.split('\n').length >= 4;
+    var content = typeof value === 'string' ? value.split('\n').map(function (line) {
+      return '<p>' + escapeHtml(line) + '</p>';
+    }).join('') : Object.keys(value).map(function (key) {
       return '<p><span class="gaip-log-field">' + escapeHtml(key) + '：</span>' +
-        '<span' + (changed ? ' class="gaip-log-changed"' : '') + '>' + escapeHtml(value[key]) + '</span></p>';
+        '<span>' + escapeHtml(value[key]) + '</span></p>';
     }).join('');
     return '<div id="' + id + '" class="gaip-log-copy' + (long ? ' is-collapsed' : '') + '">' + content +
       '</div>' + (long ? '<button type="button" class="gaip-log-text-button gaip-log-expand" aria-expanded="false" aria-controls="' +
@@ -74,9 +75,9 @@
         '</span><span>' + escapeHtml(r.account) + '</span><span class="gaip-log-ip">' + escapeHtml(r.ip) +
         '</span></td><td>' + escapeHtml(r.module) + '</td><td><span class="gaip-log-tag" data-type="' +
         escapeHtml(r.type) + '">' + escapeHtml(r.type) + '</span></td><td>' +
-        copyCell(r.content, null, idPrefix + 'content-' + i) + '</td><td>' +
-        copyCell(r.before, null, idPrefix + 'before-' + i) + '</td><td>' +
-        copyCell(r.after, r.before, idPrefix + 'after-' + i) + '</td></tr>';
+        copyCell(r.content, idPrefix + 'content-' + i) + '</td><td>' +
+        copyCell(r.before, idPrefix + 'before-' + i) + '</td><td>' +
+        copyCell(r.after, idPrefix + 'after-' + i) + '</td></tr>';
     }).join('') || '<tr><td colspan="8" class="gaip-log-empty"><strong>' +
       (invalidDate(f) ? '请检查操作时间范围' : '暂无匹配的操作日志') +
       '</strong>' + (invalidDate(f) ? '开始日期不能晚于结束日期。' : '试试调整筛选条件，或点击“重置”查看全部模拟记录。') + '</td></tr>';
@@ -88,7 +89,7 @@
     form.elements.start.setAttribute('aria-invalid', String(invalidDate(f)));
     form.elements.end.setAttribute('aria-invalid', String(invalidDate(f)));
     message(invalidDate(f) ? '开始日期不能晚于结束日期，请重新选择。' :
-      '本地模拟数据 · 时间倒序 · 绿色底色标识编辑后的变化内容', invalidDate(f));
+      '本地模拟数据 · 时间倒序', invalidDate(f));
     dialog.querySelector('.gaip-log-table-wrap').scrollTop = 0;
   }
   function exportRecords() {
@@ -133,7 +134,7 @@
       '</div><div class="gaip-log-filter-row"><div class="gaip-log-dates"><label for="gaip-log-start">操作时间</label>' +
       '<input type="date" id="gaip-log-start" name="start" aria-label="操作开始日期"><span>至</span>' +
       '<input type="date" name="end" aria-label="操作结束日期"></div>' +
-      '<input type="search" class="gaip-log-search" name="query" aria-label="姓名或账号" placeholder="请输入姓名或账号">' +
+      '<input type="search" class="gaip-log-search" name="query" aria-label="姓名、域账号或操作内容" placeholder="请输入姓名/域账号/操作内容">' +
       '<button type="button" class="gaip-log-text-button" data-log-reset>重置</button></div></form>' +
       '<div class="gaip-log-feedback" role="status" aria-live="polite"></div>' +
       '<div class="gaip-log-table-wrap" tabindex="0" role="region" aria-label="操作日志表格，可横向滚动">' +
@@ -158,6 +159,12 @@
     }
     (inlineHost || document.body).appendChild(dialog);
     form = dialog.querySelector('form');
+    dialog.querySelectorAll('.gaip-log-dates input[type="date"]').forEach(function (input) {
+      input.addEventListener('click', function () {
+        if (typeof input.showPicker !== 'function') return;
+        try { input.showPicker(); } catch (error) { /* 浏览器已打开原生选择器时无需重复处理。 */ }
+      });
+    });
     form.addEventListener('submit', function (event) { event.preventDefault(); page = 1; render(); });
     form.addEventListener('input', function () { page = 1; render(); });
     form.addEventListener('change', function () { page = 1; render(); });
@@ -176,7 +183,7 @@
         var content = document.getElementById(button.getAttribute('aria-controls'));
         var expanded = button.getAttribute('aria-expanded') === 'true';
         button.setAttribute('aria-expanded', String(!expanded));
-        button.textContent = expanded ? '展开全部' : '收起';
+        button.textContent = expanded ? '展开全部' : '收起全部';
         content.classList.toggle('is-collapsed', expanded);
       }
     });

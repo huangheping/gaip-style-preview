@@ -96,7 +96,7 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
 }
 .gaip-log-filters input[aria-invalid="true"] { border-color: #b63d3d; }
 .gaip-log-dates { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.gaip-log-dates input { width: 152px; }
+.gaip-log-dates input { width: 152px; cursor: pointer; }
 .gaip-log-dates > span, .gaip-log-dates > label { color: #7a848e; white-space: nowrap; }
 .gaip-log-search { flex: 1; width: 160px; }
 .gaip-log-text-button { padding: 0 4px; border: 0; background: none; color: var(--log-brand); white-space: nowrap; font-size: 13px; }
@@ -105,7 +105,7 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
 .gaip-log-feedback[data-error="true"] { color: #b63d3d; }
 .gaip-log-table-wrap { flex: 1; min-height: 0; overflow: auto; margin: 0 24px; border: 1px solid #e5eceb; border-radius: 8px 8px 0 0; overscroll-behavior: contain; }
 .gaip-log-table { width: 100%; min-width: 1220px; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 13px; }
-.gaip-log-table th { position: sticky; top: 0; z-index: 1; text-align: left; padding: 12px; color: #657b79; background: #edf6f5; border-bottom: 1px solid #dfe9e7; font-size: 12px; }
+.gaip-log-table th { position: sticky; top: 0; z-index: 1; text-align: left; padding: 12px; color: #657b79; background: #edf6f5; border-bottom: 1px solid #dfe9e7; font-size: 12px; white-space: nowrap; }
 .gaip-log-table td { padding: 16px 12px; border-bottom: 1px solid #edf0f1; vertical-align: top; overflow-wrap: anywhere; }
 .gaip-log-table tbody tr:hover { background: #fafdfc; }
 .gaip-log-table tbody tr:last-child td { border-bottom: 0; }
@@ -122,8 +122,11 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
 .gaip-log-copy.is-collapsed { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
 .gaip-log-copy p { margin: 0 0 4px; }
 .gaip-log-copy p:last-child { margin-bottom: 0; }
-.gaip-log-field { color: #84918f; }
-.gaip-log-changed { color: #00695e; background: #ecf9f5; border-radius: 2px; padding: 1px 2px; }
+.gaip-log-field { color: #2f3640; }
+.gaip-log-table td:nth-child(7),
+.gaip-log-table td:nth-child(8),
+.gaip-log-table td:nth-child(7) .gaip-log-number,
+.gaip-log-table td:nth-child(8) .gaip-log-number { color: #2f3640; }
 .gaip-log-expand { display: block; margin-top: 6px; padding: 0; }
 .gaip-log-empty { text-align: center; padding: 80px 20px !important; color: #8a949e; }
 .gaip-log-empty strong { display: block; margin-bottom: 8px; color: #536462; font-size: 16px; }

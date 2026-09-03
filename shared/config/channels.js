@@ -107,11 +107,12 @@
       query: 'gaip-channel=config',
       views: [
         { key: 'organization', label: '组织架构' },
+        { key: 'announcement-management', label: '公告管理' },
         { key: 'operation-log', label: '操作日志' }
       ],
       assets: {
-        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260903-30', 'features/config-center/config-center.css?v=20260902-8'],
-        scripts: ['features/config-center/source-markup.js?v=20260902-1', 'features/config-center/config-center.js?v=20260903-39']
+        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260903-9', 'features/config-center/config-center-content.css?v=20260903-32', 'features/config-center/config-center.css?v=20260902-8'],
+        scripts: ['features/config-center/source-markup.js?v=20260902-1', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260903-6', 'features/config-center/config-center.js?v=20260903-41']
       }
     },
     {
