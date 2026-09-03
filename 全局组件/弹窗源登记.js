@@ -4,8 +4,8 @@
   /* iframe 会把 <base> 指回项目根目录；资源路径统一从根目录解析。 */
   var font = 'shared/styles/global-font.css';
   var umi = 'web/umi.c6286171.css';
-  var configStyles = [umi, font, 'features/config-center/ant-source.css', 'features/config-center/config-center-content.css', 'features/config-center/config-center.css'];
-  var configScripts = ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js'];
+  var configStyles = [umi, font, 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260903-23', 'features/config-center/config-center.css?v=20260902-8'];
+  var configScripts = ['shared/config/channels.js?v=20260903-44', 'features/config-center/source-markup.js?v=20260902-1', 'features/config-center/config-center.js?v=20260903-34'];
 
   var entries = [
     {

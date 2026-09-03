@@ -24,9 +24,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js",
-      "features/config-center/source-markup.js",
-      "features/config-center/config-center.js"
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -52,9 +52,39 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js",
-      "features/config-center/source-markup.js",
-      "features/config-center/config-center.js"
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
+    ],
+    "definitionSource": "features/config-center/config-center.js"
+  },
+  {
+    "id": "config-adjust-member-node",
+    "title": "调整节点",
+    "channel": "配置中心 / 组织架构",
+    "type": "modal",
+    "status": "ready",
+    "height": 780,
+    "after": "config-bulk-import-members",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openAdjustNode(1)",
+    "previewMode": "config-dialog",
+    "invoke": {
+      "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNode",
+      "args": [
+        1
+      ]
+    },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css"
+    ],
+    "scripts": [
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
     ],
     "definitionSource": "features/config-center/config-center.js"
   }

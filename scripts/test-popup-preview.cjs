@@ -28,8 +28,8 @@ vm.runInContext(fs.readFileSync(generatedRegistryPath, 'utf8'), context, { filen
 const catalog = context.window.__GAIP_MODAL_SOURCE_CATALOG__;
 
 assert.ok(catalog, '弹窗登记表应可执行');
-assert.equal(catalog.list.length, 47, '盘点总数应包含自动发现的组织架构日志与批量导入弹窗');
-assert.equal(catalog.ready.length, 30, '真实可预览项应为 30');
+assert.equal(catalog.list.length, 48, '盘点总数应包含自动发现的组织架构日志、批量导入与调整节点弹窗');
+assert.equal(catalog.ready.length, 31, '真实可预览项应为 31');
 assert.equal(catalog.pending.length, 0, '本轮完成后不得残留待接入项');
 assert.equal(catalog.excluded.length, 17, '不进入预览项应为 17');
 assert.equal(catalog.excludedDrawers.length, 6, '用户排除的抽屉必须保持 6');
@@ -45,6 +45,10 @@ assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config
 assert.equal(byId['config-bulk-import-members'].definitionSource, 'features/config-center/config-center.js');
 assert.equal(byId['config-bulk-import-members'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openBulkImport');
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-organization-log') + 1].id, 'config-bulk-import-members', '批量导入应紧随组织架构日志进入配置中心弹窗组');
+assert.equal(byId['config-adjust-member-node'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-adjust-member-node'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openAdjustNode');
+assert.deepEqual(Array.from(byId['config-adjust-member-node'].invoke.args), [1]);
+assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-bulk-import-members') + 1].id, 'config-adjust-member-node', '调整节点应紧随批量导入进入配置中心弹窗组');
 
 const routeEntries = catalog.ready.filter((entry) => entry.previewMode === 'route-trigger');
 assert.equal(routeEntries.length, 15, '应有 15 个正式页面真实点击预览');
@@ -59,9 +63,10 @@ catalog.ready.filter((entry) => entry.previewMode !== 'route-trigger').forEach((
   assert.ok(Array.isArray(entry.styles) && entry.styles.length, `${entry.id} 必须登记真实 CSS`);
   assert.ok(Array.isArray(entry.scripts) && entry.scripts.length, `${entry.id} 必须登记真实脚本`);
   entry.styles.concat(entry.scripts).forEach((asset) => {
-    assert.ok(fs.existsSync(path.join(root, asset)), `${entry.id} 资源不存在：${asset}`);
+    assert.ok(fs.existsSync(path.join(root, asset.split('?')[0])), `${entry.id} 资源不存在：${asset}`);
   });
 });
+assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260903-34'), '配置中心弹窗预览必须加载当前逻辑版本');
 
 const previewSource = fs.readFileSync(previewPath, 'utf8');
 assert.match(previewSource, /entry\.previewMode === 'route-trigger'/);
@@ -87,6 +92,7 @@ assert.match(generatorSource, /@gaip-modal/);
 assert.match(generatorSource, /--check/);
 assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-organization-log"/);
 assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-bulk-import-members"/);
+assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-adjust-member-node"/);
 
 const componentContext = { window: {} };
 vm.createContext(componentContext);

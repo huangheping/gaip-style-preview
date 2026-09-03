@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var config = window.__GAIP_CHANNEL_CONFIG__.getByKey('config');
-  var views = config.views, frame = 0, page, mountedView, logPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState;
+  var views = config.views, frame = 0, page, mountedView, logPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState, adjustNodeDialog, adjustNodeTrigger, adjustNodeState, configToastTimer;
   var dialogPreviewMode = !!window.__GAIP_CONFIG_DIALOG_PREVIEW__, dialogController;
   var menuOpen = false, oldTitle = '', contentHost, hiddenContent = [];
   var state = { channel: 0, department: 'all', query: '', page: 1 };
@@ -15,10 +15,25 @@
       return department;
     });
   });
+  var levelThreeMockDepartments = [
+    { id: 'mock-level-3-east', name: '华东业务组', depth: 3, parent: 'department-2' },
+    { id: 'mock-level-3-institution', name: '机构服务组', depth: 3, parent: 'department-2' },
+    { id: 'mock-level-3-key-account', name: '重点客户支持与运营组', depth: 3, parent: 'department-2' },
+    { id: 'mock-level-3-follow-up', name: '区域客户跟进组', depth: 3, parent: 'department-2' }
+  ];
+  departmentSets.forEach(function (set) {
+    set.splice.apply(set, [4, 0].concat(levelThreeMockDepartments.map(function (item) { return Object.assign({}, item); })));
+  });
   var departments = departmentSets[0], departmentSequence = 0, departmentMenu, menuTrigger, dismissMenu;
   var currentOperatorRole = 'super-admin';
   var adminRoleAssignments = {
-    '0:all': { commission: 1, clueAdmin: [1], clueFollower: [2] }
+    '0:all': { commission: 1, clueAdmin: [1], clueFollower: [2] },
+    '0:department-3': { commission: 1, clueAdmin: [1], clueFollower: [] },
+    '0:department-4': { commission: null, clueAdmin: [], clueFollower: [2] },
+    '0:mock-level-3-east': { commission: null, clueAdmin: [], clueFollower: [] },
+    '0:mock-level-3-institution': { commission: 7, clueAdmin: [], clueFollower: [] },
+    '0:mock-level-3-key-account': { commission: null, clueAdmin: [8], clueFollower: [] },
+    '0:mock-level-3-follow-up': { commission: null, clueAdmin: [], clueFollower: [9] }
   };
   var treeTemplate = document.createElement('template'); treeTemplate.innerHTML = source.tree;
   var rowTemplates = {};
@@ -55,6 +70,54 @@
       referrer: mockRow.querySelector('.tagInternal___EhJFS') ? 1 : mockRow.querySelector('.tagExternal___fibsK') ? 2 : 0
     });
   }
+  [
+    [1, 'department-3', true],
+    [2, 'department-4', true],
+    [3, 'mock-level-3-east', false],
+    [4, 'department-8', false],
+    [5, 'department-9', false],
+    [6, 'mock-level-3-east', true],
+    [7, 'mock-level-3-institution', false],
+    [8, 'mock-level-3-key-account', false],
+    [9, 'mock-level-3-follow-up', false],
+    [10, 'department-3', false], [11, 'mock-level-3-east', false],
+    [12, 'department-4', false], [13, 'department-4', false],
+    [14, 'department-8', false], [15, 'department-9', false],
+    [16, 'department-10', false], [17, 'department-10', false],
+    [18, 'department-3', false], [19, 'department-3', false],
+    [20, 'department-8', false], [21, 'department-9', false],
+    [22, 'mock-level-3-east', false], [23, 'mock-level-3-institution', false],
+    [24, 'mock-level-3-key-account', false]
+  ].forEach(function (assignment) {
+    var member = members.find(function (item) { return item.id === assignment[0]; });
+    if (!member) return;
+    member.department = assignment[1];
+    member.admin = assignment[2];
+    updateAdminBadge(member);
+  });
+  channels.slice(1).forEach(function (channelName, offset) {
+    var channelIndex = offset + 1;
+    ['department-3', 'department-4', 'mock-level-3-east', 'mock-level-3-follow-up'].forEach(function (departmentId, memberOffset) {
+      var memberId = 25 + offset * 4 + memberOffset;
+      var mockRow = sourceRow(source.rows[(offset + memberOffset) % source.rows.length]);
+      var mockAdminBadge = mockRow.querySelector('.tagAdmin___YTyPD');
+      if (mockAdminBadge) mockAdminBadge.remove();
+      members.push({
+        id: memberId,
+        name: channelName + '示例成员' + (memberOffset + 1),
+        account: 'channel_demo_' + channelIndex + '_' + (memberOffset + 1),
+        channel: channelIndex,
+        department: departmentId,
+        html: mockRow.outerHTML,
+        phone: '****' + String(2000 + memberId).slice(-4),
+        email: 'channel' + channelIndex + '_' + (memberOffset + 1) + '@example.com',
+        admin: false,
+        licensed: false,
+        regions: [],
+        referrer: 0
+      });
+    });
+  });
   function sourceRow(html) {
     var template = document.createElement('template');
     template.innerHTML = '<table><tbody>' + html + '</tbody></table>';
@@ -73,7 +136,7 @@
       ['修改成员身份', '身份：人管', '身份：人管、佣金'],
       ['新增部门', '-', '部门：客户服务一部'],
       ['修改部门', '部门名称：测试1部', '部门名称：客户服务一部'],
-      ['调整成员部门', '所属部门：测试部门', '所属部门：研发部'],
+      ['调整节点', '所属节点：测试部门', '所属节点：研发部'],
       ['删除成员', '成员：示例成员12', '-']
     ];
     var paths = ['薄荷经纪人/测试部门/测试1部', '薄荷经纪人/研发部', 'Glory品牌顾问/顾问一部', '外部机构渠道/合作机构', '线上渠道/线上顾问', '小仓/运营组', '荣耀经纪人/经纪人团队'];
@@ -143,6 +206,158 @@
     if (!bulkImportDialog) return;
     if (bulkImportDialog.open) bulkImportDialog.close();
     else { bulkImportDialog.remove(); bulkImportDialog = null; }
+  }
+
+  function closeAdjustNodeDialog() {
+    if (!adjustNodeDialog) return;
+    if (adjustNodeDialog.open) adjustNodeDialog.close();
+    else { adjustNodeDialog.remove(); adjustNodeDialog = null; adjustNodeState = null; }
+  }
+
+  function formatLogTime(date) {
+    function two(value) { return String(value).padStart(2, '0'); }
+    return date.getFullYear() + '-' + two(date.getMonth() + 1) + '-' + two(date.getDate()) + ' ' + two(date.getHours()) + ':' + two(date.getMinutes()) + ':' + two(date.getSeconds());
+  }
+
+  function showConfigToast(message) {
+    if (!page) return;
+    var existing = page.querySelector('[data-config-toast]');
+    if (existing) existing.remove();
+    clearTimeout(configToastTimer);
+    var toast = document.createElement('div');
+    toast.className = 'gaip-config-toast';
+    toast.setAttribute('data-config-toast', '');
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.innerHTML = '<span class="gaip-config-toast-icon" aria-hidden="true">✓</span><span>' + escapeHtml(message) + '</span>';
+    page.appendChild(toast);
+    configToastTimer = setTimeout(function () { if (toast.isConnected) toast.remove(); }, 2600);
+  }
+
+  function adjustNodeVisibleDepartments() {
+    var query = adjustNodeState.query.trim().toLowerCase();
+    return departmentSets[adjustNodeState.channel].filter(function (department) {
+      return !query || bulkDepartmentPath(adjustNodeState.channel, department.id).toLowerCase().includes(query);
+    });
+  }
+
+  function renderAdjustNodeOptions() {
+    if (!adjustNodeDialog || !adjustNodeState) return;
+    var list = adjustNodeDialog.querySelector('[data-adjust-node-tree]');
+    var visible = adjustNodeVisibleDepartments();
+    list.innerHTML = visible.length ? visible.map(function (department) {
+      var current = department.id === adjustNodeState.currentDepartment;
+      var selected = department.id === adjustNodeState.targetDepartment;
+      var name = department.id === 'all' ? channels[adjustNodeState.channel] : department.name;
+      return '<div class="gaip-adjust-node-row' + (selected ? ' is-selected' : '') + (current ? ' is-current' : '') + '" role="treeitem" aria-selected="' + selected + '" style="--adjust-node-depth:' + department.depth + '">' +
+        '<button type="button" class="gaip-adjust-node-option" data-adjust-node-option="' + escapeHtml(department.id) + '"' + (current ? ' disabled aria-disabled="true"' : '') + '>' +
+        '<span class="gaip-adjust-node-radio" aria-hidden="true"></span><span class="gaip-adjust-node-folder" aria-hidden="true"></span>' +
+        '<span class="gaip-adjust-node-copy"><strong>' + escapeHtml(name) + '</strong><small>' + escapeHtml(bulkDepartmentPath(adjustNodeState.channel, department.id)) + '</small></span>' +
+        (current ? '<span class="gaip-adjust-node-current">当前节点</span>' : '') + '</button></div>';
+    }).join('') : '<div class="gaip-adjust-node-empty">未找到匹配的组织节点</div>';
+    var selectedPath = adjustNodeDialog.querySelector('[data-adjust-node-selected-path]');
+    selectedPath.textContent = adjustNodeState.targetDepartment ? bulkDepartmentPath(adjustNodeState.channel, adjustNodeState.targetDepartment) : '请选择目标节点';
+    selectedPath.classList.toggle('is-placeholder', !adjustNodeState.targetDepartment);
+    var confirm = adjustNodeDialog.querySelector('[data-adjust-node-confirm]');
+    confirm.disabled = !adjustNodeState.targetDepartment;
+    adjustNodeDialog.querySelector('[data-adjust-node-error]').hidden = true;
+  }
+
+  function clearMemberNodeRoles(member, oldDepartment) {
+    var roles = adminRoleAssignments[member.channel + ':' + oldDepartment];
+    if (!roles) return;
+    if (roles.commission === member.id) roles.commission = null;
+    roles.clueAdmin = roles.clueAdmin.filter(function (memberId) { return memberId !== member.id; });
+    roles.clueFollower = roles.clueFollower.filter(function (memberId) { return memberId !== member.id; });
+  }
+
+  function applyMemberNodeAdjustment() {
+    if (!adjustNodeState || !adjustNodeState.targetDepartment) return;
+    var member = members.find(function (item) { return item.id === adjustNodeState.memberId; });
+    if (!member) return;
+    var oldDepartment = member.department;
+    var targetDepartment = adjustNodeState.targetDepartment;
+    if (oldDepartment === targetDepartment) return;
+    var oldPath = bulkDepartmentPath(member.channel, oldDepartment);
+    var targetPath = bulkDepartmentPath(member.channel, targetDepartment);
+    var removedOrganizationAdmin = !!member.admin;
+    clearMemberNodeRoles(member, oldDepartment);
+    if (member.admin) { member.admin = false; updateAdminBadge(member); }
+    member.department = targetDepartment;
+    organizationLogRecords.unshift({
+      id: 'adjust-node-' + Date.now(),
+      createdDt: formatLogTime(new Date()),
+      operatorName: '本地预览用户',
+      createdBy: 'demo_admin',
+      operateType: '调整节点',
+      channelTab: channels[member.channel],
+      nodeSource: oldPath.replace(/ \/ /g, '/'),
+      operatorSource: '手动',
+      updateBefore: '成员：' + member.name + '（' + member.account + '）；所属节点：' + oldPath + (removedOrganizationAdmin ? '；组织架构管理员：是' : ''),
+      updateAfter: '成员：' + member.name + '（' + member.account + '）；所属节点：' + targetPath + (removedOrganizationAdmin ? '；原节点管理员身份：已取消' : '')
+    });
+    state.page = 1;
+    closeAdjustNodeDialog();
+    if (mountedView === 'organization' && page && page.querySelector('tbody')) renderMembers();
+    showConfigToast('已将 ' + member.name + ' 调整至 ' + targetPath);
+  }
+
+  function openAdjustNodeDialog(memberId, trigger) {
+    closeAdjustNodeDialog();
+    var member = members.find(function (item) { return item.id === Number(memberId); }) || members[0];
+    if (!member) return null;
+    adjustNodeTrigger = trigger || document.activeElement;
+    adjustNodeState = { memberId: member.id, channel: member.channel, currentDepartment: member.department, targetDepartment: '', query: '' };
+    var currentPath = bulkDepartmentPath(member.channel, member.department);
+    var dialog = document.createElement('dialog');
+    adjustNodeDialog = dialog;
+    dialog.className = 'ant-modal css-10wz6x1 gaip-adjust-node-dialog';
+    dialog.setAttribute('aria-label', '调整节点');
+    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-adjust-node-header"><h2>调整节点</h2><button type="button" class="gaip-adjust-node-close" data-adjust-node-close aria-label="关闭调整节点弹窗">×</button></header>' +
+      '<div class="gaip-adjust-node-body"><div class="gaip-adjust-member-summary"><div><span>员工姓名</span><strong>' + escapeHtml(member.name) + '</strong></div><div><span>域账号</span><strong>' + escapeHtml(member.account) + '</strong></div></div>' +
+      '<div class="gaip-adjust-current-node"><span>当前节点</span><strong>' + escapeHtml(currentPath) + '</strong></div>' +
+      '<section class="gaip-adjust-target-section"><div class="gaip-adjust-target-heading"><label><span aria-hidden="true">*</span> 目标节点</label><strong data-adjust-node-selected-path class="is-placeholder">请选择目标节点</strong></div>' +
+      '<label class="gaip-adjust-node-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg><input type="search" data-adjust-node-search aria-label="搜索目标节点" placeholder="搜索节点名称或路径"><button type="button" data-adjust-node-search-clear aria-label="清除目标节点搜索" hidden>×</button></label>' +
+      '<div class="gaip-adjust-node-tree" role="tree" aria-label="当前渠道组织节点" data-adjust-node-tree></div><p class="gaip-adjust-node-error" data-adjust-node-error role="alert" hidden>请选择目标节点</p></section></div>' +
+      '<footer class="gaip-adjust-node-footer"><button type="button" class="ant-btn gaip-adjust-button is-secondary" data-adjust-node-close>取消</button><button type="button" class="ant-btn gaip-adjust-button is-primary" data-adjust-node-confirm disabled>确认调整</button></footer>' +
+      '<div class="gaip-adjust-confirm-layer" data-adjust-admin-warning hidden><div class="gaip-adjust-confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="gaip-adjust-warning-title"><div class="gaip-adjust-warning-icon" aria-hidden="true">!</div><div><h3 id="gaip-adjust-warning-title">确认调整管理员节点？</h3><p>该员工当前为【' + escapeHtml(currentPath) + '】节点管理员，调整节点后将取消其原节点管理员身份，且不会自动成为目标节点管理员，是否确认调整？</p></div><div class="gaip-adjust-warning-actions"><button type="button" class="ant-btn gaip-adjust-button is-secondary" data-adjust-warning-cancel>取消</button><button type="button" class="ant-btn gaip-adjust-button is-primary" data-adjust-warning-confirm>确认调整</button></div></div></div></div>';
+    dialog.addEventListener('click', function (event) {
+      var option = event.target.closest('[data-adjust-node-option]');
+      if (option && !option.disabled) { adjustNodeState.targetDepartment = option.dataset.adjustNodeOption; renderAdjustNodeOptions(); return; }
+      if (event.target.closest('[data-adjust-node-close]')) closeAdjustNodeDialog();
+      else if (event.target.closest('[data-adjust-node-search-clear]')) {
+        var input = dialog.querySelector('[data-adjust-node-search]'); input.value = ''; adjustNodeState.query = ''; event.target.closest('button').hidden = true; renderAdjustNodeOptions(); input.focus();
+      } else if (event.target.closest('[data-adjust-node-confirm]')) {
+        if (!adjustNodeState.targetDepartment) { dialog.querySelector('[data-adjust-node-error]').hidden = false; return; }
+        if (member.admin) { dialog.querySelector('[data-adjust-admin-warning]').hidden = false; dialog.querySelector('[data-adjust-warning-cancel]').focus(); }
+        else applyMemberNodeAdjustment();
+      } else if (event.target.closest('[data-adjust-warning-cancel]')) {
+        dialog.querySelector('[data-adjust-admin-warning]').hidden = true; dialog.querySelector('[data-adjust-node-confirm]').focus();
+      } else if (event.target.closest('[data-adjust-warning-confirm]')) applyMemberNodeAdjustment();
+    });
+    dialog.addEventListener('input', function (event) {
+      if (!event.target.matches('[data-adjust-node-search]')) return;
+      adjustNodeState.query = event.target.value;
+      dialog.querySelector('[data-adjust-node-search-clear]').hidden = !event.target.value;
+      renderAdjustNodeOptions();
+    });
+    dialog.addEventListener('cancel', function (event) {
+      event.preventDefault();
+      var warning = dialog.querySelector('[data-adjust-admin-warning]');
+      if (!warning.hidden) { warning.hidden = true; dialog.querySelector('[data-adjust-node-confirm]').focus(); }
+      else closeAdjustNodeDialog();
+    });
+    dialog.addEventListener('close', function () {
+      dialog.remove();
+      if (adjustNodeDialog === dialog) adjustNodeDialog = null;
+      adjustNodeState = null;
+      if (adjustNodeTrigger && adjustNodeTrigger.isConnected) adjustNodeTrigger.focus();
+      adjustNodeTrigger = null;
+    }, { once: true });
+    page.appendChild(dialog);
+    renderAdjustNodeOptions();
+    dialog.showModal();
+    return dialog;
   }
 
   function bulkDepartmentPath(channelIndex, departmentId) {
@@ -295,7 +510,7 @@
         return '<option value="' + index + '"' + (index === bulkImportState.channel ? ' selected' : '') + '>' + escapeHtml(name) + '</option>';
       }).join('');
       body.innerHTML = '<section class="gaip-bulk-section gaip-bulk-location-section" aria-labelledby="bulk-target-title"><div class="gaip-bulk-section-heading gaip-bulk-target-heading"><h3 id="bulk-target-title">选择导入范围</h3><div class="gaip-bulk-current-target" data-bulk-path><span>当前目标：</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div></div><div class="gaip-bulk-field-label">渠道</div><label class="gaip-bulk-channel-select"><select aria-label="导入渠道" data-bulk-channel-select>' + channelOptions + '</select><span class="gaip-bulk-select-arrow" aria-hidden="true"></span></label><div class="gaip-bulk-node-heading"><span class="gaip-bulk-field-label">目标节点</span><label class="gaip-bulk-node-search">' + bulkImportSearchIcon('search') + '<input type="search" value="' + escapeHtml(bulkImportState.nodeQuery) + '" placeholder="搜索目标节点" aria-label="搜索目标节点" data-bulk-node-search><button type="button" data-bulk-search-clear aria-label="清除节点搜索"' + (bulkImportState.nodeQuery ? '' : ' hidden') + '>' + bulkImportSearchIcon('clear') + '</button></label></div><div class="gaip-bulk-node-tree" role="tree" aria-label="目标节点" data-bulk-node-tree>' + bulkImportDepartmentTreeMarkup() + '</div></section>' +
-        '<section class="gaip-bulk-section gaip-bulk-upload-section" aria-labelledby="bulk-file-title"><div class="gaip-bulk-section-heading gaip-bulk-upload-heading"><h3 id="bulk-file-title">上传识别导入</h3><button type="button" class="gaip-bulk-sample" data-bulk-sample>使用示例文件预览完整流程</button></div><div class="gaip-bulk-upload-content"><div class="gaip-bulk-upload-picker"><label class="gaip-bulk-upload-button" data-bulk-dropzone aria-label="上传 Excel 文件"><input type="file" accept=".xlsx,.xls" data-bulk-file><span class="gaip-bulk-upload-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt="" aria-hidden="true"></span><span>上传文件</span></label><span class="gaip-bulk-upload-limit">文件大小不得超过10MB</span></div>' + (bulkImportState.fileName ? '<div class="gaip-bulk-upload-file" data-bulk-upload-file><span class="gaip-bulk-attachment-icon">' + bulkImportAttachmentIcon() + '</span><span>' + escapeHtml(bulkImportState.fileName) + '</span></div>' : '') + '<div class="gaip-bulk-file-error" data-bulk-file-error' + (bulkImportState.fileError ? '' : ' hidden') + '>' + escapeHtml(bulkImportState.fileError || '') + '</div></div><div class="gaip-bulk-template-bar"><a class="gaip-bulk-template-link" href="' + escapeHtml(bulkImportTemplateUrl()) + '" download="批量人员导入模板.xlsx"><span class="gaip-bulk-template-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-template-xlsx.svg')) + '" alt="" aria-hidden="true"></span><span class="gaip-bulk-template-copy"><strong>下载导入模板</strong><small>请勿修改表头；单次最多导入 100 人，支持 .xlsx、.xls</small></span></a></div></section>';
+        '<section class="gaip-bulk-section gaip-bulk-upload-section" aria-labelledby="bulk-file-title"><div class="gaip-bulk-section-heading gaip-bulk-upload-heading"><h3 id="bulk-file-title">上传识别导入</h3><button type="button" class="gaip-bulk-sample" data-bulk-sample>使用示例文件预览完整流程</button></div><div class="gaip-bulk-upload-content"><div class="gaip-bulk-upload-picker"><label class="gaip-bulk-upload-button" data-bulk-dropzone aria-label="上传 Excel 文件"><input type="file" accept=".xlsx,.xls" data-bulk-file><span class="gaip-bulk-upload-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt="" aria-hidden="true"></span><span>上传文件</span></label><span class="gaip-bulk-upload-limit">文件大小不得超过10MB，支持 .xlsx、.xls</span></div>' + (bulkImportState.fileName ? '<div class="gaip-bulk-upload-file" data-bulk-upload-file><span class="gaip-bulk-attachment-icon">' + bulkImportAttachmentIcon() + '</span><span>' + escapeHtml(bulkImportState.fileName) + '</span></div>' : '') + '<div class="gaip-bulk-file-error" data-bulk-file-error' + (bulkImportState.fileError ? '' : ' hidden') + '>' + escapeHtml(bulkImportState.fileError || '') + '</div></div><div class="gaip-bulk-template-bar"><a class="gaip-bulk-template-link" href="' + escapeHtml(bulkImportTemplateUrl()) + '" download="批量人员导入模板.xlsx"><span class="gaip-bulk-template-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-template-xlsx.svg')) + '" alt="" aria-hidden="true"></span><span class="gaip-bulk-template-copy"><strong>下载导入模板</strong><small>请勿修改表头；单次最多导入 100 人</small></span></a></div></section>';
       footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-close>取消</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-validate' + (bulkImportState.fileName ? '' : ' disabled') + '>开始校验</button>';
     } else if (bulkImportState.step === 2) {
       var validCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
@@ -324,6 +539,30 @@
 
   function resetBulkImportState() {
     bulkImportState = { step: 1, channel: state.channel, department: state.department, nodeQuery: '', collapsedByChannel: {}, fileName: '', fileError: '', rows: bulkImportMockRows(), imported: false };
+  }
+
+  function setBulkImportFile(file) {
+    if (!file) return;
+    if (!/\.(xlsx|xls)$/i.test(file.name)) {
+      bulkImportState.fileName = '';
+      bulkImportState.fileError = '请上传 .xlsx 或 .xls 格式文件';
+    } else if (file.size > 10 * 1024 * 1024) {
+      bulkImportState.fileName = '';
+      bulkImportState.fileError = '文件大小不能超过 10MB';
+    } else {
+      bulkImportState.fileName = file.name;
+      bulkImportState.fileError = '';
+    }
+    renderBulkImportStep();
+  }
+
+  function bulkImportDragHasFiles(event) {
+    var transfer = event.dataTransfer;
+    if (!transfer) return false;
+    if (transfer.files && transfer.files.length) return true;
+    var types = transfer.types;
+    if (!types || !types.length) return false;
+    return Array.prototype.some.call(types, function (type) { return type === 'Files'; });
   }
 
   function addBulkImportMembers() {
@@ -357,7 +596,19 @@
     var dialog = document.createElement('dialog'); bulkImportDialog = dialog;
     dialog.className = 'ant-modal css-10wz6x1 gaip-bulk-import-dialog';
     dialog.setAttribute('aria-label', '批量导入成员');
-    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-bulk-modal-header"><h2>批量导入成员</h2><button type="button" class="gaip-bulk-close" data-bulk-close aria-label="关闭批量导入成员"><span aria-hidden="true">×</span></button></header><ol class="gaip-bulk-steps" aria-label="批量导入进度"><li data-bulk-step="1"><span>1</span><strong>选择导入范围</strong></li><li data-bulk-step="2"><span>2</span><strong>校验并确认</strong></li><li data-bulk-step="3"><span>3</span><strong>导入结果</strong></li></ol><div class="gaip-bulk-modal-body" data-bulk-body></div><footer class="gaip-bulk-modal-footer" data-bulk-footer></footer></div>';
+    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-bulk-modal-header"><h2>批量导入成员</h2><button type="button" class="gaip-bulk-close" data-bulk-close aria-label="关闭批量导入成员"><span aria-hidden="true">×</span></button></header><ol class="gaip-bulk-steps" aria-label="批量导入进度"><li data-bulk-step="1"><span>1</span><strong>选择导入范围</strong></li><li data-bulk-step="2"><span>2</span><strong>校验并确认</strong></li><li data-bulk-step="3"><span>3</span><strong>导入结果</strong></li></ol><div class="gaip-bulk-modal-body" data-bulk-body></div><footer class="gaip-bulk-modal-footer" data-bulk-footer></footer><div class="gaip-bulk-drop-overlay" data-bulk-drop-overlay role="status" aria-live="polite" aria-hidden="true"><div class="gaip-bulk-drop-message"><span class="gaip-bulk-drop-icon" aria-hidden="true"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt=""></span><strong>松开以上传并识别文件</strong><small>支持 .xlsx、.xls，单个文件不超过 10MB</small></div></div></div>';
+    var bulkDragDepth = 0;
+    function clearBulkImportDragState() {
+      bulkDragDepth = 0;
+      dialog.classList.remove('is-dragging-file');
+      var overlay = dialog.querySelector('[data-bulk-drop-overlay]');
+      if (overlay) overlay.setAttribute('aria-hidden', 'true');
+    }
+    function showBulkImportDragState() {
+      dialog.classList.add('is-dragging-file');
+      var overlay = dialog.querySelector('[data-bulk-drop-overlay]');
+      if (overlay) overlay.setAttribute('aria-hidden', 'false');
+    }
     dialog.addEventListener('click', function (event) {
       var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-return-cancel],[data-bulk-return-confirm],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
       if (!target) return;
@@ -391,11 +642,7 @@
         }
       } else if (event.target.matches('[data-bulk-file]')) {
         var file = event.target.files && event.target.files[0];
-        if (!file) return;
-        if (!/\.(xlsx|xls)$/i.test(file.name)) { bulkImportState.fileName = ''; bulkImportState.fileError = '请上传 .xlsx 或 .xls 格式文件'; }
-        else if (file.size > 10 * 1024 * 1024) { bulkImportState.fileName = ''; bulkImportState.fileError = '文件大小不能超过 10MB'; }
-        else { bulkImportState.fileName = file.name; bulkImportState.fileError = ''; }
-        renderBulkImportStep();
+        setBulkImportFile(file);
       }
     });
     dialog.addEventListener('input', function (event) {
@@ -403,16 +650,32 @@
       bulkImportState.nodeQuery = event.target.value;
       updateBulkImportDepartmentTree();
     });
-    dialog.addEventListener('dragover', function (event) { if (event.target.closest('[data-bulk-dropzone]')) event.preventDefault(); });
-    dialog.addEventListener('drop', function (event) {
-      if (!event.target.closest('[data-bulk-dropzone]')) return;
+    dialog.addEventListener('dragenter', function (event) {
+      if (bulkImportState.step !== 1 || !bulkImportDragHasFiles(event)) return;
       event.preventDefault();
-      var file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
-      if (!file) return;
-      if (!/\.(xlsx|xls)$/i.test(file.name) || file.size > 10 * 1024 * 1024) { bulkImportState.fileName = ''; bulkImportState.fileError = '请上传不超过 10MB 的 .xlsx 或 .xls 文件'; }
-      else { bulkImportState.fileName = file.name; bulkImportState.fileError = ''; }
-      renderBulkImportStep();
+      bulkDragDepth += 1;
+      showBulkImportDragState();
     });
+    dialog.addEventListener('dragover', function (event) {
+      if (bulkImportState.step !== 1 || !bulkImportDragHasFiles(event)) return;
+      event.preventDefault();
+      if (event.dataTransfer) event.dataTransfer.dropEffect = 'copy';
+      showBulkImportDragState();
+    });
+    dialog.addEventListener('dragleave', function (event) {
+      if (bulkImportState.step !== 1 || !bulkImportDragHasFiles(event)) return;
+      event.preventDefault();
+      bulkDragDepth = Math.max(0, bulkDragDepth - 1);
+      if (!bulkDragDepth) clearBulkImportDragState();
+    });
+    dialog.addEventListener('drop', function (event) {
+      if (bulkImportState.step !== 1 || !bulkImportDragHasFiles(event)) return;
+      event.preventDefault();
+      clearBulkImportDragState();
+      var file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
+      setBulkImportFile(file);
+    });
+    dialog.addEventListener('dragend', clearBulkImportDragState);
     dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeBulkImportDialog(); });
     dialog.addEventListener('close', function () {
       dialog.remove(); if (bulkImportDialog === dialog) bulkImportDialog = null;
@@ -443,9 +706,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js",
-      "features/config-center/source-markup.js",
-      "features/config-center/config-center.js"
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
     ]
   }
   */
@@ -469,9 +732,35 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js",
-      "features/config-center/source-markup.js",
-      "features/config-center/config-center.js"
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
+    ]
+  }
+  */
+  /* @gaip-modal
+  {
+    "id": "config-adjust-member-node",
+    "title": "调整节点",
+    "channel": "配置中心 / 组织架构",
+    "type": "modal",
+    "status": "ready",
+    "height": 780,
+    "after": "config-bulk-import-members",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openAdjustNode(1)",
+    "previewMode": "config-dialog",
+    "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNode", "args": [1] },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css"
+    ],
+    "scripts": [
+      "shared/config/channels.js?v=20260903-44",
+      "features/config-center/source-markup.js?v=20260902-1",
+      "features/config-center/config-center.js?v=20260903-34"
     ]
   }
   */
@@ -615,6 +904,8 @@
     closeDepartmentMenu();
     closeOrganizationOperationLog();
     closeBulkImportDialog();
+    closeAdjustNodeDialog();
+    clearTimeout(configToastTimer);
     if (logPanel) { logPanel.destroy(); logPanel = null; }
     page.remove(); page = null; mountedView = null;
     restoreUnderlyingContent();
@@ -716,10 +1007,24 @@
       if (selected) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
     });
   }
+  function departmentContainsMember(channelIndex, departmentId, memberDepartmentId) {
+    if (departmentId === 'all') return true;
+    var set = departmentSets[channelIndex] || [];
+    var current = set.find(function (department) { return department.id === memberDepartmentId; });
+    while (current) {
+      if (current.id === departmentId) return true;
+      current = set.find(function (department) { return department.id === current.parent; });
+    }
+    return false;
+  }
+  function membersInDepartment(channelIndex, departmentId) {
+    return members.filter(function (member) {
+      return member.channel === channelIndex && departmentContainsMember(channelIndex, departmentId, member.department);
+    });
+  }
   function filtered() {
-    return members.filter(function (m) {
-      return m.channel === state.channel && (state.department === 'all' || m.department === state.department) &&
-        (m.name + ' ' + m.account).toLowerCase().includes(state.query.toLowerCase());
+    return membersInDepartment(state.channel, state.department).filter(function (member) {
+      return (member.name + ' ' + member.account).toLowerCase().includes(state.query.toLowerCase());
     });
   }
   function renderTree() {
@@ -833,7 +1138,7 @@
     if (action === 'delete') dialog.querySelector('.ant-modal-title').textContent = title;
     var error = document.createElement('p'); error.className = 'gaip-department-error'; error.setAttribute('role', 'alert'); error.hidden = true;
     var body = dialog.querySelector('.ant-modal-body'), input = body.querySelector('input'), save = dialog.querySelector('[data-department-save]');
-    var currentMembers = members.filter(function (member) { return member.channel === state.channel && member.department === id; });
+    var currentMembers = membersInDepartment(state.channel, id);
     if (action === 'admin') {
       var roleState = adminRoleState(id, currentMembers);
       var roleConfigs = [
@@ -1032,7 +1337,9 @@
     ['prev', 'next'].forEach(function (key) {
       var button = page.querySelector('[data-config-' + key + ']');
       button.disabled = key === 'prev' ? state.page === 1 : state.page === pages;
+      button.tabIndex = button.disabled ? -1 : 0;
       button.parentElement.classList.toggle('ant-pagination-disabled', button.disabled);
+      button.parentElement.setAttribute('aria-disabled', String(button.disabled));
     });
     page.querySelector('[data-config-export]').disabled = !list.length;
   }
@@ -1128,6 +1435,14 @@
     dialog.querySelector('.ant-modal-title').textContent = member ? '编辑成员' : '添加成员';
     var memberFooter = dialog.querySelector('.footer___UhMLM');
     dialog.querySelector('.ant-modal-content').appendChild(memberFooter);
+    if (member) {
+      var adjustButton = document.createElement('button');
+      adjustButton.type = 'button';
+      adjustButton.className = 'ant-btn css-10wz6x1 css-var-r0 ant-btn-default ant-btn-color-default ant-btn-variant-outlined memberAdjustNodeBtn___Sr4Qe';
+      adjustButton.setAttribute('data-editor-adjust-node', '');
+      adjustButton.textContent = '调整节点';
+      memberFooter.prepend(adjustButton);
+    }
     var account = dialog.querySelector('#domainAccount'), nameInput = dialog.querySelector('#userName');
     account.value = member ? member.account : ''; nameInput.value = member ? member.name : '';
     account.disabled = nameInput.disabled = !!member;
@@ -1138,8 +1453,9 @@
     dialog.addEventListener('close', function () { dialog.remove(); if (previousFocus && previousFocus.isConnected) previousFocus.focus(); });
     dialog.querySelectorAll('[data-editor-cancel]').forEach(function (button) { button.addEventListener('click', function () { dialog.close(); }); });
     dialog.querySelectorAll('.ant-input-clear-icon').forEach(function (button) { button.addEventListener('click', function () { var input = button.closest('.ant-input-affix-wrapper').querySelector('input'); input.value = ''; }); });
-    var currentMembers = members.filter(function (item) { return item.channel === state.channel && item.department === state.department; });
-    var editorRoleState = adminRoleState(state.department, currentMembers);
+    var editorDepartment = member ? member.department : state.department;
+    var currentMembers = members.filter(function (item) { return item.channel === state.channel && item.department === editorDepartment; });
+    var editorRoleState = adminRoleState(editorDepartment, currentMembers);
     var organizationRole = dialog.querySelector('#isAdmin'), commissionRole = dialog.querySelector('#isCommissionOwner');
     var currentClueRole = member && editorRoleState.clueAdmin.includes(member.id) ? 'clue-admin' : member && editorRoleState.clueFollower.includes(member.id) ? 'clue-follower' : 'none';
     organizationRole.checked = !!(member && member.admin);
@@ -1169,6 +1485,11 @@
     dialog.addEventListener('change', syncChoices);
     account.addEventListener('input', function () { account.setCustomValidity(''); });
     syncChoices();
+    var adjustMemberButton = dialog.querySelector('[data-editor-adjust-node]');
+    if (adjustMemberButton) adjustMemberButton.addEventListener('click', function () {
+      dialog.close();
+      dialogController.openAdjustNode(member.id, previousFocus);
+    });
     dialog.querySelector('[data-editor-save]').addEventListener('click', function () {
       if (!account.value.trim() || !nameInput.value.trim()) { account.required = nameInput.required = true; account.reportValidity(); nameInput.reportValidity(); return; }
       if (!member && members.some(function (m) { return m.account === account.value.trim(); })) { account.setCustomValidity('域账号已存在'); account.reportValidity(); return; }
@@ -1234,9 +1555,21 @@
     else if (target.hasAttribute('data-more')) {
       var existing = page.querySelector('.gaip-config-more'); if (existing) { existing.remove(); return; }
       var dropdown = document.createElement('div'); dropdown.className = 'ant-dropdown gaip-config-more';
-      dropdown.innerHTML = '<ul class="ant-dropdown-menu" role="menu"><li class="ant-dropdown-menu-item ant-dropdown-menu-item-danger" role="menuitem"><span class="trashIcon___hWpPp"></span><span>删除</span></li></ul>';
+      dropdown.innerHTML = '<ul class="ant-dropdown-menu" role="menu" aria-label="成员操作"><li class="ant-dropdown-menu-item" role="menuitem" tabindex="0" data-member-action="adjust"><svg class="gaip-member-menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h11m0 0-3-3m3 3-3 3M19 17H8m0 0 3-3m-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>调整节点</span></li><li class="ant-dropdown-menu-item ant-dropdown-menu-item-danger" role="menuitem" tabindex="0" data-member-action="delete"><span class="trashIcon___hWpPp"></span><span>删除</span></li></ul>';
       var rect = target.getBoundingClientRect(); dropdown.style.top = rect.bottom + 'px'; dropdown.style.left = Math.min(rect.left, innerWidth - 100) + 'px';
-      dropdown.querySelector('li').addEventListener('click', function () { members = members.filter(function (m) { return m.id !== Number(target.dataset.more); }); dropdown.remove(); renderMembers(); }); page.appendChild(dropdown);
+      dropdown.addEventListener('click', function (menuEvent) {
+        var action = menuEvent.target.closest('[data-member-action]');
+        if (!action) return;
+        var memberId = Number(target.dataset.more);
+        dropdown.remove();
+        if (action.dataset.memberAction === 'adjust') dialogController.openAdjustNode(memberId, target);
+        else { members = members.filter(function (m) { return m.id !== memberId; }); renderMembers(); }
+      });
+      dropdown.addEventListener('keydown', function (menuEvent) {
+        if ((menuEvent.key === 'Enter' || menuEvent.key === ' ') && menuEvent.target.matches('[data-member-action]')) { menuEvent.preventDefault(); menuEvent.target.click(); }
+        if (menuEvent.key === 'Escape') { menuEvent.preventDefault(); dropdown.remove(); target.focus(); }
+      });
+      page.appendChild(dropdown);
     }
     else if (target.hasAttribute('data-config-admin')) dialogController.openDepartment(state.department, 'admin', target);
     else if (target.hasAttribute('data-config-export')) exportMembers();
@@ -1269,6 +1602,7 @@
       closeDepartmentMenu();
       closeOrganizationOperationLog();
       closeBulkImportDialog();
+      closeAdjustNodeDialog();
       if (logPanel) { logPanel.destroy(); logPanel = null; }
       page.replaceChildren();
       if (current === 'organization') renderOrganization();
@@ -1313,6 +1647,10 @@
     openBulkImport: function (trigger) {
       ensureDialogPreviewHost();
       return openBulkImportDialog(trigger);
+    },
+    openAdjustNode: function (memberId, trigger) {
+      ensureDialogPreviewHost();
+      return openAdjustNodeDialog(memberId, trigger);
     }
   };
   window.__GAIP_CONFIG_DIALOGS__ = dialogController;
