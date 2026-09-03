@@ -470,6 +470,7 @@
 
   function bulkImportIcon(kind) {
     if (kind === 'success') return '<span class="gaip-bulk-check" aria-hidden="true">✓</span>';
+    if (kind === 'partial') return '<svg class="gaip-bulk-warning" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6.75v6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.15" fill="currentColor"/></svg>';
     var template = document.createElement('template');
     template.innerHTML = sourceMarkup(source.toolbar);
     var icon = template.content.querySelector('[data-config-export] .ant-btn-icon svg').cloneNode(true);
@@ -499,12 +500,19 @@
   function renderBulkImportStep() {
     if (!bulkImportDialog || !bulkImportState) return;
     var body = bulkImportDialog.querySelector('[data-bulk-body]'), footer = bulkImportDialog.querySelector('[data-bulk-footer]');
+    var resultPreviewControl = bulkImportDialog.querySelector('[data-bulk-result-preview-control]');
     bulkImportDialog.querySelectorAll('[data-bulk-step]').forEach(function (step) {
       var number = Number(step.dataset.bulkStep), active = number === bulkImportState.step, complete = number < bulkImportState.step;
       step.classList.toggle('is-active', active); step.classList.toggle('is-complete', complete);
       step.setAttribute('aria-current', active ? 'step' : 'false');
     });
     body.classList.toggle('is-validation-step', bulkImportState.step === 2);
+    body.classList.toggle('is-result-step', bulkImportState.step === 3);
+    footer.classList.toggle('is-result-step', bulkImportState.step === 3);
+    resultPreviewControl.hidden = bulkImportState.step !== 3;
+    resultPreviewControl.querySelectorAll('[data-bulk-result-preview]').forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.bulkResultPreview === bulkImportState.resultPreview));
+    });
     if (bulkImportState.step === 1) {
       var channelOptions = channels.map(function (name, index) {
         return '<option value="' + index + '"' + (index === bulkImportState.channel ? ' selected' : '') + '>' + escapeHtml(name) + '</option>';
@@ -519,12 +527,17 @@
         return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(item.referrer) + '</td><td>' + escapeHtml(item.admin) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
       }).join('');
       body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名 / 备注</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
-      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-link" data-bulk-download-fail>下载失败明细</button><span class="gaip-bulk-footer-spacer"></span><button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
+      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-footer-download is-secondary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
     } else {
-      var importedCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
+      var isAllSuccessPreview = bulkImportState.resultPreview === 'success';
+      var importedCount = isAllSuccessPreview ? bulkImportState.rows.length : bulkImportState.rows.filter(function (item) { return item.valid; }).length;
       var failedCount = bulkImportState.rows.length - importedCount;
-      body.innerHTML = '<div class="gaip-bulk-result"><span class="gaip-bulk-result-icon">' + bulkImportIcon('success') + '</span><h3>批量导入已完成</h3><p>有效成员已导入，失败记录未写入成员列表。</p><div class="gaip-bulk-result-target"><span>导入节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-summary-grid">' + bulkImportSummary('文件总数', bulkImportState.rows.length + ' 人', 'neutral') + bulkImportSummary('成功导入', importedCount + ' 人', 'success') + bulkImportSummary('导入失败', failedCount + ' 人', 'error') + '</div><div class="gaip-bulk-result-note">成功成员会分别生成“新增成员”组织架构操作记录。下载失败明细并修正后，可继续发起下一次导入。</div></div>';
-      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-download-fail>下载失败明细</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-again>继续导入</button>';
+      var resultActions = '<div class="gaip-bulk-result-actions">' + (failedCount ? '<button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button>' : '') + '<button type="button" class="ant-btn gaip-bulk-button is-link" data-bulk-again>继续导入</button></div>';
+      var resultSummary = bulkImportSummary('文件总数', bulkImportState.rows.length + ' 人', 'neutral') + bulkImportSummary('成功导入', importedCount + ' 人', 'success') + (failedCount ? bulkImportSummary('导入失败', failedCount + ' 人', 'error') : '');
+      var resultCopy = isAllSuccessPreview ? '全部成员已成功导入。' : '有效成员已导入，失败记录未写入成员列表。';
+      var resultNote = isAllSuccessPreview ? '全部成员均已生成“新增成员”组织架构操作记录，可继续发起下一次导入。' : '成功成员会分别生成“新增成员”组织架构操作记录。下载失败明细并修正后，可继续发起下一次导入。';
+      body.innerHTML = '<div class="gaip-bulk-result"><span class="gaip-bulk-result-icon ' + (isAllSuccessPreview ? 'is-success' : 'is-partial') + '">' + bulkImportIcon(isAllSuccessPreview ? 'success' : 'partial') + '</span><h3>' + (isAllSuccessPreview ? '批量导入已完成' : '导入完成，部分失败') + '</h3><p>' + resultCopy + '</p>' + resultActions + '<section class="gaip-bulk-result-card" aria-label="导入结果详情"><div class="gaip-bulk-result-target"><span>导入节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-summary-grid' + (failedCount ? '' : ' is-success-only') + '">' + resultSummary + '</div><div class="gaip-bulk-result-note">' + resultNote + '</div></section></div>';
+      footer.innerHTML = '';
     }
   }
 
@@ -538,7 +551,7 @@
   }
 
   function resetBulkImportState() {
-    bulkImportState = { step: 1, channel: state.channel, department: state.department, nodeQuery: '', collapsedByChannel: {}, fileName: '', fileError: '', rows: bulkImportMockRows(), imported: false };
+    bulkImportState = { step: 1, channel: state.channel, department: state.department, nodeQuery: '', collapsedByChannel: {}, fileName: '', fileError: '', rows: bulkImportMockRows(), imported: false, resultPreview: 'partial' };
   }
 
   function setBulkImportFile(file) {
@@ -596,7 +609,7 @@
     var dialog = document.createElement('dialog'); bulkImportDialog = dialog;
     dialog.className = 'ant-modal css-10wz6x1 gaip-bulk-import-dialog';
     dialog.setAttribute('aria-label', '批量导入成员');
-    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-bulk-modal-header"><h2>批量导入成员</h2><button type="button" class="gaip-bulk-close" data-bulk-close aria-label="关闭批量导入成员"><span aria-hidden="true">×</span></button></header><ol class="gaip-bulk-steps" aria-label="批量导入进度"><li data-bulk-step="1"><span>1</span><strong>选择导入范围</strong></li><li data-bulk-step="2"><span>2</span><strong>校验并确认</strong></li><li data-bulk-step="3"><span>3</span><strong>导入结果</strong></li></ol><div class="gaip-bulk-modal-body" data-bulk-body></div><footer class="gaip-bulk-modal-footer" data-bulk-footer></footer><div class="gaip-bulk-drop-overlay" data-bulk-drop-overlay role="status" aria-live="polite" aria-hidden="true"><div class="gaip-bulk-drop-message"><span class="gaip-bulk-drop-icon" aria-hidden="true"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt=""></span><strong>松开以上传并识别文件</strong><small>支持 .xlsx、.xls，单个文件不超过 10MB</small></div></div></div>';
+    dialog.innerHTML = '<div class="ant-modal-content"><header class="gaip-bulk-modal-header"><h2>批量导入成员</h2><button type="button" class="gaip-bulk-close" data-bulk-close aria-label="关闭批量导入成员"><span aria-hidden="true">×</span></button></header><ol class="gaip-bulk-steps" aria-label="批量导入进度"><li data-bulk-step="1"><span>1</span><strong>选择导入范围</strong></li><li data-bulk-step="2"><span>2</span><strong>校验并确认</strong></li><li data-bulk-step="3"><span>3</span><strong>导入结果</strong></li></ol><div class="gaip-bulk-modal-body" data-bulk-body></div><footer class="gaip-bulk-modal-footer" data-bulk-footer></footer><div class="gaip-bulk-drop-overlay" data-bulk-drop-overlay role="status" aria-live="polite" aria-hidden="true"><div class="gaip-bulk-drop-message"><span class="gaip-bulk-drop-icon" aria-hidden="true"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt=""></span><strong>松开以上传并识别文件</strong><small>支持 .xlsx、.xls，单个文件不超过 10MB</small></div></div></div><div class="gaip-bulk-result-preview" data-bulk-result-preview-control hidden><span>结果预览</span><div role="group" aria-label="切换导入结果预览"><button type="button" data-bulk-result-preview="partial" aria-pressed="true">部分失败</button><button type="button" data-bulk-result-preview="success" aria-pressed="false">全部成功</button></div></div>';
     var bulkDragDepth = 0;
     function clearBulkImportDragState() {
       bulkDragDepth = 0;
@@ -610,7 +623,7 @@
       if (overlay) overlay.setAttribute('aria-hidden', 'false');
     }
     dialog.addEventListener('click', function (event) {
-      var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-return-cancel],[data-bulk-return-confirm],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
+      var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-result-preview],[data-bulk-return-cancel],[data-bulk-return-confirm],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
       if (!target) return;
       if (target.hasAttribute('data-bulk-close')) closeBulkImportDialog();
       else if (target.hasAttribute('data-bulk-sample')) { bulkImportState.fileName = '组织成员批量导入示例.xlsx'; bulkImportState.fileError = ''; renderBulkImportStep(); }
@@ -621,6 +634,7 @@
       else if (target.hasAttribute('data-bulk-download-fail')) downloadBulkImportFailures();
       else if (target.hasAttribute('data-bulk-confirm')) { addBulkImportMembers(); bulkImportState.step = 3; renderBulkImportStep(); }
       else if (target.hasAttribute('data-bulk-again')) { resetBulkImportState(); renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-result-preview')) { bulkImportState.resultPreview = target.dataset.bulkResultPreview; renderBulkImportStep(); }
       else if (target.hasAttribute('data-bulk-department-option')) { bulkImportState.department = target.dataset.bulkDepartmentOption; updateBulkImportDepartmentTree(); }
       else if (target.hasAttribute('data-bulk-node-toggle')) {
         var collapsedMap = bulkImportCollapsedMap(), nodeId = target.dataset.bulkNodeToggle;
@@ -706,9 +720,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ]
   }
   */
@@ -732,9 +746,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ]
   }
   */
@@ -758,9 +772,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ]
   }
   */

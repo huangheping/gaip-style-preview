@@ -24,9 +24,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -52,9 +52,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -82,9 +82,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-44",
+      "shared/config/channels.js?v=20260903-51",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-34"
+      "features/config-center/config-center.js?v=20260903-38"
     ],
     "definitionSource": "features/config-center/config-center.js"
   }

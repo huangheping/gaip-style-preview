@@ -110,8 +110,8 @@
         { key: 'operation-log', label: '操作日志' }
       ],
       assets: {
-        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260903-23', 'features/config-center/config-center.css?v=20260902-8'],
-        scripts: ['features/config-center/source-markup.js?v=20260902-1', 'features/config-center/config-center.js?v=20260903-34']
+        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260903-30', 'features/config-center/config-center.css?v=20260902-8'],
+        scripts: ['features/config-center/source-markup.js?v=20260902-1', 'features/config-center/config-center.js?v=20260903-38']
       }
     },
     {
