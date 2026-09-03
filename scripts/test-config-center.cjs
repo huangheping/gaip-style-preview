@@ -540,7 +540,12 @@ async function main() {
   assert.ok(one('[data-bulk-upload-file] .gaip-bulk-attachment-icon svg'), 'selected file row includes a paperclip icon');
   click('[data-bulk-validate]');
   assert.equal(one('[data-bulk-step="2"]').getAttribute('aria-current'), 'step');
-  assert.deepEqual(Array.from(bulkDialog.querySelectorAll('.gaip-bulk-table thead th'), el => el.textContent.trim()), ['Excel 行', '用户姓名 / 备注', '域账号', 'UA 姓名', '持牌地区', '转介绍人', '管理员', '校验状态', '失败原因']);
+  assert.deepEqual(Array.from(bulkDialog.querySelectorAll('.gaip-bulk-table thead th'), el => el.textContent.trim()), ['Excel 行', '用户姓名', '域账号', 'UA 姓名', '持牌地区', '转介绍人', '管理员', '校验状态', '失败原因']);
+  const bulkValidationRows = Array.from(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr'));
+  assert.equal(bulkValidationRows.some(row => row.children[5].textContent.trim() === '无'), false, 'empty referrers render as a dash');
+  assert.equal(bulkValidationRows.some(row => row.children[6].textContent.trim() === '否'), false, 'non-admin values render as a dash');
+  assert.equal(bulkValidationRows[1].children[5].textContent.trim(), '-');
+  assert.equal(bulkValidationRows[1].children[6].textContent.trim(), '-');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-preview-head'), null, 'validation step omits the repeated title block');
   assert.equal(one('.gaip-bulk-validation-target strong').textContent, '薄荷经纪人', 'target node is the primary validation context');
   assert.match(one('.gaip-bulk-validation-meta').textContent, /共 18 人.*可导入 2 人.*失败 16 人.*失败行不影响其余成员导入/s, 'counts and handling guidance share one compact line');

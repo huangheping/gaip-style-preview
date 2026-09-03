@@ -66,7 +66,7 @@ catalog.ready.filter((entry) => entry.previewMode !== 'route-trigger').forEach((
     assert.ok(fs.existsSync(path.join(root, asset.split('?')[0])), `${entry.id} 资源不存在：${asset}`);
   });
 });
-assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260903-38'), '配置中心弹窗预览必须加载当前逻辑版本');
+assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260903-39'), '配置中心弹窗预览必须加载当前逻辑版本');
 
 const previewSource = fs.readFileSync(previewPath, 'utf8');
 assert.match(previewSource, /entry\.previewMode === 'route-trigger'/);

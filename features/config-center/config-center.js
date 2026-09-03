@@ -524,9 +524,11 @@
       var validCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
       var invalidCount = bulkImportState.rows.length - validCount;
       var rows = bulkImportState.rows.map(function (item) {
-        return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(item.referrer) + '</td><td>' + escapeHtml(item.admin) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
+        var referrerDisplay = item.referrer === '无' ? '-' : item.referrer;
+        var adminDisplay = item.admin === '否' ? '-' : item.admin;
+        return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(referrerDisplay) + '</td><td>' + escapeHtml(adminDisplay) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
       }).join('');
-      body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名 / 备注</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
       footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-footer-download is-secondary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
     } else {
       var isAllSuccessPreview = bulkImportState.resultPreview === 'success';
@@ -720,9 +722,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-51",
+      "shared/config/channels.js?v=20260903-52",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-38"
+      "features/config-center/config-center.js?v=20260903-39"
     ]
   }
   */
@@ -746,9 +748,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-51",
+      "shared/config/channels.js?v=20260903-52",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-38"
+      "features/config-center/config-center.js?v=20260903-39"
     ]
   }
   */
@@ -772,9 +774,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-51",
+      "shared/config/channels.js?v=20260903-52",
       "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-38"
+      "features/config-center/config-center.js?v=20260903-39"
     ]
   }
   */
