@@ -301,4 +301,54 @@
 
   window.__GAIP_APPLY_STRUCTURE_NAMES__ = scheduleApply;
   window.__GAIP_REGION_LABELS__ = Object.assign({}, regionLabels);
+
+  // 主导航视觉顺序改用 CSS order 控制，不物理挪动 Umi 原生渲染的 <li>。
+  // 客户中心360/保单列表/方案中心/产品中心/活动中心/线索中心/薄荷入职引导
+  // 这些真实菜单项由 React/Umi 自己管理 DOM，用 insertBefore /
+  // insertAdjacentElement 硬搬容易在下次渲染时跟它的虚拟 DOM 对不上；资讯
+  // 中心/学习中心/财富值中心/配置中心这几个虚拟频道虽然是自己插进去的、搬
+  // 起来没风险，但为了让最终视觉顺序只有一个权威来源，统一都交给这一份
+  // order 表决定，不再依赖各模块自己的插入锚点谁先谁后。
+  var menuOrder = [
+    '工作台总览',
+    '线索中心',
+    '客户中心360',
+    '方案中心',
+    '产品中心',
+    '保单列表',
+    '资讯中心',
+    '活动中心',
+    '学习中心',
+    '薄荷入职引导',
+    '薄荷入职指引',
+    '财富值中心',
+    '配置中心'
+  ];
+  var menuOrderIndex = {};
+  menuOrder.forEach(function (label, index) { menuOrderIndex[label] = index; });
+
+  var orderFrame = 0;
+  function applyMenuOrder() {
+    orderFrame = 0;
+    var menu = document.querySelector('.ant-pro-sider-menu .ant-menu, .ant-layout-sider .ant-menu');
+    if (!menu) return;
+    menu.classList.add('gaip-main-menu-ordered');
+    Array.prototype.forEach.call(menu.children, function (item) {
+      if (item.tagName !== 'LI') return;
+      var title = item.querySelector(':scope > .ant-menu-title-content, :scope > .ant-menu-submenu-title .ant-menu-title-content');
+      var label = title && title.textContent.trim();
+      var index = label && Object.prototype.hasOwnProperty.call(menuOrderIndex, label)
+        ? menuOrderIndex[label]
+        : menuOrder.length;
+      if (item.style.order !== String(index)) item.style.order = String(index);
+    });
+  }
+  function scheduleApplyMenuOrder() {
+    if (orderFrame) return;
+    orderFrame = requestAnimationFrame(applyMenuOrder);
+  }
+  window.addEventListener('hashchange', scheduleApplyMenuOrder);
+  window.addEventListener('popstate', scheduleApplyMenuOrder);
+  new MutationObserver(scheduleApplyMenuOrder).observe(document.documentElement, { childList: true, subtree: true });
+  scheduleApplyMenuOrder();
 })();

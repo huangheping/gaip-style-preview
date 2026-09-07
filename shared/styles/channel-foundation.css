@@ -166,6 +166,35 @@
   object-fit: cover;
 }
 
+/* 主导航视觉顺序：只用 flex order 重排，不物理挪动 Umi 原生 <li>，DOM 结构
+   和 React 对这些节点的管理不受影响，绘制顺序由 JS 写入的 order 决定。
+   flex item 之间、以及 flex item 与其内部子元素之间都不会发生 margin
+   collapse——原本靠 collapse 合并成 4px 的相邻外边距会变成 8px，可展开父
+   项内部 .gaip-main-menu-parent 自己的 4px 外边距也不再向外"穿透"折叠，导
+   致整行从 40px 撑高到 48px。这里统一改成：外层 <li> 自己只保留
+   margin-bottom: 4px（margin-top 清零，避免两侧外边距相加），可展开父项内
+   部标题的外边距清零、改由外层 <li> 统一负责，行高和相邻间距就都回到原来
+   40px / 4px 的效果，不再区分是叶子项还是分组项。 */
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .ant-menu-root.gaip-main-menu-ordered {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .ant-menu-root.gaip-main-menu-ordered > li {
+  flex: 0 0 auto;
+  width: 100%;
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+}
+
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .ant-menu-root.gaip-main-menu-ordered > li:first-child {
+  margin-top: 4px !important;
+}
+
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .ant-menu-root.gaip-main-menu-ordered .gaip-main-menu-parent.ant-menu-submenu-title {
+  margin: 0 !important;
+}
+
 /* 菜单滚动层贴近侧栏右缘，并始终显示在百宝箱的上延底图之上。 */
 .ant-layout-sider-children > .gaip-sidebar-nav-scroll {
   position: relative;
