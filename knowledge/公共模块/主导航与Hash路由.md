@@ -18,6 +18,8 @@ risk: high
 
 ## 不变量
 
+- 本地排序预览（2026-09-07，未发布）：顺序单独由 `shared/config/channels.js` 的 `sidebarOrder` 定义，`channel-regions.js` 复用现有观察器写入直属菜单项的 CSS `order`，不挪动 Umi 节点、不重排资源加载列表。仅 `.gaip-main-menu-ordered` 根菜单采用 flex，边距兼容保持原 4px 间距及父项设定高度，子菜单不重排。回退边界见 [[../变更/当前未发布变更#仅采用 PR #1 的主导航顺序（可回退预览）]]；浏览器几何与原生箭头键的视觉顺序尚待核验。
+
 - 主导航继续使用 Umi Hash SPA。
 - 禁止 `location.href`、`location.assign()`、`location.replace()` 进行频道切换。
 - Hash 可变，文档不能整页刷新。
@@ -49,7 +51,7 @@ risk: high
 
 | 项目 | 固定值 |
 | --- | --- |
-| 一级父项高度 / 行高 | `40px` |
+| 一级/二级菜单项高度 / 行高 | `36px`（共享框架 CSS，2026-09-07 用户调整） |
 | 父项外边距 | 上下 `4px`，左右 `0` |
 | 父项左内边距 | `24px` |
 | 左边框占位 | `4px solid transparent` |

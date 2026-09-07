@@ -166,6 +166,25 @@
   object-fit: cover;
 }
 
+/* 本地排序预览：不动节点、宽度、图标、字号、颜色及点击区域。
+   flex 不再折叠相邻外边距，必要的边距归一仅用于保留原 4px 间距与
+   父项设定高度；子菜单不参与重排。展开与折叠侧栏保持同一视觉顺序。 */
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered {
+  display: flex !important;
+  flex-direction: column;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li {
+  flex-shrink: 0;
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li:first-child {
+  margin-top: 4px !important;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li > .gaip-main-menu-parent.ant-menu-submenu-title {
+  margin-block: 0 !important;
+}
+
 /* 菜单滚动层贴近侧栏右缘，并始终显示在百宝箱的上延底图之上。 */
 .ant-layout-sider-children > .gaip-sidebar-nav-scroll {
   position: relative;
@@ -211,18 +230,25 @@
   pointer-events: none;
 }
 
+/* 只调整侧栏菜单行的高度/行高；不限制包含二级菜单的分组容器高度。 */
+#root .ant-layout-sider .ant-menu-root .ant-menu-item,
+#root .ant-layout-sider .ant-menu-root .ant-menu-submenu-title {
+  height: 36px !important;
+  line-height: 36px !important;
+}
+
 /* 可展开的主导航父项共用同一布局和箭头动效。 */
 #root .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-main-menu-parent.ant-menu-submenu-title {
   position: relative;
   display: flex !important;
   box-sizing: border-box;
   width: calc(100% - 8px) !important;
-  height: 40px !important;
+  height: 36px !important;
   align-items: center;
   margin: 4px 0 !important;
   padding: 0 40px 0 24px !important;
   cursor: pointer;
-  line-height: 40px !important;
+  line-height: 36px !important;
   text-align: left;
 }
 

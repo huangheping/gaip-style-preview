@@ -13,7 +13,7 @@
     "check:navigation": "sh scripts/verify-local-navigation.sh",
     "check:modals": "node scripts/generate-modal-catalog.cjs --check && node scripts/test-popup-preview.cjs",
     "test:dom": "npm run test:navigation && npm run test:config && npm run test:announcements && npm run test:logs && npm run test:agent",
-    "test:navigation": "node scripts/test-expandable-main-nav.cjs",
+    "test:navigation": "node scripts/test-sidebar-order.cjs && node scripts/test-expandable-main-nav.cjs",
     "test:config": "node scripts/test-config-center.cjs",
     "test:announcements": "node scripts/test-announcement-management.cjs",
     "test:logs": "node scripts/test-operation-log.cjs",

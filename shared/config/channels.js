@@ -58,7 +58,7 @@
       label: '活动中心',
       route: '/activity',
       entry: '活动中心.html',
-      icon: 'news-center',
+      icon: 'activity-center',
       type: 'dashboard'
     },
     {
@@ -163,6 +163,9 @@
 
   window.__GAIP_CHANNEL_CONFIG__ = {
     list: channels,
+    // 仅决定主导航视觉顺序，不改变频道资源加载和原生路由的顺序。
+    sidebarOrder: ['workspace', 'clues', 'customer', 'proposal', 'product', 'policy',
+      'news', 'activity', 'learning', 'induction', 'wealth', 'config'],
     byKey: byKey,
     byRoute: byRoute,
     byLabel: byLabel,

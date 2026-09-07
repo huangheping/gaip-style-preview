@@ -213,6 +213,22 @@
     scroll.classList.add('gaip-sidebar-nav-scroll');
   }
 
+  // 排序只写 CSS order，不移动 React/Umi 管理的节点，不更改点击/键盘事件。
+  function syncSidebarMenuOrder(sidebar) {
+    var order = channelConfig && channelConfig.sidebarOrder;
+    var menu = sidebar && sidebar.querySelector('.ant-menu-root');
+    if (!menu || !order || !order.length) return;
+    menu.classList.add('gaip-main-menu-ordered');
+    Array.prototype.forEach.call(menu.children, function (item) {
+      if (item.tagName !== 'LI') return;
+      var title = item.querySelector(':scope > .ant-menu-title-content, :scope > .ant-menu-submenu-title > .ant-menu-title-content');
+      var channel = title && channelConfig.getByLabel(title.textContent.trim());
+      var index = channel ? order.indexOf(channel.key) : -1;
+      var value = String(index < 0 ? order.length : index);
+      if (item.style.order !== value) item.style.order = value;
+    });
+  }
+
   function markGlobalRegions() {
     var shell = document.querySelector('.ant-pro-layout');
     var header = document.querySelector('[class*="header___tcVAl"]');
@@ -234,6 +250,7 @@
       mark(find(sidebar, '.ant-pro-sider-menu') || find(sidebar, '.ant-menu'), 'primary-nav');
       syncSidebarNavScroll(sidebar);
       syncSidebarHub(sidebar);
+      syncSidebarMenuOrder(sidebar);
     }
 
     mark(document.querySelector('[class*="globalButton___"]'), 'ai-assistant-entry');
