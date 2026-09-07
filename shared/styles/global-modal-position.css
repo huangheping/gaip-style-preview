@@ -16,8 +16,9 @@
 }
 
 /* Ant 默认 top:100px 会制造偏上错觉；只处理接入器明确标记的普通弹窗。 */
-.ant-modal-wrap[data-gaip-modal-placement="center"] {
-  display: grid !important;
+.ant-modal-wrap[data-gaip-modal-placement="center"]:not([hidden]) {
+  /* rc-dialog 通过内联 display:none 关闭宿主；禁止用 important 覆盖它。 */
+  display: grid;
   overflow: auto !important;
 }
 

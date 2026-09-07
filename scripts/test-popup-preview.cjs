@@ -158,6 +158,8 @@ assert.match(sharedModalPositionStyleSource, /--gaip-modal-safe-gap:\s*12px/, '�
 assert.match(sharedModalPositionStyleSource, /dialog\[data-gaip-modal-placement="center"\]\[open\]/, '原生 dialog 必须由明确定位标记居中');
 assert.match(sharedModalPositionStyleSource, /\.ant-modal-wrap\[data-gaip-modal-placement="center"\] > \.ant-modal/, 'Ant Modal 必须清除默认 top 偏移');
 assert.match(sharedModalPositionStyleSource, /top:\s*auto\s*!important/, 'Ant Modal 不得保留 top:100px 的默认定位');
+assert.doesNotMatch(sharedModalPositionStyleSource, /display:\s*(?:grid|flex|block)\s*!important/, '定位样式不得覆盖 rc-dialog 关闭时的内联 display:none，否则透明宿主会拦截导航');
+assert.match(sharedModalPositionStyleSource, /\.ant-modal-wrap\[data-gaip-modal-placement="center"\]:not\(\[hidden\]\)/, '显式 hidden 宿主不得被居中布局重新显示');
 assert.match(sharedModalPositionStyleSource, /translate\(-50%,\s*-50%\)/, '原生 dialog 必须以自身中心点定位');
 assert.match(sharedModalPositionScriptSource, /new MutationObserver/, '动态新增弹窗必须自动接入定位组件');
 assert.match(sharedModalPositionScriptSource, /\.agentModal___Nxp06/, '定位接入器必须识别并排除 GAIP Agent 主面板');
@@ -178,7 +180,7 @@ assert.doesNotMatch(confirmationImplementationSources[3], /data-announcement-clo
 
 const previewSource = fs.readFileSync(previewPath, 'utf8');
 assert.match(previewSource, /global-modal-mask\.css\?v=20260904-1/, '弹窗预览必须直接加载全局遮罩唯一样式源');
-assert.match(previewSource, /global-modal-position\.css\?v=20260904-1/, '弹窗预览必须直接加载全局定位唯一样式源');
+assert.match(previewSource, /global-modal-position\.css\?v=20260907-1/, '弹窗预览必须直接加载全局定位唯一样式源');
 assert.match(previewSource, /global-modal-position\.js\?v=20260904-1/, '弹窗预览必须加载动态定位接入器');
 assert.match(previewSource, /previewViewportHeight = 820/, '所有真实弹窗预览必须使用统一 820px 视口');
 assert.match(previewSource, /frame\.style\.height = previewViewportHeight \+ 'px'/, 'iframe 高度必须来自统一预览视口');
@@ -264,7 +266,7 @@ entryFiles.forEach((name) => {
   const source = fs.readFileSync(path.join(root, name), 'utf8');
   assert.match(source, /local-preview\.js\?v=20260902-7/, `${name} 缓存版本未同步`);
   assert.match(source, /global-modal-mask\.css\?v=20260904-1/, `${name} 必须加载全局遮罩唯一样式源`);
-  assert.match(source, /global-modal-position\.css\?v=20260904-1/, `${name} 必须加载全局定位唯一样式源`);
+  assert.match(source, /global-modal-position\.css\?v=20260907-1/, `${name} 必须加载全局定位唯一样式源`);
   assert.match(source, /global-modal-position\.js\?v=20260904-1/, `${name} 必须加载动态定位接入器`);
   assert.ok(source.indexOf('global-operation-log.css') < source.indexOf('global-modal-mask.css'), `${name} 的全局遮罩必须晚于既有业务样式加载`);
   assert.ok(source.indexOf('global-modal-mask.css') < source.indexOf('global-modal-position.css'), `${name} 的全局定位必须晚于遮罩样式加载`);
