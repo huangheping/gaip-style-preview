@@ -32,8 +32,6 @@ project: GAIP 本地静态预览版
 - [[docs/learning-center-design-qa|学习中心设计 QA]]
 - [[workbuddy/项目结构分析|WorkBuddy 项目结构分析]]
 
-## 使用原则
-
 ## AI 维护入口
 
 - [[docs/maintenance-workflow|维护流程]]：按任务选择检查，弹窗登记、知识库同步和测试依赖说明。
