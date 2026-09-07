@@ -1,0 +1,25 @@
+{
+  "name": "gaip-static-preview-checks",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Development-only checks; the website remains directly browsable via file://.",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "test": "npm run test:static && npm run test:dom",
+    "test:static": "npm run check:navigation && npm run check:modals",
+    "check:navigation": "sh scripts/verify-local-navigation.sh",
+    "check:modals": "node scripts/generate-modal-catalog.cjs --check && node scripts/test-popup-preview.cjs",
+    "test:dom": "npm run test:navigation && npm run test:config && npm run test:announcements && npm run test:logs && npm run test:agent",
+    "test:navigation": "node scripts/test-expandable-main-nav.cjs",
+    "test:config": "node scripts/test-config-center.cjs",
+    "test:announcements": "node scripts/test-announcement-management.cjs",
+    "test:logs": "node scripts/test-operation-log.cjs",
+    "test:agent": "node scripts/test-agent-entry.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

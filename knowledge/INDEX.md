@@ -36,6 +36,8 @@ project: GAIP 本地静态预览版
 
 - [[docs/maintenance-workflow|维护流程]]：按任务选择检查，弹窗登记、知识库同步和测试依赖说明。
 - [[docs/agent-skill-audit-2026-09-07|Agent 与 Skill 官方指导审计]]：规则优化、两个仓库 Skill、触发场景与非 Agent/Skill 工程建议。
+- [[docs/official-engineering-baseline|有官方依据的工程基线]]：开发依赖、标准测试命令及可选本地环境/worktree 接入。
+- [[docs/browser-regression-checklist|浏览器行为回归清单]]：跨入口、刷新、弹窗关闭和 AI 入口的真实操作验收，未执行不算通过。
 
 ## 使用原则
 

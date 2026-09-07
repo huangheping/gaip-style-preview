@@ -12,6 +12,17 @@
 
 配置中心可从侧栏展开，或直接打开 `配置中心.html`。包含“组织架构”和“操作日志”二级页面；组织与日志均为本地模拟数据，不写入线上系统。
 
+## 开发检查（预览网站无需安装）
+
+维护代码时，在实际 Git 根使用 Node 24 / npm 11：
+
+```sh
+npm ci --include=dev --ignore-scripts --no-fund
+npm test
+```
+
+测试依赖只用于开发；`npm test` 包含现有静态与 DOM 回归，不代表真实浏览器验收通过。单项命令、已知失败和官方依据见 [工程基线](official-engineering-baseline.md)，真实操作步骤见 [浏览器回归清单](browser-regression-checklist.md)。双击 HTML 不需要运行以上命令。
+
 ## 目录说明
 
 - 根目录：可直接打开的 HTML 页面入口。

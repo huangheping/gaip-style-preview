@@ -25,19 +25,18 @@
 
 ### 现有测试依赖
 
-仓库目前没有 package.json/锁文件。以下测试依赖 JSDOM：
+仓库现已提供开发专用 package.json 和 npm 锁文件。以下测试依赖 JSDOM：
 
 `test-expandable-main-nav.cjs`、`test-config-center.cjs`、`test-announcement-management.cjs`、`test-operation-log.cjs`、`test-agent-entry.cjs`。
 
-先检查当前可用依赖。缺失时可在仓库外准备临时测试依赖，避免写入网页运行时；本次验证基准为 `jsdom@26.1.0`。示例仅在确需 DOM 测试时使用：
+在实际 Git 根使用锁文件安装，不再依赖临时 `NODE_PATH`。开发基准为 Node 24 / npm 11 和 `jsdom@26.1.0`，安装不改变网页运行时：
 
 ```sh
-gaip_test_deps=$(mktemp -d "${TMPDIR:-/tmp}/gaip-test-deps.XXXXXX")
-npm install --prefix "$gaip_test_deps" jsdom@26.1.0 --no-save --no-audit --no-fund
-NODE_PATH="$gaip_test_deps/node_modules" node scripts/test-expandable-main-nav.cjs
+npm ci --include=dev --ignore-scripts --no-fund
+npm run test:navigation
 ```
 
-复用该路径运行本次相关套件，不要每个文件重装依赖。临时依赖不是可复现 CI 的替代；锁定开发依赖与标准测试入口列入审计后续建议。
+安装一次后复用项目依赖，按本次修改选择相关命令，不要每个文件重装。`npm test` 为静态与五个 DOM 套件的总入口，任一失败停止并返回非零，不包含浏览器验收。官方依据、命令表与可选应用 setup/actions 接入见 [工程基线](official-engineering-baseline.md)；真实点击步骤见 [浏览器回归清单](browser-regression-checklist.md)。仅浏览网站无需安装依赖。
 
 JSDOM 不实现真实点击命中、原生 dialog 顶层和完整渲染。报告中分别列出静态检查、DOM 状态和浏览器结果。不得把 `verify-local-navigation.sh` 的通过文字当成实际跨页浏览证明。
 
