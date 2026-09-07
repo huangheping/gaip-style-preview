@@ -1,0 +1,101 @@
+/*
+ * GAIP 全局弹层遮罩唯一视觉来源。
+ * 业务样式只负责弹层定位与层级；不得另设遮罩颜色、模糊或动效时长。
+ */
+:root {
+  --gaip-modal-mask-color: rgba(0, 0, 0, 0.45);
+  --gaip-modal-mask-duration: 160ms;
+  --gaip-modal-mask-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* 原生 dialog：showModal() 继续负责顶层、背景 inert 与 Esc 行为。 */
+dialog::backdrop {
+  background: var(--gaip-modal-mask-color) !important;
+  backdrop-filter: none !important;
+  animation: gaip-modal-mask-enter var(--gaip-modal-mask-duration) var(--gaip-modal-mask-easing) both;
+}
+
+/* 原站与本地生成的 Ant Modal / Drawer；z-index 仍由各弹窗栈决定。 */
+.ant-modal-mask,
+.ant-drawer-mask {
+  background-color: var(--gaip-modal-mask-color) !important;
+  backdrop-filter: none !important;
+  animation-duration: var(--gaip-modal-mask-duration) !important;
+  animation-timing-function: var(--gaip-modal-mask-easing) !important;
+}
+
+/* 本地真实业务弹窗的全屏遮罩。 */
+:is(
+  .gaip-ai-notice-backdrop,
+  .gaip-global-poster-share-backdrop,
+  .gaip-news-bridge-backdrop,
+  .gaip-owner-overlay,
+  .gaip-owner-confirm-overlay,
+  .gaip-file-overlay,
+  .gaip-activity-modal,
+  .gaip-wealth-drawer-layer,
+  .gaip-wealth-modal-layer,
+  .gaip-bulk-confirm-layer,
+  .gaip-adjust-confirm-layer
+) {
+  background-color: var(--gaip-modal-mask-color) !important;
+  backdrop-filter: none !important;
+}
+
+/* 自身已有显隐状态的容器只统一时长，不改业务开关方式。 */
+.gaip-global-poster-share-root {
+  transition:
+    opacity var(--gaip-modal-mask-duration) var(--gaip-modal-mask-easing),
+    visibility 0s linear var(--gaip-modal-mask-duration);
+}
+
+.gaip-global-poster-share-root.is-open {
+  transition-delay: 0s;
+}
+
+.gaip-activity-modal {
+  transition-duration: var(--gaip-modal-mask-duration) !important;
+  transition-timing-function: var(--gaip-modal-mask-easing) !important;
+}
+
+/* 创建后即显示的自定义遮罩使用同一个入场节奏。 */
+:is(
+  .gaip-ai-notice-backdrop,
+  .gaip-news-bridge-backdrop,
+  .gaip-owner-overlay:not([hidden]),
+  .gaip-owner-confirm-overlay:not([hidden]),
+  .gaip-file-overlay:not([hidden]),
+  .gaip-wealth-drawer-layer,
+  .gaip-wealth-modal-layer,
+  .gaip-bulk-confirm-layer,
+  .gaip-adjust-confirm-layer:not([hidden])
+) {
+  animation: gaip-modal-mask-enter var(--gaip-modal-mask-duration) var(--gaip-modal-mask-easing) both;
+}
+
+@keyframes gaip-modal-mask-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog::backdrop,
+  .ant-modal-mask,
+  .ant-drawer-mask,
+  .gaip-global-poster-share-root,
+  :is(
+    .gaip-ai-notice-backdrop,
+    .gaip-news-bridge-backdrop,
+    .gaip-owner-overlay,
+    .gaip-owner-confirm-overlay,
+    .gaip-file-overlay,
+    .gaip-activity-modal,
+    .gaip-wealth-drawer-layer,
+    .gaip-wealth-modal-layer,
+    .gaip-bulk-confirm-layer,
+    .gaip-adjust-confirm-layer
+  ) {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

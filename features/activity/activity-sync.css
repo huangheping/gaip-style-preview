@@ -78,9 +78,8 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(0, 0, 0, 0.46);
   opacity: 0;
-  transition: opacity 180ms ease;
+  transition-property: opacity;
 }
 
 .gaip-activity-modal.is-open {

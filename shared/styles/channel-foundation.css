@@ -140,19 +140,27 @@
   color: rgba(47, 54, 64, 0.35);
 }
 
+.ant-pro-layout .ant-pro-sider-footer.gaip-sidebar-hub {
+  box-sizing: border-box;
+  padding-block-end: 0 !important;
+}
+
+.gaip-sidebar-hub > p {
+  display: none !important;
+}
+
 .gaip-sidebar-hub-link {
   position: relative;
   z-index: 2;
   display: block;
   overflow: hidden;
-  width: 176px;
-  margin: 0 auto;
-  border-radius: 11px;
+  width: 100%;
+  margin: 0;
 }
 
 .gaip-sidebar-hub-link .gaip-sidebar-hub-image {
   display: block;
-  width: 176px !important;
+  width: 100% !important;
   height: auto !important;
   margin: 0 !important;
   object-fit: cover;

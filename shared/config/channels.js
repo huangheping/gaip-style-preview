@@ -18,8 +18,8 @@
       icon: 'customer-360',
       type: 'master-detail',
       assets: {
-        styles: ['features/customer/customer-center.css?v=20260825-1'],
-        scripts: ['features/customer/customer-center.js?v=20260825-1']
+        styles: ['shared/styles/global-modal.css?v=20260904-4', 'features/customer/customer-center.css?v=20260825-1'],
+        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/customer/customer-center.js?v=20260904-3']
       }
     },
     {
@@ -38,8 +38,8 @@
       icon: 'proposal-center',
       type: 'master-detail',
       assets: {
-        styles: ['features/proposal-center/proposal-center.css'],
-        scripts: ['features/proposal-center/proposal-center.js?v=20260901-1']
+        styles: ['shared/styles/global-modal.css?v=20260904-4', 'features/proposal-center/proposal-center.css?v=20260904-1'],
+        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/proposal-center/proposal-center.js?v=20260904-3']
       }
     },
     {
@@ -111,8 +111,8 @@
         { key: 'operation-log', label: '操作日志' }
       ],
       assets: {
-        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260903-9', 'features/config-center/config-center-content.css?v=20260903-32', 'features/config-center/config-center.css?v=20260902-8'],
-        scripts: ['features/config-center/source-markup.js?v=20260902-1', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260903-6', 'features/config-center/config-center.js?v=20260903-41']
+        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260903-9', 'features/config-center/config-center-content.css?v=20260904-41', 'shared/styles/global-modal.css?v=20260904-4', 'features/config-center/config-center.css?v=20260902-8'],
+        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260904-8', 'features/config-center/config-center.js?v=20260904-52']
       }
     },
     {

@@ -918,8 +918,6 @@ html.gaip-wealth-scroll-lock body {
   position: fixed;
   z-index: 2100;
   inset: 0;
-  background: rgba(24, 33, 38, 0.48);
-  animation: gaip-wealth-fade 160ms ease both;
 }
 
 .gaip-wealth-drawer {

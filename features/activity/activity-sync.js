@@ -89,7 +89,7 @@
     closing.classList.remove('is-open');
     window.setTimeout(function () {
       closing.remove();
-    }, 180);
+    }, 160);
     document.body.style.removeProperty('overflow');
     if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
       previouslyFocused.focus();

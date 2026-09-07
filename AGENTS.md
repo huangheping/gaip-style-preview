@@ -35,7 +35,9 @@
 ## 新增或修改弹窗的强制契约
 
 - 新增可预览业务弹窗时，必须在真实弹窗源 JS 中加入一个合法的 `/* @gaip-modal { ... } */` JSON 登记块，并暴露同一真实 `open()` / `show()` / `create()` 入口；禁止只在频道页面内新增未登记弹窗，也禁止在预览页复制第二套 DOM 或样式。
-- 登记块至少包含 `id`、`title`、`channel`、`type`、`status`。直接源预览还必须包含 `invoke.path`、`styles`、`scripts`；返回未挂载节点的工厂使用 `resultMode: "append"`，需要入场类时使用 `resultMode: "append-open-class"`。
+- 登记块至少包含 `id`、`title`、`channel`、`type`、`status`。可预览的非抽屉弹窗还必须登记 `category`：`information`（信息展示）、`form`（表单操作）或 `confirmation`（操作确认）。直接源预览还必须包含 `invoke.path`、`styles`、`scripts`；返回未挂载节点的工厂使用 `resultMode: "append"`，需要入场类时使用 `resultMode: "append-open-class"`。
+- 新增或迁移操作确认弹窗必须使用 `window.__GAIP_MODAL_COMPONENT__` 和 `shared/styles/global-modal.css`，并同时登记 `type: "confirm"`、`category: "confirmation"`；业务模块只提供标题、正文、说明、按钮文案、`tone` 和禁止原因，不得复制确认弹窗外壳 DOM/CSS 或覆盖共享标题、关闭控件、footer 和按钮规格。
+- 普通弹窗的视口定位由 `shared/styles/global-modal-position.css` 与 `shared/scripts/global-modal-position.js` 统一管理：桌面端垂直/水平居中并保留 24px 安全边距，窄屏保留 12px。Ant Modal 与原生 `dialog` 会自动接入；新增自定义弹窗宿主必须调用 `window.__GAIP_MODAL_POSITION__.adopt(host)` 或将宿主加入共享接入器，不得在业务 CSS 中新增 `top: 100px`、固定顶部偏移或另一套视口居中规则。抽屉、GAIP Agent 主面板以及业务明确登记的特殊弹层不接入普通弹窗定位。
 - `id` 必须全项目唯一并使用小写字母、数字和连字符。抽屉使用 `type: "drawer"` 且不进入当前弹窗预览；明确不展示、已下线或不可达项使用 `status: "excluded"` 并写明 `reason`。
 - 修改登记块后必须运行 `node scripts/generate-modal-catalog.cjs`，并将生成的 `全局组件/弹窗自动索引.generated.js` 一并保留；禁止手工编辑生成文件。
 - 完成弹窗任务前必须运行 `node scripts/generate-modal-catalog.cjs --check` 与 `node scripts/test-popup-preview.cjs`。测试会阻止过期索引、重复 ID、缺失资源和预览页手写分支重新出现。

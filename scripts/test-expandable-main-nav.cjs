@@ -11,7 +11,7 @@ const tick = () => new Promise(resolve => setTimeout(resolve, 80));
 const source = file => fs.readFileSync(path.join(root, file), 'utf8');
 
 async function main() {
-  const dom = new JSDOM('<!doctype html><div id="root"><div class="ant-pro-layout"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><div class="ant-layout-sider-children"><div class="ant-pro-sider-logo"></div><div style="flex:1;overflow:hidden auto"><ul class="ant-menu ant-menu-root ant-pro-sider-menu"></ul></div><div class="layoutMenuFooter___test"><a><img alt="GLORY百宝箱"></a></div></div></aside><main class="ant-pro-layout-content"></main></div></div>', {
+  const dom = new JSDOM('<!doctype html><div id="root"><div class="ant-pro-layout"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><div class="ant-layout-sider-children"><div class="ant-pro-sider-logo"></div><div style="flex:1;overflow:hidden auto"><ul class="ant-menu ant-menu-root ant-pro-sider-menu"></ul></div><div class="layoutMenuFooter___test"><a><img alt="GLORY百宝箱"></a><p class="txt___test">Glory Advisor Intelligence Platform</p></div></div></aside><main class="ant-pro-layout-content"></main></div></div>', {
     url: 'file://' + root + '/index.html#/workspace?gaip-channel=wealth&gaip-view=my-wealth',
     runScripts: 'outside-only',
     pretendToBeVisual: true
@@ -59,6 +59,11 @@ async function main() {
   assert.ok(wealthGroup && configGroup && wealthToggle && configToggle, 'both parents use the shared expandable-menu contract');
   assert.ok(sidebarScroll, 'the shared shell identifies the primary navigation scroll layer');
   assert.ok(sidebarHub, 'the shared shell identifies the sidebar hub background layer');
+  assert.equal(sidebarHub.querySelector('p[class*="txt___"]'), null, 'the obsolete English sidebar caption is removed');
+  const sidebarHubImage = sidebarHub.querySelector('.gaip-sidebar-hub-image');
+  assert.ok(sidebarHubImage, 'the shared shell keeps the sidebar hub image');
+  assert.match(sidebarHubImage.getAttribute('src'), /shared\/assets\/sidebar-hub-wide\.20260904\.png\?v=20260904-3$/);
+  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'shared/assets/sidebar-hub-wide.20260904.png'))).digest('hex'), 'bf187b4e6753ddff16bcdc876fe63985c893f613e86ab3ef4f287af0c3850b57', 'the local shared asset stays byte-identical to the supplied image');
   assert.ok(wealthGroup.classList.contains('is-open'));
   assert.ok(wealthGroup.classList.contains('is-current'), 'a selected wealth child keeps its parent current');
   assert.ok(!configGroup.classList.contains('is-open'));
@@ -113,6 +118,11 @@ async function main() {
   assert.match(sharedCss, /scrollbar-color:\s*rgba\(47, 54, 64, 0\.14\) transparent/);
   assert.match(sharedCss, /\.gaip-sidebar-nav-scroll::?-webkit-scrollbar-thumb[\s\S]*background:\s*rgba\(47, 54, 64, 0\.14\)/);
   assert.match(sharedCss, /\.ant-pro-sider-footer[\s\S]*z-index:\s*0/);
+  assert.match(sharedCss, /\.ant-pro-layout\s+\.ant-pro-sider-footer\.gaip-sidebar-hub\s*\{[\s\S]*padding-block-end:\s*0\s*!important/);
+  assert.match(sharedCss, /\.gaip-sidebar-hub\s*>\s*p\s*\{[\s\S]*display:\s*none\s*!important/);
+  assert.match(sharedCss, /\.gaip-sidebar-hub-link\s*\{[\s\S]*width:\s*100%[\s\S]*margin:\s*0/);
+  assert.doesNotMatch(sharedCss, /\.gaip-sidebar-hub-link\s*\{[^}]*border-radius:/, 'the full-width sidebar hub image has no extra corner radius');
+  assert.match(sharedCss, /\.gaip-sidebar-hub-image\s*\{[\s\S]*width:\s*100%\s*!important/);
   assert.match(configCss, /border-left:\s*4px solid transparent\s*!important/);
   assert.match(configCss, /background-color:\s*rgba\(0,0,0,\.03\)\s*!important/, 'config parent uses the same gray hover as wealth');
   assert.match(configCss, /padding:\s*0 0 0 55px\s*!important/, 'config children align with ordinary and wealth navigation labels');

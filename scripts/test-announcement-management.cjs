@@ -37,6 +37,7 @@ const dom = new JSDOM('<!doctype html><html><body><main id="host"></main></body>
 const w = dom.window;
 const d = w.document;
 installDialog(w);
+w.eval(source('shared/scripts/global-modal.js'));
 w.eval(source('features/config-center/announcement-management-data.js'));
 w.eval(source('features/config-center/announcement-management-view.js'));
 
@@ -132,6 +133,10 @@ assert.equal(activeRow.querySelector('.gaip-announcement-disabled-action').title
 
 dialog = api.openDelete('announcement-007');
 assert.ok(dialog && dialog.querySelector('[data-announcement-confirm-delete]'), 'an offline announcement can open delete confirmation');
+assert.ok(dialog.classList.contains('gaip-modal--confirm'));
+assert.ok(dialog.classList.contains('gaip-modal--danger'));
+assert.equal(dialog.querySelector('.gaip-modal-confirm__description').textContent.trim(), '删除后不可恢复。');
+assert.ok(dialog.querySelector('.gaip-modal__close svg'), 'delete confirmation uses the shared close icon');
 dialog.querySelector('[data-announcement-confirm-delete]').click();
 assert.equal(api.getRecords().some(record => record.id === 'announcement-007'), false, 'confirmed delete removes an offline record');
 

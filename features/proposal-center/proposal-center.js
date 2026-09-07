@@ -336,23 +336,37 @@
       function openUnlinkConfirm(root) {
         var overlay = root.querySelector('[data-unlink-confirm]');
         var record = getOwnerRecord();
+        var dialog;
+        var cancel;
         if (!overlay || !record || record.status !== 'linked') return;
+        if (!window.__GAIP_MODAL_COMPONENT__) throw new Error('解除关联确认缺少共享弹窗组件');
         overlay.innerHTML =
-          '<section class="gaip-owner-confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="gaip-unlink-title" aria-describedby="gaip-unlink-copy">' +
-            '<h3 id="gaip-unlink-title">暂不关联客户</h3>' +
-            '<p id="gaip-unlink-copy">确认暂不关联任何客户？确认后，方案记录将变为“待确认客户归属”，不会删除方案文件，也不会修改方案内容。</p>' +
-            '<div class="gaip-owner-confirm-actions">' +
-              '<button type="button" class="gaip-owner-button" data-unlink-cancel>取消</button>' +
-              '<button type="button" class="gaip-owner-button is-danger" data-unlink-confirm-button>确认暂不关联</button>' +
+          '<section class="ant-modal css-10wz6x1 css-var-r0 ant-modal-css-var gaip-owner-confirm-dialog" role="alertdialog" aria-modal="true">' +
+            '<div class="ant-modal-content">' +
+              '<button type="button" class="ant-modal-close" data-unlink-close><span class="ant-modal-close-x"></span></button>' +
+              '<div class="ant-modal-header"><div class="ant-modal-title">暂不关联客户</div></div>' +
+              '<div class="ant-modal-body"></div>' +
+              '<div class="ant-modal-footer"><button type="button" class="ant-btn ant-btn-default" data-unlink-cancel><span>取消</span></button><button type="button" class="ant-btn ant-btn-primary" data-unlink-confirm-button><span>确认暂不关联</span></button></div>' +
             '</div>' +
           '</section>';
+        dialog = overlay.querySelector('.gaip-owner-confirm-dialog');
+        window.__GAIP_MODAL_COMPONENT__.setConfirmState(dialog, {
+          type: 'confirm',
+          title: '暂不关联客户',
+          message: '确认暂不关联任何客户？',
+          description: '确认后，方案记录将变为“待确认客户归属”，不会删除方案文件，也不会修改方案内容。',
+          cancelLabel: '取消',
+          confirmLabel: '确认暂不关联'
+        });
         overlay.hidden = false;
-        overlay.querySelector('[data-unlink-cancel]').onclick = function () {
+        cancel = function () {
           overlay.hidden = true;
           overlay.innerHTML = '';
           var unlinkButton = root.querySelector('[data-owner-unlink]');
           if (unlinkButton) unlinkButton.focus();
         };
+        overlay.querySelector('[data-unlink-cancel]').onclick = cancel;
+        overlay.querySelector('[data-unlink-close]').onclick = cancel;
         overlay.querySelector('[data-unlink-confirm-button]').onclick = function () {
           record.clientId = null;
           record.status = 'pending';

@@ -5,8 +5,8 @@
   var rafId = 0;
   var script = document.currentScript;
   var sidebarHubImageUrl = script && script.src
-    ? new URL('../assets/sidebar-hub.7ade03a1.png', script.src).href
-    : './shared/assets/sidebar-hub.7ade03a1.png';
+    ? new URL('../assets/sidebar-hub-wide.20260904.png?v=20260904-3', script.src).href
+    : './shared/assets/sidebar-hub-wide.20260904.png?v=20260904-3';
 
   var regionLabels = {
     'app-shell': '应用框架',
@@ -185,6 +185,7 @@
     var image;
     var link;
     var footer;
+    var caption;
     if (!sidebar) return;
 
     image = sidebar.querySelector('img[alt="GLORY百宝箱"]');
@@ -194,7 +195,11 @@
 
     image.classList.add('gaip-sidebar-hub-image');
     link.classList.add('gaip-sidebar-hub-link');
-    if (footer) footer.classList.add('gaip-sidebar-hub');
+    if (footer) {
+      footer.classList.add('gaip-sidebar-hub');
+      caption = footer.querySelector('p[class*="txt___"]');
+      if (caption) caption.remove();
+    }
     if (image.src !== sidebarHubImageUrl) image.src = sidebarHubImageUrl;
   }
 

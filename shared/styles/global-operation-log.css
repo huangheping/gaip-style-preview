@@ -12,7 +12,6 @@ html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !im
   box-shadow: 0 24px 90px rgba(18, 42, 40, .22);
   font-size: 14px; line-height: 1.6;
 }
-.gaip-log-dialog::backdrop { background: rgba(18, 32, 31, .4); }
 .gaip-log-dialog[open] { display: flex; flex-direction: column; animation: gaip-log-enter .18s ease-out; }
 .gaip-log-dialog * { box-sizing: border-box; }
 .gaip-log-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding: 24px 24px 18px; flex-shrink: 0; }

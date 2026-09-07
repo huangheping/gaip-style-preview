@@ -200,7 +200,10 @@ window.__GAIP_CONFIG_SOURCE__ = {
     dialog.className = template.classes + ' gaip-config-editor gaip-department-editor';
     dialog.style.setProperty('--department-dialog-width', template.width);
     dialog.innerHTML = template.html;
-    if (action === 'delete') dialog.querySelector('.ant-modal-title').textContent = '删除部门';
+    if (action === 'delete') {
+      dialog.dataset.gaipModalId = 'config-delete';
+      dialog.querySelector('.ant-modal-title').textContent = '删除部门';
+    }
     return dialog;
   }
 

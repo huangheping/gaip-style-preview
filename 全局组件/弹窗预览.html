@@ -7,6 +7,9 @@
   <title>真实弹窗预览 - GAIP</title>
   <link rel="shortcut icon" href="../web/favicon.ico">
   <link rel="stylesheet" href="../shared/styles/global-font.css">
+  <link rel="stylesheet" href="../shared/styles/global-modal-mask.css?v=20260904-1">
+  <link rel="stylesheet" href="../shared/styles/global-modal-position.css?v=20260904-1">
+  <script defer src="../shared/scripts/global-modal-position.js?v=20260904-1"></script>
   <style>
     :root { --ink:#2f3640; --muted:rgba(47,54,64,.62); --line:rgba(47,54,64,.12); --brand:#025b52; --paper:#f5f7f6; }
     * { box-sizing: border-box; }
@@ -23,14 +26,48 @@
     .count strong { display:block; margin-top:4px; color:var(--brand); font-size:28px; font-weight:500; line-height:1; }
     .rule { margin:24px 0 32px; padding:13px 16px; border-left:3px solid #d5b980; background:#fffcf5; color:var(--muted); font-size:13px; line-height:1.7; }
     .rule strong { color:var(--ink); }
+    .categoryOverview { margin:0 0 32px; }
+    .overviewHeading { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:16px; }
+    .overviewHeading h2 { margin:0; font-size:24px; font-weight:500; }
+    .overviewHeading p { margin:7px 0 0; color:var(--muted); font-size:13px; line-height:1.65; }
+    .overviewHint { flex:0 0 auto; color:var(--brand); font-size:12px; }
+    .overviewGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; align-items:start; }
+    .overviewCard { --category-accent:var(--brand); overflow:hidden; border:1px solid var(--line); border-top:3px solid var(--category-accent); border-radius:10px; background:#fff; box-shadow:0 8px 24px rgba(35,52,50,.035); }
+    .overviewCard[data-category="information"] { --category-accent:#55747a; }
+    .overviewCard[data-category="form"] { --category-accent:#025b52; }
+    .overviewCard[data-category="confirmation"] { --category-accent:#9a6b2f; }
+    .overviewCardHeader { display:flex; justify-content:space-between; gap:16px; align-items:center; padding:16px 18px 12px; border-bottom:1px solid rgba(47,54,64,.08); }
+    .overviewCardHeader h3 { margin:0; font-size:17px; font-weight:500; }
+    .overviewCardHeader span { color:var(--category-accent); font-size:12px; }
+    .overviewList { display:grid; gap:2px; margin:0; padding:8px; list-style:none; }
+    .overviewLink { display:grid; grid-template-columns:30px minmax(0,1fr); gap:8px; align-items:center; width:100%; min-height:34px; padding:5px 9px; border:0; border-radius:6px; color:var(--ink); background:transparent; text-align:left; cursor:pointer; }
+    .overviewLink:hover { background:rgba(47,54,64,.045); }
+    .overviewLink:focus-visible { outline:2px solid rgba(2,91,82,.28); outline-offset:1px; }
+    .overviewIndex { color:var(--category-accent); font-size:11px; font-variant-numeric:tabular-nums; }
+    .overviewName { overflow:hidden; font-size:13px; line-height:1.45; text-overflow:ellipsis; white-space:nowrap; }
+    .categoryToolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 36px; padding:8px; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.82); }
+    .categoryFilter { min-height:38px; padding:0 15px; border:1px solid transparent; border-radius:7px; color:var(--muted); background:transparent; cursor:pointer; transition:background-color .16s ease,border-color .16s ease,color .16s ease; }
+    .categoryFilter:hover { color:var(--ink); background:rgba(47,54,64,.045); }
+    .categoryFilter:focus-visible { outline:2px solid rgba(2,91,82,.3); outline-offset:2px; }
+    .categoryFilter[aria-pressed="true"] { border-color:rgba(2,91,82,.18); color:var(--brand); background:rgba(2,91,82,.08); }
+    .categorySection { margin-top:44px; scroll-margin-top:24px; }
+    .categorySection:first-child { margin-top:0; }
+    .categorySection[hidden] { display:none; }
+    .categoryHeader { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px; align-items:end; padding-bottom:14px; border-bottom:1px solid var(--line); }
+    .categoryHeader h2 { margin:0; font-size:24px; font-weight:500; }
+    .categoryHeader p { max-width:760px; margin:7px 0 0; color:var(--muted); font-size:13px; line-height:1.65; }
+    .categoryTotal { display:flex; align-items:baseline; gap:6px; color:var(--muted); font-size:12px; }
+    .categoryTotal strong { color:var(--brand); font-size:24px; font-weight:500; }
     .sectionTitle { margin:40px 0 6px; font-size:22px; font-weight:500; }
     .sectionIntro { margin:0 0 20px; color:var(--muted); font-size:13px; }
     .previewCard { overflow:hidden; margin-top:24px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 12px 36px rgba(35,52,50,.05); }
+    .previewCard.is-highlighted { box-shadow:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08); }
     .previewCardHeader { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:center; min-height:82px; padding:17px 22px; border-bottom:1px solid var(--line); }
     .titleRow { display:flex; align-items:center; gap:12px; }
     .index { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; color:#fff; background:var(--brand); font-size:12px; }
     .previewCard h2 { margin:0; font-size:20px; font-weight:500; }
-    .previewCard p { margin:5px 0 0 40px; color:var(--muted); font-size:13px; }
+    .previewCard p { display:flex; align-items:center; gap:8px; margin:5px 0 0 40px; color:var(--muted); font-size:13px; }
+    .categoryTag { display:inline-flex; align-items:center; min-height:20px; padding:0 7px; border-radius:10px; color:var(--brand); background:rgba(2,91,82,.07); font-size:11px; }
     code { padding:3px 7px; border-radius:4px; color:var(--brand); background:rgba(2,91,82,.06); font-size:11px; }
     .frameWrap { position:relative; background:#e9eeec; }
     .frameWrap iframe { display:block; width:100%; border:0; background:#fff; }
@@ -51,15 +88,23 @@
       .hero,.previewCardHeader { grid-template-columns:1fr; align-items:start; }
       .counts { width:100%; }
       .count { flex:1; }
+      .overviewHeading { align-items:start; flex-direction:column; gap:4px; }
+      .overviewGrid { grid-template-columns:1fr; }
+      .categoryToolbar { margin-bottom:28px; }
+      .categoryFilter { flex:1 1 calc(50% - 4px); }
+      .categoryHeader { grid-template-columns:1fr; gap:8px; align-items:start; }
       .pendingGrid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .categoryFilter { transition:none; }
     }
   </style>
 </head>
 <body>
   <main id="app"></main>
   <script src="../shared/scripts/modal-registry.js"></script>
-  <script src="./弹窗源登记.js"></script>
-  <script src="./弹窗自动索引.generated.js"></script>
+  <script src="./弹窗源登记.js?v=20260904-8"></script>
+  <script src="./弹窗自动索引.generated.js?v=20260904-4"></script>
   <script>
     (function () {
       'use strict';
@@ -67,6 +112,13 @@
       var catalog = window.__GAIP_MODAL_SOURCE_CATALOG__;
       var app = document.getElementById('app');
       var embedId = new URLSearchParams(window.location.search).get('embed');
+      var previewViewportHeight = 820;
+      var categoryOrder = ['information', 'form', 'confirmation'];
+      var categoryMeta = {
+        information: { label: '信息展示', description: '详情、预览、记录与系统提示；以阅读和理解信息为主。' },
+        form: { label: '表单操作', description: '新建、编辑、选择、配置、分配与导入；需要用户填写或选择。' },
+        confirmation: { label: '操作确认', description: '执行操作前的二次确认；删除与解绑等高风险操作由危险状态表达。' }
+      };
 
       function escapeHtml(value) {
         return String(value == null ? '' : value).replace(/[&<>"']/g, function (character) {
@@ -129,10 +181,40 @@
           '<p class="intro">这里只展示能够调用真实源入口的当前弹窗。每项滚动到可见区域后才创建独立 iframe：共享组件直接调用原控制器，频道弹窗打开正式 Hash 页面并执行真实按钮流程；预览页不保存弹窗 DOM 或视觉样式。</p></div>' +
           '<div class="counts"><div class="count"><span>真实可预览</span><strong>' + ready.length + '</strong></div><div class="count"><span>待接入</span><strong>' + pending.length + '</strong></div><div class="count"><span>不进入预览</span><strong>' + excluded.length + '</strong></div></div></header>' +
           '<aside class="rule"><strong>当前约束：</strong>已明确排除的业务主面板和抽屉不展示；已被现行页面替换、页面不可达或并非独立弹层的旧登记项也不生成假预览。其余项目全部调用当前真实源。</aside>' +
-          '<section><h2 class="sectionTitle">真实源预览</h2><p class="sectionIntro">源组件修改结构或 CSS 后，刷新本页即可同步；弹窗按可见区域加载，各 iframe 之间不会发生频道 CSS 串扰。</p><div id="readyList"></div></section>' +
+          '<section class="categoryOverview"><header class="overviewHeading"><div><h2>分类总览</h2><p>先在这里核对 35 个弹窗的归类；编号与下方真实预览一致。</p></div><span class="overviewHint">点击名称可定位到真实弹窗</span></header><div class="overviewGrid" id="categoryOverviewGrid"></div></section>' +
+          '<nav class="categoryToolbar" aria-label="弹窗用途筛选"><button class="categoryFilter" type="button" data-category="all" aria-pressed="true">全部 ' + ready.length + '</button>' + categoryOrder.map(function (category) { return '<button class="categoryFilter" type="button" data-category="' + category + '" aria-pressed="false">' + categoryMeta[category].label + ' ' + ready.filter(function (entry) { return entry.category === category; }).length + '</button>'; }).join('') + '</nav>' +
+          '<section><h2 class="sectionTitle">真实源预览</h2><p class="sectionIntro">按交互用途分为三类，原清单编号保持不变。源组件修改结构或 CSS 后，刷新本页即可同步。</p><div id="categoryLists"></div></section>' +
           (pending.length ? '<section><h2 class="sectionTitle">待接入真实入口</h2><p class="sectionIntro">这些弹窗已盘点，但在拥有完整 open()/mount() 入口前不展示视觉结果。</p><div class="pendingGrid" id="pendingList"></div></section>' : '');
 
-        var readyList = document.getElementById('readyList');
+        var categoryOverviewGrid = document.getElementById('categoryOverviewGrid');
+        var categoryLists = document.getElementById('categoryLists');
+        var readyIndex = new Map(ready.map(function (entry, index) { return [entry.id, index + 1]; }));
+        var categoryContainers = {};
+        categoryOrder.forEach(function (category) {
+          var entries = ready.filter(function (entry) { return entry.category === category; });
+          var overviewCard = document.createElement('article');
+          overviewCard.className = 'overviewCard';
+          overviewCard.dataset.category = category;
+          overviewCard.innerHTML = '<header class="overviewCardHeader"><h3>' + categoryMeta[category].label + '</h3><span>' + entries.length + ' 个</span></header><ol class="overviewList">' + entries.map(function (entry) { return '<li><button class="overviewLink" type="button" data-target="modal-preview-' + escapeHtml(entry.id) + '"><span class="overviewIndex">' + String(readyIndex.get(entry.id)).padStart(2, '0') + '</span><span class="overviewName">' + escapeHtml(entry.title) + '</span></button></li>'; }).join('') + '</ol>';
+          categoryOverviewGrid.appendChild(overviewCard);
+          var section = document.createElement('section');
+          section.className = 'categorySection';
+          section.dataset.category = category;
+          section.innerHTML = '<header class="categoryHeader"><div><h2>' + categoryMeta[category].label + '</h2><p>' + categoryMeta[category].description + '</p></div><span class="categoryTotal"><strong>' + entries.length + '</strong> 个弹窗</span></header><div class="categoryList"></div>';
+          categoryLists.appendChild(section);
+          categoryContainers[category] = section.querySelector('.categoryList');
+        });
+        function selectCategory(selected) {
+          Array.prototype.forEach.call(document.querySelectorAll('.categoryFilter'), function (candidate) {
+            candidate.setAttribute('aria-pressed', candidate.dataset.category === selected ? 'true' : 'false');
+          });
+          Array.prototype.forEach.call(document.querySelectorAll('.categorySection'), function (section) {
+            section.hidden = selected !== 'all' && section.dataset.category !== selected;
+          });
+        }
+        Array.prototype.forEach.call(document.querySelectorAll('.categoryFilter'), function (button) {
+          button.addEventListener('click', function () { selectCategory(button.dataset.category); });
+        });
         var routeQueue = [];
         var routeActive = 0;
         var routeConcurrency = 3;
@@ -156,7 +238,7 @@
           frame.dataset.previewMode = entry.previewMode || 'source';
           frame.title = entry.title + '真实源预览';
           frame.loading = 'lazy';
-          frame.style.height = entry.height + 'px';
+          frame.style.height = previewViewportHeight + 'px';
           wrap.appendChild(frame);
           if (entry.previewMode === 'route-trigger') {
             frame.dataset.source = '?embed=' + encodeURIComponent(entry.id);
@@ -222,12 +304,14 @@
             createPreviewFrame(record.target, record.target._gaipEntry);
           });
         }, { rootMargin: '80px 0px' }) : null;
-        ready.forEach(function (entry, index) {
+        ready.forEach(function (entry) {
           var article = document.createElement('article');
           article.className = 'previewCard';
-          article.innerHTML = '<header class="previewCardHeader"><div><div class="titleRow"><span class="index">' + String(index + 1).padStart(2, '0') + '</span><h2>' + escapeHtml(entry.title) + '</h2></div><p>' + escapeHtml(entry.channel) + '</p></div><code>' + escapeHtml(entry.source) + '</code></header>' +
-            '<div class="frameWrap" data-load-state="idle" style="min-height:' + entry.height + 'px"><div class="frameStatus"><span class="frameStatusText">滚动到此处后加载真实弹窗</span><button class="frameLoad" type="button">立即加载</button></div></div>';
-          readyList.appendChild(article);
+          article.id = 'modal-preview-' + entry.id;
+          article.dataset.category = entry.category;
+          article.innerHTML = '<header class="previewCardHeader"><div><div class="titleRow"><span class="index">' + String(readyIndex.get(entry.id)).padStart(2, '0') + '</span><h2>' + escapeHtml(entry.title) + '</h2></div><p><span class="categoryTag">' + categoryMeta[entry.category].label + '</span><span>' + escapeHtml(entry.channel) + '</span></p></div><code>' + escapeHtml(entry.source) + '</code></header>' +
+            '<div class="frameWrap" data-load-state="idle" style="min-height:' + previewViewportHeight + 'px"><div class="frameStatus"><span class="frameStatusText">滚动到此处后加载真实弹窗</span><button class="frameLoad" type="button">立即加载</button></div></div>';
+          categoryContainers[entry.category].appendChild(article);
           var wrap = article.querySelector('.frameWrap');
           wrap._gaipEntry = entry;
           wrap.querySelector('.frameLoad').addEventListener('click', function () {
@@ -240,7 +324,18 @@
             createPreviewFrame(wrap, entry);
           });
           if (previewObserver) previewObserver.observe(wrap);
-          else if (index === 0) createPreviewFrame(wrap, entry);
+          else if (readyIndex.get(entry.id) === 1) createPreviewFrame(wrap, entry);
+        });
+
+        categoryOverviewGrid.addEventListener('click', function (event) {
+          var button = event.target.closest('.overviewLink');
+          if (!button) return;
+          selectCategory('all');
+          var target = document.getElementById(button.dataset.target);
+          if (!target) return;
+          target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+          target.classList.add('is-highlighted');
+          window.setTimeout(function () { target.classList.remove('is-highlighted'); }, 1400);
         });
 
         var pendingList = document.getElementById('pendingList');

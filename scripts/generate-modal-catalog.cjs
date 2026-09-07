@@ -33,6 +33,9 @@ function validate(entry, sourceFile) {
     if (!Array.isArray(entry.styles) || !entry.styles.length) throw new Error(`${sourceFile}: ${entry.id} 缺少 styles`);
     if (!Array.isArray(entry.scripts) || !entry.scripts.length) throw new Error(`${sourceFile}: ${entry.id} 缺少 scripts`);
   }
+  if (entry.status === 'ready' && entry.type !== 'drawer' && !['information', 'form', 'confirmation'].includes(entry.category)) {
+    throw new Error(`${sourceFile}: ${entry.id} 缺少合法的 category（information / form / confirmation）`);
+  }
 }
 
 function baselineIds() {

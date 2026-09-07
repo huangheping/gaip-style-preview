@@ -1,0 +1,63 @@
+/*
+ * GAIP 普通弹窗定位唯一共享来源。
+ * 宽高、内容和内部滚动仍由真实业务组件负责；抽屉与 GAIP Agent 主面板不接入。
+ */
+:root {
+  --gaip-modal-safe-gap: 24px;
+  --gaip-modal-max-height: calc(100dvh - (var(--gaip-modal-safe-gap) * 2));
+}
+
+/* 视口级宿主统一以可视区域正中心为基准。 */
+[data-gaip-modal-placement="center"]:not(dialog):not([hidden]) {
+  align-items: center !important;
+  justify-content: center !important;
+  place-items: center !important;
+  padding: var(--gaip-modal-safe-gap) !important;
+}
+
+/* Ant 默认 top:100px 会制造偏上错觉；只处理接入器明确标记的普通弹窗。 */
+.ant-modal-wrap[data-gaip-modal-placement="center"] {
+  display: grid !important;
+  overflow: auto !important;
+}
+
+.ant-modal-wrap[data-gaip-modal-placement="center"].ant-modal-centered::before {
+  display: none !important;
+  content: none !important;
+}
+
+.ant-modal-wrap[data-gaip-modal-placement="center"] > .ant-modal {
+  top: auto !important;
+  flex: none !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  max-height: var(--gaip-modal-max-height) !important;
+}
+
+/* 原生 showModal() 弹窗以自身中心点定位，清除各业务遗留的 top/inset 差异。 */
+dialog[data-gaip-modal-placement="center"][open] {
+  position: fixed !important;
+  inset: 50% auto auto 50% !important;
+  margin: 0 !important;
+  max-height: var(--gaip-modal-max-height) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* 所有接入表面遵守同一安全高度；较小弹窗不会被放大。 */
+.ant-modal-wrap[data-gaip-modal-placement="center"] > .ant-modal,
+dialog[data-gaip-modal-placement="center"][open],
+.gaip-ai-notice-backdrop[data-gaip-modal-placement="center"] > .gaip-ai-notice,
+.gaip-global-poster-share-backdrop[data-gaip-modal-placement="center"] > .gaip-global-poster-share-panel,
+.gaip-news-bridge-backdrop[data-gaip-modal-placement="center"] > .gaip-news-bridge-modal,
+.gaip-owner-overlay[data-gaip-modal-placement="center"] > .gaip-owner-dialog,
+.gaip-file-overlay[data-gaip-modal-placement="center"] > .gaip-file-dialog,
+.gaip-activity-modal[data-gaip-modal-placement="center"] > .gaip-activity-modal__panel,
+.gaip-wealth-modal-layer[data-gaip-modal-placement="center"] > .gaip-wealth-modal {
+  max-height: var(--gaip-modal-max-height) !important;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gaip-modal-safe-gap: 12px;
+  }
+}

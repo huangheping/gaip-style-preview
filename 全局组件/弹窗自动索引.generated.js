@@ -7,9 +7,10 @@
     "title": "新建公告",
     "channel": "配置中心 / 公告管理",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 800,
-    "after": "config-adjust-member-node",
+    "after": "config-adjust-member-node-confirm",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate()",
     "invoke": {
       "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate",
@@ -19,12 +20,12 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260903-32",
+      "features/config-center/config-center-content.css?v=20260904-40",
       "features/config-center/announcement-management.css"
     ],
     "scripts": [
       "features/config-center/announcement-management-data.js?v=20260903-2",
-      "features/config-center/announcement-management-view.js?v=20260903-6"
+      "features/config-center/announcement-management-view.js?v=20260904-8"
     ],
     "definitionSource": "features/config-center/announcement-management-view.js"
   },
@@ -33,6 +34,7 @@
     "title": "编辑公告",
     "channel": "配置中心 / 公告管理",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 800,
     "after": "config-announcement-create",
@@ -45,12 +47,12 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260903-32",
+      "features/config-center/config-center-content.css?v=20260904-40",
       "features/config-center/announcement-management.css"
     ],
     "scripts": [
       "features/config-center/announcement-management-data.js?v=20260903-2",
-      "features/config-center/announcement-management-view.js?v=20260903-6"
+      "features/config-center/announcement-management-view.js?v=20260904-8"
     ],
     "definitionSource": "features/config-center/announcement-management-view.js"
   },
@@ -59,6 +61,7 @@
     "title": "删除公告确认",
     "channel": "配置中心 / 公告管理",
     "type": "confirm",
+    "category": "confirmation",
     "status": "ready",
     "height": 520,
     "after": "config-announcement-edit",
@@ -71,12 +74,14 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260903-32",
-      "features/config-center/announcement-management.css"
+      "features/config-center/config-center-content.css?v=20260904-40",
+      "features/config-center/announcement-management.css",
+      "shared/styles/global-modal.css?v=20260904-4"
     ],
     "scripts": [
+      "shared/scripts/global-modal.js?v=20260904-5",
       "features/config-center/announcement-management-data.js?v=20260903-2",
-      "features/config-center/announcement-management-view.js?v=20260903-6"
+      "features/config-center/announcement-management-view.js?v=20260904-8"
     ],
     "definitionSource": "features/config-center/announcement-management-view.js"
   },
@@ -85,6 +90,7 @@
     "title": "组织架构操作日志",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "information",
     "status": "ready",
     "height": 900,
     "after": "config-admin",
@@ -102,9 +108,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -113,6 +119,7 @@
     "title": "批量导入成员",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 900,
     "after": "config-organization-log",
@@ -130,9 +137,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -141,6 +148,7 @@
     "title": "调整节点",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 780,
     "after": "config-bulk-import-members",
@@ -160,9 +168,42 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
+    ],
+    "definitionSource": "features/config-center/config-center.js"
+  },
+  {
+    "id": "config-adjust-member-node-confirm",
+    "title": "调整管理员节点确认",
+    "channel": "配置中心 / 组织架构",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "height": 780,
+    "after": "config-adjust-member-node",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation(1)",
+    "previewMode": "config-dialog",
+    "invoke": {
+      "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation",
+      "args": [
+        1
+      ]
+    },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css",
+      "shared/styles/global-modal.css?v=20260904-4"
+    ],
+    "scripts": [
+      "shared/config/channels.js?v=20260904-73",
+      "shared/scripts/global-modal.js?v=20260904-5",
+      "features/config-center/source-markup.js?v=20260904-3",
+      "features/config-center/config-center.js?v=20260904-52"
     ],
     "definitionSource": "features/config-center/config-center.js"
   }

@@ -248,10 +248,11 @@
     list.innerHTML = visible.length ? visible.map(function (department) {
       var current = department.id === adjustNodeState.currentDepartment;
       var selected = department.id === adjustNodeState.targetDepartment;
+      var hasChildren = departmentSets[adjustNodeState.channel].some(function (candidate) { return candidate.parent === department.id; });
       var name = department.id === 'all' ? channels[adjustNodeState.channel] : department.name;
       return '<div class="gaip-adjust-node-row' + (selected ? ' is-selected' : '') + (current ? ' is-current' : '') + '" role="treeitem" aria-selected="' + selected + '" style="--adjust-node-depth:' + department.depth + '">' +
         '<button type="button" class="gaip-adjust-node-option" data-adjust-node-option="' + escapeHtml(department.id) + '"' + (current ? ' disabled aria-disabled="true"' : '') + '>' +
-        '<span class="gaip-adjust-node-radio" aria-hidden="true"></span><span class="gaip-adjust-node-folder" aria-hidden="true"></span>' +
+        '<span class="gaip-adjust-node-radio" aria-hidden="true"></span><span class="gaip-adjust-node-folder' + (hasChildren ? ' is-open' : '') + '" aria-hidden="true"></span>' +
         '<span class="gaip-adjust-node-copy"><strong>' + escapeHtml(name) + '</strong><small>' + escapeHtml(bulkDepartmentPath(adjustNodeState.channel, department.id)) + '</small></span>' +
         (current ? '<span class="gaip-adjust-node-current">当前节点</span>' : '') + '</button></div>';
     }).join('') : '<div class="gaip-adjust-node-empty">未找到匹配的组织节点</div>';
@@ -319,7 +320,18 @@
       '<label class="gaip-adjust-node-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg><input type="search" data-adjust-node-search aria-label="搜索目标节点" placeholder="搜索节点名称或路径"><button type="button" data-adjust-node-search-clear aria-label="清除目标节点搜索" hidden>×</button></label>' +
       '<div class="gaip-adjust-node-tree" role="tree" aria-label="当前渠道组织节点" data-adjust-node-tree></div><p class="gaip-adjust-node-error" data-adjust-node-error role="alert" hidden>请选择目标节点</p></section></div>' +
       '<footer class="gaip-adjust-node-footer"><button type="button" class="ant-btn gaip-adjust-button is-secondary" data-adjust-node-close>取消</button><button type="button" class="ant-btn gaip-adjust-button is-primary" data-adjust-node-confirm disabled>确认调整</button></footer>' +
-      '<div class="gaip-adjust-confirm-layer" data-adjust-admin-warning hidden><div class="gaip-adjust-confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="gaip-adjust-warning-title"><div class="gaip-adjust-warning-icon" aria-hidden="true">!</div><div><h3 id="gaip-adjust-warning-title">确认调整管理员节点？</h3><p>该员工当前为【' + escapeHtml(currentPath) + '】节点管理员，调整节点后将取消其原节点管理员身份，且不会自动成为目标节点管理员，是否确认调整？</p></div><div class="gaip-adjust-warning-actions"><button type="button" class="ant-btn gaip-adjust-button is-secondary" data-adjust-warning-cancel>取消</button><button type="button" class="ant-btn gaip-adjust-button is-primary" data-adjust-warning-confirm>确认调整</button></div></div></div></div>';
+      '<div class="gaip-adjust-confirm-layer" data-adjust-admin-warning hidden><div class="ant-modal css-10wz6x1 css-var-r0 ant-modal-css-var gaip-adjust-confirm-card" role="alertdialog" aria-modal="true"><div class="ant-modal-content"><button type="button" class="ant-modal-close" data-adjust-warning-cancel><span class="ant-modal-close-x"></span></button><div class="ant-modal-header"><div class="ant-modal-title">调整管理员节点</div></div><div class="ant-modal-body"></div><div class="ant-modal-footer"><button type="button" class="ant-btn ant-btn-default" data-adjust-warning-cancel><span>取消</span></button><button type="button" class="ant-btn ant-btn-primary" data-adjust-warning-confirm><span>确认调整</span></button></div></div></div></div></div>';
+    if (!window.__GAIP_MODAL_COMPONENT__) throw new Error('调整管理员节点确认缺少共享弹窗组件');
+    window.__GAIP_MODAL_COMPONENT__.setConfirmState(dialog.querySelector('.gaip-adjust-confirm-card'), {
+      type: 'confirm',
+      tone: 'danger',
+      size: 'complex',
+      title: '调整管理员节点',
+      message: '确认调整管理员“' + member.name + '”的组织节点吗？',
+      description: '该员工当前管理“' + currentPath + '”。调整后将取消其原节点管理员身份，且不会自动成为目标节点管理员。',
+      cancelLabel: '取消',
+      confirmLabel: '确认调整'
+    });
     dialog.addEventListener('click', function (event) {
       var option = event.target.closest('[data-adjust-node-option]');
       if (option && !option.disabled) { adjustNodeState.targetDepartment = option.dataset.adjustNodeOption; renderAdjustNodeOptions(); return; }
@@ -356,6 +368,21 @@
     page.appendChild(dialog);
     renderAdjustNodeOptions();
     dialog.showModal();
+    return dialog;
+  }
+
+  function openAdjustNodeConfirmationPreview(memberId, trigger) {
+    var dialog = openAdjustNodeDialog(memberId, trigger);
+    if (!dialog || !adjustNodeState) return dialog;
+    var target = departmentSets[adjustNodeState.channel].find(function (department) {
+      return department.id !== adjustNodeState.currentDepartment;
+    });
+    if (!target) return dialog;
+    adjustNodeState.targetDepartment = target.id;
+    renderAdjustNodeOptions();
+    var warning = dialog.querySelector('[data-adjust-admin-warning]');
+    warning.hidden = false;
+    dialog.querySelector('[data-adjust-warning-cancel]').focus();
     return dialog;
   }
 
@@ -421,7 +448,7 @@
       var expanded = !collapsedMap[item.id] || !!bulkImportState.nodeQuery;
       return '<div class="gaip-bulk-node-row' + (item.id === bulkImportState.department ? ' is-selected' : '') + '" role="treeitem" aria-level="' + (item.depth + 1) + '" aria-selected="' + (item.id === bulkImportState.department) + '"' + (hasChildren ? ' aria-expanded="' + expanded + '"' : '') + ' style="--bulk-node-depth:' + item.depth + '">' +
         (hasChildren ? '<button type="button" class="gaip-bulk-node-toggle" data-bulk-node-toggle="' + escapeHtml(item.id) + '" aria-label="' + (expanded ? '收起' : '展开') + escapeHtml(name) + '" aria-expanded="' + expanded + '"><span aria-hidden="true"></span></button>' : '<span class="gaip-bulk-node-toggle-placeholder" aria-hidden="true"></span>') +
-        '<button type="button" class="gaip-bulk-node-option" data-bulk-department-option="' + escapeHtml(item.id) + '" title="' + escapeHtml(name) + '"><span class="gaip-bulk-node-folder" aria-hidden="true"></span><span class="gaip-bulk-node-name">' + escapeHtml(name) + '</span><span class="gaip-bulk-node-check" aria-hidden="true">✓</span></button></div>';
+        '<button type="button" class="gaip-bulk-node-option" data-bulk-department-option="' + escapeHtml(item.id) + '" title="' + escapeHtml(name) + '"><span class="gaip-bulk-node-folder' + (hasChildren && expanded ? ' is-open' : '') + '" aria-hidden="true"></span><span class="gaip-bulk-node-name">' + escapeHtml(name) + '</span><span class="gaip-bulk-node-check" aria-hidden="true">✓</span></button></div>';
     }).join('');
   }
 
@@ -707,6 +734,7 @@
     "title": "组织架构操作日志",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "information",
     "status": "ready",
     "height": 900,
     "after": "config-admin",
@@ -721,9 +749,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
     ]
   }
   */
@@ -733,6 +761,7 @@
     "title": "批量导入成员",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 900,
     "after": "config-organization-log",
@@ -747,9 +776,9 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
     ]
   }
   */
@@ -759,6 +788,7 @@
     "title": "调整节点",
     "channel": "配置中心 / 组织架构",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 780,
     "after": "config-bulk-import-members",
@@ -773,9 +803,38 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260903-60",
-      "features/config-center/source-markup.js?v=20260902-1",
-      "features/config-center/config-center.js?v=20260903-41"
+      "shared/config/channels.js?v=20260904-73",
+      "features/config-center/source-markup.js?v=20260904-2",
+      "features/config-center/config-center.js?v=20260904-49"
+    ]
+  }
+  */
+  /* @gaip-modal
+  {
+    "id": "config-adjust-member-node-confirm",
+    "title": "调整管理员节点确认",
+    "channel": "配置中心 / 组织架构",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "height": 780,
+    "after": "config-adjust-member-node",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation(1)",
+    "previewMode": "config-dialog",
+    "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation", "args": [1] },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css",
+      "features/config-center/config-center.css",
+      "shared/styles/global-modal.css?v=20260904-4"
+    ],
+    "scripts": [
+      "shared/config/channels.js?v=20260904-73",
+      "shared/scripts/global-modal.js?v=20260904-5",
+      "features/config-center/source-markup.js?v=20260904-3",
+      "features/config-center/config-center.js?v=20260904-52"
     ]
   }
   */
@@ -1063,6 +1122,11 @@
       var children = departments.some(function (item) { return item.parent === id; });
       var toggle = row.querySelector('.ant-tree-switcher');
       var isCollapsed = children && isDepartmentCollapsed(department);
+      var folderIcon = row.querySelector('.folderIcon___yjhFX');
+      if (folderIcon) {
+        folderIcon.src = children && !isCollapsed ? 'features/config-center/assets/folder-open.svg?v=20260904-4' : 'features/config-center/assets/folder.png';
+        folderIcon.alt = '';
+      }
       toggle.className = 'ant-tree-switcher ' + (children ? (isCollapsed ? 'ant-tree-switcher_close' : 'ant-tree-switcher_open') : 'ant-tree-switcher-noop');
       toggle.innerHTML = children ? switcherMarkup : '';
       toggle.removeAttribute('data-collapse'); toggle.removeAttribute('role'); toggle.removeAttribute('tabindex'); toggle.removeAttribute('aria-label');
@@ -1271,8 +1335,18 @@
       }
     } else if (action === 'delete') {
       var blocked = departments.some(function (item) { return item.parent === id; }) || currentMembers.length;
-      body.textContent = blocked ? '该部门包含子部门或成员，请先处理后再删除。' : '确认删除部门“' + department.name + '”？';
-      save.disabled = !!blocked;
+      if (!window.__GAIP_MODAL_COMPONENT__) throw new Error('删除部门弹窗缺少共享弹窗组件');
+      window.__GAIP_MODAL_COMPONENT__.setConfirmState(dialog, {
+        type: 'confirm',
+        tone: 'danger',
+        title: '删除部门',
+        closeLabel: '关闭删除部门弹窗',
+        message: blocked ? '暂时无法删除“' + department.name + '”' : '确定删除部门“' + department.name + '”吗？',
+        description: blocked ? '该部门仍包含子部门或成员，请先完成迁移或清理。' : '',
+        cancelLabel: '取消',
+        confirmLabel: '删除',
+        confirmDisabled: blocked
+      });
     } else {
       input.value = action === 'rename' ? department.name : ''; input.required = true;
       input.setAttribute('aria-label', action === 'rename' ? '部门名称' : '子部门名称');
@@ -1661,6 +1735,10 @@
     openAdjustNode: function (memberId, trigger) {
       ensureDialogPreviewHost();
       return openAdjustNodeDialog(memberId, trigger);
+    },
+    openAdjustNodeConfirmation: function (memberId, trigger) {
+      ensureDialogPreviewHost();
+      return openAdjustNodeConfirmationPreview(memberId, trigger);
     }
   };
   window.__GAIP_CONFIG_DIALOGS__ = dialogController;

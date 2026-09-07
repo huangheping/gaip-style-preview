@@ -19,6 +19,9 @@
     if (!/^[a-z0-9][a-z0-9-]*$/.test(definition.id)) throw new TypeError('弹窗 id 只能使用小写字母、数字和连字符：' + definition.id);
     if (!['modal', 'confirm', 'drawer', 'popover'].includes(definition.type)) throw new TypeError('未知弹层类型：' + definition.type);
     if (!['ready', 'pending', 'excluded'].includes(definition.status)) throw new TypeError('未知弹窗状态：' + definition.status);
+    if (definition.status === 'ready' && definition.type !== 'drawer' && !['information', 'form', 'confirmation'].includes(definition.category)) {
+      throw new TypeError('可预览弹窗必须登记用途分类：' + definition.id);
+    }
   }
 
   function orderedList() {

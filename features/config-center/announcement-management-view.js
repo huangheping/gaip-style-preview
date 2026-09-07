@@ -295,13 +295,23 @@
   function openDelete(id, trigger) {
     var record = recordById(id) || records.find(function (item) { return statusFor(item).key !== 'active'; });
     if (!record || statusFor(record).key === 'active') return null;
+    if (!window.__GAIP_MODAL_COMPONENT__) throw new Error('删除公告弹窗缺少共享弹窗组件');
     var title = displayTitle(record);
     var dialog = document.createElement('dialog');
     dialog.className = 'ant-modal css-10wz6x1 css-var-r0 ant-modal-css-var gaip-announcement-dialog gaip-announcement-confirm';
     dialog.setAttribute('aria-labelledby', 'gaip-announcement-delete-title');
-    dialog.innerHTML = '<div class="ant-modal-content"><button type="button" class="ant-modal-close gaip-announcement-modal-close" aria-label="关闭"><span class="ant-modal-close-x">' + closeIcon() + '</span></button><div class="ant-modal-header gaip-announcement-modal-header"><div class="ant-modal-title" id="gaip-announcement-delete-title">确认删除该公告？</div></div><div class="ant-modal-body gaip-announcement-confirm-body"><span class="gaip-announcement-warning" aria-hidden="true">!</span><div><strong>“' + escapeHtml(title) + '”</strong><p>删除后不可恢复，请确认是否继续。</p></div></div><div class="ant-modal-footer footer___UhMLM gaip-announcement-modal-footer"><button type="button" class="ant-btn css-10wz6x1 css-var-r0 ant-btn-default ant-btn-color-default ant-btn-variant-outlined cancelBtn___H8rvL" data-announcement-cancel><span>取消</span></button><button type="button" class="ant-btn css-10wz6x1 css-var-r0 ant-btn-primary ant-btn-color-error ant-btn-variant-solid ant-btn-dangerous confirmBtn___LDHYN" data-announcement-confirm-delete><span>确认删除</span></button></div></div>';
+    dialog.innerHTML = '<div class="ant-modal-content"><button type="button" class="ant-modal-close" data-announcement-close aria-label="关闭"><span class="ant-modal-close-x"></span></button><div class="ant-modal-header"><div class="ant-modal-title" id="gaip-announcement-delete-title">删除公告</div></div><div class="ant-modal-body"></div><div class="ant-modal-footer"><button type="button" class="ant-btn css-10wz6x1 css-var-r0 ant-btn-default ant-btn-color-default ant-btn-variant-outlined" data-announcement-cancel><span>取消</span></button><button type="button" class="ant-btn css-10wz6x1 css-var-r0 ant-btn-primary ant-btn-color-error ant-btn-variant-solid ant-btn-dangerous" data-announcement-confirm-delete><span>删除</span></button></div></div>';
+    window.__GAIP_MODAL_COMPONENT__.setConfirmState(dialog, {
+      type: 'confirm',
+      tone: 'danger',
+      title: '删除公告',
+      message: '确定删除公告“' + title + '”吗？',
+      description: '删除后不可恢复。',
+      cancelLabel: '取消',
+      confirmLabel: '删除'
+    });
     dialog.querySelector('[data-announcement-cancel]').addEventListener('click', function () { dialog.close(); });
-    dialog.querySelector('.gaip-announcement-modal-close').addEventListener('click', function () { dialog.close(); });
+    dialog.querySelector('[data-announcement-close]').addEventListener('click', function () { dialog.close(); });
     dialog.querySelector('[data-announcement-confirm-delete]').addEventListener('click', function () {
       records = records.filter(function (item) { return item.id !== record.id; });
       if (mounted) renderPage(mounted);
@@ -317,13 +327,14 @@
     "title": "新建公告",
     "channel": "配置中心 / 公告管理",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 800,
-    "after": "config-adjust-member-node",
+    "after": "config-adjust-member-node-confirm",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260903-32", "features/config-center/announcement-management.css"],
-    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260903-6"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css"],
+    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
   }
   */
   /* @gaip-modal
@@ -332,13 +343,14 @@
     "title": "编辑公告",
     "channel": "配置中心 / 公告管理",
     "type": "modal",
+    "category": "form",
     "status": "ready",
     "height": 800,
     "after": "config-announcement-create",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260903-32", "features/config-center/announcement-management.css"],
-    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260903-6"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css"],
+    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
   }
   */
   /* @gaip-modal
@@ -347,13 +359,14 @@
     "title": "删除公告确认",
     "channel": "配置中心 / 公告管理",
     "type": "confirm",
+    "category": "confirmation",
     "status": "ready",
     "height": 520,
     "after": "config-announcement-edit",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260903-32", "features/config-center/announcement-management.css"],
-    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260903-6"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css", "shared/styles/global-modal.css?v=20260904-4"],
+    "scripts": ["shared/scripts/global-modal.js?v=20260904-5", "features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
   }
   */
 

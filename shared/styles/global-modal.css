@@ -1,0 +1,203 @@
+/* GAIP shared modal component v1.1.3. Confirmation adopters use gaip-modal classes. */
+.gaip-modal {
+  --gaip-modal-width: 480px;
+  --gaip-modal-radius: 8px;
+  --gaip-modal-space: 24px;
+  --gaip-modal-close-size: 32px;
+  --gaip-modal-button-height: 40px;
+  --gaip-modal-text: #2f3640;
+  --gaip-modal-muted: rgba(47,54,64,.68);
+  --gaip-modal-border: rgba(47,54,64,.18);
+  --gaip-modal-brand: #025b52;
+  --gaip-modal-brand-hover: #01483f;
+  --gaip-modal-brand-active: #013a33;
+  --gaip-modal-danger: #cf1322;
+  --gaip-modal-danger-hover: #a8071a;
+  --gaip-modal-danger-active: #820014;
+  width: min(var(--gaip-modal-width), calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gaip-modal-text);
+}
+.gaip-modal--confirm { overflow: visible !important; }
+.gaip-modal--complex { --gaip-modal-width: 520px; }
+.gaip-modal .ant-modal-content {
+  position: relative;
+  padding: var(--gaip-modal-space) !important;
+  border-radius: var(--gaip-modal-radius) !important;
+  background: #fff !important;
+  background-clip: padding-box;
+  box-shadow: 0 12px 32px rgba(17,35,39,.18);
+}
+.gaip-modal .ant-modal-header {
+  margin: 0 40px 20px 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.gaip-modal .gaip-modal__title {
+  color: var(--gaip-modal-text) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 28px !important;
+}
+.gaip-modal .gaip-modal__close {
+  position: absolute !important;
+  top: 20px !important;
+  inset-inline-end: 20px !important;
+  z-index: 1;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: var(--gaip-modal-close-size) !important;
+  height: var(--gaip-modal-close-size) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  background: transparent !important;
+  color: var(--gaip-modal-muted) !important;
+  line-height: 0 !important;
+  cursor: pointer;
+  transform: none;
+  transition: background-color .16s ease, color .16s ease;
+}
+.gaip-modal .gaip-modal__close:hover {
+  background: rgba(47,54,64,.06) !important;
+  color: var(--gaip-modal-text) !important;
+  transform: none;
+}
+.gaip-modal .gaip-modal__close:active {
+  background: rgba(47,54,64,.1) !important;
+  transform: none;
+}
+.gaip-modal .gaip-modal__close:focus-visible {
+  outline: 2px solid rgba(2,91,82,.24);
+  outline-offset: 2px;
+}
+.gaip-modal .gaip-modal__close-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  font-size: 16px !important;
+  line-height: 0 !important;
+  pointer-events: none;
+  transform: none;
+}
+.gaip-modal .gaip-modal__close-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  transform: none;
+}
+.gaip-modal .gaip-modal__body { padding: 0 !important; }
+.gaip-modal--confirm .gaip-modal__body {
+  max-height: none;
+  overflow: visible;
+}
+.gaip-modal-confirm__message {
+  margin: 0;
+  color: var(--gaip-modal-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.gaip-modal-confirm__description {
+  margin: 8px 0 0;
+  color: var(--gaip-modal-muted);
+  font-size: 14px;
+  line-height: 22px;
+}
+.gaip-modal .gaip-modal__footer {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin: 32px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.gaip-modal .gaip-modal__footer > .ant-btn + .ant-btn { margin-inline-start: 0; }
+.gaip-modal .gaip-modal__button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 74px !important;
+  height: var(--gaip-modal-button-height) !important;
+  padding-inline: 16px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  line-height: 22px !important;
+  cursor: pointer;
+}
+.gaip-modal .gaip-modal__button--secondary {
+  order: 1;
+  border-color: var(--gaip-modal-border);
+  background: #fff;
+  color: var(--gaip-modal-text);
+}
+.gaip-modal .gaip-modal__button--secondary:not(:disabled):hover {
+  border-color: var(--gaip-modal-brand) !important;
+  background: #fff !important;
+  color: var(--gaip-modal-brand) !important;
+}
+.gaip-modal .gaip-modal__button--secondary:focus-visible {
+  outline: 2px solid rgba(2,91,82,.24);
+  outline-offset: 2px;
+}
+.gaip-modal .gaip-modal__button--primary {
+  order: 2;
+  border-color: var(--gaip-modal-brand);
+  background: var(--gaip-modal-brand);
+  color: #fff;
+}
+.gaip-modal .gaip-modal__button--primary:not(:disabled):hover {
+  border-color: var(--gaip-modal-brand-hover) !important;
+  background: var(--gaip-modal-brand-hover) !important;
+}
+.gaip-modal .gaip-modal__button--primary:not(:disabled):active {
+  border-color: var(--gaip-modal-brand-active) !important;
+  background: var(--gaip-modal-brand-active) !important;
+}
+.gaip-modal .gaip-modal__button--primary:focus-visible {
+  outline: 2px solid rgba(2,91,82,.24);
+  outline-offset: 2px;
+}
+.gaip-modal .gaip-modal__button--primary:disabled,
+.gaip-modal--blocked .gaip-modal__button--primary {
+  border-color: rgba(47,54,64,.1);
+  background: rgba(47,54,64,.1);
+  color: rgba(47,54,64,.42);
+  cursor: not-allowed;
+}
+.gaip-modal--danger .gaip-modal__button--primary {
+  border-color: var(--gaip-modal-danger);
+  background: var(--gaip-modal-danger);
+  color: #fff;
+}
+.gaip-modal--danger .gaip-modal__button--primary:not(:disabled):hover {
+  border-color: var(--gaip-modal-danger-hover) !important;
+  background: var(--gaip-modal-danger-hover) !important;
+}
+.gaip-modal--danger .gaip-modal__button--primary:not(:disabled):active {
+  border-color: var(--gaip-modal-danger-active) !important;
+  background: var(--gaip-modal-danger-active) !important;
+}
+.gaip-modal--danger .gaip-modal__button--primary:focus-visible {
+  outline: 2px solid rgba(207,19,34,.28);
+  outline-offset: 2px;
+}
+.gaip-modal--danger .gaip-modal__button--primary:disabled {
+  border-color: rgba(47,54,64,.1);
+  background: rgba(47,54,64,.1);
+  color: rgba(47,54,64,.42);
+  cursor: not-allowed;
+}

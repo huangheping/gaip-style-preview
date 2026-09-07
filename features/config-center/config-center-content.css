@@ -319,13 +319,11 @@
 
 .gaip-config-page .gaip-config-editor { position: fixed; inset: 100px 0 auto; width: min(850px, calc(100vw - 32px)); max-height: calc(100dvh - 116px); padding: 0; margin: auto; border: 0; border-radius: 8px; overflow: auto; }
 .gaip-config-page .gaip-config-editor.formModal____MTrk { overflow: hidden; }
-.gaip-config-editor::backdrop { background: rgba(0,0,0,.45); }
 .gaip-config-page .gaip-config-editor .ant-modal-content { background: #fff; }
 .gaip-config-page .gaip-organization-log-dialog {
   position: fixed; inset: 50% auto auto 50%; width: min(calc(100vw - 48px), 1360px); max-width: none; height: min(800px, calc(100dvh - 48px)); max-height: calc(100dvh - 48px);
   padding: 0; margin: 0; border: 0; border-radius: 8px; overflow: hidden; background: transparent; pointer-events: auto; transform: translate(-50%, -50%);
 }
-.gaip-config-page .gaip-organization-log-dialog::backdrop { background: rgba(0,0,0,.45); }
 .gaip-config-page .gaip-organization-log-dialog .ant-modal-content { display: flex; flex-direction: column; width: 100%; height: 100%; max-height: calc(100dvh - 48px); background: #fff; }
 .gaip-config-page .gaip-organization-log-dialog > .ant-modal-content > .ant-modal-body { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; overflow: hidden; }
 .gaip-config-page .gaip-organization-log-dialog .modalHeader___Wsw0V { flex: 0 0 auto; }
@@ -368,7 +366,6 @@
   position: fixed; inset: 50% auto auto 50%; width: min(1100px, calc(100vw - 48px)); height: min(884px, calc(100dvh - 24px)); max-width: none; max-height: calc(100dvh - 24px);
   padding: 0; margin: 0; border: 0; border-radius: 12px; overflow: visible; background: transparent; color: #2f3640; transform: translate(-50%, -50%);
 }
-.gaip-config-page .gaip-bulk-import-dialog::backdrop { background: rgba(0,0,0,.45); }
 .gaip-config-page .gaip-bulk-import-dialog .ant-modal-content { position: relative; display: flex; flex-direction: column; width: 100%; height: calc(100% - 44px); overflow: hidden; border-radius: 12px; background: #fff; box-shadow: 0 24px 72px rgba(22,31,38,.22); }
 .gaip-config-page .gaip-bulk-drop-overlay {
   position: absolute; inset: 0; z-index: 12; display: flex; align-items: center; justify-content: center; padding: 24px;
@@ -456,6 +453,7 @@
 .gaip-config-page .gaip-bulk-node-toggle[aria-expanded="false"] span { transform: rotate(-45deg); }
 .gaip-config-page .gaip-bulk-node-option { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1 1 auto; height: 30px; padding: 0 8px 0 2px; border: 0; outline: 0; background: transparent; color: #2f3640; font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
 .gaip-config-page .gaip-bulk-node-folder { flex: 0 0 17px; width: 17px; height: 17px; background: url("./assets/folder.png") center/contain no-repeat; }
+.gaip-config-page .gaip-bulk-node-folder.is-open { background-image: url("./assets/folder-open.svg?v=20260904-4"); }
 .gaip-config-page .gaip-bulk-node-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .gaip-config-page .gaip-bulk-node-check { display: none; margin-left: auto; color: #008c80; font-size: 14px; font-weight: 600; }
 .gaip-config-page .gaip-bulk-node-row.is-selected .gaip-bulk-node-check { display: inline; }
@@ -546,7 +544,7 @@
 .gaip-config-page .gaip-bulk-result .gaip-bulk-summary-grid.is-success-only { grid-template-columns: repeat(2,minmax(0,1fr)); }
 .gaip-config-page .gaip-bulk-result .gaip-bulk-summary { min-height: 68px; }
 .gaip-config-page .gaip-bulk-result-note { margin-top: 14px; padding: 12px 14px; border-radius: 6px; background: rgba(2,91,82,.04); color: rgba(47,54,64,.62); font-size: 13px; line-height: 21px; text-align: left; }
-.gaip-config-page .gaip-bulk-confirm-layer { position: absolute; inset: 0; z-index: 8; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,.38); }
+.gaip-config-page .gaip-bulk-confirm-layer { position: absolute; inset: 0; z-index: 8; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .gaip-config-page .gaip-bulk-confirm-card { width: min(420px,100%); padding: 24px; border-radius: 8px; background: #fff; box-shadow: 0 16px 48px rgba(22,31,38,.24); }
 .gaip-config-page .gaip-bulk-confirm-card h3 { margin: 0; color: #2f3640; font-size: 17px; line-height: 25px; }
 .gaip-config-page .gaip-bulk-confirm-card p { margin: 8px 0 22px; color: rgba(47,54,64,.6); font-size: 14px; line-height: 22px; }
@@ -565,7 +563,6 @@
 .gaip-config-more .ant-dropdown-menu-item-danger { color: #ff4d4f; }
 .gaip-config-more .gaip-member-menu-icon { width: 16px; height: 16px; flex: 0 0 16px; }
 .gaip-config-page .gaip-adjust-node-dialog { position: fixed; inset: 50% auto auto 50%; width: min(720px, calc(100vw - 48px)); height: min(720px, calc(100dvh - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; margin: 0; overflow: hidden; border: 0; border-radius: 10px; background: transparent; color: #2f3640; transform: translate(-50%,-50%); }
-.gaip-config-page .gaip-adjust-node-dialog::backdrop { background: rgba(0,0,0,.45); }
 .gaip-config-page .gaip-adjust-node-dialog > .ant-modal-content { position: relative; display: flex; flex-direction: column; width: 100%; height: 100%; overflow: hidden; border-radius: 10px; background: #fff; box-shadow: 0 24px 72px rgba(22,31,38,.22); }
 .gaip-config-page .gaip-adjust-node-header { display: flex; align-items: center; justify-content: space-between; flex: 0 0 auto; min-height: 72px; padding: 18px 24px; border-bottom: 1px solid rgba(47,54,64,.1); background: #fff; }
 .gaip-config-page .gaip-adjust-node-header h2 { margin: 0; color: #2f3640; font-size: 20px; font-weight: 600; line-height: 28px; }
@@ -603,6 +600,7 @@
 .gaip-config-page .gaip-adjust-node-radio { flex: 0 0 16px; width: 16px; height: 16px; border: 1px solid rgba(47,54,64,.36); border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 3px #fff; }
 .gaip-config-page .gaip-adjust-node-row.is-selected .gaip-adjust-node-radio { border-color: #008c80; background: #008c80; }
 .gaip-config-page .gaip-adjust-node-folder { flex: 0 0 17px; width: 17px; height: 17px; background: url("./assets/folder.png") center/contain no-repeat; opacity: .88; }
+.gaip-config-page .gaip-adjust-node-folder.is-open { background-image: url("./assets/folder-open.svg?v=20260904-4"); }
 .gaip-config-page .gaip-adjust-node-copy { display: flex; flex-direction: column; min-width: 0; flex: 1 1 auto; }
 .gaip-config-page .gaip-adjust-node-copy strong { overflow: hidden; color: inherit; font-size: 13px; font-weight: 500; line-height: 20px; text-overflow: ellipsis; white-space: nowrap; }
 .gaip-config-page .gaip-adjust-node-copy small { overflow: hidden; color: rgba(47,54,64,.44); font-size: 11px; line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
@@ -617,13 +615,8 @@
 .gaip-config-page .gaip-adjust-button.is-primary { border: 1px solid #025b52; background: #025b52; color: #fff; }
 .gaip-config-page .gaip-adjust-button.is-primary:hover:not(:disabled) { border-color: #155347; background: #155347; color: #fff; }
 .gaip-config-page .gaip-adjust-button.is-primary:disabled { border-color: rgba(47,54,64,.08); background: rgba(47,54,64,.08); color: rgba(47,54,64,.34); cursor: not-allowed; }
-.gaip-config-page .gaip-adjust-confirm-layer { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,.38); }
+.gaip-config-page .gaip-adjust-confirm-layer { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .gaip-config-page .gaip-adjust-confirm-layer[hidden] { display: none; }
-.gaip-config-page .gaip-adjust-confirm-card { display: grid; grid-template-columns: 36px minmax(0,1fr); gap: 14px 12px; width: min(480px,100%); padding: 24px; border-radius: 8px; background: #fff; box-shadow: 0 18px 54px rgba(22,31,38,.25); }
-.gaip-config-page .gaip-adjust-warning-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #fff3d6; color: #bd7800; font-size: 18px; font-weight: 600; }
-.gaip-config-page .gaip-adjust-confirm-card h3 { margin: 2px 0 6px; color: #2f3640; font-size: 17px; font-weight: 600; line-height: 24px; }
-.gaip-config-page .gaip-adjust-confirm-card p { margin: 0; color: rgba(47,54,64,.68); font-size: 14px; line-height: 22px; }
-.gaip-config-page .gaip-adjust-warning-actions { display: flex; justify-content: flex-end; gap: 10px; grid-column: 1 / -1; margin-top: 4px; }
 .gaip-config-page .gaip-config-toast { position: fixed; z-index: 1300; top: 76px; left: 50%; display: flex; align-items: center; gap: 8px; max-width: min(520px,calc(100vw - 32px)); padding: 11px 16px; border: 1px solid rgba(2,118,107,.18); border-radius: 6px; background: #fff; color: #2f3640; font-size: 14px; line-height: 20px; box-shadow: 0 8px 28px rgba(22,31,38,.16); transform: translateX(-50%); }
 .gaip-config-page .gaip-config-toast-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 18px; width: 18px; height: 18px; border-radius: 50%; background: #008c80; color: #fff; font-size: 12px; font-weight: 600; }
 .gaip-config-page > .gaip-log-inline { position: static; display: flex; flex-direction: column; width: 100%; height: 100%; min-height: 560px; margin: 0; border: 0; border-radius: 0; box-shadow: none; flex: 1; }
@@ -674,7 +667,6 @@
   .gaip-config-page .gaip-adjust-target-heading strong { max-width: 100%; }
   .gaip-config-page .gaip-adjust-node-copy small { display: none; }
   .gaip-config-page .gaip-adjust-node-option { min-height: 40px; }
-  .gaip-config-page .gaip-adjust-confirm-card { grid-template-columns: 32px minmax(0,1fr); padding: 20px; }
   .gaip-config-page .gaip-bulk-import-dialog { width: calc(100vw - 24px); height: calc(100dvh - 12px); max-height: calc(100dvh - 12px); }
   .gaip-config-page .gaip-bulk-modal-header { padding: 16px; }
   .gaip-config-page .gaip-bulk-modal-header p { display: none; }

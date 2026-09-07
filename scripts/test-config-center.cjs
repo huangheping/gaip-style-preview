@@ -24,7 +24,7 @@ async function main() {
       return { destroy() { host.replaceChildren(); } };
     }
   };
-  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   await tick();
   const one = selector => { const el = d.querySelector(selector); assert.ok(el, selector); return el; };
   const click = selector => one(selector).click();
@@ -61,12 +61,16 @@ async function main() {
   assert.equal(d.querySelectorAll('[data-department]').length, 23);
   assert.equal(one('[data-department="all"]').getAttribute('aria-expanded'), 'true', 'root channel is expanded initially');
   assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'), 'false', 'first-level department starts collapsed');
+  assert.match(one('[data-department="all"] .folderIcon___yjhFX').getAttribute('src'), /folder-open\.svg(?:\?[^#]*)?$/, 'expanded root uses the open-folder icon');
+  assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /folder\.png(?:\?[^#]*)?$/, 'collapsed branch uses the closed-folder icon');
+  assert.match(one('[data-department="department-11"] .folderIcon___yjhFX').getAttribute('src'), /folder\.png(?:\?[^#]*)?$/, 'leaf nodes keep the closed-folder icon');
   assert.equal(one('[data-department="department-2"]').hidden, true, 'second-level department is hidden initially');
   assert.equal(one('[data-department="department-11"]').hidden, false, 'first-level leaf remains visible');
   assert.equal(d.querySelectorAll('.table___BX44I tbody tr').length, 24, 'member table renders every member in the current scope');
   assert.equal(d.querySelector('.table___BX44I .ant-pagination'), null, 'member table does not render pagination controls');
   click('[data-collapse="department-1"]');
   assert.equal(one('[data-department="department-2"]').hidden, false, 'first-level department can expand');
+  assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /folder-open\.svg(?:\?[^#]*)?$/, 'expanding a branch switches its folder icon');
   assert.equal(one('[data-department="mock-level-3-east"]').hidden, true, 'third-level mock node stays hidden while its parent is collapsed');
   click('[data-collapse="department-2"]');
   assert.equal(one('[data-department="mock-level-3-east"]').hidden, false, 'third-level mock node appears when its parent is expanded');
@@ -74,6 +78,7 @@ async function main() {
   click('[data-collapse="department-2"]');
   click('[data-collapse="department-1"]');
   assert.equal(one('[data-department="department-2"]').hidden, true, 'first-level department can collapse again');
+  assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /folder\.png(?:\?[^#]*)?$/, 'collapsing a branch restores its closed-folder icon');
   select('mock-level-3-east');
   assert.match(one('tbody').textContent, /示例成员06.*人管/s, 'the first third-level mock node contains an organization-role member from the channel first page');
   select('mock-level-3-institution');
@@ -136,6 +141,7 @@ async function main() {
   assert.equal(one('.ant-table').classList.contains('ant-table-ping-left'), false, 'table at its left edge has no left shadow');
   const configCss = fs.readFileSync(path.join(root, 'features/config-center/config-center.css'), 'utf8');
   const configContentCss = fs.readFileSync(path.join(root, 'features/config-center/config-center-content.css'), 'utf8');
+  const globalModalCss = fs.readFileSync(path.join(root, 'shared/styles/global-modal.css'), 'utf8');
   assert.match(configCss, /tab___UxqK9\.tabActive___H5olV::after\s*\{\s*width:\s*71px/);
   assert.match(configCss, /tab___UxqK9::after\s*\{\s*height:\s*4px/);
   assert.match(configContentCss, /mainHeader___QGD6D \.exportBtn___RDhet,[\s\S]*mainHeader___QGD6D \.gaip-config-admin-button\s*\{[^}]*width:\s*112px;[^}]*height:\s*40px;[^}]*font-size:\s*14px/);
@@ -199,6 +205,12 @@ async function main() {
   assert.match(configCss, /gaip-config-original\s*\{\s*min-width:\s*0;\s*width:\s*100%/);
   assert.doesNotMatch(configCss, /\.sidebar___zkFeC|\.mainHeader___QGD6D|\.table___BX44I|\.gaip-config-editor/, 'shell stylesheet excludes content overrides');
   assert.doesNotMatch(configContentCss, /\.gaip-config-menu|\.header___Vhyog|\.tab___UxqK9/, 'content stylesheet excludes main navigation and top header');
+  assert.doesNotMatch(configContentCss, /gaip-department-delete/, 'delete department no longer owns one-off component styles');
+  assert.match(globalModalCss, /\.gaip-modal \.gaip-modal__close\s*\{[^}]*display:\s*inline-flex\s*!important;[^}]*align-items:\s*center\s*!important;[^}]*justify-content:\s*center\s*!important;[^}]*width:\s*var\(--gaip-modal-close-size\)\s*!important;[^}]*height:\s*var\(--gaip-modal-close-size\)\s*!important/, 'shared modal owns the aligned close control');
+  assert.match(globalModalCss, /\.gaip-modal \.gaip-modal__close:hover\s*\{[^}]*background:\s*rgba\(47,54,64,\.06\)\s*!important;[^}]*transform:\s*none/, 'shared modal owns the stable close hover state');
+  assert.match(globalModalCss, /\.gaip-modal \.gaip-modal__close-icon\s*\{[^}]*flex:\s*0 0 16px\s*!important;[^}]*width:\s*16px\s*!important;[^}]*height:\s*16px\s*!important;[^}]*line-height:\s*0\s*!important/, 'shared close icon stays centered in its hover square');
+  assert.match(globalModalCss, /\.gaip-modal--danger \.gaip-modal__button--primary\s*\{[^}]*background:\s*var\(--gaip-modal-danger\)/, 'shared danger variant owns the red primary action');
+  assert.doesNotMatch(globalModalCss, /gaip-department-delete|无法恢复/, 'shared modal stays free of department-specific styling and copy');
   assert.match(configContentCss, /\.content___r0pMd\{/);
   assert.match(configContentCss, /\.sidebar___zkFeC\{/);
   assert.match(configContentCss, /\.table___BX44I \.ant-table-thead/);
@@ -363,7 +375,11 @@ async function main() {
   const childId = rowByName('下级部门').dataset.department;
   assert.equal(rowByName('下级部门').dataset.depth, '2');
   click('[data-collapse="' + createdId + '"]'); assert.equal(rowByName('下级部门').hidden, true);
-  menu(createdId); action('delete'); assert.equal(one('[data-department-save]').disabled, true); cancel();
+  menu(createdId); action('delete');
+  assert.equal(one('[data-department-save]').disabled, true);
+  assert.ok(one('.gaip-modal.gaip-modal--confirm.gaip-modal--danger'));
+  assert.match(one('.gaip-modal-confirm__description').textContent, /子部门或成员/);
+  cancel();
   click('[data-collapse="' + createdId + '"]');
   menu(childId); action('delete'); cancel(); assert.ok(rowByName('下级部门'));
   select(childId); menu(childId); action('delete'); save();
@@ -459,6 +475,8 @@ async function main() {
   assert.equal(bulkChannelSelect.value, '0');
   assert.equal(one('[data-bulk-department-option="all"]').closest('[role="treeitem"]').getAttribute('aria-selected'), 'true');
   assert.equal(one('[data-bulk-node-toggle="department-1"]').getAttribute('aria-expanded'), 'false', 'target tree starts with first-level branches collapsed');
+  assert.equal(one('[data-bulk-department-option="all"] .gaip-bulk-node-folder').classList.contains('is-open'), true, 'expanded batch-import root uses the open-folder state');
+  assert.equal(one('[data-bulk-department-option="department-1"] .gaip-bulk-node-folder').classList.contains('is-open'), false, 'collapsed batch-import branch uses the closed-folder state');
   assert.equal(bulkDialog.querySelector('[data-bulk-department-option="department-2"]'), null, 'collapsed descendants stay out of the target tree');
   assert.equal(one('[data-bulk-node-search]').placeholder, '搜索目标节点');
   assert.equal(one('[data-bulk-search-clear]').hidden, true, 'empty target search does not show a clear control');
@@ -491,6 +509,7 @@ async function main() {
   assert.equal(one('[data-bulk-node-search]').value, '');
   click('[data-bulk-node-toggle="department-1"]');
   assert.ok(one('[data-bulk-department-option="department-2"]'), 'target tree branches can expand');
+  assert.equal(one('[data-bulk-department-option="department-1"] .gaip-bulk-node-folder').classList.contains('is-open'), true, 'expanded batch-import branch switches to the open-folder state');
   click('[data-bulk-node-toggle="department-2"]');
   assert.deepEqual(Array.from(bulkDialog.querySelectorAll('[data-bulk-department-option^="mock-level-3-"]'), el => el.textContent.trim().replace('✓', '')), ['华东业务组', '机构服务组', '重点客户支持与运营组', '区域客户跟进组'], 'batch import uses the same current-channel third-level nodes as the organization tree');
   click('[data-bulk-department-option="department-2"]');
@@ -638,7 +657,12 @@ async function main() {
   click('[data-adjust-node-option="department-11"]');
   click('[data-adjust-node-confirm]');
   assert.equal(one('[data-adjust-admin-warning]').hidden, false, 'moving an organization administrator opens the required second confirmation');
+  assert.equal(d.querySelector('.gaip-adjust-warning-icon'), null, 'administrator move confirmation uses a text hierarchy without a warning icon');
   assert.match(one('[data-adjust-admin-warning]').textContent, /取消其原节点管理员身份.*不会自动成为目标节点管理员/s);
+  assert.ok(one('.gaip-adjust-confirm-card').classList.contains('gaip-modal--danger'), 'administrator move confirmation uses the shared danger variant');
+  assert.equal(one('.gaip-adjust-confirm-card').dataset.gaipModalComponent, 'v1.1.3', 'administrator move confirmation uses the current shared component');
+  assert.equal(one('.gaip-adjust-confirm-card').querySelectorAll('.gaip-modal__close-icon > .anticon-close').length, 1, 'administrator move confirmation uses exactly one shared close icon');
+  assert.ok(one('[data-adjust-warning-confirm]').classList.contains('gaip-modal__button--primary'), 'administrator move confirmation uses the shared primary action');
   click('[data-adjust-warning-cancel]');
   assert.equal(one('[data-adjust-admin-warning]').hidden, true, 'canceling the warning preserves the adjustment form');
   click('[data-adjust-node-confirm]');
@@ -651,6 +675,8 @@ async function main() {
   assert.match(configContentCss, /gaip-adjust-node-dialog[^}]*width:\s*min\(720px,[^}]*height:\s*min\(720px/);
   assert.match(configContentCss, /gaip-adjust-node-tree[^}]*overflow-y:\s*auto;[^}]*scrollbar-width:\s*thin/);
   assert.match(configContentCss, /gaip-adjust-confirm-layer\[hidden\]\s*\{\s*display:\s*none/);
+  assert.doesNotMatch(configContentCss, /gaip-adjust-confirm-card|gaip-adjust-warning-path|gaip-adjust-warning-impact|gaip-adjust-button\.is-danger/, 'administrator confirmation must not keep a second local modal skin');
+  assert.match(globalModalCss, /\.gaip-modal--complex\s*\{\s*--gaip-modal-width:\s*520px/, 'shared modal owns the complex confirmation width');
 
   click('[data-config-log]');
   const organizationLogDialog = one('.gaip-organization-log-dialog[aria-label="组织架构操作日志"]');
@@ -726,7 +752,7 @@ async function testDialogPreviewController() {
   w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-  for (const file of ['shared/config/channels.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
+  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
     w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   }
   const controller = w.__GAIP_CONFIG_DIALOGS__;
@@ -735,6 +761,7 @@ async function testDialogPreviewController() {
   assert.equal(typeof controller.openOrganizationLog, 'function', 'organization operation log entry is public for the source registry');
   assert.equal(typeof controller.openBulkImport, 'function', 'batch import flow entry is public for the source registry');
   assert.equal(typeof controller.openAdjustNode, 'function', 'member node adjustment entry is public for the source registry');
+  assert.equal(typeof controller.openAdjustNodeConfirmation, 'function', 'administrator node confirmation is public for direct component preview');
 
   let dialog = controller.openMember(1);
   assert.equal(dialog.open, true);
@@ -752,9 +779,41 @@ async function testDialogPreviewController() {
   dialog = controller.openDepartment('department-18', 'delete');
   assert.equal(dialog.open, true);
   assert.equal(dialog.getAttribute('aria-label'), '删除部门');
-  assert.match(dialog.querySelector('.ant-modal-body').textContent, /确认删除部门/);
+  assert.equal(dialog.dataset.gaipModalId, 'config-delete');
+  assert.equal(dialog.dataset.gaipModalComponent, 'v1.1.3');
+  assert.equal(Array.from(dialog.classList).some(className => className.includes('___')), false, 'delete confirmation drops the legacy department modal skin');
+  assert.ok(dialog.classList.contains('gaip-modal--confirm'));
+  assert.ok(dialog.classList.contains('gaip-modal--danger'));
+  assert.equal(dialog.querySelector('.gaip-modal__close').getAttribute('aria-label'), '关闭删除部门弹窗');
+  assert.ok(dialog.querySelector('.gaip-modal__close svg'), 'standard close button keeps its SVG icon');
+  assert.equal(dialog.querySelector('.gaip-modal__close-icon').children.length, 1, 'standard close button owns exactly one shared icon');
+  assert.equal(dialog.querySelector('.gaip-modal__close-icon').getAttribute('aria-hidden'), 'true', 'shared close icon leaves the accessible name on the button only');
+  assert.equal(Array.from(dialog.querySelector('[data-department-save]').classList).some(className => className.includes('___')), false, 'delete confirmation primary action drops the legacy button skin');
+  assert.notEqual(dialog.querySelector('.gaip-modal__close').textContent.trim(), '取消', 'footer label never overwrites the close icon');
+  assert.equal(dialog.querySelector('.gaip-modal__button--secondary').textContent.trim(), '取消');
+  assert.match(dialog.querySelector('.gaip-modal-confirm__message').textContent, /确定删除部门/);
+  assert.equal(dialog.querySelector('.gaip-modal-confirm__description'), null, 'deletable state has no warning copy');
+  assert.equal(dialog.querySelector('.gaip-department-delete-warning-mark'), null, 'deletable state has no warning icon');
   assert.equal(dialog.querySelector('[data-department-save]').disabled, false);
+  assert.ok(dialog.querySelector('[data-department-save]').classList.contains('gaip-modal__button--primary'));
+  assert.equal(dialog.querySelector('[data-department-save]').textContent.trim(), '删除');
   dialog.querySelector('[data-department-cancel]').click();
+
+  const legacyConfirm = d.createElement('div');
+  legacyConfirm.className = 'ant-modal ant-modal-confirm';
+  legacyConfirm.innerHTML = '<div class="ant-modal-content"><div class="ant-modal-header"><div class="ant-modal-title">旧系统标题</div></div><div class="ant-modal-body"><div class="ant-modal-confirm-body-wrapper"><div class="ant-modal-confirm-body"><span class="anticon">!</span><span class="ant-modal-confirm-title">旧重复标题</span><div class="ant-modal-confirm-content">旧内容</div></div><div class="ant-modal-confirm-btns"><button class="ant-btn ant-btn-default"><span>取消</span></button><button class="ant-btn ant-btn-primary"><span>确定</span></button></div></div></div></div>';
+  d.body.appendChild(legacyConfirm);
+  const normalizedConfirm = w.__GAIP_MODAL_COMPONENT__.setConfirmState(legacyConfirm, {
+    tone: 'danger', title: '删除客户', message: '您确定要删除该客户信息吗？', confirmLabel: '删除'
+  });
+  assert.equal(legacyConfirm.querySelectorAll('.ant-modal-header').length, 1, 'system confirm normalization keeps one header');
+  assert.equal(legacyConfirm.querySelectorAll('.ant-modal-body').length, 1, 'system confirm normalization keeps one body');
+  assert.equal(legacyConfirm.querySelector('.gaip-modal__title').textContent, '删除客户');
+  assert.equal(legacyConfirm.querySelectorAll('.gaip-modal-confirm__message').length, 1, 'system confirm normalization removes duplicated legacy copy');
+  assert.equal(normalizedConfirm.body.textContent, '您确定要删除该客户信息吗？');
+  assert.ok(normalizedConfirm.close.querySelector('svg'), 'system confirm normalization creates the standard close control');
+  assert.equal(legacyConfirm.querySelector('.ant-modal-confirm-body-wrapper'), null, 'legacy confirm wrapper and warning icon are removed');
+  legacyConfirm.remove();
 
   dialog = controller.openDepartment('all', 'admin');
   assert.equal(dialog.open, true);
@@ -782,7 +841,15 @@ async function testDialogPreviewController() {
   assert.equal(dialog.getAttribute('aria-label'), '调整节点');
   assert.equal(dialog.querySelector('[data-adjust-node-option="department-3"]').disabled, true);
   assert.equal(dialog.querySelectorAll('[data-adjust-node-option]').length, 23);
+  assert.equal(dialog.querySelector('[data-adjust-node-option="all"] .gaip-adjust-node-folder').classList.contains('is-open'), true, 'adjustment tree marks visible parent branches as open');
+  assert.equal(dialog.querySelector('[data-adjust-node-option="department-3"] .gaip-adjust-node-folder').classList.contains('is-open'), false, 'adjustment tree keeps leaf nodes closed');
   assert.match(dialog.querySelector('[data-adjust-node-option="mock-level-3-key-account"]').textContent, /重点客户支持与运营组.*薄荷经纪人 \/ 测试部门 \/ 测试1部 \/ 重点客户支持与运营组/s);
+  dialog.querySelector('[data-adjust-node-close]').click();
+  dialog = controller.openAdjustNodeConfirmation(1);
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.querySelector('[data-adjust-admin-warning]').hidden, false, 'direct confirmation preview opens the real nested warning state');
+  assert.equal(dialog.querySelector('[data-adjust-node-confirm]').disabled, false, 'direct confirmation preview prepares a valid target node');
+  dialog.querySelector('[data-adjust-warning-cancel]').click();
   dialog.querySelector('[data-adjust-node-close]').click();
   assert.equal(d.querySelectorAll('dialog[open]').length, 0);
   const previewHost = d.querySelector('[data-gaip-dialog-preview-host]');
@@ -790,7 +857,7 @@ async function testDialogPreviewController() {
   assert.equal(previewHost.querySelector('.pageContainer___QCUaw'), null, 'preview must not render the organization page behind real dialogs');
   assert.equal(previewHost.children.length, 0, 'closing every preview dialog leaves no background-page DOM');
   dom.window.close();
-  console.log('PASS: seven organization dialogs use the public full-flow controller with a background-free preview host.');
+  console.log('PASS: eight organization dialog states use the public full-flow controller with a background-free preview host.');
 }
 
 main().then(testDialogPreviewController).catch(error => { console.error(error); process.exit(1); });

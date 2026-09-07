@@ -266,7 +266,6 @@ html.gaip-news-scroll-lock body {
   display: grid;
   place-items: center;
   padding: 28px;
-  background: rgba(18, 24, 27, 0.34);
 }
 
 .gaip-news-bridge-modal {
