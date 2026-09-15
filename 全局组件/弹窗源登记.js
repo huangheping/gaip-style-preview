@@ -4,8 +4,8 @@
   /* iframe 会把 <base> 指回项目根目录；资源路径统一从根目录解析。 */
   var font = 'shared/styles/global-font.css?v=20260909-project-font-1';
   var umi = 'web/umi.c6286171.css';
-  var configStyles = [umi, font, 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260909-project-font-1', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'];
-  var configScripts = ['shared/config/channels.js?v=20260908-required-marker-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/config-center.js?v=20260910-tabs-motion-1'];
+  var configStyles = [umi, font, 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260915-commission-style-5', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'];
+  var configScripts = ['shared/config/channels.js?v=20260908-required-marker-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/config-center.js?v=20260915-commission-style-5'];
 
   var entries = [
     {

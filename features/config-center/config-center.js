@@ -545,7 +545,7 @@
         return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(referrerDisplay) + '</td><td>' + escapeHtml(adminDisplay) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
       }).join('');
       body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong title="' + targetPath + '">' + targetPath + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
-      footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-footer-download is-secondary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
+      footer.innerHTML = '<div class="gaip-bulk-footer-leading"><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-footer-download is-secondary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button></div><div class="gaip-bulk-footer-actions"><button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button></div>';
     } else {
       var isAllSuccessPreview = bulkImportState.resultPreview === 'success';
       var importedCount = isAllSuccessPreview ? bulkImportState.rows.length : bulkImportState.rows.filter(function (item) { return item.valid; }).length;
@@ -774,7 +774,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -782,7 +782,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ]
   }
   */
@@ -803,7 +803,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -811,7 +811,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ]
   }
   */
@@ -832,7 +832,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -842,7 +842,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ]
   }
   */
@@ -863,7 +863,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -871,7 +871,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ]
   }
   */
@@ -892,7 +892,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -902,7 +902,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ]
   }
   */
@@ -1614,7 +1614,24 @@
     organizationRole.checked = !!(member && member.admin);
     organizationRole.disabled = !canConfigureAdminRole('organization');
     commissionRole.checked = !!(member && editorRoleState.commission === member.id);
-    commissionRole.disabled = !canConfigureAdminRole('commission') || !!(editorRoleState.commission && (!member || editorRoleState.commission !== member.id));
+    var hasCommissionOwner = editorRoleState.commission != null;
+    commissionRole.disabled = !canConfigureAdminRole('commission') || hasCommissionOwner;
+    if (hasCommissionOwner) {
+      var commissionOwner = currentMembers.find(function (item) { return item.id === editorRoleState.commission; });
+      var commissionHint = document.createElement('p');
+      commissionHint.id = 'member-commission-owner-hint';
+      commissionHint.className = 'gaip-member-commission-hint';
+      var ownerName = document.createElement('span');
+      ownerName.className = 'gaip-member-commission-owner-name';
+      ownerName.textContent = commissionOwner.name;
+      commissionHint.append('当前该节点已有佣金管理员：', ownerName, '，不可多选。');
+      var adminRow = commissionRole.closest('.memberRoleModule___W8rjP');
+      var roleGroup = document.createElement('div');
+      roleGroup.className = 'gaip-member-role-group';
+      adminRow.before(roleGroup);
+      roleGroup.append(adminRow, commissionHint);
+      commissionRole.setAttribute('aria-describedby', commissionHint.id);
+    }
     dialog.querySelectorAll('input[name="clueRole"]').forEach(function (input) {
       input.checked = input.value === currentClueRole;
       input.disabled = input.value === 'clue-admin' ? !canConfigureAdminRole('clue-admin') : input.value === 'clue-follower' ? !canConfigureAdminRole('clue-follower') : !(canConfigureAdminRole('clue-admin') || canConfigureAdminRole('clue-follower'));
@@ -1675,9 +1692,9 @@
         referrer: Number(dialog.querySelector('input[name="referrerType"]:checked').value)
       });
       if (!member) members.push(record);
-      if (!commissionRole.disabled) {
-        if (commissionRole.checked) editorRoleState.commission = record.id;
-        else if (editorRoleState.commission === record.id) editorRoleState.commission = null;
+      // 成员编辑只能补充未配置的归属，不能取消或替换已有归属；不依赖 DOM 禁用状态保护数据。
+      if (!hasCommissionOwner && editorRoleState.commission == null && canConfigureAdminRole('commission') && commissionRole.checked) {
+        editorRoleState.commission = record.id;
       }
       var selectedClueRole = dialog.querySelector('input[name="clueRole"]:checked').value;
       editorRoleState.clueAdmin = editorRoleState.clueAdmin.filter(function (memberId) { return memberId !== record.id; });

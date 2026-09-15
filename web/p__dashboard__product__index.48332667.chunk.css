@@ -56,7 +56,6 @@
 .productCard___AMkTa .title___ujCEU {
   position:relative;
   z-index:2;
-  max-width:calc(100% - 132px);
   height:24px;
   line-height:24px;
   font-size:18px;
@@ -69,58 +68,12 @@
 .productCard___AMkTa .subTitle___SA4Uh {
   position:relative;
   z-index:2;
-  max-width:calc(100% - 132px);
   margin-top:4px;
   line-height:20px;
   color:#2f3640a6;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis
-}
-
-.productCard___AMkTa .providerLogo {
-  position:absolute;
-  z-index:3;
-  top:22px;
-  right:22px;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  max-width:126px;
-  height:32px;
-  padding:0 10px 0 6px;
-  border:1px solid rgba(2,91,82,.12);
-  border-radius:16px;
-  background:rgba(255,255,255,.86);
-  box-shadow:0 4px 12px rgba(47,54,64,.06);
-  pointer-events:none
-}
-
-.productCard___AMkTa .providerLogoMark {
-  flex:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:22px;
-  height:22px;
-  margin-right:6px;
-  border-radius:50%;
-  background:#025b52;
-  color:#fff;
-  font-size:12px;
-  font-weight:600;
-  line-height:1
-}
-
-.productCard___AMkTa .providerLogoName {
-  min-width:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  color:#2f3640;
-  font-size:12px;
-  font-weight:500;
-  line-height:18px
 }
 
 .productCard___AMkTa .tags___fnvPa {
@@ -281,48 +234,16 @@
   background:#ba7d003b
 }
 
-.productCard___AMkTa.insurance___VX42G .providerLogo {
-  border-color:rgba(186,125,0,.18)
-}
-
-.productCard___AMkTa.insurance___VX42G .providerLogoMark {
-  background:#ba7d00
-}
-
 .productCard___AMkTa.immigration___C7JST .decoration___HmA10 {
   background:#22b09b1a
-}
-
-.productCard___AMkTa.immigration___C7JST .providerLogo {
-  border-color:rgba(34,176,155,.18)
-}
-
-.productCard___AMkTa.immigration___C7JST .providerLogoMark {
-  background:#22b09b
 }
 
 .productCard___AMkTa.trust____siyu .decoration___HmA10 {
   background:#4f70b61a
 }
 
-.productCard___AMkTa.trust____siyu .providerLogo {
-  border-color:rgba(79,112,182,.18)
-}
-
-.productCard___AMkTa.trust____siyu .providerLogoMark {
-  background:#4f70b6
-}
-
 .productCard___AMkTa.overseas___WQ2NJ .decoration___HmA10 {
   background:#025b521a
-}
-
-.productCard___AMkTa.overseas___WQ2NJ .providerLogo {
-  border-color:rgba(2,91,82,.18)
-}
-
-.productCard___AMkTa.overseas___WQ2NJ .providerLogoMark {
-  background:#025b52
 }
 
 .productCard___AMkTa:hover {

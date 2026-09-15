@@ -1,6 +1,7 @@
 /* One underline-tab skin. Extra attribute specificity overrides captured page skins
    without editing the read-only product bundle or changing surrounding toolbars. */
 [data-gaip-tabs][data-gaip-tabs] {
+  --gaip-global-font-weight: 400;
   display: flex; align-items: stretch; flex-wrap: nowrap; gap: 0;
   min-width: 0; height: 64px; flex-shrink: 0;
   overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
@@ -16,10 +17,10 @@
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]::after {
   content: ''; position: absolute; display: block; left: 50%; bottom: 0;
   transform: translateX(-50%); width: 0; height: 4px;
-  border-radius: 2px; background: #3ba297; transition: width .2s;
+  border-radius: 2px; background: #3ba297; transition: none; animation: none;
 }
-[data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:hover:not(:disabled),
-[data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab][aria-selected="true"] { color: #025b52; }
+[data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:hover:not(:disabled):not([aria-selected="true"]) { color: #025b52; }
+[data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab][aria-selected="true"] { --gaip-global-font-weight: 700; font-weight: 700; color: #2f3640; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab][aria-selected="true"]::after { width: 71px; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:focus-visible { outline: 2px solid #1dceca; outline-offset: -4px; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:disabled { opacity: .38; cursor: not-allowed; }

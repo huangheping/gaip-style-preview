@@ -12,9 +12,9 @@
       "properties": {
         "font-size": { "before": null, "initialLocal": "三处16px", "target": "16px", "status": "active", "basis": "mixed", "reason": "统一组件规范；线上基准未采集" },
         "font-family": { "before": null, "initialLocal": "继承全局HarmonyOS Sans SC", "target": "inherit，继承全局字体", "status": "active", "basis": "source" },
-        "font-weight": { "before": null, "initialLocal": "全局规则400（覆盖旧局部500）", "target": "400", "status": "active", "basis": "mixed" },
+        "font-weight": { "before": null, "initialLocal": "全局规则400（覆盖旧局部500）", "target": "非当前400 Regular；当前700 Bold；通过Tab局部--gaip-global-font-weight继承全局字体", "status": "active", "basis": "source" },
         "line-height": { "before": null, "initialLocal": null, "target": "22px", "status": "active", "basis": "computed", "reason": "new shared component" },
-        "text.color": { "before": null, "initialLocal": "产品默认/选中#2f3640、计数#025b52；组织/学情默认#2f3640，选中/hover#025b52", "target": "默认#2f3640；选中/hover#025b52；计数#025b52", "status": "active", "basis": "mixed" },
+        "text.color": { "before": null, "initialLocal": "产品默认/选中#2f3640、计数#025b52；组织/学情默认#2f3640，选中/hover#025b52", "target": "默认/选中（含选中hover）#2f3640；未选中hover及计数保留#025b52", "status": "active", "basis": "source" },
         "padding": { "before": null, "initialLocal": "产品0 14px；组织/学情0 12px", "target": "0 12px", "status": "active", "basis": "mixed" },
         "spacing": { "before": null, "initialLocal": "产品相邻margin-left8px；组织/学情gap0", "target": "gap0；margin0", "status": "active", "basis": "mixed" },
         "height": { "before": null, "initialLocal": "产品按钮22px，外栏70px border-box；组织/学情按钮64px", "target": "按钮64px；产品栏64px content-box加上下1px边框（外高66px）", "status": "active", "basis": "mixed" },
@@ -25,9 +25,9 @@
         "disabled.opacity": { "before": null, "initialLocal": null, "target": "0.38", "status": "active", "basis": "source", "reason": "new disabled variant in component library" }
       },
       "sources": ["shared/styles/global-tabs.css", "shared/scripts/global-tabs.js", "web/p__dashboard__product__index.48332667.chunk.css（只读原基线）", "features/config-center/config-center.css（原基线）", "design-changes/learning-center.json#learning.study.header-tabs（保留更早学习页首次本地值）"],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["独立浏览器三处源码样式及状态核验；非完整业务页面视觉验收。完整file入口受访问策略限制；线上基准未采集。"] },
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-15", "gaps": ["三处真实结构的计算样式、字重、静态下划线、键盘与节点生命周期已在本机 Chrome 119 核验；线上视觉基准未采集。"] },
       "status": "active",
-      "updatedAt": "2026-09-10"
+      "updatedAt": "2026-09-15"
     }
   ]
 }

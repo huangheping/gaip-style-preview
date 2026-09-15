@@ -221,6 +221,13 @@
 .formModal____MTrk .memberRoleOptions___kP3tN .ant-checkbox-label{padding-left:12px;white-space:nowrap}
 .formModal____MTrk .clueRoleModule___f7R2c{margin-top:4px;margin-bottom:0;padding-top:20px;border-top:1px solid rgba(47,54,64,.08)}
 .formModal____MTrk .clueRoleHint___L8f3v{margin:10px 0 0;color:rgba(47,54,64,.5);font-size:13px;line-height:20px}
+.formModal____MTrk .gaip-member-role-group{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+/* 管理员行自带 ant-form-item 的底边距，必须在此组内清除，提示才真正贴近选项。 */
+.formModal____MTrk.formModal____MTrk.formModal____MTrk .gaip-member-role-group > .memberRoleModule___W8rjP{margin-bottom:0!important}
+.formModal____MTrk .gaip-member-commission-hint{margin:0;color:rgba(47,54,64,.5);font-size:13px;line-height:20px}
+.formModal____MTrk .gaip-member-commission-owner-name{color:#025b52}
+/* 灰底、边框、文字恢复共享禁用态；只让勾与共享禁用边框使用同一色值。 */
+.formModal____MTrk.formModal____MTrk.formModal____MTrk [data-member-editor-role="commission"]:disabled:checked + .ant-checkbox-inner::after{border-color:var(--mc-line, var(--gaip-modal-border, rgba(47,54,64,.18)))!important}
 .footer___UhMLM{z-index:2;display:flex;justify-content:flex-end;gap:12px;margin:0;padding:16px 24px 18px;border-top:1px solid rgba(47,54,64,.08);background:#fff;flex:0 0 auto}
 .formModal____MTrk .memberAdjustNodeBtn___Sr4Qe{min-width:96px;height:44px;margin-right:auto;border:1px solid rgba(47,54,64,.28);border-radius:4px;background:#fff;color:#2f3640;font-size:16px}
 .formModal____MTrk .memberAdjustNodeBtn___Sr4Qe:hover,.formModal____MTrk .memberAdjustNodeBtn___Sr4Qe:focus-visible{border-color:#2f3640!important;background:rgba(47,54,64,.04)!important;color:#2f3640!important}
@@ -399,6 +406,8 @@
 .gaip-config-page .gaip-bulk-modal-body:not(.is-validation-step) { overflow-y: auto; overscroll-behavior: contain; }
 .gaip-config-page .gaip-bulk-modal-footer { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex: 0 0 auto; min-height: 68px; padding: 14px 24px; border-top: 1px solid rgba(47,54,64,.1); background: #fff; }
 .gaip-config-page .gaip-bulk-modal-footer.is-result-step { display: none; }
+.gaip-config-page .gaip-bulk-footer-leading { display: flex; align-items: center; margin-right: auto; }
+.gaip-config-page .gaip-bulk-footer-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 .gaip-config-page .gaip-bulk-button { min-width: 92px; height: 40px; padding: 0 18px; border-radius: 4px; font-size: 14px; }
 .gaip-config-page .gaip-bulk-button.is-secondary { border: 1px solid rgba(2,91,82,.35); background: #fff; color: #025b52; }
 .gaip-config-page .gaip-bulk-button.is-secondary:hover { border-color: #025b52; background: rgba(2,91,82,.04); color: #025b52; }

@@ -105,7 +105,7 @@ catalog.ready.filter((entry) => entry.previewMode !== 'route-trigger').forEach((
     assert.ok(fs.existsSync(path.join(root, asset.split('?')[0])), `${entry.id} 资源不存在：${asset}`);
   });
 });
-assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260910-tabs-motion-1'), '配置中心弹窗预览必须加载当前逻辑版本');
+assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260915-commission-style-5'), '配置中心弹窗预览必须加载当前逻辑版本');
 assert.ok(byId['config-delete'].styles.includes('shared/styles/global-modal.css?v=20260909-project-font-1'), '删除部门预览必须加载共享弹窗样式');
 assert.ok(byId['config-delete'].scripts.includes('shared/scripts/global-modal.js?v=20260908-inline-validation-1'), '删除部门预览必须加载共享弹窗逻辑');
 

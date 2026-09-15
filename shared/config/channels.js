@@ -50,8 +50,15 @@
       icon: 'sales-enablement',
       type: 'catalog',
       assets: {
-        styles: ['web/p__dashboard__product__index.48332667.chunk.css?v=20260831-2', 'shared/styles/global-tabs.css?v=20260910-tabs-1'],
-        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1']
+        styles: [
+          'web/p__dashboard__product__index.48332667.chunk.css?v=20260915-mb-plan-flag-1',
+          'shared/styles/product-card-logo.css?v=20260915-restore-1',
+          'shared/styles/global-tabs.css?v=20260915-tabs-selected-bold-2'
+        ],
+        scripts: [
+          'shared/scripts/global-tabs.js?v=20260910-tabs-1',
+          'shared/scripts/product-card-logo.js?v=20260915-restore-1'
+        ]
       }
     },
     {
@@ -116,8 +123,8 @@
         { key: 'operation-log', label: '操作日志' }
       ],
       assets: {
-        styles: ['shared/styles/global-tabs.css?v=20260910-tabs-1', 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260908-form-scroll-1', 'features/config-center/config-center-content.css?v=20260909-project-font-1', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'],
-        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260910-org-1', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260908-form-validation-1', 'features/config-center/config-center.js?v=20260910-tabs-motion-1']
+        styles: ['shared/styles/global-tabs.css?v=20260915-tabs-selected-bold-2', 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260908-form-scroll-1', 'features/config-center/config-center-content.css?v=20260915-commission-style-5', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'],
+        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260910-org-1', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260908-form-validation-1', 'features/config-center/config-center.js?v=20260915-commission-style-5']
       }
     },
     {
@@ -147,7 +154,7 @@
       virtual: true,
       query: 'gaip-channel=learning',
       assets: {
-        styles: ['shared/styles/global-tabs.css?v=20260910-tabs-1', 'shared/styles/global-date-picker.css?v=20260909-date-color-2', 'shared/styles/global-multi-select.css?v=20260909-tag-color-1', 'shared/styles/organization-tree.css?v=20260910-org-1', 'shared/styles/global-filter-bar.css?v=20260910-tree-combobox-1', 'features/learning-center/learning-center.css?v=20260909-v11', 'features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1', 'shared/styles/global-modal.css?v=20260910-discard-outline-1', 'shared/styles/global-page-form.css?v=20260910-feedback-1', 'shared/styles/global-table.css?v=20260910-row-align-1'],
+        styles: ['shared/styles/global-tabs.css?v=20260915-tabs-selected-bold-2', 'shared/styles/global-date-picker.css?v=20260909-date-color-2', 'shared/styles/global-multi-select.css?v=20260909-tag-color-1', 'shared/styles/organization-tree.css?v=20260910-org-1', 'shared/styles/global-filter-bar.css?v=20260910-tree-combobox-1', 'features/learning-center/learning-center.css?v=20260909-v11', 'features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1', 'shared/styles/global-modal.css?v=20260910-discard-outline-1', 'shared/styles/global-page-form.css?v=20260910-feedback-1', 'shared/styles/global-table.css?v=20260910-row-align-1'],
         scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1', 'shared/scripts/global-date-picker.js?v=20260909-date-1', 'shared/scripts/operation-log-xlsx.js?v=20260909-v11', 'shared/scripts/global-multi-select.js?v=20260909-controls-2', 'shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260910-org-1', 'features/learning-center/learning-data.js?v=20260910-org-1', 'shared/scripts/global-table.js?v=20260910-row-align-1', 'features/learning-center/learning-app.js?v=20260910-study-detail-modal-1', 'features/learning-center/learning-center.js?v=20260909-v11']
       }
     }

@@ -1,0 +1,61 @@
+.productCard___AMkTa {
+  position: relative;
+}
+
+.productCard___AMkTa::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 88px;
+  height: 72px;
+  box-sizing: border-box;
+  border: 1px solid rgba(47, 54, 64, .12);
+  border-radius: 4px;
+  background: #fff;
+  pointer-events: none;
+}
+
+.productCard___AMkTa.hasLocalLogo::after {
+  border-color: rgba(47, 54, 64, .08);
+}
+
+.productCard___AMkTa .logoSlotLocal {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 72px;
+  box-sizing: border-box;
+  padding: 8px;
+  pointer-events: none;
+}
+
+.productCard___AMkTa .logoSlotLocal img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.productCard___AMkTa .title___ujCEU,
+.productCard___AMkTa .subTitle___SA4Uh,
+.productCard___AMkTa .tags___fnvPa {
+  margin-right: 108px;
+}
+
+.productCard___AMkTa .decoration___HmA10 {
+  display: none !important;
+}
+
+.productCard___AMkTa .decoration___HmA10::before,
+.productCard___AMkTa .decoration___HmA10::after,
+.productCard___AMkTa .decoration___HmA10 .dot___dSNCe {
+  display: none !important;
+}

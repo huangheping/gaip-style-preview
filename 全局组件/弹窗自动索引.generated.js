@@ -104,7 +104,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -112,7 +112,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -135,7 +135,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -143,7 +143,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -166,7 +166,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -176,7 +176,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -201,7 +201,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css"
     ],
     "scripts": [
@@ -209,7 +209,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },
@@ -234,7 +234,7 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -244,7 +244,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+      "features/config-center/config-center.js?v=20260915-commission-style-5"
     ],
     "definitionSource": "features/config-center/config-center.js"
   },

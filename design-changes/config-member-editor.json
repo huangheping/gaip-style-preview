@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "page": "配置中心 / 组织架构 / 成员编辑",
+  "records": [
+    {
+      "id": "organization.member-editor.commission-owner-hint",
+      "element": "已有佣金归属人提示",
+      "locator": {
+        "selector": ".formModal____MTrk .gaip-member-commission-hint",
+        "representative": "管理员行下方提示"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "commission-configured",
+        "viewport": null
+      },
+      "appliesTo": [
+        "六个组织架构渠道的成员弹窗",
+        "同源弹窗组件预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(47,54,64,.5)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center-content.css",
+        "features/config-center/config-center.js: editMember"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "未进行真实浏览器视觉验收；线上视觉基准未采集"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "organization.member-editor.commission-disabled",
+      "element": "佣金归属勾选禁用态",
+      "locator": {
+        "selector": ".formModal____MTrk.formModal____MTrk.formModal____MTrk [data-member-editor-role=\"commission\"]:disabled",
+        "representative": "已配置佣金归属的成员编辑弹窗"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "disabled / checked-disabled",
+        "viewport": null
+      },
+      "appliesTo": [
+        "六个组织架构渠道的成员编辑",
+        "同源弹窗组件预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "check.border-color": {
+          "before": null,
+          "initialLocal": "var(--ant-color-text-disabled)",
+          "target": "var(--mc-line, var(--gaip-modal-border, rgba(47,54,64,.18)))",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center-content.css",
+        "shared/styles/modal-controls.css: 背景/边框/文字恢复共享禁用态，仅覆盖勾为共享边框色"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "伪元素已按源规则核验颜色和优先级；浏览器工具禁止本地文件访问，未做真实视觉验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "organization.member-editor.role-group-spacing",
+      "element": "管理员栏与佣金提示分组",
+      "locator": {
+        "selector": ".gaip-member-role-group",
+        "representative": "存在佣金归属人时的管理员组"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "commission-configured",
+        "viewport": null
+      },
+      "appliesTo": [
+        "组织架构成员编辑",
+        "同源组件预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": "管理员栏默认表单底边距叠加提示上边距6px",
+          "target": "4px",
+          "basis": "source",
+          "status": "active"
+        },
+        "margin-bottom": {
+          "before": null,
+          "initialLocal": "提示下边距20px",
+          "target": "组下边距20px，组内管理员栏margin-bottom:0!important",
+          "basis": "source",
+          "status": "active"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center.js",
+        "features/config-center/config-center-content.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "浏览器工具本地文件访问受限，未做真实视觉验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "organization.member-editor.commission-owner-name",
+      "element": "提示中的佣金管理员姓名",
+      "locator": {
+        "selector": ".gaip-member-commission-owner-name",
+        "representative": "提示中的实际人名"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "commission-configured"
+      },
+      "appliesTo": [
+        "组织架构成员编辑",
+        "同源组件预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "rgba(47,54,64,.5)",
+          "target": "#025b52",
+          "basis": "source",
+          "status": "active"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center-content.css",
+        "features/config-center/config-center.js"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "未进行真实浏览器视觉验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    }
+  ]
+}

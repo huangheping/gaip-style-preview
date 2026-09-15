@@ -27,7 +27,7 @@ const checkTabAnimation=require('./tabs-animation-check.cjs');
  assert.equal(await tabs.evaluate(n=>n.parentElement.classList.contains('lc-stats-header')),true);
  assert.equal(await tabs.getByRole('tab',{selected:true}).textContent(),'学员学习统计');
  assert.equal(await tabs.getByRole('tab',{selected:true}).evaluate(n=>getComputedStyle(n,'::after').width),'71px');
- assert.deepEqual(await tabs.getByRole('tab',{selected:true}).evaluate(n=>[getComputedStyle(n).fontSize,getComputedStyle(n).fontWeight]),['16px','400']);
+ assert.deepEqual(await tabs.getByRole('tab',{selected:true}).evaluate(n=>[getComputedStyle(n).fontSize,getComputedStyle(n).fontWeight]),['16px','700']);
  await checkTabAnimation(p,'.lc-stats-tabs','[data-id="courses"]');
  await checkTabAnimation(p,'.lc-stats-tabs','[data-id="users"]');
  await tabs.getByRole('tab',{selected:true}).focus();await p.keyboard.press('ArrowRight');
@@ -163,7 +163,7 @@ const checkTabAnimation=require('./tabs-animation-check.cjs');
  for(const width of [1920,1440,1024,692]){
   await p.setViewportSize({width,height:1000});await p.waitForTimeout(150);
   const box=await p.locator('.lc-stats').evaluate(n=>({overflow:n.scrollWidth>n.clientWidth+1,pager:n.querySelector('.gaip-table__pagination').getBoundingClientRect().bottom,bottom:n.getBoundingClientRect().bottom}));
-  assert.equal(box.overflow,false);assert.ok(box.pager<=box.bottom-20,'pager stays inside main');
+  assert.equal(box.overflow,false);assert.ok(box.pager<=box.bottom-20,'pager stays inside main at '+width+'px: '+JSON.stringify(box));
   const layout=await tabs.evaluate(n=>{const t=n.getBoundingClientRect(),h=n.parentElement.getBoundingClientRect(),a=n.parentElement.querySelector('.lc-manage-header-actions').getBoundingClientRect();return {center:(t.left+t.right-h.left-h.right)/2,overlap:t.left<a.right&&t.right>a.left&&t.top<a.bottom&&t.bottom>a.top};});
   assert.ok(Math.abs(layout.center)<2,'tabs centered in toolbar');assert.equal(layout.overlap,false,'tabs do not overlap actions');
   await org.click();const popupBox=await orgPopup.boundingBox();assert.ok(popupBox.x>=0&&popupBox.x+popupBox.width<=width,'organization popup stays inside viewport');await p.keyboard.press('Escape');

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "page": "产品中心 / 产品卡片",
+  "records": [
+    {
+      "id": "product.card.provider-logo",
+      "element": "产品卡片机构 Logo 槽位",
+      "locator": {
+        "selector": ".productCard___AMkTa .logoSlotLocal",
+        "representative": "卡片右上角机构 Logo"
+      },
+      "state": {
+        "channel": "product",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "产品中心正式入口",
+        "从其他正式入口 Hash 切换到产品中心"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "position": {
+          "before": null,
+          "initialLocal": "右上角伪机构标识",
+          "target": "top:24px; right:24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "88px × 72px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid rgba(47,54,64,.08); radius 4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "image.fit": {
+          "before": null,
+          "initialLocal": null,
+          "target": "contain; max-width/max-height 100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "content.reserve": {
+          "before": null,
+          "initialLocal": null,
+          "target": "标题、副标题、标签右边距108px",
+          "status": "active",
+          "basis": "source"
+        },
+        "legacy.decoration": {
+          "before": null,
+          "initialLocal": "展示卡片右上装饰图形",
+          "target": "隐藏",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/product-card-logo.css",
+        "shared/scripts/product-card-logo.js",
+        "web/logos/"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "线上视觉基准未采集；本地文件模式保留项目已知的 WebGL 跨域提示"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    }
+  ]
+}
