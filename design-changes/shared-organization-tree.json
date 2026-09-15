@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "page": "shared-organization-tree",
+  "records": [{
+    "id": "organization.filter-tree",
+    "element": "所属组织树形下拉",
+    "locator": { "selector": ".gaip-filter-bar__tree-popup", "representative": "学情所属组织下拉" },
+    "state": { "variant": "open / searching / selected / empty", "viewport": "1920–692px" },
+    "appliesTo": ["学情管理两维度", "课程学习详情抽屉", "全局筛选栏目录示例"],
+    "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+    "properties": {
+      "control": { "before": null, "initialLocal": "共享单选40px高/4px圆角/220–280px宽", "target": "保持共享单选尺寸约束及下拉箭头", "basis": "source", "status": "active" },
+      "panel": { "before": null, "initialLocal": "共享单选白底/6px圆角/组件阴影", "target": "继承共享popup皮肤，宽度随控件且不超过视口减24px", "basis": "source", "status": "active" },
+      "tree.max-height": { "before": null, "initialLocal": null, "target": "300px，内部滚动", "basis": "source", "reason": "new", "status": "active" },
+      "node": { "before": null, "initialLocal": "平铺选项min-height36px、padding7px 12px", "target": "min-height36px、padding4px 8px、radius4px；层级缩进18px", "basis": "source", "status": "active" },
+      "node.color": { "before": null, "initialLocal": "共享选项正文#2f3640 / 选中品牌色", "target": "正文#2f3640；选中#025b52及rgba(2,91,82,.1)底；hover rgba(2,91,82,.06)", "basis": "source", "status": "active" },
+      "icon.folder": { "before": null, "initialLocal": null, "target": "配置中心assets/folder.png与folder-open.svg，18×18px", "basis": "source", "reason": "new", "status": "active" },
+      "search": { "before": null, "initialLocal": null, "target": "36px高、4px圆角、1px #d9dddc边框、8px外边距；搜索图标16px；清除复用modal-clear.svg 16px及24px热区", "basis": "source", "reason": "new", "status": "active" }
+    },
+    "sources": ["shared/styles/organization-tree.css", "shared/styles/global-filter-bar.css", "shared/scripts/organization-tree.js", "shared/scripts/global-filter-bar.js"],
+    "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["隔离浏览器核验布局及交互；本地图片在隔离文档无访问源，仅核对资源路径。完整file入口受浏览器策略限制，线上视觉基准未采集"] },
+    "status": "active",
+    "updatedAt": "2026-09-10"
+  }]
+}

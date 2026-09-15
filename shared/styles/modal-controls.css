@@ -1,0 +1,240 @@
+/* Only real modal interiors and explicitly owned portals. No body/page theme. */
+.gaip-modal-controls, .gaip-modal-popup {
+  --mc-brand: var(--gaip-modal-brand); --mc-active: var(--gaip-form-active); --mc-soft: rgba(36,212,201,.08);
+  --mc-selection: #24D4C9; --mc-selection-soft: rgba(36,212,201,.12);
+  --mc-radio-size: 16px; --mc-radio-dot-size: 6px;
+  --mc-text: var(--gaip-modal-text); --mc-muted: var(--gaip-modal-muted); --mc-placeholder: var(--gaip-modal-placeholder);
+  --mc-line: var(--gaip-modal-border); --mc-disabled: rgba(47,54,64,.06); --mc-error: var(--gaip-modal-error);
+  --mc-height: 48px; --mc-radius: var(--gaip-radius-control, 4px); --mc-ring: none;
+  --mc-down: url('../assets/modal-down.svg?v=20260908-attachment-1'); --mc-clear: url('../assets/modal-clear.svg?v=20260908-direct-1');
+  --mc-calendar: url('../assets/modal-calendar.svg?v=20260908-user-1'); --mc-clock: url('../assets/modal-clock.svg?v=20260908-user-1');
+  --ant-color-primary: var(--mc-brand); --ant-color-primary-hover: var(--mc-brand); --ant-color-primary-active: var(--mc-active);
+  --ant-color-primary-bg: var(--mc-soft); --ant-color-primary-border: var(--mc-line);
+  --ant-color-error: var(--mc-error);
+  --gaip-multi-select-focus: var(--mc-brand);
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selector, .ant-picker, .ant-input-number, .gaipMultiSelect__control, .gaip-native-trigger, .gaip-native-date) {
+  box-sizing: border-box; min-height: var(--mc-height) !important;
+  border: 1px solid var(--mc-line) !important; border-radius: var(--mc-radius) !important;
+  background-color: #fff !important; color: var(--mc-text) !important; box-shadow: none !important;
+  font-family: var(--gaip-global-font) !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important;
+  transition: border-color .16s, background-color .16s, box-shadow .16s;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-single, .ant-picker, .ant-input-number, .gaip-native-date) { height: var(--mc-height) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selector, .ant-picker, .gaip-native-date) { padding-inline: 12px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-multiple .ant-select-selector { height: auto !important; padding-block: 4px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selection-item, .ant-select-selection-placeholder, .ant-picker-input > input, .ant-input-number-input) { font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-single .ant-select-selector { display: flex; align-items: center; height: 100% !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-single :is(.ant-select-selection-item, .ant-select-selection-placeholder) { line-height: calc(var(--mc-height) - 2px) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-single .ant-select-selection-search { inset-block: 0; display: flex; align-items: center; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-single .ant-select-selection-search-input { height: 100% !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-input-number-input { height: 46px !important; padding-inline: 12px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selection-placeholder, input::placeholder, textarea::placeholder) { color: var(--mc-placeholder) !important; opacity: 1; }
+/* State predicates have zero weight, but the control class does not: same weight as
+   the base border. Later focus/active wins; error and disabled remain stronger. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selector, .ant-picker, .ant-input-number, .gaipMultiSelect__control, .gaip-native-trigger, .gaip-native-date):where(:hover) { border-color: var(--gaip-form-interaction) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selector, .ant-picker, .ant-input-number, .gaipMultiSelect__control, .gaip-native-trigger, .gaip-native-date):where(:focus, :focus-within, .ant-picker-focused, .ant-input-number-focused, [aria-expanded="true"]),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :where(.ant-select-open, .ant-select-focused, .gaipMultiSelect.isOpen) :is(.ant-select-selector, .gaipMultiSelect__control) { border-color: var(--gaip-form-interaction) !important; box-shadow: var(--mc-ring) !important; outline: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-selector, .ant-picker, .ant-input-number, .gaipMultiSelect__control, .gaip-native-trigger, .gaip-native-date):where(:active),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :where(.ant-select:active, .gaipMultiSelect:active) :is(.ant-select-selector, .gaipMultiSelect__control) { border-color: var(--gaip-form-active) !important; background-color: var(--mc-soft) !important; }
+/* Clear and suffix icons share geometry, retain original nodes and visibility rules. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear) {
+  box-sizing: border-box !important;
+  width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; max-width: 24px !important; max-height: 24px !important; padding: 0 !important;
+  border: 0 !important; border-radius: 4px !important; background: #fff !important;
+  color: var(--mc-placeholder) !important; font-size: 0 !important; line-height: 0 !important;
+  cursor: pointer; flex-shrink: 0;
+  display: inline-flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important; overflow: visible !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-clear, .ant-picker-clear) { top: 50% !important; margin-top: 0 !important; transform: translateY(-50%) !important; inset-inline-end: 8px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear) > * { display: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear)[hidden] { display: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear)::before {
+  content: ''; display: block; flex: 0 0 16px !important; box-sizing: border-box;
+  width: 16px !important; height: 16px !important; min-width: 16px !important; min-height: 16px !important; max-width: 16px !important; max-height: 16px !important;
+  margin: 0 !important; padding: 0 !important; border: 0 !important;
+  background: transparent var(--mc-clear) center/16px 16px no-repeat;
+  mask: none; -webkit-mask: none; opacity: .42; pointer-events: none;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear):hover::before { opacity: 1; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear):is(:hover, :active) { color: var(--mc-text) !important; background: #fff !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear):focus-visible { background-color: var(--mc-selection-soft) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow, .ant-picker-suffix) { color: var(--mc-muted) !important; width: 16px !important; height: 16px !important; border: 0 !important; flex-shrink: 0; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow) { top: 50% !important; margin-top: 0 !important; transform: translateY(-50%) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaipMultiSelect__arrow::before { content: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow) { background: transparent var(--mc-down) center/16px 16px no-repeat !important; mask: none; -webkit-mask: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow) > * { visibility: hidden !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-picker-suffix :is(svg, img) { width: 16px !important; height: 16px !important; }
+/* Use the control's purpose, not its legacy suffix glyph: dates/ranges get the
+   calendar even when the source (24) passed a down arrow. Ant pure time pickers
+   retain their clock semantic marker. Draw local assets directly for file://. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-picker-suffix {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  background: transparent var(--mc-calendar) center/16px 16px no-repeat !important;
+  mask: none !important; -webkit-mask: none !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-picker-suffix:has(.anticon-clock-circle) { background-image: var(--mc-clock) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-picker-suffix > * { visibility: hidden !important; }
+/* Native data sources remain live; proxy is only the select presentation. */
+.gaip-modal-controls .gaip-native-source { position: absolute !important; width: 1px !important; height: 1px !important; clip-path: inset(50%) !important; overflow: hidden !important; padding: 0 !important; border: 0 !important; }
+.gaip-modal-controls .gaip-native-trigger { position: relative; text-align: start; padding: 0 40px 0 12px; flex: 1; min-width: 0; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gaip-modal-controls .gaip-native-trigger::after { content: ''; position: absolute; width: 16px; height: 16px; right: 12px; top: calc(50% - 8px); background: transparent var(--mc-down) center/16px 16px no-repeat; mask: none; -webkit-mask: none; pointer-events: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-native-date { padding-right: 40px !important; background: #fff var(--mc-calendar) right 12px center/16px no-repeat !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-native-date[type="time"] { background-image: var(--mc-clock) !important; }
+.gaip-native-date::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
+/* Native and Ant radio/checkbox: the same selected, mixed, hover and focus colors. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-wrapper, .ant-checkbox-wrapper, .gaip-activity-modal__radio) { color: var(--mc-text) !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-inner, .ant-checkbox-inner, .ant-tree-checkbox-inner, .gaipMultiSelect__checkbox) { width: 16px !important; height: 16px !important; border: 1px solid var(--mc-line) !important; background: #fff !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-checkbox-inner, .ant-tree-checkbox-inner, .gaipMultiSelect__checkbox) { border-radius: 3px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :where(.ant-radio-wrapper:hover .ant-radio-inner, .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-tree-checkbox:hover .ant-tree-checkbox-inner) { border-color: var(--mc-selection) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-checked .ant-radio-inner, .ant-checkbox-checked .ant-checkbox-inner, .ant-tree-checkbox-checked .ant-tree-checkbox-inner) { background: var(--mc-selection) !important; border-color: var(--mc-selection) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-radio-checked .ant-radio-inner::after { background: #fff !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-checkbox-checked .ant-checkbox-inner, .ant-tree-checkbox-checked .ant-tree-checkbox-inner)::after { border-color: #fff !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-checkbox-indeterminate .ant-checkbox-inner, .ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner)::after { background: var(--mc-selection) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-input:focus-visible + .ant-radio-inner, .ant-checkbox-input:focus-visible + .ant-checkbox-inner) { border-color: var(--gaip-form-interaction) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input:is([type="radio"], [type="checkbox"]):not(.ant-radio-input, .ant-checkbox-input) { accent-color: var(--mc-selection) !important; width: 16px; height: 16px; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input:is([type="radio"], [type="checkbox"]):focus-visible { border-color: var(--gaip-form-interaction) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-multiple .ant-select-selection-item, .gaipMultiSelect__tag, .gaipMultiSelect__overflow) { min-height: 24px; color: var(--mc-text) !important; background: var(--mc-selection-soft) !important; border-color: transparent !important; border-radius: 4px !important; font-size: var(--gaip-modal-body-size) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-selection-item-remove { color: var(--mc-muted) !important; width: 20px; display: inline-flex; align-items: center; justify-content: center; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-select-selection-item-remove:hover { color: var(--mc-brand) !important; background: rgba(2,91,82,.12); border-radius: 3px; }
+/* Popup ownership is assigned by aria linkage / actual modal trigger, never globally. */
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup, .gaip-modal-controls .gaipMultiSelect__dropdown {
+  box-sizing: border-box; border: 1px solid var(--mc-line) !important; border-radius: var(--gaip-radius-container, 8px) !important;
+  background: #fff !important; color: var(--mc-text) !important; box-shadow: 0 8px 24px rgba(17,35,39,.14) !important;
+  font-family: var(--gaip-global-font) !important; font-size: var(--gaip-modal-body-size) !important;
+}
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-select-item, .ant-picker-cell-inner, .ant-picker-time-panel-cell-inner, .ant-cascader-menu-item, .ant-select-tree-title) { font-size: var(--gaip-modal-body-size) !important; color: var(--mc-text); border-radius: 4px; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :where(.ant-select-item-option-active:not(.ant-select-item-option-disabled), .ant-picker-cell:not(.ant-picker-cell-disabled):hover .ant-picker-cell-inner, .ant-picker-time-panel-cell:not(.ant-picker-time-panel-cell-disabled):hover .ant-picker-time-panel-cell-inner, .ant-cascader-menu-item:hover),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :where(.gaipMultiSelect__option:hover, .ant-tree-node-content-wrapper:hover) { background: var(--mc-soft) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-select-item-option-selected:not(.ant-select-item-option-disabled), .ant-cascader-menu-item-active, .ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaipMultiSelect__option[aria-selected="true"], .ant-tree-node-selected) { color: var(--mc-text) !important; background: var(--mc-selection-soft) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :where(.ant-select-item-option-state, .ant-select-tree-checkbox-checked) { color: var(--mc-selection) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :where(.ant-picker-today-btn, .ant-picker-header button:hover) { color: var(--mc-brand) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-picker-cell-in-view:is(.ant-picker-cell-selected, .ant-picker-cell-range-start, .ant-picker-cell-range-end) .ant-picker-cell-inner { color: #fff !important; background: var(--mc-brand) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-picker-cell-in-view.ant-picker-cell-in-range::before { background: var(--mc-soft) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-picker-cell-today .ant-picker-cell-inner::before { border-color: var(--mc-brand) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-picker-panel-container, .ant-picker-panel) { background: transparent !important; box-shadow: none !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-btn-primary { color: #fff !important; background: var(--mc-brand) !important; border-color: var(--mc-brand) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaipMultiSelect__option[aria-selected="true"] .gaipMultiSelect__checkbox { background: var(--mc-selection) !important; border-color: var(--mc-selection) !important; }
+/* Owned popups sit beside .ant-modal-content, not inside its pointer-events:auto.
+   Restore only the live panel, keeping the Ant shell click-through contract. */
+.gaip-native-popup { position: fixed; inset: auto; margin: 0; z-index: 1100; overflow: auto; padding: 8px; pointer-events: auto; }
+.gaip-native-popup [role="listbox"] { max-height: 320px; overflow: auto; }
+.gaip-native-popup button { font: inherit; cursor: pointer; border: 0; }
+.gaip-native-popup .gaip-choice-option { display: block; width: 100%; padding: 8px 12px; text-align: start; border-radius: 4px; color: var(--mc-text); background: #fff; }
+.gaip-native-popup .gaip-choice-option:hover { background: var(--mc-soft); }
+.gaip-native-popup .gaip-choice-option:active { background: rgba(2,91,82,.16); }
+.gaip-native-popup .gaip-choice-option[aria-selected="true"] { background: var(--mc-selection-soft); color: var(--mc-text); }
+.gaip-native-popup button:focus-visible { text-decoration: underline; text-underline-offset: 3px; outline: none !important; box-shadow: none !important; }
+.gaip-native-popup .gaip-choice-apply { display: block; margin: 8px 0 0 auto; min-height: 36px; padding: 0 16px; border-radius: 4px; background: var(--mc-brand); color: #fff; }
+.gaip-native-popup .gaip-choice-clear { min-height: 32px; margin-top: 8px; color: var(--mc-brand); background: #fff; }
+.gaip-time-columns { display: flex; gap: 8px; margin-top: 8px; }
+.gaip-time-columns > div { flex: 1; height: 180px; overflow: auto; }
+.gaip-time-columns .gaip-choice-option { text-align: center; }
+.gaip-control-note { color: var(--mc-muted); font-size: var(--gaip-modal-caption-size); line-height: var(--gaip-modal-caption-line); margin: 8px; }
+/* Other reusable interiors: switch, upload, table and compact pagination. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-switch-checked { background: var(--mc-brand) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-switch:focus-visible { background-color: var(--mc-selection-soft) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-upload-drag { border-color: var(--mc-line) !important; border-radius: 4px !important; background: var(--mc-disabled) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-upload-drag:not(.ant-upload-disabled):hover { border-color: var(--gaip-form-interaction) !important; background: var(--mc-soft) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-table, .gaip-bulk-table, .gaip-log-table) { color: var(--mc-text) !important; font-size: var(--gaip-modal-body-size) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-table-thead > tr > th, .gaip-bulk-table th, .gaip-log-table th) { background: #edf6f5 !important; color: var(--mc-muted) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-table-tbody > tr.ant-table-row-selected > td { background: var(--mc-selection-soft) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-pagination-item { min-width: 32px !important; height: 32px !important; line-height: 30px !important; border-radius: 4px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-pagination-item-active { background: var(--mc-brand) !important; border-color: var(--mc-brand) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-pagination-item-active a { color: #fff !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-pagination-options .ant-select-selector { min-height: 32px !important; height: 32px !important; }
+/* Error has priority over hover/focus. Disabled has priority over every interaction. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-form-item-has-error .ant-select-selector, .ant-form-item-has-error .ant-picker, .ant-form-item-has-error .ant-input-number, .ant-select-status-error .ant-select-selector, .ant-picker-status-error, .ant-input-number-status-error, [aria-invalid="true"].gaip-native-trigger, [aria-invalid="true"].gaip-native-date) { border-color: var(--mc-error) !important; --mc-ring: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-disabled .ant-select-selector, .ant-picker-disabled, .ant-input-number-disabled, .gaip-native-trigger:disabled, .gaip-native-date:disabled) { background-color: var(--mc-disabled) !important; color: var(--mc-placeholder) !important; border-color: var(--mc-line) !important; box-shadow: none !important; cursor: not-allowed !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-wrapper-disabled, .ant-checkbox-wrapper-disabled, .ant-select-disabled .ant-select-selection-item, .ant-picker-disabled input) { color: var(--mc-placeholder) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-disabled .ant-radio-inner, .ant-checkbox-disabled .ant-checkbox-inner, .ant-tree-checkbox-disabled .ant-tree-checkbox-inner) { background: #e9ebed !important; border-color: var(--mc-line) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-select-item-option-disabled, .ant-picker-cell-disabled .ant-picker-cell-inner, .ant-picker-time-panel-cell-disabled .ant-picker-time-panel-cell-inner), .gaip-native-popup button:disabled { color: var(--mc-placeholder) !important; background: var(--mc-disabled) !important; cursor: not-allowed !important; }
+/* Base text fields still use global-modal.css; only composite adapters here. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input.gaip-mc-text[type="search"] { padding-left: 36px !important; background-image: url('../assets/modal-search.svg'); background-size: 16px; background-repeat: no-repeat; background-position: 12px center; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input.gaip-mc-text.gaip-mc-inner { padding: 0 !important; background: transparent !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-mc-text[readonly]:not(:disabled), .gaip-native-date[readonly]:not(:disabled)) { background-color: #fafbfc !important; cursor: default; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-announcement-form-section.is-error .gaip-native-date { border-color: var(--mc-error) !important; --mc-ring: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-bulk-upload-button, .gaip-log-button) { border-radius: 4px !important; min-height: 40px; font-size: var(--gaip-modal-body-size) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-bulk-upload-button:hover { border-color: var(--gaip-form-interaction) !important; background: var(--mc-soft) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-bulk-upload-button:focus-within { background-color: var(--mc-selection-soft) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-bulk-node-row, .gaip-adjust-node-row).is-selected { background: var(--mc-selection-soft) !important; color: var(--mc-text) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-bulk-channel-select { display: flex; }
+.gaip-modal-controls .gaip-bulk-select-arrow { display: none; } /* Proxy owns the sole arrow. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-log-footer .gaip-native-trigger { min-height: 32px !important; height: 32px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-pagination-options .ant-select { --mc-height: 32px; height: 32px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .ant-input-number-handler:hover { color: var(--mc-brand) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner { border-color: var(--mc-selection) !important; background: var(--mc-selection) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-select-tree-checkbox-indeterminate .ant-select-tree-checkbox-inner::after { background: var(--mc-selection) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-select-tree-checkbox-disabled .ant-select-tree-checkbox-inner { background: #e9ebed !important; border-color: var(--mc-line) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-empty-description, .ant-select-item-empty) { color: var(--mc-placeholder) !important; font-size: var(--gaip-modal-body-size) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-native-date[data-gaip-value-state="empty"]:not(:focus) { color: var(--mc-placeholder) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-text::placeholder { color: var(--mc-placeholder) !important; opacity: 1; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .typeGroup___cnCo5 :is(.ant-radio-wrapper, .ant-checkbox-wrapper) { border-radius: 4px !important; border-color: var(--mc-line) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .typeGroup___cnCo5 :is(.ant-radio-wrapper-checked, .ant-checkbox-wrapper-checked) { border-color: var(--mc-selection) !important; background: var(--mc-selection-soft) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .typeGroup___cnCo5 :is(.ant-radio-wrapper-disabled, .ant-checkbox-wrapper-disabled) { border-color: var(--mc-line) !important; background: var(--mc-disabled) !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-picker-cell-in-view.ant-picker-cell-disabled .ant-picker-cell-inner { color: var(--mc-placeholder) !important; background: var(--mc-disabled) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-checkbox-indeterminate .ant-checkbox-inner, .ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner) { background: #fff !important; border-color: var(--mc-selection) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-checkbox-disabled.ant-checkbox-indeterminate .ant-checkbox-inner, .ant-tree-checkbox-disabled.ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner) { background: #e9ebed !important; border-color: var(--mc-line) !important; }
+/* Radio indicator source: 10 member editor (16px turquoise disc, centered 6px white dot).
+   Keep actual Ant/native inputs and tree buttons; only share the visible indicator. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-inner, .gaip-adjust-node-radio, input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input), .gaip-bulk-node-radio) {
+  box-sizing: border-box; position: relative; flex-shrink: 0;
+  width: var(--mc-radio-size) !important; height: var(--mc-radio-size) !important;
+  border: 1px solid var(--mc-line) !important; border-radius: 50% !important;
+  background: #fff !important; box-shadow: none !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input) { appearance: none; -webkit-appearance: none; cursor: pointer; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-inner, .gaip-adjust-node-radio, .gaip-bulk-node-radio)::after {
+  content: ''; position: absolute; display: block; box-sizing: border-box;
+  inset: auto !important; top: 50% !important; left: 50% !important; margin: 0 !important;
+  width: var(--mc-radio-dot-size) !important; height: var(--mc-radio-dot-size) !important;
+  border: 0 !important; border-radius: 50%; background: #fff !important;
+  transform: translate(-50%, -50%) scale(0) !important; opacity: 0; pointer-events: none;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-checked .ant-radio-inner, .gaip-adjust-node-row.is-selected .gaip-adjust-node-radio, .gaip-bulk-node-row.is-selected .gaip-bulk-node-radio, input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input):checked) {
+  background-color: var(--mc-selection) !important; border-color: var(--mc-selection) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-checked .ant-radio-inner, .gaip-adjust-node-row.is-selected .gaip-adjust-node-radio, .gaip-bulk-node-row.is-selected .gaip-bulk-node-radio)::after { transform: translate(-50%, -50%) scale(1) !important; opacity: 1; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input):checked {
+  background-image: radial-gradient(circle at center, #fff 0 calc(var(--mc-radio-dot-size) / 2), transparent calc(var(--mc-radio-dot-size) / 2)) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-wrapper:hover .ant-radio-inner, .gaip-adjust-node-option:hover .gaip-adjust-node-radio, .gaip-bulk-node-option:hover .gaip-bulk-node-radio, input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input):hover) { border-color: var(--mc-selection) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-adjust-node-option:focus-visible .gaip-adjust-node-radio, .gaip-bulk-node-option:focus-visible .gaip-bulk-node-radio) { border-color: var(--gaip-form-interaction) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-disabled .ant-radio-inner, .gaip-adjust-node-option:is(:disabled, [aria-disabled="true"]) .gaip-adjust-node-radio, .gaip-bulk-node-option:is(:disabled, [aria-disabled="true"]) .gaip-bulk-node-radio, input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input):disabled) { background-color: #e9ebed !important; border-color: var(--mc-line) !important; cursor: not-allowed; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-radio-disabled .ant-radio-inner, .gaip-adjust-node-option:is(:disabled, [aria-disabled="true"]) .gaip-adjust-node-radio, .gaip-bulk-node-option:is(:disabled, [aria-disabled="true"]) .gaip-bulk-node-radio)::after { background: rgba(0,0,0,.25) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input[type="radio"]:not(.ant-radio-input, .ant-radio-button-input):checked:disabled { background-image: radial-gradient(circle at center, rgba(0,0,0,.25) 0 calc(var(--mc-radio-dot-size) / 2), transparent calc(var(--mc-radio-dot-size) / 2)) !important; }
+/* Form search: one prefix slot, regardless of the legacy img/SVG source. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-search-shell { gap: 8px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-search-shell > :is(img, svg, .ant-input-prefix) { display: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-search-shell::before {
+  content: ''; display: block; flex: 0 0 16px; width: 16px; height: 16px;
+  /* External SVG masks can be rejected on file://; render the shared local image directly. */
+  background: transparent url('../assets/modal-search.svg') center/16px 16px no-repeat;
+  mask: none; -webkit-mask: none;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-search-shell input { margin: 0 !important; min-width: 0; flex: 1 1 0; }
+.gaip-modal-controls input.gaip-mc-text[type="search"]::-webkit-search-cancel-button,
+.gaip-modal-controls input.gaip-mc-text[type="search"]::-webkit-search-decoration { display: none; }
+/* Never wrap/move React inputs. Standalone fields get an anchored sibling clear control. */
+.gaip-modal-controls .gaip-mc-clear-host { position: relative; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input.gaip-mc-clearable { padding-inline-end: 44px !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-clear-inline { position: static !important; transform: none !important; margin: 0 !important; flex: 0 0 24px; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-clear-overlay { position: absolute !important; margin: 0 !important; transform: none !important; z-index: 1; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-clear { opacity: 0 !important; visibility: hidden; pointer-events: none; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-form-input-shell:hover, .gaip-form-input-shell:focus-within, .gaip-mc-clear-host:hover, .gaip-mc-clear-host:focus-within) .gaip-mc-clear { opacity: 1 !important; visibility: visible; pointer-events: auto; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-clear.gaip-mc-clear-unavailable { visibility: hidden !important; pointer-events: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-mc-clear[hidden] { display: none !important; }
+/* Shared popup density; date cells and time columns retain their distinct layouts. */
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup :is(.ant-select-item-option, .ant-cascader-menu-item),
+.gaip-native-popup [role="listbox"] > .gaip-choice-option { box-sizing: border-box; min-height: 36px; padding: 7px 12px; line-height: var(--gaip-modal-body-line); }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup.gaip-native-popup button:disabled { color: var(--mc-placeholder) !important; background: var(--mc-disabled) !important; cursor: not-allowed !important; }
+.gaip-modal-popup.gaip-modal-popup.gaip-modal-popup .ant-picker-time-panel-cell-inner,
+.gaip-native-popup .gaip-time-columns .gaip-choice-option { box-sizing: border-box; height: 32px; min-height: 32px; padding-block: 5px; line-height: var(--gaip-modal-body-line); }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-native-trigger[data-gaip-value-state="empty"] { color: var(--mc-placeholder) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-native-date[readonly], .gaip-native-trigger:disabled) { border-color: var(--mc-line) !important; box-shadow: none !important; cursor: default; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-native-trigger:disabled { cursor: not-allowed; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-bulk-node-row, .gaip-adjust-node-row):not(:disabled):hover { background: var(--mc-soft) !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-bulk-node-row, .gaip-adjust-node-row):focus-visible { background-color: var(--mc-selection-soft) !important; outline: none !important; box-shadow: none !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-bulk-node-row, .gaip-adjust-node-row):disabled { color: var(--mc-placeholder) !important; background: var(--mc-disabled) !important; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .gaip-modal-controls *, .gaip-modal-popup * { transition-duration: 0s !important; } }

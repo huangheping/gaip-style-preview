@@ -160,7 +160,8 @@
     (inlineHost || document.body).appendChild(dialog);
     form = dialog.querySelector('form');
     dialog.querySelectorAll('.gaip-log-dates input[type="date"]').forEach(function (input) {
-      input.addEventListener('click', function () {
+      input.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return; // Modal-only shared picker handled it; inline page keeps native picker.
         if (typeof input.showPicker !== 'function') return;
         try { input.showPicker(); } catch (error) { /* 浏览器已打开原生选择器时无需重复处理。 */ }
       });

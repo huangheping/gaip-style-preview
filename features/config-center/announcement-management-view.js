@@ -258,20 +258,28 @@
     var form = dialog.querySelector('form');
     dialog.querySelector('[data-announcement-cancel]').addEventListener('click', function () { dialog.close(); });
     dialog.querySelector('.gaip-announcement-modal-close').addEventListener('click', function () { dialog.close(); });
+    var validationAttempted = false;
     form.addEventListener('input', function (event) {
       if (event.target.matches('[data-announcement-autosize]')) {
         form.querySelector('[data-count-for="' + event.target.name + '"]').textContent = event.target.value.length + '/100';
         resizeTitleInput(event.target);
       }
-      markErrors(form, {});
+      if (validationAttempted) markErrors(form, validate(values(form)));
+    });
+    form.addEventListener('change', function () {
+      if (validationAttempted) markErrors(form, validate(values(form)));
     });
     form.addEventListener('submit', function (event) {
       event.preventDefault();
+      validationAttempted = true;
       var value = values(form), errors = validate(value);
       markErrors(form, errors);
       if (errors.title || errors.period) {
         var invalid = form.querySelector('.is-error input, .is-error textarea');
-        if (invalid) invalid.focus();
+        if (invalid) {
+          var controls = window.__GAIP_MODAL_CONTROLS__;
+          if (!controls || !controls.revealInvalidField || !controls.revealInvalidField(invalid)) invalid.focus();
+        }
         return;
       }
       var saved = {
@@ -333,8 +341,8 @@
     "after": "config-adjust-member-node-confirm",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css"],
-    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css?v=20260909-project-font-1", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260909-project-font-1", "features/config-center/announcement-management.css?v=20260908-form-scroll-1"],
+    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260908-form-validation-1"]
   }
   */
   /* @gaip-modal
@@ -349,8 +357,8 @@
     "after": "config-announcement-create",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css"],
-    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css?v=20260909-project-font-1", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260909-project-font-1", "features/config-center/announcement-management.css?v=20260908-form-scroll-1"],
+    "scripts": ["features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260908-form-validation-1"]
   }
   */
   /* @gaip-modal
@@ -365,8 +373,8 @@
     "after": "config-announcement-edit",
     "source": "window.__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete()",
     "invoke": { "path": "__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete", "args": [] },
-    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260904-40", "features/config-center/announcement-management.css", "shared/styles/global-modal.css?v=20260904-4"],
-    "scripts": ["shared/scripts/global-modal.js?v=20260904-5", "features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260904-8"]
+    "styles": ["web/umi.c6286171.css", "shared/styles/global-font.css?v=20260909-project-font-1", "features/config-center/ant-source.css", "features/config-center/config-center-content.css?v=20260909-project-font-1", "features/config-center/announcement-management.css?v=20260908-form-scroll-1", "shared/styles/global-modal.css?v=20260909-project-font-1"],
+    "scripts": ["shared/scripts/global-modal.js?v=20260908-inline-validation-1", "features/config-center/announcement-management-data.js?v=20260903-2", "features/config-center/announcement-management-view.js?v=20260908-form-validation-1"]
   }
   */
 

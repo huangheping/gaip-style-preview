@@ -18,8 +18,8 @@
       icon: 'customer-360',
       type: 'master-detail',
       assets: {
-        styles: ['shared/styles/global-modal.css?v=20260904-4', 'features/customer/customer-center.css?v=20260825-1'],
-        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/customer/customer-center.js?v=20260904-3']
+        styles: ['shared/styles/global-modal.css?v=20260909-project-font-1', 'features/customer/customer-center.css?v=20260825-1'],
+        scripts: ['shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'features/customer/customer-center.js?v=20260904-3']
       }
     },
     {
@@ -38,8 +38,8 @@
       icon: 'proposal-center',
       type: 'master-detail',
       assets: {
-        styles: ['shared/styles/global-modal.css?v=20260904-4', 'features/proposal-center/proposal-center.css?v=20260904-1'],
-        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/proposal-center/proposal-center.js?v=20260904-3']
+        styles: ['shared/styles/global-modal.css?v=20260909-project-font-1', 'features/proposal-center/proposal-center.css?v=20260908-owner-frame-1'],
+        scripts: ['shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'features/proposal-center/proposal-center.js?v=20260904-3']
       }
     },
     {
@@ -50,7 +50,8 @@
       icon: 'sales-enablement',
       type: 'catalog',
       assets: {
-        styles: ['web/p__dashboard__product__index.48332667.chunk.css?v=20260831-2']
+        styles: ['web/p__dashboard__product__index.48332667.chunk.css?v=20260831-2', 'shared/styles/global-tabs.css?v=20260910-tabs-1'],
+        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1']
       }
     },
     {
@@ -59,7 +60,11 @@
       route: '/activity',
       entry: '活动中心.html',
       icon: 'activity-center',
-      type: 'dashboard'
+      type: 'dashboard',
+      assets: {
+        styles: ['features/activity/activity-sync.css?v=20260908-form-scroll-1'],
+        scripts: ['features/activity/activity-sync.js?v=20260908-signup-errors-1']
+      }
     },
     {
       key: 'news',
@@ -88,7 +93,7 @@
       virtual: true,
       query: 'gaip-channel=wealth',
       assets: {
-        styles: ['features/wealth-center/wealth-center.css?v=20260902-2'],
+        styles: ['features/wealth-center/wealth-center.css?v=20260908-form-scroll-1'],
         scripts: [
           'features/wealth-center/mock-data.js?v=20260825-9',
           'features/wealth-center/wealth-center.js?v=20260901-1',
@@ -111,8 +116,8 @@
         { key: 'operation-log', label: '操作日志' }
       ],
       assets: {
-        styles: ['features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260903-9', 'features/config-center/config-center-content.css?v=20260904-41', 'shared/styles/global-modal.css?v=20260904-4', 'features/config-center/config-center.css?v=20260902-8'],
-        scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260904-8', 'features/config-center/config-center.js?v=20260904-52']
+        styles: ['shared/styles/global-tabs.css?v=20260910-tabs-1', 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260908-form-scroll-1', 'features/config-center/config-center-content.css?v=20260909-project-font-1', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'],
+        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260910-org-1', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260908-form-validation-1', 'features/config-center/config-center.js?v=20260910-tabs-motion-1']
       }
     },
     {
@@ -140,7 +145,11 @@
       icon: 'learning',
       type: 'guided-learning',
       virtual: true,
-      query: 'gaip-channel=learning'
+      query: 'gaip-channel=learning',
+      assets: {
+        styles: ['shared/styles/global-tabs.css?v=20260910-tabs-1', 'shared/styles/global-date-picker.css?v=20260909-date-color-2', 'shared/styles/global-multi-select.css?v=20260909-tag-color-1', 'shared/styles/organization-tree.css?v=20260910-org-1', 'shared/styles/global-filter-bar.css?v=20260910-tree-combobox-1', 'features/learning-center/learning-center.css?v=20260909-v11', 'features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1', 'shared/styles/global-modal.css?v=20260910-discard-outline-1', 'shared/styles/global-page-form.css?v=20260910-feedback-1', 'shared/styles/global-table.css?v=20260910-row-align-1'],
+        scripts: ['shared/scripts/global-tabs.js?v=20260910-tabs-1', 'shared/scripts/global-date-picker.js?v=20260909-date-1', 'shared/scripts/operation-log-xlsx.js?v=20260909-v11', 'shared/scripts/global-multi-select.js?v=20260909-controls-2', 'shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260910-org-1', 'features/learning-center/learning-data.js?v=20260910-org-1', 'shared/scripts/global-table.js?v=20260910-row-align-1', 'features/learning-center/learning-app.js?v=20260910-study-detail-modal-1', 'features/learning-center/learning-center.js?v=20260909-v11']
+      }
     }
   ];
 

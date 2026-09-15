@@ -848,22 +848,7 @@ body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page
   line-height: 20px;
 }
 
-/* 工作台使用真实的中等与强调字重，不改变其他频道的全局字体策略。 */
-@font-face {
-  font-family: "HarmonyOS Sans SC";
-  src: url("../../assets/fonts/HarmonyOS_Sans_SC_Medium.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "HarmonyOS Sans SC";
-  src: url("../../assets/fonts/HarmonyOS_Sans_SC_Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
+/* 字体面统一由 global-font.css 登记；标题/强调 Bold，普通文字 Regular。 */
 
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] [class*="banner___"] h1,
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .pannelHeader___uIyRz .tit___E3vkN,
@@ -874,7 +859,7 @@ body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .homeInfoTakeaways strong,
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .nameTxt___kXGxL,
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .name___rT1lO {
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] [class*="banner___"] button,
@@ -885,7 +870,7 @@ body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .homeInfoActions button,
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .expiryDate___oaleu,
 body[data-gaip-page="workspace"][data-gaip-page-type="dashboard"][data-gaip-page-label] .badge___g01iy {
-  font-weight: 500 !important;
+  font-weight: 400 !important;
 }
 
 /* 工作台桌面自适应：侧栏保持 212px，主内容收缩到剩余可用宽度。 */

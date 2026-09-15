@@ -10,9 +10,10 @@
 
 /* 原生 dialog：showModal() 继续负责顶层、背景 inert 与 Esc 行为。 */
 dialog::backdrop {
-  background: var(--gaip-modal-mask-color) !important;
+  /* Older Chromium backdrop pseudo-elements do not inherit root custom properties. */
+  background: var(--gaip-modal-mask-color, rgba(0, 0, 0, 0.45)) !important;
   backdrop-filter: none !important;
-  animation: gaip-modal-mask-enter var(--gaip-modal-mask-duration) var(--gaip-modal-mask-easing) both;
+  animation: gaip-modal-mask-enter var(--gaip-modal-mask-duration, 160ms) var(--gaip-modal-mask-easing, cubic-bezier(0.2, 0, 0, 1)) both;
 }
 
 /* 原站与本地生成的 Ant Modal / Drawer；z-index 仍由各弹窗栈决定。 */

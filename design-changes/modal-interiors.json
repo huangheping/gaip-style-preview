@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "page": "操作确认与表单操作共享内部组件",
+  "records": [{
+    "id": "shared-modal.interiors",
+    "element": "内部组合区域与圆角层级",
+    "locator": {"selector": ".gaip-modal-kit", "representative": "04、07、10、13、15、16、18、19、22、33、34及操作确认"},
+    "state": {"channel": "shared", "variant": "default/hover/focus/active/selected/disabled/error/empty", "viewport": "保留源列数与宽高约束；640px以下仅收紧间距"},
+    "appliesTo": ["已接入的操作确认和表单操作弹窗及其真实源预览", "不包括信息展示、抽屉、Agent主面板及页面表单"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "plain-resizable-textarea": {"before": null, "initialLocal": "07备注为直接textarea，浏览器原生resize手柄", "target": "07无计数备注接入共享外壳和手柄；手柄尺寸/间距/状态复用counted-textarea与resize-handle-state；内层保留源min-height:54px，使用共享普通多行输入padding与边框，不增加计数行", "basis": "source"},
+      "resize-handle-state": {"before": null, "initialLocal": "手柄focus-visible使用1px青色outline；hover/focus-visible斜线变青色，背景透明", "target": "手柄所有状态outline:none!important、box-shadow:none!important、background:transparent!important；hover/focus-visible仅斜线变#24D4C9；输入外框聚焦边框不变", "basis": "source"},
+      "system-warning-header-copy": {"before": null, "initialLocal": "32保留Ant warning图标+paragraph flex布局，paragraph的rowGap使用源marginXS且max-width扣除图标宽度；普通确认标题下距20px，长账号无共享overflow-wrap规则", "target": "32与普通确认标题正文间距共用--gaip-modal-title-body-gap:20px；图标标题间距--gaip-modal-title-icon-gap:12px，原图标尺寸/颜色不变；正文使用可用全宽和共享14px/22px正文参数，min-width:0、white-space:normal、word-break:normal、overflow-wrap:anywhere；普通确认主文/说明共用该换行规则，其余几何不变", "basis": "source"},
+      "five-fixes-20260908": {"before": null, "initialLocal": "24 Ant关闭伪元素被隐藏；无resize计数沿用右24px；15搜索44%宽与16通栏不一致；标题padding叠加正文padding", "target": "24共享关闭伪元素display:block!important；计数当前规则以counted-textarea条目为准；15/16节点搜索通栏48px高，标签/搜索/树间距8px；标题下距20px，直接正文上距0、首内容margin-top:0，带步骤条正文上距20px；32接入共享警告标题正文和主按钮，不增加取消或关闭", "basis": "source"},
+      "radius": {"before": null, "initialLocal": "弹窗宿主10/12px、共享表面8px；列表4/6/10px；选项2/5px；摘要6px", "target": "容器/弹窗/列表/表格/下拉面板8px；输入/按钮/选项卡/标签/复选框4px；圆形Radio/步骤标记保留圆形", "basis": "source"},
+      "selection-list": {"before": null, "initialLocal": "04无内距；19行19px 24px、名字16px；树保留自有缩进", "target": "框内距4px、边框rgba(47,54,64,.12)；普通行12px 16px、最小48px；主文14/22、副文12/20；树缩进与高度不变", "basis": "source"},
+      "option-card": {"before": null, "initialLocal": "10选项12px 24px/间距16px；13选项8px 10px/间距10px", "target": "内距10px 12px、最小48px、间距12px、14px/22px；hover/focus/selected边框#24D4C9、active#1FBFB5，无外光圈；禁用优先", "basis": "source"},
+      "field-layout": {"before": null, "initialLocal": "07网格20px；10双列24px；线索字段24px", "target": "普通字段/网格纵向间距20px、640px以下16px；接入反馈行的字段margin-bottom:0，全部字段接入的grid纵向gap/margin-bottom:0，由24px预留反馈行提供间隔（详见shared-modal-fields.json）；标签与控件8px；表单field-grid列间距24px；保留列数、跨度、横向标签和断点，不改操作确认", "basis": "source"},
+      "feedback": {"before": null, "initialLocal": "帮助/错误12或13px，空态13或14px，提示框5/6/8px圆角", "target": "帮助/错误12px/20px、上距4px；错误#ff4d4f；空态14px/22px、20px 16px内距；提示框12px 16px内距、14px/22px、保留语义色及显隐", "basis": "source"},
+      "counted-textarea": {"before": null, "initialLocal": "Ant原后缀计数；公告右侧62px预留", "target": "18/23/24/33/34原计数节点12px/20px，独立正常流块级行，position:static、inset:auto、float:none、margin:0、padding:0 12px 4px、右对齐；外壳padding:0，textarea padding:10px 12px、min-height:42px。计数位于textarea滚动视口外；允许手动缩放的字段用共用16px手柄定位外壳right/bottom:2px，计数padding-right:24px避让。CSS禁用内部原生手柄，共用手柄仅改变原textarea高度，不改原resize内联策略；自动增高/禁止缩放不新增手柄。保留maxlength、rows、自动高度事件及节点身份", "basis": "source"},
+      "import-parts": {"before": null, "initialLocal": "上传行13px、表格单元11px 12px/13px、摘要10px 12px/6px圆角", "target": "附件8px 12px内距、最小36px；表格12px 16px内距、14px/22px；摘要12px 16px内距，标题12px/20px、数值16px/24px；步骤文本14px/22px、标记圆形24px", "basis": "source"},
+      "shared-actions": {"before": null, "initialLocal": "批量导入结果按钮使用自有样式", "target": "复用既有主次按钮组件，间距12px，保留业务操作方向、数据与事件", "basis": "source"},
+      "role-typography": {"before": null, "initialLocal": "10管理员横排标签16px；13成员姓名14/20、账号12/18、计数11/16；16目标标签误接入16/24分组标题；确认主文14/24", "target": "正文/标签/姓名统一body token 14px/22px；辅助/账号/计数统一caption token 12px/20px；正文#2F3640、辅助共用muted token。10与16横排标签不增加下边距；主标题及分组标题保留各自层级", "basis": "source"},
+      "section-spacing": {"before": null, "initialLocal": "15分组标题下距18px、渠道选择上距6px；33/34分组下距20px与相邻组上距24px及末字段间距叠加，标题下距16px", "target": "仅表单操作：分组标题下距12px，相邻section/field-section上距24px；字段标签下距8px、选择器上距0；33/34末字段下距0，结构分组不作为字段；15上传标题padding-bottom:0与内容padding-top:0消除叠加，由标题下距独占留白；原日期列数不变，操作确认不改", "basis": "source"},
+      "form-section-title": {"before": null, "initialLocal": "共享section-title 16px/24px，字重受global-font全局400覆盖", "target": "仅表单操作section-title与非装饰文字span：引用global-font.css同源HarmonyOS Sans SC Bold，700字重、16px/24px；必填标记语义色不改，排除嵌套操作确认。字体双加载顺序与实际Bold文件已由test-project-font-browser核验", "basis": "computed"},
+      "form-secondary-copy": {"before": null, "initialLocal": "10 clueRoleHint 13px/20px、灰色50%、上距10px；15当前目标13px/20px，路径绿色#025b52", "target": "仅10说明与15当前目标/路径共用辅助文字12px/20px、rgba(47,54,64,.68)、400；10说明上距4px。普通正文继承14px/22px/#2F3640，已达标标签/输入/帮助/错误保持现状，操作确认不改", "basis": "source"},
+      "nested-actions-padding": {"before": null, "initialLocal": "22源footerBtns内距18px 20px叠加在共享底栏内距内", "target": "共享底栏内嵌按钮组padding为0，仅外层底栏拥有内距；按钮间距使用action-gap token 12px", "basis": "source"},
+      "semantic-colors": {"before": null, "initialLocal": "16必填#cf1322、22必填#ff1212、33/34必填#e04b4b；13禁用选项父级opacity .5", "target": "上述必填标记共用error token #ff4d4f；禁用选项文字使用placeholder token rgba(47,54,64,.42)，取消父层二次淡化；带壳禁用textarea与input共用禁用态，保留禁用属性与值", "basis": "source"},
+      "standard-footer-23-24": {"before": null, "initialLocal": "23代理按钮依赖后续通用识别加共享类，用户截图显示成左侧文字；24源分割线1px rgba(47,54,64,.06)，位于正文24px内缩区域；旧底栏无统一边框契约", "target": "仅23/24接入同一standard底栏：flex右对齐/垂直居中、按钮间距12px、内距16px 24px、顶部1px rgba(47,54,64,.08)；24嵌套底栏margin-inline:-24px使分割线延至外壳边缘，内部仍保留24px按钮边距。23按钮创建即绑定既有共享主/次按钮样式（40px高、4px圆角、左右16px、14/22文字），24保留单个保存按钮；其他底栏不变", "basis": "source"}
+    },
+    "sources": ["shared/scripts/global-modal.js adoptInteriors", "shared/styles/global-modal.css", "shared/styles/modal-controls.css", "features/config-center/config-center-content.css（本地初值）", "features/activity/activity-sync.css（本地初值）", "web/p__clues__index.29eaa724.chunk.css（只读初值）"],
+    "verification": {"level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "file://浏览器自动化被拒绝，未绕过限制；实际布局、滚动、图标及交互视觉待人工刷新验收", "DOM测试不等于真实浏览器视觉验收"]},
+    "status": "active",
+    "updatedAt": "2026-09-08"
+  }]
+}

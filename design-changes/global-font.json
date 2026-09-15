@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "page": "全项目字体",
+  "records": [{
+    "id": "global-font.local-two-weights",
+    "element": "正式页面与同源组件的文字字体",
+    "locator": {"selector": "html, body, body *（保留iconfont排除）", "representative": "工作台、配置中心表头、表单/确认标题正文、日期标题、目录及海报导出"},
+    "state": {"channel": "shared", "variant": "所有既有状态", "viewport": "沿用原响应式规则；独立夹具640/1280验证"},
+    "appliesTo": ["16个根HTML入口与3个全局组件HTML；同文档动态频道和弹窗继承", "原站web及第三方备份只读；图片已烘焙文字与图标字体不更换"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "font-family": {"before": null, "initialLocal": "HarmonyOS Sans SC, PingFang SC, sans-serif；弹窗标题、确认和表单分组存在专用别名", "target": "HarmonyOS Sans SC, sans-serif；全局字体与弹窗标题变量同一家族", "basis": "computed", "status": "active"},
+      "font-files": {"before": null, "initialLocal": "全局Regular、标题专用Bold、确认试点Regular/Bold；工作台和表单分组仍引用已缺失Medium", "target": "唯一global-font.css登记400→assets/fonts/HarmonyOS_Sans_SC_Regular.ttf，700→assets/fonts/HarmonyOS_Sans_SC_Bold.ttf；无其他业务字体面", "basis": "source", "status": "active"},
+      "font-weight": {"before": null, "initialLocal": "全局正文400；工作台标题600对应Bold、标签按钮500；配置中心表头500；表单分组500；海报Canvas强调600", "target": "全局正文/说明/按钮保持400；工作台原强调600→700、普通500→400；配置表头500→400；表单分组500→700；弹窗主标题和日期标题保留700；海报Canvas强调映射700，其余400。旧基线中被全局重置覆盖的声明不批量重写", "basis": "computed", "status": "active"},
+      "font-synthesis": {"before": null, "initialLocal": "none", "target": "none（保留，不合成粗体）", "basis": "computed", "status": "active"}
+    },
+    "sources": ["shared/styles/global-font.css", "shared/styles/global-modal.css", "features/workspace/workspace-update.css", "features/config-center/config-center-content.css", "全局组件/海报分享/index.html", "scripts/test-project-font-browser.cjs"],
+    "verification": {"level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["独立浏览器加载真实CSS与确认工厂，CDP核验实际Regular/Bold；不是全部业务来源整页视觉验收", "线上交付基准未知；字体字形变化可能影响临界换行，需要用户继续查看实际页面"]},
+    "status": "active",
+    "updatedAt": "2026-09-09"
+  }]
+}

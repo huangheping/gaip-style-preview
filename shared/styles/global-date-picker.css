@@ -1,0 +1,74 @@
+.gaip-date-panel, .gaip-ant-date-popup {
+  --dp-brand: var(--gaip-color-brand, var(--gaip-modal-brand, #025b52));
+  --dp-interaction: var(--gaip-form-interaction, #24d4c9);
+  --dp-text: var(--gaip-color-text, var(--gaip-modal-text, #2f3640));
+  --dp-secondary: var(--gaip-modal-muted, rgba(47,54,64,.68));
+  --dp-muted: var(--gaip-modal-placeholder, rgba(47,54,64,.42));
+  --dp-line: var(--gaip-color-border, var(--gaip-modal-border, rgba(47,54,64,.18)));
+  --dp-hover: rgba(36,212,201,.08); --dp-range: rgba(36,212,201,.12);
+  --dp-disabled: rgba(47,54,64,.06);
+}
+/* One calendar appearance for shared filters, native modal fields and owned Ant pickers.
+   Trigger/input styling intentionally remains with each existing control. */
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel,
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-panel-container {
+  box-sizing: border-box; width: 288px; max-width: 100%; padding: 0; border: 0 !important; border-radius: 8px !important;
+  background: #fff !important; color: var(--dp-text) !important; font: 14px/22px var(--gaip-global-font,sans-serif) !important;
+  box-shadow: 0 6px 16px 0 rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05) !important;
+}
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel button {
+  box-sizing: border-box; flex: none; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 4px; background: transparent;
+  color: inherit; font: inherit !important; cursor: pointer; text-align: center;
+}
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel button:focus-visible { outline: 2px solid var(--dp-interaction) !important; outline-offset: 2px; text-decoration: none; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel button:disabled { color: var(--dp-muted) !important; background: var(--dp-disabled) !important; cursor: not-allowed; }
+.gaip-date-panel__header { display: flex; align-items: center; height: 40px; padding: 0 8px; border-bottom: 1px solid var(--dp-line); }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .gaip-date-panel__nav { width: 22px; height: 38px; color: var(--dp-secondary); }
+.gaip-date-panel__arrow { position: relative; display: inline-block; width: 7px; height: 7px; border: solid currentColor; border-width: 0 0 1.5px 1.5px; transform: rotate(45deg); }
+.gaip-date-panel__arrow.is-next { transform: rotate(225deg); }
+.gaip-date-panel__arrow.is-double::after { content: ''; position: absolute; width: 7px; height: 7px; left: 3px; top: -4.5px; border: solid currentColor; border-width: 0 0 1.5px 1.5px; }
+.gaip-date-panel__title { display: flex; flex: 1; gap: 6px; align-items: center; justify-content: center; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .gaip-date-panel__heading { font-family: var(--gaip-modal-title-font,var(--gaip-global-font,sans-serif)) !important; font-weight: 700 !important; height: 38px; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel :is(.gaip-date-panel__nav,.gaip-date-panel__heading):hover:not(:disabled) { color: var(--dp-brand); }
+.gaip-date-panel__grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); grid-template-rows: repeat(7,36px); padding: 8px 12px; }
+.gaip-date-panel__weekday, .gaip-date-panel__cell { display: flex; align-items: center; justify-content: center; min-width: 0; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .gaip-date-panel__day { width: 24px; height: 24px; line-height: 24px !important; border: 1px solid transparent; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .is-outside { color: var(--dp-muted); }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel :is(.gaip-date-panel__day,.gaip-date-panel__period):hover:not(:disabled) { background: var(--dp-hover); }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel [aria-current="date"] { border-color: var(--dp-interaction); }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel [aria-pressed="true"] { background: var(--dp-brand) !important; color: #fff !important; }
+.gaip-date-panel__grid.is-period { grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(4,63px); align-items: center; justify-items: center; }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .gaip-date-panel__period { width: 64px; height: 28px; }
+.gaip-date-panel__footer { display: flex; align-items: center; justify-content: center; height: 40px; border-top: 1px solid var(--dp-line); }
+.gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel .gaip-date-panel__today { color: var(--dp-brand); height: 38px; padding: 0 12px; }
+/* Do not give transparent Ant portal positioning wrappers a second card/shadow. */
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup { padding: 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-panel-container { width: auto; max-width: none; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-date-panel { width: 288px; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-header { height: 40px; padding: 0 8px; border-color: var(--dp-line); }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-header button { color: var(--dp-secondary); line-height: 38px; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-header-view button { color: var(--dp-text); font-family: var(--gaip-modal-title-font,var(--gaip-global-font,sans-serif)) !important; font-weight: 700 !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-date-panel .ant-picker-body { padding: 8px 12px; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-date-panel .ant-picker-content { width: 264px; height: 252px; table-layout: fixed; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-date-panel :is(th,td) { height: 36px; padding: 0; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-content th { color: var(--dp-text); }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell-inner { min-width: 24px; height: 24px; line-height: 24px; border-radius: 4px; color: var(--dp-muted); font-size: 14px !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell-in-view .ant-picker-cell-inner { color: var(--dp-text); }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell:not(.ant-picker-cell-disabled):hover .ant-picker-cell-inner { background: var(--dp-hover) !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell-in-view:is(.ant-picker-cell-selected,.ant-picker-cell-range-start,.ant-picker-cell-range-end) .ant-picker-cell-inner { background: var(--dp-brand) !important; color: #fff !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell-today .ant-picker-cell-inner::before { border-color: var(--dp-interaction) !important; border-radius: 4px; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell-in-view.ant-picker-cell-in-range::before { background: var(--dp-range) !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup :is(.ant-picker-today-btn,.ant-picker-now-btn,.ant-picker-header button:hover) { color: var(--dp-brand) !important; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-footer { border-color: var(--dp-line); min-height: 40px; line-height: 40px; text-align: center; }
+/* A datetime field keeps its existing time/confirmation controls below the same calendar. */
+.gaip-native-popup.gaip-native-popup.gaip-native-popup.gaip-date-popup { padding: 0; }
+.gaip-date-popup > .gaip-date-panel.gaip-date-panel.gaip-date-panel.gaip-date-panel { box-shadow: none !important; border-radius: 0 !important; }
+.gaip-date-popup > :is(.gaip-time-columns,.gaip-choice-apply,.gaip-control-note) { margin: 8px; }
+
+.gaip-date-popup.gaip-date-popup.gaip-date-popup.gaip-date-popup { border: 0 !important; border-radius: 8px !important; box-shadow: 0 6px 16px rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05) !important; }
+
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-header-view { display: flex; justify-content: center; gap: 6px; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-header-view button { margin: 0; }
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-year-btn { order: -1; }
+
+.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup.gaip-ant-date-popup .ant-picker-cell:is(.ant-picker-cell-range-hover-start,.ant-picker-cell-range-hover-end,.ant-picker-cell-range-hover)::after { border-color: var(--dp-interaction) !important; }

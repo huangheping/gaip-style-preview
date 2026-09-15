@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "page": "全局组件/index.html",
+  "records": [
+    {
+      "id": "component-catalog.global-font",
+      "element": "组件目录文字及海报分享文字",
+      "locator": { "selector": ".catalogBrandMark, .catalogBrand strong, .componentDetails code, .componentSource code, body, .app-brand, .thumb-brand, .poster-avatar", "representative": "目录说明文字与海报分享独立文档（含Canvas导出文字）" },
+      "state": { "variant": "default", "viewport": null },
+      "appliesTo": ["全局组件/index.html", "全局组件/海报分享/index.html", "通过global-poster-share打开海报分享的业务消费者"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "catalog.font-family": { "before": null, "initialLocal": "品牌Georgia, serif!important；代码Menlo, Consolas, monospace!important（源声明，未实测层叠）", "target": "移除局部声明，继承global-font.css的--gaip-global-font", "status": "active", "basis": "source" },
+        "poster.font-family": { "before": null, "initialLocal": "GAIP PuHui, Noto Sans SC, sans-serif；局部Georgia, serif", "target": "同源global-font.css的--gaip-global-font（当前HarmonyOS Sans SC）", "status": "active", "basis": "source" },
+        "poster.font-weight": { "before": null, "initialLocal": "body:300", "target": "移除局部body声明，由全局--gaip-global-font-weight:400提供", "status": "active", "basis": "source" },
+        "poster.font-synthesis": { "before": null, "initialLocal": "weight", "target": "继承global-font.css的none", "status": "active", "basis": "source" },
+        "poster-canvas.font-family": { "before": null, "initialLocal": "sans-serif", "target": "读取body计算字体；保留原绘制字号与400/600字重，绘制前等待字体加载", "status": "active", "basis": "source" }
+      },
+      "sources": ["全局组件/components-preview.css", "全局组件/index.html", "全局组件/海报分享/index.html#posterCanvasFont", "shared/styles/global-font.css（复用，未修改）"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["真实浏览器字体加载、排版与海报PNG观感待验收；图片素材内已烘焙文字不属于CSS字体范围"] },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.preview-surface-separation",
+      "element": "组件目录的独立白色预览卡片与外部说明区",
+      "locator": { "selector": ".componentPreviewSurface, .componentEntryHeader, .componentDetails, .componentEntryFooter" },
+      "state": { "variant": "default", "viewport": null },
+      "appliesTo": ["全局组件/index.html 的8个已登记标签页"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "entry.background": { "before": null, "initialLocal": "#fff", "target": "transparent", "status": "active", "basis": "source" },
+        "entry.border": { "before": null, "initialLocal": "1px solid #dfe3e5", "target": "none", "status": "active", "basis": "source" },
+        "entry.border-radius": { "before": null, "initialLocal": "6px", "target": "0", "status": "active", "basis": "source" },
+        "surface.background": { "before": null, "initialLocal": null, "target": "#fff", "status": "active", "basis": "source", "reason": "new" },
+        "surface.border": { "before": null, "initialLocal": null, "target": "1px solid #dfe3e5", "status": "active", "basis": "source", "reason": "new" },
+        "surface.border-radius": { "before": null, "initialLocal": null, "target": "6px", "status": "active", "basis": "source", "reason": "new" },
+        "surface.padding": { "before": null, "initialLocal": null, "target": "26px；≤640px为16px；表单框架沿用32px/≤620px为16px", "status": "active", "basis": "source", "reason": "new" },
+        "surface.min-height": { "before": null, "initialLocal": null, "target": "160px", "status": "active", "basis": "source", "reason": "new" },
+        "catalog.margin-top": { "before": null, "initialLocal": "0", "target": "28px", "status": "active", "basis": "source" },
+        "header.padding": { "before": null, "initialLocal": "24px 26px 22px", "target": "0 0 20px", "status": "active", "basis": "source" },
+        "details.gap": { "before": null, "initialLocal": "0", "target": "24px", "status": "active", "basis": "source" },
+        "details.margin-top": { "before": null, "initialLocal": "0", "target": "28px", "status": "active", "basis": "source" },
+        "details.section-padding": { "before": null, "initialLocal": "22px 26px 24px", "target": "0；≤900px后续分区padding-top:20px", "status": "active", "basis": "source" },
+        "footer.padding": { "before": null, "initialLocal": "13px 26px", "target": "16px 0 0", "status": "active", "basis": "source" },
+        "footer.margin-top": { "before": null, "initialLocal": "0", "target": "24px", "status": "active", "basis": "source" },
+        "footer.background": { "before": null, "initialLocal": "#fafbfb", "target": "transparent", "status": "active", "basis": "source" },
+        "preview-band.gap": { "before": null, "initialLocal": "24px", "target": "16px", "status": "active", "basis": "source" },
+        "preview-band.padding": { "before": null, "initialLocal": "22px 26px", "target": "0", "status": "active", "basis": "source" },
+        "preview-band.background": { "before": null, "initialLocal": "#f6fbfa；弹窗目录为渐变", "target": "transparent", "status": "active", "basis": "source" },
+        "preview-band.border": { "before": null, "initialLocal": "上下1px solid #e6e9eb", "target": "none", "status": "active", "basis": "source" },
+        "preview-band.min-height": { "before": null, "initialLocal": "112px", "target": "auto", "status": "active", "basis": "source" },
+        "multi-stage.width": { "before": null, "initialLocal": "min(390px,46vw)；≤600px为100%", "target": "min(390px,100%)；≤600px为100%", "status": "active", "basis": "source" },
+        "multi-stage.padding": { "before": null, "initialLocal": "14px", "target": "0", "status": "active", "basis": "source" },
+        "multi-stage.border": { "before": null, "initialLocal": "1px solid #dce9e7", "target": "none", "status": "active", "basis": "source" },
+        "multi-stage.border-radius": { "before": null, "initialLocal": "6px", "target": "0", "status": "active", "basis": "source" },
+        "multi-stage.background": { "before": null, "initialLocal": "rgba(255,255,255,.86)", "target": "transparent", "status": "active", "basis": "source" },
+        "filter-demo.padding": { "before": null, "initialLocal": "0 26px 24px；≤640px横向16px", "target": "0", "status": "active", "basis": "source" },
+        "table-demo.padding": { "before": null, "initialLocal": "20px 24px；≤640px为12px", "target": "0", "status": "active", "basis": "source" },
+        "restore.margin-top": { "before": null, "initialLocal": null, "target": "16px", "status": "active", "basis": "source", "reason": "new" }
+      },
+      "sources": ["全局组件/components-preview.css", "全局组件/components-preview.js#previewSurface"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["真实页面像素、窄屏裁切与下拉命中尚未浏览器验收；已做8标签DOM结构、挂载与交互回归"] },
+      "status": "active", "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.modal-preview-surface",
+      "element": "独立真实弹窗预览的外部标题与白色舞台",
+      "locator": { "selector": ".previewCard, .previewCardHeader, .frameWrap" },
+      "state": { "variant": "default/highlighted", "viewport": null },
+      "appliesTo": ["全局组件/弹窗预览.html 的非embed目录模式"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "entry.margin-top": { "before": null, "initialLocal": "24px", "target": "32px", "status": "active", "basis": "source" },
+        "entry.background": { "before": null, "initialLocal": "#fff", "target": "transparent", "status": "active", "basis": "source" },
+        "entry.border": { "before": null, "initialLocal": "1px solid var(--line)", "target": "none", "status": "active", "basis": "source" },
+        "entry.border-radius": { "before": null, "initialLocal": "12px", "target": "0", "status": "active", "basis": "source" },
+        "entry.box-shadow": { "before": null, "initialLocal": "0 12px 36px rgba(35,52,50,.05)", "target": "none", "status": "active", "basis": "source" },
+        "header.padding": { "before": null, "initialLocal": "17px 22px", "target": "0 0 16px", "status": "active", "basis": "source" },
+        "header.min-height": { "before": null, "initialLocal": "82px", "target": "auto", "status": "active", "basis": "source" },
+        "header.border-bottom": { "before": null, "initialLocal": "1px solid var(--line)", "target": "none", "status": "active", "basis": "source" },
+        "surface.background": { "before": null, "initialLocal": "#e9eeec", "target": "#fff", "status": "active", "basis": "source" },
+        "surface.border": { "before": null, "initialLocal": "none", "target": "1px solid var(--line)", "status": "active", "basis": "source" },
+        "surface.border-radius": { "before": null, "initialLocal": "0", "target": "12px", "status": "active", "basis": "source" },
+        "surface.box-shadow": { "before": null, "initialLocal": "none", "target": "0 12px 36px rgba(35,52,50,.05)；highlighted:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08)", "status": "active", "basis": "source" }
+      },
+      "sources": ["全局组件/弹窗预览.html#style"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["iframe真实视觉待验收；未修改iframe内业务弹窗"] },
+      "status": "active", "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.single-form-frame",
+      "element": "表单框架子级与单个展示容器",
+      "locator": { "selector": ".catalogNavItem--child, .catalogFormStage, .catalogFormFrame" },
+      "state": { "variant": "default", "viewport": "1326/768/390宽度" },
+      "appliesTo": ["全局组件/index.html"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "child.indent": { "before": null, "initialLocal": null, "target": "20px，宽度扣除20px", "status": "active", "basis": "source", "reason": "new" },
+        "stage.padding": { "before": null, "initialLocal": null, "target": "32px；≤620px为16px", "status": "active", "basis": "source", "reason": "new" },
+        "frame.width": { "before": null, "initialLocal": null, "target": "100%，max-width:640px", "status": "active", "basis": "source", "reason": "new" },
+        "placeholder.min-height": { "before": null, "initialLocal": null, "target": "180px", "status": "active", "basis": "source", "reason": "new" },
+        "placeholder.background": { "before": null, "initialLocal": "transparent", "target": "#f3f5f7（仅目录范围示意）", "status": "active", "basis": "source" },
+        "placeholder.color": { "before": null, "initialLocal": null, "target": "var(--gaip-modal-muted)", "status": "active", "basis": "source", "reason": "new" }
+      },
+      "sources": ["全局组件/components-preview.css", "shared/styles/global-modal.css", "shared/scripts/global-modal.js#adoptForm"],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["独立目录展示夹具；不代替业务弹窗验收"] },
+      "status": "active", "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.original-four-tabs",
+      "element": "原四项组件导航按钮与响应式容器",
+      "locator": { "selector": ".catalogNavItem, .catalogSidebar, .catalogMain" },
+      "state": { "variant": "default", "viewport": "1326/768/390宽度" },
+      "appliesTo": ["全局组件/index.html"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "nav.width": { "before": null, "initialLocal": "auto（块级链接）", "target": "100%（按钮）；窄屏沿用210px flex basis", "status": "active", "basis": "source" },
+        "container.min-width": { "before": null, "initialLocal": "auto", "target": "0（侧栏与主区，避免窄屏网格撑开）", "status": "active", "basis": "source" }
+      },
+      "sources": ["全局组件/components-preview.css"],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["目录独立夹具，不代表业务弹窗验收"] },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.handoff-guide",
+      "element": "设计与前端对照阅读说明",
+      "locator": {
+        "selector": ".catalogGuide",
+        "representative": "首页概览下方说明卡片"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": "1326×1035；768/390宽度响应式检查"
+      },
+      "appliesTo": [
+        "全局组件/index.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px 24px；≤620px为16px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #dce5e4",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "body.font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "body.line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "body.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#68747c",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "全局组件/components-preview.css#catalogGuide"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "目录试版已整体撤回，展示元素已移除，不再作为交付目标；基准未知，不代表线上无差异"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.modal-specimen-layout",
+      "element": "弹窗部件展示卡片与状态对照",
+      "locator": {
+        "selector": ".specimenCard",
+        "representative": "25项弹窗部件"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": "1326/768/390宽度"
+      },
+      "appliesTo": [
+        "全局组件/index.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px 0；最后一项bottom为0",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #e6e9eb",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "states.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px 24px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "caption.font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "caption.line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "caption.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#68747c",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "row.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px（示例排列，不覆盖共享控件）",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "heading.font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "heading.line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "heading.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#253037",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "全局组件/components-preview.css#specimenCatalog",
+        "全局组件/modal-component-specimens.js"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "目录试版已整体撤回，展示元素已移除，不再作为交付目标；基准未知，不代表线上无差异"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.component-navigation",
+      "element": "部件导航与前端说明",
+      "locator": {
+        "selector": ".catalogSubnavItem, .componentDeveloperNotes > summary",
+        "representative": "组件侧栏子项与折叠说明"
+      },
+      "state": {
+        "variant": "default/hover/current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件/index.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "nav.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px 10px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "nav.font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "nav.line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "18px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "nav.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#68747c；hover/current #025b52",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "nav.selected-background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#edf9f8",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "summary.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px 26px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "summary.font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "全局组件/components-preview.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "目录试版已整体撤回，展示元素已移除，不再作为交付目标；基准未知，不代表线上无差异"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-09"
+    }
+  ]
+}

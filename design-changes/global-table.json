@@ -1,0 +1,2494 @@
+{
+  "schemaVersion": 1,
+  "page": "全局表格",
+  "records": [
+    {
+      "id": "global-table.surface",
+      "element": "表格外框",
+      "locator": {
+        "selector": ".gaip-table",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "surface",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border": {
+          "before": null,
+          "initialLocal": "1px solid #e7e8e7",
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求统一表格视觉"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:38:11",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:38:11"
+    },
+    {
+      "id": "global-table.toolbar",
+      "element": "表格工具栏",
+      "locator": {
+        "selector": ".gaip-table__toolbar",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "toolbar",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "removed",
+      "updatedAt": "2026-09-09T15:03:17",
+      "reason": "用户明确业务标题与工具栏不属于表格，节点和规则已移除。"
+    },
+    {
+      "id": "global-table.title",
+      "element": "表格标题",
+      "locator": {
+        "selector": ".gaip-table__title",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "title",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "removed",
+      "updatedAt": "2026-09-09T15:03:17",
+      "reason": "用户明确业务标题与工具栏不属于表格，节点和规则已移除。"
+    },
+    {
+      "id": "global-table.count",
+      "element": "记录数量",
+      "locator": {
+        "selector": ".gaip-table__count",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "count",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "removed",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "removed",
+      "updatedAt": "2026-09-09T15:03:17",
+      "reason": "用户明确业务标题与工具栏不属于表格，节点和规则已移除。"
+    },
+    {
+      "id": "global-table.header",
+      "element": "表头",
+      "locator": {
+        "selector": ".gaip-table__table th",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "header",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "56px",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求统一表格视觉"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "16px",
+          "target": "16px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求统一表格视觉"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "500",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-text, #2f3640)",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户指定表头背景与主文字色、正文悬停改淡灰"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#f9faf9",
+          "target": "#F8F5F3",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户指定表头背景与主文字色、正文悬停改淡灰"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:02:17",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148完整学习中心课程管理：表头和通栏底色、主文字色、整行含固定列hover计算样式通过。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T16:02:00"
+    },
+    {
+      "id": "global-table.cell",
+      "element": "数据单元格",
+      "locator": {
+        "selector": ".gaip-table__table td",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "cell",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": "16px",
+          "target": "14px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-bottom": {
+          "before": null,
+          "initialLocal": "1px solid #eeefee",
+          "target": "1px solid #e7eae9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.row-hover",
+      "element": "行悬停",
+      "locator": {
+        "selector": ".gaip-table__table tbody tr:hover td",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "row-hover",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "#f6faf9",
+          "target": "#FAFAFA",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求悬停淡灰进一步减淡"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:20:58",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148同源组件预览：正文整行含固定列hover计算背景为rgb(250, 250, 250)。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T16:20:58"
+    },
+    {
+      "id": "global-table.pager",
+      "element": "分页底栏",
+      "locator": {
+        "selector": ".gaip-table__pagination",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "pager",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "56px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求统一表格视觉"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #e7eae9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#747c80",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:38:11",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:38:11"
+    },
+    {
+      "id": "global-table.controls",
+      "element": "分页按钮",
+      "locator": {
+        "selector": ".gaip-table__pagination .gaip-table__button",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "controls",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px 10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid transparent",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2f3640",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.primary",
+      "element": "主按钮",
+      "locator": {
+        "selector": ".gaip-table__button.is-primary",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "primary",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-brand, #025b52)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-brand, #025b52)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.disabled",
+      "element": "禁用按钮",
+      "locator": {
+        "selector": ".gaip-table__button:disabled",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "disabled",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#a8afac",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#e7eae9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f5f6f5",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.actions",
+      "element": "行操作间距",
+      "locator": {
+        "selector": ".gaip-table__row-actions",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "actions",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.action-button",
+      "element": "行操作按钮",
+      "locator": {
+        "selector": ".gaip-table__row-actions .gaip-table__button",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "action-button",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-brand, #025b52)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.action-hover",
+      "element": "行操作悬停",
+      "locator": {
+        "selector": ".gaip-table__row-actions .gaip-table__button:hover:not(:disabled)",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "action-hover",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#e8f3f0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.danger",
+      "element": "危险操作",
+      "locator": {
+        "selector": ".gaip-table__row-actions .gaip-table__button.is-danger",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "danger",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#b82e24",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.danger-hover",
+      "element": "危险操作悬停",
+      "locator": {
+        "selector": ".gaip-table__row-actions .gaip-table__button.is-danger:hover:not(:disabled)",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "danger-hover",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff0ee",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.action-disabled",
+      "element": "行操作禁用",
+      "locator": {
+        "selector": ".gaip-table__row-actions .gaip-table__button:disabled",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "action-disabled",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#a8afac",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.top-buttons",
+      "element": "顶部按钮",
+      "locator": {
+        "selector": ".gaip-table-tools .gaip-table__button",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "top-buttons",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理页面顶部"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "var(--gaip-control-default, 40px)",
+          "target": "36px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.focus",
+      "element": "键盘焦点",
+      "locator": {
+        "selector": ".gaip-table :is(button, input, select):focus-visible",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "focus",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid #00887b",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "outline-offset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.empty",
+      "element": "空态区域",
+      "locator": {
+        "selector": ".gaip-table__empty",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "empty",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "180px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#747c80",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.compact",
+      "element": "窄屏内边距",
+      "locator": {
+        "selector": ".gaip-table__pagination",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "compact",
+        "viewport": "<=640px"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new shared component; course initial values only where captured"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T14:19:30",
+        "gaps": [
+          "未采集线上交付基准；参数来自源码。浏览器检查覆盖默认布局与真实交互，未逐状态采集全部计算样式。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.fixed-shadow-left",
+      "element": "固定列边缘阴影",
+      "locator": {
+        "selector": ".gaip-table.has-hidden-left [data-fixed-edge=\"left\"]::after",
+        "representative": "宽表固定组边界"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "horizontal-overflow"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "inset 10px 0 8px -8px rgba(47,54,64,.16)",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-right": {
+          "before": null,
+          "initialLocal": "1px solid #e7eae9",
+          "target": "0px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:46:08",
+        "gaps": [
+          "Online baseline not captured. Chromium 148 verified edge shadows and zero column borders."
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.fixed-shadow-right",
+      "element": "固定列边缘阴影",
+      "locator": {
+        "selector": ".gaip-table.has-hidden-right [data-fixed-edge=\"right\"]::after",
+        "representative": "宽表固定组边界"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "horizontal-overflow"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "inset -10px 0 8px -8px rgba(47,54,64,.16)",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-left": {
+          "before": null,
+          "initialLocal": "1px solid #e7eae9",
+          "target": "0px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T14:46:08",
+        "gaps": [
+          "Online baseline not captured. Chromium 148 verified edge shadows and zero column borders."
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.scrollbar",
+      "element": "scrollbar",
+      "locator": {
+        "selector": ".gaip-table",
+        "representative": "全局表格与课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "scrollbar"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "--gaip-scrollbar-thumb": {
+          "before": null,
+          "initialLocal": "rgba(47,54,64,.32)",
+          "target": "rgba(47,54,64,.18)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:03:17",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.current-page",
+      "element": "current-page",
+      "locator": {
+        "selector": ".gaip-table__pagination .gaip-table__button.is-current",
+        "representative": "全局表格与课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "current-page"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "var(--gaip-color-brand, #025b52)",
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "#ffffff",
+          "target": "var(--table-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": "var(--table-brand)",
+          "target": "var(--table-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:03:17",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.pager-hover",
+      "element": "pager-hover",
+      "locator": {
+        "selector": ".gaip-table__pagination .gaip-table__button:hover:not(:disabled)",
+        "representative": "全局表格与课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "pager-hover"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "#ffffff",
+          "target": "#f3f6f5",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": "var(--table-brand)",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T15:03:17",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.pager-disabled",
+      "element": "pager-disabled",
+      "locator": {
+        "selector": ".gaip-table__pagination .gaip-table__button:disabled",
+        "representative": "全局表格与课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "pager-disabled"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "#f5f6f5",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "#a8afac",
+          "target": "#b6bcb9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09T15:03:17",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:03:17"
+    },
+    {
+      "id": "global-table.header-band",
+      "element": "header-band",
+      "locator": {
+        "selector": ".gaip-table__head-band",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "header-band"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#F8F5F3",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户指定表头背景与主文字色、正文悬停改淡灰"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "auto",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:02:17",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148完整学习中心课程管理：表头和通栏底色、主文字色、整行含固定列hover计算样式通过。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T16:02:00"
+    },
+    {
+      "id": "global-table.size-trigger",
+      "element": "size-trigger",
+      "locator": {
+        "selector": ".gaip-table__size-trigger",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "size-trigger"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "108px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px 10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#d9dddc",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:18:15",
+        "gaps": [
+          "线上基准未采集，浏览器已核验默认展开与选中表现。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:18:15"
+    },
+    {
+      "id": "global-table.size-icon",
+      "element": "size-icon",
+      "locator": {
+        "selector": ".gaip-table__size-icon",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "size-icon"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "shared/assets/control-down.svg",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:18:15",
+        "gaps": [
+          "线上基准未采集，浏览器已核验默认展开与选中表现。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:18:15"
+    },
+    {
+      "id": "global-table.size-popup",
+      "element": "size-popup",
+      "locator": {
+        "selector": ".gaip-table-size-popup",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "size-popup"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "112px (bounded by viewport)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #e7eae9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 6px 18px rgba(47,54,64,.12)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求统一表格视觉"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:38:11",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:38:11"
+    },
+    {
+      "id": "global-table.size-option",
+      "element": "size-option",
+      "locator": {
+        "selector": ".gaip-table-size-popup__option",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "size-option"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px 10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:18:15",
+        "gaps": [
+          "线上基准未采集，浏览器已核验默认展开与选中表现。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:18:15"
+    },
+    {
+      "id": "global-table.size-selected",
+      "element": "size-selected",
+      "locator": {
+        "selector": ".gaip-table-size-popup__option[aria-selected=\"true\"]",
+        "representative": "全局表格/课程管理"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "size-selected"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025b52",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#edf6f3",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "shared/scripts/global-table.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:18:15",
+        "gaps": [
+          "线上基准未采集，浏览器已核验默认展开与选中表现。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09T15:18:15"
+    },
+    {
+      "id": "global-table.current-page-hover",
+      "element": "current-page-hover",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__pagination .gaip-table__button.is-current:hover:not(:disabled)",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "current-page-hover"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "#f3f6f5",
+          "status": "active",
+          "basis": "source",
+          "target": "#edf6f3",
+          "reason": "用户要求统一字号和当前页独立hover"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "var(--table-brand)",
+          "status": "active",
+          "basis": "source",
+          "target": "var(--table-brand)",
+          "reason": "用户要求统一字号和当前页独立hover"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": "transparent",
+          "status": "active",
+          "basis": "source",
+          "target": "var(--table-brand)",
+          "reason": "用户要求统一字号和当前页独立hover"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格视觉-20260909-153354/shared/styles/global-table.css"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T15:38:11",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:38:11",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      }
+    },
+    {
+      "id": "global-table.text-size",
+      "element": "text-size",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__table :is(th, td, th *, td *)",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "text-size"
+      },
+      "appliesTo": [
+        "课程管理",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": "12px / 13px / 14px（课程标签、时间、正文）",
+          "status": "active",
+          "basis": "source",
+          "target": "14px",
+          "reason": "普通表格文字统一14px，专用标签按tag记录使用12px例外。"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "../本地回退备份/全局表格视觉-20260909-153354/shared/styles/global-table.css"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T15:38:11",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T15:38:11",
+        "gaps": [
+          "线上基准未采集。"
+        ]
+      }
+    },
+    {
+      "id": "global-table.tag",
+      "element": "表格内标签 tag",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__tag",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "tag"
+      },
+      "appliesTo": [
+        "课程管理状态与精选标签",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "20px",
+          "status": "active",
+          "basis": "source",
+          "target": "20px",
+          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "0 8px",
+          "status": "active",
+          "basis": "source",
+          "target": "0 8px",
+          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "2px",
+          "status": "active",
+          "basis": "source",
+          "target": "3px",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "14px",
+          "status": "active",
+          "basis": "source",
+          "target": "12px",
+          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": "1",
+          "status": "active",
+          "basis": "source",
+          "target": "1",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": "400",
+          "status": "active",
+          "basis": "source",
+          "target": "400",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "0",
+          "status": "active",
+          "basis": "source",
+          "target": "0",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
+        "features/learning-center/learning-center.css（旧标签配色）"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T16:30:48",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:31:22",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+        ]
+      }
+    },
+    {
+      "id": "global-table.tag-neutral",
+      "element": "表格内标签 tag-neutral",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__tag--neutral",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "tag-neutral"
+      },
+      "appliesTo": [
+        "课程管理状态与精选标签",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#2f3640",
+          "status": "active",
+          "basis": "source",
+          "target": "#2f3640",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#e5e6e8",
+          "status": "active",
+          "basis": "source",
+          "target": "#e5e6e8",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
+        "features/learning-center/learning-center.css（旧标签配色）"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T16:25:21",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:31:22",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+        ]
+      }
+    },
+    {
+      "id": "global-table.tag-success",
+      "element": "表格内标签 tag-success",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__tag--success",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "tag-success"
+      },
+      "appliesTo": [
+        "课程管理状态与精选标签",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "target": "#ffffff",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#389e0d",
+          "status": "active",
+          "basis": "source",
+          "target": "#389e0d",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
+        "features/learning-center/learning-center.css（旧标签配色）"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T16:25:21",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:31:22",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+        ]
+      }
+    },
+    {
+      "id": "global-table.tag-highlight",
+      "element": "表格内标签 tag-highlight",
+      "locator": {
+        "selector": ".gaip-table .gaip-table__tag--highlight",
+        "representative": "课程管理 / 全局组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "tag-highlight"
+      },
+      "appliesTo": [
+        "课程管理状态与精选标签",
+        "全局组件目录/global-table"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#805b0d",
+          "status": "active",
+          "basis": "source",
+          "target": "#805b0d",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#f4d67c",
+          "status": "active",
+          "basis": "source",
+          "target": "#f4d67c",
+          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+        }
+      },
+      "sources": [
+        "shared/styles/global-table.css",
+        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
+        "features/learning-center/learning-center.css（旧标签配色）"
+      ],
+      "status": "active",
+      "updatedAt": "2026-09-09T16:25:21",
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09T16:31:22",
+        "gaps": [
+          "线上基准未采集。"
+        ],
+        "evidence": [
+          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+        ]
+      }
+    }
+  ]
+}

@@ -3,6 +3,49 @@
 
   window.__GAIP_GLOBAL_COMPONENTS__ = [
     {
+      id:'underline-tabs',name:'下划线 Tab',category:'导航与切换',status:'三频道统一',
+      description:'统一字号、颜色、间距与下划线动效；支持数量、禁用项及键盘切换。页面位置与业务切换由页面负责。',
+      api:'window.__GAIP_TABS__.mount(root, config)',trigger:'新组件显式挂载；三处既有Tab通过同源适配器接入',previewKind:'underlineTabs',
+      sources:[
+        {label:'共享脚本',path:'shared/scripts/global-tabs.js',href:'../shared/scripts/global-tabs.js'},
+        {label:'共享样式',path:'shared/styles/global-tabs.css',href:'../shared/styles/global-tabs.css'},
+        {label:'接入规范',path:'docs/tabs-spec.md',href:'../docs/tabs-spec.md'}
+      ],usages:['产品中心：产品分类（保留数量）','配置中心：组织架构渠道','学习中心：学员/课程学习统计'],updatedAt:'2026-09-10'
+    },
+    {
+      id: 'date-picker', name: '日期选择器', category: '筛选与选择', status: '统一共享',
+      description: '统一使用 Ant Design 日历样式，选择条保留现有规范；支持单个日期、日期范围及弹窗日期字段。',
+      api: 'window.__GAIP_DATE_PICKER__.mount(panel, options)', trigger: '由现有日期选择条打开', previewKind: 'datePicker',
+      sources: [
+        {label:'共享脚本',path:'shared/scripts/global-date-picker.js',href:'../shared/scripts/global-date-picker.js'},
+        {label:'共享样式',path:'shared/styles/global-date-picker.css',href:'../shared/styles/global-date-picker.css'},
+        {label:'接入规范',path:'docs/date-picker-spec.md',href:'../docs/date-picker-spec.md'}
+      ],
+      usages: ['普通弹窗：日期与日期时间字段', '学习中心课程管理：共享筛选栏日期组件'], updatedAt: '2026-09-09'
+    },
+    {
+      id: 'global-table', name: '全局表格', category: '表格与分页', status: '课程管理已接入',
+      description: '统一表头、操作按钮和分页。内容少时自然收拢，达到可用高度后数据区域独立滚动。',
+      api: 'window.__GAIP_TABLE__.mount(root, config)', trigger: '显式挂载', previewKind: 'globalTable',
+      sources: [
+        {label:'共享脚本',path:'shared/scripts/global-table.js',href:'../shared/scripts/global-table.js'},
+        {label:'共享样式',path:'shared/styles/global-table.css',href:'../shared/styles/global-table.css'},
+        {label:'接入规范',path:'docs/table-spec.md',href:'../docs/table-spec.md'}
+      ],
+      usages: ['学习中心：课程管理', '组件目录：少量数据、长列表、宽表及数据状态'], updatedAt: '2026-09-09'
+    },
+    {
+      id: 'filter-bar', name: '可配置筛选栏', category: '筛选与选择', status: '首版接入',
+      description: '统一单选、输入框直接搜索的组织树下拉、折叠式多选、开关、搜索、日期/数字范围、查询与重置；按页面配置显隐，更多筛选可收起。',
+      api: 'window.__GAIP_FILTER_BAR__.mount(root, config)', trigger: '显式挂载，不自动接管旧页面', previewKind: 'filterBar',
+      sources: [
+        {label:'全局脚本',path:'shared/scripts/global-filter-bar.js',href:'../shared/scripts/global-filter-bar.js'},
+        {label:'全局样式',path:'shared/styles/global-filter-bar.css',href:'../shared/styles/global-filter-bar.css'},
+        {label:'配置与交互规范',path:'docs/filter-bar-spec.md',href:'../docs/filter-bar-spec.md'}
+      ],
+      usages: ['学习中心：课程管理与学情管理（组织树同源）', '其他页面按需求显式配置，未批量替换'], updatedAt: '2026-09-10'
+    },
+    {
       id: 'ai-content-notice',
       name: 'AI 内容重要提示',
       category: '提示与确认',
@@ -120,6 +163,14 @@
         '弹窗样式维护：对照真实源统一标题、间距、按钮、遮罩与滚动'
       ],
       updatedAt: '2026-09-02'
+    },
+    {
+      id: 'form-modal-frame',
+      parentId: 'modal-catalog',
+      name: '表单弹窗框架',
+      category: '真实弹窗预览',
+      previewKind: 'formFrame',
+      usages: []
     }
   ];
 }());

@@ -57,12 +57,25 @@
   overflow: hidden;
   border: 1px solid #f0f0f0;
   border-radius: 3px;
-  color: rgba(0, 0, 0, 0.88);
+  color: #2F3640;
   background: #f5f5f5;
   font-size: 12px;
   line-height: 22px;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.gaipMultiSelect__tag-text {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaipMultiSelect__option > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .gaipMultiSelect__overflow {
@@ -92,12 +105,15 @@
   background: transparent;
 }
 
-.gaipMultiSelect__clear {
+.gaipMultiSelect .gaipMultiSelect__clear {
   right: 25px;
+  width: 24px;
+  height: 24px;
   opacity: 0;
   cursor: pointer;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 0;
+  line-height: 0;
+  background: transparent url('../assets/modal-clear.svg') center / 16px 16px no-repeat;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 

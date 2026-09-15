@@ -378,7 +378,8 @@
 .gaip-announcement-modal-body > .gaip-announcement-form {
   box-sizing: border-box;
   width: 100%;
-  padding: 0 24px 24px;
+  /* Shared modal body owns horizontal insets; do not apply them twice. */
+  padding: 0 0 24px;
 }
 
 .gaip-announcement-form-section + .gaip-announcement-form-section { margin-top: 24px; }
@@ -489,7 +490,7 @@
   .gaip-announcement-time-separator { display: none; }
   .gaip-announcement-pagination .ant-pagination-total-text { display: none; }
   .gaip-announcement-dialog.ant-modal { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
-  .gaip-announcement-modal-body > .gaip-announcement-form { padding: 0 16px 20px; }
+  .gaip-announcement-modal-body > .gaip-announcement-form { padding: 0 0 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

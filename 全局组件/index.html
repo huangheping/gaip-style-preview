@@ -7,14 +7,21 @@
   <title>全局组件目录 - GAIP</title>
   <link rel="shortcut icon" href="../web/favicon.ico">
   <link rel="stylesheet" href="../web/umi.c6286171.css">
-  <link rel="stylesheet" href="../shared/styles/global-font.css?v=20260731-1">
+  <link rel="stylesheet" href="../shared/styles/global-font.css?v=20260909-project-font-1">
   <link rel="stylesheet" href="../shared/styles/global-ai-notice.css?v=20260826-4">
   <link rel="stylesheet" href="../shared/styles/global-poster-share.css?v=20260827-1">
-  <link rel="stylesheet" href="../shared/styles/global-multi-select.css?v=20260826-1">
-  <link rel="stylesheet" href="../shared/styles/global-modal-mask.css?v=20260904-1">
-  <link rel="stylesheet" href="../shared/styles/global-modal-position.css?v=20260907-1">
+  <link rel="stylesheet" href="../shared/styles/global-multi-select.css?v=20260909-tag-color-1">
+  <link rel="stylesheet" href="../shared/styles/global-date-picker.css?v=20260909-date-color-2">
+  <script src="../shared/scripts/global-date-picker.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="../shared/styles/global-filter-bar.css?v=20260910-tree-combobox-1">
+  <link rel="stylesheet" href="../shared/styles/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="../shared/styles/global-modal.css?v=20260909-project-font-1">
+  <script src="../shared/scripts/global-modal.js?v=20260908-inline-validation-1"></script>
+  <link rel="stylesheet" href="../shared/styles/global-modal-position.css?v=20260908-2">
   <script defer src="../shared/scripts/global-modal-position.js?v=20260904-1"></script>
-  <link rel="stylesheet" href="./components-preview.css?v=20260902-1">
+  <link rel="stylesheet" href="../shared/styles/global-table.css?v=20260909-table-tag-2">
+  <link rel="stylesheet" href="./components-preview.css?v=20260909-global-font-1">
+  <link rel="stylesheet" href="../shared/styles/global-tabs.css?v=20260910-tabs-1">
 </head>
 <body>
   <div class="catalogShell">
@@ -42,32 +49,24 @@
         <span class="catalogStatus">本地组件预览</span>
       </header>
 
-      <section class="catalogSummary" aria-label="组件目录概览">
-        <div>
-          <span>组件数量</span>
-          <strong id="summaryComponentCount">0</strong>
-        </div>
-        <div>
-          <span>当前使用位置</span>
-          <strong id="summaryUsageCount">0</strong>
-        </div>
-        <div>
-          <span>组件来源</span>
-          <strong>本地共享文件</strong>
-        </div>
-      </section>
-
       <section class="componentCatalog" id="componentCatalog" aria-live="polite"></section>
     </main>
   </div>
 
   <script src="../shared/scripts/modal-registry.js?v=20260902-1"></script>
-  <script src="./弹窗源登记.js?v=20260904-8"></script>
-  <script src="./弹窗自动索引.generated.js?v=20260904-4"></script>
-  <script src="./components-registry.js?v=20260902-1"></script>
+  <script src="./弹窗源登记.js?v=20260908-required-marker-1"></script>
+  <script src="./弹窗自动索引.generated.js?v=20260908-required-marker-1"></script>
+  <script src="./components-registry.js?v=20260910-filter-tree-demo-1"></script>
+  <script src="../shared/scripts/global-tabs.js?v=20260910-tabs-1"></script>
   <script src="../shared/scripts/global-ai-notice.js?v=20260826-2"></script>
   <script src="../shared/scripts/global-poster-share.js?v=20260827-1"></script>
-  <script src="../shared/scripts/global-multi-select.js?v=20260826-1"></script>
-  <script src="./components-preview.js?v=20260902-1"></script>
+  <script src="../shared/scripts/global-multi-select.js?v=20260909-controls-2"></script>
+  <link rel="stylesheet" href="../shared/styles/organization-tree.css?v=20260910-org-1">
+  <script src="../shared/scripts/organization-store.js?v=20260910-org-1"></script>
+  <script src="../shared/scripts/organization-tree.js?v=20260910-org-1"></script>
+  <script src="../shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1"></script>
+  <script src="../shared/scripts/global-table.js?v=20260909-dialog-picker-1"></script>
+  <script src="./table-preview.js?v=20260909-table-tag-1"></script>
+  <script src="./components-preview.js?v=20260910-filter-tree-demo-1"></script>
 </body>
 </html>

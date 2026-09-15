@@ -2,10 +2,10 @@
   'use strict';
 
   /* iframe 会把 <base> 指回项目根目录；资源路径统一从根目录解析。 */
-  var font = 'shared/styles/global-font.css';
+  var font = 'shared/styles/global-font.css?v=20260909-project-font-1';
   var umi = 'web/umi.c6286171.css';
-  var configStyles = [umi, font, 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260904-41', 'shared/styles/global-modal.css?v=20260904-4', 'features/config-center/config-center.css?v=20260902-8'];
-  var configScripts = ['shared/config/channels.js?v=20260904-73', 'shared/scripts/global-modal.js?v=20260904-5', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/config-center.js?v=20260904-52'];
+  var configStyles = [umi, font, 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/config-center-content.css?v=20260909-project-font-1', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/config-center/config-center.css?v=20260902-8'];
+  var configScripts = ['shared/config/channels.js?v=20260908-required-marker-1', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js?v=20260904-3', 'features/config-center/config-center.js?v=20260910-tabs-motion-1'];
 
   var entries = [
     {
@@ -38,29 +38,29 @@
       id: 'proposal-owner', title: '方案客户归属', channel: '方案中心', type: 'modal', category: 'form', status: 'ready', height: 760,
       source: 'window.__GAIP_PROPOSAL_PREVIEW__.createOwnerDialog()',
       invoke: { path: '__GAIP_PROPOSAL_PREVIEW__.createOwnerDialog', args: [] }, resultMode: 'append',
-      styles: [umi, font, 'features/proposal-center/proposal-center.css'],
+      styles: [umi, font, 'features/proposal-center/proposal-center.css?v=20260908-owner-frame-1'],
       scripts: ['features/proposal-center/proposal-center.js']
     },
     {
       id: 'proposal-unlink', title: '方案解除关联确认', channel: '方案中心', type: 'confirm', category: 'confirmation', status: 'ready', height: 520,
       source: 'window.__GAIP_PROPOSAL_PREVIEW__.createUnlinkConfirm()',
       invoke: { path: '__GAIP_PROPOSAL_PREVIEW__.createUnlinkConfirm', args: [] }, resultMode: 'append',
-      styles: [umi, font, 'shared/styles/global-modal.css?v=20260904-4', 'features/proposal-center/proposal-center.css?v=20260904-1'],
-      scripts: ['shared/scripts/global-modal.js?v=20260904-5', 'features/proposal-center/proposal-center.js?v=20260904-3']
+      styles: [umi, font, 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/proposal-center/proposal-center.css?v=20260908-owner-frame-1'],
+      scripts: ['shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'features/proposal-center/proposal-center.js?v=20260904-3']
     },
     {
       id: 'proposal-file', title: '方案附件预览', channel: '方案中心', type: 'modal', category: 'information', status: 'ready', height: 900,
       source: 'window.__GAIP_PROPOSAL_PREVIEW__.createFileDialog()',
       invoke: { path: '__GAIP_PROPOSAL_PREVIEW__.createFileDialog', args: [] }, resultMode: 'append',
-      styles: [umi, font, 'features/proposal-center/proposal-center.css'],
+      styles: [umi, font, 'features/proposal-center/proposal-center.css?v=20260908-owner-frame-1'],
       scripts: ['features/proposal-center/proposal-center.js']
     },
     {
       id: 'activity-signup', title: '活动报名信息', channel: '活动中心', type: 'modal', category: 'form', status: 'ready', height: 820,
       source: 'window.__GAIP_ACTIVITY_SYNC__.createSignupModal()',
       invoke: { path: '__GAIP_ACTIVITY_SYNC__.createSignupModal', args: ['兑现之年 · 全球配置新程'] }, resultMode: 'append-open-class', openClass: 'is-open',
-      styles: [umi, font, 'features/activity/activity-sync.css'],
-      scripts: ['features/activity/activity-sync.js']
+      styles: [umi, font, 'features/activity/activity-sync.css?v=20260908-form-scroll-1'],
+      scripts: ['features/activity/activity-sync.js?v=20260908-signup-errors-1']
     },
     {
       id: 'wealth-file', title: '文件识别详情', channel: '财富值中心', type: 'drawer', status: 'excluded',
@@ -70,7 +70,7 @@
       id: 'wealth-keyword', title: '保司关键词设置', channel: '财富值中心', type: 'modal', category: 'form', status: 'ready', height: 640,
       source: 'window.__GAIP_WEALTH_CENTER__.createKeywordDialog()',
       invoke: { path: '__GAIP_WEALTH_CENTER__.createKeywordDialog', args: [] }, resultMode: 'append',
-      styles: [umi, font, 'features/wealth-center/wealth-center.css'],
+      styles: [umi, font, 'features/wealth-center/wealth-center.css?v=20260908-form-scroll-1'],
       scripts: ['features/wealth-center/mock-data.js', 'features/wealth-center/wealth-center.js']
     },
     {
@@ -133,7 +133,7 @@
     { id: 'application-upload', title: '申请文件上传', channel: '方案中心 · 申请文件', type: 'drawer', status: 'excluded', source: 'web/978.e5ccf054.chunk.css', reason: '用户明确抽屉不进入弹窗预览。' },
     { id: 'induction-complete', title: '完成入职引导', channel: '薄荷入职引导', type: 'modal', category: 'information', status: 'ready', height: 820, previewMode: 'route-trigger', route: '/induction', source: '登录.html#/induction → 已完成状态' },
     { id: 'news-off-shelf', title: '确认下架资讯', channel: '资讯中心 · 内容管理', type: 'confirm', status: 'excluded', source: 'web/p__news__index.f64a0a2e.async.js', reason: '当前本地资讯中心没有内容管理/下架入口，该分包也不在现行路由表中。' },
-    { id: 'account-switch', title: '检测到账号已切换', channel: '全局框架', type: 'modal', category: 'information', status: 'ready', height: 820, previewMode: 'route-trigger', route: '/workspace', source: '登录.html#/workspace → 正式 AccountChangeWatcher' }
+    { id: 'account-switch', title: '检测到账号已切换', channel: '全局框架', type: 'confirm', category: 'confirmation', status: 'ready', height: 820, previewMode: 'route-trigger', route: '/workspace', source: '登录.html#/workspace → 正式 AccountChangeWatcher' }
   ];
 
   if (!window.__GAIP_MODAL_REGISTRY__) throw new Error('请先加载 shared/scripts/modal-registry.js');

@@ -3,27 +3,12 @@
   var config = window.__GAIP_CHANNEL_CONFIG__.getByKey('config');
   var views = config.views, frame = 0, page, mountedView, logPanel, announcementPanel, organizationLogDialog, organizationLogTrigger, bulkImportDialog, bulkImportTrigger, bulkImportState, adjustNodeDialog, adjustNodeTrigger, adjustNodeState, configToastTimer;
   var dialogPreviewMode = !!window.__GAIP_CONFIG_DIALOG_PREVIEW__, dialogController;
+  var bulkReturnDialog, bulkReturnDismiss;
   var menuOpen = false, oldTitle = '', contentHost, hiddenContent = [];
   var state = { channel: 0, department: 'all', query: '' };
   var source = window.__GAIP_CONFIG_SOURCE__;
-  var channels = ['薄荷经纪人', 'Glory品牌顾问', '外部机构渠道', '线上渠道', '小仓', '荣耀经纪人'];
-  var departmentSets = channels.map(function () {
-    var parents = [];
-    return source.departments.map(function (item) {
-      var department = Object.assign({}, item, { parent: item.depth ? parents[item.depth - 1] : null });
-      parents[item.depth] = item.id;
-      return department;
-    });
-  });
-  var levelThreeMockDepartments = [
-    { id: 'mock-level-3-east', name: '华东业务组', depth: 3, parent: 'department-2' },
-    { id: 'mock-level-3-institution', name: '机构服务组', depth: 3, parent: 'department-2' },
-    { id: 'mock-level-3-key-account', name: '重点客户支持与运营组', depth: 3, parent: 'department-2' },
-    { id: 'mock-level-3-follow-up', name: '区域客户跟进组', depth: 3, parent: 'department-2' }
-  ];
-  departmentSets.forEach(function (set) {
-    set.splice.apply(set, [4, 0].concat(levelThreeMockDepartments.map(function (item) { return Object.assign({}, item); })));
-  });
+  var organization = window.__GAIP_ORGANIZATION__;
+  var channels = organization.channels, departmentSets = organization.sets;
   var departments = departmentSets[0], departmentSequence = 0, departmentMenu, menuTrigger, dismissMenu;
   var currentOperatorRole = 'super-admin';
   var adminRoleAssignments = {
@@ -203,6 +188,7 @@
   }
 
   function closeBulkImportDialog() {
+    if (bulkReturnDismiss) bulkReturnDismiss(false, false);
     if (!bulkImportDialog) return;
     if (bulkImportDialog.open) bulkImportDialog.close();
     else { bulkImportDialog.remove(); bulkImportDialog = null; }
@@ -448,7 +434,7 @@
       var expanded = !collapsedMap[item.id] || !!bulkImportState.nodeQuery;
       return '<div class="gaip-bulk-node-row' + (item.id === bulkImportState.department ? ' is-selected' : '') + '" role="treeitem" aria-level="' + (item.depth + 1) + '" aria-selected="' + (item.id === bulkImportState.department) + '"' + (hasChildren ? ' aria-expanded="' + expanded + '"' : '') + ' style="--bulk-node-depth:' + item.depth + '">' +
         (hasChildren ? '<button type="button" class="gaip-bulk-node-toggle" data-bulk-node-toggle="' + escapeHtml(item.id) + '" aria-label="' + (expanded ? '收起' : '展开') + escapeHtml(name) + '" aria-expanded="' + expanded + '"><span aria-hidden="true"></span></button>' : '<span class="gaip-bulk-node-toggle-placeholder" aria-hidden="true"></span>') +
-        '<button type="button" class="gaip-bulk-node-option" data-bulk-department-option="' + escapeHtml(item.id) + '" title="' + escapeHtml(name) + '"><span class="gaip-bulk-node-folder' + (hasChildren && expanded ? ' is-open' : '') + '" aria-hidden="true"></span><span class="gaip-bulk-node-name">' + escapeHtml(name) + '</span><span class="gaip-bulk-node-check" aria-hidden="true">✓</span></button></div>';
+        '<button type="button" class="gaip-bulk-node-option" data-bulk-department-option="' + escapeHtml(item.id) + '" title="' + escapeHtml(name) + '"><span class="gaip-bulk-node-radio" aria-hidden="true"></span><span class="gaip-bulk-node-folder' + (hasChildren && expanded ? ' is-open' : '') + '" aria-hidden="true"></span><span class="gaip-bulk-node-name">' + escapeHtml(name) + '</span></button></div>';
     }).join('');
   }
 
@@ -457,7 +443,10 @@
     var tree = bulkImportDialog.querySelector('[data-bulk-node-tree]');
     if (tree) tree.innerHTML = bulkImportDepartmentTreeMarkup();
     var path = bulkImportDialog.querySelector('[data-bulk-path] strong');
-    if (path) path.textContent = bulkDepartmentPath(bulkImportState.channel, bulkImportState.department);
+    if (path) {
+      path.textContent = bulkDepartmentPath(bulkImportState.channel, bulkImportState.department);
+      path.title = path.textContent;
+    }
     var clear = bulkImportDialog.querySelector('[data-bulk-search-clear]');
     if (clear) clear.hidden = !bulkImportState.nodeQuery;
   }
@@ -543,10 +532,11 @@
       var channelOptions = channels.map(function (name, index) {
         return '<option value="' + index + '"' + (index === bulkImportState.channel ? ' selected' : '') + '>' + escapeHtml(name) + '</option>';
       }).join('');
-      body.innerHTML = '<section class="gaip-bulk-section gaip-bulk-location-section" aria-labelledby="bulk-target-title"><div class="gaip-bulk-section-heading gaip-bulk-target-heading"><h3 id="bulk-target-title">选择导入范围</h3><div class="gaip-bulk-current-target" data-bulk-path><span>当前目标：</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div></div><div class="gaip-bulk-field-label">渠道</div><label class="gaip-bulk-channel-select"><select aria-label="导入渠道" data-bulk-channel-select>' + channelOptions + '</select><span class="gaip-bulk-select-arrow" aria-hidden="true"></span></label><div class="gaip-bulk-node-heading"><span class="gaip-bulk-field-label">目标节点</span><label class="gaip-bulk-node-search">' + bulkImportSearchIcon('search') + '<input type="search" value="' + escapeHtml(bulkImportState.nodeQuery) + '" placeholder="搜索目标节点" aria-label="搜索目标节点" data-bulk-node-search><button type="button" data-bulk-search-clear aria-label="清除节点搜索"' + (bulkImportState.nodeQuery ? '' : ' hidden') + '>' + bulkImportSearchIcon('clear') + '</button></label></div><div class="gaip-bulk-node-tree" role="tree" aria-label="目标节点" data-bulk-node-tree>' + bulkImportDepartmentTreeMarkup() + '</div></section>' +
+      body.innerHTML = '<section class="gaip-bulk-section gaip-bulk-location-section" aria-labelledby="bulk-target-title"><div class="gaip-bulk-section-heading gaip-bulk-target-heading"><h3 id="bulk-target-title">选择导入范围</h3></div><div class="gaip-bulk-field-label">渠道</div><label class="gaip-bulk-channel-select"><select aria-label="导入渠道" data-bulk-channel-select>' + channelOptions + '</select><span class="gaip-bulk-select-arrow" aria-hidden="true"></span></label><div class="gaip-bulk-node-heading"><div class="gaip-bulk-node-label-row"><span class="gaip-bulk-field-label gaip-kit-label-inline">目标节点</span><div class="gaip-bulk-current-target" data-bulk-path><span>当前目标：</span><strong title="' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '">' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div></div><label class="gaip-bulk-node-search">' + bulkImportSearchIcon('search') + '<input type="search" value="' + escapeHtml(bulkImportState.nodeQuery) + '" placeholder="搜索目标节点" aria-label="搜索目标节点" data-bulk-node-search><button type="button" data-bulk-search-clear aria-label="清除节点搜索"' + (bulkImportState.nodeQuery ? '' : ' hidden') + '>' + bulkImportSearchIcon('clear') + '</button></label></div><div class="gaip-bulk-node-tree" role="tree" aria-label="目标节点" data-bulk-node-tree>' + bulkImportDepartmentTreeMarkup() + '</div></section>' +
         '<section class="gaip-bulk-section gaip-bulk-upload-section" aria-labelledby="bulk-file-title"><div class="gaip-bulk-section-heading gaip-bulk-upload-heading"><h3 id="bulk-file-title">上传识别导入</h3><button type="button" class="gaip-bulk-sample" data-bulk-sample>使用示例文件预览完整流程</button></div><div class="gaip-bulk-upload-content"><div class="gaip-bulk-upload-picker"><label class="gaip-bulk-upload-button" data-bulk-dropzone aria-label="上传 Excel 文件"><input type="file" accept=".xlsx,.xls" data-bulk-file><span class="gaip-bulk-upload-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-upload.svg')) + '" alt="" aria-hidden="true"></span><span>上传文件</span></label><span class="gaip-bulk-upload-limit">文件大小不得超过10MB，支持 .xlsx、.xls</span></div>' + (bulkImportState.fileName ? '<div class="gaip-bulk-upload-file" data-bulk-upload-file><span class="gaip-bulk-attachment-icon">' + bulkImportAttachmentIcon() + '</span><span>' + escapeHtml(bulkImportState.fileName) + '</span></div>' : '') + '<div class="gaip-bulk-file-error" data-bulk-file-error' + (bulkImportState.fileError ? '' : ' hidden') + '>' + escapeHtml(bulkImportState.fileError || '') + '</div></div><div class="gaip-bulk-template-bar"><a class="gaip-bulk-template-link" href="' + escapeHtml(bulkImportTemplateUrl()) + '" download="批量人员导入模板.xlsx"><span class="gaip-bulk-template-icon"><img src="' + escapeHtml(bulkImportAssetUrl('bulk-import-template-xlsx.svg')) + '" alt="" aria-hidden="true"></span><span class="gaip-bulk-template-copy"><strong>下载导入模板</strong><small>请勿修改表头；单次最多导入 100 人</small></span></a></div></section>';
       footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-close>取消</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-validate' + (bulkImportState.fileName ? '' : ' disabled') + '>开始校验</button>';
     } else if (bulkImportState.step === 2) {
+      var targetPath = escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department));
       var validCount = bulkImportState.rows.filter(function (item) { return item.valid; }).length;
       var invalidCount = bulkImportState.rows.length - validCount;
       var rows = bulkImportState.rows.map(function (item) {
@@ -554,7 +544,7 @@
         var adminDisplay = item.admin === '否' ? '-' : item.admin;
         return '<tr class="' + (item.valid ? 'is-valid' : 'is-invalid') + '"><td>' + item.row + '</td><td>' + escapeHtml(item.enteredName) + '</td><td>' + escapeHtml(item.account) + '</td><td>' + escapeHtml(item.uaName) + '</td><td>' + escapeHtml(item.regions) + '</td><td>' + escapeHtml(referrerDisplay) + '</td><td>' + escapeHtml(adminDisplay) + '</td><td><span class="gaip-bulk-status">' + (item.valid ? bulkImportIcon('success') + '可导入' : '校验失败') + '</span></td><td class="gaip-bulk-reason">' + escapeHtml(item.reason) + '</td></tr>';
       }).join('');
-      body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong>' + escapeHtml(bulkDepartmentPath(bulkImportState.channel, bulkImportState.department)) + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      body.innerHTML = '<div class="gaip-bulk-validation-bar"><div class="gaip-bulk-validation-target"><span>目标节点</span><strong title="' + targetPath + '">' + targetPath + '</strong></div><div class="gaip-bulk-validation-meta"><span>共 ' + bulkImportState.rows.length + ' 人</span><span class="is-success">可导入 ' + validCount + ' 人</span><span class="is-error">失败 ' + invalidCount + ' 人</span><span class="gaip-bulk-validation-note">失败行不影响其余成员导入，可下载失败明细后修正</span></div></div><div class="gaip-bulk-table-wrap"><table class="gaip-bulk-table"><thead><tr><th>Excel 行</th><th>用户姓名</th><th>域账号</th><th>UA 姓名</th><th>持牌地区</th><th>转介绍人</th><th>管理员</th><th>校验状态</th><th>失败原因</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
       footer.innerHTML = '<button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-back>上一步</button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-footer-download is-secondary" data-bulk-download-fail><span class="ant-btn-icon gaip-bulk-result-action-icon">' + bulkImportIcon('download') + '</span><span>下载失败明细</span></button><button type="button" class="ant-btn gaip-bulk-button gaip-bulk-confirm-button is-primary" data-bulk-confirm aria-label="确认导入 ' + validCount + ' 名成员"><span>确认导入</span><span class="gaip-bulk-button-count" aria-hidden="true">' + validCount + '人</span></button>';
     } else {
       var isAllSuccessPreview = bulkImportState.resultPreview === 'success';
@@ -569,13 +559,47 @@
     }
   }
 
-  function showBulkImportReturnConfirm() {
-    if (!bulkImportDialog || bulkImportDialog.querySelector('[data-bulk-confirm-layer]')) return;
-    var layer = document.createElement('div');
-    layer.className = 'gaip-bulk-confirm-layer'; layer.setAttribute('data-bulk-confirm-layer', '');
-    layer.innerHTML = '<div class="gaip-bulk-confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="bulk-return-title"><h3 id="bulk-return-title">返回重新选择？</h3><p>返回后当前文件和校验结果将被清空，需要重新上传。</p><div><button type="button" class="ant-btn gaip-bulk-button is-secondary" data-bulk-return-cancel>取消</button><button type="button" class="ant-btn gaip-bulk-button is-primary" data-bulk-return-confirm>确认返回</button></div></div>';
-    bulkImportDialog.querySelector('.ant-modal-content').appendChild(layer);
-    layer.querySelector('[data-bulk-return-cancel]').focus();
+  function showBulkImportReturnConfirm(trigger) {
+    if (bulkReturnDialog) return bulkReturnDialog;
+    var component = window.__GAIP_MODAL_COMPONENT__;
+    if (!component || !component.createConfirm) throw new Error('返回重新选择确认缺少共享弹窗组件');
+    var parent = bulkImportDialog;
+    var returnFocus = trigger || (parent && parent.querySelector('[data-bulk-back]')) || document.activeElement;
+    var parts = component.createConfirm({
+      title: '返回重新选择？',
+      message: '返回后当前文件和校验结果将被清空，需要重新上传。',
+      cancelLabel: '取消', confirmLabel: '确认返回'
+    });
+    var dialog = parts.dialog, finished = false;
+    bulkReturnDialog = dialog;
+    dialog.dataset.gaipModalId = 'config-bulk-import-return-confirm';
+    dialog.setAttribute('data-bulk-return-dialog', '');
+    parts.cancel.setAttribute('data-bulk-return-cancel', '');
+    parts.confirm.setAttribute('data-bulk-return-confirm', '');
+    function dismiss(confirmed, restoreFocus) {
+      if (finished) return;
+      finished = true;
+      if (bulkReturnDialog === dialog) { bulkReturnDialog = null; bulkReturnDismiss = null; }
+      if (dialog.open) dialog.close();
+      dialog.remove();
+      if (confirmed && parent && parent === bulkImportDialog && bulkImportState) {
+        resetBulkImportState(); renderBulkImportStep();
+      }
+      if (restoreFocus) {
+        var nextFocus = confirmed && parent && parent.isConnected ? parent.querySelector('[data-bulk-channel-select]') : returnFocus;
+        if (nextFocus && nextFocus.isConnected) nextFocus.focus();
+      }
+    }
+    bulkReturnDismiss = dismiss;
+    parts.cancel.addEventListener('click', function () { dismiss(false, true); });
+    parts.close.addEventListener('click', function () { dismiss(false, true); });
+    parts.confirm.addEventListener('click', function () { dismiss(true, true); });
+    dialog.addEventListener('cancel', function (event) { event.preventDefault(); dismiss(false, true); });
+    dialog.addEventListener('close', function () { dismiss(false, true); }, { once: true });
+    page.appendChild(dialog);
+    if (window.__GAIP_MODAL_POSITION__) window.__GAIP_MODAL_POSITION__.adopt(dialog);
+    dialog.showModal(); parts.cancel.focus();
+    return dialog;
   }
 
   function resetBulkImportState() {
@@ -651,14 +675,12 @@
       if (overlay) overlay.setAttribute('aria-hidden', 'false');
     }
     dialog.addEventListener('click', function (event) {
-      var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-result-preview],[data-bulk-return-cancel],[data-bulk-return-confirm],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
+      var target = event.target.closest('[data-bulk-close],[data-bulk-sample],[data-bulk-validate],[data-bulk-back],[data-bulk-download-fail],[data-bulk-confirm],[data-bulk-again],[data-bulk-result-preview],[data-bulk-department-option],[data-bulk-node-toggle],[data-bulk-search-clear]');
       if (!target) return;
       if (target.hasAttribute('data-bulk-close')) closeBulkImportDialog();
       else if (target.hasAttribute('data-bulk-sample')) { bulkImportState.fileName = '组织成员批量导入示例.xlsx'; bulkImportState.fileError = ''; renderBulkImportStep(); }
       else if (target.hasAttribute('data-bulk-validate') && !target.disabled) { bulkImportState.step = 2; renderBulkImportStep(); }
-      else if (target.hasAttribute('data-bulk-back')) showBulkImportReturnConfirm();
-      else if (target.hasAttribute('data-bulk-return-cancel')) target.closest('[data-bulk-confirm-layer]').remove();
-      else if (target.hasAttribute('data-bulk-return-confirm')) { target.closest('[data-bulk-confirm-layer]').remove(); resetBulkImportState(); renderBulkImportStep(); }
+      else if (target.hasAttribute('data-bulk-back')) showBulkImportReturnConfirm(target);
       else if (target.hasAttribute('data-bulk-download-fail')) downloadBulkImportFailures();
       else if (target.hasAttribute('data-bulk-confirm')) { addBulkImportMembers(); bulkImportState.step = 3; renderBulkImportStep(); }
       else if (target.hasAttribute('data-bulk-again')) { resetBulkImportState(); renderBulkImportStep(); }
@@ -718,14 +740,21 @@
       setBulkImportFile(file);
     });
     dialog.addEventListener('dragend', clearBulkImportDragState);
-    dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeBulkImportDialog(); });
+    dialog.addEventListener('cancel', function (event) {
+      event.preventDefault();
+      if (bulkReturnDismiss) bulkReturnDismiss(false, true);
+      else closeBulkImportDialog();
+    });
     dialog.addEventListener('close', function () {
+      if (bulkReturnDismiss) bulkReturnDismiss(false, false);
       dialog.remove(); if (bulkImportDialog === dialog) bulkImportDialog = null;
       bulkImportState = null;
       if (bulkImportTrigger && bulkImportTrigger.isConnected) bulkImportTrigger.focus();
       bulkImportTrigger = null;
     }, { once: true });
-    page.appendChild(dialog); renderBulkImportStep(); dialog.showModal();
+    page.appendChild(dialog); renderBulkImportStep();
+    if (window.__GAIP_MODAL_POSITION__) window.__GAIP_MODAL_POSITION__.adopt(dialog);
+    dialog.showModal();
     return dialog;
   }
   /* @gaip-modal
@@ -743,15 +772,17 @@
     "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openOrganizationLog", "args": [] },
     "styles": [
       "web/umi.c6286171.css",
-      "shared/styles/global-font.css",
+      "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css",
+      "features/config-center/config-center-content.css?v=20260909-project-font-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260904-73",
+      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/scripts/organization-store.js",
+      "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260904-49"
+      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
     ]
   }
   */
@@ -770,15 +801,48 @@
     "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openBulkImport", "args": [] },
     "styles": [
       "web/umi.c6286171.css",
-      "shared/styles/global-font.css",
+      "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css",
+      "features/config-center/config-center-content.css?v=20260909-project-font-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260904-73",
+      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/scripts/organization-store.js",
+      "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260904-49"
+      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
+    ]
+  }
+  */
+  /* @gaip-modal
+  {
+    "id": "config-bulk-import-return-confirm",
+    "title": "批量导入返回重新选择确认",
+    "channel": "配置中心 / 组织架构 / 批量导入",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "height": 560,
+    "after": "config-announcement-delete",
+    "source": "window.__GAIP_CONFIG_DIALOGS__.openBulkImportReturnConfirmation()",
+    "previewMode": "config-dialog",
+    "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openBulkImportReturnConfirmation", "args": [] },
+    "styles": [
+      "web/umi.c6286171.css",
+      "shared/styles/global-font.css?v=20260909-project-font-1",
+      "features/config-center/ant-source.css",
+      "features/config-center/config-center-content.css?v=20260909-project-font-1",
+      "features/config-center/config-center.css",
+      "shared/styles/global-modal.css?v=20260909-project-font-1"
+    ],
+    "scripts": [
+      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
+      "shared/scripts/organization-store.js",
+      "shared/scripts/organization-tree.js",
+      "features/config-center/source-markup.js?v=20260904-3",
+      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
     ]
   }
   */
@@ -797,15 +861,17 @@
     "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNode", "args": [1] },
     "styles": [
       "web/umi.c6286171.css",
-      "shared/styles/global-font.css",
+      "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css",
+      "features/config-center/config-center-content.css?v=20260909-project-font-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260904-73",
+      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/scripts/organization-store.js",
+      "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260904-49"
+      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
     ]
   }
   */
@@ -824,17 +890,19 @@
     "invoke": { "path": "__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation", "args": [1] },
     "styles": [
       "web/umi.c6286171.css",
-      "shared/styles/global-font.css",
+      "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css",
+      "features/config-center/config-center-content.css?v=20260909-project-font-1",
       "features/config-center/config-center.css",
-      "shared/styles/global-modal.css?v=20260904-4"
+      "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260904-73",
-      "shared/scripts/global-modal.js?v=20260904-5",
+      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
+      "shared/scripts/organization-store.js",
+      "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260904-52"
+      "features/config-center/config-center.js?v=20260910-tabs-motion-1"
     ]
   }
   */
@@ -1114,22 +1182,12 @@
     var hiddenBelow = -1;
     departments.forEach(function (department) {
       var id = department.id, depth = department.depth;
-      var row = (rowTemplates[id] || leafTemplate).cloneNode(true);
-      row.dataset.department = id; row.dataset.depth = depth;
-      row.querySelector('.ant-tree-indent').innerHTML = '<span class="ant-tree-indent-unit"></span>'.repeat(depth);
       var name = id === 'all' ? channels[state.channel] : department.name;
-      var label = row.querySelector('.treeNodeName___mtuTp'); label.textContent = label.title = name;
       var children = departments.some(function (item) { return item.parent === id; });
-      var toggle = row.querySelector('.ant-tree-switcher');
       var isCollapsed = children && isDepartmentCollapsed(department);
-      var folderIcon = row.querySelector('.folderIcon___yjhFX');
-      if (folderIcon) {
-        folderIcon.src = children && !isCollapsed ? 'features/config-center/assets/folder-open.svg?v=20260904-4' : 'features/config-center/assets/folder.png';
-        folderIcon.alt = '';
-      }
-      toggle.className = 'ant-tree-switcher ' + (children ? (isCollapsed ? 'ant-tree-switcher_close' : 'ant-tree-switcher_open') : 'ant-tree-switcher-noop');
-      toggle.innerHTML = children ? switcherMarkup : '';
-      toggle.removeAttribute('data-collapse'); toggle.removeAttribute('role'); toggle.removeAttribute('tabindex'); toggle.removeAttribute('aria-label');
+      var row=window.__GAIP_ORG_TREE__.node({id:organization.key(state.channel,id),name:name,depth:depth,children:children,expanded:!isCollapsed,selected:id===state.department,template:rowTemplates[id]||leafTemplate,switcherMarkup:switcherMarkup});
+      row.dataset.department = id; row.dataset.depth = depth;
+      var toggle = row.querySelector('.ant-tree-switcher');
       if (hiddenBelow >= 0 && depth <= hiddenBelow) hiddenBelow = -1;
       row.hidden = hiddenBelow >= 0;
       if (!row.hidden && isCollapsed) hiddenBelow = depth;
@@ -1334,7 +1392,7 @@
         save.disabled = true;
       }
     } else if (action === 'delete') {
-      var blocked = departments.some(function (item) { return item.parent === id; }) || currentMembers.length;
+      var blocked = departments.some(function (item) { return item.parent === id; }) || currentMembers.length || organization.referenced(organization.key(state.channel,id));
       if (!window.__GAIP_MODAL_COMPONENT__) throw new Error('删除部门弹窗缺少共享弹窗组件');
       window.__GAIP_MODAL_COMPONENT__.setConfirmState(dialog, {
         type: 'confirm',
@@ -1342,7 +1400,7 @@
         title: '删除部门',
         closeLabel: '关闭删除部门弹窗',
         message: blocked ? '暂时无法删除“' + department.name + '”' : '确定删除部门“' + department.name + '”吗？',
-        description: blocked ? '该部门仍包含子部门或成员，请先完成迁移或清理。' : '',
+        description: blocked ? '该部门仍包含子部门或成员，或被学情管理引用，请先完成迁移或清理。' : '',
         cancelLabel: '取消',
         confirmLabel: '删除',
         confirmDisabled: blocked
@@ -1393,7 +1451,7 @@
           collapsed[state.channel + ':' + id] = false;
         }
       }
-      renderTree(); renderMembers(); dialog.close();
+      organization.changed(); renderTree(); renderMembers(); dialog.close();
     });
     page.appendChild(dialog); dialog.showModal();
     if (input && action !== 'admin' && action !== 'delete') input.focus();
@@ -1453,6 +1511,7 @@
     toolbar.insertBefore(button, actions);
   }
   function insertBulkImportButton(actions) {
+    if (actions.querySelector('[data-config-bulk-import]')) return;
     var logButton = actions.querySelector('[data-config-log]');
     var uploadIcon = document.createElement('img');
     uploadIcon.src = bulkImportAssetUrl('bulk-import-upload.svg');
@@ -1476,8 +1535,19 @@
   }
   function renderOrganization() {
     closeDepartmentMenu();
-    page.innerHTML = '<div class="pageContainer___QCUaw gaip-config-original">' + sourceMarkup(source.header) +
-      '<div class="content___r0pMd">' + sourceMarkup(source.tree) + '<div class="main___CWrje">' + sourceMarkup(source.toolbar) + sourceMarkup(source.table) + '</div></div></div>';
+    var content = sourceMarkup(source.tree) + '<div class="main___CWrje">' + sourceMarkup(source.toolbar) + sourceMarkup(source.table) + '</div>';
+    var existingContent = page.querySelector('.gaip-config-original > .content___r0pMd');
+    // Do not detach/recreate the header: shared Tab animations need stable nodes.
+    if (existingContent) {
+      existingContent.innerHTML = content;
+      var oldSearch = page.querySelector('.header___Vhyog > .searchWrap___gp0a3');
+      if (oldSearch) oldSearch.remove();
+      var oldMenu = page.querySelector('.gaip-config-more');
+      if (oldMenu) oldMenu.remove();
+    } else {
+      page.innerHTML = '<div class="pageContainer___QCUaw gaip-config-original">' + sourceMarkup(source.header) +
+        '<div class="content___r0pMd">' + content + '</div></div>';
+    }
     var memberPagination = page.querySelector('.table___BX44I .ant-pagination');
     if (memberPagination) memberPagination.remove();
     var organizationHeader = page.querySelector('.pageContainer___QCUaw > .header___Vhyog');
@@ -1490,6 +1560,7 @@
       var selected = Number(tab.dataset.configChannel) === state.channel;
       tab.classList.toggle('tabActive___H5olV', selected); tab.setAttribute('aria-selected', String(selected));
     });
+    if (window.__GAIP_TABS__) window.__GAIP_TABS__.refresh();
     var searchInput = page.querySelector('input[aria-label="搜索成员"]');
     var searchClear = page.querySelector('[data-config-clear]');
     searchInput.value = state.query;
@@ -1534,7 +1605,7 @@
     var previousFocus = document.activeElement;
     dialog.addEventListener('close', function () { dialog.remove(); if (previousFocus && previousFocus.isConnected) previousFocus.focus(); });
     dialog.querySelectorAll('[data-editor-cancel]').forEach(function (button) { button.addEventListener('click', function () { dialog.close(); }); });
-    dialog.querySelectorAll('.ant-input-clear-icon').forEach(function (button) { button.addEventListener('click', function () { var input = button.closest('.ant-input-affix-wrapper').querySelector('input'); input.value = ''; }); });
+    dialog.querySelectorAll('.ant-input-clear-icon').forEach(function (button) { button.addEventListener('click', function () { var input = button.closest('.ant-input-affix-wrapper').querySelector('input'); input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true })); }); });
     var editorDepartment = member ? member.department : state.department;
     var currentMembers = members.filter(function (item) { return item.channel === state.channel && item.department === editorDepartment; });
     var editorRoleState = adminRoleState(editorDepartment, currentMembers);
@@ -1565,7 +1636,22 @@
       });
     }
     dialog.addEventListener('change', syncChoices);
-    account.addEventListener('input', function () { account.setCustomValidity(''); });
+    var validationAttempted = false;
+    var memberFields = member ? [] : [account, nameInput].map(function (input) {
+      input.required = true;
+      return { input: input, feedback: window.__GAIP_MODAL_COMPONENT__.createFieldFeedback(input.closest('.ant-form-item-control'), input) };
+    });
+    function validateMemberField(field) {
+      var input = field.input, value = input.value.trim();
+      var error = !value ? (input === account ? '请输入域账号' : '请输入姓名') :
+        input === account && members.some(function (m) { return m.account === value; }) ? '域账号已存在' : '';
+      field.feedback.set(error);
+      return error ? input : null;
+    }
+    memberFields.forEach(function (field) {
+      field.input.addEventListener('input', function () { if (validationAttempted) validateMemberField(field); });
+    });
+    dialog.addEventListener('close', function () { memberFields.forEach(function (field) { field.feedback.destroy(); }); });
     syncChoices();
     var adjustMemberButton = dialog.querySelector('[data-editor-adjust-node]');
     if (adjustMemberButton) adjustMemberButton.addEventListener('click', function () {
@@ -1573,8 +1659,13 @@
       dialogController.openAdjustNode(member.id, previousFocus);
     });
     dialog.querySelector('[data-editor-save]').addEventListener('click', function () {
-      if (!account.value.trim() || !nameInput.value.trim()) { account.required = nameInput.required = true; account.reportValidity(); nameInput.reportValidity(); return; }
-      if (!member && members.some(function (m) { return m.account === account.value.trim(); })) { account.setCustomValidity('域账号已存在'); account.reportValidity(); return; }
+      validationAttempted = true;
+      var firstInvalid = memberFields.map(validateMemberField).find(Boolean);
+      if (firstInvalid) {
+        if (window.__GAIP_MODAL_CONTROLS__) window.__GAIP_MODAL_CONTROLS__.revealInvalidField(firstInvalid);
+        else firstInvalid.focus({ preventScroll: true });
+        return;
+      }
       var record = member || { id: Math.max.apply(null, [0].concat(members.map(function (m) { return m.id; }))) + 1, channel: state.channel, department: state.department, html: source.rows[2] };
       Object.assign(record, {
         name: nameInput.value.trim(), account: account.value.trim(), phone: phone.value.trim(), email: email.value.trim(),
@@ -1731,6 +1822,10 @@
     openBulkImport: function (trigger) {
       ensureDialogPreviewHost();
       return openBulkImportDialog(trigger);
+    },
+    openBulkImportReturnConfirmation: function (trigger) {
+      ensureDialogPreviewHost();
+      return showBulkImportReturnConfirm(trigger);
     },
     openAdjustNode: function (memberId, trigger) {
       ensureDialogPreviewHost();

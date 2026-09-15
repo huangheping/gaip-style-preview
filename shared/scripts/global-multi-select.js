@@ -57,7 +57,9 @@
         var tag = document.createElement('span');
         tag.className = 'gaipMultiSelect__tag';
         tag.title = option.label;
-        tag.textContent = option.label;
+        var tagText = document.createElement('span');
+        tagText.className = 'gaipMultiSelect__tag-text'; tagText.textContent = option.label;
+        tag.appendChild(tagText);
         selection.appendChild(tag);
       });
 
@@ -102,8 +104,16 @@
       if (selected.has(value)) selected.delete(value);
       else selected.add(value);
       renderSelection();
-      renderOptions();
+      syncOptions();
       notify();
+    }
+
+    // Keep the clicked option connected through the entire bubbling event.
+    // Rebuilding it here makes document-click handlers see a detached "outside" target.
+    function syncOptions() {
+      dropdown.querySelectorAll('[data-value]').forEach(function (item) {
+        item.setAttribute('aria-selected', String(selected.has(item.getAttribute('data-value'))));
+      });
     }
 
     function onDocumentClick(event) {
@@ -156,7 +166,7 @@
       event.stopPropagation();
       selected.clear();
       renderSelection();
-      renderOptions();
+      syncOptions();
       notify();
       control.focus();
     });
@@ -170,7 +180,7 @@
       setValue: function (value) {
         selected = new Set((Array.isArray(value) ? value : []).map(String));
         renderSelection();
-        renderOptions();
+        syncOptions();
       },
       open: function () { setOpen(true); },
       close: function () { setOpen(false); },

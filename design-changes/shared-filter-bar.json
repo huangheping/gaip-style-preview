@@ -1,0 +1,5344 @@
+{
+  "schemaVersion": 1,
+  "page": "shared-filter-bar",
+  "records": [
+    {
+      "id": "shared.filter-bar.tree-clear",
+      "element": ".gaip-filter-bar .gaip-filter-bar__tree-clear",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__tree-clear",
+        "representative": "学情管理所属组织筛选"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "学情主页面及课程学习详情",
+        "组件库同源treeSelect"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "right": {
+          "before": null,
+          "initialLocal": "8px",
+          "target": "30px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__tree-clear"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-10",
+        "gaps": [
+          "独立Chromium组件/学情控制器检查，完整file入口待现场验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-10"
+    },
+    {
+      "id": "shared.filter-bar.tree-input",
+      "element": ".gaip-filter-bar .gaip-filter-bar__tree-input",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__tree-input",
+        "representative": "学情管理所属组织筛选"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "学情主页面及课程学习详情",
+        "组件库同源treeSelect"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-right": {
+          "before": null,
+          "initialLocal": "38px",
+          "target": "64px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__tree-input"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-10",
+        "gaps": [
+          "独立Chromium组件/学情控制器检查，完整file入口待现场验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-10"
+    },
+    {
+      "id": "shared.filter-width.search-wide",
+      "element": ".gaip-filter-bar__field--wide, .gaip-filter-bar__field[data-type=\"search\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__field--wide, .gaip-filter-bar__field[data-type=\"search\"]",
+        "representative": "共享筛选栏对应字段"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default-and-narrow-container",
+        "viewport": "容器320–2200px；640px断点"
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录；弹窗不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "min(100%, 360px); 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex-basis": {
+          "before": null,
+          "initialLocal": "wide字段300px；普通search字段220px",
+          "target": "300px; 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field--wide, .gaip-filter-bar__field[data-type=\"search\"]"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-width.switch",
+      "element": ".gaip-filter-bar__field[data-type=\"switch\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__field[data-type=\"switch\"]",
+        "representative": "共享筛选栏对应字段"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default-and-narrow-container",
+        "viewport": "容器320–2200px；640px断点"
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录；弹窗不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": "min(100%, 220px)",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex": {
+          "before": null,
+          "initialLocal": "1 1 220px",
+          "target": "0 1 auto（按内容占位，不拉伸）",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field[data-type=\"switch\"]"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-width.number-range",
+      "element": ".gaip-filter-bar__field[data-type=\"numberRange\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__field[data-type=\"numberRange\"]",
+        "representative": "共享筛选栏对应字段"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default-and-narrow-container",
+        "viewport": "容器320–2200px；640px断点"
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录；弹窗不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": "min(100%, 220px)",
+          "target": "min(100%, 320px); 容器≤640px: 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "min(100%, 480px); 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex-basis": {
+          "before": null,
+          "initialLocal": "220px",
+          "target": "420px; 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field[data-type=\"numberRange\"]"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-width.range-input",
+      "element": ".gaip-filter-bar__range > .gaip-filter-bar__input",
+      "locator": {
+        "selector": ".gaip-filter-bar__range > .gaip-filter-bar__input",
+        "representative": "共享筛选栏对应字段"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default-and-narrow-container",
+        "viewport": "容器320–2200px；640px断点"
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录；弹窗不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "flex": {
+          "before": null,
+          "initialLocal": "0 1 auto",
+          "target": "1 1 0（两端等宽）",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__range > .gaip-filter-bar__input"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.clear-icon.multi.geometry",
+      "element": "共享多选清除图标",
+      "locator": {
+        "selector": ".gaipMultiSelect .gaipMultiSelect__clear",
+        "representative": "目录独立多选及筛选多选"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "visible",
+        "viewport": null
+      },
+      "appliesTo": [
+        "共享多选",
+        "筛选多选；弹窗仍保留原同尺寸基准"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "20px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "20px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "16px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "transparent；文字×",
+          "target": "transparent url('../assets/modal-clear.svg') center / 16px 16px no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect .gaipMultiSelect__clear"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件Chromium核验，来源整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.1",
+      "element": ".gaip-filter-bar__field[data-type=\"multiSelect\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__field[data-type=\"multiSelect\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(100%, 260px); 容器≤640px: 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "min(100%, 320px); 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field[data-type=\"multiSelect\"]"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件320–2200px容器核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.3",
+      "element": ".gaip-filter-bar__field[data-type=\"dateRange\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__field[data-type=\"dateRange\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(100%, 320px); 容器≤640px: 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "min(100%, 480px); 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex-basis": {
+          "before": null,
+          "initialLocal": "360px",
+          "target": "420px; 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field[data-type=\"dateRange\"]"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件320–2200px容器核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.4",
+      "element": ".gaip-filter-bar__date-shell",
+      "locator": {
+        "selector": ".gaip-filter-bar__date-shell",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__date-shell"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.5",
+      "element": ".gaip-filter-bar .gaip-filter-bar__date",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__date",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff url('../assets/modal-calendar.svg') no-repeat right 12px center / 16px 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__date"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.6",
+      "element": ".gaip-filter-bar .gaip-filter-bar__date:placeholder-shown",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__date:placeholder-shown",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#969da1",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__date:placeholder-shown"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.9",
+      "element": ".gaip-filter-bar__popup, .gaip-filter-bar .gaipMultiSelect__dropdown",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup, .gaip-filter-bar .gaipMultiSelect__dropdown",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-text, #2f3640)",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px/22px var(--gaip-global-font, sans-serif)",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 6px 16px rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__popup, .gaip-filter-bar .gaipMultiSelect__dropdown"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.10",
+      "element": ".gaip-filter-bar__popup",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "max-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "320px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__popup"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.11",
+      "element": ".gaip-filter-bar__popup::backdrop",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup::backdrop",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__popup::backdrop"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.12",
+      "element": ".gaip-filter-bar__popup button",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup button",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__popup button"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.13",
+      "element": ".gaip-filter-bar__option, .gaip-filter-bar .gaipMultiSelect__option",
+      "locator": {
+        "selector": ".gaip-filter-bar__option, .gaip-filter-bar .gaipMultiSelect__option",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "7px 12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__option, .gaip-filter-bar .gaipMultiSelect__option"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.15",
+      "element": ".gaip-filter-bar__option:hover, .gaip-filter-bar__option:focus-visible, .gaip-filter-bar .gaipMultiSelect__option:hover, .gaip-filter-bar .gaipMultiSelect__option:focus-visible",
+      "locator": {
+        "selector": ".gaip-filter-bar__option:hover, .gaip-filter-bar__option:focus-visible, .gaip-filter-bar .gaipMultiSelect__option:hover, .gaip-filter-bar .gaipMultiSelect__option:focus-visible",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(2,91,82,.06)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__option:hover, .gaip-filter-bar__option:focus-visible, .gaip-filter-bar .gaipMultiSelect__option:hover, .gaip-filter-bar .gaipMultiSelect__option:focus-visible"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.16",
+      "element": ".gaip-filter-bar__option[aria-selected=\"true\"], .gaip-filter-bar .gaipMultiSelect__option[aria-selected=\"true\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__option[aria-selected=\"true\"], .gaip-filter-bar .gaipMultiSelect__option[aria-selected=\"true\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(2,91,82,.1)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "500",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__option[aria-selected=\"true\"], .gaip-filter-bar .gaipMultiSelect__option[aria-selected=\"true\"]"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.17",
+      "element": ".gaip-filter-bar__option[aria-selected=\"true\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.18",
+      "element": ".gaip-filter-bar__option[aria-selected=\"true\"]::after",
+      "locator": {
+        "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]::after",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "5px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "9px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "solid var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 2px 2px 0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]::after"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.19",
+      "element": ".gaip-filter-bar__calendar",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.20",
+      "element": ".gaip-filter-bar__calendar-head",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-head",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-head"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.21",
+      "element": ".gaip-filter-bar__calendar-nav",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-nav",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "28px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px !important",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-nav"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.22",
+      "element": ".gaip-filter-bar__year",
+      "locator": {
+        "selector": ".gaip-filter-bar__year",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "66px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__year"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.23",
+      "element": ".gaip-filter-bar__year:focus",
+      "locator": {
+        "selector": ".gaip-filter-bar__year:focus",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__year:focus"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.24",
+      "element": ".gaip-filter-bar__calendar-grid",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-grid",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-grid"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.25",
+      "element": ".gaip-filter-bar__weekday",
+      "locator": {
+        "selector": ".gaip-filter-bar__weekday",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#969da1",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__weekday"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.26",
+      "element": ".gaip-filter-bar__day",
+      "locator": {
+        "selector": ".gaip-filter-bar__day",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__day"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.27",
+      "element": ".gaip-filter-bar__day.is-outside",
+      "locator": {
+        "selector": ".gaip-filter-bar__day.is-outside",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#969da1",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__day.is-outside"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.28",
+      "element": ".gaip-filter-bar__day[aria-current=\"date\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__day[aria-current=\"date\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__day[aria-current=\"date\"]"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.29",
+      "element": ".gaip-filter-bar__day:hover:not(:disabled), .gaip-filter-bar__calendar-nav:hover",
+      "locator": {
+        "selector": ".gaip-filter-bar__day:hover:not(:disabled), .gaip-filter-bar__calendar-nav:hover",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(2,91,82,.06)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__day:hover:not(:disabled), .gaip-filter-bar__calendar-nav:hover"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.30",
+      "element": ".gaip-filter-bar__day[aria-pressed=\"true\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar__day[aria-pressed=\"true\"]",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__day[aria-pressed=\"true\"]"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.31",
+      "element": ".gaip-filter-bar__calendar-footer",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-footer",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-footer"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.32",
+      "element": ".gaip-filter-bar__calendar-action",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-action",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px 12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-action"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.33",
+      "element": ".gaip-filter-bar__calendar-action:hover:not(:disabled)",
+      "locator": {
+        "selector": ".gaip-filter-bar__calendar-action:hover:not(:disabled)",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(2,91,82,.06)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__calendar-action:hover:not(:disabled)"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-filter-bar.34",
+      "element": ".gaip-filter-bar__popup button:disabled",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup button:disabled",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#b4bab8",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f5f6f5",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__popup button:disabled"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-multi-select.0",
+      "element": ".gaipMultiSelect__tag-text",
+      "locator": {
+        "selector": ".gaipMultiSelect__tag-text",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "共享折叠多选及筛选栏"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__tag-text"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.global-multi-select.1",
+      "element": ".gaipMultiSelect__option > span:last-child",
+      "locator": {
+        "selector": ".gaipMultiSelect__option > span:last-child",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "共享折叠多选及筛选栏"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__option > span:last-child"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.0",
+      "element": ".filterDemo",
+      "locator": {
+        "selector": ".filterDemo",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 26px 24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2f3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.1",
+      "element": ".filterDemo__note",
+      "locator": {
+        "selector": ".filterDemo__note",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 0 12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#7b858b",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__note"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.2",
+      "element": ".filterDemo__toggles",
+      "locator": {
+        "selector": ".filterDemo__toggles",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px 24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__toggles"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.3",
+      "element": ".filterDemo__toggles label",
+      "locator": {
+        "selector": ".filterDemo__toggles label",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__toggles label"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.4",
+      "element": ".filterDemo__toggles input",
+      "locator": {
+        "selector": ".filterDemo__toggles input",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__toggles input"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.5",
+      "element": ".filterDemo__values",
+      "locator": {
+        "selector": ".filterDemo__values",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#7b858b",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__values"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.7",
+      "element": ".filterDemo__values pre",
+      "locator": {
+        "selector": ".filterDemo__values pre",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 0 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f5f6f7",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo__values pre"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.controls-fix.components-preview.8",
+      "element": ".filterDemo",
+      "locator": {
+        "selector": ".filterDemo",
+        "representative": "全局组件目录中的筛选示例"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "source-rule",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理筛选栏",
+        "全局组件目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-inline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "全局组件/components-preview.css",
+          "selector": ".filterDemo"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.01",
+      "element": ".gaip-filter-bar",
+      "locator": {
+        "selector": ".gaip-filter-bar",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": "16px 20px",
+          "target": "16px 24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "20px",
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "1px solid #e7e8e7",
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "4px",
+          "target": "var(--gaip-radius-control, 4px)",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-color-text, #2f3640)",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px/22px var(--gaip-global-font, sans-serif)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.02",
+      "element": ".gaip-filter-bar__fields",
+      "locator": {
+        "selector": ".gaip-filter-bar__fields",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px 24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__fields"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.03",
+      "element": ".gaip-filter-bar__field",
+      "locator": {
+        "selector": ".gaip-filter-bar__field",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(100%, 220px); 容器≤640px: 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "min(100%, 280px); 容器≤640px: 100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__field"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件320–2200px容器核验，完整入口视觉未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.04",
+      "element": ".gaip-filter-bar__label",
+      "locator": {
+        "selector": ".gaip-filter-bar__label",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 0 8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "#636d73",
+          "target": "var(--gaip-color-text-secondary, rgba(47,54,64,.65))",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "13px",
+          "target": "13px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": "20px",
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__label"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.05",
+      "element": ".gaip-filter-bar__control",
+      "locator": {
+        "selector": ".gaip-filter-bar__control",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-control-default, 40px)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__control"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.06",
+      "element": ".gaip-filter-bar .gaip-filter-bar__input",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__input",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-control-default, 40px)",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "6px 12px",
+          "target": "8px 12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "1px solid #d9dddc",
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-radius-control, 4px)",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__input"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.07",
+      "element": ".gaip-filter-bar .gaip-filter-bar__input::placeholder",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__input::placeholder",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#969da1",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__input::placeholder"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.08",
+      "element": ".gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled)",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled)",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#24d4c9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled)"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.09",
+      "element": ".gaip-filter-bar .gaip-filter-bar__input:focus, .gaip-filter-bar .gaip-filter-bar__input:focus-visible",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__input:focus, .gaip-filter-bar .gaip-filter-bar__input:focus-visible",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__input:focus, .gaip-filter-bar .gaip-filter-bar__input:focus-visible"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.10",
+      "element": ".gaip-filter-bar .gaip-filter-bar__input[aria-invalid=\"true\"]",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__input[aria-invalid=\"true\"]",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#b82e24",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__input[aria-invalid=\"true\"]"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.11",
+      "element": ".gaip-filter-bar__error",
+      "locator": {
+        "selector": ".gaip-filter-bar__error",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#b82e24",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "18px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__error"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.12",
+      "element": ".gaip-filter-bar .gaip-filter-bar__select",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__select",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "38px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff url('../assets/modal-down.svg') no-repeat right 12px center / 16px 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__select"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立Chromium组件目录已检查；来源课程管理整页未验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.13",
+      "element": ".gaip-filter-bar__search::before",
+      "locator": {
+        "selector": ".gaip-filter-bar__search::before",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "url('../assets/modal-search.svg') center / contain no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__search::before"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.14",
+      "element": ".gaip-filter-bar .gaip-filter-bar__search input",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__search input",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-left": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "38px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__search input"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.15",
+      "element": ".gaip-filter-bar__clear",
+      "locator": {
+        "selector": ".gaip-filter-bar__clear",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "url('../assets/modal-clear.svg') center / 16px 16px no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__clear"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件Chromium尺寸核验；来源整页尚未核验"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.16",
+      "element": ".gaip-filter-bar__range",
+      "locator": {
+        "selector": ".gaip-filter-bar__range",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__range"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.17",
+      "element": ".gaip-filter-bar__separator",
+      "locator": {
+        "selector": ".gaip-filter-bar__separator",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#969da1",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__separator"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.18",
+      "element": ".gaip-filter-bar__switch-line",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-line",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-line"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.19",
+      "element": ".gaip-filter-bar__switch-input",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-input",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-input"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.20",
+      "element": ".gaip-filter-bar__switch-track",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-track",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#c4c9c7",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-track"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.21",
+      "element": ".gaip-filter-bar__switch-track::after",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-track::after",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "50%",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-track::after"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.22",
+      "element": ".gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.23",
+      "element": ".gaip-filter-bar__switch-input:focus-visible + .gaip-filter-bar__switch-track",
+      "locator": {
+        "selector": ".gaip-filter-bar__switch-input:focus-visible + .gaip-filter-bar__switch-track",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "outline-offset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__switch-input:focus-visible + .gaip-filter-bar__switch-track"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.24",
+      "element": ".gaip-filter-bar__actions",
+      "locator": {
+        "selector": ".gaip-filter-bar__actions",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin-left": {
+          "before": null,
+          "initialLocal": null,
+          "target": "auto",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__actions"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.25",
+      "element": ".gaip-filter-bar .gaip-filter-bar__button",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__button",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-control-default, 40px)",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px 16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--filter-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-radius-control, 4px)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__button"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.26",
+      "element": ".gaip-filter-bar .gaip-filter-bar__button:hover",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__button:hover",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__button:hover"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.27",
+      "element": ".gaip-filter-bar .gaip-filter-bar__button--primary",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.28",
+      "element": ".gaip-filter-bar .gaip-filter-bar__button--primary:hover",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary:hover",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary:hover"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.29",
+      "element": ".gaip-filter-bar button:focus-visible",
+      "locator": {
+        "selector": ".gaip-filter-bar button:focus-visible",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "outline-offset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar button:focus-visible"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.30",
+      "element": ".gaip-filter-bar .is-disabled input, .gaip-filter-bar .is-disabled select",
+      "locator": {
+        "selector": ".gaip-filter-bar .is-disabled input, .gaip-filter-bar .is-disabled select",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f5f4f2",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .is-disabled input, .gaip-filter-bar .is-disabled select"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.31",
+      "element": ".gaip-filter-bar .gaipMultiSelect",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.32",
+      "element": ".gaip-filter-bar .gaipMultiSelect__control",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect__control",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect__control"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.33",
+      "element": ".gaip-filter-bar .gaipMultiSelect__control:hover",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect__control:hover",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#24d4c9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect__control:hover"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.34",
+      "element": ".gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__control, .gaip-filter-bar .gaipMultiSelect__control:focus-visible",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__control, .gaip-filter-bar .gaipMultiSelect__control:focus-visible",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__control, .gaip-filter-bar .gaipMultiSelect__control:focus-visible"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.35",
+      "element": ".gaip-filter-bar .gaipMultiSelect__arrow::before",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect__arrow::before",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "interaction",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "url('../assets/modal-down.svg') center / contain no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect__arrow::before"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.36",
+      "element": ".gaip-filter-bar .gaipMultiSelect__clear",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect__clear",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "url('../assets/modal-clear.svg') center / 16px 16px no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect__clear"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立组件Chromium尺寸核验；来源整页尚未核验"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.37",
+      "element": ".gaip-filter-bar .gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox",
+      "locator": {
+        "selector": ".gaip-filter-bar .gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--filter-brand)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar .gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.38",
+      "element": ".gaip-filter-bar",
+      "locator": {
+        "selector": ".gaip-filter-bar",
+        "representative": "课程管理或全局组件目录的首个对应控件"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default",
+        "viewport": "(max-width: 640px)"
+      },
+      "appliesTo": [
+        "课程管理四项筛选",
+        "全局组件目录：可配置筛选栏同源演示；未批量应用其他页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": "20px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar"
+        },
+        {
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "file页面访问受限，实际原生选项面板、下拉裁切及响应式视觉待验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.multi-select.tag-text.default-color",
+      "element": "共享多选已选标签文字",
+      "locator": {
+        "selector": ".gaipMultiSelect__tag, .gaipMultiSelect__overflow",
+        "representative": "课程管理学习群组的‘香港业务’已选标签"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default-selected-tag",
+        "viewport": null
+      },
+      "appliesTo": [
+        "共享折叠多选",
+        "全局筛选栏中的多选已选标签",
+        "全局组件目录同源演示"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "rgba(0, 0, 0, 0.88)",
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__tag, .gaipMultiSelect__overflow"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "已在全局组件目录的真实同源筛选器中核对‘香港业务’计算色为 rgb(47, 54, 64)；完整课程管理入口未重复视觉验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.reset-button.active",
+      "element": "筛选器重置按钮",
+      "locator": {
+        "selector": ".gaip-filter-bar [data-gaip-filter-action=\"reset\"]",
+        "representative": "全局组件目录可配置筛选栏的重置按钮"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "has-resettable-changes",
+        "viewport": null
+      },
+      "appliesTo": [
+        "课程管理共享筛选栏",
+        "全局组件目录同源演示"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "inherit（#2F3640）",
+          "target": "#fff",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": "var(--filter-border)",
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-filter-bar.css",
+          "selector": ".gaip-filter-bar__button--reset-active"
+        },
+        {
+          "path": "shared/scripts/global-filter-bar.js",
+          "selector": "hasResettableChanges / data-active"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "组件目录真实同源实例已核对激活/重置计算色及交互；完整课程管理入口未重复视觉验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    }
+  ]
+}

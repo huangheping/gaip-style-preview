@@ -121,7 +121,9 @@
         selectedItem.classList.remove('ant-menu-item-selected');
         selectedItem.setAttribute('aria-selected', 'false');
       });
-      item.classList.add('ant-menu-item-selected');
+      if (!item.classList.contains('ant-menu-item-selected')) {
+        item.classList.add('ant-menu-item-selected');
+      }
       item.setAttribute('aria-selected', 'true');
       return;
     }
@@ -170,6 +172,40 @@
     }, true);
   }
 
+  function reconcileVirtualSelection(menu) {
+    var key = requestedVirtualChannelKey();
+    var channel = channelConfig && channelConfig.getByKey(key);
+    if (!channel || !channel.virtual) return;
+    var owner = Array.prototype.find.call(menu.children, function (child) {
+      return child.getAttribute('data-gaip-channel') === key;
+    });
+    // Wait for the real channel menu to mount; do not invent a second menu/view map.
+    if (!owner) return;
+    Array.prototype.forEach.call(menu.querySelectorAll('.ant-menu-item-selected'), function (selectedItem) {
+      if (owner.contains(selectedItem)) return;
+      selectedItem.classList.remove('ant-menu-item-selected');
+      selectedItem.setAttribute('aria-selected', 'false');
+    });
+    if (owner.matches('li.ant-menu-item')) {
+      if (!owner.classList.contains('ant-menu-item-selected')) owner.classList.add('ant-menu-item-selected');
+      if (owner.getAttribute('aria-selected') !== 'true') owner.setAttribute('aria-selected', 'true');
+    }
+    // Group controllers retain child selection, aria-current and expanded state.
+  }
+
+  function bindVirtualSelectionGuard(menu) {
+    if (menu.getAttribute('data-gaip-virtual-selection-bound') === 'true') return;
+    menu.setAttribute('data-gaip-virtual-selection-bound', 'true');
+    // Ant hover/focus renders can restore an underlying route's old selected class.
+    // Reconcile before the next paint without clearing legitimate active/hover state.
+    new MutationObserver(function (records) {
+      if (!records.some(function (record) {
+        return record.target.matches('li.ant-menu-item');
+      })) return;
+      reconcileVirtualSelection(menu);
+    }).observe(menu, { attributes: true, attributeFilter: ['class'], subtree: true });
+  }
+
   function ensureLearningMenu() {
     var menu = document.querySelector('.ant-pro-sider-menu .ant-menu, .ant-layout-sider .ant-menu');
     var item;
@@ -181,6 +217,8 @@
     updateMainNavigationIcons(menu);
     updateSelectedState(menu, item);
     bindChannelSwitching(menu);
+    reconcileVirtualSelection(menu);
+    bindVirtualSelectionGuard(menu);
   }
 
   function scheduleEnsure() {

@@ -1,0 +1,98 @@
+/* GAIP table skin. Opt-in only; uses the project's existing typography and brand. */
+.gaip-table {
+  --table-brand: var(--gaip-color-brand, #025b52);
+  --table-line: #e7eae9;
+  --table-muted: #747c80;
+  --gaip-scrollbar-thumb: rgba(47,54,64,.18);
+  display: flex; flex-direction: column; flex: 0 1 auto; min-width: 0; min-height: 0;
+  box-sizing: border-box; overflow: hidden; border: 0; border-radius: 4px;
+  background: #fff; color: #2f3640; font-size: 14px; line-height: 22px;
+}
+.gaip-table *, .gaip-table-tools * { box-sizing: border-box; }
+.gaip-table-tools { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.gaip-table .gaip-table__scroll { flex: 0 1 auto; min-height: 0; overflow: auto; border: 0; overscroll-behavior: contain; background: #fff; }
+.gaip-table .gaip-table__table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; text-align: left; font-size: 14px; }
+.gaip-table .gaip-table__table th, .gaip-table .gaip-table__table td { min-width: 0; padding: 14px 16px; line-height: 22px; border: 0; border-bottom: 1px solid var(--table-line); vertical-align: middle; overflow-wrap: anywhere; }
+.gaip-table .gaip-table__table th { height: 56px; padding-block: 16px; position: sticky; top: 0; z-index: 3; background: #F8F5F3; color: var(--gaip-color-text, #2f3640); font-weight: 500; white-space: nowrap; }
+.gaip-table .gaip-table__table td { background: #fff; }
+.gaip-table .gaip-table__table[data-row-vertical-align="top"] td { vertical-align: top; }
+.gaip-table .gaip-table__table tbody tr:hover td { background: #fafafa; }
+.gaip-table .gaip-table__table tbody tr:last-child td { border-bottom: 0; }
+.gaip-table .gaip-table__table [data-fixed] { position: sticky; z-index: 1; }
+.gaip-table .gaip-table__table [data-fixed="left"] { left: var(--fixed-offset, 0px); border-right: 0; }
+.gaip-table .gaip-table__table [data-fixed="right"] { right: var(--fixed-offset, 0px); border-left: 0; }
+.gaip-table .gaip-table__table th[data-fixed] { z-index: 4; }
+.gaip-table .gaip-table__empty { height: 180px; text-align: center; color: var(--table-muted); }
+.gaip-table__empty .gaip-table__button { margin-top: 12px; }
+.gaip-table .gaip-table__pagination { display: flex; flex: 0 0 auto; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin: 0; min-height: 64px; padding: 16px 20px; border-top: 1px solid var(--table-line); color: var(--table-muted); font-size: 14px; background: #fff; }
+.gaip-table__total { margin-right: auto; white-space: nowrap; }
+.gaip-table__page-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; margin-left: auto; }
+.gaip-table .gaip-table__button, .gaip-table-tools .gaip-table__button,
+.gaip-table .gaip-table__size select { height: 32px; min-height: 32px; min-width: 32px; padding: 4px 10px; margin: 0; border: 1px solid #d9dddc; border-radius: 4px; background: #fff; color: #2f3640; font: inherit; line-height: 22px; box-shadow: none; }
+.gaip-table .gaip-table__button, .gaip-table-tools .gaip-table__button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+.gaip-table .gaip-table__button:hover:not(:disabled), .gaip-table-tools .gaip-table__button:hover:not(:disabled), .gaip-table .gaip-table__size select:hover { border-color: var(--table-brand, #025b52); color: var(--table-brand, #025b52); }
+.gaip-table .gaip-table__button.is-current, .gaip-table .gaip-table__button.is-primary, .gaip-table-tools .gaip-table__button.is-primary { border-color: var(--table-brand, #025b52); color: #fff; background: var(--table-brand, #025b52); }
+.gaip-table .gaip-table__button.is-primary:hover:not(:disabled), .gaip-table-tools .gaip-table__button.is-primary:hover:not(:disabled) { color: #fff; background: #014a43; }
+.gaip-table .gaip-table__button:disabled, .gaip-table-tools .gaip-table__button:disabled { color: #a8afac; border-color: #e7eae9; background: #f5f6f5; cursor: not-allowed; opacity: 1; }
+.gaip-table :is(button, input, select):focus-visible, .gaip-table-tools button:focus-visible { outline: 2px solid #00887b; outline-offset: 2px; }
+.gaip-table .gaip-table__row-actions { display: flex; align-items: center; gap: 8px; }
+.gaip-table .gaip-table__row-actions .gaip-table__button { width: auto; min-width: 32px; padding: 4px; border-color: transparent; background: transparent; color: var(--table-brand); }
+.gaip-table .gaip-table__row-actions .gaip-table__button:hover:not(:disabled) { background: #e8f3f0; border-color: transparent; }
+.gaip-table .gaip-table__row-actions .gaip-table__button.is-danger { color: #b82e24; }
+.gaip-table .gaip-table__row-actions .gaip-table__button.is-danger:hover:not(:disabled) { background: #fff0ee; }
+.gaip-table .gaip-table__row-actions .gaip-table__button:disabled { color: #a8afac; background: transparent; border-color: transparent; }
+.gaip-table__size { margin: 0; }
+.gaip-table .gaip-table__size select { cursor: pointer; padding-right: 24px; }
+.gaip-table__ellipsis { min-width: 16px; text-align: center; }
+.gaip-table-tools .gaip-table__button { height: 36px; min-height: 36px; padding: 6px 16px; }
+@media (max-width: 640px) {
+  .gaip-table .gaip-table__pagination { padding: 12px; }
+  .gaip-table .gaip-table__pagination { gap: 8px; }
+  .gaip-table__page-controls { gap: 4px; }
+}
+
+/* Only the boundary of a fixed group casts a shadow, and only while content is hidden behind it. */
+.gaip-table .gaip-table__table [data-fixed-edge]::after {
+  content: ''; position: absolute; top: 0; bottom: -1px; width: 24px; pointer-events: none;
+  box-shadow: none; transition: box-shadow 160ms ease;
+}
+.gaip-table .gaip-table__table [data-fixed-edge="left"]::after { left: 100%; }
+.gaip-table .gaip-table__table [data-fixed-edge="right"]::after { right: 100%; }
+.gaip-table.has-hidden-left .gaip-table__table [data-fixed-edge="left"]::after { box-shadow: inset 10px 0 8px -8px rgba(47,54,64,.16); }
+.gaip-table.has-hidden-right .gaip-table__table [data-fixed-edge="right"]::after { box-shadow: inset -10px 0 8px -8px rgba(47,54,64,.16); }
+@media (prefers-reduced-motion: reduce) { .gaip-table .gaip-table__table [data-fixed-edge]::after { transition: none; } }
+
+/* Separate visual header; the native vertical scrollbar belongs only to data rows. */
+.gaip-table__head { flex: 0 0 auto; min-width: 0; overflow: hidden; background: #F8F5F3; }
+.gaip-table .gaip-table__semantic-head { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); clip-path: inset(50%); white-space: nowrap; }
+.gaip-table .gaip-table__pagination { min-height: 56px; padding: 12px 16px; }
+.gaip-table .gaip-table__pagination .gaip-table__button { border-color: transparent; background: transparent; }
+.gaip-table .gaip-table__pagination .gaip-table__button:hover:not(:disabled) { background: #f3f6f5; border-color: transparent; }
+.gaip-table .gaip-table__pagination .gaip-table__button.is-current { color: var(--table-brand); border-color: var(--table-brand); background: #fff; }
+.gaip-table .gaip-table__pagination .gaip-table__button:disabled { color: #b6bcb9; background: transparent; }
+.gaip-table .gaip-table__size { margin-left: 8px; }
+
+/* The full-width band paints the native scrollbar's header corner too. */
+.gaip-table__head-band { position: relative; flex: 0 0 auto; min-width: 0; background: #F8F5F3; }
+.gaip-table__head-band::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--table-line); pointer-events: none; }
+.gaip-table .gaip-table__pagination .gaip-table__size-trigger { min-width: 108px; padding: 4px 10px; gap: 12px; justify-content: space-between; border-color: #d9dddc; background: #fff; }
+.gaip-table .gaip-table__pagination .gaip-table__size-trigger:hover:not(:disabled), .gaip-table .gaip-table__pagination .gaip-table__size-trigger[aria-expanded="true"] { border-color: var(--table-brand); background: #fff; }
+.gaip-table__size-icon { flex: 0 0 12px; width: 12px; height: 12px; background: url('../assets/control-down.svg') center / 12px no-repeat; transition: transform 160ms ease; }
+.gaip-table__size-trigger[aria-expanded="true"] .gaip-table__size-icon { transform: rotate(180deg); }
+.gaip-table-size-popup { position: fixed; z-index: 1000; box-sizing: border-box; padding: 4px; overflow: auto; border: 1px solid #e7eae9; border-radius: 4px; background: #fff; box-shadow: 0 6px 18px rgba(47,54,64,.12); color: #2f3640; font-size: 14px; --gaip-scrollbar-thumb: rgba(47,54,64,.18); }
+.gaip-table-size-popup__option { display: block; width: 100%; min-height: 32px; padding: 6px 10px; border: 0; border-radius: 3px; background: transparent; text-align: left; font: inherit; line-height: 20px; color: inherit; cursor: pointer; }
+.gaip-table-size-popup__option:hover, .gaip-table-size-popup__option:focus-visible { outline: none; background: #f3f6f5; }
+.gaip-table-size-popup__option[aria-selected="true"] { color: #025b52; background: #edf6f3; }
+@media (prefers-reduced-motion: reduce) { .gaip-table__size-icon { transition: none; } }
+
+/* One text size for column labels, data, tags, timestamps and row actions. */
+.gaip-table .gaip-table__table :is(th, td, th *, td *) { font-size: 14px; }
+.gaip-table .gaip-table__pagination .gaip-table__button.is-current:hover:not(:disabled) { color: var(--table-brand); border-color: var(--table-brand); background: #edf6f3; }
+
+/* Table-only tags: organization dimensions, existing course-management colors. */
+.gaip-table .gaip-table__tag { display: inline-flex; align-items: center; vertical-align: middle; flex-shrink: 0; height: 20px; padding: 0 8px; border: 0; border-radius: 3px; font-size: 12px; font-weight: 400; line-height: 1; white-space: nowrap; color: #2f3640; background: #e5e6e8; }
+.gaip-table .gaip-table__tag--success { color: #fff; background: #389e0d; }
+.gaip-table .gaip-table__tag--highlight { color: #805b0d; background: #f4d67c; }
+
+/* Compact table labels are the explicit exception to the 14px cell text rule. */
+.gaip-table .gaip-table__table .gaip-table__tag { font-size: 12px; }

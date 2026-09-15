@@ -34,6 +34,7 @@ project: GAIP 本地静态预览版
 
 ## AI 维护入口
 
+- [[docs/visual-change-workflow|视觉样式增量记录]]：每轮样式修改同步旧值和最终目标；记录在 `design-changes/`，标注以新版页面为主，位置和交互由产品文档承担。
 - [[docs/maintenance-workflow|维护流程]]：按任务选择检查，弹窗登记、知识库同步和测试依赖说明。
 - [[docs/agent-skill-audit-2026-09-07|Agent 与 Skill 官方指导审计]]：规则优化、两个仓库 Skill、触发场景与非 Agent/Skill 工程建议。
 - [[docs/official-engineering-baseline|有官方依据的工程基线]]：开发依赖、标准测试命令及可选本地环境/worktree 接入。
@@ -43,5 +44,7 @@ project: GAIP 本地静态预览版
 
 - 双链表达关系，不复制源码。
 - 索引负责定位，不要求每次读取所有笔记。
-- 页面事实变化时更新页面笔记；架构原因变化时新增 ADR；普通样式数值变化只记入当前变更。
+- 页面事实变化时更新页面笔记；架构原因变化时新增 ADR；视觉样式参数只在 `design-changes/` 维护，当前变更留摘要/链接。
 - Git 是代码事实源，知识库是语义事实源。
+
+- [[docs/table-tag-color-mapping-v1|表格标签五色映射方案v1（待定，保留快照）]]

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "page": "15 批量导入成员",
+  "records": [
+    {
+      "id": "config.bulk-import.scope-density",
+      "element": "渠道与目标节点字段、节点列表",
+      "locator": { "selector": ".gaip-bulk-location-section", "representative": "15 批量导入成员 / 第一步" },
+      "state": { "channel": "config/organization", "variant": "default / 节点展开与选择", "viewport": "桌面；高度<=880px且宽度>=641px使用紧凑树高度" },
+      "appliesTo": ["15正式入口和同源预览；不更改16或其他弹窗的标签间距"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "field-label-gap": { "before": null, "initialLocal": "渠道8px；目标节点标题到搜索8px", "target": "两者4px；渠道复用共享label-gap，节点标题使用同一本地密度变量；区域主标题间距不变", "basis": "source" },
+        "toggle.margin-right": { "before": null, "initialLocal": "0px", "target": "8px；叶节点占位同步，保持层级对齐", "basis": "source" },
+        "tree.height": { "before": null, "initialLocal": "144px；紧凑桌面112px", "target": "224px；紧凑桌面192px；保留overflow-y:auto", "basis": "source" },
+        "node-label-row.gap": { "before": null, "initialLocal": null, "target": "16px；左侧标签不收缩，右侧路径占剩余空间并省略", "reason": "new", "basis": "source" }
+      },
+      "sources": ["features/config-center/config-center-content.css", "features/config-center/config-center.js:renderBulkImportStep/updateBulkImportDepartmentTree"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知；实际高度、文字对齐和滚动需浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.visible-surface-height",
+      "element": "白色弹窗面板与外层尺寸关系",
+      "locator": { "selector": ".gaip-bulk-import-dialog > .ant-modal-content", "representative": "15 批量导入成员 / 三个步骤" },
+      "state": { "channel": "config/organization", "variant": "全部步骤", "viewport": "全部；小屏保留原宽度分支" },
+      "appliesTo": ["15正式入口和同源预览"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "host.height": { "before": null, "initialLocal": "min(884px,calc(100dvh - 24px))，另受共享max-height限制；小屏calc(100dvh - 12px)", "target": "min(840px,calc(100dvh - 92px))；小屏calc(100dvh - 92px)，为面板外结果切换器保留可视空间", "basis": "source" },
+        "surface.height": { "before": null, "initialLocal": "calc(100% - 44px)", "target": "100%，可见白色面板与共享居中宿主等高；宽度不变", "basis": "source" }
+      },
+      "sources": ["features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知；原生顶层面板居中及面板外切换按钮点击需要浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.return-confirm-shared-skin",
+      "element": "返回重新选择确认框",
+      "locator": { "selector": "[data-gaip-modal-id=\"config-bulk-import-return-confirm\"]", "representative": "36 批量导入返回重新选择确认" },
+      "state": { "channel": "config/organization", "variant": "普通操作确认 / default与hover" },
+      "appliesTo": ["15第二步返回确认与36独立真实源预览；不更改其他确认弹窗参数"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "width": { "before": null, "initialLocal": "min(420px,100%)，受父导入内容约束", "target": "公共默认--gaip-modal-width:480px，width:min(var(--gaip-modal-width),calc(100vw - 32px))", "basis": "source" },
+        "title.typography": { "before": null, "initialLocal": "17px/25px，字重未独立指定", "target": "共享标题18px/28px、700字重、#2f3640及全局标题字体", "basis": "source" },
+        "message": { "before": null, "initialLocal": "14px/22px，rgba(47,54,64,.6)；上距8px，下距22px", "target": "共享正文14px/22px、400字重、#2f3640；标题正文间距20px，正文到操作区32px", "basis": "source" },
+        "actions": { "before": null, "initialLocal": "间距10px，业务按钮最小92px/高40px/横向18px", "target": "共享操作区间距12px，按钮最小74px/高40px/横向16px；使用公共默认、hover、active、disabled规则", "basis": "source" },
+        "close": { "before": null, "initialLocal": "无右上关闭按钮", "target": "共享关闭SVG：32px热区/16px图形，默认透明，hover为rgba(47,54,64,.06)，active为rgba(47,54,64,.1)", "basis": "source" },
+        "surface": { "before": null, "initialLocal": "24px内距、8px圆角、白底、阴影0 16px 48px rgba(22,31,38,.24)", "target": "共享24px内距、8px圆角、白底、阴影0 12px 32px rgba(17,35,39,.18)；遮罩继续使用公共规则", "basis": "source" }
+      },
+      "sources": ["shared/scripts/global-modal.js:createConfirm/setConfirmState", "shared/styles/global-modal.css", "features/config-center/config-center.js:showBulkImportReturnConfirm"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "真实源共享部件/生命周期及独立预览DOM回归通过；原生顶层、焦点限制与像素视觉需浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.validation-target-width",
+      "element": "校验步骤目标节点摘要",
+      "locator": { "selector": ".gaip-bulk-validation-target", "representative": "15 批量导入成员 / 第二步" },
+      "state": { "channel": "config/organization", "variant": "校验并确认", "viewport": "所有视口，含宽屏内的窄弹窗" },
+      "appliesTo": ["15正式入口和真实源预览的第二步"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "width": { "before": null, "initialLocal": "auto，与统计说明同排争用剩余宽度；仅视口<=960px时分行", "target": "100%，路径strong使用flex:1 1 0%和min-width:0占满标签以外空间；保留单行溢出省略", "basis": "source" },
+        "gap": { "before": null, "initialLocal": "摘要gap:24px；视口<=960px为4px", "target": "目标与统计说明之间gap:8px；所有视口一致", "basis": "source" }
+      },
+      "sources": ["features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "源码宽度/分行约束、深层完整路径title和重开DOM检查通过；实际布局与原生悬停提示需浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.valid-row-background",
+      "element": "可导入整行背景",
+      "locator": { "selector": ".gaip-bulk-table tbody tr.is-valid > td", "representative": "15 第二步 / 可导入行" },
+      "state": { "channel": "config/organization", "variant": "is-valid / default与hover" },
+      "appliesTo": ["15校验表格该状态的全部9个单元格；不影响其他表格"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": { "background-color": { "before": null, "initialLocal": "无状态底色，白色表格背景；只有状态文字为绿色", "target": "default:rgba(2,118,107,.06)；hover:rgba(2,118,107,.1)，沿用原成功色相", "basis": "source" } },
+      "sources": ["features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "全部单元格状态选择器与hover源码声明检查通过；实际整行及hover视觉需浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.invalid-row-background",
+      "element": "校验失败整行背景",
+      "locator": { "selector": ".gaip-bulk-table tbody tr.is-invalid > td", "representative": "15 第二步 / 校验失败行" },
+      "state": { "channel": "config/organization", "variant": "is-invalid / default与hover" },
+      "appliesTo": ["15校验表格该状态的全部9个单元格；不影响其他表格"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": { "background-color": { "before": null, "initialLocal": "无状态底色，白色表格背景；状态及原因文字为红色", "target": "default:rgba(207,19,34,.06)；hover:rgba(207,19,34,.1)，沿用原失败色相", "basis": "source" } },
+      "sources": ["features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "全部单元格状态选择器与hover源码声明检查通过；实际整行及hover视觉需浏览器验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "config.bulk-import.surface-width",
+      "element": "批量导入成员弹窗外框",
+      "locator": { "selector": ".gaip-config-page .gaip-bulk-import-dialog", "representative": "15 批量导入成员" },
+      "state": { "channel": "config/organization", "variant": "选择导入范围/校验并确认/导入结果", "viewport": "保留既有视口约束与640px以下断点" },
+      "appliesTo": ["正式组织架构入口与真实源弹窗预览中的15", "不修改16或其他弹窗宽度"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "min(1100px, calc(100vw - 48px))；640px以下calc(100vw - 24px)",
+          "target": "min(720px, calc(100vw - 48px))，与16调整节点宽度一致；640px以下继续calc(100vw - 24px)。三个步骤同宽，校验表格min-width:1230px不变；高度见visible-surface-height记录",
+          "basis": "source"
+        }
+      },
+      "sources": ["features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "15与16宽度约束相等、滚动边界源码断言及真实流程DOM回归通过；file访问工具受限，实际尺寸观感与表格滚动需刷新验收"] },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    }
+  ]
+}

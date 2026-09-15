@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "page": "共享弹窗副标题",
+  "records": [{
+    "id": "shared-modal.subtitle",
+    "element": "标题区上下文说明",
+    "locator": {"selector": ".gaip-modal-form .gaip-modal__subtitle", "representative": "04 方案客户归属 / 07 活动报名信息"},
+    "state": {"channel": "shared", "variant": "default", "viewport": "沿用业务换行和截断"},
+    "appliesTo": ["04与07真实弹窗及源预览", "后续显式data-gaip-modal-subtitle接入的表单标题区"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "font-size": {"before": null, "initialLocal": "均14px", "target": "14px", "basis": "source"},
+      "font-weight": {"before": null, "initialLocal": "全局400，07另外声明400", "target": "var(--gaip-global-font-weight)，当前400", "basis": "source"},
+      "line-height": {"before": null, "initialLocal": "04为20px，07为22px", "target": "22px", "basis": "source"},
+      "color": {"before": null, "initialLocal": "04 #858c94；07继承正文色", "target": "var(--gaip-modal-muted)，rgba(47,54,64,.68)", "basis": "source"},
+      "margin": {"before": null, "initialLocal": "共享主标题margin已清零；副标题各自未设置统一间距", "target": "副标题8px 0 0，主标题下边距0", "basis": "source"}
+    },
+    "sources": ["shared/scripts/global-modal.js adoptForm", "shared/styles/global-modal.css", "features/proposal-center/proposal-center.css", "features/activity/activity-sync.css"],
+    "verification": {"level": "needs-recheck", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "真实浏览器视觉未验证"]},
+    "status": "active",
+    "updatedAt": "2026-09-08"
+  }]
+}

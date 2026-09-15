@@ -1,0 +1,19 @@
+.gaip-org-tree { max-height: 300px; overflow: auto; overscroll-behavior: contain; padding: 4px 0; }
+.gaip-org-tree .gaip-org-node { display: flex; align-items: center; min-height: 36px; padding: 4px 8px; border-radius: 4px; color: #2f3640; cursor: pointer; font: inherit; }
+.gaip-org-tree .gaip-org-node:hover, .gaip-org-tree .gaip-org-node:focus-visible { background: rgba(2,91,82,.06); outline: none; }
+.gaip-org-tree .gaip-org-node[aria-selected="true"] { background: rgba(2,91,82,.1); color: #025b52; }
+.gaip-org-tree .ant-tree-indent { display: flex; flex: none; }
+.gaip-org-tree .ant-tree-indent-unit { width: 18px; }
+.gaip-org-tree .ant-tree-switcher { display: inline-flex; flex: 0 0 24px; height: 24px; align-items: center; justify-content: center; }
+.gaip-org-tree .ant-tree-node-content-wrapper { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.gaip-org-tree .folderIcon___yjhFX { width: 18px; height: 18px; flex: none; }
+.gaip-org-tree .treeNodeName___mtuTp { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gaip-org-caret { width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 5px solid currentColor; }
+.ant-tree-switcher_open > .gaip-org-caret { transform: rotate(90deg); }
+.gaip-org-empty { padding: 20px 12px; color: #737b82; text-align: center; }
+.gaip-filter-bar__tree-search-shell { position: relative; margin: 8px; }
+.gaip-filter-bar__tree-search { display: block; box-sizing: border-box; width: 100%; height: 36px; margin: 0; padding: 6px 36px 6px 10px; border: 1px solid #d9dddc; border-radius: 4px; font: inherit; color: inherit; background: #fff url('../assets/modal-search.svg') no-repeat right 10px center / 16px; }
+.gaip-filter-bar__tree-search::-webkit-search-cancel-button { appearance: none; }
+.gaip-filter-bar__tree-search-shell .gaip-filter-bar__clear { background-color: #fff; }
+.gaip-filter-bar .gaip-filter-bar__tree-search:focus { outline: none; border-color: #24d4c9; }
+.gaip-filter-bar__tree-all { display: block; width: 100%; padding: 8px 12px; border: 0; background: #fff; color: #025b52; text-align: left; }

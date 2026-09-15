@@ -1,11 +1,46 @@
-/* GAIP shared modal component v1.1.3. Confirmation adopters use gaip-modal classes. */
+/* GAIP shared modal component v1.2.0. Shared primitives; form geometry remains business-owned. */
+/* Confirmations, forms and pages share the two faces in global-font.css. */
+.gaip-modal {
+  --gaip-global-font-weight: 400;
+  font-family: var(--gaip-global-font) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+.gaip-modal.gaip-modal :where(*):not(:where(.gaip-modal__title, .gaip-modal__title *, .iconfont, [class^="iconfont-"], [class*=" iconfont-"])) {
+  font-family: var(--gaip-global-font) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+.gaip-modal-form,
+.gaip-modal-controls,
+.gaip-modal-popup,
+.gaip-page-form,
 .gaip-modal {
   --gaip-modal-width: 480px;
-  --gaip-modal-radius: 8px;
+  --gaip-radius-container: 8px;
+  --gaip-radius-control: 4px;
+  --gaip-modal-radius: var(--gaip-radius-container);
   --gaip-modal-space: 24px;
   --gaip-modal-close-size: 32px;
   --gaip-modal-button-height: 40px;
   --gaip-modal-text: #2f3640;
+  --gaip-modal-body-size: 14px;
+  --gaip-modal-body-line: 22px;
+  --gaip-modal-caption-size: 12px;
+  --gaip-modal-caption-line: 20px;
+  --gaip-modal-field-gap: 20px;
+  --gaip-modal-label-gap: 8px;
+  --gaip-modal-action-gap: 12px;
+  --gaip-modal-placeholder: rgba(47,54,64,.42);
+  --gaip-modal-error: #ff4d4f;
+  --gaip-modal-title-size: 18px;
+  --gaip-modal-title-weight: 700;
+  --gaip-modal-title-line-height: 28px;
+  --gaip-modal-title-body-gap: 20px;
+  --gaip-modal-title-icon-gap: 12px;
+  --gaip-modal-subtitle-size: 14px;
+  --gaip-modal-subtitle-line-height: var(--gaip-modal-body-line);
+  --gaip-modal-subtitle-gap: var(--gaip-modal-label-gap);
   --gaip-modal-muted: rgba(47,54,64,.68);
   --gaip-modal-border: rgba(47,54,64,.18);
   --gaip-modal-brand: #025b52;
@@ -14,6 +49,8 @@
   --gaip-modal-danger: #cf1322;
   --gaip-modal-danger-hover: #a8071a;
   --gaip-modal-danger-active: #820014;
+}
+.gaip-modal {
   width: min(var(--gaip-modal-width), calc(100vw - 32px)) !important;
   max-width: calc(100vw - 32px);
   padding: 0;
@@ -23,6 +60,8 @@
 }
 .gaip-modal--confirm { overflow: visible !important; }
 .gaip-modal--complex { --gaip-modal-width: 520px; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__surface,
+.gaip-modal-form.gaip-modal__surface,
 .gaip-modal .ant-modal-content {
   position: relative;
   padding: var(--gaip-modal-space) !important;
@@ -32,17 +71,34 @@
   box-shadow: 0 12px 32px rgba(17,35,39,.18);
 }
 .gaip-modal .ant-modal-header {
-  margin: 0 40px 20px 0 !important;
+  margin: 0 40px var(--gaip-modal-title-body-gap) 0 !important;
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
 }
-.gaip-modal .gaip-modal__title {
+/* One typography contract, independent of category and nested text markup. */
+:is(.gaip-modal, .gaip-modal-form) .gaip-modal__title.gaip-modal__title,
+:is(.gaip-modal, .gaip-modal-form) .gaip-modal__title.gaip-modal__title :where(span, div, strong, b, em) {
+  font-family: var(--gaip-modal-title-font) !important;
   color: var(--gaip-modal-text) !important;
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  line-height: 28px !important;
+  font-size: var(--gaip-modal-title-size) !important;
+  font-weight: var(--gaip-modal-title-weight) !important;
+  font-style: normal !important;
+  font-synthesis: none;
+  line-height: var(--gaip-modal-title-line-height) !important;
 }
+/* Subtitle typography is shared; wrapping, truncation and header art stay source-owned. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__subtitle,
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__subtitle :where(span, strong, b, em) {
+  font-family: var(--gaip-global-font) !important;
+  font-size: var(--gaip-modal-subtitle-size) !important;
+  font-weight: var(--gaip-global-font-weight) !important;
+  line-height: var(--gaip-modal-subtitle-line-height) !important;
+  color: var(--gaip-modal-muted) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__subtitle { margin: var(--gaip-modal-subtitle-gap) 0 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__title:has(+ .gaip-modal__subtitle) { margin-bottom: 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close:where(.gaip-form-part),
 .gaip-modal .gaip-modal__close {
   position: absolute !important;
   top: 20px !important;
@@ -64,19 +120,23 @@
   transform: none;
   transition: background-color .16s ease, color .16s ease;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close:where(.gaip-form-part):hover,
 .gaip-modal .gaip-modal__close:hover {
   background: rgba(47,54,64,.06) !important;
   color: var(--gaip-modal-text) !important;
   transform: none;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close:where(.gaip-form-part):active,
 .gaip-modal .gaip-modal__close:active {
   background: rgba(47,54,64,.1) !important;
   transform: none;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close:where(.gaip-form-part):focus-visible,
 .gaip-modal .gaip-modal__close:focus-visible {
   outline: 2px solid rgba(2,91,82,.24);
   outline-offset: 2px;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close-icon,
 .gaip-modal .gaip-modal__close-icon {
   display: inline-flex !important;
   align-items: center !important;
@@ -89,6 +149,7 @@
   pointer-events: none;
   transform: none;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close-icon svg,
 .gaip-modal .gaip-modal__close-icon svg {
   display: block;
   width: 16px;
@@ -104,26 +165,79 @@
 .gaip-modal-confirm__message {
   margin: 0;
   color: var(--gaip-modal-text);
-  font-size: 14px;
+  font-size: var(--gaip-modal-body-size);
   font-weight: 400;
-  line-height: 24px;
+  line-height: var(--gaip-modal-body-line);
 }
 .gaip-modal-confirm__description {
   margin: 8px 0 0;
   color: var(--gaip-modal-muted);
-  font-size: 14px;
-  line-height: 22px;
+  font-size: var(--gaip-modal-body-size);
+  line-height: var(--gaip-modal-body-line);
+}
+/* Shared confirmation copy: long account names/URLs must fit without imposing
+   arbitrary breaks on ordinary words. Applies to the real warning copy too. */
+.gaip-modal .gaip-modal-confirm__message,
+.gaip-modal .gaip-modal-confirm__description {
+  min-width: 0;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 .gaip-modal .gaip-modal__footer {
   display: flex !important;
   justify-content: flex-end !important;
-  gap: 12px !important;
+  gap: var(--gaip-modal-action-gap) !important;
   margin: 32px 0 0 !important;
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
 }
-.gaip-modal .gaip-modal__footer > .ant-btn + .ant-btn { margin-inline-start: 0; }
+/* Only the shared footer gap owns spacing; scoped legacy Ant margins must not add to it. */
+.gaip-modal .gaip-modal__footer > .gaip-modal__button { margin: 0 !important; }
+.gaip-modal--system-warning .gaip-modal-confirm__message {
+  color: var(--gaip-modal-text) !important;
+  font-size: var(--gaip-modal-body-size) !important;
+  line-height: var(--gaip-modal-body-line) !important;
+}
+/* Ant warning retains its React paragraph and icon. Only its layout boxes are
+   adapted: icon/title on row one, full-width copy on row two. No new DOM or
+   cancel/close behaviour, and the same title/body gap as normal confirmations. */
+.gaip-modal--system-warning .ant-modal-confirm-body {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--gaip-modal-title-body-gap) !important;
+  column-gap: var(--gaip-modal-title-icon-gap);
+  min-width: 0;
+  margin: 0 !important;
+}
+.gaip-modal--system-warning .ant-modal-confirm-body:has(> .anticon) {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+.gaip-modal--system-warning .ant-modal-confirm-paragraph {
+  display: contents !important;
+}
+.gaip-modal--system-warning .ant-modal-confirm-body > .anticon {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  margin: 0 !important;
+}
+.gaip-modal--system-warning .ant-modal-confirm-body .gaip-modal__title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  min-width: 0;
+  margin: 0 !important;
+}
+.gaip-modal--system-warning .ant-modal-confirm-body:has(> .anticon) .gaip-modal__title {
+  grid-column: 2;
+}
+.gaip-modal--system-warning .ant-modal-confirm-body .gaip-modal-confirm__message {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0 !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button:where(.gaip-form-part),
 .gaip-modal .gaip-modal__button {
   display: inline-flex !important;
   align-items: center !important;
@@ -134,39 +248,46 @@
   border-style: solid !important;
   border-width: 1px !important;
   border-radius: 4px !important;
-  font-size: 14px !important;
-  line-height: 22px !important;
+  font-size: var(--gaip-modal-body-size) !important;
+  line-height: var(--gaip-modal-body-line) !important;
   cursor: pointer;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--secondary:where(.gaip-form-part),
 .gaip-modal .gaip-modal__button--secondary {
   order: 1;
   border-color: var(--gaip-modal-border);
   background: #fff;
   color: var(--gaip-modal-text);
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--secondary:where(.gaip-form-part):not(:disabled):hover,
 .gaip-modal .gaip-modal__button--secondary:not(:disabled):hover {
   border-color: var(--gaip-modal-brand) !important;
   background: #fff !important;
   color: var(--gaip-modal-brand) !important;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--secondary:where(.gaip-form-part):focus-visible,
 .gaip-modal .gaip-modal__button--secondary:focus-visible {
   outline: 2px solid rgba(2,91,82,.24);
   outline-offset: 2px;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--primary:where(.gaip-form-part),
 .gaip-modal .gaip-modal__button--primary {
   order: 2;
   border-color: var(--gaip-modal-brand);
   background: var(--gaip-modal-brand);
   color: #fff;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--primary:where(.gaip-form-part):not(:disabled):hover,
 .gaip-modal .gaip-modal__button--primary:not(:disabled):hover {
   border-color: var(--gaip-modal-brand-hover) !important;
   background: var(--gaip-modal-brand-hover) !important;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--primary:where(.gaip-form-part):not(:disabled):active,
 .gaip-modal .gaip-modal__button--primary:not(:disabled):active {
   border-color: var(--gaip-modal-brand-active) !important;
   background: var(--gaip-modal-brand-active) !important;
 }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button--primary:where(.gaip-form-part):focus-visible,
 .gaip-modal .gaip-modal__button--primary:focus-visible {
   outline: 2px solid rgba(2,91,82,.24);
   outline-offset: 2px;
@@ -177,6 +298,26 @@
   background: rgba(47,54,64,.1);
   color: rgba(47,54,64,.42);
   cursor: not-allowed;
+}
+/* Explicit opt-in: destructive secondary action, preserving an outlined surface. */
+.gaip-modal .gaip-modal__button--secondary.gaip-modal__button--danger-outline {
+  color: var(--gaip-modal-danger);
+  border-color: var(--gaip-modal-danger);
+  background: #fff;
+}
+.gaip-modal .gaip-modal__button--secondary.gaip-modal__button--danger-outline:not(:disabled):hover {
+  color: var(--gaip-modal-danger-hover) !important;
+  border-color: var(--gaip-modal-danger-hover) !important;
+  background: #fff !important;
+}
+.gaip-modal .gaip-modal__button--secondary.gaip-modal__button--danger-outline:not(:disabled):active {
+  color: var(--gaip-modal-danger-active) !important;
+  border-color: var(--gaip-modal-danger-active) !important;
+  background: #fff !important;
+}
+.gaip-modal .gaip-modal__button--secondary.gaip-modal__button--danger-outline:focus-visible {
+  outline: 2px solid rgba(207,19,34,.28);
+  outline-offset: 2px;
 }
 .gaip-modal--danger .gaip-modal__button--primary {
   border-color: var(--gaip-modal-danger);
@@ -200,4 +341,557 @@
   background: rgba(47,54,64,.1);
   color: rgba(47,54,64,.42);
   cursor: not-allowed;
+}
+
+/* Shared interiors: forms and confirmations only, never page/Agent/drawer themes.
+   Adapters add semantic classes to source nodes; they do not replace markup. */
+.gaip-modal-kit {
+  --gaip-kit-gap: var(--gaip-modal-field-gap);
+  --gaip-kit-inset: 16px;
+  --gaip-kit-line: rgba(47,54,64,.12);
+  --gaip-kit-soft: rgba(36,212,201,.08);
+  --gaip-kit-selected: rgba(36,212,201,.12);
+  --gaip-kit-error: var(--gaip-modal-error);
+  --gaip-kit-success: #02766b;
+}
+/* The clipping host and painted surface must agree on corner geometry. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit,
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-modal__surface, .gaip-kit-section, .gaip-kit-summary, .gaip-kit-notice, .gaip-kit-list, .gaip-kit-table-wrap) {
+  border-radius: var(--gaip-radius-container) !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-modal__button, .gaip-modal__close, .gaip-kit-option-card, .gaip-kit-attachment, .ant-checkbox-inner, .ant-tree-checkbox-inner, .gaip-bulk-button-count, .ant-tag) {
+  border-radius: var(--gaip-radius-control) !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-list, .gaip-kit-section, .gaip-kit-summary, .gaip-kit-table-wrap) { border: 1px solid var(--gaip-kit-line) !important; box-sizing: border-box; background-color: #fff; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-section-pad { padding: var(--gaip-kit-inset) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-section-title, .gaip-kit-result > h3) { margin: 0; color: var(--gaip-modal-text) !important; font-size: 16px !important; line-height: 24px !important; }
+/* Flat lists share row density; tree indentation and hierarchy remain source-owned. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list { padding: 4px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-flat > :not(:last-child) { border-bottom: 1px solid var(--gaip-kit-line) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-row { border-radius: var(--gaip-radius-control) !important; box-sizing: border-box; color: var(--gaip-modal-text) !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; transition: background-color 160ms, border-color 160ms; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-flat .gaip-kit-list-row { min-height: 48px; padding: 12px 16px !important; border: 0; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-row:hover { background: var(--gaip-kit-soft) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-row:is(.is-selected, .targetItemSelected___w6pga, [aria-selected="true"], [aria-pressed="true"]) { background: var(--gaip-kit-selected) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-row:focus-visible { outline: none; box-shadow: none; text-decoration: underline; text-underline-offset: 3px; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-row:is(:disabled, [aria-disabled="true"]) { color: var(--gaip-modal-muted) !important; background: rgba(47,54,64,.04) !important; cursor: not-allowed; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-list-name { font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; color: var(--gaip-modal-text) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-list-meta, .gaip-kit-count) { font-size: var(--gaip-modal-caption-size) !important; line-height: var(--gaip-modal-caption-line) !important; color: var(--gaip-modal-muted) !important; }
+/* Choice cards reuse the Radio/Checkbox inside; never replace their state/events. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-grid { gap: 12px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-card { min-height: 48px; padding: 10px 12px !important; border: 1px solid var(--gaip-kit-line) !important; background: #fff !important; box-shadow: none !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; align-items: center; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-card:is(:hover, :focus-within) { border-color: #24D4C9 !important; background: var(--gaip-kit-soft) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-card:is(.is-selected, .ant-radio-wrapper-checked, .ant-checkbox-wrapper-checked, :has(input:checked)) { border-color: #24D4C9 !important; background: var(--gaip-kit-selected) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-card:active { border-color: #1FBFB5 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-card.gaip-kit-option-disabled { border-color: var(--gaip-kit-line) !important; background: rgba(47,54,64,.04) !important; cursor: not-allowed; }
+/* Preserve columns, spans and original breakpoints; unify only spacing. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-grid { gap: var(--gaip-kit-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-grid.formRow___xgoev { margin-bottom: var(--gaip-kit-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field { min-width: 0; margin-bottom: var(--gaip-kit-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-grid > .gaip-kit-field { margin-bottom: 0 !important; }
+/* Structural groups are not fields: only one side owns sibling spacing.
+   Keep validation nodes and the date range's columns in their source positions. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-section { margin-block: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-section + .gaip-kit-field-section { margin-top: var(--gaip-kit-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-field-section > .gaip-kit-field:last-of-type { margin-bottom: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-section-heading { margin-bottom: var(--gaip-modal-label-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-bulk-channel-select { margin-top: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-bulk-field-label { display: block; }
+/* Both node pickers retain their source controls and share one full-width search row. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-heading { margin-bottom: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-heading.gaip-bulk-node-heading { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-heading > .gaip-bulk-field-label { margin-bottom: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-search { width: 100% !important; max-width: none !important; min-width: 0; height: 48px !important; box-sizing: border-box; margin: 0 !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-heading + .gaip-kit-node-search { margin-top: 8px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-node-tree { margin-top: 8px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-label { font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; color: var(--gaip-modal-text) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-label:not(.gaip-form-label),
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-form-label-block { margin-bottom: var(--gaip-modal-label-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .ant-form-item-label.gaip-form-label-stack { padding-bottom: var(--gaip-modal-label-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-label.gaip-kit-label-inline { margin-bottom: 0 !important; }
+/* Feedback never forces display: hidden validation and empty states stay hidden. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-help, .gaip-kit-error) { margin-top: 4px !important; font-size: var(--gaip-modal-caption-size) !important; line-height: var(--gaip-modal-caption-line) !important; color: var(--gaip-modal-muted) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-error, .gaip-form-help--error) { color: var(--gaip-kit-error) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-empty { padding: 20px 16px !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; text-align: center; color: var(--gaip-modal-muted) !important; box-sizing: border-box; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-notice { padding: 12px 16px !important; border: 1px solid var(--gaip-kit-line); background: rgba(47,54,64,.025); font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; color: var(--gaip-modal-muted) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-notice-error { border-color: rgba(255,77,79,.22); color: var(--gaip-kit-error) !important; background: rgba(255,77,79,.06); }
+/* Count stays in normal flow OUTSIDE the textarea's scroll viewport. Padding
+   inside a scrolling textarea cannot reserve a fixed overlay slot mid-scroll. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-form-input-shell.gaip-kit-counted.gaip-form-textarea-shell { position: relative; padding: 0 !important; }
+/* Ant's inline baseline strut becomes a separate blank line before a block
+   textarea. Remove it only from adopted textarea shells, never single inputs. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell.gaip-form-textarea-shell::before {
+  content: none !important;
+  display: none !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-counted .ant-input-suffix { position: static !important; display: contents !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-counted .gaip-kit-count {
+  position: static !important;
+  display: block !important;
+  float: none !important;
+  inset: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 12px 4px !important;
+  text-align: right;
+  transform: none !important;
+  pointer-events: none;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-counted textarea.gaip-form-control {
+  display: block !important;
+  box-sizing: border-box;
+  padding: 10px 12px !important;
+  min-height: calc(var(--gaip-modal-body-line) + 20px) !important;
+}
+/* The resize affordance belongs to the complete field, not its scrolling text
+   viewport. Its controller changes only the original textarea's height. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-host { position: relative; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-host textarea.gaip-mc-resize-source { resize: none !important; display: block !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-counted.gaip-mc-resize-host .gaip-kit-count { padding-right: 24px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-handle {
+  position: absolute !important; inset: auto 2px 2px auto !important;
+  display: block !important; width: 16px !important; height: 16px !important;
+  min-width: 0 !important; min-height: 0 !important; margin: 0 !important;
+  padding: 0 !important; border: 0 !important; border-radius: 0 !important;
+  background: transparent !important; box-shadow: none !important; outline: none !important;
+  color: var(--gaip-modal-muted); cursor: ns-resize; touch-action: none; z-index: 1;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-handle::after {
+  content: ''; position: absolute; right: 1px; bottom: 1px; width: 10px; height: 10px;
+  background: linear-gradient(135deg, transparent 45%, currentColor 45%, currentColor 55%, transparent 55%, transparent 70%, currentColor 70%, currentColor 80%, transparent 80%);
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-handle:is(:hover, :focus-visible) { color: #24D4C9; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-mc-resize-handle:disabled { visibility: hidden; }
+/* Import steps, attachment rows, tables, summaries: source structure/data retained. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps { padding-inline: 24px !important; border-bottom-color: var(--gaip-kit-line); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps > li { min-height: 56px; gap: 8px; color: var(--gaip-modal-muted); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps > li > span { width: 24px; height: 24px; border-radius: 50% !important; font-size: var(--gaip-modal-caption-size); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps > li > strong { font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps > li:is(.is-active, .is-complete) { color: var(--gaip-modal-brand); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-steps > li.is-active > span { color: #fff; border-color: var(--gaip-modal-brand); background: var(--gaip-modal-brand); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-attachment { padding: 8px 12px !important; min-height: 36px; gap: 8px; background: rgba(47,54,64,.025); font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-table :is(th, td) { padding: 12px 16px !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; border-bottom-color: var(--gaip-kit-line) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-table th { background: #edf6f5 !important; color: var(--gaip-modal-muted) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary-grid { gap: 12px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary { padding: 12px 16px !important; gap: 8px; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary > span { font-size: var(--gaip-modal-caption-size) !important; line-height: var(--gaip-modal-caption-line) !important; color: var(--gaip-modal-muted) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary > strong { font-size: 16px !important; line-height: 24px !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary.is-success > strong { color: var(--gaip-kit-success); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-summary.is-error > strong { color: var(--gaip-kit-error); }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-result > p { margin: 8px 0 16px !important; font-size: var(--gaip-modal-body-size) !important; line-height: var(--gaip-modal-body-line) !important; color: var(--gaip-modal-muted) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-actions { gap: var(--gaip-modal-action-gap) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-actions > .gaip-modal__button { margin: 0 !important; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls.gaip-modal-kit :is(.ant-checkbox-inner, .ant-tree-checkbox-inner) { border-radius: var(--gaip-radius-control) !important; }
+/* Text roles override legacy child declarations, not icons or semantic states. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-label, .gaip-kit-list-name, .gaip-kit-option-card, .gaip-kit-list-row, .gaip-kit-empty, .gaip-kit-notice) {
+  font-size: var(--gaip-modal-body-size) !important;
+  line-height: var(--gaip-modal-body-line) !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-kit-help, .gaip-kit-error, .gaip-kit-list-meta, .gaip-kit-count) {
+  font-size: var(--gaip-modal-caption-size) !important;
+  line-height: var(--gaip-modal-caption-line) !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-disabled { opacity: 1; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-kit-option-disabled :is(.gaip-kit-list-name, .gaip-kit-list-meta) { color: var(--gaip-modal-placeholder) !important; }
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-modal__form-footer .gaip-modal__actions { padding: 0 !important; }
+@media (max-width: 640px) {
+  .gaip-modal-kit { --gaip-modal-field-gap: 16px; --gaip-kit-inset: 12px; }
+}
+
+/* Field primitives are shared by real forms and their source-backed previews.
+   Do not set textarea height, resize, width or grid layout: those belong to content. */
+.gaip-modal-controls, .gaip-modal-popup { --gaip-form-interaction: #24D4C9; --gaip-form-active: #1FBFB5; }
+.gaip-modal-controls {
+  --gaip-form-control-height: 48px;
+  --gaip-form-control-radius: var(--gaip-radius-control);
+  --gaip-form-control-padding: 12px;
+  --gaip-form-text-size: var(--gaip-modal-body-size);
+  --gaip-form-text-line: var(--gaip-modal-body-line);
+  --gaip-form-placeholder: var(--gaip-modal-placeholder);
+  --gaip-form-error: var(--gaip-modal-error);
+  --gaip-form-focus-ring: none;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-form-control, .gaip-form-label, .gaip-form-textarea-shell) {
+  font-family: var(--gaip-global-font) !important;
+  font-weight: var(--gaip-global-font-weight) !important;
+  font-size: var(--gaip-form-text-size) !important;
+  line-height: var(--gaip-form-text-line) !important;
+  color: var(--gaip-modal-text) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-label-stack {
+  padding-bottom: var(--gaip-modal-label-gap) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-label-block {
+  margin-bottom: var(--gaip-modal-label-gap) !important;
+}
+/* Required markers: one leading star, shared spacing/color. Only presentation;
+   source required flags, group constraints, label links and React nodes stay. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.ant-form-item-required:not(.ant-form-item-required-mark-optional), .gaip-activity-modal__label)::before {
+  content: "*" !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  color: var(--gaip-modal-error) !important;
+  font-size: 14px !important;
+  line-height: inherit !important;
+  margin-inline: 0 4px !important;
+}
+/* The clue source replaces Ant's leading star with an :after star. Undo that
+   source exception only, without removing other forms' optional label colons. */
+:is(.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit.createClueWrapper___mpoSg, .createClueWrapper___mpoSg .gaip-modal-kit.gaip-modal-kit.gaip-modal-kit, .gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .createClueWrapper___mpoSg) .ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+  content: none !important;
+  display: none !important;
+}
+/* Literal stars in native/React labels are visually ordered first, not moved
+   in the DOM. Anonymous text flex items retain their natural wrapping. */
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-announcement-section-heading h3:has(> span[aria-hidden="true"]),
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit .gaip-adjust-target-heading > label:has(> span),
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit label:has(> .required___AKcPW) {
+  display: flex !important;
+  align-items: baseline !important;
+  column-gap: 4px !important;
+}
+.gaip-modal-kit.gaip-modal-kit.gaip-modal-kit :is(.gaip-announcement-section-heading h3 > span[aria-hidden="true"], .gaip-adjust-target-heading > label > span, label > .required___AKcPW) {
+  order: -1 !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  color: var(--gaip-modal-error) !important;
+  font-size: 14px !important;
+  line-height: inherit !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-form-control, .gaip-form-input-shell) {
+  box-sizing: border-box;
+  border: 1px solid var(--gaip-modal-border) !important;
+  border-radius: var(--gaip-form-control-radius) !important;
+  background-color: #fff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(input.gaip-form-control, .gaip-form-input-shell) {
+  height: var(--gaip-form-control-height) !important;
+  padding: 0 var(--gaip-form-control-padding) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell {
+  display: inline-flex;
+  align-items: center;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls textarea.gaip-form-control {
+  padding: 10px var(--gaip-form-textarea-end-space, var(--gaip-form-control-padding)) 10px var(--gaip-form-control-padding) !important;
+}
+/* Existing in-field counter needs room; it remains the business component's node. */
+.gaip-modal-controls .gaip-announcement-title-input { --gaip-form-textarea-end-space: 62px; }
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-control::placeholder {
+  color: var(--gaip-form-placeholder) !important;
+  opacity: 1;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-form-control, .gaip-form-input-shell):is(:hover, :active) {
+  border-color: var(--gaip-form-interaction) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-control:focus,
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell:focus-within {
+  border-color: var(--gaip-form-interaction) !important;
+  box-shadow: var(--gaip-form-focus-ring) !important;
+}
+/* Use existing validation states, never :invalid (which marks pristine fields). */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.gaip-form-control, .gaip-form-input-shell):active {
+  border-color: var(--gaip-form-active) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-form-item-has-error, .gaip-announcement-form-section.is-error) :is(.gaip-form-control, .gaip-form-input-shell),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-control:is([aria-invalid="true"], .ant-input-status-error),
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell:is(.ant-input-affix-wrapper-status-error, :has([aria-invalid="true"])) {
+  border-color: var(--gaip-form-error) !important;
+  --gaip-form-focus-ring: none;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-control:disabled,
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell:is(.ant-input-affix-wrapper-disabled, :has(input:disabled), :has(textarea:disabled)) {
+  background-color: rgba(47,54,64,.06) !important;
+  color: var(--gaip-form-placeholder) !important;
+  border-color: var(--gaip-modal-border) !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+/* Shell owns border/focus/spacing, inner input keeps value, suffix and clear events. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-control.gaip-form-control--inner {
+  flex: 1;
+  min-width: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls input.gaip-form-control.gaip-form-control--inner { height: 100% !important; }
+/* Counted Ant textareas share the outer field border, not two nested borders.
+   Leave native/React autosize height and the existing count suffix untouched. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-input-shell.gaip-form-textarea-shell {
+  display: block !important;
+  height: auto !important;
+  min-height: var(--gaip-form-control-height);
+  padding: 0 !important;
+}
+/* Counted shells already reserve their own bottom row above. Do not override
+   that padding with this later, equally specific ordinary-textarea rule. */
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-textarea-shell:not(.gaip-kit-counted) textarea.gaip-form-control--inner {
+  padding: 10px var(--gaip-form-control-padding) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-help {
+  margin-top: 4px !important;
+  font-size: var(--gaip-modal-caption-size) !important;
+  line-height: var(--gaip-modal-caption-line) !important;
+  color: var(--gaip-modal-muted) !important;
+}
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-help--error,
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls .gaip-form-help .ant-form-item-explain-error {
+  color: var(--gaip-form-error) !important;
+}
+/* The help wrapper alone owns the 4px gap. Ant's nested error text must
+   not acquire a second margin from the shared error-role rule. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-help .gaip-kit-error {
+  margin-top: 0 !important;
+}
+
+/* One feedback row in the field flow, shared by empty and validation states.
+   Do not reveal hidden errors, move React nodes, or overlay following fields. */
+.gaip-modal-form {
+  --gaip-form-feedback-line: 20px;
+  --gaip-form-feedback-gap: 4px;
+  --gaip-form-feedback-space: calc(var(--gaip-form-feedback-line) + var(--gaip-form-feedback-gap));
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-invalid .ant-select-selector:not(:where(.gaip-modal *)) {
+  border-color: var(--gaip-form-error) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant:not(:where(.gaip-modal *))::after,
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-local:not(:where(.gaip-modal *)):has(> .gaip-form-feedback-message[hidden])::after {
+  content: "";
+  display: block;
+  flex: none;
+  height: var(--gaip-form-feedback-space);
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant:not(:where(.gaip-modal *)):has(> .ant-form-item-additional)::after {
+  content: none;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant > .ant-form-item-additional:not(:where(.gaip-modal *)) {
+  box-sizing: border-box !important;
+  min-height: var(--gaip-form-feedback-space) !important;
+  padding-top: var(--gaip-form-feedback-gap) !important;
+}
+/* Persistent help is additional content, not a substitute for the error row. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant > .ant-form-item-additional:not(:where(.gaip-modal *)):has(> .ant-form-item-extra):not(:has(> .ant-form-item-explain))::before {
+  content: "";
+  display: block;
+  flex: none;
+  height: var(--gaip-form-feedback-line);
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant .ant-form-item-explain:not(:where(.gaip-modal *)),
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant .ant-form-item-extra:not(:where(.gaip-modal *)) {
+  margin: 0 !important;
+  min-height: var(--gaip-form-feedback-line) !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-ant .ant-form-item-explain > div:not(:where(.gaip-modal *)) {
+  margin: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-message:not([hidden]):not(:where(.gaip-modal *)) {
+  display: block !important;
+  position: static !important;
+  min-height: var(--gaip-form-feedback-line) !important;
+  height: auto !important;
+  margin: var(--gaip-form-feedback-gap) 0 0 !important;
+  line-height: var(--gaip-form-feedback-line) !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+/* Ant's negative offset otherwise removes space only after an error appears. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-field > .ant-form-item-margin-offset:not(:where(.gaip-modal *)) {
+  display: none !important;
+}
+/* The reserved row replaces the former field interval; never stack both. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-field:not(:where(.gaip-modal *)),
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-form-feedback-grid:not(:where(.gaip-modal *)) {
+  margin-bottom: 0 !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-kit-field-grid.gaip-form-feedback-grid:not(:where(.gaip-modal *)) {
+  row-gap: 0 !important;
+}
+
+/* Form content hierarchy only. Exclude nested confirmations from every role.
+   Existing field, state and counter rules remain authoritative. */
+.gaip-modal-form {
+  --gaip-form-section-gap: 24px;
+  --gaip-form-section-heading-gap: 12px;
+  --gaip-form-column-gap: 24px;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body:not(:where(.gaip-modal *)) {
+  font-size: var(--gaip-modal-body-size);
+  line-height: var(--gaip-modal-body-line);
+  color: var(--gaip-modal-text);
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-kit-section-title:not(:where(.gaip-modal *)),
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-kit-section-title > span:not([aria-hidden="true"]):not(:where(.gaip-modal *)) {
+  font-family: var(--gaip-global-font) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-kit-section-heading:not(:where(.gaip-modal *)) {
+  margin-bottom: var(--gaip-form-section-heading-gap) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-kit-field-grid:not(:where(.gaip-modal *)) {
+  column-gap: var(--gaip-form-column-gap) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit :is(.gaip-kit-field-section + .gaip-kit-field-section, .gaip-kit-section + .gaip-kit-section):not(:where(.gaip-modal *)) {
+  margin-top: var(--gaip-form-section-gap) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit :is(.clueRoleHint___L8f3v, .gaip-bulk-current-target, .gaip-bulk-current-target > strong):not(:where(.gaip-modal *)) {
+  font-size: var(--gaip-modal-caption-size) !important;
+  line-height: var(--gaip-modal-caption-line) !important;
+  color: var(--gaip-modal-muted) !important;
+  font-weight: 400 !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .clueRoleHint___L8f3v:not(:where(.gaip-modal *)) {
+  margin-top: 4px !important;
+}
+/* The upload heading owns the gap; its padding and the following block must
+   not add a second/third gap. Preserve horizontal padding and source layout. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-bulk-upload-heading:not(:where(.gaip-modal *)) {
+  padding-bottom: 0 !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.gaip-modal-kit .gaip-bulk-upload-content:not(:where(.gaip-modal *)) {
+  padding-top: 0 !important;
+}
+
+/* All ordinary modal scroll layers share the same palette, including portals. */
+[data-gaip-modal-placement="center"],
+.gaip-modal-kit,
+.gaip-modal-popup {
+  --gaip-scrollbar-thumb: rgba(47, 54, 64, .18);
+}
+
+/* Forms retain their width, fields, scroll containers and business handlers. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__surface,
+.gaip-modal-form.gaip-modal__surface { padding: 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-header {
+  position: static !important;
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 24px 64px 20px 24px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__title:where(.gaip-form-part) { margin: 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body {
+  padding-inline: 24px !important;
+  padding-top: 0 !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body.gaip-form-body-after-steps { padding-top: 20px !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body > .gaip-form-body-lead { margin-top: 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body .gaip-modal__form-header {
+  padding-inline: 0 40px !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .editIntroModalActions___xav5R { display: none; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-footer {
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 16px 24px !important;
+  background: transparent !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body .gaip-modal__form-footer {
+  padding-inline: 0 !important;
+}
+/* Shared opt-in footer: currently 23/24 only. Nested legacy footers keep their
+   original DOM parent, but the divider spans the same surface as a sibling footer. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-footer.gaip-modal__form-footer--standard {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: var(--gaip-modal-action-gap) !important;
+  box-sizing: border-box;
+  padding: 16px var(--gaip-modal-space) !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(47,54,64,.08) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__form-body .gaip-modal__form-footer.gaip-modal__form-footer--standard {
+  margin-inline: calc(0px - var(--gaip-modal-space)) !important;
+  padding-inline: var(--gaip-modal-space) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gaip-modal-action-gap) !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__actions > .gaip-modal__button:where(.gaip-form-part) {
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__button:where(.gaip-form-part):disabled {
+  border-color: rgba(47,54,64,.1) !important;
+  background: rgba(47,54,64,.1) !important;
+  color: rgba(47,54,64,.42) !important;
+  cursor: not-allowed;
+}
+/* 23/24 opt into a bounded scroll chain without reparenting React nodes.
+   23 scrolls its Ant body; 24 keeps header/form/footer in that body and scrolls
+   only the middle form. No fixed height: short content stays naturally sized. */
+.gaip-modal-form.editIntroModal___beZtT > .ant-modal-content,
+.gaip-modal-form.modal___wKSui > .ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-height: calc(100vh - 48px);
+  max-height: var(--gaip-modal-max-height, calc(100dvh - 48px));
+  overflow: hidden;
+}
+.gaip-modal-form.editIntroModal___beZtT > .ant-modal-content > .ant-modal-body,
+.gaip-modal-form.modal___wKSui > .ant-modal-content > .ant-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.gaip-modal-form.editIntroModal___beZtT > .ant-modal-content > .ant-modal-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.modal___wKSui > .ant-modal-content > .ant-modal-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+  padding-inline: var(--gaip-modal-space) !important;
+}
+.gaip-modal-form.modal___wKSui > .ant-modal-content > .ant-modal-body > form.form___mvOSV {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-inline: calc(0px - var(--gaip-modal-space));
+  padding-inline: var(--gaip-modal-space);
+}
+/* The body owns the heading inset. Form/standard footer bleed through that
+   inset and restore it once internally, so fields and buttons share one edge. */
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.modal___wKSui .gaip-modal__form-body > .gaip-modal__form-header {
+  padding-inline: 0 40px !important;
+}
+.gaip-modal-form.gaip-modal-form.gaip-modal-form.modal___wKSui .gaip-modal__form-body > .gaip-modal__form-footer.gaip-modal__form-footer--standard {
+  margin-inline: calc(0px - var(--gaip-modal-space)) !important;
+}
+
+/* Same SVG source as confirmation; no replacement of React-owned nodes. */
+.gaip-modal__close--preserve > * { visibility: hidden !important; pointer-events: none; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close--preserve:where(.gaip-form-part) { font-size: 0 !important; }
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close--preserve:where(.gaip-form-part)::before {
+  content: '';
+  display: block !important;
+  position: absolute;
+  inset: 8px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 0;
+  transform: none;
+  background: currentColor;
+  -webkit-mask: var(--gaip-modal-close-image) center / contain no-repeat;
+  mask: var(--gaip-modal-close-image) center / contain no-repeat;
+  pointer-events: none;
 }

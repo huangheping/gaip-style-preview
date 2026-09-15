@@ -7,6 +7,37 @@ const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
 const tick = () => new Promise(resolve => setTimeout(resolve, 45));
 
+function assertBulkScrollBoundary(dialog, validation = false) {
+  const body = dialog.querySelector('[data-bulk-body]');
+  assert.ok(body);
+  const selector = '.gaip-config-page .gaip-bulk-modal-body:not(.is-validation-step)';
+  assert.equal(body.matches(selector), !validation, 'source body receives scrolling only outside validation');
+  for (const region of ['.gaip-bulk-modal-header', '.gaip-bulk-steps', '[data-bulk-footer]']) {
+    const node = dialog.querySelector(region);
+    assert.equal(node.parentElement, body.parentElement, 'fixed ' + region + ' remains a sibling of the scrolling body');
+  }
+  if (!validation && dialog.querySelector('.gaip-bulk-template-link')) {
+    assert.ok(body.contains(dialog.querySelector('.gaip-bulk-template-link')), 'download remains inside the reachable scrolling content');
+  }
+}
+
+function assertBulkValidationPresentation(dialog, expectedPath) {
+  const target = dialog.querySelector('.gaip-bulk-validation-target strong');
+  assert.equal(target.textContent, expectedPath, 'validation keeps the complete path in its source node');
+  assert.equal(target.title, expectedPath, 'native hover hint exposes the complete path, including truncated text');
+  assert.equal(target.children.length, 0, 'path remains text, not markup');
+  assert.equal(target.parentElement.nextElementSibling.className, 'gaip-bulk-validation-meta', 'counts and guidance have their own row after the target');
+  for (const state of ['valid', 'invalid']) {
+    const rows = Array.from(dialog.querySelectorAll('.gaip-bulk-table tbody tr.is-' + state));
+    assert.ok(rows.length, 'fixture includes ' + state + ' rows');
+    for (const row of rows) {
+      assert.equal(row.children.length, 9, 'all validation columns remain');
+      assert.ok(Array.from(row.children).every(cell => cell.matches('.gaip-config-page .gaip-bulk-table tbody tr.is-' + state + ' > td')), 'status color selector covers every cell, not only the status column');
+      assert.equal(row.querySelector('.gaip-bulk-status').textContent.trim(), state === 'valid' ? '✓可导入' : '校验失败', 'color is not the only status cue');
+    }
+  }
+}
+
 async function main() {
   const dom = new JSDOM('<!doctype html><div id="root"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><ul class="ant-menu-root"></ul></aside><main class="ant-pro-layout-content"><div data-test-config-underlay></div><button type="button" class="globalButton___TEST" data-gaip-region="ai-assistant-entry">AI Agent</button></main></div>', {
     url: 'file://' + root + '/index.html#/workspace?gaip-channel=config&gaip-view=organization',
@@ -24,7 +55,7 @@ async function main() {
       return { destroy() { host.replaceChildren(); } };
     }
   };
-  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   await tick();
   const one = selector => { const el = d.querySelector(selector); assert.ok(el, selector); return el; };
   const click = selector => one(selector).click();
@@ -180,7 +211,8 @@ async function main() {
   assert.doesNotMatch(configContentCss, /clueRoleOptions___Y4mLs[^}]*grid-template-columns/, 'clue roles reuse the same flex alignment as referrer roles');
   assert.match(configContentCss, /formModal____MTrk \.ant-modal-content[^}]*padding:\s*0;[^}]*display:\s*flex;[^}]*flex-direction:\s*column;[^}]*overflow:\s*hidden/);
   assert.match(configContentCss, /formModal____MTrk \.ant-modal-header[^}]*margin:\s*0;[^}]*padding:\s*24px 64px 24px 24px;[^}]*flex:\s*0 0 auto/);
-  assert.match(configContentCss, /formModal____MTrk \.ant-modal-body[^}]*padding:\s*0 24px 24px;[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain;[^}]*scrollbar-gutter:\s*stable;[^}]*flex:\s*1 1 auto/);
+  assert.match(configContentCss, /formModal____MTrk \.ant-modal-body[^}]*padding:\s*0 24px 24px;[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain;[^}]*flex:\s*1 1 auto/);
+  assert.doesNotMatch(configContentCss, /formModal____MTrk \.ant-modal-body[^}]*scrollbar-gutter/, 'form modal body keeps the platform-native scrollbar width without reserving a stable gutter');
   assert.match(configContentCss, /footer___UhMLM[^}]*margin:\s*0;[^}]*border-top:[^}]*flex:\s*0 0 auto/);
   assert.match(configContentCss, /adminRolePanel___bd8Dz\[hidden\]\s*\{\s*display:\s*none/);
   assert.match(configContentCss, /@media \(max-width:\s*960px\)[\s\S]*adminRoleWorkspace___u4P8e\s*\{\s*grid-template-columns:\s*190px minmax\(0,\s*1fr\)/);
@@ -220,15 +252,20 @@ async function main() {
   assert.match(configContentCss, /gaip-log-inline \.gaip-log-export:hover[^}]*\{[^}]*background:\s*#155347;[^}]*color:\s*#fff/);
   assert.match(configContentCss, /gaip-log-inline \.gaip-log-export svg\s*\{[^}]*fill:\s*currentColor/);
   assert.match(configContentCss, /gaip-log-inline \.gaip-log-table th\s*\{[^}]*padding:\s*10px 16px;[^}]*background:\s*#f5f5f5;[^}]*color:\s*#2f3640;[^}]*font-size:\s*14px;[^}]*font-weight:\s*500/);
-  assert.match(configContentCss, /gaip-bulk-import-dialog\s*\{[^}]*width:\s*min\(1100px, calc\(100vw - 48px\)\);[^}]*height:\s*min\(884px, calc\(100dvh - 24px\)\)/);
+  assert.match(configContentCss, /gaip-bulk-import-dialog\s*\{[^}]*width:\s*min\(720px, calc\(100vw - 48px\)\);[^}]*height:\s*min\(840px, calc\(100dvh - 92px\)\)/, '15 matches 16 width across all three steps, centering the white surface with room outside for result controls');
+  assert.equal(
+    configContentCss.match(/\.gaip-bulk-import-dialog\s*\{[^}]*?\bwidth:\s*([^;]+)/)[1],
+    configContentCss.match(/\.gaip-adjust-node-dialog\s*\{[^}]*?\bwidth:\s*([^;]+)/)[1],
+    '15 bulk import and 16 adjust node use identical desktop width constraints');
   assert.match(configContentCss, /gaip-bulk-import-dialog\s*\{[^}]*overflow:\s*visible/);
-  assert.match(configContentCss, /gaip-bulk-import-dialog \.ant-modal-content\s*\{[^}]*display:\s*flex;[^}]*flex-direction:\s*column;[^}]*height:\s*calc\(100% - 44px\);[^}]*overflow:\s*hidden/);
+  assert.match(configContentCss, /gaip-bulk-import-dialog \.ant-modal-content\s*\{[^}]*display:\s*flex;[^}]*flex-direction:\s*column;[^}]*height:\s*100%;[^}]*overflow:\s*hidden/);
   assert.match(configContentCss, /gaip-bulk-modal-body\s*\{[^}]*flex:\s*1 1 auto;[^}]*overflow:\s*hidden/);
+  assert.match(configContentCss, /gaip-bulk-modal-body:not\(\.is-validation-step\)\s*\{[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain/, 'first/result step content scrolls instead of clipping the template; validation keeps its table scroll owner');
   assert.match(configContentCss, /gaip-bulk-modal-footer\s*\{[^}]*flex:\s*0 0 auto;[^}]*border-top:[^}]*background:\s*#fff/);
   assert.match(configContentCss, /gaip-bulk-channel-select\s*\{[^}]*width:\s*100%/);
   assert.match(configContentCss, /gaip-bulk-channel-select select\s*\{[^}]*height:\s*38px;[^}]*appearance:\s*none/);
   assert.match(configContentCss, /gaip-bulk-node-search\s*\{[^}]*width:\s*min\(260px,44%\);[^}]*height:\s*34px/);
-  assert.match(configContentCss, /gaip-bulk-node-tree\s*\{[^}]*height:\s*144px;[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain/);
+  assert.match(configContentCss, /gaip-bulk-node-tree\s*\{[^}]*height:\s*224px;[^}]*overflow-y:\s*auto;[^}]*overscroll-behavior:\s*contain/);
   assert.match(configContentCss, /gaip-bulk-template-bar\s*\{[^}]*min-height:\s*64px;[^}]*background:\s*rgba\(59,176,97,\.09\)/);
   assert.match(configContentCss, /gaip-bulk-template-icon img\s*\{[^}]*width:\s*32px;[^}]*height:\s*32px/);
   assert.match(configContentCss, /gaip-bulk-upload-button\s*\{[^}]*height:\s*34px;[^}]*border:\s*1px solid rgba\(47,54,64,\.2\)/);
@@ -237,7 +274,7 @@ async function main() {
   assert.match(configContentCss, /gaip-bulk-import-dialog\.is-dragging-file \.gaip-bulk-drop-overlay\s*\{[^}]*opacity:\s*1;[^}]*visibility:\s*visible/);
   assert.match(configContentCss, /gaip-bulk-button-count\s*\{[^}]*min-width:\s*26px;[^}]*height:\s*18px;[^}]*background:\s*rgba\(255,255,255,\.18\);[^}]*font-size:\s*11px/);
   assert.match(configContentCss, /gaip-bulk-modal-footer\.is-result-step\s*\{\s*display:\s*none/);
-  assert.match(configContentCss, /gaip-bulk-result-preview\s*\{[^}]*position:\s*absolute;[^}]*top:\s*calc\(100% - 32px\);[^}]*left:\s*50%;[^}]*pointer-events:\s*auto/);
+  assert.match(configContentCss, /gaip-bulk-result-preview\s*\{[^}]*position:\s*absolute;[^}]*top:\s*calc\(100% \+ 12px\);[^}]*left:\s*50%;[^}]*pointer-events:\s*auto/);
   assert.match(configContentCss, /gaip-bulk-result-preview\[hidden\]\s*\{\s*display:\s*none/);
   assert.match(configContentCss, /gaip-bulk-result-icon\.is-partial\s*\{[^}]*background:\s*rgba\(250,173,20,\.14\);[^}]*color:\s*#ad6800/);
   assert.match(configContentCss, /gaip-bulk-result-actions\s*\{[^}]*flex-direction:\s*column;[^}]*gap:\s*12px;[^}]*margin:\s*0 auto 32px/);
@@ -246,7 +283,15 @@ async function main() {
   assert.match(configContentCss, /gaip-bulk-result \.gaip-bulk-summary\s*\{[^}]*min-height:\s*68px/);
   assert.doesNotMatch(configContentCss, /gaip-bulk-target-grid/, 'batch import no longer uses two generic selects for its hierarchical target');
   assert.match(configContentCss, /gaip-bulk-modal-body\.is-validation-step\s*\{[^}]*display:\s*flex;[^}]*flex-direction:\s*column/);
+  assert.match(configContentCss, /gaip-bulk-validation-bar\s*\{[^}]*flex-direction:\s*column;[^}]*align-items:\s*stretch;[^}]*gap:\s*8px;/, 'validation summary stacks at every viewport size, including a narrow modal on a wide desktop');
+  assert.match(configContentCss, /gaip-bulk-validation-target\s*\{[^}]*width:\s*100%;[^}]*min-width:\s*0;/);
+  assert.match(configContentCss, /gaip-bulk-validation-target strong\s*\{[^}]*flex:\s*1 1 0%;[^}]*min-width:\s*0;[^}]*text-overflow:\s*ellipsis;/);
+  assert.match(configContentCss, /gaip-bulk-table tbody tr\.is-valid > td\s*\{\s*background-color:\s*rgba\(2,118,107,\.06\);/);
+  assert.match(configContentCss, /gaip-bulk-table tbody tr\.is-invalid > td\s*\{\s*background-color:\s*rgba\(207,19,34,\.06\);/);
+  assert.match(configContentCss, /gaip-bulk-table tbody tr\.is-valid:hover > td\s*\{\s*background-color:\s*rgba\(2,118,107,\.1\);/);
+  assert.match(configContentCss, /gaip-bulk-table tbody tr\.is-invalid:hover > td\s*\{\s*background-color:\s*rgba\(207,19,34,\.1\);/);
   assert.match(configContentCss, /gaip-bulk-table-wrap\s*\{[^}]*flex:\s*1 1 auto;[^}]*min-height:\s*0;[^}]*overflow:\s*auto;[^}]*overscroll-behavior:\s*contain/);
+  assert.match(configContentCss, /\.gaip-bulk-table\s*\{[^}]*min-width:\s*1230px;/, 'narrowing the dialog must retain readable validation columns and internal horizontal scrolling');
   assert.match(configContentCss, /gaip-bulk-table th\s*\{[^}]*position:\s*sticky;[^}]*background:\s*#f5f5f5;[^}]*font-size:\s*14px;[^}]*font-weight:\s*500/);
   const configAssets = w.__GAIP_CHANNEL_CONFIG__.getByKey('config').assets.styles;
   assert.ok(configAssets.some(asset => asset.includes('config-center-content.css')), 'content stylesheet is registered');
@@ -341,6 +386,27 @@ async function main() {
   const addMemberDialog = one('.gaip-config-editor[aria-label="添加成员"]');
   assert.equal(addMemberDialog.querySelector('.footer___UhMLM').parentElement, addMemberDialog.querySelector('.ant-modal-content'), 'member footer is fixed outside the scrolling body');
   assert.equal(addMemberDialog.querySelector('.ant-modal-body .footer___UhMLM'), null);
+  const accountField = addMemberDialog.querySelector('#domainAccount'), nameField = addMemberDialog.querySelector('#userName');
+  const invalidCalls = [];
+  accountField.reportValidity = () => { invalidCalls.push('account'); return false; };
+  nameField.reportValidity = () => { invalidCalls.push('name'); return false; };
+  addMemberDialog.querySelector('[data-editor-save]').click();
+  const accountError = d.getElementById(accountField.getAttribute('aria-describedby')), nameError = d.getElementById(nameField.getAttribute('aria-describedby'));
+  assert.deepEqual(invalidCalls, [], 'field feedback must not invoke browser bubbles');
+  assert.equal(d.activeElement, accountField);
+  assert.equal(accountError.textContent, '请输入域账号'); assert.equal(nameError.textContent, '请输入姓名');
+  assert.ok(!accountError.hidden && !nameError.hidden);
+  accountField.value = 'test-new-account'; accountField.dispatchEvent(new w.Event('input', {bubbles:true}));
+  assert.ok(accountError.hidden); assert.ok(!nameError.hidden, 'correcting one field preserves the other error');
+  addMemberDialog.querySelector('[data-editor-save]').click();
+  assert.equal(d.activeElement, nameField, 'next attempt targets the remaining error');
+  nameField.value = '   '; nameField.dispatchEvent(new w.Event('input', {bubbles:true}));
+  addMemberDialog.querySelector('[data-editor-save]').click();
+  assert.equal(nameError.textContent, '请输入姓名', 'whitespace-only values must also have visible feedback');
+  accountField.value = 'demo_001'; accountField.dispatchEvent(new w.Event('input', {bubbles:true}));
+  assert.equal(accountError.textContent, '域账号已存在'); assert.equal(accountField.getAttribute('aria-invalid'), 'true');
+  accountField.value = 'test-new-account'; accountField.dispatchEvent(new w.Event('input', {bubbles:true}));
+  assert.ok(accountError.hidden);
   assert.deepEqual(Array.from(addMemberDialog.querySelectorAll('.memberRoleOptions___kP3tN [data-member-editor-role]'), input => input.dataset.memberEditorRole), ['organization', 'commission']);
   assert.deepEqual(Array.from(addMemberDialog.querySelectorAll('.memberRoleOptions___kP3tN .ant-checkbox-label'), label => label.textContent), ['组织架构管理员（人管）', '上级佣金归属人（佣金）']);
   assert.equal(addMemberDialog.querySelector('.memberRoleLabel___sY1qM').textContent, '管理员');
@@ -465,15 +531,23 @@ async function main() {
   currentBulkImportButton.click();
   let bulkDialog = one('.gaip-bulk-import-dialog[aria-label="批量导入成员"]');
   assert.equal(bulkDialog.open, true, 'batch import opens its real modal flow');
+  assertBulkScrollBoundary(bulkDialog);
   assert.deepEqual(Array.from(bulkDialog.querySelectorAll('[data-bulk-step] strong'), el => el.textContent), ['选择导入范围', '校验并确认', '导入结果']);
   assert.equal(bulkDialog.querySelector('[data-bulk-step="1"]').getAttribute('aria-current'), 'step');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-modal-header p'), null, 'condensed modal header omits redundant helper copy');
   assert.equal(one('#bulk-target-title').textContent, '选择导入范围');
-  assert.ok(one('[data-bulk-path]').closest('.gaip-bulk-target-heading'), 'current target sits in the range card heading');
+  assert.ok(one('[data-bulk-path]').closest('.gaip-bulk-node-label-row'), 'current target shares the target-node label row');
+  assert.equal(one('[data-bulk-path] strong').title, one('[data-bulk-path] strong').textContent);
+  assert.equal(one('.gaip-bulk-node-label-row').nextElementSibling, one('.gaip-bulk-node-search'), 'search remains below the heading, not beside the selected path');
   const bulkChannelSelect = one('[data-bulk-channel-select]');
   assert.equal(bulkChannelSelect.options.length, 6, 'channel dropdown contains all configured channels');
   assert.equal(bulkChannelSelect.value, '0');
   assert.equal(one('[data-bulk-department-option="all"]').closest('[role="treeitem"]').getAttribute('aria-selected'), 'true');
+  assert.equal(bulkDialog.querySelector('.gaip-bulk-node-check'), null, '15 no longer uses a trailing checkmark');
+  for (const option of bulkDialog.querySelectorAll('[data-bulk-department-option]')) {
+    assert.ok(option.firstElementChild.matches('.gaip-bulk-node-radio[aria-hidden="true"]'), 'shared radio indicator precedes folder/name; source tree selection semantics stay on the row');
+    assert.ok(option.firstElementChild.nextElementSibling.matches('.gaip-bulk-node-folder'));
+  }
   assert.equal(one('[data-bulk-node-toggle="department-1"]').getAttribute('aria-expanded'), 'false', 'target tree starts with first-level branches collapsed');
   assert.equal(one('[data-bulk-department-option="all"] .gaip-bulk-node-folder').classList.contains('is-open'), true, 'expanded batch-import root uses the open-folder state');
   assert.equal(one('[data-bulk-department-option="department-1"] .gaip-bulk-node-folder').classList.contains('is-open'), false, 'collapsed batch-import branch uses the closed-folder state');
@@ -508,11 +582,15 @@ async function main() {
   click('[data-bulk-search-clear]');
   assert.equal(one('[data-bulk-node-search]').value, '');
   click('[data-bulk-node-toggle="department-1"]');
+  assert.equal(bulkDialog.querySelectorAll('[role="treeitem"][aria-selected="true"]').length, 1);
+  assert.equal(one('[data-bulk-department-option="all"]').closest('[role="treeitem"]').getAttribute('aria-selected'), 'true', 'expanding a branch must not select it');
   assert.ok(one('[data-bulk-department-option="department-2"]'), 'target tree branches can expand');
   assert.equal(one('[data-bulk-department-option="department-1"] .gaip-bulk-node-folder').classList.contains('is-open'), true, 'expanded batch-import branch switches to the open-folder state');
   click('[data-bulk-node-toggle="department-2"]');
   assert.deepEqual(Array.from(bulkDialog.querySelectorAll('[data-bulk-department-option^="mock-level-3-"]'), el => el.textContent.trim().replace('✓', '')), ['华东业务组', '机构服务组', '重点客户支持与运营组', '区域客户跟进组'], 'batch import uses the same current-channel third-level nodes as the organization tree');
   click('[data-bulk-department-option="department-2"]');
+  assert.equal(bulkDialog.querySelectorAll('[role="treeitem"][aria-selected="true"]').length, 1, 'selecting a second node replaces the first selection');
+  assert.equal(one('[data-bulk-department-option="all"]').closest('[role="treeitem"]').getAttribute('aria-selected'), 'false');
   assert.match(one('[data-bulk-path]').textContent, /薄荷经纪人 \/ 测试部门 \/ 测试1部/, 'selected target keeps a complete path');
   click('[data-bulk-department-option="all"]');
   assert.equal(bulkDialog.querySelector('[data-bulk-file]').accept, '.xlsx,.xls');
@@ -531,6 +609,7 @@ async function main() {
     target.dispatchEvent(event);
     return event;
   };
+  assert.equal(one('[data-bulk-path] strong').title, one('[data-bulk-path] strong').textContent, 'selection updates the full-path hint');
   const bulkDropOverlay = one('[data-bulk-drop-overlay]');
   assert.equal(bulkDropOverlay.getAttribute('aria-hidden'), 'true');
   dragFile('dragenter', one('.gaip-bulk-modal-header'));
@@ -550,6 +629,7 @@ async function main() {
   assert.ok(one('[data-bulk-upload-file] .gaip-bulk-attachment-icon svg'), 'selected file row includes a paperclip icon');
   click('[data-bulk-validate]');
   assert.equal(one('[data-bulk-step="2"]').getAttribute('aria-current'), 'step');
+  assertBulkScrollBoundary(bulkDialog, true);
   assert.deepEqual(Array.from(bulkDialog.querySelectorAll('.gaip-bulk-table thead th'), el => el.textContent.trim()), ['Excel 行', '用户姓名', '域账号', 'UA 姓名', '持牌地区', '转介绍人', '管理员', '校验状态', '失败原因']);
   const bulkValidationRows = Array.from(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr'));
   assert.equal(bulkValidationRows.some(row => row.children[5].textContent.trim() === '无'), false, 'empty referrers render as a dash');
@@ -558,7 +638,8 @@ async function main() {
   assert.equal(bulkValidationRows[1].children[6].textContent.trim(), '-');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-preview-head'), null, 'validation step omits the repeated title block');
   assert.equal(one('.gaip-bulk-validation-target strong').textContent, '薄荷经纪人', 'target node is the primary validation context');
-  assert.match(one('.gaip-bulk-validation-meta').textContent, /共 18 人.*可导入 2 人.*失败 16 人.*失败行不影响其余成员导入/s, 'counts and handling guidance share one compact line');
+  assertBulkValidationPresentation(bulkDialog, '薄荷经纪人');
+  assert.match(one('.gaip-bulk-validation-meta').textContent, /共 18 人.*可导入 2 人.*失败 16 人.*失败行不影响其余成员导入/s, 'counts and handling guidance remain below the full-width target');
   assert.equal(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr').length, 18);
   assert.equal(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr.is-valid').length, 2);
   assert.equal(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr.is-invalid').length, 16);
@@ -574,15 +655,39 @@ async function main() {
   assert.equal(one('[data-bulk-confirm] > span:first-child').textContent, '确认导入');
   assert.equal(one('[data-bulk-confirm] .gaip-bulk-button-count').textContent, '2人');
   click('[data-bulk-back]');
-  assert.ok(one('[data-bulk-confirm-layer]'), 'returning from validation requires confirmation');
+  const returnDialog = one('[data-bulk-return-dialog]');
+  assert.equal(returnDialog.tagName, 'DIALOG', 'return confirmation uses the native top layer');
+  assert.equal(returnDialog.open, true);
+  assert.equal(returnDialog.dataset.gaipModalComponent, 'v1.2.0');
+  assert.ok(returnDialog.classList.contains('gaip-modal--confirm'));
+  assert.equal(returnDialog.querySelector('.gaip-modal__title').textContent, '返回重新选择？');
+  assert.ok(returnDialog.querySelector('.gaip-modal__close-icon svg'), 'close icon comes from the shared component');
+  assert.ok(returnDialog.querySelector('[data-bulk-return-confirm]').classList.contains('gaip-modal__button--primary'));
+  assert.equal(bulkDialog.contains(returnDialog), false, 'confirmation does not inherit the form surface geometry');
+  assert.equal(d.activeElement, returnDialog.querySelector('[data-bulk-return-cancel]'));
+  click('[data-bulk-back]');
+  assert.equal(d.querySelectorAll('[data-bulk-return-dialog]').length, 1, 'repeated invocation reuses the open confirmation');
   click('[data-bulk-return-cancel]');
-  assert.equal(d.querySelector('[data-bulk-confirm-layer]'), null);
+  assert.equal(d.querySelector('[data-bulk-return-dialog]'), null);
+  assert.equal(d.activeElement, one('[data-bulk-back]'), 'cancel restores focus to the parent action');
   assert.equal(one('[data-bulk-step="2"]').getAttribute('aria-current'), 'step');
+  assert.equal(bulkDialog.querySelectorAll('.gaip-bulk-table tbody tr').length, 18, 'cancel retains validation data');
+  click('[data-bulk-back]'); click('[data-bulk-return-dialog] .gaip-modal__close');
+  assert.equal(d.querySelector('[data-bulk-return-dialog]'), null);
+  assert.equal(bulkDialog.open, true, 'X dismisses only the confirmation');
+  click('[data-bulk-back]');
+  one('[data-bulk-return-dialog]').dispatchEvent(new w.Event('cancel', { cancelable: true }));
+  assert.equal(d.querySelector('[data-bulk-return-dialog]'), null);
+  assert.equal(bulkDialog.open, true, 'Escape dismisses only the top confirmation');
+  assert.equal(d.activeElement, one('[data-bulk-back]'));
   click('[data-bulk-back]'); click('[data-bulk-return-confirm]');
   assert.equal(one('[data-bulk-step="1"]').getAttribute('aria-current'), 'step');
   assert.equal(one('[data-bulk-validate]').disabled, true, 'confirmed return clears the uploaded file');
+  assert.equal(d.querySelector('[data-bulk-return-dialog]'), null);
+  assert.equal(d.activeElement, one('[data-bulk-channel-select]'), 'confirmed return focuses the first-step channel');
   click('[data-bulk-sample]'); click('[data-bulk-validate]'); click('[data-bulk-confirm]');
   assert.equal(one('[data-bulk-step="3"]').getAttribute('aria-current'), 'step');
+  assertBulkScrollBoundary(bulkDialog);
   assert.match(bulkDialog.textContent, /成功导入[\s\S]*2 人/);
   assert.match(bulkDialog.textContent, /导入失败[\s\S]*16 人/);
   assert.equal(one('.gaip-bulk-result h3').textContent, '导入完成，部分失败');
@@ -625,6 +730,10 @@ async function main() {
   assert.equal(one('[data-bulk-result-preview-control]').hidden, true, 'local result switch is hidden outside step three');
   click('.gaip-bulk-import-dialog [data-bulk-close]');
   assert.equal(d.querySelector('.gaip-bulk-import-dialog'), null);
+  w.__GAIP_CONFIG_DIALOGS__.openBulkImport();
+  click('[data-bulk-sample]'); click('[data-bulk-validate]'); click('[data-bulk-back]');
+  one('.gaip-bulk-import-dialog').close();
+  assert.equal(d.querySelector('[data-bulk-return-dialog]'), null, 'closing the parent clears its confirmation without restoring stale focus');
   assert.equal(d.activeElement, currentBulkImportButton, 'closing returns focus to the global import trigger');
 
   // Member node adjustment is shared by the edit dialog and row menu, stays in-channel, and records role-safe moves.
@@ -660,7 +769,7 @@ async function main() {
   assert.equal(d.querySelector('.gaip-adjust-warning-icon'), null, 'administrator move confirmation uses a text hierarchy without a warning icon');
   assert.match(one('[data-adjust-admin-warning]').textContent, /取消其原节点管理员身份.*不会自动成为目标节点管理员/s);
   assert.ok(one('.gaip-adjust-confirm-card').classList.contains('gaip-modal--danger'), 'administrator move confirmation uses the shared danger variant');
-  assert.equal(one('.gaip-adjust-confirm-card').dataset.gaipModalComponent, 'v1.1.3', 'administrator move confirmation uses the current shared component');
+  assert.equal(one('.gaip-adjust-confirm-card').dataset.gaipModalComponent, 'v1.2.0', 'administrator move confirmation uses the current shared component');
   assert.equal(one('.gaip-adjust-confirm-card').querySelectorAll('.gaip-modal__close-icon > .anticon-close').length, 1, 'administrator move confirmation uses exactly one shared close icon');
   assert.ok(one('[data-adjust-warning-confirm]').classList.contains('gaip-modal__button--primary'), 'administrator move confirmation uses the shared primary action');
   click('[data-adjust-warning-cancel]');
@@ -752,7 +861,7 @@ async function testDialogPreviewController() {
   w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
+  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
     w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   }
   const controller = w.__GAIP_CONFIG_DIALOGS__;
@@ -760,10 +869,24 @@ async function testDialogPreviewController() {
   assert.equal(typeof controller.openDepartment, 'function', 'complete department dialog entry is public');
   assert.equal(typeof controller.openOrganizationLog, 'function', 'organization operation log entry is public for the source registry');
   assert.equal(typeof controller.openBulkImport, 'function', 'batch import flow entry is public for the source registry');
+  assert.equal(typeof controller.openBulkImportReturnConfirmation, 'function', 'return confirmation has a direct source preview entry');
   assert.equal(typeof controller.openAdjustNode, 'function', 'member node adjustment entry is public for the source registry');
   assert.equal(typeof controller.openAdjustNodeConfirmation, 'function', 'administrator node confirmation is public for direct component preview');
 
-  let dialog = controller.openMember(1);
+  let dialog = controller.openBulkImportReturnConfirmation();
+  assert.equal(dialog.open, true);
+  assert.equal(dialog.dataset.gaipModalId, 'config-bulk-import-return-confirm');
+  assert.equal(dialog.dataset.gaipModalComponent, 'v1.2.0');
+  assert.equal(d.querySelector('.gaip-bulk-import-dialog'), null, 'standalone confirmation preview does not build or hide the import form');
+  assert.equal(d.querySelectorAll('dialog').length, 1);
+  assert.match(dialog.querySelector('.gaip-modal-confirm__message').textContent, /当前文件和校验结果将被清空/);
+  dialog.querySelector('[data-bulk-return-confirm]').click();
+  assert.equal(d.querySelectorAll('dialog').length, 0, 'standalone confirm closes safely without a parent flow');
+  dialog = controller.openBulkImportReturnConfirmation();
+  dialog.querySelector('.gaip-modal__close').click();
+  assert.equal(d.querySelectorAll('dialog').length, 0);
+
+  dialog = controller.openMember(1);
   assert.equal(dialog.open, true);
   assert.equal(dialog.getAttribute('aria-label'), '编辑成员');
   assert.equal(dialog.querySelector('#domainAccount').value, 'demo_001');
@@ -780,7 +903,7 @@ async function testDialogPreviewController() {
   assert.equal(dialog.open, true);
   assert.equal(dialog.getAttribute('aria-label'), '删除部门');
   assert.equal(dialog.dataset.gaipModalId, 'config-delete');
-  assert.equal(dialog.dataset.gaipModalComponent, 'v1.1.3');
+  assert.equal(dialog.dataset.gaipModalComponent, 'v1.2.0');
   assert.equal(Array.from(dialog.classList).some(className => className.includes('___')), false, 'delete confirmation drops the legacy department modal skin');
   assert.ok(dialog.classList.contains('gaip-modal--confirm'));
   assert.ok(dialog.classList.contains('gaip-modal--danger'));
@@ -830,11 +953,25 @@ async function testDialogPreviewController() {
   dialog = controller.openBulkImport();
   assert.equal(dialog.open, true);
   assert.equal(dialog.getAttribute('aria-label'), '批量导入成员');
+  assertBulkScrollBoundary(dialog);
   assert.equal(dialog.querySelectorAll('[data-bulk-step]').length, 3);
   assert.equal(dialog.querySelector('[data-bulk-file]').accept, '.xlsx,.xls');
+  const previewNodeSearch = dialog.querySelector('[data-bulk-node-search]');
+  previewNodeSearch.value = '重点客户支持与运营组';
+  previewNodeSearch.dispatchEvent(new w.Event('input', { bubbles: true }));
+  dialog.querySelector('[data-bulk-department-option="mock-level-3-key-account"]').click();
+  const previewTargetPath = dialog.querySelector('[data-bulk-path] strong').textContent;
+  assert.match(previewTargetPath, /薄荷经纪人 \/ 测试部门 \/ 测试1部 \/ 重点客户支持与运营组/);
   dialog.querySelector('[data-bulk-sample]').click();
   dialog.querySelector('[data-bulk-validate]').click();
   assert.equal(dialog.querySelectorAll('.gaip-bulk-table tbody tr').length, 18);
+  assertBulkValidationPresentation(dialog, previewTargetPath);
+  assertBulkScrollBoundary(dialog, true);
+  dialog.querySelector('[data-bulk-close]').click();
+  dialog = controller.openBulkImport();
+  dialog.querySelector('[data-bulk-sample]').click();
+  dialog.querySelector('[data-bulk-validate]').click();
+  assertBulkValidationPresentation(dialog, '薄荷经纪人');
   dialog.querySelector('[data-bulk-close]').click();
   dialog = controller.openAdjustNode(1);
   assert.equal(dialog.open, true);

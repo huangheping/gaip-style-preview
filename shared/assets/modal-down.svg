@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ICON/通用/下拉</title>
+    <g id="ICON/通用/下拉" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" opacity="0" x="0" y="0" width="32" height="32"></rect>
+        <polygon id="路径备份" fill="#2F3640" transform="translate(16, 16.3156) rotate(-270) translate(-16, -16.3156)" points="12.8908929 8.31559708 20.9321109 16.3160477 12.8917977 24.3155971 11.0678891 22.3716094 17.2369723 16.3160477 11.0678891 10.1316104"></polygon>
+    </g>
+</svg>

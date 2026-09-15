@@ -45,6 +45,8 @@ async function main() {
     'shared/config/channels.js',
     'shared/scripts/channel-regions.js',
     'features/wealth-center/wealth-nav.js',
+    'shared/scripts/organization-store.js',
+    'shared/scripts/organization-tree.js',
     'features/config-center/source-markup.js',
     'features/config-center/config-center.js'
   ]) w.eval(source(file));

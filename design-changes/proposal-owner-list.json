@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "page": "04 方案客户归属",
+  "records": [{
+    "id": "proposal.owner-list.frame",
+    "element": "客户选择列表容器",
+    "locator": {"selector": ".gaip-owner-dialog > .gaip-owner-list", "representative": "04 方案客户归属"},
+    "state": {"channel": "proposal", "variant": "default/selected/scroll", "viewport": "沿用弹窗响应式宽高和列表弹性高度"},
+    "appliesTo": ["方案中心客户归属真实弹窗", "04 真实源弹窗预览"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "margin": {"before": null, "initialLocal": "0", "target": "0 24px 20px", "basis": "source"},
+      "padding": {"before": null, "initialLocal": "0 4px 0 0", "target": "4px（共享列表）", "basis": "source"},
+      "border": {"before": null, "initialLocal": "无显式边框", "target": "1px solid rgba(47,54,64,.12)", "basis": "source"},
+      "border-radius": {"before": null, "initialLocal": "无显式圆角", "target": "8px（共享容器 token）", "basis": "source"},
+      "background": {"before": null, "initialLocal": "透明，父级白底", "target": "#fff", "basis": "source"}
+    },
+    "sources": ["shared/styles/global-modal.css .gaip-kit-list", "features/proposal-center/proposal-center.css .gaip-owner-list", "参考：web/p__clues__index.29eaa724.chunk.css .targetList___PWUAa（只读）", "用户参考图1和图2"],
+    "verification": {"level": "needs-recheck", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "未进行本轮真实浏览器视觉验收"]},
+    "status": "active",
+    "updatedAt": "2026-09-08"
+  }]
+}

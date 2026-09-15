@@ -36,6 +36,13 @@ const dom = new JSDOM('<!doctype html><html><body><main id="host"></main></body>
 });
 const w = dom.window;
 const d = w.document;
+// Fixture availability is date-dependent; keep the test in its intended period.
+const RealDate = w.Date;
+const fixtureNow = RealDate.parse('2026-09-03T12:00:00Z');
+w.Date = class extends RealDate {
+  constructor(...args) { super(...(args.length ? args : [fixtureNow])); }
+  static now() { return fixtureNow; }
+};
 installDialog(w);
 w.eval(source('shared/scripts/global-modal.js'));
 w.eval(source('features/config-center/announcement-management-data.js'));
@@ -106,6 +113,8 @@ assert.equal(form.querySelector('[data-announcement-title-error]').textContent, 
 assert.equal(form.querySelector('[data-announcement-period-error]').textContent, '请填写完整的展示时间段');
 
 setField(form, 'simplified', '新增公告示例');
+assert.equal(form.querySelector('[data-announcement-title-error]').textContent, '', 'corrected group clears its own error');
+assert.equal(form.querySelector('[data-announcement-period-error]').textContent, '请填写完整的展示时间段', 'unrelated edit must not clear remaining period error');
 setField(form, 'startDate', '2026-10-10');
 setField(form, 'startTime', '09:00:00');
 setField(form, 'endDate', '2026-10-09');
@@ -144,7 +153,8 @@ const css = source('features/config-center/announcement-management.css');
 assert.match(css, /gaip-announcement-page\s*\{[\s\S]*border-top:\s*1px solid rgba\(47, 54, 64, \.12\)/, 'announcement content starts with the shared channel divider');
 assert.match(css, /gaip-announcement-table \.ant-table-thead\s*\{[\s\S]*position:\s*sticky/);
 assert.match(css, /gaip-announcement-modal-header\.ant-modal-header\s*\{[\s\S]*padding:\s*24px 64px 24px 24px/);
-assert.match(css, /gaip-announcement-modal-body > \.gaip-announcement-form\s*\{[\s\S]*padding:\s*0 24px 24px/, 'form keeps 24px horizontal breathing room while the scrollbar stays at the modal edge');
+assert.match(css, /gaip-announcement-modal-body > \.gaip-announcement-form\s*\{[^}]*padding:\s*0 0 24px/, 'inner form does not duplicate shared body horizontal padding');
+assert.match(source('shared/styles/global-modal.css'), /\.gaip-modal__form-body\s*\{[^}]*padding-inline:\s*24px\s*!important/, 'shared body owns the horizontal breathing room');
 assert.match(css, /ant-modal-footer\.gaip-announcement-modal-footer\s*\{[\s\S]*min-height:\s*72px/);
 assert.match(css, /gaip-announcement-modal-footer \.ant-btn\s*\{[\s\S]*min-width:\s*88px;[\s\S]*height:\s*40px/);
 assert.match(css, /ant-pagination-prev svg,[\s\S]*width:\s*14px;[\s\S]*height:\s*14px/);

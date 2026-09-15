@@ -6,9 +6,15 @@
   <meta name="google" content="notranslate">
   <title>真实弹窗预览 - GAIP</title>
   <link rel="shortcut icon" href="../web/favicon.ico">
-  <link rel="stylesheet" href="../shared/styles/global-font.css">
-  <link rel="stylesheet" href="../shared/styles/global-modal-mask.css?v=20260904-1">
-  <link rel="stylesheet" href="../shared/styles/global-modal-position.css?v=20260907-1">
+  <link rel="stylesheet" href="../shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="../shared/styles/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="../shared/styles/global-modal.css?v=20260909-project-font-1">
+  <script defer src="../shared/scripts/global-modal.js?v=20260908-inline-validation-1"></script>
+  <link rel="stylesheet" href="../shared/styles/modal-controls.css?v=20260909-date-1">
+  <link rel="stylesheet" href="../shared/styles/global-date-picker.css?v=20260909-date-color-2">
+  <script defer src="../shared/scripts/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="../shared/scripts/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="../shared/styles/global-modal-position.css?v=20260908-2">
   <script defer src="../shared/scripts/global-modal-position.js?v=20260904-1"></script>
   <style>
     :root { --ink:#2f3640; --muted:rgba(47,54,64,.62); --line:rgba(47,54,64,.12); --brand:#025b52; --paper:#f5f7f6; }
@@ -60,16 +66,17 @@
     .categoryTotal strong { color:var(--brand); font-size:24px; font-weight:500; }
     .sectionTitle { margin:40px 0 6px; font-size:22px; font-weight:500; }
     .sectionIntro { margin:0 0 20px; color:var(--muted); font-size:13px; }
-    .previewCard { overflow:hidden; margin-top:24px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 12px 36px rgba(35,52,50,.05); }
-    .previewCard.is-highlighted { box-shadow:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08); }
-    .previewCardHeader { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:center; min-height:82px; padding:17px 22px; border-bottom:1px solid var(--line); }
+    .previewCard { margin-top:32px; }
+    .previewCard.is-highlighted .frameWrap { box-shadow:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08); }
+    .previewCardHeader { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:20px; align-items:center; padding:0 0 16px; }
     .titleRow { display:flex; align-items:center; gap:12px; }
     .index { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; color:#fff; background:var(--brand); font-size:12px; }
     .previewCard h2 { margin:0; font-size:20px; font-weight:500; }
     .previewCard p { display:flex; align-items:center; gap:8px; margin:5px 0 0 40px; color:var(--muted); font-size:13px; }
     .categoryTag { display:inline-flex; align-items:center; min-height:20px; padding:0 7px; border-radius:10px; color:var(--brand); background:rgba(2,91,82,.07); font-size:11px; }
     code { padding:3px 7px; border-radius:4px; color:var(--brand); background:rgba(2,91,82,.06); font-size:11px; }
-    .frameWrap { position:relative; background:#e9eeec; }
+    .previewCardHeader > code { overflow-wrap:anywhere; }
+    .frameWrap { position:relative; overflow:hidden; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 12px 36px rgba(35,52,50,.05); }
     .frameWrap iframe { display:block; width:100%; border:0; background:#fff; }
     .frameStatus { position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:24px; color:var(--muted); background:#f5f7f6; font-size:14px; text-align:center; }
     .frameStatus[hidden] { display:none; }
@@ -103,8 +110,8 @@
 <body>
   <main id="app"></main>
   <script src="../shared/scripts/modal-registry.js"></script>
-  <script src="./弹窗源登记.js?v=20260904-8"></script>
-  <script src="./弹窗自动索引.generated.js?v=20260904-4"></script>
+  <script src="./弹窗源登记.js?v=20260908-required-marker-1"></script>
+  <script src="./弹窗自动索引.generated.js?v=20260910-study-detail-1"></script>
   <script>
     (function () {
       'use strict';
@@ -153,6 +160,12 @@
           location.replace('../登录.html#' + entry.route + '?gaip-popup-preview=' + encodeURIComponent(entry.id));
           return;
         }
+        // Keep already declared shared assets anchored to this HTML before <base>
+        // changes how later business assets resolve. No preview-only CSS copy.
+        document.querySelectorAll('link[href], script[src]').forEach(function (asset) {
+          var attribute = asset.tagName === 'LINK' ? 'href' : 'src';
+          asset.setAttribute(attribute, new URL(asset.getAttribute(attribute), document.baseURI).href);
+        });
         var base = document.createElement('base');
         base.href = '../';
         document.head.insertBefore(base, document.head.firstChild);
@@ -181,8 +194,8 @@
           '<p class="intro">这里只展示能够调用真实源入口的当前弹窗。每项滚动到可见区域后才创建独立 iframe：共享组件直接调用原控制器，频道弹窗打开正式 Hash 页面并执行真实按钮流程；预览页不保存弹窗 DOM 或视觉样式。</p></div>' +
           '<div class="counts"><div class="count"><span>真实可预览</span><strong>' + ready.length + '</strong></div><div class="count"><span>待接入</span><strong>' + pending.length + '</strong></div><div class="count"><span>不进入预览</span><strong>' + excluded.length + '</strong></div></div></header>' +
           '<aside class="rule"><strong>当前约束：</strong>已明确排除的业务主面板和抽屉不展示；已被现行页面替换、页面不可达或并非独立弹层的旧登记项也不生成假预览。其余项目全部调用当前真实源。</aside>' +
-          '<section class="categoryOverview"><header class="overviewHeading"><div><h2>分类总览</h2><p>先在这里核对 35 个弹窗的归类；编号与下方真实预览一致。</p></div><span class="overviewHint">点击名称可定位到真实弹窗</span></header><div class="overviewGrid" id="categoryOverviewGrid"></div></section>' +
-          '<nav class="categoryToolbar" aria-label="弹窗用途筛选"><button class="categoryFilter" type="button" data-category="all" aria-pressed="true">全部 ' + ready.length + '</button>' + categoryOrder.map(function (category) { return '<button class="categoryFilter" type="button" data-category="' + category + '" aria-pressed="false">' + categoryMeta[category].label + ' ' + ready.filter(function (entry) { return entry.category === category; }).length + '</button>'; }).join('') + '</nav>' +
+          '<section class="categoryOverview"><header class="overviewHeading"><div><h2>分类总览</h2><p>先在这里核对 ' + ready.length + ' 个弹窗的归类；编号与下方真实预览一致。</p></div><span class="overviewHint">点击名称可定位到真实弹窗</span></header><div class="overviewGrid" id="categoryOverviewGrid"></div></section>' +
+          '<nav class="categoryToolbar" aria-label="弹窗用途筛选">' + categoryOrder.map(function (category) { return '<button class="categoryFilter" type="button" data-category="' + category + '" aria-pressed="false">' + categoryMeta[category].label + ' ' + ready.filter(function (entry) { return entry.category === category; }).length + '</button>'; }).join('') + '</nav>' +
           '<section><h2 class="sectionTitle">真实源预览</h2><p class="sectionIntro">按交互用途分为三类，原清单编号保持不变。源组件修改结构或 CSS 后，刷新本页即可同步。</p><div id="categoryLists"></div></section>' +
           (pending.length ? '<section><h2 class="sectionTitle">待接入真实入口</h2><p class="sectionIntro">这些弹窗已盘点，但在拥有完整 open()/mount() 入口前不展示视觉结果。</p><div class="pendingGrid" id="pendingList"></div></section>' : '');
 
@@ -209,12 +222,13 @@
             candidate.setAttribute('aria-pressed', candidate.dataset.category === selected ? 'true' : 'false');
           });
           Array.prototype.forEach.call(document.querySelectorAll('.categorySection'), function (section) {
-            section.hidden = selected !== 'all' && section.dataset.category !== selected;
+            section.hidden = section.dataset.category !== selected;
           });
         }
         Array.prototype.forEach.call(document.querySelectorAll('.categoryFilter'), function (button) {
           button.addEventListener('click', function () { selectCategory(button.dataset.category); });
         });
+        selectCategory(categoryOrder[0]);
         var routeQueue = [];
         var routeActive = 0;
         var routeConcurrency = 3;
@@ -330,9 +344,9 @@
         categoryOverviewGrid.addEventListener('click', function (event) {
           var button = event.target.closest('.overviewLink');
           if (!button) return;
-          selectCategory('all');
           var target = document.getElementById(button.dataset.target);
           if (!target) return;
+          selectCategory(target.dataset.category);
           target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
           target.classList.add('is-highlighted');
           window.setTimeout(function () { target.classList.remove('is-highlighted'); }, 1400);

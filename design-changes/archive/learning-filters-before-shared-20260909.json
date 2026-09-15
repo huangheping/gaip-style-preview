@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "page": "learning-center",
+  "reason": "筛选控件迁移为共享组件；原记录只作追溯，当前目标见shared-filter-bar.json。原线上基准未采集，不声明恢复线上样式。",
+  "replacedBy": "../shared-filter-bar.json",
+  "records": [
+    {
+      "id": "learning.manage-trial.01",
+      "element": ".lc-manage .lc-manage-filters",
+      "locator": {
+        "selector": ".lc-manage .lc-manage-filters",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": "12px",
+          "target": "16px 20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": "20px 0",
+          "target": "0 0 20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #e7e8e7",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage .lc-manage-filters"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.02",
+      "element": ".lc-manage-filter",
+      "locator": {
+        "selector": ".lc-manage-filter",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage-filter"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.03",
+      "element": ".lc-manage-filter > span",
+      "locator": {
+        "selector": ".lc-manage-filter > span",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#636d73",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage-filter > span"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.04",
+      "element": ".lc-manage .lc-manage-filter .lc-search, .lc-manage-filter select",
+      "locator": {
+        "selector": ".lc-manage .lc-manage-filter .lc-search, .lc-manage-filter select",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage .lc-manage-filter .lc-search, .lc-manage-filter select"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.05",
+      "element": ".lc-manage-required > label",
+      "locator": {
+        "selector": ".lc-manage-required > label",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage-required > label"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.06",
+      "element": ".lc-manage-required input",
+      "locator": {
+        "selector": ".lc-manage-required input",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage-required input"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "learning.manage-trial.07",
+      "element": ".lc-manage-filter-actions",
+      "locator": {
+        "selector": ".lc-manage-filter-actions",
+        "representative": "课程管理列表首个匹配元素"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "course-management-list",
+        "viewport": null
+      },
+      "appliesTo": [
+        "仅课程管理列表；不作用于学情管理、新增/编辑和学习页面"
+      ],
+      "baseline": {
+        "id": "test-20260909",
+        "kind": "online",
+        "ref": "https://glory-gaip-web.t3.test.noahgrouptest.com/web/learning/course-learning",
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "features/learning-center/learning-v11.css",
+          "selector": ".lc-manage-filter-actions"
+        },
+        {
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    }
+  ]
+}

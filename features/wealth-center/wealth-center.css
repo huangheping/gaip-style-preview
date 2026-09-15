@@ -1030,7 +1030,11 @@ html.gaip-wealth-scroll-lock body {
 }
 
 .gaip-wealth-modal {
+  display: flex;
+  flex-direction: column;
   width: min(540px, 92vw);
+  max-height: calc(100vh - 48px);
+  max-height: var(--gaip-modal-max-height, calc(100dvh - 48px));
   overflow: hidden;
   background: #fff;
   border-radius: 8px;
@@ -1040,8 +1044,19 @@ html.gaip-wealth-scroll-lock body {
 .gaip-wealth-modal-body {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   gap: 12px;
   padding: 24px;
+}
+
+/* Keep fields at their natural height; only the containing body scrolls. */
+.gaip-wealth-modal > header,
+.gaip-wealth-modal > footer,
+.gaip-wealth-modal-body > * {
+  flex-shrink: 0;
 }
 
 .gaip-wealth-modal-body label {

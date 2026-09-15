@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "page": "共享操作确认弹窗",
+  "records": [{
+    "id": "shared-modal.confirm.font-isolation",
+    "element": "操作确认内部常规文字与字体文件映射",
+    "locator": {"selector": ".gaip-modal", "representative": "删除部门确认；标题参数见shared-modal-title.json"},
+    "state": {"channel": "shared", "variant": "default/disabled", "viewport": "保持原布局"},
+    "appliesTo": ["共享操作确认组件及系统警告；来源与预览同源，不扩展到页面或表单弹窗"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "font-family": {"before": null, "initialLocal": "HarmonyOS Sans SC, PingFang SC, sans-serif（全局继承）", "target": "HarmonyOS Sans SC, sans-serif（试点验收后合并到全局同一家族）", "status": "active", "basis": "source"},
+      "font-weight": {"before": null, "initialLocal": "400（全局重置）", "target": "正文/辅助/按钮400；主标题700沿用共享标题规则", "status": "active", "basis": "computed"},
+      "font-files": {"before": null, "initialLocal": "Regular与标题专用Bold分别登记", "target": "global-font.css统一登记400→assets/fonts/HarmonyOS_Sans_SC_Regular.ttf；700→assets/fonts/HarmonyOS_Sans_SC_Bold.ttf；不登记Medium", "status": "active", "basis": "source"},
+      "font-synthesis": {"before": null, "initialLocal": "none（全局继承）", "target": "none", "status": "active", "basis": "computed"}
+    },
+    "sources": ["shared/styles/global-font.css", "shared/styles/global-modal.css", "scripts/test-project-font-browser.cjs"],
+    "verification": {"level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["真实共享工厂的独立浏览器夹具；字体实际渲染已验证，未逐个业务来源整页验收", "已有配置中心测试仍断言旧scrollbar-gutter:stable，不属于本次字体修改"]},
+    "status": "active", "updatedAt": "2026-09-09"
+  }, {
+    "id": "shared-modal.confirm.button-spacing",
+    "element": "底部操作按钮间距",
+    "locator": {"selector": ".gaip-modal .gaip-modal__footer > .gaip-modal__button", "representative": "12 删除部门确认 / 17 调整管理员节点确认"},
+    "state": {"channel": "shared", "variant": "default/hover/focus/disabled", "viewport": "沿用现有响应式规则"},
+    "appliesTo": ["05 方案解除关联确认", "12 删除部门确认", "17 调整管理员节点确认", "25 删除沟通纪要确认", "26 删除客户确认", "35 删除公告确认", "后续复用公共确认组件的弹窗；来源页面与预览一致"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "margin": {"before": null, "initialLocal": "公共清零无important；配置中心作用域Ant规则给第二个按钮margin-inline-start:8px，叠加容器gap:12px", "target": "公共按钮margin:0 !important，间距仅由原容器gap:12px控制", "status": "active", "basis": "source"}
+    },
+    "sources": ["shared/styles/global-modal.css", "features/config-center/ant-source.css（只读依据）"],
+    "verification": {"level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上交付基准未知", "浏览器file访问受限；实际视觉待刷新复核"]},
+    "status": "active",
+    "updatedAt": "2026-09-08"
+  }]
+}

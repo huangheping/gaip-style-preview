@@ -1,0 +1,70 @@
+/* Opt-in page form adapter. Shares tokens with global-modal.css; no modal
+   geometry, overlay, focus trap or modal observer is attached to the page. */
+.gaip-page-form {
+  --gaip-form-interaction: #24d4c9;
+  --gaip-form-active: #1fbfb5;
+  --gaip-form-control-height: 48px;
+  --filter-brand: var(--gaip-modal-brand);
+}
+.gaip-page-form .gaip-form-control,
+.gaip-page-form .gaipMultiSelect__control {
+  box-sizing: border-box; width: 100%; min-width: 0;
+  border: 1px solid var(--gaip-modal-border); border-radius: var(--gaip-radius-control);
+  background: #fff; color: var(--gaip-modal-text);
+  font: inherit; font-size: var(--gaip-modal-body-size); line-height: var(--gaip-modal-body-line);
+  outline: none; box-shadow: none;
+}
+.gaip-page-form input.gaip-form-control { height: var(--gaip-form-control-height); min-height: var(--gaip-form-control-height); padding: 0 12px; }
+.gaip-page-form textarea.gaip-form-control { display: block; min-height: 128px; padding: 10px 12px 32px; resize: vertical; }
+.gaip-page-form .gaip-form-control::placeholder { color: var(--gaip-modal-placeholder); opacity: 1; }
+.gaip-page-form .gaip-form-control:is(:hover,:focus),
+.gaip-page-form .gaipMultiSelect__control:is(:hover,:focus-visible),
+.gaip-page-form .gaipMultiSelect.isOpen .gaipMultiSelect__control {
+  border-color: var(--gaip-form-interaction); outline: none; box-shadow: none;
+}
+.gaip-page-form .gaip-form-control:active { border-color: var(--gaip-form-active); }
+.gaip-page-form .gaip-form-control[aria-invalid="true"] { border-color: var(--gaip-modal-error); }
+.gaip-page-form .gaip-form-control:disabled { background: rgba(47,54,64,.06); color: var(--gaip-modal-placeholder); cursor: not-allowed; }
+.gaip-page-form .gaip-form-counted { position: relative; }
+.gaip-page-form .gaip-form-counted input { padding-right: 76px; }
+.gaip-page-form .gaip-form-counted > small {
+  position: absolute; right: 12px; bottom: 12px; margin: 0;
+  font-size: var(--gaip-modal-caption-size); line-height: var(--gaip-modal-caption-line);
+  color: var(--gaip-modal-muted); pointer-events: none;
+}
+.gaip-page-form .gaip-form-counted:has(textarea) > small { right: 28px; bottom: 6px; }
+.gaip-page-form .gaip-form-choices input:is([type="radio"],[type="checkbox"]) {
+  appearance: none; -webkit-appearance: none; display: inline-grid; place-content: center;
+  flex: 0 0 16px; width: 16px; height: 16px; min-height: 0; padding: 0; margin: 0;
+  border: 1px solid var(--gaip-modal-border); border-radius: 4px; background: #fff;
+  cursor: pointer; outline: none; box-shadow: none;
+}
+.gaip-page-form .gaip-form-choices input[type="radio"] { border-radius: 50%; }
+.gaip-page-form .gaip-form-choices input:checked { background: var(--gaip-form-interaction); border-color: var(--gaip-form-interaction); }
+.gaip-page-form .gaip-form-choices input:checked::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+.gaip-page-form .gaip-form-choices input[type="checkbox"]:checked::after { width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; border-radius: 0; background: transparent; transform: translateY(-1px) rotate(45deg); }
+.gaip-page-form .gaip-form-choices input:is(:hover,:focus-visible) { border-color: var(--gaip-form-interaction); }
+.gaip-page-form .gaip-form-choices input:focus-visible { outline: 2px solid rgba(36,212,201,.3); outline-offset: 2px; }
+.gaip-page-form .gaip-form-choices input:disabled { background: rgba(47,54,64,.06); border-color: var(--gaip-modal-border); cursor: not-allowed; }
+.gaip-page-form .gaip-form-choices input:disabled:checked::after { background: var(--gaip-modal-placeholder); }
+.gaip-page-form .gaipMultiSelect {
+  min-width: 0; --gaip-multi-select-border: var(--gaip-modal-border);
+  --gaip-multi-select-focus: var(--gaip-form-interaction);
+  --gaip-multi-select-text: var(--gaip-modal-text); --gaip-multi-select-muted: var(--gaip-modal-placeholder);
+}
+.gaip-page-form .gaipMultiSelect__control { min-height: var(--gaip-form-control-height); }
+.gaip-page-form :is(.gaipMultiSelect__tag,.gaipMultiSelect__overflow) { min-height: 24px; border-radius: var(--gaip-radius-control); background: rgba(36,212,201,.12); }
+.gaip-page-form .gaipMultiSelect__option[aria-selected="true"] { background: rgba(36,212,201,.12); }
+.gaip-page-form .gaipMultiSelect__option[aria-selected="true"] .gaipMultiSelect__checkbox { background: var(--gaip-form-interaction); border-color: var(--gaip-form-interaction); }
+.gaip-page-form .gaip-filter-bar__switch-line { min-height: var(--gaip-form-control-height); }
+/* Field feedback uses global-modal.js createFieldFeedback, with the same form
+   text/error tokens; page fields stay in normal flow, not a modal shell. */
+.gaip-page-form .gaip-form-help--error {
+  display: block; margin: 4px 0 0; min-height: 20px;
+  font-size: var(--gaip-modal-caption-size); line-height: var(--gaip-modal-caption-line);
+  color: var(--gaip-modal-error); overflow-wrap: anywhere;
+}
+.gaip-page-form .gaip-form-help--error[hidden] { display: none; }
+.gaip-page-form .gaip-form-invalid > .gaip-form-help--error { margin-top: calc(4px - var(--gaip-form-feedback-parent-gap, 0px)); }
+.gaip-page-form .gaip-form-invalid :is(.gaipMultiSelect__control, .lc-cover-picker, .lc-lesson-file-box),
+.gaip-page-form .gaip-form-control[aria-invalid="true"]:is(:hover,:focus,:active) { border-color: var(--gaip-modal-error); }

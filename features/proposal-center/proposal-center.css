@@ -18,7 +18,7 @@
       --proposal-deep: #005b52;
       min-height: calc(100vh - 56px);
       background: #f7f8f8;
-      font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: var(--gaip-global-font);
     }
 
     .gaip-proposal-hero {
@@ -679,9 +679,15 @@
     }
 
     .gaip-owner-list {
+      box-sizing: border-box;
       min-height: 0;
-      margin: 0;
-      padding: 0 4px 0 0;
+      min-width: 0;
+      margin: 0 24px 20px;
+      padding: 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
       overflow-y: auto;
       overscroll-behavior: contain;
       list-style: none;

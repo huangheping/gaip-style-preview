@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "page": "shared-date-picker",
+  "records": [
+    {
+      "id": "shared.date-picker.panel",
+      "element": "全局日历面板",
+      "locator": {
+        "selector": ".gaip-date-panel, .gaip-ant-date-popup .ant-picker-panel-container",
+        "representative": "组件目录日期选择器"
+      },
+      "state": {
+        "variant": "default / hover / selected / today / disabled"
+      },
+      "appliesTo": [
+        "全局筛选栏 date/dateRange",
+        "普通弹窗原生日期/日期时间字段",
+        "普通弹窗 Ant DatePicker"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": {
+            "filter": "304px",
+            "nativeModal": "332px"
+          },
+          "target": "288px（窄视口受可用宽度限制）",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": {
+            "filter": "12px",
+            "nativeModal": "8px"
+          },
+          "target": "0px；网格 8px 12px；标题 0px 8px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": {
+            "filter": "1px solid var(--filter-border)",
+            "nativeModal": "1px solid var(--mc-line)"
+          },
+          "target": "0px；标题/底栏分割线 1px solid var(--gaip-color-border, var(--gaip-modal-border, rgba(47,54,64,.18)))",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": {
+            "filter": "6px",
+            "nativeModal": "8px"
+          },
+          "target": "8px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "#fff",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": {
+            "filter": "0 6px 16px rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05)",
+            "nativeModal": "0 8px 24px rgba(17,35,39,.14)"
+          },
+          "target": "0 6px 16px rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05)",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": {
+            "filter": "14px",
+            "nativeModal": "var(--gaip-modal-body-size)"
+          },
+          "target": "14px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": {
+            "filter": "var(--gaip-color-text, #2f3640)",
+            "nativeModal": "var(--mc-text)"
+          },
+          "target": "var(--gaip-color-text, var(--gaip-modal-text, #2f3640))",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "header.height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "header.font-family": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-modal-title-font)（现有本地粗体）",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "header.font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "grid.cell-size": {
+          "before": null,
+          "initialLocal": "32px 日格",
+          "target": "36px 行高 / 24px×24px 日期按钮 / 4px 圆角",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "grid.gap": {
+          "before": null,
+          "initialLocal": {
+            "filter": "2px",
+            "nativeModal": "3px"
+          },
+          "target": "0px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "outside.color": {
+          "before": null,
+          "initialLocal": {
+            "filter": "#969da1",
+            "nativeModal": null
+          },
+          "target": "var(--gaip-modal-placeholder, rgba(47,54,64,.42))",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "footer.height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "footer.color": {
+          "before": null,
+          "initialLocal": "var(--filter-brand) / var(--mc-brand)",
+          "target": "var(--dp-brand) → 项目品牌深绿 #025b52",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "selected.background": {
+          "before": null,
+          "initialLocal": "var(--filter-brand) / var(--mc-brand)",
+          "target": "var(--dp-brand) → 项目品牌深绿 #025b52",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "selected.color": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "#fff",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "today.border": {
+          "before": null,
+          "initialLocal": "var(--filter-brand) / var(--mc-brand)",
+          "target": "1px solid var(--dp-interaction) → 项目青色 #24d4c9",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "hover.background": {
+          "before": null,
+          "initialLocal": "rgba(2,91,82,.06) / var(--mc-soft)",
+          "target": "rgba(36,212,201,.08)",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "disabled.color": {
+          "before": null,
+          "initialLocal": "#b4bab8 / var(--mc-placeholder)",
+          "target": "var(--gaip-modal-placeholder, rgba(47,54,64,.42))",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "disabled.background": {
+          "before": null,
+          "initialLocal": "#f5f6f5 / var(--mc-disabled)",
+          "target": "rgba(47,54,64,.06)",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "focus-visible.outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid var(--dp-interaction) / 2px offset",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "year-month.grid": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3列×4行 / 行高63px / 选项64px×28px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "datetime.controls-margin": {
+          "before": null,
+          "initialLocal": "time: 8px 0 0; apply: 8px 0 0 auto",
+          "target": "8px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "clear.icon": {
+          "before": null,
+          "initialLocal": "modal-clear.svg 原控件清除图标",
+          "target": "复用原24px热区/16px图形；日期条清除背景#fff",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "range.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(36,212,201,.12)",
+          "status": "active",
+          "basis": "source"
+        },
+        "header.nav-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-modal-muted, rgba(47,54,64,.68))",
+          "status": "active",
+          "basis": "source"
+        },
+        "range.hover-border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--dp-interaction) → #24d4c9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "initialLocalEvidence": {
+        "ref": "/tmp/gaip-date-picker-before-20260909",
+        "filter": "304px 宽 / 12px 内边距 / 年份输入框 / 32px 日期格 / 清除和今天双端底栏",
+        "modal": "332px 宽 / 8px 内边距 / 年份输入框 / 32px 日期格 / 无相邻月份日期 / 清空底栏"
+      },
+      "sources": [
+        "shared/scripts/global-date-picker.js",
+        "shared/styles/global-date-picker.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "未采集线上交付基准。",
+          "Ant验证使用原客户组件的独立运行上下文，locale仍由原应用提供。",
+          "学习 file 入口原 WebGL 图片跨域报错仍存在，日期组件和筛选操作通过；不宣称全页面其他功能验收。"
+        ],
+        "evidence": [
+          "scripts/test-date-picker-browser.cjs",
+          "scripts/test-filter-bar-browser.cjs"
+        ],
+        "colorCorrection": "Chromium实测：目录Today文字/已选日期背景rgb(2,91,82)，当天边框rgb(36,212,201)；原Ant Today和学习日期交互通过。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
+    }
+  ]
+}

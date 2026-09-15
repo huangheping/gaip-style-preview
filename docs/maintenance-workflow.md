@@ -40,6 +40,8 @@ npm run test:navigation
 
 JSDOM 不实现真实点击命中、原生 dialog 顶层和完整渲染。报告中分别列出静态检查、DOM 状态和浏览器结果。不得把 `verify-local-navigation.sh` 的通过文字当成实际跨页浏览证明。
 
+多行输入/计数/缩放手柄修改运行`npm run test:modal-forms`（包含`test:modal-source`原客户组件回归），同时遵守[固定接入契约](modal-textarea-acceptance.md)。新增自定义计数字段使用真实外壳的`data-gaip-modal-part="counted-textarea"`及计数节点的`count`标记，不在预览复制结构；视觉验收从来源页面进入，不能用DOM通过代替。
+
 ## 弹窗登记细节
 
 - 新增本地业务弹窗的真实源 JS 使用合法 `/* @gaip-modal { ... } */` JSON；必要字段：`id`、`title`、`channel`、`type`、`status`。
@@ -53,7 +55,7 @@ JSDOM 不实现真实点击命中、原生 dialog 顶层和完整渲染。报告
 
 ## 知识库同步与多任务
 
-修改前给当前变更添加简短条目；完成后写实际文件、检查与剩余事项，并更新 PROJECT_STATE。无新增架构含义的图片或数值更新合并到同一条目，不扩写多份规范。行为/模块关系改变才更新关联模块笔记与索引。
+修改前给当前变更添加简短条目；完成后写实际文件、检查与剩余事项，并更新 PROJECT_STATE。视觉参数按 [视觉增量记录流程](visual-change-workflow.md) 保存在 `design-changes/` 的对应页面/共享组件文件中；当前变更只留摘要和链接，不重复维护参数。无新增架构含义的图片或数值更新合并到同一条目，不扩写多份规范。行为/模块关系改变才更新关联模块笔记与索引。
 
 读取与更新 Obsidian Markdown 可以直接操作仓库文本，不以打开 Obsidian 应用为前置条件。双链帮助定位，不自动证明文档新鲜；版本号优先核对源码。只有明确要求操作 Obsidian 界面或 Vault 命令时才需要 CLI。
 

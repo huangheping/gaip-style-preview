@@ -1,0 +1,523 @@
+{
+  "schemaVersion": 1,
+  "page": "共享表单弹窗字段",
+  "records": [
+    {
+      "id": "shared-modal.fields.required-marker",
+      "element": "弹窗字段及分组必填星号",
+      "locator": { "selector": ".gaip-modal-kit .ant-form-item-required, .gaip-modal-kit .gaip-activity-modal__label, .gaip-modal-kit label > .required___AKcPW, .gaip-announcement-section-heading h3 > span[aria-hidden], .gaip-adjust-target-heading > label > span", "representative": "07活动报名、20转化/关闭、16节点与33/34公告分组" },
+      "state": { "channel": "form", "variant": "required / optional / multiline", "viewport": null },
+      "appliesTo": ["已接入共享弹窗的Ant必填标签与07报名", "新增线索的后置伪元素星号", "20转化/关闭标签、16节点标签、33/34公告分组标题", "来源与预览同源；页面字段排除；必填条件不变"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "marker.color": { "before": null, "initialLocal": "Ant/07 #ff4d4f；线索终态#ef4444；其他受共享错误色覆盖", "target": "var(--gaip-modal-error) (#ff4d4f)", "basis": "mixed", "status": "active" },
+        "marker.font-size": { "before": null, "initialLocal": "Ant与新增线索14px；字面span继承所在标签/标题字号", "target": "14px; line-height:inherit", "basis": "mixed", "status": "active" },
+        "marker.text-gap": { "before": null, "initialLocal": "前置4px；终态后置margin-left:2px；公告及节点字面空格", "target": "4px; Ant/07 margin-inline-end；字面星号使用column-gap", "basis": "mixed", "status": "active" }
+      },
+      "sources": ["shared/styles/global-modal.css", "web/p__clues__index.29eaa724.chunk.css (read-only conflict evidence)", "features/config-center/announcement-management-view.js (unchanged grouped constraints)", "features/config-center/config-center.js (unchanged source)"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "evidence": ["scripts/test-modal-required-marker-browser.cjs: isolated Chromium148 positions/gap/color, optional/multiline, CSS order and original label linkage"], "gaps": ["来源整页视觉未验收；独立真实浏览器规则验证不代表所有来源弹窗已逐一打开"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.feedback-reservation",
+      "element": "表单内联错误反馈行",
+      "locator": { "selector": ".gaip-form-feedback-ant, .gaip-form-feedback-local", "representative": "07活动报名、24沟通纪要及公告校验分组" },
+      "state": { "channel": "form", "variant": "empty / error / corrected", "viewport": "保留现有单列双列断点" },
+      "appliesTo": ["表单操作的Ant字段", "07报名每字段/单选组、10同源新增成员必填/重复账号、部门错误、15上传错误、16节点错误、20标记转化/关闭必填、33/34公告分组错误", "来源与预览；操作确认排除"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "10-and-20.inline-error": { "before": null, "initialLocal": "10新增成员使用原生校验气泡；20集中错误条源背景#fef2f2、padding:8px 12px、14px/#dc2626、圆角8px、下距12px（共享notice/error覆盖另参与层叠）", "target": "10/20字段错误复用共享无底色12px/20px/#ff4d4f内联说明及20px+4px反馈占位；20原因选择器错误边框复用--gaip-form-error；不重新定义提示条或确认样式", "basis": "source", "status": "active" },
+        "feedback.min-height": { "before": null, "initialLocal": "本地错误隐藏时不占空间；Ant报错后以原字段marginBottom补偿additional并生成负margin offset", "target": "预留20px反馈行+4px上距；空状态伪元素24px，显示时由真实反馈节点占位；多行height:auto、正常换行；有永久extra说明的Ant额外保留错误行，不覆盖说明", "basis": "source", "status": "active" },
+        "feedback.spacing": { "before": null, "initialLocal": "原字段/网格间隔20px（窄屏16px）与动态错误行叠加", "target": "有反馈行的字段margin-bottom:0；全部直接字段都接入反馈的grid row-gap及margin-bottom:0，由反馈24px行提供字段间隔；混合布局、列间距与独立分组间隔保留；Ant additional padding-top:4px、explain/extra margin:0，负margin-offset不参与布局", "basis": "source", "status": "active" }
+      },
+      "sources": ["shared/scripts/global-modal.js#adoptFeedback", "shared/styles/global-modal.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["真实浏览器单行/多行高度及窄屏视觉仍待验收；不改变没有内联错误节点的原生气泡校验"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.inline-error-spacing",
+      "element": "07字段内联错误与表单嵌套错误间距",
+      "locator": { "selector": ".gaip-activity-modal__field > .gaip-form-help--error, .gaip-modal-form .gaip-form-help .gaip-kit-error", "representative": "07 活动报名信息；Ant表单错误外壳" },
+      "state": { "channel": "form", "variant": "error", "viewport": "保留原双列/单列断点" },
+      "appliesTo": ["07真实报名工厂及同源预览", "表单操作内的嵌套Ant错误文字；操作确认不改"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "07.error-text": { "before": null, "initialLocal": "浏览器原生气泡，无页面内错误节点", "target": "共享红色错误说明：12px/20px，#ff4d4f，控件下方4px；普通输入/文本域aria-invalid复用现有红边", "basis": "source", "status": "active" },
+        "nested-error.margin-top": { "before": null, "initialLocal": "外壳4px，内层错误文字另有4px", "target": "外壳4px，内层0；单层错误仍4px", "basis": "source", "status": "active" }
+      },
+      "sources": ["features/activity/activity-sync.js", "shared/styles/global-modal.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["浏览器视觉未验证；原生数值约束保留，单选组仅一条错误，不改变其选中配色"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.default",
+      "element": "普通输入框、文本域与字段标签",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "count.no-resize-inset": {"before": null, "initialLocal": "所有计数统一预留原生resize手柄位置", "target": "无resize或公告autosize字段计数right:12px；可resize字段仍right:24px；下距4px不变；本条覆盖旧计数记录中的统一右24px", "basis": "source", "status": "active"},
+        "textarea-shell.phantom-spacing": {
+          "before": null,
+          "initialLocal": "Ant affix外壳::before为display:inline-block、width:0、visibility:hidden、content非换行空格；内部textarea改块级后，伪元素产生额外空白行",
+          "target": "仅.gaip-form-input-shell.gaip-form-textarea-shell::before设置content:none及display:none（important），不产生额外行间距；单行外壳、既有文本padding和计数位置不变",
+          "status": "active",
+          "basis": "source"
+        },
+        "counted-textarea.shell": {
+          "before": null,
+          "initialLocal": "18 TextArea外壳未标记共享输入壳，内部文本域已有共享字段；外框状态与内部边框混用",
+          "target": "18/23/24 Ant及33/34公告计数文本域共用外壳边框/4px圆角/状态；外壳padding:0、height:auto；内部文本域display:block、border-box、padding:10px 12px 28px，普通内层文本域padding规则排除.gaip-kit-counted，确保计数底部空间不被后续同优先级规则覆盖；最小高度calc(正文行高 + 38px)=60px；计数原节点12px/20px、可resize右24px/无resize右12px、下4px、无translate；保留rows、maxLength、原resize及自动高度事件",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "10/11 单行48px；07 单行34px；08 单行36px",
+          "target": "单行48px；普通文本域保留原rows/自动增高/min/max-height；带计数文本域增加60px最小高度，避免一行文字与内部计数相撞，不设置固定height或改动原max-height",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "10及18文本域2px；11/08为4px；07为6px",
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "10/11为16px；07/33为14px；其余继承各自源规则",
+          "target": "14px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": "07标签22px；33标签20px；其余由原站Ant或源规则提供",
+          "target": "22px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "10/11/07输入#2f3640；33标签#404852；08标签var(--wealth-muted)",
+          "target": "#2f3640；placeholder rgba(47,54,64,.42)",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "10单行0 18px；07单行4px 11px、文本域7px 11px；08单行0 10px；33文本域12px 62px 12px 18px",
+          "target": "单行0 12px；普通文本域10px 12px；计数文本域内部padding:10px 12px 28px、外壳padding:0，与普通内层文本域规则互斥；带清除按钮的内层input为0且不重复绘制边框",
+          "status": "active",
+          "basis": "source"
+        },
+        "label-control-gap": {
+          "before": null,
+          "initialLocal": "07为8px；33为7px；10原Ant垂直标签padding",
+          "target": "垂直标签8px；横向标签保留原网格",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "11为1px solid #ddd；07为#d9d9d9；33为#d9dde1；08为var(--wealth-line)",
+          "target": "1px solid rgba(47,54,64,.18)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-07"
+    },
+    {
+      "id": "shared-modal.fields.hover",
+      "element": "普通输入框及文本域状态",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control, .gaip-modal-form .gaip-form-input-shell",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "hover",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "11 #025b52；33 #9aa5ad；其他按原站或频道规则",
+          "target": "#24D4C9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-08",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.focus",
+      "element": "普通输入框及文本域状态",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control, .gaip-modal-form .gaip-form-input-shell",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "focus",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "11 #025b52；07 #59d1c7；33 #20bcb2",
+          "target": "#24D4C9",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "11 none；07 0 0 0 2px rgba(0,185,166,.12)；33 0 0 0 2px rgba(36,212,201,.12)",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "needs-recheck",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.disabled",
+      "element": "普通输入框及文本域状态",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control, .gaip-modal-form .gaip-form-input-shell",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "disabled",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background-color": {
+          "before": null,
+          "initialLocal": "10 .ant-input-disabled 为 #2f36400f；其余按原站规则",
+          "target": "rgba(47,54,64,.06)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "原站 Ant 禁用色",
+          "target": "rgba(47,54,64,.42)",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": "原站 Ant 禁用边框",
+          "target": "rgba(47,54,64,.18)",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "原站或频道禁用状态",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-07"
+    },
+    {
+      "id": "shared-modal.fields.error",
+      "element": "普通输入框及文本域状态",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control, .gaip-modal-form .gaip-form-input-shell",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "error",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "33 #dc3f3f；Ant 按原有 error 状态规则",
+          "target": "#ff4d4f",
+          "status": "active",
+          "basis": "source"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "各自原有错误聚焦规则",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "needs-recheck",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "shared-modal.fields.help",
+      "element": "字段现有帮助/错误提示",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-help",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "help",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": "33错误说明12px；其他原站Ant说明",
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": "各自原站或频道说明行高",
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin-top": {
+          "before": null,
+          "initialLocal": "33为4px；其余按源规则",
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "33错误说明#dc3f3f；帮助说明按原站规则",
+          "target": "帮助 rgba(47,54,64,.68)；错误 #ff4d4f",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-07"
+    },
+    {
+      "id": "shared-modal.fields.active",
+      "element": "普通输入框及文本域状态",
+      "locator": {
+        "selector": ".gaip-modal-form .gaip-form-control, .gaip-modal-form .gaip-form-input-shell",
+        "representative": "10 配置中心成员编辑 / 11 部门名称编辑 / 18 编辑对话名称 / 33 新建公告"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "active",
+        "viewport": "沿用原表单列布局及响应式宽度"
+      },
+      "appliesTo": [
+        "已接入的表单弹窗中的普通文字字段",
+        "07 活动报名信息、08 保司关键词设置、10 配置中心成员编辑、11 部门名称编辑、18 编辑对话名称、19 分配线索、20 标记转化 / 标记关闭、22 新增线索、23 编辑客户资料介绍、24 新增 / 编辑沟通纪要、33 新建公告、34 编辑公告",
+        "真实业务来源与弹窗预览；不含选择器内部搜索、工具栏搜索、树、表格编辑器、上传控件"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "#24D4C9",
+          "target": "#1FBFB5",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/global-modal.js",
+        "shared/styles/global-modal.css",
+        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+      ],
+      "verification": {
+        "level": "needs-recheck",
+        "checkedAt": "2026-09-07",
+        "gaps": [
+          "未采集线上交付基准",
+          "工具已拒绝 file://，真实字体、布局及 hover/focus 视觉待用户验收",
+          "已通过真实源工厂及旧 Umi 接入 DOM 契约，不代表实际渲染验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    }
+  ]
+}

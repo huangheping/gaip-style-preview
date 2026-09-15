@@ -1,0 +1,30 @@
+// Page editor geometry and form contract; independent mock controller, no online writes.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright-core');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+(async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});try{
+ const p=await browser.newPage({viewport:{width:1920,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ await p.setContent('<style>body{margin:0}#page{margin-left:212px;height:100vh}</style><section id="page" class="gaip-learning-page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section>');
+ for(const f of ['shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','shared/styles/global-page-form.css'])await p.addStyleTag({content:read(f)});
+ for(const f of ['shared/scripts/global-modal.js','shared/scripts/global-multi-select.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
+ await p.evaluate(()=>{const D=window.__GAIP_LEARNING_DATA__,c=D.course('c1');D.state().courses=[c];c.lessons[0].status='published';c.lessons[0].locked=true;c.lessons[1].status='offline';c.lessons[1].locked=true;c.lessons[2].status='offline';c.lessons[2].locked=false;window.__GAIP_LEARNING_APP__.mount(document.querySelector('#page'));});
+ await p.locator('[data-learning-action="课程管理"]').click();await p.locator('[data-lc="edit"]').click();
+ const labels=await p.locator('.lc-lesson-identity .gaip-course-tag').allTextContents();assert.deepEqual(labels.slice(0,3),['已上架','已下架','未上架']);
+ for(const width of [1920,1440,1024,692]){
+  await p.setViewportSize({width,height:1000});
+  const g=await p.evaluate(()=>{const host=document.querySelector('#page'),main=host.querySelector('.lc-editor'),footer=host.querySelector('.lc-editor-footer'),r=host.getBoundingClientRect(),f=footer.getBoundingClientRect(),m=main.getBoundingClientRect();return {parent:footer.parentElement===host,footer:[f.left,f.right,f.bottom],host:[r.left,r.right,r.bottom],mainBottom:m.bottom,overflow:main.scrollHeight>main.clientHeight,panels:[...main.querySelectorAll(':scope > .lc-panel,:scope > .lc-admin-heading')].map(n=>{const a=n.getBoundingClientRect();return {w:a.width,center:a.left+a.width/2,overflow:n.scrollWidth>n.clientWidth+1}}),center:m.left+main.clientWidth/2,border:getComputedStyle(host.querySelector('.lc-editor-header')).borderTopWidth};});
+  assert.equal(g.parent,true);assert.deepEqual(g.footer,g.host);assert.ok(g.mainBottom<g.footer[2]);assert.equal(g.overflow,true);assert.equal(g.border,'1px');
+  for(const panel of g.panels){assert.ok(panel.w<=1200);assert.ok(Math.abs(panel.center-g.center)<1);assert.equal(panel.overflow,false);}
+ }
+ await p.setViewportSize({width:1440,height:1000});
+ const styles=await p.evaluate(()=>{const input=document.querySelector('#lc-course-title'),radio=document.querySelector('[data-course-boolean="required"]'),multi=document.querySelector('.gaipMultiSelect__control'),area=document.querySelector('textarea');const a=getComputedStyle(input),b=getComputedStyle(radio),c=getComputedStyle(multi);return {height:a.height,radius:a.borderRadius,border:a.borderColor,radio:[b.width,b.height,b.appearance],multi:[c.minHeight,c.borderRadius,c.borderColor],resize:getComputedStyle(area).resize,modalClasses:document.querySelector('.lc-editor').className};});
+ assert.equal(styles.height,'48px');assert.equal(styles.radius,'4px');assert.deepEqual(styles.radio,['16px','16px','none']);assert.deepEqual(styles.multi,['48px','4px',styles.border]);assert.equal(styles.resize,'vertical');assert.ok(!styles.modalClasses.includes('gaip-modal'));
+ await p.locator('#lc-course-title').focus();assert.equal(await p.locator('#lc-course-title').evaluate(n=>getComputedStyle(n).borderColor),'rgb(36, 212, 201)');
+ await p.locator('[data-lc="add-lesson"]').click();assert.equal(await p.locator('.lc-lesson-identity .gaip-course-tag').last().textContent(),'未保存');
+ const last=p.locator('[data-edit-lesson]').last();await last.locator('[data-field="title"]').fill('新增状态测试');assert.equal(await last.locator('[data-lesson-type]:checked').count(),0);await last.locator('[data-lesson-type="video"]').check();await last.locator('.lc-upload-demo summary').first().click();await last.locator('[data-lc="sample-content"]').click();await last.locator('[data-lc="save-lesson"]').click();assert.equal(await p.locator('.lc-lesson-identity .gaip-course-tag').last().textContent(),'未上架');
+ const before=await p.locator('.lc-editor').evaluate(n=>n.scrollTop);assert.ok(before>0);await p.locator('.lc-editor-footer [data-lc="save-course"]').click();
+ assert.ok(Math.abs(await p.locator('.lc-editor').evaluate(n=>n.scrollTop)-before)<1);assert.equal(await p.evaluate(()=>document.activeElement.closest('.lc-editor-footer')!==null),true,'footer save restores footer focus, not top save');
+ await p.locator('.lc-editor').evaluate(n=>n.scrollTop=0);
+ if(process.env.EDITOR_LAYOUT_SCREENSHOT)await p.screenshot({path:process.env.EDITOR_LAYOUT_SCREENSHOT});
+ assert.deepEqual(errors,[]);console.log('PASS 4 lesson labels, centered 480–1708px content, full-width independent footer, nested scroll/focus, 48px shared fields / 16px radios / 4px radius / focus color');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1});

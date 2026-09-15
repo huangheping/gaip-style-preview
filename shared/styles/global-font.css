@@ -6,17 +6,25 @@
   font-display: swap;
 }
 
+/* One project family, exactly two real local faces. No synthetic/intermediate weights. */
+@font-face {
+  font-family: "HarmonyOS Sans SC";
+  src: url("../../assets/fonts/HarmonyOS_Sans_SC_Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
-  --gaip-global-font: "HarmonyOS Sans SC", "PingFang SC", sans-serif;
+  --gaip-global-font: "HarmonyOS Sans SC", sans-serif;
+  --gaip-modal-title-font: var(--gaip-global-font);
   --gaip-global-font-weight: 400;
   --gaip-font-size-micro: 10px;
   --gaip-font-size-small: 12px;
   --gaip-font-size-base: 14px;
   --gaip-font-size-large: 16px;
   --gaip-font-size-title: 18px;
-  --gaip-scrollbar-size: 8px;
   --gaip-scrollbar-thumb: rgba(47, 54, 64, 0.32);
-  --gaip-scrollbar-thumb-hover: rgba(47, 54, 64, 0.5);
   --gaip-scrollbar-track: transparent;
 }
 
@@ -35,56 +43,18 @@ option {
   font-weight: var(--gaip-global-font-weight) !important;
 }
 
-body *:not(.iconfont):not([class^="iconfont-"]):not([class*=" iconfont-"]) {
+/* Shared title typography belongs to global-modal.css, including text wrappers. */
+body *:not(.iconfont):not([class^="iconfont-"]):not([class*=" iconfont-"]):not(:where(.gaip-modal__title, .gaip-modal__title *)) {
   font-family: var(--gaip-global-font) !important;
   font-weight: var(--gaip-global-font-weight) !important;
 }
 
-/* 全局统一使用始终可识别的中性灰滚动条。 */
+/* Standard native scrollbars only: platform owns width, visibility and hover.
+   Do not mix in WebKit pixel geometry or promise persistent overlay thumbs. */
 html,
 body,
 body * {
   scrollbar-width: auto !important;
   scrollbar-color: var(--gaip-scrollbar-thumb) var(--gaip-scrollbar-track) !important;
   scrollbar-gutter: auto !important;
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-body *::-webkit-scrollbar {
-  width: var(--gaip-scrollbar-size) !important;
-  height: var(--gaip-scrollbar-size) !important;
-  background: var(--gaip-scrollbar-track) !important;
-}
-
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb,
-body *::-webkit-scrollbar-thumb {
-  min-width: var(--gaip-scrollbar-size) !important;
-  min-height: 32px !important;
-  background: var(--gaip-scrollbar-thumb) !important;
-  border: 0 !important;
-  border-radius: 4px !important;
-  box-shadow: none !important;
-}
-
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover,
-body *::-webkit-scrollbar-thumb:hover {
-  background: var(--gaip-scrollbar-thumb-hover) !important;
-}
-
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track,
-body *::-webkit-scrollbar-track {
-  background: var(--gaip-scrollbar-track) !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-html::-webkit-scrollbar-corner,
-body::-webkit-scrollbar-corner,
-body *::-webkit-scrollbar-corner {
-  background: var(--gaip-scrollbar-track) !important;
 }

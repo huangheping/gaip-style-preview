@@ -1,0 +1,28 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright-core');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const checkTabAnimation=require('./tabs-animation-check.cjs');
+(async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});try{
+ const p=await browser.newPage({viewport:{width:1400,height:800}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ // Captured product structure; its source-owned click/update path is intentionally retained.
+ await p.setContent('<style>body{margin:24px;color:#2f3640}.gaip-config-page{position:static!important}.gaip-config-original{padding:0}section{margin-bottom:24px}</style><section class="productArea___xMLm_"><div class="filterTab___qn4xZ"><button class="tabBtn___Au692 active___Sfjac">保险 (<span class="val___uBwax">24</span>)</button><button class="tabBtn___Au692">信托 (<span class="val___uBwax">0</span>)</button></div></section><section class="gaip-config-page"><div class="gaip-config-original"><div class="tabs___U1Hwt"><button class="tab___UxqK9 tabActive___H5olV">薄荷经纪人</button><button class="tab___UxqK9">Glory品牌顾问</button></div></div></section><section class="gaip-learning-v11"><div class="lc-stats-tabs"><button class="lc-stats-tab" aria-selected="true">学员学习统计</button><button class="lc-stats-tab" aria-selected="false">课程学习统计</button></div></section><div id="demo"></div>');
+ for(const f of ['shared/styles/global-font.css','web/p__dashboard__product__index.48332667.chunk.css','features/config-center/config-center.css','features/learning-center/learning-v11.css','shared/styles/global-tabs.css'])await p.addStyleTag({content:read(f)});
+ await p.evaluate(()=>{window.originalProduct=document.querySelector('.tabBtn___Au692');window.switches=0;document.querySelector('.filterTab___qn4xZ').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;window.switches++;b.parentElement.querySelectorAll('button').forEach(n=>n.classList.toggle('active___Sfjac',n===b));});});
+ await p.addScriptTag({content:read('shared/scripts/global-tabs.js')});await p.waitForTimeout(230);
+ const styles=await p.locator('[data-gaip-tabs]').evaluateAll(roots=>roots.map(root=>{const b=root.querySelector('[aria-selected="true"]'),s=getComputedStyle(b),a=getComputedStyle(b,'::after');return {font:s.fontSize,color:s.color,padding:s.padding,gap:getComputedStyle(root).gap,height:s.height,weight:s.fontWeight,width:a.width,line:a.height,lineColor:a.backgroundColor,transition:a.transitionDuration};}));
+ assert.equal(styles.length,3);assert.deepEqual(styles[0],styles[1]);assert.deepEqual(styles[1],styles[2]);assert.equal(styles[0].width,'71px');assert.equal(styles[0].transition,'0.2s');
+ // Source bundles may load after the shared skin; overrides must remain stable.
+ for(const f of ['web/p__dashboard__product__index.48332667.chunk.css','features/config-center/config-center.css'])await p.addStyleTag({content:read(f)});
+ assert.deepEqual(await p.locator('[data-gaip-tabs] > [aria-selected="true"]').evaluateAll(xs=>xs.map(n=>({color:getComputedStyle(n).color,padding:getComputedStyle(n).padding,line:getComputedStyle(n,'::after').width}))),Array(3).fill({color:'rgb(2, 91, 82)',padding:'0px 12px',line:'71px'}));
+ assert.equal(await p.evaluate(()=>document.querySelector('.tabBtn___Au692')===window.originalProduct),true,'React-owned button retained');
+ await p.locator('.tabBtn___Au692').first().focus();await p.keyboard.press('ArrowRight');await p.waitForTimeout(240);
+ assert.equal(await p.locator('.tabBtn___Au692').nth(1).getAttribute('aria-selected'),'true');assert.equal(await p.evaluate(()=>window.switches),1,'one original click');
+ await checkTabAnimation(p,'.filterTab___qn4xZ','button:first-child');
+ await p.evaluate(()=>{window.__GAIP_TABS__.mount(document.querySelector('#demo'),{label:'示例',items:[{key:'a',label:'全部',count:0},{key:'b',label:'待开放',disabled:true},{key:'c',label:'已完成'}],onChange:v=>window.lastValue=v});});
+ await p.getByRole('tab',{name:'全部 ( 0 )'}).focus();await p.keyboard.press('ArrowRight');assert.equal(await p.evaluate(()=>window.lastValue),'c');await p.keyboard.press('Home');assert.equal(await p.evaluate(()=>window.lastValue),'a');
+ await p.evaluate(()=>{const old=document.querySelector('.lc-stats-tabs');window.oldTabs=old;old.outerHTML='<div class="lc-stats-tabs"><button aria-selected="false">学员学习统计</button><button aria-selected="true">课程学习统计</button></div>';});
+ await p.locator('.lc-stats-tabs[data-gaip-tabs]').waitFor();assert.equal(await p.evaluate(()=>__GAIP_TABS__.get(window.oldTabs)),undefined);assert.equal(await p.getByRole('tab',{name:'课程学习统计'}).getAttribute('aria-selected'),'true');
+ await p.emulateMedia({reducedMotion:'reduce'});assert.equal(await p.locator('[data-gaip-tab]').first().evaluate(n=>getComputedStyle(n,'::after').transitionDuration),'0s');
+ await p.setViewportSize({width:480,height:800});assert.equal(await p.locator('[data-gaip-tabs]').evaluateAll(xs=>xs.every(x=>x.getBoundingClientRect().right<=480)),true);
+ if(process.env.TABS_SCREENSHOT){await p.setViewportSize({width:1400,height:800});await p.addStyleTag({content:'section.productArea___xMLm_{height:auto!important}'});await p.evaluate(()=>window.scrollTo(0,0));await p.screenshot({path:process.env.TABS_SCREENSHOT});}assert.deepEqual(errors,[]);console.log('PASS shared tabs: three source skins computed equal; counts, original events/identity, keyboard, disabled, rerender cleanup, reduced motion and narrow width');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

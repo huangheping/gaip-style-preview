@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "page": "shared-modal-mask",
+  "records": [{
+    "id": "shared.modal.native-backdrop-fallback",
+    "element": "原生信息弹窗遮罩兼容",
+    "locator": {"selector": "dialog::backdrop", "representative": "学员学习详情弹窗"},
+    "state": {"channel": "shared", "variant": "open", "viewport": "1600x1000"},
+    "appliesTo": ["共享遮罩覆盖的原生dialog"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "background": {"before": null, "initialLocal": "var(--gaip-modal-mask-color)；当前Chromium中backdrop未继承变量，实测rgba(0,0,0,0)", "target": "var(--gaip-modal-mask-color, rgba(0,0,0,.45))", "status": "active", "basis": "mixed"},
+      "animation-duration": {"before": null, "initialLocal": "var(--gaip-modal-mask-duration)；未继承时动画无效", "target": "var(--gaip-modal-mask-duration, 160ms)", "status": "active", "basis": "source"}
+    },
+    "sources": ["shared/styles/global-modal-mask.css: dialog::backdrop"],
+    "verification": {"level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["原生dialog独立复现、学情两类详情截图与回归；其他频道未逐页复测，原有遮罩颜色和时长规范不变。"]},
+    "status": "active", "updatedAt": "2026-09-10"
+  }]
+}

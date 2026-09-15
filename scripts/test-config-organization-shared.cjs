@@ -1,0 +1,29 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{JSDOM}=require('jsdom');
+const root=path.resolve(__dirname,'..');
+(async()=>{const dom=new JSDOM('<div id="root"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><ul class="ant-menu-root"></ul></aside><main class="ant-pro-layout-content"></main></div>',{url:'https://local.example/index.html#/workspace?gaip-channel=config&gaip-view=organization',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window,d=w.document;
+try{
+ w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;this.dispatchEvent(new w.Event('close'));};
+ for(const f of ['shared/config/channels.js','shared/scripts/global-tabs.js','shared/scripts/global-modal.js','shared/scripts/organization-store.js','shared/scripts/organization-tree.js','features/config-center/source-markup.js','features/config-center/config-center.js']){Object.defineProperty(d,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});w.eval(fs.readFileSync(path.join(root,f),'utf8'));}
+ await new Promise(r=>setTimeout(r,60));
+ const O=w.__GAIP_ORGANIZATION__,one=s=>{const n=d.querySelector(s);assert.ok(n,s);return n;},click=s=>one(s).click();
+ assert.equal(d.querySelectorAll('[data-config-tree] .gaip-org-node').length,O.sets[0].length);
+ assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'),'false');
+ click('[data-collapse="department-1"]');assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'),'true');
+ click('[data-department-menu="department-1"]');click('[data-department-action="rename"]');const input=one('.gaip-department-editor input');input.value='共享节点改名';input.dispatchEvent(new w.Event('input',{bubbles:true}));click('[data-department-save]');
+ assert.equal(O.nodes().find(n=>n.id==='0:department-1').name,'共享节点改名');assert.equal(one('[data-department="department-1"] .treeNodeName___mtuTp').textContent,'共享节点改名');
+ const picker=d.createElement('div');d.body.appendChild(picker);let chosen;const tree=w.__GAIP_ORG_TREE__.mount(picker,{nodes:O.nodes(),onSelect:id=>chosen=id});tree.search('共享节点改名');assert.equal(picker.querySelectorAll('[role="treeitem"]').length,2);picker.querySelector('[data-node-id="0:department-1"] .treeNodeName___mtuTp').click();assert.equal(chosen,'0:department-1');tree.destroy();
+ await new Promise(r=>setTimeout(r,60));
+ const firstTab=one('[data-config-channel="0"][data-gaip-tab]');
+ const tabRoot=firstTab.parentElement,tabInstance=w.__GAIP_TABS__.get(tabRoot);
+ firstTab.focus();firstTab.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true}));
+ await new Promise(r=>setTimeout(r,60));
+ const secondTab=one('[data-config-channel="1"][data-gaip-tab]');
+ assert.equal(secondTab.getAttribute('aria-selected'),'true');
+ assert.equal(d.activeElement,secondTab,'shared keyboard restores focus after original controller render');
+ assert.equal(one('[data-config-channel="0"]'),firstTab,'original buttons remain connected');
+ assert.equal(w.__GAIP_TABS__.get(tabRoot),tabInstance,'shared instance survives channel switch');
+ assert.equal(d.querySelectorAll('[data-config-bulk-import]').length,1,'header actions not duplicated');
+ assert.equal(d.querySelectorAll('input[aria-label="搜索成员"]').length,1,'search not duplicated');
+ assert.equal(d.querySelectorAll('[data-config-tree] .gaip-org-node').length,O.sets[1].length);
+ console.log('PASS configuration shared nodes and tabs: tree expansion, rename, same-store picker and original channel switch/keyboard/rerender lifecycle');
+}finally{dom.window.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

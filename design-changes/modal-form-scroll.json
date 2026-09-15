@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "page": "弹窗真实来源与弹窗预览",
+  "records": [
+    {
+      "id": "modal.body.scrollbar-default-color",
+      "element": "普通弹窗全部原生滚动条滑块",
+      "locator": { "selector": "[data-gaip-modal-placement=\"center\"], .gaip-modal-kit, .gaip-modal-popup", "representative": "10 配置中心成员编辑" },
+      "state": { "channel": "shared", "variant": "default", "viewport": null },
+      "appliesTo": ["已接入共享定位的普通弹窗及共享弹窗组件", "正文、列表、表格、文本域、所属下拉/日期时间Portal的横纵原生滚动条", "真实来源及同源预览；不含页面、抽屉和Agent主面板"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "scrollbar.thumb.color": { "before": null, "initialLocal": "rgba(47, 54, 64, 0.32)", "target": "rgba(47, 54, 64, 0.18)", "status": "active", "basis": "source" },
+        "scrollbar.width": { "before": null, "initialLocal": "scrollbar-width:auto plus WebKit width/height:8px !important; local modal/list rules:6px", "target": "scrollbar-width:auto; native platform width, no shared WebKit geometry", "status": "active", "basis": "mixed" },
+        "scrollbar.thumb.hover-color": { "before": null, "initialLocal": "WebKit rgba(47, 54, 64, 0.5); standard rendering platform-controlled", "target": "platform-controlled; no custom thumb:hover rule", "status": "active", "basis": "source" }
+      },
+      "sources": ["shared/styles/global-modal.css", "shared/styles/global-font.css", "features/config-center/config-center-content.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "evidence": ["scripts/test-modal-scrollbar-browser.cjs:color-only contract compares geometry against native unstyled controls"], "gaps": ["独立浏览器测试不代表来源页面验收；来源页面及Codex内嵌浏览器实际视觉未验证。不保证常态常驻，显隐及滑块悬停由浏览器/系统决定。不支持标准颜色的旧浏览器使用系统颜色；只读原站及页面专属规则未逐个重写。"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "modal.customer-edit.scroll-height",
+      "element": "23客户资料介绍与24沟通纪要白色表面",
+      "locator": { "selector": ".gaip-modal-form.editIntroModal___beZtT > .ant-modal-content, .gaip-modal-form.modal___wKSui > .ant-modal-content", "representative": "24沟通纪要" },
+      "state": { "channel": "customer", "variant": "default / short viewport", "viewport": null },
+      "appliesTo": ["23 编辑客户资料介绍", "24 新增/编辑沟通纪要", "客户中心真实入口及真实源预览"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "surface.max-height": { "before": null, "initialLocal": "none (only outer .ant-modal constrained)", "target": "var(--gaip-modal-max-height, calc(100dvh - 48px)); fallback calc(100vh - 48px)", "status": "active", "basis": "source" },
+        "body.min-height": { "before": null, "initialLocal": "auto", "target": "0", "status": "active", "basis": "source" },
+        "24.form.min-height": { "before": null, "initialLocal": "auto", "target": "0", "status": "active", "basis": "source" },
+        "24.body.padding": { "before": null, "initialLocal": "0 24px", "target": "0; padding-inline:var(--gaip-modal-space)", "status": "active", "basis": "source" },
+        "24.form.padding-inline": { "before": null, "initialLocal": "0", "target": "var(--gaip-modal-space)", "status": "active", "basis": "source" },
+        "24.form.margin-inline": { "before": null, "initialLocal": "0", "target": "calc(0px - var(--gaip-modal-space))", "status": "active", "basis": "source" },
+        "24.header.padding-inline": { "before": null, "initialLocal": "0 40px (inside padded body)", "target": "0 40px", "status": "active", "basis": "source" },
+        "24.footer.margin-inline": { "before": null, "initialLocal": "calc(0px - var(--gaip-modal-space))", "target": "calc(0px - var(--gaip-modal-space))", "status": "active", "basis": "source" }
+      },
+      "sources": ["shared/styles/global-modal.css", "web/p__customer__index.fa91e9e7.chunk.css (read-only legacy evidence)"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["DOM/CSS契约已测试；浏览器实际高度、短视口滚动、Portal裁切和点击命中未验证。原宽度、计数和按钮视觉不改；24仅迁移留白归属，不移动DOM。"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "modal.activity-signup.viewport-height",
+      "element": "07 活动报名信息外框与正文",
+      "locator": { "selector": ".gaip-activity-modal__panel", "representative": "活动报名信息" },
+      "state": { "channel": "activity", "variant": "default / narrow", "viewport": null },
+      "appliesTo": ["活动中心报名入口", "07真实源预览"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "max-height": { "before": null, "initialLocal": "calc(100vh - 48px); narrow: calc(100vh - 24px)", "target": "var(--gaip-modal-max-height, calc(100dvh - 48px)); narrow fallback: calc(100dvh - 24px); vh fallback retained", "status": "active", "basis": "source" },
+        "body.min-height": { "before": null, "initialLocal": "auto", "target": "0", "status": "active", "basis": "source" },
+        "form.min-height": { "before": null, "initialLocal": "auto", "target": "0", "status": "active", "basis": "source" }
+      },
+      "sources": ["features/activity/activity-sync.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["实际浏览器短视口滚动、按钮可达性及几何待验收；不设固定高度，原正文max-height保持不变"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "modal.wealth-keywords.viewport-height",
+      "element": "08 保司关键词设置外框与正文",
+      "locator": { "selector": ".gaip-wealth-modal", "representative": "保司关键词设置" },
+      "state": { "channel": "wealth", "variant": "default", "viewport": null },
+      "appliesTo": ["财富值中心关键词入口", "08真实源预览"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "max-height": { "before": null, "initialLocal": "local rule: none; shared positioning may constrain outer host", "target": "var(--gaip-modal-max-height, calc(100dvh - 48px)); fallback calc(100vh - 48px)", "status": "active", "basis": "source" },
+        "body.min-height": { "before": null, "initialLocal": "auto", "target": "0", "status": "active", "basis": "source" }
+      },
+      "sources": ["features/wealth-center/wealth-center.css"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["实际浏览器短视口滚动与自然高度待验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    },
+    {
+      "id": "modal.announcement.inner-form-insets",
+      "element": "33/34 公告内层表单",
+      "locator": { "selector": ".gaip-announcement-modal-body > .gaip-announcement-form", "representative": "33 新建公告" },
+      "state": { "channel": "config", "variant": "default / narrow", "viewport": null },
+      "appliesTo": ["33 新建公告", "34 编辑公告", "公告管理真实入口"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "padding": { "before": null, "initialLocal": "0 24px 24px; narrow: 0 16px 20px", "target": "0 0 24px; narrow: 0 0 20px", "status": "active", "basis": "source" }
+      },
+      "sources": ["features/config-center/announcement-management.css", "shared/styles/global-modal.css (unchanged horizontal inset owner)"],
+      "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["浏览器标题与正文左右对齐待验收"] },
+      "status": "active", "updatedAt": "2026-09-08"
+    }
+  ]
+}

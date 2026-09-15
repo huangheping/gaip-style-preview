@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "page": "共享弹窗主标题",
+  "records": [{
+    "id": "shared-modal.title.default",
+    "element": "操作确认与表单操作的弹窗主标题",
+    "locator": {"selector": ".gaip-modal__title", "representative": "12 删除部门确认 / 10 配置中心成员编辑"},
+    "state": {"channel": "shared", "variant": "default", "viewport": "沿用现有响应式布局"},
+    "appliesTo": ["操作确认 6 项", "表单操作 16 项", "对应业务页及真实源弹窗预览"],
+    "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+    "properties": {
+      "font-family": {"before": null, "initialLocal": "全局 HarmonyOS Sans SC Regular；标题未指定独立字体面", "target": "操作确认与表单共同使用HarmonyOS Sans SC, sans-serif；同家族700映射本地Bold，不再使用字体别名", "status": "active", "basis": "source"},
+      "font-weight": {"before": null, "initialLocal": "标题声明 700 !important；全局重置 400 !important；嵌套标题文字可分别命中", "target": "700；同一共享声明覆盖主标题及文字子节点，使用真实 Bold 字体面，不合成粗体", "status": "active", "basis": "source"}
+    },
+    "sources": ["shared/styles/global-font.css", "shared/styles/global-modal.css"],
+    "verification": {"level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["未采集线上交付基准", "独立真实共享工厂的标题及嵌套span实际Bold渲染已核验；不是全部业务来源整页验收"]},
+    "status": "active",
+    "updatedAt": "2026-09-09"
+  }]
+}

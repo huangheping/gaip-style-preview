@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "page": "仅弹窗内部控件及所属展开面板",
+  "records": [
+    {
+      "id": "modal-controls.theme",
+      "element": "选择器、单选多选、图标和相关控件状态",
+      "locator": {
+        "selector": ".gaip-modal-controls, .gaip-modal-popup",
+        "representative": "10 配置中心成员编辑 / 13 设置管理员 / 33 新建公告 / 03 操作日志"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default/hover/focus/selected/disabled/error",
+        "viewport": "保留业务列布局；展开面板限制在可用视口内"
+      },
+      "appliesTo": [
+        "普通业务弹窗与真实源预览",
+        "明确属于弹窗的外置 Ant 选择面板",
+        "排除页面控件、抽屉、AI Agent 主面板"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "clear.icon-rendering": {
+          "before": null,
+          "initialLocal": "16px modal-clear.svg外部mask与currentColor；本地file模式可能不可见",
+          "target": "本地modal-clear.svg直接绘制；16px图形/24px热区以min/max宽高锁定，图形无padding/border/margin且不收缩，热区强制flex居中；#2F3640，默认图形42%透明度、图标hover100%；保留有值且字段hover/focus时显示，空值/禁用/只读隐藏",
+          "basis": "source"
+        },
+        "clear.pointer-background": {
+          "before": null,
+          "initialLocal": "默认#fff；hover #f2f3f4；active #e9ebed",
+          "target": "hover/active保持默认#fff底，不出现灰色方块；保留白色底遮住同槽下拉箭头；键盘focus-visible提示不变",
+          "basis": "source"
+        },
+        "dropdown.icon-rendering": {
+          "before": null,
+          "initialLocal": "16px modal-down.svg 外部mask、背景rgba(47,54,64,.68)，file模式可能不可见",
+          "target": "本地modal-down.svg采用用户Downloads/ICON/通用/下拉.svg附件原文，以背景图直接绘制；16px，附件原色#2F3640/不附加透明度；保留居中定位，native箭头距右12px；Ant Select、原生Select及多选共用--mc-down，不使用外部mask；DatePicker不再当作普通下拉使用箭头，见datetime.icon-rendering；原节点保留",
+          "basis": "source"
+        },
+        "datetime.icon-rendering": {
+          "before": null,
+          "initialLocal": "Ant日期/时钟后缀使用旧modal-calendar/modal-clock外部mask；24自定义DatePicker后缀使用下箭头；原生日期与时间使用旧本地背景图",
+          "target": "使用用户Downloads/ICON/通用/日历.svg与时间.svg原文副本shared/assets/modal-calendar.svg、modal-clock.svg；16px，原色#2F3640，不另加透明度；弹窗Ant日期/日期范围/日期时间后缀统一日历（含24的自定义下箭头），纯时间的clock-circle语义后缀统一时钟；原生date/datetime-local统一日历、time统一时钟；背景直接绘制、不使用外部mask，原生图标距右12px；原后缀子节点保留但不绘制；普通Select、页面和抽屉不改",
+          "basis": "source"
+        },
+        "radio.indicator": {
+          "before": null,
+          "initialLocal": "10配置中心成员编辑：Ant外径16px、dot-size6、青底白点；16调整节点：16px外圈与青色底、inset 0 0 0 3px #fff白环；活动原生radio由浏览器绘制；新接入的15批量导入原为行尾14px勾号，仅选中时显示",
+          "target": "弹窗Ant/15与16自定义树节点/原生Radio共用16px外径与6px居中白点，选中底与边框#24D4C9；未选中白底中性边框；取消旧内阴影白环；禁用灰底与灰点，hover/focus保留。15不再绘制行尾勾号，圆点复用同一组基础/选中/禁用/hover/focus声明，不维护另一份图形样式",
+          "basis": "source"
+        },
+        "selected.color": {
+          "before": null,
+          "initialLocal": "配置中心 Ant 原主题青色，活动 native accent 与频道规则，其他选择器分散定义",
+          "target": "单选/多选/树勾选及半选指示色#24D4C9；选中对比图形#fff；选择行与标签淡底rgba(36,212,201,.12)，文字#2F3640；不改保存按钮及日历日期主色",
+          "basis": "source"
+        },
+        "control.size": {
+          "before": null,
+          "initialLocal": "普通文字控件已共享48px/14px；日期、选择器、分页各自定义",
+          "target": "主控件48px、14px/22px；单选下拉文字行盒46px垂直居中，分页32px/行盒30px；圆角4px；边框rgba(47,54,64,.18)",
+          "basis": "source"
+        },
+        "icon": {
+          "before": null,
+          "initialLocal": "清除来自各个Ant SVG；日期使用原生或announcement-calendar；下拉使用control-down或Ant",
+          "target": "由shared/assets/modal-{down,calendar,clock,clear}.svg集中提供本地图标，具体图形来源及绘制规则见各icon-rendering记录；16px图标、24px清除热区；清除glyph零外边距居中，原SVG节点保留但不占位；可编辑单行文字/搜索有值且hover/focus时显示清除，禁用/只读不显示",
+          "basis": "source"
+        },
+        "search.spacing": {
+          "before": null,
+          "initialLocal": "04图标绝对定位left20/16px，15图标15×16px，16图标16px；共享inner清零输入padding导致图文预留丢失",
+          "target": "搜索统一用户附件副本shared/assets/modal-search.svg/16×16px前缀槽，以本地背景图直接绘制而非外部mask，沿用附件原色#2F3640；图标与文字gap8px；沿用48px外框与左右12px内距；补充清除的独立文本输入右内距44px",
+          "basis": "source"
+        },
+        "popup": {
+          "before": null,
+          "initialLocal": "Ant面板和浏览器原生面板分别绘制",
+          "target": "白底、8px圆角、1px边框、0 8px 24px rgba(17,35,39,.14)；下拉选项最小36px/内距7px 12px/行高22px；日期格与时间行32px；hover为品牌淡底，selected为选择专用淡底；原生适配面板margin为0",
+          "basis": "source"
+        },
+        "state": {
+          "before": null,
+          "initialLocal": "未形成弹窗级完整状态契约",
+          "target": "表单hover/focus边框#24D4C9，active按下边框#1FBFB5；取消box-shadow/outline光圈，键盘保留边框/底色或下划线提示；disabled灰底灰字；error红边#ff4d4f但无光圈；不改底部操作按钮",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/scripts/modal-controls.js",
+        "shared/styles/modal-controls.css",
+        "shared/assets/modal-calendar.svg",
+        "shared/assets/modal-clock.svg",
+        "首次本地依据：shared/styles/global-modal.css、features/config-center/config-center-content.css、shared/styles/global-multi-select.css、features/config-center/announcement-management.css"
+      ],
+      "verification": {
+        "level": "needs-recheck",
+        "checkedAt": "2026-09-08",
+        "gaps": [
+          "线上基准未知",
+          "用户反馈展开面板、图标及22新增线索错位；本轮修复源码并通过坐标模拟/DOM/规则检查，实际效果待刷新复核",
+          "真实浏览器本地file访问已拒绝；不得以DOM测试替代视觉验收",
+          "源码与DOM覆盖见 docs/modal-control-coverage.md；尚未完成35项实际图标对齐、定位、滚动和各状态颜色验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-08"
+    }
+  ]
+}

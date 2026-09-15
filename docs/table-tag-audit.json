@@ -1,0 +1,685 @@
+{
+  "date": "2026-09-09",
+  "scope": "本地表格及日志表格；已访问11个主入口及相关二级列表。非表格卡片、筛选选中项、表单必填标记和未使用的颜色定义不计入。",
+  "caveat": "统计为本轮已核实范围，不声称穷尽所有深层弹窗、权限分支和未展示数据。保单入口等待目标超时，未算作完成浏览器验收；相关卡片样式仅源码排除。",
+  "colorPairCount": 32,
+  "groupCount": 8,
+  "palette": [
+    {
+      "id": "neutral",
+      "label": "灰 · 中性",
+      "color": "#626B75",
+      "bg": "#F0F1F2",
+      "usage": "草稿、下架、结束；地区、业务类型、来源"
+    },
+    {
+      "id": "info",
+      "label": "蓝 · 信息 / 进行中",
+      "color": "#345AC6",
+      "bg": "#EDF2FF",
+      "usage": "跟进中、筹备中；角色身份、编辑、精选"
+    },
+    {
+      "id": "success",
+      "label": "绿 · 成功 / 有效",
+      "color": "#08776B",
+      "bg": "#E5F6F3",
+      "usage": "已上架、展示中、通过、已发放、持牌"
+    },
+    {
+      "id": "warning",
+      "label": "橙 · 待处理 / 警告",
+      "color": "#925B14",
+      "bg": "#FFF3E0",
+      "usage": "待分配、待跟进、待核对、预警"
+    },
+    {
+      "id": "danger",
+      "label": "红 · 失败 / 危险",
+      "color": "#BF3E45",
+      "bg": "#FFF0F0",
+      "usage": "解析失败、创建失败、删除记录"
+    }
+  ],
+  "records": [
+    {
+      "group": "组织架构",
+      "text": "不持牌",
+      "class": "tagUnlicensed___JgBWB",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgba(47, 54, 64, 0.05)",
+      "proposedTone": "neutral",
+      "proposedLabel": "不持牌"
+    },
+    {
+      "group": "组织架构",
+      "text": "人管",
+      "class": "memberIdentityTag___v3J6p is-organization",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "人管"
+    },
+    {
+      "group": "组织架构",
+      "text": "佣金",
+      "class": "memberIdentityTag___v3J6p is-commission",
+      "color": "rgb(138, 99, 40)",
+      "bg": "rgb(244, 234, 219)",
+      "proposedTone": "info",
+      "proposedLabel": "佣金"
+    },
+    {
+      "group": "组织架构",
+      "text": "内部转介绍人",
+      "class": "tagInternal___EhJFS",
+      "color": "rgb(56, 158, 13)",
+      "bg": "rgb(235, 249, 222)",
+      "proposedTone": "neutral",
+      "proposedLabel": "内部转介绍人"
+    },
+    {
+      "group": "组织架构",
+      "text": "外部转介绍人",
+      "class": "tagExternal___fibsK",
+      "color": "rgb(29, 57, 196)",
+      "bg": "rgb(240, 245, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "外部转介绍人"
+    },
+    {
+      "group": "组织架构",
+      "text": "持牌",
+      "class": "tagLicensed___m8J7I",
+      "color": "rgb(186, 123, 0)",
+      "bg": "rgb(255, 239, 210)",
+      "proposedTone": "success",
+      "proposedLabel": "持牌"
+    },
+    {
+      "group": "组织架构",
+      "text": "新加坡",
+      "class": "tagRegion___z0DNJ",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgba(47, 54, 64, 0.05)",
+      "proposedTone": "neutral",
+      "proposedLabel": "新加坡"
+    },
+    {
+      "group": "组织架构",
+      "text": "百慕大",
+      "class": "tagRegion___z0DNJ",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgba(47, 54, 64, 0.05)",
+      "proposedTone": "neutral",
+      "proposedLabel": "百慕大"
+    },
+    {
+      "group": "组织架构",
+      "text": "管理员",
+      "class": "tagAdmin___YTyPD",
+      "color": "rgb(186, 123, 0)",
+      "bg": "rgb(255, 239, 210)",
+      "proposedTone": "info",
+      "proposedLabel": "管理员"
+    },
+    {
+      "group": "组织架构",
+      "text": "线索管理",
+      "class": "memberIdentityTag___v3J6p is-clue-admin",
+      "color": "rgb(2, 118, 107)",
+      "bg": "rgb(226, 246, 243)",
+      "proposedTone": "info",
+      "proposedLabel": "线索管理"
+    },
+    {
+      "group": "组织架构",
+      "text": "线索跟进",
+      "class": "memberIdentityTag___v3J6p is-clue-follower",
+      "color": "rgb(53, 99, 156)",
+      "bg": "rgb(237, 243, 251)",
+      "proposedTone": "info",
+      "proposedLabel": "线索跟进"
+    },
+    {
+      "group": "组织架构",
+      "text": "美国",
+      "class": "tagRegion___z0DNJ",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgba(47, 54, 64, 0.05)",
+      "proposedTone": "neutral",
+      "proposedLabel": "美国"
+    },
+    {
+      "group": "组织架构",
+      "text": "香港",
+      "class": "tagRegion___z0DNJ",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgba(47, 54, 64, 0.05)",
+      "proposedTone": "neutral",
+      "proposedLabel": "香港"
+    },
+    {
+      "group": "线索中心",
+      "text": "保险规划",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "保险规划"
+    },
+    {
+      "group": "线索中心",
+      "text": "子女教育",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "子女教育"
+    },
+    {
+      "group": "线索中心",
+      "text": "客户业务",
+      "class": "tag___U4z9N tag_blue___Cwtan ",
+      "color": "rgb(29, 57, 196)",
+      "bg": "rgb(240, 245, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "客户业务"
+    },
+    {
+      "group": "线索中心",
+      "text": "已关闭",
+      "class": "tag___U4z9N tag_gray___VIuTC ",
+      "color": "rgba(47, 54, 64, 0.65)",
+      "bg": "rgb(228, 228, 228)",
+      "proposedTone": "neutral",
+      "proposedLabel": "已关闭"
+    },
+    {
+      "group": "线索中心",
+      "text": "已转化",
+      "class": "tag___U4z9N tag_blue___Cwtan ",
+      "color": "rgb(29, 57, 196)",
+      "bg": "rgb(240, 245, 255)",
+      "proposedTone": "success",
+      "proposedLabel": "已转化"
+    },
+    {
+      "group": "线索中心",
+      "text": "待分配",
+      "class": "tag___U4z9N tag_yellow___N_YBL ",
+      "color": "rgb(186, 123, 0)",
+      "bg": "rgb(255, 239, 210)",
+      "proposedTone": "warning",
+      "proposedLabel": "待分配"
+    },
+    {
+      "group": "线索中心",
+      "text": "待跟进",
+      "class": "tag___U4z9N tag_orange___IjAFH ",
+      "color": "rgb(212, 56, 13)",
+      "bg": "rgb(255, 242, 232)",
+      "proposedTone": "warning",
+      "proposedLabel": "待跟进"
+    },
+    {
+      "group": "线索中心",
+      "text": "渠道合作",
+      "class": "tag___U4z9N tag_yellow___N_YBL ",
+      "color": "rgb(186, 123, 0)",
+      "bg": "rgb(255, 239, 210)",
+      "proposedTone": "neutral",
+      "proposedLabel": "渠道合作"
+    },
+    {
+      "group": "线索中心",
+      "text": "税务规划",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "税务规划"
+    },
+    {
+      "group": "线索中心",
+      "text": "经纪人招募",
+      "class": "tag___U4z9N tag_green___k7ra0 ",
+      "color": "rgb(56, 158, 13)",
+      "bg": "rgb(246, 255, 237)",
+      "proposedTone": "neutral",
+      "proposedLabel": "经纪人招募"
+    },
+    {
+      "group": "线索中心",
+      "text": "财富传承",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "财富传承"
+    },
+    {
+      "group": "线索中心",
+      "text": "资产配置",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "资产配置"
+    },
+    {
+      "group": "线索中心",
+      "text": "跟进中",
+      "class": "tag___U4z9N tag_green___k7ra0 ",
+      "color": "rgb(56, 158, 13)",
+      "bg": "rgb(246, 255, 237)",
+      "proposedTone": "info",
+      "proposedLabel": "跟进中"
+    },
+    {
+      "group": "线索中心",
+      "text": "身份规划",
+      "class": "ant-tag badge___QDrJm css-10wz6x1 css-var-r0",
+      "color": "rgb(8, 151, 156)",
+      "bg": "rgb(230, 255, 251)",
+      "proposedTone": "neutral",
+      "proposedLabel": "身份规划"
+    },
+    {
+      "group": "活动中心",
+      "text": "报名中",
+      "class": "ant-tag ant-tag-borderless statusTag___ZFkE5 SIGNUP_OPEN___WPxdk css-10wz6x1 css-var-r0",
+      "color": "rgb(0, 185, 166)",
+      "bg": "rgba(0, 185, 166, 0.1)",
+      "proposedTone": "success",
+      "proposedLabel": "报名中"
+    },
+    {
+      "group": "活动中心",
+      "text": "报名结束",
+      "class": "ant-tag ant-tag-borderless statusTag___ZFkE5 SIGNUP_CLOSED___yw0YW css-10wz6x1 css-var-r0",
+      "color": "rgb(249, 158, 42)",
+      "bg": "rgba(249, 158, 42, 0.1)",
+      "proposedTone": "neutral",
+      "proposedLabel": "报名结束"
+    },
+    {
+      "group": "活动中心",
+      "text": "活动结束",
+      "class": "ant-tag ant-tag-borderless statusTag___ZFkE5 ENDED___IwjiS css-10wz6x1 css-var-r0",
+      "color": "rgb(169, 171, 175)",
+      "bg": "rgba(169, 171, 175, 0.1)",
+      "proposedTone": "neutral",
+      "proposedLabel": "活动结束"
+    },
+    {
+      "group": "活动中心",
+      "text": "筹备中",
+      "class": "ant-tag ant-tag-borderless statusTag___ZFkE5 PREPARING___YhESo css-10wz6x1 css-var-r0",
+      "color": "rgb(213, 185, 128)",
+      "bg": "rgba(213, 185, 128, 0.1)",
+      "proposedTone": "info",
+      "proposedLabel": "筹备中"
+    },
+    {
+      "group": "活动中心",
+      "text": "进行中",
+      "class": "ant-tag ant-tag-borderless statusTag___ZFkE5 IN_PROGRESS___je9HJ css-10wz6x1 css-var-r0",
+      "color": "rgb(103, 189, 65)",
+      "bg": "rgba(103, 189, 65, 0.1)",
+      "proposedTone": "info",
+      "proposedLabel": "进行中"
+    },
+    {
+      "group": "财富值中心",
+      "text": "-",
+      "class": "gaip-wealth-tag gaip-wealth-tag--neutral",
+      "color": "rgb(102, 116, 123)",
+      "bg": "rgb(238, 241, 241)",
+      "proposedTone": "neutral",
+      "proposedLabel": "—"
+    },
+    {
+      "group": "财富值中心",
+      "text": "上线奖",
+      "class": "gaip-wealth-tag gaip-wealth-tag--blue",
+      "color": "rgb(53, 104, 212)",
+      "bg": "rgb(238, 241, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "上线奖"
+    },
+    {
+      "group": "财富值中心",
+      "text": "上线奖",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "neutral",
+      "proposedLabel": "上线奖"
+    },
+    {
+      "group": "财富值中心",
+      "text": "保险财富值",
+      "class": "gaip-wealth-tag gaip-wealth-tag--blue",
+      "color": "rgb(53, 104, 212)",
+      "bg": "rgb(238, 241, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "保险财富值"
+    },
+    {
+      "group": "财富值中心",
+      "text": "保险财富值",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "neutral",
+      "proposedLabel": "保险财富值"
+    },
+    {
+      "group": "财富值中心",
+      "text": "创建失败",
+      "class": "gaip-wealth-tag gaip-wealth-tag--danger",
+      "color": "rgb(196, 63, 77)",
+      "bg": "rgb(251, 231, 234)",
+      "proposedTone": "danger",
+      "proposedLabel": "创建失败"
+    },
+    {
+      "group": "财富值中心",
+      "text": "历史导入",
+      "class": "gaip-wealth-tag gaip-wealth-tag--blue",
+      "color": "rgb(53, 104, 212)",
+      "bg": "rgb(238, 241, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "历史导入"
+    },
+    {
+      "group": "财富值中心",
+      "text": "失败",
+      "class": "gaip-wealth-tag gaip-wealth-tag--danger",
+      "color": "rgb(196, 63, 77)",
+      "bg": "rgb(251, 231, 234)",
+      "proposedTone": "danger",
+      "proposedLabel": "失败"
+    },
+    {
+      "group": "财富值中心",
+      "text": "已发放",
+      "class": "gaip-wealth-tag gaip-wealth-tag--success",
+      "color": "rgb(8, 121, 102)",
+      "bg": "rgb(234, 247, 242)",
+      "proposedTone": "success",
+      "proposedLabel": "已发放"
+    },
+    {
+      "group": "财富值中心",
+      "text": "已提交",
+      "class": "gaip-wealth-tag gaip-wealth-tag--success",
+      "color": "rgb(8, 121, 102)",
+      "bg": "rgb(234, 247, 242)",
+      "proposedTone": "success",
+      "proposedLabel": "已提交"
+    },
+    {
+      "group": "财富值中心",
+      "text": "已核对",
+      "class": "gaip-wealth-tag gaip-wealth-tag--success",
+      "color": "rgb(8, 121, 102)",
+      "bg": "rgb(234, 247, 242)",
+      "proposedTone": "success",
+      "proposedLabel": "已核对"
+    },
+    {
+      "group": "财富值中心",
+      "text": "待提交",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "warning",
+      "proposedLabel": "待提交"
+    },
+    {
+      "group": "财富值中心",
+      "text": "待核对",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "warning",
+      "proposedLabel": "待核对"
+    },
+    {
+      "group": "财富值中心",
+      "text": "移民财富值",
+      "class": "gaip-wealth-tag gaip-wealth-tag--blue",
+      "color": "rgb(53, 104, 212)",
+      "bg": "rgb(238, 241, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "移民财富值"
+    },
+    {
+      "group": "财富值中心",
+      "text": "补充导入",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "neutral",
+      "proposedLabel": "补充导入"
+    },
+    {
+      "group": "财富值中心",
+      "text": "补发财富值",
+      "class": "gaip-wealth-tag gaip-wealth-tag--blue",
+      "color": "rgb(53, 104, 212)",
+      "bg": "rgb(238, 241, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "补发财富值"
+    },
+    {
+      "group": "财富值中心",
+      "text": "解析失败",
+      "class": "gaip-wealth-tag gaip-wealth-tag--danger",
+      "color": "rgb(196, 63, 77)",
+      "bg": "rgb(251, 231, 234)",
+      "proposedTone": "danger",
+      "proposedLabel": "解析失败"
+    },
+    {
+      "group": "财富值中心",
+      "text": "通过",
+      "class": "gaip-wealth-tag gaip-wealth-tag--success",
+      "color": "rgb(8, 121, 102)",
+      "bg": "rgb(234, 247, 242)",
+      "proposedTone": "success",
+      "proposedLabel": "通过"
+    },
+    {
+      "group": "财富值中心",
+      "text": "预警",
+      "class": "gaip-wealth-tag gaip-wealth-tag--warning",
+      "color": "rgb(168, 99, 20)",
+      "bg": "rgb(255, 243, 224)",
+      "proposedTone": "warning",
+      "proposedLabel": "预警"
+    },
+    {
+      "group": "公告管理",
+      "text": "展示中",
+      "class": "ant-tag gaip-announcement-status is-active",
+      "color": "rgb(8, 119, 107)",
+      "bg": "rgb(229, 246, 243)",
+      "proposedTone": "success",
+      "proposedLabel": "展示中"
+    },
+    {
+      "group": "公告管理",
+      "text": "已下架",
+      "class": "ant-tag gaip-announcement-status is-offline",
+      "color": "rgb(111, 119, 128)",
+      "bg": "rgb(240, 241, 242)",
+      "proposedTone": "neutral",
+      "proposedLabel": "已下架"
+    },
+    {
+      "group": "公告管理",
+      "text": "未开始",
+      "class": "ant-tag gaip-announcement-status is-upcoming",
+      "color": "rgb(83, 107, 136)",
+      "bg": "rgb(237, 243, 250)",
+      "proposedTone": "info",
+      "proposedLabel": "未开始"
+    },
+    {
+      "group": "课程管理",
+      "text": "已上架",
+      "class": "gaip-table__tag gaip-table__tag--success",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(56, 158, 13)",
+      "proposedTone": "success",
+      "proposedLabel": "已上架"
+    },
+    {
+      "group": "课程管理",
+      "text": "已下架",
+      "class": "gaip-table__tag gaip-table__tag--neutral",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgb(229, 230, 232)",
+      "proposedTone": "neutral",
+      "proposedLabel": "已下架"
+    },
+    {
+      "group": "课程管理",
+      "text": "精选",
+      "class": "gaip-table__tag gaip-table__tag--highlight",
+      "color": "rgb(128, 91, 13)",
+      "bg": "rgb(244, 214, 124)",
+      "proposedTone": "info",
+      "proposedLabel": "精选"
+    },
+    {
+      "group": "课程管理",
+      "text": "草稿",
+      "class": "gaip-table__tag gaip-table__tag--neutral",
+      "color": "rgb(47, 54, 64)",
+      "bg": "rgb(229, 230, 232)",
+      "proposedTone": "neutral",
+      "proposedLabel": "草稿"
+    },
+    {
+      "group": "共享操作日志",
+      "text": "删除",
+      "class": "gaip-log-tag",
+      "color": "rgb(191, 62, 69)",
+      "bg": "rgb(255, 240, 240)",
+      "proposedTone": "danger",
+      "proposedLabel": "删除"
+    },
+    {
+      "group": "共享操作日志",
+      "text": "新增",
+      "class": "gaip-log-tag",
+      "color": "rgb(8, 116, 82)",
+      "bg": "rgb(233, 248, 240)",
+      "proposedTone": "success",
+      "proposedLabel": "新增"
+    },
+    {
+      "group": "共享操作日志",
+      "text": "查看",
+      "class": "gaip-log-tag",
+      "color": "rgb(118, 81, 185)",
+      "bg": "rgb(244, 239, 255)",
+      "proposedTone": "neutral",
+      "proposedLabel": "查看"
+    },
+    {
+      "group": "共享操作日志",
+      "text": "编辑",
+      "class": "gaip-log-tag",
+      "color": "rgb(52, 90, 198)",
+      "bg": "rgb(237, 242, 255)",
+      "proposedTone": "info",
+      "proposedLabel": "编辑"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "修改成员身份",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "修改成员身份"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "修改部门",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "修改部门"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "删除成员",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "danger",
+      "proposedLabel": "删除成员"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "导出成员名单",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "neutral",
+      "proposedLabel": "导出成员名单"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "新增成员",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "success",
+      "proposedLabel": "新增成员"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "新增部门",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "success",
+      "proposedLabel": "新增部门"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "编辑成员",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "编辑成员"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "设置管理员",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "设置管理员"
+    },
+    {
+      "group": "组织操作日志",
+      "text": "调整节点",
+      "class": "ant-tag organizationLogType___d8KpQ",
+      "color": "rgb(168, 102, 0)",
+      "bg": "rgb(255, 240, 211)",
+      "proposedTone": "info",
+      "proposedLabel": "调整节点"
+    }
+  ]
+}

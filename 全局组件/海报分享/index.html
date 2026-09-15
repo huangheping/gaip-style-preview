@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
   <title>GAIP 文章海报分享</title>
+  <link rel="stylesheet" href="../../shared/styles/global-font.css?v=20260909-project-font-1">
   <style>
-    @font-face {
-      font-family: "GAIP PuHui";
-      src: url("./assets/gaip-light.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 300;
-      font-display: swap;
-    }
-
     :root {
       --ink: #2f3640;
       --muted: rgba(47, 54, 64, 0.65);
@@ -58,10 +51,7 @@
       overflow: hidden;
       color: var(--ink);
       background: #f4f6f6;
-      font-family: "GAIP PuHui", "Noto Sans SC", sans-serif;
       font-size: 14px;
-      font-weight: 300;
-      font-synthesis: weight;
     }
 
     button,
@@ -91,7 +81,6 @@
       height: 58px;
       padding: 0 28px;
       border-bottom: 1px solid #eef1f1;
-      font-family: Georgia, serif;
       font-size: 20px;
     }
 
@@ -330,7 +319,6 @@
       top: 5px;
       left: 5px;
       color: white;
-      font-family: Georgia, serif;
       font-size: 6px;
     }
 
@@ -842,7 +830,6 @@
       border: 2px solid white;
       border-radius: 50%;
       box-shadow: 0 0 0 1px #d5dddd;
-      font-family: Georgia, serif;
       font-size: 14px;
     }
 
@@ -2232,6 +2219,11 @@
       ctx.closePath();
     }
 
+    function posterCanvasFont(size, weight = 400) {
+      const family = getComputedStyle(document.body).fontFamily;
+      return `${weight >= 600 ? 700 : 400} ${size}px ${family}`;
+    }
+
     function drawArticleContent(ctx, sourcePoster) {
       const dateParts = posterDateParts(state.article.date);
       ctx.drawImage(sourcePoster, 0, 0, 750, 981);
@@ -2239,9 +2231,9 @@
       ctx.fillStyle = state.template.accent;
       ctx.fillRect(30, 172, 5, 61);
       ctx.fillStyle = "#ffffff";
-      ctx.font = "600 36px sans-serif";
+      ctx.font = posterCanvasFont(36, 600);
       ctx.fillText(dateParts.day, 48, 207);
-      ctx.font = "23px sans-serif";
+      ctx.font = posterCanvasFont(23);
       ctx.fillText(dateParts.year, 48, 240);
 
       const cardSurface = ctx.createLinearGradient(0, 277, 0, 889);
@@ -2252,27 +2244,27 @@
       ctx.fillRect(29, 277, 693, 612);
 
       ctx.fillStyle = "#26353b";
-      ctx.font = "600 34px sans-serif";
+      ctx.font = posterCanvasFont(34, 600);
       let titleX = 64;
       if (state.article.featured) {
         ctx.fillStyle = "#f2ca61";
         roundRect(ctx, 59, 310, 86, 36, 5);
         ctx.fill();
         ctx.fillStyle = "#8a6515";
-        ctx.font = "600 21px sans-serif";
+        ctx.font = posterCanvasFont(21, 600);
         ctx.fillText("AI精选", 69, 335);
         titleX = 159;
       }
       ctx.fillStyle = "#26353b";
-      ctx.font = "600 36px sans-serif";
+      ctx.font = posterCanvasFont(36, 600);
       let nextY = drawWrappedText(ctx, state.article.title, titleX, 342, 633 - (titleX - 59), 57, 3) + 13;
 
       ctx.fillStyle = "#899397";
-      ctx.font = "18px sans-serif";
+      ctx.font = posterCanvasFont(18);
       nextY = drawWrappedText(ctx, articleMeta(), 59, nextY, 633, 28, 2) + 23;
 
       ctx.fillStyle = "#47565c";
-      ctx.font = "27px sans-serif";
+      ctx.font = posterCanvasFont(27);
       drawWrappedText(ctx, state.article.summary, 59, nextY, 633, 48, 6);
     }
 
@@ -2288,6 +2280,11 @@
       button.querySelector("span").textContent = "生成中...";
 
       try {
+        // Canvas does not inherit CSS fonts; wait for the same project font before drawing.
+        await Promise.all([
+          document.fonts.load(posterCanvasFont(36)),
+          document.fonts.load(posterCanvasFont(36, 600))
+        ]);
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
         canvas.width = 750;
@@ -2319,14 +2316,14 @@
             drawImageCover(ctx, qrImage, 46, 842, 82, 82);
 
             ctx.fillStyle = "#26353b";
-            ctx.font = "600 24px sans-serif";
+            ctx.font = posterCanvasFont(24, 600);
             ctx.fillText("扫码添加我的微信", 150, 872);
           }
 
           if (hasName) {
             const nameOnly = !hasQr && !hasAvatar;
             ctx.fillStyle = hasQr ? "#738084" : "#49585d";
-            ctx.font = hasQr ? "20px sans-serif" : "600 24px sans-serif";
+            ctx.font = hasQr ? posterCanvasFont(20) : posterCanvasFont(24, 600);
             ctx.textAlign = nameOnly ? "center" : "left";
             ctx.fillText(`由 ${shareName} 分享`, nameOnly ? 375 : (hasQr ? 150 : 46), (hasQr ? 907 : 889) + noQrOffsetY);
             ctx.textAlign = "left";
@@ -2348,7 +2345,7 @@
         }
 
         ctx.fillStyle = "#a4adaf";
-        ctx.font = "16px sans-serif";
+        ctx.font = posterCanvasFont(16);
         ctx.textAlign = "center";
         ctx.fillText("以上内容由 AI 辅助生成，仅供参考，不构成具体产品收益承诺", 375, 963);
 

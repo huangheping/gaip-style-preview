@@ -35,6 +35,12 @@
   max-height: var(--gaip-modal-max-height) !important;
 }
 
+/* 22 新增线索原来用 top:50% + translateY(-50%) 自行定位。
+   宿主现已负责居中，只取消这个遗留位移，不覆盖其他 Modal 的入场动画。 */
+.ant-modal-wrap[data-gaip-modal-placement="center"] > .ant-modal.createClueWrapper___mpoSg {
+  transform: none !important;
+}
+
 /* 原生 showModal() 弹窗以自身中心点定位，清除各业务遗留的 top/inset 差异。 */
 dialog[data-gaip-modal-placement="center"][open] {
   position: fixed !important;

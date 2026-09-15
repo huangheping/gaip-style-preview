@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  if (window.__GAIP_ACTIVITY_SYNC__) return;
+
   var firstBanner = {
     src: './web/static/GA0119.c101ae4c.jpg',
     alt: '兑现之年 · 全球配置新程'
@@ -115,7 +117,7 @@
       '    <h2 class="gaip-activity-modal__title" id="gaip-activity-modal-title">填写报名信息</h2>',
       '    <p class="gaip-activity-modal__subtitle">正在报名： <span></span></p>',
       '  </header>',
-      '  <form class="gaip-activity-modal__form">',
+      '  <form class="gaip-activity-modal__form" novalidate>',
       '    <div class="gaip-activity-modal__body">',
       '      <div class="gaip-activity-modal__form-grid">',
       '        <div class="gaip-activity-modal__field">',
@@ -143,7 +145,7 @@
       '        </div>',
       '        <div class="gaip-activity-modal__field gaip-activity-modal__field--full">',
       '          <label class="gaip-activity-modal__label" for="gaip-remark">备注信息</label>',
-      '          <textarea id="gaip-remark" name="remark" maxlength="500" placeholder="请输入" required></textarea>',
+      '          <span data-gaip-modal-part="resizable-textarea"><textarea id="gaip-remark" name="remark" maxlength="500" placeholder="请输入" required></textarea></span>',
       '        </div>',
       '      </div>',
       '    </div>',
@@ -156,13 +158,58 @@
     ].join('');
 
     overlay.querySelector('.gaip-activity-modal__subtitle span').textContent = activityName || firstBanner.alt;
+    var form = overlay.querySelector('form'), validationAttempted = false;
+    var fields = Array.prototype.map.call(form.querySelectorAll('.gaip-activity-modal__field'), function (container) {
+      var controls = Array.prototype.slice.call(container.querySelectorAll('input, textarea'));
+      var hint = document.createElement('div');
+      hint.id = controls[0].id ? controls[0].id + '-error' : 'gaip-' + controls[0].name + '-error';
+      hint.className = 'gaip-form-help gaip-form-help--error';
+      hint.setAttribute('aria-live', 'polite'); hint.hidden = true;
+      container.appendChild(hint);
+      controls.forEach(function (control) { control.setAttribute('aria-describedby', hint.id); });
+      return { container: container, controls: controls, hint: hint };
+    });
+    function validateField(field) {
+      var controls = field.controls.filter(function (control) { return !control.matches(':disabled'); });
+      var first = controls[0], message = '';
+      if (first) {
+        if (first.type === 'radio') {
+          if (controls.some(function (control) { return control.required; }) && !controls.some(function (control) { return control.checked; })) message = '请选择签约包是否提交';
+        } else if (first.validity.badInput) message = '请输入有效数字';
+        else if (first.required && !first.value.trim()) {
+          var label = field.container.querySelector('.gaip-activity-modal__label');
+          message = '请输入' + label.textContent.trim();
+        } else if (!first.validity.valid) message = first.validationMessage;
+      }
+      field.hint.textContent = message;
+      field.hint.hidden = !message;
+      field.controls.forEach(function (control) {
+        if (message) control.setAttribute('aria-invalid', 'true');
+        else control.removeAttribute('aria-invalid');
+      });
+      return message ? first : null;
+    }
+    ['input', 'change'].forEach(function (type) {
+      form.addEventListener(type, function (event) {
+        if (!validationAttempted) return;
+        var field = fields.find(function (item) { return item.controls.indexOf(event.target) !== -1; });
+        if (field) validateField(field);
+      });
+    });
     overlay.querySelector('.gaip-activity-modal__close').addEventListener('click', closeModal);
     overlay.querySelector('.gaip-activity-modal__cancel').addEventListener('click', closeModal);
     overlay.addEventListener('click', function (event) {
       if (event.target === overlay) closeModal();
     });
-    overlay.querySelector('form').addEventListener('submit', function (event) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault();
+      validationAttempted = true;
+      var invalid = fields.map(validateField).find(function (field) { return !!field; });
+      if (invalid) {
+        var controls = window.__GAIP_MODAL_CONTROLS__;
+        if (!controls || !controls.revealInvalidField || !controls.revealInvalidField(invalid)) invalid.focus();
+        return;
+      }
       toast('模拟提交成功，未发送任何数据');
       closeModal();
     });

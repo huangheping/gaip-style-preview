@@ -1,0 +1,88 @@
+/* Page-level filter composition. Does not theme unrelated pages or modal controls. */
+.gaip-filter-bar { --filter-brand: var(--gaip-color-brand, #025b52); --filter-border: var(--gaip-color-border, rgba(47,54,64,.12)); display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 24px; margin: 0; padding: 20px; border: 1px solid var(--filter-border); border-radius: var(--gaip-radius-control, 4px); background: #fff; color: var(--gaip-color-text, #2f3640); font: 14px/22px var(--gaip-global-font, sans-serif); }
+.gaip-filter-bar { container: gaip-filter / inline-size; }
+/* Container queries establish a stacking context; keep an open multi-select above sticky tables. */
+.gaip-filter-bar:has(.gaipMultiSelect.isOpen) { position: relative; z-index: 10; }
+.gaip-filter-bar *, .gaip-filter-bar *::before, .gaip-filter-bar *::after { box-sizing: border-box; }
+.gaip-filter-bar [hidden] { display: none !important; }
+.gaip-filter-bar__fields { display: flex; flex: 1 1 680px; flex-wrap: wrap; align-items: flex-start; gap: 16px 24px; min-width: 0; }
+.gaip-filter-bar__field { flex: 1 1 220px; min-width: min(100%, 220px); max-width: min(100%, 280px); }
+.gaip-filter-bar__field[data-type="multiSelect"] { flex-basis: 280px; min-width: min(100%, 260px); max-width: min(100%, 320px); }
+.gaip-filter-bar__field--wide, .gaip-filter-bar__field[data-type="search"] { flex-basis: 300px; max-width: min(100%, 360px); }
+.gaip-filter-bar__field[data-type="switch"] { flex: 0 1 auto; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.gaip-filter-bar__label { display: block; margin: 0 0 8px; color: var(--gaip-color-text-secondary, rgba(47,54,64,.65)); font-size: 13px; line-height: 20px; }
+.gaip-filter-bar__control { position: relative; min-height: var(--gaip-control-default, 40px); }
+.gaip-filter-bar .gaip-filter-bar__input { width: 100%; min-width: 0; height: var(--gaip-control-default, 40px); margin: 0; padding: 8px 12px; border: 1px solid var(--filter-border); border-radius: var(--gaip-radius-control, 4px); background: #fff; color: inherit; font: inherit; outline: 0; box-shadow: none; }
+.gaip-filter-bar .gaip-filter-bar__input::placeholder { color: #969da1; }
+.gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled) { border-color: #24d4c9; }
+.gaip-filter-bar .gaip-filter-bar__input:focus, .gaip-filter-bar .gaip-filter-bar__input:focus-visible { border-color: var(--filter-brand); outline: 0; }
+.gaip-filter-bar .gaip-filter-bar__input[aria-invalid="true"] { border-color: #b82e24; }
+.gaip-filter-bar__error { display: block; margin-top: 6px; color: #b82e24; font-size: 12px; line-height: 18px; }
+.gaip-filter-bar .gaip-filter-bar__select { appearance: none; padding-right: 38px; background: #fff url('../assets/modal-down.svg') no-repeat right 12px center / 16px 16px; cursor: pointer; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gaip-filter-bar .gaip-filter-bar__tree-input { padding-right: 64px; cursor: text; }
+.gaip-filter-bar .gaip-filter-bar__tree-clear { right: 30px; }
+.gaip-filter-bar__search::before { content: ''; position: absolute; top: 12px; left: 12px; width: 16px; height: 16px; background: url('../assets/modal-search.svg') center / contain no-repeat; pointer-events: none; }
+.gaip-filter-bar .gaip-filter-bar__search input { padding-left: 36px; padding-right: 38px; }
+.gaip-filter-bar input[type="search"]::-webkit-search-cancel-button { appearance: none; }
+.gaip-filter-bar__clear { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); width: 24px; height: 24px; padding: 0; border: 0; background: url('../assets/modal-clear.svg') center / 16px 16px no-repeat; cursor: pointer; }
+.gaip-filter-bar__range { display: flex; align-items: center; gap: 8px; }
+.gaip-filter-bar__field[data-type="dateRange"], .gaip-filter-bar__field[data-type="numberRange"] { flex-basis: 420px; min-width: min(100%, 320px); max-width: min(100%, 480px); }
+.gaip-filter-bar__range > .gaip-filter-bar__input { flex: 1 1 0; }
+.gaip-filter-bar__date-shell { flex: 1 1 0; min-width: 0; }
+.gaip-filter-bar .gaip-filter-bar__date { padding-right: 36px; background: #fff url('../assets/modal-calendar.svg') no-repeat right 12px center / 16px 16px; cursor: pointer; text-overflow: ellipsis; }
+.gaip-filter-bar .gaip-filter-bar__date:placeholder-shown { color: #969da1; }
+.gaip-filter-bar__separator { flex: none; color: #969da1; font-size: 12px; }
+.gaip-filter-bar__switch-line { position: relative; display: flex; align-items: center; gap: 10px; min-height: 40px; margin: 0; cursor: pointer; }
+.gaip-filter-bar__switch-input { position: absolute; width: 36px; height: 22px; margin: 0; opacity: 0; cursor: pointer; }
+.gaip-filter-bar__switch-track { position: relative; flex: 0 0 36px; height: 22px; border-radius: 11px; background: #c4c9c7; pointer-events: none; }
+.gaip-filter-bar__switch-track::after { content: ''; position: absolute; left: 3px; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .16s ease; }
+.gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track { background: var(--filter-brand); }
+.gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track::after { transform: translateX(14px); }
+.gaip-filter-bar__switch-input:focus-visible + .gaip-filter-bar__switch-track { outline: 2px solid var(--filter-brand); outline-offset: 3px; }
+.gaip-filter-bar__actions { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; min-height: 40px; margin-left: auto; }
+.gaip-filter-bar .gaip-filter-bar__button { display: inline-flex; align-items: center; justify-content: center; min-height: var(--gaip-control-default, 40px); padding: 8px 16px; border: 1px solid var(--filter-border); border-radius: var(--gaip-radius-control, 4px); color: inherit; background: #fff; font: inherit; white-space: nowrap; cursor: pointer; }
+.gaip-filter-bar .gaip-filter-bar__button:hover { border-color: var(--filter-brand); color: var(--filter-brand); }
+.gaip-filter-bar .gaip-filter-bar__button--reset-active,
+.gaip-filter-bar .gaip-filter-bar__button--reset-active:hover {
+  border-color: #2F3640;
+  background: #2F3640;
+  color: #fff;
+}
+.gaip-filter-bar .gaip-filter-bar__button--primary { background: var(--filter-brand); border-color: var(--filter-brand); color: #fff; }
+.gaip-filter-bar .gaip-filter-bar__button--primary:hover { color: #fff; filter: brightness(.94); }
+.gaip-filter-bar button:focus-visible { outline: 2px solid var(--filter-brand); outline-offset: 2px; }
+.gaip-filter-bar .is-disabled { opacity: .45; cursor: not-allowed; }
+.gaip-filter-bar .is-disabled input, .gaip-filter-bar .is-disabled select { background-color: #f5f4f2; cursor: not-allowed; }
+.gaip-filter-bar .gaipMultiSelect { --gaip-multi-select-border: var(--filter-border); --gaip-multi-select-focus: var(--filter-brand); min-width: 0; }
+.gaip-filter-bar .gaipMultiSelect__control { height: 40px; min-height: 40px; }
+.gaip-filter-bar .gaipMultiSelect__tag { flex: 0 1 auto; }
+.gaip-filter-bar .gaipMultiSelect__overflow { flex-shrink: 0; }
+.gaip-filter-bar .gaipMultiSelect__control:hover { border-color: #24d4c9; }
+.gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__control, .gaip-filter-bar .gaipMultiSelect__control:focus-visible { border-color: var(--filter-brand); box-shadow: none; }
+.gaip-filter-bar .gaipMultiSelect__arrow::before { border: 0; transform: none; width: 12px; height: 12px; background: url('../assets/modal-down.svg') center / contain no-repeat; }
+.gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__arrow::before { transform: rotate(180deg); }
+.gaip-filter-bar .gaipMultiSelect__clear { color: transparent; background: url('../assets/modal-clear.svg') center / 16px 16px no-repeat; }
+.gaip-filter-bar .gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox { border-color: var(--filter-brand); background: var(--filter-brand); }
+/* Custom panels use the same selection surface, type and density. Popover top layer
+   keeps them out of scroll-container clipping without changing the page layout. */
+.gaip-filter-bar__popup, .gaip-filter-bar .gaipMultiSelect__dropdown { margin: 0; padding: 4px; border: 1px solid var(--filter-border); border-radius: 6px; background: #fff; color: var(--gaip-color-text, #2f3640); font: 14px/22px var(--gaip-global-font, sans-serif); box-shadow: 0 6px 16px rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05); }
+.gaip-filter-bar__popup { position: fixed; inset: auto; z-index: 1100; overflow: auto; max-height: 320px; }
+.gaip-filter-bar__popup::backdrop { background: transparent; pointer-events: none; }
+.gaip-filter-bar__popup button { font: inherit; cursor: pointer; }
+.gaip-filter-bar__option, .gaip-filter-bar .gaipMultiSelect__option { display: block; width: 100%; min-height: 36px; padding: 7px 12px; border: 0; border-radius: 4px; color: inherit; background: #fff; line-height: 22px; text-align: left; overflow-wrap: anywhere; }
+.gaip-filter-bar .gaipMultiSelect__option { display: flex; }
+.gaip-filter-bar__option:hover, .gaip-filter-bar__option:focus-visible, .gaip-filter-bar .gaipMultiSelect__option:hover, .gaip-filter-bar .gaipMultiSelect__option:focus-visible { background: rgba(2,91,82,.06); outline: none; }
+.gaip-filter-bar__option[aria-selected="true"], .gaip-filter-bar .gaipMultiSelect__option[aria-selected="true"] { background: rgba(2,91,82,.1); color: var(--filter-brand); font-weight: 500; }
+.gaip-filter-bar__option[aria-selected="true"] { padding-right: 32px; position: relative; }
+.gaip-filter-bar__option[aria-selected="true"]::after { content: ''; position: absolute; right: 12px; top: 12px; width: 5px; height: 9px; border: solid var(--filter-brand); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+/* Calendar body is owned by global-date-picker.css; keep the existing input and clear icon. */
+.gaip-filter-bar__date-shell { position: relative; }
+.gaip-filter-bar__date-shell .gaip-filter-bar__clear { background-color: #fff; opacity: 0; }
+.gaip-filter-bar__date-shell:hover .gaip-filter-bar__clear, .gaip-filter-bar__date-shell:focus-within .gaip-filter-bar__clear { opacity: 1; }
+.gaip-filter-bar__popup button:disabled { color: #b4bab8; background: #f5f6f5; cursor: not-allowed; }
+@container gaip-filter (max-width: 640px) {
+  .gaip-filter-bar__fields { flex-basis: 100%; }
+  .gaip-filter-bar__fields .gaip-filter-bar__field:not([data-type="switch"]) { flex-basis: 100%; min-width: 0; max-width: 100%; }
+}
+@media (max-width: 640px) { .gaip-filter-bar { padding: 16px; } }
+@media (prefers-reduced-motion: reduce) { .gaip-filter-bar *, .gaip-filter-bar *::after { transition: none; } }
