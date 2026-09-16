@@ -50,6 +50,7 @@
       icon: 'sales-enablement',
       type: 'catalog',
       assets: {
+        bootstrapScripts: ['shared/scripts/expert-directory.js?v=20260916-tags-2'],
         styles: [
           'web/p__dashboard__product__index.48332667.chunk.css?v=20260915-mb-plan-flag-1',
           'shared/styles/product-card-logo.css?v=20260915-restore-1',
@@ -134,7 +135,10 @@
       route: '/induction',
       entry: '薄荷入职指引.html',
       icon: 'induction-guide',
-      type: 'guided-learning'
+      type: 'guided-learning',
+      assets: {
+        bootstrapScripts: ['shared/scripts/expert-directory.js?v=20260916-tags-2', 'features/induction/induction-update.js?v=20260915-2']
+      }
     },
     {
       key: 'clues',

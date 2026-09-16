@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "page": "共享专家库（薄荷入职引导5.2、产品中心联系产品专家）",
+  "records": [
+    {
+      "id": "expert-directory.william.portrait",
+      "element": "周克勤William照片",
+      "locator": {
+        "selector": ".expertCardAvatar___dpYtz img[alt=\"周克勤William\"]",
+        "representative": "周克勤William专家卡片"
+      },
+      "state": {
+        "channel": "induction/product",
+        "variant": "default",
+        "viewport": "1600x1000"
+      },
+      "appliesTo": [
+        "薄荷入职引导5.2专家库",
+        "产品中心联系产品专家弹窗"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "image.asset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "shared/assets/expert-directory/zhou-keqin-william.jpg",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "150px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "200px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/scripts/expert-directory.js",
+        "web/106.89b4424f.chunk.css (.expertCardAvatar___dpYtz，复用原样式)",
+        "用户附件：周克勤William.jpg；复制后SHA256一致：fb65dd69d8e8b282efbd24bce5e4e9c2ac39da7063faf96686c2782e16cd928f"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": []
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "expert-directory.william.tags",
+      "element": "美保专家、综合专家双标签",
+      "locator": {
+        "selector": "[data-expert-id=\"zhou-keqin-william\"] .expertCardType___CoZU5",
+        "representative": "周克勤William专家卡片标题行"
+      },
+      "state": {
+        "channel": "induction/product",
+        "variant": "default",
+        "viewport": "1600x1000"
+      },
+      "appliesTo": [
+        "薄荷入职引导5.2专家库",
+        "产品中心联系产品专家弹窗"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#d5b980",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "18px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px 8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#000",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px（标题行继承原间距）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/scripts/expert-directory.js",
+        "web/106.89b4424f.chunk.css (.expertCardType___CoZU5 / .expertCardHeader___My9Or，复用原样式)"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": []
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "expert-directory.william.qr",
+      "element": "周克勤William二维码",
+      "locator": {
+        "selector": ".expertQrCode___cX0uw img[alt=\"周克勤William\"]",
+        "representative": "周克勤William专家卡片右侧二维码"
+      },
+      "state": {
+        "channel": "induction/product",
+        "variant": "default",
+        "viewport": "1600x1000"
+      },
+      "appliesTo": [
+        "薄荷入职引导5.2专家库",
+        "产品中心联系产品专家弹窗"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "image.asset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "shared/assets/expert-directory/zhou-keqin-william-qr.png",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "84px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "84px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/scripts/expert-directory.js",
+        "web/106.89b4424f.chunk.css (.expertQrCode___cX0uw，复用原样式)",
+        "用户附件：编组 5备份 11.png；原样复制，SHA256：697001d7b2497dd4a08eecb0d8f4377ee2eef87107316aa339f612a652766c94"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": []
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "expert-directory.william.qr-text-clearance",
+      "element": "周克勤William介绍避让二维码",
+      "locator": {
+        "selector": ".expertCardContent___XjMml:has([data-expert-id=\"zhou-keqin-william\"])",
+        "representative": "周克勤William卡片内容区"
+      },
+      "state": {
+        "channel": "induction/product",
+        "variant": "default",
+        "viewport": "1600x1000"
+      },
+      "appliesTo": [
+        "薄荷入职引导5.2专家库",
+        "产品中心联系产品专家弹窗"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "108px",
+          "status": "active",
+          "basis": "source",
+          "reason": "为84px二维码保留24px文字间距；仅该专家卡片"
+        }
+      },
+      "sources": [
+        "shared/scripts/expert-directory.js（decorate）"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": []
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    }
+  ]
+}

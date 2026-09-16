@@ -1,6 +1,24 @@
 (function () {
   'use strict';
 
+  // Source-module adapters must execute before Umi initializes its module cache.
+  // This entry is parser-loaded before Umi in every local HTML shell; ordinary
+  // post-runtime feature assets continue through channel-features.js.
+  var previewScript = document.currentScript;
+  var previewRoot = previewScript ? new URL('../../', previewScript.src) : new URL('./', location.href);
+  var previewChannels = window.__GAIP_CHANNEL_CONFIG__;
+  var bootstrapped = Object.create(null);
+  if (previewChannels && document.readyState === 'loading') {
+    previewChannels.list.forEach(function (channel) {
+      ((channel.assets || {}).bootstrapScripts || []).forEach(function (path) {
+        var url = new URL(path, previewRoot).href;
+        if (bootstrapped[url]) return;
+        bootstrapped[url] = true;
+        document.write('<script data-gaip-bootstrap="' + channel.key + '" src="' + url.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"><\/script>');
+      });
+    });
+  }
+
   function createMemoryStorage() {
     var values = Object.create(null);
     return {
