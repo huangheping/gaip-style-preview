@@ -19,7 +19,8 @@ async function main() {
   });
   const w = dom.window, d = w.document;
   const style = d.createElement('style');
-  style.textContent = read('shared/styles/channel-foundation.css') + '\n' + read('shared/styles/global-operation-log.css');
+  style.textContent = read('shared/styles/channel-foundation.css') + '\n' +
+    read('shared/styles/global-filter-bar.css') + '\n' + read('shared/styles/global-operation-log.css');
   d.head.appendChild(style);
   let blob, download;
   const observers = [];
@@ -40,6 +41,12 @@ async function main() {
     this.open = false;
     this.dispatchEvent(new w.Event('close'));
   };
+  for (const file of ['shared/scripts/global-date-picker.js', 'shared/scripts/global-filter-bar.js']) {
+    Object.defineProperty(d, 'currentScript', {
+      configurable: true, value: { src: 'file://' + path.join(root, file) }
+    });
+    w.eval(read(file));
+  }
   const loaded = [
     'shared/data/operation-log-mock.js',
     'shared/scripts/operation-log-xlsx.js',
@@ -271,16 +278,24 @@ async function main() {
   const inline = w.__GAIP_OPERATION_LOG__.mount(host);
   assert.equal(host.querySelector('dialog'), null);
   assert.equal(host.querySelector('[data-log-close]'), null);
+  assert.ok(host.querySelector('.gaip-log-filters.gaip-filter-bar'));
+  assert.equal(host.querySelector('.gaip-log-filters').getAttribute('aria-label'), '操作日志筛选');
+  assert.equal(host.querySelectorAll('.gaip-filter-bar__field').length, 4);
+  assert.ok(host.querySelector('[data-filter-key="module"] [role="combobox"]'));
+  assert.ok(host.querySelector('[data-filter-key="period"] .gaip-filter-bar__date'));
+  assert.ok(host.querySelector('[data-filter-key="query"] .gaip-filter-bar__clear'));
+  assert.ok(host.querySelector('[data-gaip-filter-action="reset"]'));
   assert.equal(host.querySelectorAll('tbody tr').length, 10);
   const modalModuleBefore = find('dialog [name="module"]').value;
   const pageModule = host.querySelector('[name="module"]');
   pageModule.value = '资讯中心';
-  pageModule.dispatchEvent(new w.Event('input', { bubbles: true }));
+  pageModule.dispatchEvent(new w.Event('change', { bubbles: true }));
   assert.ok([...host.querySelectorAll('tbody tr')].every(row => row.children[3].textContent === '资讯中心'));
   assert.equal(find('dialog [name="module"]').value, modalModuleBefore);
   const ids = [...d.querySelectorAll('[id]')].map(node => node.id);
   assert.equal(new Set(ids).size, ids.length, 'modal/page IDs must be unique');
-  assert.equal(host.querySelector('label').htmlFor, host.querySelector('[name="start"]').id);
+  assert.equal(host.querySelector('[data-filter-key="period"] label').htmlFor,
+    host.querySelector('[data-filter-key="period"] .gaip-filter-bar__date').id);
   const pageExpand = host.querySelector('[data-log-expand]');
   if (pageExpand) {
     pageExpand.click();
@@ -297,9 +312,19 @@ async function main() {
   // Root shells all load exactly one copy in the correct data/export/UI order.
   for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html') && file !== 'index-login-video-test.html')) {
     const source = read(entry);
-    assert.ok(source.includes('global-operation-log.css?v=20260903-1'), entry + ': latest inline log CSS');
+    if (entry === '配置中心.html') {
+      assert.ok(source.includes('global-operation-log.css?v=20260915-shared-filter-1'), entry + ': shared filter log CSS');
+    } else {
+      assert.ok(source.includes('global-operation-log.css?v=20260903-1'), entry + ': latest inline log CSS');
+    }
     assert.ok(source.includes('operation-log-mock.js?v=20260903-2'), entry + ': latest inline log mock');
-    assert.ok(source.includes('global-operation-log.js?v=20260903-2'), entry + ': top trigger removed');
+    if (entry === '配置中心.html') {
+      assert.ok(source.includes('global-filter-bar.css?v=20260910-tree-combobox-1'), entry + ': shared filter styles');
+      assert.ok(source.includes('global-filter-bar.js?v=20260910-tree-combobox-1'), entry + ': shared filter script');
+      assert.ok(source.includes('global-operation-log.js?v=20260915-shared-filter-1'), entry + ': shared log filter');
+    } else {
+      assert.ok(source.includes('global-operation-log.js?v=20260903-2'), entry + ': top trigger removed');
+    }
     let previous = -1;
     for (const resource of ['shared/styles/global-operation-log.css', ...loaded]) {
       assert.equal(source.split(resource).length - 1, 1, entry + ': ' + resource);

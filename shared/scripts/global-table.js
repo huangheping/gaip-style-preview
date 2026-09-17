@@ -50,8 +50,9 @@
     var pager = el('nav', 'gaip-table__pagination'); pager.setAttribute('aria-label', '分页');
     var total = el('span', 'gaip-table__total'); total.setAttribute('role', 'status'); total.setAttribute('aria-live', 'polite');
     var controls = el('div', 'gaip-table__page-controls');
-    pager.append(total, controls); root.replaceChildren(headerBand, scroll, pager);
-    function totalPages() { return Math.max(1, Math.ceil(rows.length / size)); }
+    pager.append(total, controls); root.replaceChildren(headerBand, scroll);
+    if (config.pagination !== false) root.appendChild(pager);
+    function totalPages() { return config.pagination === false ? 1 : Math.max(1, Math.ceil(rows.length / size)); }
     function drawBody() {
       body.replaceChildren(); root.setAttribute('aria-busy', String(state === 'loading'));
       if (state !== 'ready' || !rows.length) {
@@ -61,7 +62,7 @@
         if (state === 'error' && config.onRetry) td.appendChild(button('重新加载', 'retry'));
         tr.appendChild(td); body.appendChild(tr); return;
       }
-      rows.slice((page - 1) * size, page * size).forEach(function (row, index) {
+      (config.pagination === false ? rows : rows.slice((page - 1) * size, page * size)).forEach(function (row, index) {
         var tr = el('tr');
         columns.forEach(function (col) {
           var td = el('td'); cellStyle(td, col);
@@ -74,6 +75,7 @@
       });
     }
     function drawPager() {
+      if (config.pagination === false) return;
       var pages = totalPages(), disabled = state !== 'ready';
       total.textContent = '共 ' + rows.length + ' 条';
       controls.replaceChildren();

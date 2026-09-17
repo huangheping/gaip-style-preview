@@ -1,6 +1,6 @@
 # 下划线 Tab
 
-产品中心、组织架构和学情统计共用 `shared/styles/global-tabs.css` 与 `shared/scripts/global-tabs.js`。组件库入口：`全局组件/index.html?component=underline-tabs`，预览直接调用同一组件，不复制业务样式。
+产品中心、组织架构、学情统计、薄荷入职引导和方案中心共用 `shared/styles/global-tabs.css` 与 `shared/scripts/global-tabs.js`。组件库入口：`全局组件/index.html?component=underline-tabs`，预览直接调用同一组件，不复制业务样式。
 
 ## 视觉与布局边界
 
@@ -30,23 +30,27 @@ tabs.destroy();          // 清理事件与组件创建的内容
 
 ## 现有页面的增强接入
 
-现有产品按钮由 React 管理，不能用 mount 重建。因此共享组件内有三处显式适配器：
+现有产品按钮和入职章节由 React 管理，不能用 mount 重建。因此共享组件内有五处显式适配器：
 
 | 页面 | 容器 | 选中状态来源 |
 | --- | --- | --- |
 | 产品中心 | `.productArea___xMLm_ .filterTab___qn4xZ` | 原 `active___Sfjac` 类 |
 | 组织架构 | `.gaip-config-original .tabs___U1Hwt` | 原 `tabActive___H5olV` 类 |
 | 学情统计 | `.lc-stats-tabs` | 原 `aria-selected` |
+| 薄荷入职引导 | `.chapterTabs___nqSpI .chapterTabList___bQyho` | 原 `tabActive___RmAMI`；锁定由 `tabLocked___pmXab` 决定 |
+| 方案中心 | `.gaip-proposal-tabs` | 原 `is-active` |
 
-`enhance(root, {label, selected})` 保留按钮、计数节点与原点击处理器，只接入共享标记、ARIA、键盘及选中状态同步；返回 `sync()` / `destroy()`。三处自动适配器监听相关节点替换和状态类变化，离开页面销毁旧实例，重新渲染后恢复键盘焦点。`get(root)` 用于检查已挂载实例，`refresh()` 用于主动扫描。
+入职仅增强顶部章节的原 div 节点；支持方向键、Home/End及Enter/Space，键盘跳过锁定章节，鼠标仍交给原锁定提示逻辑。下方胶囊小节和旁边学习进度不替换。方案数量后缀显式使用 `.gaip-tabs-quantity`，不改变视图切换与记录筛选逻辑。
+
+`enhance(root, {label, selected})` 保留按钮、计数节点与原点击处理器，只接入共享标记、ARIA、键盘及选中状态同步；返回 `sync()` / `destroy()`。五处自动适配器监听相关节点替换和状态类变化，离开页面销毁旧实例，重新渲染后恢复键盘焦点。`get(root)` 用于检查已挂载实例，`refresh()` 用于主动扫描。
 
 左右方向键循环切换，Home/End 到首尾可用项；跳过禁用项，使用原按钮 click 路径。控件提供键盘焦点框并遵循减少动态效果偏好。父页面不应再次处理同一方向键。栏目本身不定义业务内容面板 ID，内容关联由页面按需要补充。
 
-三个频道在 `shared/config/channels.js` 使用完全相同的资源 URL，加载器去重，跨 HTML / Hash 切换沿用同一份源码。只读 `web/` 样式快照及配置中心旧基线不改写；共享规则在增强标记存在时优先，未接入区域不受影响。
+五个频道在 `shared/config/channels.js` 使用完全相同的资源 URL，加载器去重，跨 HTML / Hash 切换沿用同一份源码。只读 `web/` 样式快照及配置中心旧基线不改写；共享规则在增强标记存在时优先，未接入区域不受影响。
 
 ## 无动画切换与节点生命周期
 
-下划线切换不播放过渡或动画，选中文字与普通文字同色，仅当前项复用全局粗体，非当前项使用全局常规字重。未选中项的 hover 反馈、计数色及指示条几何保持原样；具体参数见视觉台账。共享 Tab 局部覆盖全局字重变量，不改变其他组件字体。
+下划线切换不播放过渡或动画，选中文字与普通文字同色。当前项标签复用全局粗体，非当前项常规字重。共享 `mount` 创建的“保险 (24)”中，仅“(24)”后缀通过 `.gaip-tabs-quantity` 使用常规字重，“保险”仍随当前态加粗。产品中心复用原数量外层 `span:has(> .val___uBwax)` 实现同样字重，源非换行空格保留，不重建或搬动 React 节点；新组件用后缀外边距提供标签间隔。未选中项的 hover 反馈、计数色及指示条几何保持原样；具体参数见视觉台账。共享 Tab 局部覆盖全局字重变量，不改变其他组件字体。
 
 切换当前选项仍只更新选中状态和下方内容，不替换或临时移除 Tab 容器/按钮。离开频道、销毁页面时才释放实例；保留稳定节点以维持焦点和事件，不因为取消动画撤销原生命周期修复。
 
@@ -54,6 +58,7 @@ tabs.destroy();          // 清理事件与组件创建的内容
 
 ## 验证边界
 
+- `test-tabs-additional-channels-browser.cjs`：入职章节与方案原页面结构夹具，核对共享样式、旧CSS后加载、数量字重、锁定/解锁、键盘、原节点与点击处理及小节胶囊隔离；不代表完整业务页面验收。
 - `test-tabs-browser.cjs`：独立浏览器中加载三处真实 CSS，比较计算样式、两种样式加载顺序、原产品按钮与事件、计数、禁用、键盘、节点替换、减少动态效果及窄屏。
 - `test-learning-study-browser.cjs`：真实学情控制器的 Tab 无中间宽度、稳定实例、快速反向切换及原业务交互回归。
 - `test-config-organization-shared.cjs`：真实组织控制器的渠道切换/键盘焦点、稳定 Tab、无重复头部控件（DOM）。

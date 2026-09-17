@@ -1,0 +1,54 @@
+const assert = require('node:assert/strict'), fs = require('node:fs'), path = require('node:path');
+const {JSDOM} = require('jsdom');
+const root = path.resolve(__dirname, '..'), key = 'gaip-learning-live-v12';
+const source = fs.readFileSync(path.join(root, 'features/learning-center/learning-live-data.js'), 'utf8');
+function setup(initial, quota) {
+  const dom = new JSDOM('<body/>', {url:'https://local.example/',runScripts:'outside-only'}), w = dom.window;
+  Object.defineProperty(w.document,'currentScript',{value:{src:'https://local.example/features/learning-center/learning-data.js'}});
+  w.eval(fs.readFileSync(path.join(root,'features/learning-center/learning-data.js'),'utf8'));
+  if(initial)w.localStorage.setItem(key,JSON.stringify(initial));
+  if(quota){w.Storage.prototype.setItem=()=>{throw Error('quota');};w.console.warn=()=>{};}
+  const courses = JSON.stringify(w.__GAIP_LEARNING_DATA__.state());w.eval(source);
+  assert.equal(JSON.stringify(w.__GAIP_LEARNING_DATA__.state()),courses,'seeding leaves courses/progress untouched');
+  return {dom,w,L:w.__GAIP_LEARNING_LIVE_DATA__};
+}
+const existing={id:'my-live',name:'用户原有草稿',status:'draft',createdAt:'2026-01-01T00:00:00Z',content:'',groups:[]};
+const originalLog={id:'my-log',object:'用户记录'};
+const {dom,w,L}=setup({version:1,banners:[existing],logs:[originalLog],custom:'preserve'});
+assert.equal(L.list().length,9);assert.deepEqual(JSON.parse(JSON.stringify(L.get('my-live'))),existing);
+assert.equal(L.logs().length,16);assert.deepEqual(JSON.parse(JSON.stringify(L.logs()[0])),originalLog);
+assert.equal(JSON.parse(w.localStorage.getItem(key)).custom,'preserve');
+const examples=L.list().filter(b=>b.mock);
+assert.equal(examples.filter(b=>b.status==='published').length,3);
+assert.equal(examples.filter(b=>b.status==='draft').length,3);
+assert.equal(examples.filter(b=>b.status==='offline').length,2);
+assert.equal(examples.filter(b=>b.scheduled).length,1);assert.equal(L.visible().length,3);
+for(const b of examples){if(b.image)assert.ok(fs.existsSync(path.join(root,b.image)));assert.ok(Date.parse(b.createdAt)<=Date.now());}
+L.remove('live-demo-20260916-url');const edited=L.get('live-demo-20260916-incomplete');edited.name='用户编辑过的示例';L.save(edited);
+const saved=w.localStorage.getItem(key);w.eval(source);assert.equal(w.localStorage.getItem(key),saved,'refresh does not reseed, reset dates, restore deletions or overwrite edits');
+dom.window.close();
+const fresh=setup();assert.equal(fresh.L.list().length,8);assert.equal(fresh.L.logs().length,15);fresh.dom.window.close();
+const collision=setup({version:1,banners:[{...existing,id:'live-demo-20260916-arkos'}],logs:[]});assert.equal(collision.L.list().length,8);assert.equal(collision.L.get('live-demo-20260916-arkos').name,existing.name);collision.dom.window.close();
+const failed=setup({version:1,banners:[existing],logs:[originalLog]},true);assert.equal(failed.L.list().length,1);assert.equal(JSON.parse(failed.w.localStorage.getItem(key)).mockBatches,undefined);failed.dom.window.close();
+const oldCover={...existing,id:'live-demo-20260916-arkos',mock:true,image:'assets/learning/course-01-arkos.jpg',imageName:'course-01-arkos.jpg',publicTitle:'保留的标题',summary:'保留的简介',liveStartAt:'2026-09-20T00:00:00Z'};
+const batches={'live-examples-20260916':true,'live-presentation-20260917':true};
+const migrated=setup({version:1,banners:[oldCover],logs:[originalLog],mockBatches:batches});
+assert.deepEqual(JSON.parse(JSON.stringify(migrated.L.get(oldCover.id))),{...oldCover,image:'assets/learning/live-product-service-20260917.jpg',imageName:'live-product-service-20260917.jpg'});
+assert.deepEqual(JSON.parse(JSON.stringify(migrated.L.logs())),[originalLog]);
+const coverSaved=migrated.w.localStorage.getItem(key);migrated.w.eval(source);assert.equal(migrated.w.localStorage.getItem(key),coverSaved);migrated.dom.window.close();
+const uploaded=setup({version:1,banners:[{...oldCover,image:'data:image/jpeg;base64,custom'}],logs:[],mockBatches:batches});assert.equal(uploaded.L.get(oldCover.id).image,'data:image/jpeg;base64,custom');uploaded.dom.window.close();
+const deleted=setup({version:1,banners:[],logs:[],mockBatches:batches});assert.equal(deleted.L.get(oldCover.id),null);deleted.dom.window.close();
+const secondCover={...oldCover,id:'live-demo-20260916-pathway',image:'assets/learning/course-02-pathway.jpg',imageName:'course-02-pathway.jpg'};
+const secondMigrated=setup({version:1,banners:[secondCover],logs:[originalLog],mockBatches:batches});
+assert.deepEqual(JSON.parse(JSON.stringify(secondMigrated.L.get(secondCover.id))),{...secondCover,image:'assets/learning/live-two-guests-20260917.jpg',imageName:'live-two-guests-20260917.jpg'});
+assert.deepEqual(JSON.parse(JSON.stringify(secondMigrated.L.logs())),[originalLog]);
+const secondSaved=secondMigrated.w.localStorage.getItem(key);secondMigrated.w.eval(source);assert.equal(secondMigrated.w.localStorage.getItem(key),secondSaved);secondMigrated.dom.window.close();
+const secondUploaded=setup({version:1,banners:[{...secondCover,image:'data:image/jpeg;base64,custom'}],logs:[],mockBatches:batches});assert.equal(secondUploaded.L.get(secondCover.id).image,'data:image/jpeg;base64,custom');secondUploaded.dom.window.close();
+const secondDeleted=setup({version:1,banners:[],logs:[],mockBatches:batches});assert.equal(secondDeleted.L.get(secondCover.id),null);secondDeleted.dom.window.close();
+const copyFixture={...oldCover,publicTitle:'全球视野 · 传承洞察',summary:'全球市场与财富规划专题分享'};
+const copyBatches={...batches,'live-product-service-cover-20260917':true,'live-two-guests-cover-20260917':true};
+const copyUpdate=setup({version:1,banners:[copyFixture],logs:[originalLog],mockBatches:copyBatches});
+assert.deepEqual(JSON.parse(JSON.stringify(copyUpdate.L.get(copyFixture.id))),{...copyFixture,publicTitle:'GLORY产品及服务说明会预告：全球视野 · 传承洞察',summary:'每周四早八点不见不散'});
+assert.deepEqual(JSON.parse(JSON.stringify(copyUpdate.L.logs())),[originalLog]);
+const copySaved=copyUpdate.w.localStorage.getItem(key);copyUpdate.w.eval(source);assert.equal(copyUpdate.w.localStorage.getItem(key),copySaved);copyUpdate.dom.window.close();
+console.log('PASS live Mock: 8 examples / 15 logs, assets, state coverage, one-time additive migration, user edits/deletions and quota preservation');

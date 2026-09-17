@@ -3,14 +3,21 @@
 
   window.__GAIP_GLOBAL_COMPONENTS__ = [
     {
-      id:'underline-tabs',name:'下划线 Tab',category:'导航与切换',status:'三频道统一',
-      description:'统一字号、颜色、间距与下划线动效；支持数量、禁用项及键盘切换。页面位置与业务切换由页面负责。',
-      api:'window.__GAIP_TABS__.mount(root, config)',trigger:'新组件显式挂载；三处既有Tab通过同源适配器接入',previewKind:'underlineTabs',
+      id:'carousel-controls',name:'轮播切换',category:'导航与切换',status:'两频道共用',
+      description:'活动中心同款圆形箭头与短条指示点；单组隐藏，支持手动循环切换。内容布局与自动播放由业务决定。',
+      api:'window.__GAIP_CAROUSEL_CONTROLS__.mount(root, options)',trigger:'显式挂载',previewKind:'carouselControls',
+      sources:[{label:'共享脚本',path:'shared/scripts/global-carousel-controls.js',href:'../shared/scripts/global-carousel-controls.js'},{label:'共享样式',path:'shared/styles/global-carousel-controls.css',href:'../shared/styles/global-carousel-controls.css'},{label:'接入规范',path:'docs/carousel-controls-spec.md',href:'../docs/carousel-controls-spec.md'}],
+      usages:['活动中心：原 Banner（保留原生指示器与轮播）','学习中心：直播卡片按组切换'],updatedAt:'2026-09-17'
+    },
+    {
+      id:'underline-tabs',name:'下划线 Tab',category:'导航与切换',status:'五频道统一',
+      description:'统一字号、颜色、间距与静态下划线；支持数量、禁用项及键盘切换。页面位置与业务切换由页面负责。',
+      api:'window.__GAIP_TABS__.mount(root, config)',trigger:'新组件显式挂载；五处既有Tab通过同源适配器接入',previewKind:'underlineTabs',
       sources:[
         {label:'共享脚本',path:'shared/scripts/global-tabs.js',href:'../shared/scripts/global-tabs.js'},
         {label:'共享样式',path:'shared/styles/global-tabs.css',href:'../shared/styles/global-tabs.css'},
         {label:'接入规范',path:'docs/tabs-spec.md',href:'../docs/tabs-spec.md'}
-      ],usages:['产品中心：产品分类（保留数量）','配置中心：组织架构渠道','学习中心：学员/课程学习统计'],updatedAt:'2026-09-10'
+      ],usages:['产品中心：产品分类（保留数量）','配置中心：组织架构渠道','学习中心：学员/课程学习统计','薄荷入职引导：顶部章节切换（保留学习进度与解锁限制）','方案中心：全部方案 / 我的方案记录'],updatedAt:'2026-09-15'
     },
     {
       id: 'date-picker', name: '日期选择器', category: '筛选与选择', status: '统一共享',
@@ -28,7 +35,7 @@
       description: '统一表头、操作按钮和分页。内容少时自然收拢，达到可用高度后数据区域独立滚动。',
       api: 'window.__GAIP_TABLE__.mount(root, config)', trigger: '显式挂载', previewKind: 'globalTable',
       sources: [
-        {label:'共享脚本',path:'shared/scripts/global-table.js',href:'../shared/scripts/global-table.js'},
+        {label:'共享脚本',path:'shared/scripts/global-table.js?v=20260916-no-pagination-1',href:'../shared/scripts/global-table.js?v=20260916-no-pagination-1'},
         {label:'共享样式',path:'shared/styles/global-table.css',href:'../shared/styles/global-table.css'},
         {label:'接入规范',path:'docs/table-spec.md',href:'../docs/table-spec.md'}
       ],

@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 1,
+  "page": "共享折叠多选",
+  "records": [
+    {
+      "id": "shared.multi-select.filter-parity.1",
+      "element": ".gaipMultiSelect",
+      "locator": {
+        "selector": ".gaipMultiSelect",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "--gaip-multi-select-border": {
+          "before": null,
+          "initialLocal": "#d9d9d9",
+          "target": "var(--gaip-color-border, rgba(47, 54, 64, 0.12))",
+          "status": "active",
+          "basis": "source"
+        },
+        "--gaip-multi-select-focus": {
+          "before": null,
+          "initialLocal": "#1677ff",
+          "target": "var(--gaip-color-brand, #025b52)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.2",
+      "element": ".gaipMultiSelect__control:hover",
+      "locator": {
+        "selector": ".gaipMultiSelect__control:hover",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "hover",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "#4096ff",
+          "target": "#24d4c9",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__control:hover"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.3",
+      "element": ".gaipMultiSelect.isOpen .gaipMultiSelect__control,\n.gaipMultiSelect__control:focus-visible",
+      "locator": {
+        "selector": ".gaipMultiSelect.isOpen .gaipMultiSelect__control,\n.gaipMultiSelect__control:focus-visible",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "open-focus",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "box-shadow": {
+          "before": null,
+          "initialLocal": "0 0 0 2px rgba(5, 145, 255, 0.1)",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect.isOpen .gaipMultiSelect__control,\n.gaipMultiSelect__control:focus-visible"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.4",
+      "element": ".gaipMultiSelect__arrow::before",
+      "locator": {
+        "selector": ".gaipMultiSelect__arrow::before",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "6px",
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "6px",
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "url('../assets/modal-down.svg') center / contain no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__arrow::before"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.5",
+      "element": ".gaipMultiSelect__dropdown",
+      "locator": {
+        "selector": ".gaipMultiSelect__dropdown",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--gaip-multi-select-border)",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-multi-select-text)",
+          "status": "active",
+          "basis": "source"
+        },
+        "font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px/22px var(--gaip-global-font, sans-serif)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__dropdown"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.6",
+      "element": ".gaipMultiSelect__option",
+      "locator": {
+        "selector": ".gaipMultiSelect__option",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": "7px 10px",
+          "target": "7px 12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "rgba(0, 0, 0, 0.88)",
+          "target": "inherit",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "transparent",
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__option"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.7",
+      "element": ".gaipMultiSelect__option:hover,\n.gaipMultiSelect__option:focus-visible",
+      "locator": {
+        "selector": ".gaipMultiSelect__option:hover,\n.gaipMultiSelect__option:focus-visible",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "hover",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "rgba(0, 0, 0, 0.04)",
+          "target": "rgba(2, 91, 82, 0.06)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__option:hover,\n.gaipMultiSelect__option:focus-visible"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.8",
+      "element": ".gaipMultiSelect__option[aria-selected='true']",
+      "locator": {
+        "selector": ".gaipMultiSelect__option[aria-selected='true']",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "selected",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-multi-select-focus)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__option[aria-selected='true']"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
+      "id": "shared.multi-select.filter-parity.9",
+      "element": ".gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox",
+      "locator": {
+        "selector": ".gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox",
+        "representative": "全局组件目录：折叠式多选下拉"
+      },
+      "state": {
+        "channel": "shared-multi-select",
+        "variant": "selected",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全局组件目录独立多选",
+        "共享筛选栏多选及学习中心共享实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": "rgba(0, 0, 0, 0.85)",
+          "target": "var(--gaip-multi-select-focus)",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "rgba(0, 0, 0, 0.85)",
+          "target": "var(--gaip-multi-select-focus)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "shared/styles/global-multi-select.css",
+          "selector": ".gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立真实组件对照通过；完整业务页未逐页视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    }
+  ]
+}

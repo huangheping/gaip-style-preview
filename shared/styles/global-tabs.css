@@ -21,6 +21,11 @@
 }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:hover:not(:disabled):not([aria-selected="true"]) { color: #025b52; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab][aria-selected="true"] { --gaip-global-font-weight: 700; font-weight: 700; color: #2f3640; }
+/* Only the quantity suffix is Regular; the selected label remains Bold. */
+[data-gaip-tabs] .gaip-tabs-quantity { --gaip-global-font-weight: 400; margin-inline-start: 4px; font-weight: 400; }
+/* Reuse the existing React-owned product suffix wrapper without moving nodes.
+   Its leading non-breaking space already separates the label and suffix. */
+.productArea___xMLm_ [data-gaip-tabs] > [data-gaip-tab] > span:has(> .val___uBwax) { --gaip-global-font-weight: 400; font-weight: 400; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab][aria-selected="true"]::after { width: 71px; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:focus-visible { outline: 2px solid #1dceca; outline-offset: -4px; }
 [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]:disabled { opacity: .38; cursor: not-allowed; }
@@ -29,6 +34,12 @@
 .productArea___xMLm_ .filterTab___qn4xZ[data-gaip-tabs] { box-sizing: content-box; height: 64px; padding: 0 24px; overflow-x: auto; overflow-y: hidden; }
 /* Organization keeps its existing non-scrolling toolbar contract. */
 .gaip-config-original .tabs___U1Hwt[data-gaip-tabs] { overflow: visible; }
+/* Chapter navigation only; retain the adjacent progress indicator and pill sections. */
+.chapterTabs___nqSpI:has(> [data-gaip-tabs]) { height: 64px; }
+[data-gaip-tabs] > .chapterTab___f0dZr[data-gaip-tab]::after { margin-left: 0; opacity: 1; }
+[data-gaip-tabs] > .gaip-proposal-tab[data-gaip-tab] { min-width: 0; }
+[data-gaip-tabs] > .gaip-proposal-tab[data-gaip-tab]::after { right: auto; }
+[data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][aria-disabled="true"] { opacity: .38; cursor: not-allowed; }
 @media (prefers-reduced-motion: reduce) {
   [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab],
   [data-gaip-tabs][data-gaip-tabs] > [data-gaip-tab][data-gaip-tab]::after { transition: none; }

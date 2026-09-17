@@ -205,6 +205,14 @@ body {
 .componentPreviewActions { margin-top: 16px; }
 .componentPreviewActions:not(:has(button:not([hidden]))) { display: none; }
 
+/* Catalog layout only. Tab visuals remain owned by global-tabs.css. */
+.tabsDemo { display: grid; gap: 24px; min-width: 0; }
+.tabsDemo__example { min-width: 0; }
+.tabsDemo__heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 12px; }
+.tabsDemo__heading h3 { margin: 0; color: #2f3640; font-size: 14px; line-height: 22px; }
+.tabsDemo .tabsDemo__status, .tabsDemo .tabsDemo__help { margin: 0; color: #68747c; font-size: 13px; line-height: 20px; }
+.componentPreviewSurface.tabsDemo__surface { min-height: 0; }
+
 .filterDemo { min-width: 0; color: #2f3640; font-size: 14px; line-height: 22px; }
 .filterDemo__note { margin: 0 0 12px; color: #7b858b; overflow-wrap: anywhere; }
 .filterDemo__toggles { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
@@ -549,3 +557,6 @@ body {
 .tableDemo__scenarios button[aria-pressed="true"] { background: #edf6f3; border-color: #025b52; color: #025b52; }
 .tableDemo__note, .tableDemo__feedback { color: #747c80; font-size: 13px; line-height: 22px; margin: 12px 0; }
 .tableDemo__feedback:empty { display: none; }
+.carouselDemo { width: min(100%, 750px); margin: auto; }
+.carouselDemo__stage { position: relative; }
+.carouselDemo__stage img { display: block; width: 100%; aspect-ratio: 750 / 320; object-fit: contain; border-radius: 4px; }

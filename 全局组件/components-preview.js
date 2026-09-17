@@ -46,7 +46,13 @@
   }
 
   function renderPreview(component) {
-    if(component.previewKind==='underlineTabs')return previewSurface('<div data-gaip-tabs-demo></div><p data-gaip-tabs-demo-status role="status"></p><div data-gaip-tabs-count-demo></div><p>上方为普通切换；下方演示数量与禁用项。支持左右方向键、Home / End。</p>');
+    if(component.previewKind==='carouselControls')return '<p>移入预览查看左右箭头，或点击底部指示点。使用真实共享组件，不自动切换。</p>'+previewSurface('<div class="carouselDemo" data-carousel-demo><div class="carouselDemo__stage" data-carousel-demo-stage><img src="../assets/learning/live-product-service-20260917.jpg" alt="产品服务说明会直播封面" data-carousel-demo-image></div></div>');
+    if(component.previewKind==='underlineTabs')return '<div class="tabsDemo">' +
+      '<section class="tabsDemo__example"><div class="tabsDemo__heading"><h3>普通切换</h3><p class="tabsDemo__status" data-gaip-tabs-demo-status role="status"></p></div>' +
+      previewSurface('<div data-gaip-tabs-demo></div>', 'tabsDemo__surface') + '</section>' +
+      '<section class="tabsDemo__example"><div class="tabsDemo__heading"><h3>数量与禁用项</h3></div>' +
+      previewSurface('<div data-gaip-tabs-count-demo></div>', 'tabsDemo__surface') + '</section>' +
+      '<p class="tabsDemo__help">支持左右方向键切换，Home / End 跳到首尾可用项。</p></div>';
     if (component.previewKind === 'datePicker') return '<div class="filterDemo"><p class="filterDemo__note">日历面板统一，选择条沿用现有样式。点击日期可切换年月，也可直接选择今天。</p>' + previewSurface('<div data-gaip-date-demo></div>') + '</div>';
 
     if (component.previewKind === 'globalTable') return '<div class="tableDemo"><div class="tableDemo__scenarios" role="group" aria-label="表格场景">' +
@@ -189,6 +195,13 @@
     });
     if (window.__GAIP_TABLE_PREVIEW__) window.__GAIP_TABLE_PREVIEW__.mount(catalog);
     var tabsDemo=catalog.querySelector('[data-gaip-tabs-demo]');
+    var carouselDemo=catalog.querySelector('[data-carousel-demo]');
+    if(carouselDemo&&window.__GAIP_CAROUSEL_CONTROLS__){
+      var posters=[['live-product-service-20260917.jpg','产品服务说明会直播封面'],['live-two-guests-20260917.jpg','双嘉宾直播封面']];
+      var carousel=window.__GAIP_CAROUSEL_CONTROLS__.mount(carouselDemo,{arrowHost:carouselDemo.querySelector('[data-carousel-demo-stage]'),count:2,index:0,onChange:function(index){
+        var img=carouselDemo.querySelector('img');img.src='../assets/learning/'+posters[index][0];img.alt=posters[index][1];carousel.update({count:2,index:index});
+      }});
+    }
     if(tabsDemo&&window.__GAIP_TABS__){
       var status=catalog.querySelector('[data-gaip-tabs-demo-status]');status.textContent='当前：学员学习统计';
       window.__GAIP_TABS__.mount(tabsDemo,{label:'统计维度示例',value:'users',items:[{key:'users',label:'学员学习统计'},{key:'courses',label:'课程学习统计'}],onChange:function(value){status.textContent='当前：'+(value==='users'?'学员学习统计':'课程学习统计');}});

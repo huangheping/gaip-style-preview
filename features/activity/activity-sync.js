@@ -32,29 +32,9 @@
     });
   }
 
-  function changeSlide(carousel, step) {
-    var dots = Array.prototype.slice.call(carousel.querySelectorAll('.slick-dots li'));
-    if (!dots.length) return;
-    var current = dots.findIndex(function (dot) { return dot.classList.contains('slick-active'); });
-    if (current < 0) current = 0;
-    var target = (current + step + dots.length) % dots.length;
-    var trigger = dots[target] && dots[target].querySelector('button');
-    if (trigger) trigger.click();
-  }
-
-  function arrowMarkup(direction) {
-    var isPrevious = direction === 'previous';
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'gaip-carousel-arrow gaip-carousel-arrow--' + direction;
-    button.setAttribute('aria-label', isPrevious ? '上一张活动' : '下一张活动');
-    button.innerHTML = isPrevious
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
-    return button;
-  }
-
+  var carouselControls = new Map();
   function injectCarouselControls(root) {
+    if (!window.__GAIP_CAROUSEL_CONTROLS__) return;
     var scope = root && root.querySelectorAll ? root : document;
     var carousels = [];
     if (scope.matches && scope.matches('[class*="carousel___"]')) carousels.push(scope);
@@ -63,23 +43,19 @@
     });
 
     carousels.forEach(function (carousel) {
-      if (carousel.dataset.gaipArrowControls === 'true' || !carousel.querySelector('.slick-dots')) return;
-      var previous = arrowMarkup('previous');
-      var next = arrowMarkup('next');
-      previous.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        changeSlide(carousel, -1);
-        if (event.detail > 0) previous.blur();
+      if (carouselControls.has(carousel) || !carousel.querySelector('.slick-dots')) return;
+      function state() {
+        var dots = Array.from(carousel.querySelectorAll('.slick-dots li'));
+        return {count: dots.length, index: Math.max(0, dots.findIndex(function (dot) { return dot.classList.contains('slick-active'); }))};
+      }
+      var controls = window.__GAIP_CAROUSEL_CONTROLS__.mount(carousel, {
+        externalDots: true, getState: state, previousLabel: '上一张活动', nextLabel: '下一张活动',
+        onChange: function (index) {
+          var trigger = carousel.querySelectorAll('.slick-dots li button')[index];
+          if (trigger) trigger.click();
+        }
       });
-      next.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        changeSlide(carousel, 1);
-        if (event.detail > 0) next.blur();
-      });
-      carousel.appendChild(previous);
-      carousel.appendChild(next);
+      carouselControls.set(carousel, {controls: controls, state: state});
       carousel.dataset.gaipArrowControls = 'true';
     });
   }
@@ -249,11 +225,17 @@
   });
 
   var observer = new MutationObserver(function (mutations) {
+    carouselControls.forEach(function (entry, carousel) {
+      if (!carousel.isConnected) { entry.controls.destroy(); carouselControls.delete(carousel); }
+      else entry.controls.update(entry.state());
+    });
     mutations.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (node) {
         if (node.nodeType !== 1) return;
         syncBanners(node);
         injectCarouselControls(node);
+        var carousel = node.closest('[class*="carousel___"]');
+        if (carousel) injectCarouselControls(carousel);
       });
     });
   });

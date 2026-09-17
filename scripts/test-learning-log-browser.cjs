@@ -15,7 +15,7 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
    await p.locator('[data-learning-action="课程管理"]').click();await p.locator('[data-lc="logs"]').click();
    const d=p.locator('.lc-course-log-modal'),row=d.locator('tbody tr').first();
    assert.match(await row.textContent(),/展开演示 · 双侧长文本/);
-   const before=row.locator('td').nth(3),after=row.locator('td').nth(4);
+   const before=row.locator('td').nth(4),after=row.locator('td').nth(5);
    await before.getByRole('button',{name:'展开全部',exact:true}).waitFor();
    assert.equal(await after.getByRole('button',{name:'展开全部',exact:true}).isVisible(),true);
    await before.getByRole('button',{name:'展开全部',exact:true}).click();
@@ -29,8 +29,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
    await before.getByRole('button',{name:'收起全部',exact:true}).click();
    assert.ok(await before.locator('.lc-log-value').evaluate(n=>n.clientHeight<=88));
    const shortRow=d.locator('tbody tr').filter({hasText:'展开演示 · 短内容改长内容'});
-   assert.equal(await shortRow.locator('td').nth(3).locator('button').isVisible(),false);
-   assert.equal(await shortRow.locator('td').nth(4).getByRole('button',{name:'展开全部',exact:true}).isVisible(),true);
+   assert.equal(await shortRow.locator('td').nth(4).locator('button').isVisible(),false);
+   assert.equal(await shortRow.locator('td').nth(5).getByRole('button',{name:'展开全部',exact:true}).isVisible(),true);
    assert.deepEqual(errors,[]);console.log('PASS shipped long-value Mock: first-page entry, independent expansion/collapse, newlines and short/long contrast');return;
   }
   await p.evaluate(()=>{
@@ -49,13 +49,13 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   assert.equal(await dialog.locator('tbody tr').count(),10);
   assert.deepEqual(await dialog.locator('.lc-log-action-tag').first().evaluate(n=>{const s=getComputedStyle(n);return {text:n.textContent,size:s.fontSize,radius:s.borderRadius,padding:s.padding,height:s.height,color:s.color,bg:s.backgroundColor};}),{text:'编辑',size:'12px',radius:'3px',padding:'0px 8px',height:'20px',color:'rgb(52, 90, 198)',bg:'rgb(237, 242, 255)'});
   assert.equal(await dialog.locator('.lc-log-action-tag').first().evaluate(n=>{const reference=__GAIP_TABLE__.tag('编辑');n.parentElement.append(reference);const props=['display','height','padding','borderRadius','fontSize','fontWeight','lineHeight','alignItems','verticalAlign','whiteSpace','borderWidth'];const a=getComputedStyle(n),b=getComputedStyle(reference),same=props.every(k=>a[k]===b[k]);reference.remove();return same;}),true,'classification tag inherits shared component geometry');
-  assert.deepEqual(await dialog.locator('.gaip-table__head th').allTextContents(),['分类','操作对象','变更字段','变更前','变更后','操作人','操作时间','IP']);
+  assert.deepEqual(await dialog.locator('.gaip-table__head th').allTextContents(),['操作项目','分类','操作对象','变更字段','变更前','变更后','操作人','操作时间','IP']);
   assert.equal(await dialog.locator('input[type="search"], .gaip-filter-bar').count(),0);
   assert.equal(await dialog.evaluate(d=>Math.round(d.getBoundingClientRect().width)),1200);
   assert.match(await dialog.locator('tbody tr').first().textContent(),/课程介绍/);
   assert.match(await dialog.locator('.gaip-table__total').textContent(),/27/);
   assert.equal(await p.locator('#page').getAttribute('data-learning-view'),'manage');
-  const firstRow=dialog.locator('tbody tr').first(),before=firstRow.locator('td').nth(3),after=firstRow.locator('td').nth(4);
+  const firstRow=dialog.locator('tbody tr').first(),before=firstRow.locator('td').nth(4),after=firstRow.locator('td').nth(5);
   await before.getByRole('button',{name:'展开全部',exact:true}).waitFor({state:'visible'});
   assert.ok(await before.locator('.lc-log-value').evaluate(n=>n.clientHeight<=88&&n.scrollHeight>n.clientHeight));
   await before.getByRole('button',{name:'展开全部',exact:true}).click();
@@ -93,6 +93,6 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   assert.deepEqual(await dialog.locator('.lc-log-action-tag').evaluateAll(ns=>ns.map(n=>({label:n.textContent,tone:n.dataset.tone,color:getComputedStyle(n).color,bg:getComputedStyle(n).backgroundColor}))),['新增','编辑','删除','上架','下架','上架课节','下架课节'].map(label=>{const tone=label==='编辑'?'blue':['删除','下架','下架课节'].includes(label)?'red':'green';return {label,tone,color:{green:'rgb(8, 116, 82)',blue:'rgb(52, 90, 198)',red:'rgb(191, 62, 69)'}[tone],bg:{green:'rgb(233, 248, 240)',blue:'rgb(237, 242, 255)',red:'rgb(255, 240, 240)'}[tone]};}));
   if(process.env.LOG_SCREENSHOT)await dialog.screenshot({path:process.env.LOG_SCREENSHOT.replace('.png','-categories.png')});
   await p.evaluate(()=>window.__GAIP_LEARNING_APP__.destroy());await dialog.waitFor({state:'detached'});
-  assert.deepEqual(errors,[]);console.log('PASS native log modal: shared eight-column table/no search/paging/detail, width survives stylesheet order, top-layer picker, responsive bounds, Escape/close/reopen/destroy, underlying page retained, no data writes');
+  assert.deepEqual(errors,[]);console.log('PASS native log modal: shared nine-column table/no search/paging/detail, width survives stylesheet order, top-layer picker, responsive bounds, Escape/close/reopen/destroy, underlying page retained, no data writes');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

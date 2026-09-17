@@ -6,7 +6,7 @@
   var panelSequence = 0;
   function createController(inlineHost) {
   var idPrefix = inlineHost ? 'gaip-log-page-' + (++panelSequence) + '-' : 'gaip-log-';
-  var dialog, form, previousFocus;
+  var dialog, form, previousFocus, filterBar;
   var page = 1, pageSize = 10;
   var columns = ['序号', '操作时间', '操作人 / IP 地址', '功能模块', '操作类型', '操作内容', '变更前', '变更后'];
 
@@ -21,6 +21,16 @@
     });
   }
   function filters() {
+    if (filterBar) {
+      var values = filterBar.getValues();
+      return {
+        module: values.module,
+        type: values.type,
+        start: values.period && values.period[0] || '',
+        end: values.period && values.period[1] || '',
+        query: String(values.query || '').trim().toLowerCase()
+      };
+    }
     return {
       module: form.elements.module.value,
       type: form.elements.type.value,
@@ -86,8 +96,10 @@
     dialog.querySelector('[data-log-prev]').disabled = page <= 1;
     dialog.querySelector('[data-log-next]').disabled = page >= pages;
     dialog.querySelector('[data-log-export]').disabled = total === 0;
-    form.elements.start.setAttribute('aria-invalid', String(invalidDate(f)));
-    form.elements.end.setAttribute('aria-invalid', String(invalidDate(f)));
+    if (!filterBar) {
+      form.elements.start.setAttribute('aria-invalid', String(invalidDate(f)));
+      form.elements.end.setAttribute('aria-invalid', String(invalidDate(f)));
+    }
     message(invalidDate(f) ? '开始日期不能晚于结束日期，请重新选择。' :
       '本地模拟数据 · 时间倒序', invalidDate(f));
     dialog.querySelector('.gaip-log-table-wrap').scrollTop = 0;
@@ -116,6 +128,16 @@
   }
   function makeDialog() {
     if (dialog) return;
+    var useSharedFilter = Boolean(inlineHost && window.__GAIP_FILTER_BAR__ && window.__GAIP_DATE_PICKER__);
+    var filterMarkup = useSharedFilter ? '<div class="gaip-log-filter-mount"></div>' :
+      '<form class="gaip-log-filters"><div class="gaip-log-filter-row">' +
+      '<select name="module" aria-label="功能模块"><option value="">全部模块</option><option>公告管理</option><option>资讯中心</option></select>' +
+      '<select name="type" aria-label="操作类型"><option value="">全部操作类型</option><option>新增</option><option>编辑</option><option>删除</option><option>查看</option></select>' +
+      '</div><div class="gaip-log-filter-row"><div class="gaip-log-dates"><label for="gaip-log-start">操作时间</label>' +
+      '<input type="date" id="gaip-log-start" name="start" aria-label="操作开始日期"><span>至</span>' +
+      '<input type="date" name="end" aria-label="操作结束日期"></div>' +
+      '<input type="search" class="gaip-log-search" name="query" aria-label="姓名、域账号或操作内容" placeholder="请输入姓名/域账号/操作内容">' +
+      '<button type="button" class="gaip-log-text-button" data-log-reset>重置</button></div></form>';
     dialog = document.createElement(inlineHost ? 'section' : 'dialog');
     dialog.className = 'gaip-log-dialog';
     dialog.id = inlineHost ? idPrefix + 'panel' : 'gaip-operation-log';
@@ -128,14 +150,7 @@
       '<img alt="" src="' + asset('全局组件/海报分享/assets/gaip-icon-download.svg') + '">导出 Excel</button>' +
       '<button type="button" class="gaip-log-close" aria-label="关闭操作日志" autofocus data-log-close><img alt="" src="' +
       asset('全局组件/海报分享/assets/gaip-icon-close.svg') + '"></button></div></header>' +
-      '<form class="gaip-log-filters"><div class="gaip-log-filter-row">' +
-      '<select name="module" aria-label="功能模块"><option value="">全部模块</option><option>公告管理</option><option>资讯中心</option></select>' +
-      '<select name="type" aria-label="操作类型"><option value="">全部操作类型</option><option>新增</option><option>编辑</option><option>删除</option><option>查看</option></select>' +
-      '</div><div class="gaip-log-filter-row"><div class="gaip-log-dates"><label for="gaip-log-start">操作时间</label>' +
-      '<input type="date" id="gaip-log-start" name="start" aria-label="操作开始日期"><span>至</span>' +
-      '<input type="date" name="end" aria-label="操作结束日期"></div>' +
-      '<input type="search" class="gaip-log-search" name="query" aria-label="姓名、域账号或操作内容" placeholder="请输入姓名/域账号/操作内容">' +
-      '<button type="button" class="gaip-log-text-button" data-log-reset>重置</button></div></form>' +
+      filterMarkup +
       '<div class="gaip-log-feedback" role="status" aria-live="polite"></div>' +
       '<div class="gaip-log-table-wrap" tabindex="0" role="region" aria-label="操作日志表格，可横向滚动">' +
       '<table class="gaip-log-table"><colgroup>' +
@@ -150,25 +165,59 @@
     if (inlineHost) {
       dialog.classList.add('gaip-log-inline');
       dialog.querySelector('[data-log-close]').remove();
-      ['title', 'description', 'start'].forEach(function (key) {
+      ['title', 'description'].forEach(function (key) {
         dialog.querySelector('#gaip-log-' + key).id = idPrefix + key;
       });
-      dialog.querySelector('label').htmlFor = idPrefix + 'start';
+      if (!useSharedFilter) {
+        dialog.querySelector('#gaip-log-start').id = idPrefix + 'start';
+        dialog.querySelector('label').htmlFor = idPrefix + 'start';
+      }
       dialog.setAttribute('aria-labelledby', idPrefix + 'title');
       dialog.setAttribute('aria-describedby', idPrefix + 'description');
     }
     (inlineHost || document.body).appendChild(dialog);
-    form = dialog.querySelector('form');
-    dialog.querySelectorAll('.gaip-log-dates input[type="date"]').forEach(function (input) {
-      input.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return; // Modal-only shared picker handled it; inline page keeps native picker.
-        if (typeof input.showPicker !== 'function') return;
-        try { input.showPicker(); } catch (error) { /* 浏览器已打开原生选择器时无需重复处理。 */ }
+    if (useSharedFilter) {
+      var filterMount = dialog.querySelector('.gaip-log-filter-mount');
+      filterBar = window.__GAIP_FILTER_BAR__.mount(filterMount, {
+        label: '操作日志筛选',
+        mode: 'instant',
+        debounce: 250,
+        actions: { more: false, submit: false, reset: true },
+        fields: [
+          { key: 'module', type: 'select', label: '功能模块', options: [
+            { value: '', label: '全部模块' }, { value: '公告管理', label: '公告管理' }, { value: '资讯中心', label: '资讯中心' }
+          ] },
+          { key: 'type', type: 'select', label: '操作类型', options: [
+            { value: '', label: '全部操作类型' }, { value: '新增', label: '新增' }, { value: '编辑', label: '编辑' },
+            { value: '删除', label: '删除' }, { value: '查看', label: '查看' }
+          ] },
+          { key: 'period', type: 'dateRange', label: '操作时间' },
+          { key: 'query', type: 'search', label: '搜索', wide: true, placeholder: '请输入姓名/域账号/操作内容' }
+        ],
+        onChange: function () { page = 1; render(); }
       });
-    });
-    form.addEventListener('submit', function (event) { event.preventDefault(); page = 1; render(); });
-    form.addEventListener('input', function () { page = 1; render(); });
-    form.addEventListener('change', function () { page = 1; render(); });
+      form = filterMount.querySelector('.gaip-filter-bar');
+      form.classList.add('gaip-log-filters', 'gaip-log-filters--shared');
+      filterMount.querySelector('[data-filter-key="module"] select').name = 'module';
+      filterMount.querySelector('[data-filter-key="type"] select').name = 'type';
+      var periodInputs = filterMount.querySelectorAll('[data-filter-key="period"] input[type="date"]');
+      periodInputs[0].name = 'start';
+      periodInputs[1].name = 'end';
+      filterMount.querySelector('[data-filter-key="query"] input[type="search"]').name = 'query';
+    } else {
+      form = dialog.querySelector('form');
+      form.classList.add('gaip-log-filters--legacy');
+      dialog.querySelectorAll('.gaip-log-dates input[type="date"]').forEach(function (input) {
+        input.addEventListener('click', function (event) {
+          if (event.defaultPrevented) return;
+          if (typeof input.showPicker !== 'function') return;
+          try { input.showPicker(); } catch (error) { /* 浏览器已打开原生选择器时无需重复处理。 */ }
+        });
+      });
+      form.addEventListener('submit', function (event) { event.preventDefault(); page = 1; render(); });
+      form.addEventListener('input', function () { page = 1; render(); });
+      form.addEventListener('change', function () { page = 1; render(); });
+    }
     dialog.querySelector('.gaip-log-footer select').addEventListener('change', function (event) {
       pageSize = Number(event.target.value); page = 1; render();
     });
@@ -211,7 +260,7 @@
   if (inlineHost) {
     makeDialog();
     render();
-    return { destroy: function () { dialog.remove(); } };
+    return { destroy: function () { if (filterBar) filterBar.destroy(); dialog.remove(); } };
   }
   var api = { show: show, hide: hide, mount: createController };
   document.querySelectorAll('.gaip-log-trigger').forEach(function (button) { button.remove(); });

@@ -3,6 +3,26 @@
   "page": "全局组件/index.html",
   "records": [
     {
+      "id": "component-catalog.tabs-demo-spacing",
+      "element": "Tab预览分组及卡片外说明",
+      "locator": { "selector": ".tabsDemo, .tabsDemo__heading, .tabsDemo__status, .tabsDemo__help, .tabsDemo__surface", "representative": "下划线Tab预览页" },
+      "state": { "variant": "default", "viewport": "480px / 1440px" },
+      "appliesTo": ["全局组件/index.html?component=underline-tabs；不影响业务页面Tab"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "example.gap": { "before": null, "initialLocal": "未分组，无专属gap", "target": "24px", "status": "active", "basis": "source" },
+        "heading.margin-bottom": { "before": null, "initialLocal": null, "target": "12px", "status": "active", "basis": "source", "reason": "new" },
+        "heading.gap": { "before": null, "initialLocal": null, "target": "8px 16px，窄屏换行", "status": "active", "basis": "source", "reason": "new" },
+        "heading.typography": { "before": null, "initialLocal": null, "target": "14px/22px #2f3640；margin0", "status": "active", "basis": "source", "reason": "new" },
+        "note.typography": { "before": null, "initialLocal": "无专属样式，继承页面", "target": "13px/20px #68747c；margin0", "status": "active", "basis": "source" },
+        "surface.min-height": { "before": null, "initialLocal": "160px", "target": "0（高度由真实Tab和现有卡片padding决定）", "status": "active", "basis": "source" }
+      },
+      "sources": ["全局组件/components-preview.css", "全局组件/components-preview.js"],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-15", "gaps": ["独立浏览器加载真实预览源码核对1440/480px几何并查看截图；未操作用户当前已打开标签页。"] },
+      "status": "active",
+      "updatedAt": "2026-09-15"
+    },
+    {
       "id": "component-catalog.global-font",
       "element": "组件目录文字及海报分享文字",
       "locator": { "selector": ".catalogBrandMark, .catalogBrand strong, .componentDetails code, .componentSource code, body, .app-brand, .thumb-brand, .poster-avatar", "representative": "目录说明文字与海报分享独立文档（含Canvas导出文字）" },

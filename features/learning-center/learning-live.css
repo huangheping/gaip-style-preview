@@ -1,0 +1,85 @@
+/* Live-only geometry; buttons, filters, fields, tables and dialogs use shared skins. */
+.gaip-learning-v11 .gaip-course-list-view { container-type: inline-size; }
+@container (max-width: 760px) {
+  .gaip-course-list-view > .gaip-learning-header { height: auto; min-height: 0; flex: 0 0 auto; flex-wrap: wrap; padding: 16px; gap: 12px; }
+  .gaip-course-list-view > .gaip-learning-header > div:first-child { width: 100%; min-width: 0; }
+  .gaip-course-list-view > .gaip-learning-header .gaip-learning-subtitle { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .gaip-course-list-view > .gaip-learning-header .gaip-learning-actions { max-width: 100%; flex-wrap: wrap; gap: 8px; }
+}
+.lc-live-section { container-type: inline-size; margin: 24px; }
+.lc-live-section[hidden], .lc-live-courses-heading[hidden] { display: none !important; }
+.lc-live-cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+.lc-live-card { box-sizing: border-box; display: grid; grid-template-columns: minmax(160px,46%) minmax(0,1fr); grid-template-rows: 1fr auto; gap: 12px 24px; align-items: start; min-width: 0; padding: 16px; border: 1px solid #e5e7e7; border-radius: 4px; background: #fff; color: #303844; font: inherit; text-align: left; cursor: pointer; }
+.lc-live-card { position: relative; outline: none; }
+.lc-live-card-cover { grid-row: 1 / 3; display: block; align-self: center; aspect-ratio: 750 / 320; overflow: hidden; border-radius: 4px; background: #f8faf9; }
+.lc-live-card-cover img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.lc-live-card-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.lc-live-card-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; font-size: 18px; font-weight: 700; line-height: 24px; }
+.lc-live-card-summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; font-size: 14px; line-height: 22px; color: #747c80; }
+.lc-live-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 12px; line-height: 20px; }
+.lc-live-card-label { flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border-radius: 2px; background: #111111; color: #EFCE88; }
+.lc-live-card-label-icon { flex: none; display: block; width: 14px; height: 10px; }
+.lc-live-card-status { font-variant-numeric: tabular-nums; }
+.lc-live-card-status.is-live { color: #025b52; font-weight: 700; }
+.lc-live-card-stage { position: relative; }
+.lc-live-card-stage > .gaip-carousel-arrow { pointer-events: auto; }
+.lc-live-card-stage > .gaip-carousel-arrow--previous { left: -22px; }
+.lc-live-card-stage > .gaip-carousel-arrow--next { right: -22px; }
+@media (max-width:720px) {
+  .lc-live-card-stage > .gaip-carousel-arrow--previous { left: -14px; }
+  .lc-live-card-stage > .gaip-carousel-arrow--next { right: -14px; }
+}
+.lc-live-courses-heading { margin: 0; padding: 0 24px 16px; color: #303844; font-size: 16px; font-weight: 700; line-height: 24px; }
+.lc-live-presentation-fields { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.lc-live-presentation-fields > [data-live-field="liveStartAt"] { grid-column: 1 / -1; }
+@container (max-width: 1000px) {
+  .lc-live-cards { grid-template-columns: minmax(0,1fr); }
+  .lc-live-card { grid-template-columns: minmax(160px,46%) minmax(0,1fr); grid-template-rows: 1fr auto; gap: 12px 24px; align-items: start; }
+}
+@container (max-width: 480px) {
+  .lc-live-card { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .lc-live-card-cover { grid-row: auto; width: 100%; }
+}
+@media (max-width:640px) {
+  .lc-live-section { margin: 16px; }
+  .lc-live-courses-heading { padding-inline: 16px; }
+  .lc-live-presentation-fields { grid-template-columns: minmax(0,1fr); }
+}
+.lc-live-admin { min-height: 0; overflow: auto; background: #fff; }
+.lc-live-admin > [data-live-filters] { margin-bottom: 16px; }
+.lc-live-help { color: var(--gaip-modal-muted, #747c80); font-size: 12px; line-height: 20px; margin: 8px 0 16px; }
+.lc-live-url { padding: 0; border: 0; background: none; font: inherit; color: var(--gaip-modal-brand, #025b52); cursor: pointer; }
+.lc-live-url-value { position: fixed; inset: auto; margin: 0; box-sizing: border-box; z-index: 1000; padding: 12px; max-height: min(240px, calc(100vh - 32px)); overflow: auto; border: 1px solid var(--gaip-modal-border); border-radius: var(--gaip-radius-control,4px); overflow-wrap: anywhere; background: #fff; color: var(--gaip-modal-text); font-size: 14px; line-height: 22px; box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+.lc-live-editor { width: min(860px, calc(100vw - 48px)); max-height: calc(100vh - 48px); padding: 0; border: 0; }
+.lc-live-editor > .ant-modal-content { max-height: calc(100vh - 48px); display: flex; flex-direction: column; }
+.lc-live-editor .ant-modal-body { min-height: 0; overflow: auto; }
+.lc-live-form-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; }
+.lc-live-form-grid > [data-live-field="name"], .lc-live-form-grid > [data-live-field="image"], .lc-live-form-grid > [data-live-field="groups"], .lc-live-times { grid-column: 1 / -1; }
+.lc-live-form-grid .lc-field { gap: 8px; }
+.lc-live-form-grid .lc-live-help { margin: 0; }
+.lc-live-editor [hidden] { display: none !important; }
+.lc-live-form-grid label, .lc-live-type legend { font-size: 14px; }
+.lc-live-type { border: 0; padding: 0; margin: 0; }
+.lc-live-type > div { display: flex; gap: 24px; align-items: center; min-height: 48px; }
+.lc-live-type label { display: inline-flex; gap: 8px; align-items: center; }
+.lc-live-type input[type="radio"] { width: 16px; height: 16px; }
+.lc-live-times { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; }
+.lc-live-image-slot { position: relative; width: min(100%,375px); aspect-ratio: 750 / 320; display: grid; place-items: center; background: #f8faf9; border: 1px dashed #c7cecb; border-radius: 4px; overflow: hidden; }
+.lc-live-image-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.lc-live-upload { align-self: flex-start; }
+.lc-live-form-error { color: var(--gaip-modal-error, #cf3d31); }
+.lc-live-publish-options { border: 0; padding: 0; margin: 16px 0 0; font-size: 14px; }
+.lc-live-publish-options legend { font-size: 14px; }
+.lc-live-publish-options label { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.lc-live-banner { position: relative; width: 100%; max-width: 375px; margin: 0; aspect-ratio: 750 / 320; overflow: hidden; border-radius: 4px; background: #f8faf9; }
+.lc-live-banner[hidden] { display: none; }
+.lc-live-banner-link { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; }
+.lc-live-banner-link img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.lc-live-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border: 0; border-radius: 50%; color: #fff; background: rgba(0,0,0,.55); font-size: 26px; cursor: pointer; }
+.lc-live-arrow.is-prev { left: 16px; } .lc-live-arrow.is-next { right: 16px; }
+.lc-live-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 0 4px; border-radius: 16px; background: rgba(0,0,0,.45); }
+.lc-live-dot { width: 28px; height: 28px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.lc-live-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
+.lc-live-dot[aria-pressed="true"]::after { background: #fff; }
+.lc-live-banner button:focus-visible { outline: 2px solid #24d4c9; outline-offset: -3px; }
+@media (max-width:640px) { .lc-live-editor { width: calc(100vw - 24px); } .lc-live-form-grid,.lc-live-times { grid-template-columns: minmax(0,1fr); } }

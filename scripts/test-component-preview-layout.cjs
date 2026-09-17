@@ -30,7 +30,7 @@ try {
     assert.equal(entry.hidden, false);
     assert.equal(tab.getAttribute('aria-selected'), 'true');
     assert.equal(new URL(w.location.href).searchParams.get('component'), entry.id);
-    assert.equal(entry.querySelectorAll('.componentPreviewSurface').length, 1, entry.id + ' 有独立预览卡片');
+    assert.equal(entry.querySelectorAll('.componentPreviewSurface').length, entry.id === 'underline-tabs' ? 2 : 1, entry.id + ' 每组示例有独立预览卡片');
     const surface = entry.querySelector('.componentPreviewSurface');
     assert.equal(w.getComputedStyle(surface).backgroundColor, 'rgb(255, 255, 255)');
     assert.equal(w.getComputedStyle(entry).backgroundColor, 'rgba(0, 0, 0, 0)');
@@ -45,6 +45,9 @@ try {
     assert.ok(host.children.length, selector + ' 已挂载真实组件');
   }
   const sharedTabs = doc.querySelector('[data-gaip-tabs-demo]');
+  assert.equal(doc.querySelector('[data-gaip-tabs-demo-status]').closest('.componentPreviewSurface'), null, 'Tab状态文字在白卡外');
+  assert.equal(doc.querySelector('.tabsDemo__help').closest('.componentPreviewSurface'), null, '键盘说明在白卡外');
+  assert.notEqual(sharedTabs.closest('.componentPreviewSurface'), doc.querySelector('[data-gaip-tabs-count-demo]').closest('.componentPreviewSurface'));
   sharedTabs.children[1].click();
   assert.equal(sharedTabs.children[1].getAttribute('aria-selected'), 'true');
   assert.equal(doc.querySelector('[data-gaip-tabs-demo-status]').textContent, '当前：课程学习统计');

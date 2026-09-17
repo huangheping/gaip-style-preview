@@ -1,0 +1,33 @@
+/* Arrow skin extracted unchanged from activity-sync.css. */
+.gaip-carousel-arrow {
+  position: absolute; top: 50%; z-index: 8; display: grid; width: 44px; height: 44px;
+  place-items: center; padding: 0; border: 1px solid rgba(17,24,27,.08); border-radius: 50%;
+  background: rgba(255,255,255,.94); box-shadow: 0 6px 20px rgba(17,24,27,.2); color: #171c1e;
+  opacity: 0; pointer-events: none; cursor: pointer; transform: translateY(-50%) scale(.92);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: opacity 160ms ease, transform 160ms ease, background-color 160ms ease;
+}
+.gaip-carousel-arrow--previous { left: 16px; }
+.gaip-carousel-arrow--next { right: 16px; }
+.gaip-carousel-arrow svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+.gaip-carousel-controls:hover .gaip-carousel-arrow,
+.gaip-carousel-arrow:focus-visible { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
+.gaip-carousel-arrow:hover,.gaip-carousel-arrow:focus-visible { background: #fff; box-shadow: 0 8px 26px rgba(17,24,27,.26); outline: none; }
+.gaip-carousel-arrow:active { transform: translateY(-50%) scale(.96) !important; }
+.gaip-carousel-dots { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 12px; }
+.gaip-carousel-dot { display: grid; place-items: center; width: 30px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; }
+/* Activity indicator geometry (20/30 × 6); light-surface color variant. */
+.gaip-carousel-dot::after { content: ''; display: block; width: 20px; height: 6px; border-radius: 3px; background: #c5cecc; transition: width 160ms ease, background-color 160ms ease; }
+.gaip-carousel-dot[aria-current="true"]::after { width: 30px; background: #025b52; }
+.gaip-carousel-dot:hover::after { background: #6a9e98; }
+.gaip-carousel-dot[aria-current="true"]:hover::after { background: #025b52; }
+.gaip-carousel-dot:focus-visible { outline: 2px solid #24d4c9; outline-offset: 2px; border-radius: 3px; }
+.gaip-carousel-controls .gaip-carousel-arrow[hidden],.gaip-carousel-dots[hidden] { display: none !important; }
+.gaip-carousel-arrow:disabled { opacity: .3; pointer-events: none; cursor: default; }
+@media (max-width:720px) {
+  .gaip-carousel-arrow { width: 38px; height: 38px; }
+  .gaip-carousel-arrow--previous { left: 10px; }
+  .gaip-carousel-arrow--next { right: 10px; }
+}
+@media (hover:none) { .gaip-carousel-arrow { opacity: .82; pointer-events: auto; transform: translateY(-50%) scale(1); } }
+@media (prefers-reduced-motion:reduce) { .gaip-carousel-arrow,.gaip-carousel-dot::after { transition: none; } }

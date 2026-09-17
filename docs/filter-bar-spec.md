@@ -82,7 +82,7 @@ bar.destroy(); // 离开页面必须清理搜索延迟及多选的document监听
 
 主控件为可编辑的组合输入框：点击展开组织树，直接在该输入框输入名称筛选节点；面板不再放第二个搜索框。搜索时保持输入焦点，中文输入法组合完成后更新结果；输入关键词不提交业务筛选，选择节点才回填组织路径并生效。Escape、点击外部或失焦收起时丢弃未确认关键词、恢复已选名称；清除按钮恢复不限，箭头与清除图标不重叠。方向键可进入树选择，其他单选/多选行为不变。学情主页面、课程学习详情和组件库均复用同一实现。
 
-显式加载`shared/scripts/organization-store.js`、`organization-tree.js`和`shared/styles/organization-tree.css`。字段配置`{key:'org',type:'treeSelect',label:'所属组织',nodes:()=>nodes}`；节点为`{id,parent,name,path}`，支持静态数组或每次打开读取的函数。值是稳定ID，不是路径文字。空值入口使用placeholder文案；树内搜索保留匹配节点及其祖先、自动展开匹配路径；展开箭头和选择分开操作，选择后关闭。支持上下/左右/Home/End/Enter键与Escape关闭、焦点返回，清空搜索不清除原选择。显隐、禁用、重置、销毁与其他筛选项一致。
+显式加载`shared/scripts/organization-store.js`、`organization-tree.js`和`shared/styles/organization-tree.css`。字段配置`{key:'org',type:'treeSelect',label:'所属组织',nodes:()=>nodes}`；节点为`{id,parent,name,path}`，支持静态数组或每次打开读取的函数。值是稳定ID，不是路径文字。空值入口使用placeholder文案；首次打开只展示顶级节点，所有父节点默认收起；已有下级选中值时只展开其祖先路径，选中节点自身仍保持收起。树内搜索保留匹配节点及其祖先、自动展开匹配路径；展开箭头和选择分开操作，选择后关闭。支持上下/左右/Home/End/Enter键与Escape关闭、焦点返回，清空搜索不清除原选择。显隐、禁用、重置、销毁与其他筛选项一致。
 
 组件只负责节点选择；学情页通过`organizationNodes()`提供权限内的节点，用`matchesOrg()`执行父节点及后代过滤。组织架构主树与筛选下拉共用`__GAIP_ORG_TREE__.node`，主树保留原管理菜单和排版，选择器为紧凑密度；二者数据均取`__GAIP_ORGANIZATION__.sets`。配置中心原批量导入/调整节点树同样读取该数据，不改变其既有操作。
 

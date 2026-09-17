@@ -33,15 +33,15 @@ vm.runInContext(fs.readFileSync(generatedRegistryPath, 'utf8'), context, { filen
 const catalog = context.window.__GAIP_MODAL_SOURCE_CATALOG__;
 
 assert.ok(catalog, '弹窗登记表应可执行');
-assert.equal(catalog.list.length, 65, '原学情抽屉迁移为两个真实详情弹窗');
-assert.equal(catalog.ready.length, 48, '真实可预览项包含两类学情详情');
+assert.equal(catalog.list.length, 70, '原学情抽屉迁移为两个真实详情弹窗');
+assert.equal(catalog.ready.length, 53, '真实可预览项包含两类学情详情');
 assert.equal(catalog.pending.length, 0, '本轮完成后不得残留待接入项');
 assert.equal(catalog.excluded.length, 17, '学情详情不再作为抽屉排除');
 assert.equal(catalog.excludedDrawers.length, 6, '保留原六个非学情抽屉');
 assert.equal(catalog.excludedOther.length, 11, 'Agent 主面板与无效旧登记应为 11');
 assert.deepEqual(
   Object.fromEntries(['information', 'form', 'confirmation'].map((category) => [category, catalog.ready.filter((entry) => entry.category === category).length])),
-  { information: 16, form: 16, confirmation: 16 },
+  { information: 16, form: 17, confirmation: 20 },
   '真实弹窗应按信息展示、表单操作和操作确认三类登记'
 );
 assert.ok(catalog.ready.every((entry) => ['information', 'form', 'confirmation'].includes(entry.category)), '每个可预览弹窗都必须拥有用途分类');
@@ -250,7 +250,7 @@ assert.doesNotMatch(previewSource, /createPreviewModal\(/, '预览页不得调�
   });
   w.document.querySelector('.overviewCard[data-category="form"] .overviewLink').click();
   assert.deepEqual(visible(), ['form'], 'overview links reveal their own category');
-  assert.equal(w.document.querySelectorAll('.previewCard').length, 48, 'existing cards retained, study log and two detail dialogs appended');
+  assert.equal(w.document.querySelectorAll('.previewCard').length, 53, 'existing cards retained, study log and two detail dialogs appended');
   assert.equal(w.document.querySelectorAll('iframe').length, 0, 'no eager iframe creation');
   w.close();
 }

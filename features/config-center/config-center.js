@@ -778,7 +778,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -807,7 +807,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -837,7 +837,7 @@
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
@@ -867,7 +867,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -897,7 +897,7 @@
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",

@@ -162,7 +162,7 @@
             '<p>选择合适的方案，按提示补充信息，生成结果自动归档</p>' +
           '</section>' +
           '<nav class="gaip-proposal-tabs" aria-label="方案中心视图">' +
-            '<button type="button" class="gaip-proposal-tab is-active" data-tab="catalog" aria-selected="true">全部方案（' + templates.length + '）</button>' +
+            '<button type="button" class="gaip-proposal-tab is-active" data-tab="catalog" aria-selected="true">全部方案<span class="gaip-tabs-quantity">（<span class="gaip-tabs-count">' + templates.length + '</span>）</span></button>' +
             '<button type="button" class="gaip-proposal-tab" data-tab="records" aria-selected="false">我的方案记录</button>' +
           '</nav>' +
           '<section class="gaip-proposal-panel gaip-proposal-catalog" data-panel="catalog">' +

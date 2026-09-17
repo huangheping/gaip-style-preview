@@ -1,0 +1,1435 @@
+{
+  "schemaVersion": 1,
+  "page": "学习中心 V1.2 直播 Banner",
+  "records": [
+    {
+      "id": "learning-live.second-poster-asset",
+      "element": "第二个直播示例封面素材",
+      "locator": { "selector": "[data-live-card=\"live-demo-20260916-pathway\"] .lc-live-card-cover img", "representative": "第二个直播封面" },
+      "state": { "channel": "学习中心", "variant": "default", "viewport": "all" },
+      "appliesTo": ["第二个直播示例；不修改课程原图"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "image.asset": { "before": null, "initialLocal": "assets/learning/course-02-pathway.jpg", "target": "assets/learning/live-two-guests-20260917.jpg", "status": "active", "basis": "source" },
+        "image.intrinsic-size": { "before": null, "initialLocal": null, "target": "750×320px", "status": "active", "basis": "source" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live-data.js", "function": "seedExamples / replaceSecondDemoCover" }, { "file": "assets/learning/live-two-guests-20260917.jpg", "sha256": "be57c6cb96f48628049bafca7a678ab3c7d7b3fad0a4cce36bc0dceb1bf59936", "attachment": "/Users/hhp/Downloads/2个嘉宾直播750X320banner.jpg" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-mock.cjs", "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)", "附件与项目素材SHA-256一致；已查看双场新封面截图"], "gaps": ["独立组件浏览器验证，完整file页面待刷新验收。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.first-poster-asset",
+      "element": "第一个直播示例封面素材",
+      "locator": { "selector": "[data-live-card=\"live-demo-20260916-arkos\"] .lc-live-card-cover img", "representative": "第一个直播封面" },
+      "state": { "channel": "学习中心", "variant": "default", "viewport": "all" },
+      "appliesTo": ["首个直播示例；不修改课程原图"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "image.asset": { "before": null, "initialLocal": "assets/learning/course-01-arkos.jpg", "target": "assets/learning/live-product-service-20260917.jpg", "status": "active", "basis": "source" },
+        "image.intrinsic-size": { "before": null, "initialLocal": null, "target": "750×320px", "status": "active", "basis": "source" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live-data.js", "function": "seedExamples / replaceDemoCover" }, { "file": "assets/learning/live-product-service-20260917.jpg", "sha256": "87875ed6f13480f9a4fe5cb861f87c6d15804265b45b4046d9a4e4ceab30efe9", "attachment": "/Users/hhp/Downloads/产品服务说明会banner.jpg" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-mock.cjs", "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)", "附件与项目素材SHA-256一致；已查看单场新封面截图"], "gaps": ["独立组件浏览器验证，完整file页面待刷新验收。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.horizontal-card",
+      "element": "直播横卡",
+      "locator": { "selector": ".lc-live-card", "representative": "单场及双场直播横卡" },
+      "state": { "channel": "学习中心", "variant": "single / multiple / narrow", "viewport": "320/480/900/1440/1920px" },
+      "appliesTo": ["学习中心首页直播卡片"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "width": { "before": null, "initialLocal": "单场100%", "target": "内容容器>1000px：单/双场均为(容器宽度-24px)/2；≤1000px：100%", "status": "active", "basis": "source" },
+        "padding": { "before": null, "initialLocal": null, "target": "16px", "status": "active", "basis": "source", "reason": "new" },
+        "gap": { "before": null, "initialLocal": null, "target": "12px 24px; ≤480px容器12px（单/双场一致）", "status": "active", "basis": "source", "reason": "new" },
+        "border": { "before": null, "initialLocal": null, "target": "1px solid #e5e7e7; hover保持不变", "status": "active", "basis": "source", "reason": "new" },
+        "border-radius": { "before": null, "initialLocal": null, "target": "4px", "status": "active", "basis": "source", "reason": "new" },
+        "background": { "before": null, "initialLocal": null, "target": "#fff", "status": "active", "basis": "source", "reason": "new" },
+        "focus-outline": { "before": null, "initialLocal": null, "target": "none; 使用与课程同源的青色内阴影焦点环", "status": "active", "basis": "source", "reason": "new" },
+        "hover.shadow": { "before": null, "initialLocal": "none", "target": "0 10px 28px rgba(47,54,64,.12)", "status": "active", "basis": "source" },
+        "focus.shadow": { "before": null, "initialLocal": "none", "target": "inset 0 0 0 2px #24d4c9, 0 10px 28px rgba(47,54,64,.12)", "status": "active", "basis": "source" },
+        "hover.background": { "before": null, "initialLocal": "#fff", "target": "#fff", "status": "active", "basis": "source" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card" }, { "file": "features/learning-center/learning-center.css", "selector": ".gaip-course-card:hover, .gaip-course-card:focus-visible, .lc-live-card:hover, .lc-live-card:focus-visible (共用)" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["独立真实组件浏览器验证，完整file/Umi页面待用户验收；线上基准未采集。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.horizontal-poster",
+      "element": "横卡封面",
+      "locator": { "selector": ".lc-live-card-cover", "representative": "横卡左侧完整封面" },
+      "state": { "channel": "学习中心", "variant": "single / multiple / narrow", "viewport": "320–1920px" },
+      "appliesTo": ["所有直播横卡封面"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "aspect-ratio": { "before": null, "initialLocal": null, "target": "750 / 320", "status": "active", "basis": "source", "reason": "new" },
+        "width": { "before": null, "initialLocal": null, "target": "单/双场横卡均为内容宽度46%且最小160px；≤480px容器100%", "status": "active", "basis": "mixed", "reason": "new" },
+        "border-radius": { "before": null, "initialLocal": null, "target": "4px", "status": "active", "basis": "source", "reason": "new" },
+        "background": { "before": null, "initialLocal": null, "target": "#f8faf9", "status": "active", "basis": "source", "reason": "new" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card-cover, .lc-live-card" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["素材为已有课程示例图，非同比例素材完整显示留白；正式直播素材未提供。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.horizontal-typography",
+      "element": "横卡标题、简介与状态",
+      "locator": { "selector": ".lc-live-card-title, .lc-live-card-summary, .lc-live-card-meta", "representative": "直播标题及倒计时/直播中" },
+      "state": { "channel": "学习中心", "variant": "upcoming / live / unknown", "viewport": "320–1920px" },
+      "appliesTo": ["首页横卡"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "title.font": { "before": null, "initialLocal": null, "target": "继承全局字体; 16px / 24px; 700; #303844", "status": "active", "basis": "source", "reason": "new" },
+        "summary.font": { "before": null, "initialLocal": null, "target": "继承全局字体; 14px / 22px; #747c80", "status": "active", "basis": "source", "reason": "new" },
+        "meta.font": { "before": null, "initialLocal": null, "target": "12px / 20px; #303844; 直播中 #025b52 / 700", "status": "active", "basis": "source", "reason": "new" },
+        "label.skin": { "before": null, "initialLocal": null, "target": "#111111底色/#EFCE88文字; padding 0 6px; radius 2px; 图文gap 4px", "status": "active", "basis": "mixed", "reason": "new" },
+        "label.icon": { "before": null, "initialLocal": "无图标", "target": "assets/learning/live-video-label.svg；14×10px，fill #EFCE88；沿用用户附件原path，仅改项目副本颜色", "status": "active", "basis": "source", "reason": "new" },
+        "copy.gap": { "before": null, "initialLocal": null, "target": "8px", "status": "active", "basis": "source", "reason": "new" },
+        "meta.gap": { "before": null, "initialLocal": null, "target": "8px 12px", "status": "active", "basis": "source", "reason": "new" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card-title, .lc-live-card-summary, .lc-live-card-meta, .lc-live-card-label, .lc-live-card-label-icon" }, { "file": "assets/learning/live-video-label.svg", "attachment": "/Users/hhp/Downloads/形状.svg" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs"], "gaps": ["完整file页面待验收。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.horizontal-spacing",
+      "element": "直播区、课程标题、切换及展示字段间距",
+      "locator": { "selector": ".lc-live-section, .lc-live-courses-heading, .lc-live-presentation-fields", "representative": "直播内容区与共享表单新增字段（切换控件参数已迁至shared-carousel-controls.json）" },
+      "state": { "channel": "学习中心", "variant": "default / narrow", "viewport": "320–1920px" },
+      "appliesTo": ["学习中心首页", "直播新增/编辑弹窗"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "section.margin": { "before": null, "initialLocal": null, "target": "24px; ≤640px视口16px", "status": "active", "basis": "source", "reason": "new" },
+        "cards.gap": { "before": null, "initialLocal": null, "target": "24px", "status": "active", "basis": "source", "reason": "new" },
+        "heading.font": { "before": null, "initialLocal": null, "target": "16px / 24px; 700; #303844", "status": "active", "basis": "source", "reason": "new" },
+        "heading.padding": { "before": null, "initialLocal": null, "target": "0 24px 16px; ≤640px视口横向16px", "status": "active", "basis": "source", "reason": "new" },
+        "form.gap": { "before": null, "initialLocal": null, "target": "24px；字段外观复用共享弹窗", "status": "active", "basis": "source", "reason": "new" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-section, .lc-live-courses-heading, .lc-live-presentation-fields" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs"], "gaps": ["独立浏览器组件验证，完整file页面待验收。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.narrow-header",
+      "element": "窄容器首页标题栏",
+      "locator": { "selector": ".gaip-course-list-view > .gaip-learning-header", "representative": "≤760px内容容器标题栏" },
+      "state": { "channel": "学习中心", "variant": "narrow", "viewport": "内容容器≤760px" },
+      "appliesTo": ["学习中心首页窄屏；桌面参数不改"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "min-height": { "before": null, "initialLocal": "103px", "target": "0", "status": "active", "basis": "source" },
+        "height": { "before": null, "initialLocal": "flex-basis:103px", "target": "auto (flex-basis:auto)", "status": "active", "basis": "source" },
+        "padding": { "before": null, "initialLocal": "20px 24px", "target": "16px", "status": "active", "basis": "source" },
+        "gap": { "before": null, "initialLocal": "normal", "target": "12px", "status": "active", "basis": "source" },
+        "actions.gap": { "before": null, "initialLocal": "14px", "target": "8px", "status": "active", "basis": "source" }
+      },
+      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": "@container (max-width:760px)" }, { "file": "features/learning-center/learning-center.css", "selector": ".gaip-learning-header, .gaip-learning-actions (首次本地值)" }],
+      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["独立原组件截图及几何验证，完整file页面待验收。"] },
+      "status": "active", "updatedAt": "2026-09-17"
+    },
+    {
+      "id": "learning-live.banner",
+      "element": "首页直播图片容器",
+      "locator": {
+        "selector": ".lc-live-banner",
+        "representative": "首页直播图片容器"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "保留直播组件（首页入口已撤下）"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "aspect-ratio": {
+          "before": null,
+          "initialLocal": null,
+          "target": "750 / 320",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f8faf9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "375px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-banner"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "mountCarousel"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 320/480/900/1440px)"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16",
+      "note": "不再在学习中心首页渲染；保留组件以备后续设计。"
+    },
+    {
+      "id": "learning-live.banner-image",
+      "element": "直播完整图片",
+      "locator": {
+        "selector": ".lc-live-banner-link img",
+        "representative": "直播完整图片"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "保留直播组件（首页入口已撤下）"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "object-fit": {
+          "before": null,
+          "initialLocal": null,
+          "target": "contain",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-banner-link img"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "mountCarousel"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16",
+      "note": "不再在学习中心首页渲染；保留组件以备后续设计。"
+    },
+    {
+      "id": "learning-live.banner-controls",
+      "element": "多图切换箭头",
+      "locator": {
+        "selector": ".lc-live-arrow",
+        "representative": "多图切换箭头"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "保留直播组件（首页入口已撤下）"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "50%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(0,0,0,.55)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "26px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-arrow"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "mountCarousel"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16",
+      "note": "不再在学习中心首页渲染；保留组件以备后续设计。"
+    },
+    {
+      "id": "learning-live.banner-dots",
+      "element": "多图切换指示器",
+      "locator": {
+        "selector": ".lc-live-dot",
+        "representative": "多图切换指示器"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "保留直播组件（首页入口已撤下）"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "28px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "28px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px (容器)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "dot.width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "dot.height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "dot.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "rgba(255,255,255,.55); 当前 #fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-dot"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "mountCarousel"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16",
+      "note": "不再在学习中心首页渲染；保留组件以备后续设计。"
+    },
+    {
+      "id": "learning-live.editor",
+      "element": "新增/编辑直播弹窗",
+      "locator": {
+        "selector": ".lc-live-editor",
+        "representative": "新增/编辑直播弹窗"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "新增直播",
+        "编辑草稿",
+        "编辑已上架"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(860px, calc(100vw - 48px))",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "max-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "calc(100vh - 48px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "form.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "field.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-editor"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "openEditor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "learning-live.image-slot",
+      "element": "表单图片预览",
+      "locator": {
+        "selector": ".lc-live-image-slot",
+        "representative": "表单图片预览"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "上传前/上传后"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(100%,375px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "aspect-ratio": {
+          "before": null,
+          "initialLocal": null,
+          "target": "750 / 320",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px dashed #c7cecb",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f8faf9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "image.object-fit": {
+          "before": null,
+          "initialLocal": null,
+          "target": "contain",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-image-slot"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "openEditor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "learning-live.hints",
+      "element": "直播表单辅助说明",
+      "locator": {
+        "selector": ".lc-live-form-grid .lc-live-help",
+        "representative": "直播表单辅助说明"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "新增/编辑直播"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-modal-muted, #747c80)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-form-grid .lc-live-help"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "openEditor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "learning-live.url-popup",
+      "element": "完整链接气泡",
+      "locator": {
+        "selector": ".lc-live-url-value",
+        "representative": "完整链接气泡"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "直播管理链接查看"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(420px, viewport - 32px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "max-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(240px, calc(100vh - 32px))",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--gaip-modal-border)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-radius-control,4px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-modal-text)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 6px 20px rgba(0,0,0,.12)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-url-value"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "mountManager"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "learning-live.admin",
+      "element": "直播管理白色底",
+      "locator": {
+        "selector": ".lc-live-admin",
+        "representative": "直播管理白色底"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "1440px"
+      },
+      "appliesTo": [
+        "直播管理"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-admin"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "openEditor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16"
+    },
+    {
+      "id": "learning-live.mobile",
+      "element": "窄屏直播容器",
+      "locator": {
+        "selector": ".lc-live-editor, .lc-live-banner",
+        "representative": "窄屏直播容器"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "narrow",
+        "viewport": "editor viewport breakpoint 640px"
+      },
+      "appliesTo": [
+        "≤640px"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "editor.width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "calc(100vw - 24px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "banner.width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%; max-width:375px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "banner.margin-block": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-live-editor, .lc-live-banner"
+        },
+        {
+          "file": "features/learning-center/learning-live.js",
+          "function": "openEditor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "gaps": [
+          "线上基准未采集；新增本地组件，不以本地渲染冒充线上基准。",
+          "独立组件浏览器测试，完整 Umi/file 业务页尚未现场验收。"
+        ],
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 320/480/900/1440px)"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-16",
+      "note": "首页容器查询已撤下，保留编辑弹窗与独立直播组件尺寸。"
+    },
+    {
+      "id": "learning-live.home-header",
+      "element": "标题与直播共用顶部区域",
+      "locator": {
+        "selector": ".gaip-learning-header.lc-learning-home-header",
+        "representative": "标题与直播共用顶部区域"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320/480/900/1440px"
+      },
+      "appliesTo": [
+        "普通学员首页",
+        "管理员首页；权限操作栏仅有权限可见"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".gaip-learning-header.lc-learning-home-header"
+        },
+        {
+          "file": "features/learning-center/learning-app.js",
+          "function": "renderList"
+        },
+        {
+          "file": "features/learning-center/learning-center.js",
+          "function": "updateOverlayBounds"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 首页恢复与数据保留)"
+        ],
+        "gaps": [
+          "独立真实组件测试；完整 file 业务页未现场验收。"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-16",
+      "note": "用户撤下首页直播试版：新增选择器已删除，恢复原课程首页规则；非线上基准值比对。"
+    },
+    {
+      "id": "learning-live.home-top-width",
+      "element": "顶部容器可见宽度",
+      "locator": {
+        "selector": ".lc-learning-home-top",
+        "representative": "顶部容器可见宽度"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320/480/900/1440px"
+      },
+      "appliesTo": [
+        "普通学员首页",
+        "管理员首页；权限操作栏仅有权限可见"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-learning-home-top"
+        },
+        {
+          "file": "features/learning-center/learning-app.js",
+          "function": "renderList"
+        },
+        {
+          "file": "features/learning-center/learning-center.js",
+          "function": "updateOverlayBounds"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 首页恢复与数据保留)"
+        ],
+        "gaps": [
+          "独立真实组件测试；完整 file 业务页未现场验收。"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-16",
+      "note": "用户撤下首页直播试版：新增选择器已删除，恢复原课程首页规则；非线上基准值比对。"
+    },
+    {
+      "id": "learning-live.admin-tools",
+      "element": "标题下方管理按钮组",
+      "locator": {
+        "selector": ".gaip-learning-actions.lc-learning-admin-tools",
+        "representative": "标题下方管理按钮组"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320/480/900/1440px"
+      },
+      "appliesTo": [
+        "普通学员首页",
+        "管理员首页；权限操作栏仅有权限可见"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin-top": {
+          "before": null,
+          "initialLocal": "0",
+          "target": null,
+          "status": "reverted",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".gaip-learning-actions.lc-learning-admin-tools"
+        },
+        {
+          "file": "features/learning-center/learning-app.js",
+          "function": "renderList"
+        },
+        {
+          "file": "features/learning-center/learning-center.js",
+          "function": "updateOverlayBounds"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 首页恢复与数据保留)"
+        ],
+        "gaps": [
+          "独立真实组件测试；完整 file 业务页未现场验收。"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-16",
+      "note": "用户撤下首页直播试版：新增选择器已删除，恢复原课程首页规则；非线上基准值比对。"
+    },
+    {
+      "id": "learning-live.section-heading",
+      "element": "直播与课程分区标题",
+      "locator": {
+        "selector": ".lc-learning-section-title",
+        "representative": "直播标题；课程标题"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320/480/900/1440px"
+      },
+      "appliesTo": [
+        "首页直播区",
+        "首页课程区"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-learning-section-title, .lc-learning-courses-heading"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 首页恢复与数据保留)"
+        ],
+        "gaps": [
+          "独立真实组件测试；完整 file 业务页未现场验收。"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-16",
+      "note": "用户撤下首页直播试版：新增选择器已删除，恢复原课程首页规则；非线上基准值比对。"
+    },
+    {
+      "id": "learning-live.section",
+      "element": "直播分区容器",
+      "locator": {
+        "selector": ".lc-learning-live-section",
+        "representative": "直播标题及图片"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320/480/900/1440px"
+      },
+      "appliesTo": [
+        "普通学员首页",
+        "管理员首页；权限操作栏仅有权限可见"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": null,
+          "status": "reverted",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "features/learning-center/learning-live.css",
+          "selector": ".lc-learning-live-section"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-16",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1; 首页恢复与数据保留)"
+        ],
+        "gaps": [
+          "独立真实组件测试；完整 file 业务页未现场验收。"
+        ]
+      },
+      "status": "reverted",
+      "updatedAt": "2026-09-16",
+      "note": "用户撤下首页直播试版：新增选择器已删除，恢复原课程首页规则；非线上基准值比对。"
+    }
+  ]
+}

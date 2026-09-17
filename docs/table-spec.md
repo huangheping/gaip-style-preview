@@ -33,6 +33,7 @@ table.destroy(); // 离开视图时释放观察器、事件和动画帧
 
 - `columns`：key、label、width、align；fixed 为 left/right，多个固定列须传累计 offset；当前不提供表头排序，数据沿用业务传入顺序。
 - `rowVerticalAlign`：`'middle'`（默认）或`'top'`，仅设置正文单元格垂直对齐，表头不变；未知值回退middle。课程日志使用top，其他实例保留默认。配置由共享表格输出，页面无需覆盖td样式。
+- `pagination:false`：不生成分页底栏，完整渲染传入的行数组，页码收敛为 1；直播 Banner 管理按产品要求使用。省略此项仍默认每页 10 条，课程和学情等既有消费者不变；大量数据仍应由业务选择分页，不提供虚拟列表。
 - 普通值通过 textContent 渲染；render 返回文本或 DOM 节点。renderHTML 只允许应用内部已转义的可信模板，禁止直接传用户输入。课程管理沿用其原有转义模板与 data-lc 业务事件。
 - 页面顶栏属于业务页面，使用 gaip-table__button / gaip-table-tools 共享按钮皮肤；表格内不生成标题或工具栏。行操作使用 gaip-table__row-actions，危险操作使用 is-danger，禁用使用原生 disabled。
 - `setState('ready'|'loading'|'error')`：加载中/失败时禁用分页；onRetry 接收实例。无数据根据 rows 自动展示。

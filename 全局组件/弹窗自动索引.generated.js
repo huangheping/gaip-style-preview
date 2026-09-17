@@ -108,7 +108,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -139,7 +139,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -171,7 +171,7 @@
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
@@ -205,7 +205,7 @@
       "features/config-center/config-center.css"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/config-center/source-markup.js?v=20260904-2",
@@ -239,7 +239,7 @@
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
     "scripts": [
-      "shared/config/channels.js?v=20260908-required-marker-1",
+      "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
@@ -272,11 +272,11 @@
       "shared/scripts/global-modal.js",
       "shared/scripts/global-modal-position.js",
       "shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1",
-      "shared/scripts/global-table.js",
+      "shared/scripts/global-table.js?v=20260916-no-pagination-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "definitionSource": "features/learning-center/learning-app.js"
   },
@@ -306,7 +306,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "definitionSource": "features/learning-center/learning-app.js"
   },
@@ -335,7 +335,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "definitionSource": "features/learning-center/learning-app.js"
   },
@@ -365,7 +365,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-unsaved-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -396,7 +396,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-course-offline-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -427,7 +427,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-course-delete-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -458,7 +458,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-lesson-publish-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -489,7 +489,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-lesson-offline-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -521,7 +521,7 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-last-lesson-offline-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -550,11 +550,11 @@
       "shared/scripts/global-modal.js",
       "shared/scripts/global-modal-position.js",
       "shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1",
-      "shared/scripts/global-table.js",
+      "shared/scripts/global-table.js?v=20260916-no-pagination-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "after": "learning-lesson-delete-confirm",
     "definitionSource": "features/learning-center/learning-app.js"
@@ -584,9 +584,9 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1",
-      "shared/scripts/global-table.js",
+      "shared/scripts/global-table.js?v=20260916-no-pagination-1",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "source": "window.__GAIP_LEARNING_APP__.openStudyDetail(\"users\")",
     "invoke": {
@@ -622,9 +622,9 @@
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
       "shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1",
-      "shared/scripts/global-table.js",
+      "shared/scripts/global-table.js?v=20260916-no-pagination-1",
       "features/learning-center/learning-data.js",
-      "features/learning-center/learning-app.js?v=20260910-study-detail-modal-1"
+      "features/learning-center/learning-app.js?v=20260917-live-gold-1"
     ],
     "source": "window.__GAIP_LEARNING_APP__.openStudyDetail(\"courses\")",
     "invoke": {
@@ -634,6 +634,192 @@
       ]
     },
     "definitionSource": "features/learning-center/learning-app.js"
+  },
+  {
+    "id": "learning-live-editor",
+    "title": "新增 / 编辑直播 Banner",
+    "channel": "学习中心",
+    "type": "modal",
+    "category": "form",
+    "status": "ready",
+    "source": "window.__GAIP_LEARNING_LIVE__.openEditor()",
+    "invoke": {
+      "path": "__GAIP_LEARNING_LIVE__.openEditor",
+      "args": [
+        null,
+        true
+      ]
+    },
+    "styles": [
+      "shared/styles/global-modal.css?v=20260910-discard-outline-1",
+      "shared/styles/global-modal-position.css",
+      "shared/styles/global-modal-mask.css",
+      "shared/styles/global-page-form.css",
+      "shared/styles/global-multi-select.css?v=20260915-multi-filter-1",
+      "shared/styles/global-date-picker.css",
+      "shared/styles/modal-controls.css",
+      "features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1",
+      "features/learning-center/learning-live.css?v=20260917-live-gold-1"
+    ],
+    "scripts": [
+      "shared/scripts/global-modal.js",
+      "shared/scripts/global-modal-position.js",
+      "shared/scripts/global-multi-select.js",
+      "shared/scripts/global-date-picker.js",
+      "shared/scripts/modal-controls.js",
+      "features/learning-center/learning-data.js",
+      "features/learning-center/learning-live-data.js?v=20260917-live-copy-1",
+      "features/learning-center/learning-live.js?v=20260917-live-gold-1"
+    ],
+    "definitionSource": "features/learning-center/learning-live.js"
+  },
+  {
+    "id": "learning-live-publish",
+    "title": "直播 Banner 上架确认",
+    "channel": "学习中心",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "source": "window.__GAIP_LEARNING_LIVE__.openConfirm()",
+    "invoke": {
+      "path": "__GAIP_LEARNING_LIVE__.openConfirm",
+      "args": [
+        "publish"
+      ]
+    },
+    "styles": [
+      "shared/styles/global-modal.css?v=20260910-discard-outline-1",
+      "shared/styles/global-modal-position.css",
+      "shared/styles/global-modal-mask.css",
+      "shared/styles/global-page-form.css",
+      "shared/styles/global-multi-select.css?v=20260915-multi-filter-1",
+      "shared/styles/global-date-picker.css",
+      "shared/styles/modal-controls.css",
+      "features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1",
+      "features/learning-center/learning-live.css?v=20260917-live-gold-1"
+    ],
+    "scripts": [
+      "shared/scripts/global-modal.js",
+      "shared/scripts/global-modal-position.js",
+      "shared/scripts/global-multi-select.js",
+      "shared/scripts/global-date-picker.js",
+      "shared/scripts/modal-controls.js",
+      "features/learning-center/learning-data.js",
+      "features/learning-center/learning-live-data.js?v=20260917-live-copy-1",
+      "features/learning-center/learning-live.js?v=20260917-live-gold-1"
+    ],
+    "definitionSource": "features/learning-center/learning-live.js"
+  },
+  {
+    "id": "learning-live-offline",
+    "title": "直播 Banner 下架确认",
+    "channel": "学习中心",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "source": "window.__GAIP_LEARNING_LIVE__.openConfirm()",
+    "invoke": {
+      "path": "__GAIP_LEARNING_LIVE__.openConfirm",
+      "args": [
+        "offline"
+      ]
+    },
+    "styles": [
+      "shared/styles/global-modal.css?v=20260910-discard-outline-1",
+      "shared/styles/global-modal-position.css",
+      "shared/styles/global-modal-mask.css",
+      "shared/styles/global-page-form.css",
+      "shared/styles/global-multi-select.css?v=20260915-multi-filter-1",
+      "shared/styles/global-date-picker.css",
+      "shared/styles/modal-controls.css",
+      "features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1",
+      "features/learning-center/learning-live.css?v=20260917-live-gold-1"
+    ],
+    "scripts": [
+      "shared/scripts/global-modal.js",
+      "shared/scripts/global-modal-position.js",
+      "shared/scripts/global-multi-select.js",
+      "shared/scripts/global-date-picker.js",
+      "shared/scripts/modal-controls.js",
+      "features/learning-center/learning-data.js",
+      "features/learning-center/learning-live-data.js?v=20260917-live-copy-1",
+      "features/learning-center/learning-live.js?v=20260917-live-gold-1"
+    ],
+    "definitionSource": "features/learning-center/learning-live.js"
+  },
+  {
+    "id": "learning-live-remove",
+    "title": "删除直播 Banner 草稿",
+    "channel": "学习中心",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "source": "window.__GAIP_LEARNING_LIVE__.openConfirm()",
+    "invoke": {
+      "path": "__GAIP_LEARNING_LIVE__.openConfirm",
+      "args": [
+        "remove"
+      ]
+    },
+    "styles": [
+      "shared/styles/global-modal.css?v=20260910-discard-outline-1",
+      "shared/styles/global-modal-position.css",
+      "shared/styles/global-modal-mask.css",
+      "shared/styles/global-page-form.css",
+      "shared/styles/global-multi-select.css?v=20260915-multi-filter-1",
+      "shared/styles/global-date-picker.css",
+      "shared/styles/modal-controls.css",
+      "features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1",
+      "features/learning-center/learning-live.css?v=20260917-live-gold-1"
+    ],
+    "scripts": [
+      "shared/scripts/global-modal.js",
+      "shared/scripts/global-modal-position.js",
+      "shared/scripts/global-multi-select.js",
+      "shared/scripts/global-date-picker.js",
+      "shared/scripts/modal-controls.js",
+      "features/learning-center/learning-data.js",
+      "features/learning-center/learning-live-data.js?v=20260917-live-copy-1",
+      "features/learning-center/learning-live.js?v=20260917-live-gold-1"
+    ],
+    "definitionSource": "features/learning-center/learning-live.js"
+  },
+  {
+    "id": "learning-live-discard",
+    "title": "放弃直播 Banner 修改",
+    "channel": "学习中心",
+    "type": "confirm",
+    "category": "confirmation",
+    "status": "ready",
+    "source": "window.__GAIP_LEARNING_LIVE__.openConfirm()",
+    "invoke": {
+      "path": "__GAIP_LEARNING_LIVE__.openConfirm",
+      "args": [
+        "discard"
+      ]
+    },
+    "styles": [
+      "shared/styles/global-modal.css?v=20260910-discard-outline-1",
+      "shared/styles/global-modal-position.css",
+      "shared/styles/global-modal-mask.css",
+      "shared/styles/global-page-form.css",
+      "shared/styles/global-multi-select.css?v=20260915-multi-filter-1",
+      "shared/styles/global-date-picker.css",
+      "shared/styles/modal-controls.css",
+      "features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1",
+      "features/learning-center/learning-live.css?v=20260917-live-gold-1"
+    ],
+    "scripts": [
+      "shared/scripts/global-modal.js",
+      "shared/scripts/global-modal-position.js",
+      "shared/scripts/global-multi-select.js",
+      "shared/scripts/global-date-picker.js",
+      "shared/scripts/modal-controls.js",
+      "features/learning-center/learning-data.js",
+      "features/learning-center/learning-live-data.js?v=20260917-live-copy-1",
+      "features/learning-center/learning-live.js?v=20260917-live-gold-1"
+    ],
+    "definitionSource": "features/learning-center/learning-live.js"
   }
 ], { origin: 'source-annotation' });
 }());

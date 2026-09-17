@@ -11,7 +11,15 @@ try{
  click('[data-collapse="department-1"]');assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'),'true');
  click('[data-department-menu="department-1"]');click('[data-department-action="rename"]');const input=one('.gaip-department-editor input');input.value='共享节点改名';input.dispatchEvent(new w.Event('input',{bubbles:true}));click('[data-department-save]');
  assert.equal(O.nodes().find(n=>n.id==='0:department-1').name,'共享节点改名');assert.equal(one('[data-department="department-1"] .treeNodeName___mtuTp').textContent,'共享节点改名');
- const picker=d.createElement('div');d.body.appendChild(picker);let chosen;const tree=w.__GAIP_ORG_TREE__.mount(picker,{nodes:O.nodes(),onSelect:id=>chosen=id});tree.search('共享节点改名');assert.equal(picker.querySelectorAll('[role="treeitem"]').length,2);picker.querySelector('[data-node-id="0:department-1"] .treeNodeName___mtuTp').click();assert.equal(chosen,'0:department-1');tree.destroy();
+ const picker=d.createElement('div');d.body.appendChild(picker);let chosen;const tree=w.__GAIP_ORG_TREE__.mount(picker,{nodes:O.nodes(),onSelect:id=>chosen=id});
+ assert.equal(picker.querySelectorAll('[role="treeitem"]').length,O.channels.length,'empty picker starts with top-level organizations only');
+ assert.equal(picker.querySelector('[data-node-id="0:all"]').getAttribute('aria-expanded'),'false','top-level organization is collapsed by default');
+ assert.equal(picker.querySelector('[data-node-id="0:department-1"]'),null,'collapsed picker hides child nodes');
+ tree.setValue('0:department-2');
+ assert.equal(picker.querySelector('[data-node-id="0:all"]').getAttribute('aria-expanded'),'true','selected descendant expands its root ancestor');
+ assert.equal(picker.querySelector('[data-node-id="0:department-1"]').getAttribute('aria-expanded'),'true','selected descendant expands its parent ancestor');
+ assert.equal(picker.querySelector('[data-node-id="0:department-2"]').getAttribute('aria-expanded'),'false','selected parent does not expand its own children');
+ tree.search('共享节点改名');assert.equal(picker.querySelectorAll('[role="treeitem"]').length,2);picker.querySelector('[data-node-id="0:department-1"] .treeNodeName___mtuTp').click();assert.equal(chosen,'0:department-1');tree.destroy();
  await new Promise(r=>setTimeout(r,60));
  const firstTab=one('[data-config-channel="0"][data-gaip-tab]');
  const tabRoot=firstTab.parentElement,tabInstance=w.__GAIP_TABS__.get(tabRoot);
@@ -25,5 +33,5 @@ try{
  assert.equal(d.querySelectorAll('[data-config-bulk-import]').length,1,'header actions not duplicated');
  assert.equal(d.querySelectorAll('input[aria-label="搜索成员"]').length,1,'search not duplicated');
  assert.equal(d.querySelectorAll('[data-config-tree] .gaip-org-node').length,O.sets[1].length);
- console.log('PASS configuration shared nodes and tabs: tree expansion, rename, same-store picker and original channel switch/keyboard/rerender lifecycle');
+ console.log('PASS configuration shared nodes and tabs: management expansion, collapsed picker, selected/search path expansion, rename and original channel switch/keyboard/rerender lifecycle');
 }finally{dom.window.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

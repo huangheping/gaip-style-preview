@@ -113,7 +113,7 @@ assert.equal(host.dataset.learningView,'manage');
 const logDialog=w.document.querySelector('[data-gaip-modal-id="learning-course-log"]');
 assert.ok(logDialog.open); assert.equal(logDialog.dataset.gaipModalCategory,'information');
 assert.ok(w.__GAIP_TABLE__.get(logDialog.querySelector('.lc-course-log-table')));
-assert.deepEqual(Array.from(logDialog.querySelectorAll('.gaip-table__head th'),n=>n.textContent),['分类','操作对象','变更字段','变更前','变更后','操作人','操作时间','IP']);
+assert.deepEqual(Array.from(logDialog.querySelectorAll('.gaip-table__head th'),n=>n.textContent),['操作项目','分类','操作对象','变更字段','变更前','变更后','操作人','操作时间','IP']);
 click('[data-log-close]');assert.equal(w.document.querySelector('[data-gaip-modal-id="learning-course-log"]'),null);
 assert.equal(host.querySelector('.lc-manage-results'),managerNode);assert.deepEqual(managerTable.getState(),managerState);
 assert.equal(JSON.stringify(retainedFilters.getValues()),retainedValues);

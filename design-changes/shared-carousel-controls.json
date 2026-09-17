@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "page": "共享轮播切换控件",
+  "records": [
+    {
+      "id": "shared-carousel.arrows",
+      "element": "活动同款圆形箭头",
+      "locator": {"selector": ".gaip-carousel-arrow", "representative": "直播左侧切换箭头"},
+      "state": {"channel": "活动中心 / 学习中心 / 组件目录", "variant": "default / hover / focus", "viewport": "320–1920px"},
+      "appliesTo": ["活动 Banner 保持既有外观", "学习中心直播卡片", "组件目录预览"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "size": {"before": null, "initialLocal": "活动44×44px；直播为文字翻组", "target": "44×44px；≤720px为38×38px", "basis": "mixed", "status": "active"},
+        "icon": {"before": null, "initialLocal": "活动原SVG箭头", "target": "沿用活动原SVG path；22×22px；stroke 2；#171c1e", "basis": "source", "status": "active"},
+        "surface": {"before": null, "initialLocal": "活动原样式", "target": "圆角50%；边框1px rgba(17,24,27,.08)；背景rgba(255,255,255,.94)，hover/focus为#fff", "basis": "mixed", "status": "active"},
+        "shadow": {"before": null, "initialLocal": "活动原样式", "target": "0 6px 20px rgba(17,24,27,.2)；hover/focus为0 8px 26px rgba(17,24,27,.26)", "basis": "mixed", "status": "active"}
+      },
+      "sources": [{"file":"shared/styles/global-carousel-controls.css"},{"file":"shared/scripts/global-carousel-controls.js"}],
+      "verification": {"level":"browser-checked","checkedAt":"2026-09-17","evidence":["scripts/test-carousel-controls-browser.cjs：与原活动CSS计算样式比较","scripts/test-learning-live-browser.cjs"],"gaps":["独立浏览器组件验证；完整file/Umi页面待刷新验收"]},
+      "status":"active","updatedAt":"2026-09-17"
+    },
+    {
+      "id":"shared-carousel.indicators",
+      "element":"浅底短条分页指示点",
+      "locator":{"selector":".gaip-carousel-dots","representative":"直播底部指示点"},
+      "state":{"channel":"学习中心 / 组件目录","variant":"default / current / focus","viewport":"all"},
+      "appliesTo":["直播组切换","目录预览；活动原生Slick白色指示器不改"],
+      "baseline":{"id":null,"kind":"unknown","ref":null,"capturedAt":null,"evidence":[]},
+      "properties":{
+        "size":{"before":null,"initialLocal":"文字页码","target":"视觉20×6px，当前30×6px；热区30×28px；圆角3px","status":"active","basis":"source"},
+        "color":{"before":null,"initialLocal":"文字#747c80","target":"默认#c5cecc；当前#025b52；hover #6a9e98；focus描边2px #24d4c9","status":"active","basis":"source"},
+        "spacing":{"before":null,"initialLocal":"文字按钮间距16px、顶距12px","target":"gap 8px；margin-top 12px","status":"active","basis":"source"}
+      },
+      "sources":[{"file":"shared/styles/global-carousel-controls.css"},{"file":"web/p__dashboard__activity__index.2dae1e6c.chunk.css","selector":".carouselDots___S4tek（只读形态依据）"}],
+      "verification":{"level":"browser-checked","checkedAt":"2026-09-17","evidence":["scripts/test-learning-live-browser.cjs；已查看桌面末组与480px截图"],"gaps":["完整file/Umi页面待刷新验收"]},
+      "status":"active","updatedAt":"2026-09-17"
+    }
+  ]
+}
