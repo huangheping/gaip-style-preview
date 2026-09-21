@@ -1,7 +1,7 @@
 ---
 type: project-state
 project: GAIP 本地静态预览版
-updated: 2026-09-17
+updated: 2026-09-21
 ---
 
 # 当前项目状态
@@ -10,9 +10,9 @@ updated: 2026-09-17
 
 ## 当前基线
 
-- 最新功能提交：`b619611a471f79ec16157f26e7f354ba2c8b78c0`（学习中心直播与共享控件更新）。
-- GitHub Pages 构建 `35182107262` 成功；线上入口：https://huangheping.github.io/gaip-style-preview/
-- 发布记录：[[knowledge/变更/2026-09-17-学习中心直播与共享控件更新|2026-09-17 学习中心直播与共享控件更新]]。
+- 最新功能提交：`64d9964442902c6bafa72e97ff1cd2d39efd9a04`（AI Agent 附件与复制统一）。
+- GitHub Pages 功能构建 `35576134572` 成功；线上入口：https://huangheping.github.io/gaip-style-preview/
+- 发布记录：[[knowledge/变更/2026-09-21-AI-Agent附件与复制统一|2026-09-21 AI Agent 附件与复制统一]]。
 
 ## 已发布能力
 
