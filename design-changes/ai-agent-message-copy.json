@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "page": "AI Agent 消息复制",
+  "records": [
+    {
+      "id": "ai-agent.message-copy",
+      "element": "气泡下方复制操作",
+      "locator": {
+        "selector": ".gaip-agent-message-copy",
+        "representative": "自己的文本消息与 AI 回复"
+      },
+      "state": {
+        "variant": "default / copied",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "AI Agent 用户消息",
+        "AI Agent AI 文字回复"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": "Web 普通消息无复制入口（代码块复制独立保留）",
+          "target": [
+            "AI Agent/素材/复制文本.svg",
+            "AI Agent/素材/复制成功.svg（2026-09-21 用户新版）"
+          ],
+          "status": "active",
+          "basis": "source",
+          "targetHash": "c0a97e4238249875956f237aff230b8eeaffa35be8eab6aff57938257f761df2"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px 图标 / 44px 按钮",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px 图标 / 44px 按钮",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.edgeInset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0px（AI 左边缘，用户右边缘）",
+          "status": "active",
+          "basis": "browser"
+        }
+      },
+      "sources": [
+        "AI Agent/AI Agent本地Mock.js",
+        "AI Agent/AI Agent改版.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "gaps": []
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
+    }
+  ]
+}

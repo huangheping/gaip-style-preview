@@ -27,6 +27,18 @@ risk: medium
 - 仅相关结构变化调度检查，挂载保持幂等；旧 WebGL、Lottie、视频及提示定时器在入口被替换或移除时清理。
 - `scripts/test-agent-entry.cjs` 覆盖上述生命周期；代码测试通过，真实 Umi 路径与视频/WebGL 效果仍待手工确认。修复 `ee5c3e9` 已发布，详见 [[../变更/2026-08-31-工作台对齐与共享控件修复#AI Agent 登录后入口与版本切换恢复|本次修复]]。
 
+## 附件类型展示
+
+- 待发送及用户消息附件由本地 Mock 增强层按扩展名匹配图片、PDF、Word、Excel 图标（大小写与 doc/xls 兼容）；未知类型保留原回形针。图标资源位于 `AI Agent/素材/附件类型/`。
+- 沿用面板内的局部观察器，支持附件异步挂载及文件名节点复用；通过 data 属性/CSS 更新外观，保留 React 拥有的 SVG 节点，避免上传中切换原生图标时 removeChild 冲突。
+- 回归：`scripts/test-agent-attachment-icons.cjs`，视觉参数见 `design-changes/ai-agent-attachments.json`。
+
+## 消息复制
+
+- 用户文字与 AI 正文下方统一复制入口，使用 `素材/复制文本.svg` 与 `素材/复制成功.svg`，成功后 2 秒恢复，同时浮层显示“消息已复制”或“回答已复制”。纯附件消息无空复制入口；推理过程和附件名不拼入正文。
+- 本地增强层复用面板观察器，保留 React 消息节点和原生代码块复制功能；Clipboard API 不可用时回退选择复制，失败时显示提示。
+- 回归：`scripts/test-agent-message-copy.cjs`；视觉参数见 `design-changes/ai-agent-message-copy.json`。
+
 ## 修改边界
 
 - AI Agent 是跨频道全局模块，不在某个频道目录内复制一份实现。

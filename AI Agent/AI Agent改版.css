@@ -415,7 +415,9 @@
 }
 
 .agentModal___Nxp06 .textarea___GMXtD,
-.agentModal___Nxp06 textarea.ant-input {
+.agentModal___Nxp06 textarea.ant-input,
+.agentModal___Nxp06 .textarea___GMXtD::placeholder,
+.agentModal___Nxp06 textarea.ant-input::placeholder {
   font-size: 16px !important;
 }
 
@@ -921,4 +923,85 @@
     border-left: 0;
     border-top: 1px solid #e4e8ea;
   }
+}
+
+/* File-type artwork overlays the original icon without replacing React-owned nodes. */
+.agentModal___Nxp06 [data-gaip-file-icon] {
+  position: relative;
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  background: center / contain no-repeat;
+}
+.agentModal___Nxp06 [data-gaip-file-icon] > svg {
+  visibility: hidden;
+}
+.agentModal___Nxp06 [data-gaip-file-icon="image"] {
+  background-image: url('./素材/附件类型/图片.svg');
+}
+.agentModal___Nxp06 [data-gaip-file-icon="pdf"] {
+  background-image: url('./素材/附件类型/PDF.svg');
+}
+.agentModal___Nxp06 [data-gaip-file-icon="word"] {
+  background-image: url('./素材/附件类型/word.svg');
+}
+.agentModal___Nxp06 [data-gaip-file-icon="excel"] {
+  background-image: url('./素材/附件类型/xlsx.svg');
+}
+.agentModal___Nxp06 .tag___PKl7Z:not(.skillTag___g4XXW) .text___u9Ggi {
+  font-size: 12px;
+}
+
+.agentModal___Nxp06 .gaip-agent-message-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -16px; /* Native message rows have a 24px gap; leave 8px here. */
+}
+.agentModal___Nxp06 .gaip-agent-message-copy {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+}
+.agentModal___Nxp06 .gaip-agent-message-copy img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.agentModal___Nxp06 .gaip-agent-message-copy:focus-visible {
+  outline: 2px solid #025b52;
+  outline-offset: 1px;
+}
+.agentModal___Nxp06 .gaip-agent-copy-error {
+  font-size: 12px;
+  color: #6d7c75;
+}
+
+.agentModal___Nxp06 .msgUser___WR23E .gaip-agent-message-copy {
+  justify-items: end;
+}
+.agentModal___Nxp06 .gaip-agent-copy-error:empty {
+  display: none;
+}
+.agentModal___Nxp06 .gaip-agent-copy-notice {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 18px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.7;
+  pointer-events: none;
 }

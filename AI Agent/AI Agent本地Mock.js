@@ -1105,7 +1105,7 @@
     updateSkillToggleState(modal);
   }
 
-  function ensureAgentButtonIcon(button, className, src, alt) {
+  function ensureAgentButtonIcon(button, className, src, alt, preserveNative) {
     var icon;
     if (!button) return;
     icon = button.querySelector('.' + className) || button.querySelector('img');
@@ -1116,6 +1116,9 @@
     icon.className = className;
     icon.alt = alt || '';
     if (icon.getAttribute('src') !== src) icon.setAttribute('src', src);
+    // Upload toggles its React-owned clip/spinner nodes while selecting files.
+    // CSS hides these underneath the custom icon; keep the nodes for reconciliation.
+    if (preserveNative) return;
     Array.prototype.slice.call(button.querySelectorAll('img, svg, .anticon')).forEach(function (item) {
       if (item !== icon) item.remove();
     });
@@ -1181,7 +1184,7 @@
       closeIcon.setAttribute('aria-label', '最小化');
       closeIcon.setAttribute('title', '最小化');
     }
-    ensureAgentButtonIcon(attachmentToggle, 'gaip-agent-attachment-icon', './AI Agent/素材/上传附件.svg', '上传附件');
+    ensureAgentButtonIcon(attachmentToggle, 'gaip-agent-attachment-icon', './AI Agent/素材/上传附件.svg', '上传附件', true);
   }
 
   function getAgentModalWrap(modal) {
@@ -1303,10 +1306,151 @@
     }
   }
 
+  var agentAttachmentRows = '.tag___PKl7Z:not(.skillTag___g4XXW), .attachmentItem___yTpxC';
+
+  function agentMessageText(row) {
+    var user = row.querySelector('.userPre___VegVA');
+    if (user) return user.textContent || '';
+    return Array.prototype.map.call(row.querySelectorAll('.aiContent___cP6kY'), function (content) {
+      var clone = content.cloneNode(true);
+      Array.prototype.forEach.call(clone.querySelectorAll('button, .codeHeader___bcofg'), function (node) { node.remove(); });
+      Array.prototype.forEach.call(clone.querySelectorAll('br'), function (node) { node.replaceWith('\n'); });
+      Array.prototype.forEach.call(clone.querySelectorAll('td, th'), function (node) {
+        if (node.nextElementSibling) node.appendChild(document.createTextNode('\t'));
+      });
+      Array.prototype.forEach.call(clone.querySelectorAll('p, pre, li, h1, h2, h3, h4, h5, h6, tr, blockquote'), function (node) {
+        node.appendChild(document.createTextNode('\n'));
+      });
+      return (clone.textContent || '').trim();
+    }).join('\n\n');
+  }
+
+  async function copyAgentText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+      var active = document.activeElement;
+      var selection = window.getSelection();
+      var ranges = [];
+      if (selection) for (var i = 0; i < selection.rangeCount; i++) ranges.push(selection.getRangeAt(i).cloneRange());
+      var input = document.createElement('textarea');
+      input.value = text;
+      input.readOnly = true;
+      input.style.cssText = 'position:fixed;top:0;left:-9999px;font-size:16px;';
+      document.body.appendChild(input);
+      try {
+        input.select();
+        if (!document.execCommand('copy')) throw new Error('Copy unavailable');
+      } finally {
+        input.remove();
+        if (active && active.focus) active.focus({ preventScroll: true });
+        if (selection) {
+          selection.removeAllRanges();
+          ranges.forEach(function (range) { selection.addRange(range); });
+        }
+      }
+    }
+  }
+
+  function showAgentCopyNotice(modal, text) {
+    var notice = modal.querySelector('.gaip-agent-copy-notice');
+    if (!notice) {
+      notice = document.createElement('div');
+      notice.className = 'gaip-agent-copy-notice';
+      notice.setAttribute('role', 'status');
+      modal.appendChild(notice);
+    }
+    clearTimeout(notice.__gaipHideTimer);
+    notice.textContent = text;
+    notice.hidden = false;
+    notice.__gaipHideTimer = setTimeout(function () { notice.hidden = true; }, 4200);
+  }
+
+  function ensureAgentMessageActions(modal) {
+    Array.prototype.forEach.call(modal.querySelectorAll('.msgRow___wswRS'), function (row) {
+      var actions = row.querySelector('.gaip-agent-message-actions');
+      var hasText = !!agentMessageText(row).trim();
+      if (!hasText) {
+        if (actions) actions.remove();
+        return;
+      }
+      if (actions) return;
+      var label = row.classList.contains('msgUser___WR23E') ? '复制我的消息' : '复制回答';
+      actions = document.createElement('div');
+      actions.className = 'gaip-agent-message-actions';
+      actions.innerHTML = '<button type="button" class="gaip-agent-message-copy"><img src="./AI Agent/素材/复制文本.svg" alt="" draggable="false"></button><span class="gaip-agent-copy-error" role="status"></span>';
+      var button = actions.querySelector('button');
+      var image = button.querySelector('img');
+      var feedback = actions.querySelector('[role="status"]');
+      button.setAttribute('aria-label', label);
+      button.title = label;
+      button.onclick = async function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (button.disabled) return;
+        button.disabled = true;
+        feedback.textContent = '';
+        try {
+          await copyAgentText(agentMessageText(row));
+          clearTimeout(button.__gaipCopyTimer);
+          image.src = './AI Agent/素材/复制成功.svg?v=20260921-copy2';
+          showAgentCopyNotice(modal, row.classList.contains('msgUser___WR23E') ? '消息已复制' : '回答已复制');
+          button.setAttribute('aria-label', '已复制');
+          button.title = '已复制';
+          button.__gaipCopyTimer = setTimeout(function () {
+            image.src = './AI Agent/素材/复制文本.svg';
+            button.setAttribute('aria-label', label);
+            button.title = label;
+          }, 2000);
+        } catch (error) {
+          feedback.textContent = '复制失败，请选择文字复制';
+        } finally {
+          button.disabled = false;
+        }
+      };
+      row.appendChild(actions);
+    });
+  }
+
+  function ensureAgentAttachmentIcons(modal) {
+    Array.prototype.forEach.call(modal.querySelectorAll(agentAttachmentRows), function (row) {
+      var label = row.querySelector('.text___u9Ggi, .fileName___a9zJG');
+      var icon = row.querySelector('.icon___uCSIV, .clipIcon___AJeBx');
+      if (!label || !icon) return;
+      // Pending names retain their suffix when shortened; sent names use CSS ellipsis.
+      var name = (label.getAttribute('title') || label.textContent || '').trim();
+      var ext = name.indexOf('.') === -1 ? '' : name.split('.').pop().toLowerCase();
+      var kind = /^(png|jpe?g|gif|webp|bmp|svg|heic|heif|avif|tiff?)$/.test(ext) ? 'image'
+        : ext === 'pdf' ? 'pdf' : /^docx?$/.test(ext) ? 'word' : /^xlsx?$/.test(ext) ? 'excel' : '';
+      if (kind) {
+        if (icon.getAttribute('data-gaip-file-icon') !== kind) icon.setAttribute('data-gaip-file-icon', kind);
+      } else if (icon.hasAttribute('data-gaip-file-icon')) {
+        icon.removeAttribute('data-gaip-file-icon');
+      }
+    });
+  }
+
   function ensureAgentScopedObserver(modal) {
     var wrapper = modal && modal.querySelector('.modalRenderWrapper___qz3XP');
     if (!wrapper || wrapper.__gaipAgentScopedObserver) return;
     wrapper.__gaipAgentScopedObserver = new MutationObserver(function (records) {
+      var messagesChanged = records.some(function (record) {
+        var target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+        if (target && target.closest('.gaip-agent-message-actions')) return false;
+        if (target && target.closest('.msgRow___wswRS')) return true;
+        return Array.prototype.some.call(record.addedNodes || [], function (node) {
+          return node.nodeType === 1 && (node.matches('.msgRow___wswRS') || node.querySelector('.msgRow___wswRS'));
+        });
+      });
+      if (messagesChanged) ensureAgentMessageActions(modal);
+      var attachmentsChanged = records.some(function (record) {
+        var target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+        if (target && target.closest(agentAttachmentRows)) return true;
+        return Array.prototype.some.call(record.addedNodes || [], function (node) {
+          return node.nodeType === 1 && (node.matches(agentAttachmentRows) || node.querySelector(agentAttachmentRows));
+        });
+      });
+      if (attachmentsChanged) ensureAgentAttachmentIcons(modal);
       var shouldRestore = records.some(function (record) {
         if (record.type === 'attributes') {
           return record.target && record.target.matches &&
@@ -1332,8 +1476,9 @@
     wrapper.__gaipAgentScopedObserver.observe(wrapper, {
       childList: true,
       subtree: true,
+      characterData: true,
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class', 'title']
     });
   }
 
@@ -1458,6 +1603,8 @@
     if (!modal) return;
     ensureAgentSidebar(modal);
     ensureAgentScopedObserver(modal);
+    ensureAgentAttachmentIcons(modal);
+    ensureAgentMessageActions(modal);
     ensureHistoryLoaded(modal);
     ensureNoHistoryEmptyState(modal);
     ensureInitialHistorySession(modal);

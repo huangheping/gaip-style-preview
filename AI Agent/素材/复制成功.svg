@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ICON/Agent/复制成功</title>
+    <g id="ICON/Agent/复制成功" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="32" height="32"></rect>
+        <rect id="矩形备份-12" fill="#2F3640" opacity="0.05" x="0" y="0" width="32" height="32" rx="6.85714286"></rect>
+        <polyline id="路径备份" stroke="#2F3640" stroke-width="1.94285714" transform="translate(14.3231, 13.6043) scale(1, -1) translate(-14.3231, -13.6043)" points="6.62059737 11.5272481 12.5056548 7.2 22.0256008 20.0086545"></polyline>
+        <polyline id="路径备份-2" stroke="#2F3640" stroke-width="1.94285714" transform="translate(19.9485, 18.0073) scale(1, -1) translate(-19.9485, -18.0073)" points="15.0014244 14.5922848 17.1767438 12.8146045 24.8956188 23.2"></polyline>
+    </g>
+</svg>

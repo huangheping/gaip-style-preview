@@ -19,7 +19,7 @@
     "test:config": "node scripts/test-config-center.cjs",
     "test:announcements": "node scripts/test-announcement-management.cjs",
     "test:logs": "node scripts/test-operation-log.cjs",
-    "test:agent": "node scripts/test-agent-entry.cjs"
+    "test:agent": "node scripts/test-agent-entry.cjs && node scripts/test-agent-attachment-icons.cjs && node scripts/test-agent-message-copy.cjs"
   },
   "devDependencies": {
     "jsdom": "26.1.0"

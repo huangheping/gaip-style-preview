@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "page": "AI Agent 附件",
+  "records": [
+    {
+      "id": "ai-agent.attachment-type-icon",
+      "element": "附件类型图标",
+      "locator": {
+        "selector": ".agentModal___Nxp06 .icon___uCSIV, .agentModal___Nxp06 .clipIcon___AJeBx",
+        "representative": "待发送附件及用户消息附件"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "AI Agent 待发送附件",
+        "AI Agent 用户消息附件"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": "Ant Design 通用回形针（web/umi.0b0663b5.js 模块 5392）",
+          "target": "按类型使用 AI Agent/素材/附件类型/{图片,PDF,word,xlsx}.svg；其他类型回形针",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": "待发送回形针随字体 1em；已发送 16px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "待发送回形针随字体 1em；已发送 16px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "AI Agent/AI Agent本地Mock.js",
+        "AI Agent/AI Agent改版.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-21",
+        "gaps": [
+          "线上交付基准未采集；实际验证使用本地 HTTP 工作台入口。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "ai-agent.pending-attachment-name",
+      "element": "待发送附件文件名",
+      "locator": {
+        "selector": ".agentModal___Nxp06 .tag___PKl7Z:not(.skillTag___g4XXW) .text___u9Ggi",
+        "representative": "输入框内附件胶囊文字"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "AI Agent 待发送附件"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "12px",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        "AI Agent/AI Agent改版.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-21",
+        "gaps": [
+          "线上交付基准未采集；实际验证使用本地 HTTP 工作台入口。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
+    }
+  ]
+}
