@@ -5339,6 +5339,58 @@
       },
       "status": "active",
       "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "shared.filter-bar.popup-search",
+      "element": "独立下拉面板内的全局搜索输入",
+      "locator": {
+        "selector": ".gaip-filter-bar__popup .gaip-filter-bar__search"
+      },
+      "state": {
+        "channel": "shared-filter-bar",
+        "variant": "default / hover / focus",
+        "viewport": null
+      },
+      "appliesTo": [
+        "组织架构渠道下拉；复用全局筛选输入规则，原筛选栏不改变外观"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new popup consumer"
+        },
+        "input.style": {
+          "before": null,
+          "initialLocal": null,
+          "target": "复用全局40px输入、4px圆角及品牌色焦点边框；不使用outline粗圈",
+          "status": "active",
+          "basis": "source",
+          "reason": "new popup consumer"
+        }
+      },
+      "sources": [
+        "shared/styles/global-filter-bar.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-21",
+        "gaps": [
+          "共享筛选栏DOM检查通过；新面板真实视觉待刷新确认。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
     }
   ]
 }

@@ -6,6 +6,7 @@
   var bulkReturnDialog, bulkReturnDismiss;
   var menuOpen = false, oldTitle = '', contentHost, hiddenContent = [];
   var state = { channel: 0, department: 'all', query: '' };
+  var channelPickerDismiss, memberSearchDismiss;
   var source = window.__GAIP_CONFIG_SOURCE__;
   var organization = window.__GAIP_ORGANIZATION__;
   var channels = organization.channels, departmentSets = organization.sets;
@@ -774,15 +775,16 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
+      "features/config-center/config-center-content.css?v=20260921-admin-hint-1",
+      "shared/styles/global-filter-bar.css?v=20260921-popup-search-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
       "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
-      "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260915-commission-style-5"
+      "features/config-center/source-markup.js?v=20260922-admin-icon-1",
+      "features/config-center/config-center.js?v=20260921-shared-dropdown-1"
     ]
   }
   */
@@ -803,15 +805,16 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
+      "features/config-center/config-center-content.css?v=20260921-admin-hint-1",
+      "shared/styles/global-filter-bar.css?v=20260921-popup-search-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
       "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
-      "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260915-commission-style-5"
+      "features/config-center/source-markup.js?v=20260922-admin-icon-1",
+      "features/config-center/config-center.js?v=20260921-shared-dropdown-1"
     ]
   }
   */
@@ -832,7 +835,8 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
+      "features/config-center/config-center-content.css?v=20260921-admin-hint-1",
+      "shared/styles/global-filter-bar.css?v=20260921-popup-search-1",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -841,8 +845,8 @@
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
-      "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260915-commission-style-5"
+      "features/config-center/source-markup.js?v=20260922-admin-icon-1",
+      "features/config-center/config-center.js?v=20260921-shared-dropdown-1"
     ]
   }
   */
@@ -863,15 +867,16 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
+      "features/config-center/config-center-content.css?v=20260921-admin-hint-1",
+      "shared/styles/global-filter-bar.css?v=20260921-popup-search-1",
       "features/config-center/config-center.css"
     ],
     "scripts": [
       "shared/config/channels.js?v=20260917-live-gold-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
-      "features/config-center/source-markup.js?v=20260904-2",
-      "features/config-center/config-center.js?v=20260915-commission-style-5"
+      "features/config-center/source-markup.js?v=20260922-admin-icon-1",
+      "features/config-center/config-center.js?v=20260921-shared-dropdown-1"
     ]
   }
   */
@@ -892,7 +897,8 @@
       "web/umi.c6286171.css",
       "shared/styles/global-font.css?v=20260909-project-font-1",
       "features/config-center/ant-source.css",
-      "features/config-center/config-center-content.css?v=20260915-commission-style-5",
+      "features/config-center/config-center-content.css?v=20260921-admin-hint-1",
+      "shared/styles/global-filter-bar.css?v=20260921-popup-search-1",
       "features/config-center/config-center.css",
       "shared/styles/global-modal.css?v=20260909-project-font-1"
     ],
@@ -901,8 +907,8 @@
       "shared/scripts/global-modal.js?v=20260908-inline-validation-1",
       "shared/scripts/organization-store.js",
       "shared/scripts/organization-tree.js",
-      "features/config-center/source-markup.js?v=20260904-3",
-      "features/config-center/config-center.js?v=20260915-commission-style-5"
+      "features/config-center/source-markup.js?v=20260922-admin-icon-1",
+      "features/config-center/config-center.js?v=20260921-shared-dropdown-1"
     ]
   }
   */
@@ -1043,6 +1049,8 @@
   }
   function closeForNavigation() {
     if (!page) return;
+    closeChannelPicker();
+    closeMemberSearch();
     closeDepartmentMenu();
     closeOrganizationOperationLog();
     closeBulkImportDialog();
@@ -1166,9 +1174,7 @@
     });
   }
   function filtered() {
-    return membersInDepartment(state.channel, state.department).filter(function (member) {
-      return (member.name + ' ' + member.account).toLowerCase().includes(state.query.toLowerCase());
-    });
+    return membersInDepartment(state.channel, state.department);
   }
   function renderTree() {
     closeDepartmentMenu();
@@ -1465,6 +1471,7 @@
     list.forEach(function (m) {
       var template = document.createElement('template'); template.innerHTML = '<table><tbody>' + sourceMarkup(m.html) + '</tbody></table>';
       var row = template.content.querySelector('tr');
+      row.dataset.memberId = m.id;
       row.querySelector('.nameCell___QnGoz').firstElementChild.textContent = m.name;
       row.children[1].textContent = m.account;
       if (m.phone !== undefined) (row.children[2].firstElementChild || row.children[2]).textContent = m.phone || '-';
@@ -1526,6 +1533,70 @@
     button.lastElementChild.textContent = '批量导入成员';
     actions.insertBefore(button, logButton);
   }
+  function closeMemberSearch() {
+    if (memberSearchDismiss) document.removeEventListener('pointerdown', memberSearchDismiss);
+    memberSearchDismiss = null;
+    var panel = page && page.querySelector('[data-member-results]');
+    if (panel) panel.hidden = true;
+    var input = page && page.querySelector('input[aria-label="搜索成员"]');
+    if (input) input.setAttribute('aria-expanded', 'false');
+  }
+  function renderMemberSearch() {
+    var panel = page.querySelector('[data-member-results]');
+    if (!panel) return;
+    var query = state.query.trim().toLocaleLowerCase();
+    closeMemberSearch();
+    if (!query) return;
+    var matches = members.filter(function (member) { return (member.name + ' ' + member.account).toLocaleLowerCase().includes(query); });
+    panel.innerHTML = '<div class="gaip-member-search-count" role="status">全部渠道 · 找到 ' + matches.length + ' 位成员</div>' + matches.map(function (member) {
+      return '<button type="button" class="gaip-member-search-result" data-member-result="' + member.id + '"><span class="gaip-member-search-name">' + escapeHtml(member.name) + '<small>' + escapeHtml(member.account) + '</small></span><span class="gaip-member-search-path">' + escapeHtml(bulkDepartmentPath(member.channel, member.department)) + '</span></button>';
+    }).join('') + (!matches.length ? '<p class="gaip-channel-empty">未找到匹配成员</p>' : '');
+    panel.hidden = false;
+    var wrap = panel.parentElement;
+    wrap.querySelector('input').setAttribute('aria-expanded', 'true');
+    memberSearchDismiss = function (event) { if (!wrap.contains(event.target)) closeMemberSearch(); };
+    document.addEventListener('pointerdown', memberSearchDismiss);
+  }
+  function setupMemberSearch(input) {
+    var wrap = input.closest('.searchWrap___gp0a3');
+    wrap.classList.add('gaip-global-member-search');
+    input.placeholder = '跨渠道搜索成员';
+    input.setAttribute('aria-description', '按姓名或域账号搜索所有渠道的成员');
+    input.setAttribute('aria-controls', 'gaip-member-results');
+    input.setAttribute('aria-expanded', 'false');
+    var panel = document.createElement('div');
+    panel.id = 'gaip-member-results'; panel.dataset.memberResults = '';
+    panel.className = 'gaip-member-results'; panel.hidden = true;
+    panel.setAttribute('role', 'region'); panel.setAttribute('aria-label', '跨渠道成员搜索结果');
+    wrap.appendChild(panel);
+    input.addEventListener('focus', renderMemberSearch);
+    wrap.addEventListener('focusout', function () { requestAnimationFrame(function () { if (wrap.isConnected && !wrap.contains(document.activeElement)) closeMemberSearch(); }); });
+    wrap.addEventListener('keydown', function (event) {
+      if (panel.hidden) return;
+      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); input.focus(); closeMemberSearch(); return; }
+      var options = Array.from(panel.querySelectorAll('[data-member-result]'));
+      if (event.key === 'Enter' && event.target === input) { event.preventDefault(); if (options[0]) options[0].click(); return; }
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      event.preventDefault();
+      var index = options.indexOf(event.target), direction = event.key === 'ArrowDown' ? 1 : -1;
+      var next = options[(index < 0 ? (direction > 0 ? 0 : options.length - 1) : index + direction + options.length) % options.length];
+      if (next) next.focus();
+    });
+    panel.addEventListener('click', function (event) {
+      var result = event.target.closest('[data-member-result]');
+      var member = result && members.find(function (item) { return item.id === Number(result.dataset.memberResult); });
+      if (!member) return;
+      state.channel = member.channel; state.department = member.department; state.query = '';
+      var node = departmentSets[member.channel].find(function (item) { return item.id === member.department; });
+      while (node) {
+        collapsed[member.channel + ':' + node.id] = false;
+        node = departmentSets[member.channel].find(function (item) { return item.id === node.parent; });
+      }
+      renderOrganization();
+      var row = page.querySelector('[data-member-id="' + member.id + '"]');
+      if (row) { row.classList.add('is-search-target'); if (row.scrollIntoView) row.scrollIntoView({ block: 'nearest', inline: 'nearest' }); row.querySelector('[data-edit]').focus({ preventScroll: true }); }
+    });
+  }
   function syncMemberSearchClear() {
     var input = page.querySelector('input[aria-label="搜索成员"]');
     var clear = page.querySelector('[data-config-clear]');
@@ -1533,11 +1604,84 @@
     var focused = input === document.activeElement || input.closest('.searchInput___VaHgy').contains(document.activeElement);
     clear.classList.toggle('ant-input-clear-icon-hidden', !input.value && !focused);
   }
+  function closeChannelPicker(restoreFocus) {
+    if (channelPickerDismiss) document.removeEventListener('pointerdown', channelPickerDismiss);
+    channelPickerDismiss = null;
+    var picker = page && page.querySelector('.gaip-channel-picker');
+    if (!picker) return;
+    picker.querySelector('[data-channel-panel]').hidden = true;
+    var trigger = picker.querySelector('[data-channel-trigger]');
+    trigger.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) trigger.focus();
+  }
+  function filterChannelChoices(picker) {
+    var query = picker.querySelector('[data-channel-search]').value.trim().toLocaleLowerCase();
+    var visible = [];
+    picker.querySelectorAll('[data-config-channel]').forEach(function (option) {
+      option.hidden = !channels[Number(option.dataset.configChannel)].toLocaleLowerCase().includes(query);
+      option.tabIndex = -1;
+      if (!option.hidden) visible.push(option);
+    });
+    var selected = visible.find(function (option) { return Number(option.dataset.configChannel) === state.channel; }) || visible[0];
+    if (selected) selected.tabIndex = 0;
+    picker.querySelector('[data-channel-empty]').hidden = visible.length > 0;
+    return visible;
+  }
+  function toggleChannelPicker() {
+    var picker = page.querySelector('.gaip-channel-picker');
+    var trigger = picker.querySelector('[data-channel-trigger]'), panel = picker.querySelector('[data-channel-panel]');
+    if (!panel.hidden) { closeChannelPicker(true); return; }
+    panel.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    var search = picker.querySelector('[data-channel-search]');
+    search.value = '';
+    filterChannelChoices(picker);
+    search.focus();
+    channelPickerDismiss = function (event) { if (!picker.contains(event.target)) closeChannelPicker(); };
+    document.addEventListener('pointerdown', channelPickerDismiss);
+  }
+  function renderChannelPicker(host, retainedPicker) {
+    var picker = retainedPicker || host.querySelector('.gaip-channel-picker');
+    if (!picker) {
+      picker = document.createElement('div');
+      picker.className = 'gaip-channel-picker';
+      picker.innerHTML = '<button type="button" class="gaip-channel-trigger" data-channel-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="gaip-channel-panel"><span class="gaip-channel-caption">渠道：</span><span data-channel-current></span><span class="gaip-channel-chevron" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <rect opacity="0" x="0" y="0" width="32" height="32"></rect> <polygon fill="currentColor" transform="translate(16, 16.3156) rotate(-270) translate(-16, -16.3156)" points="12.8908929 8.31559708 20.9321109 16.3160477 12.8917977 24.3155971 11.0678891 22.3716094 17.2369723 16.3160477 11.0678891 10.1316104"></polygon> </g> </svg></span></button>' +
+        '<div class="gaip-filter-bar__popup gaip-channel-panel" id="gaip-channel-panel" data-channel-panel role="dialog" aria-label="选择渠道" hidden><div class="gaip-filter-bar__search"><input type="search" class="gaip-filter-bar__input" data-channel-search aria-label="搜索渠道" placeholder="搜索渠道" autocomplete="off"></div><div class="gaip-channel-options" role="listbox" aria-label="渠道列表">' +
+        channels.map(function (name, index) { return '<button type="button" class="gaip-filter-bar__option gaip-channel-option" role="option" data-config-channel="' + index + '" tabindex="-1"><span>' + escapeHtml(name) + '</span></button>'; }).join('') +
+        '</div><p class="gaip-channel-empty" data-channel-empty role="status" hidden>未找到匹配渠道</p></div>';
+      host.prepend(picker);
+      picker.addEventListener('input', function (event) { if (event.target.matches('[data-channel-search]')) filterChannelChoices(picker); });
+      picker.addEventListener('keydown', function (event) {
+        var panel = picker.querySelector('[data-channel-panel]');
+        if (event.key === 'Escape' && !panel.hidden) { event.preventDefault(); event.stopPropagation(); closeChannelPicker(true); return; }
+        if (event.target.matches('[data-channel-trigger]') && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+          event.preventDefault(); if (panel.hidden) toggleChannelPicker(); return;
+        }
+        if (panel.hidden) return;
+        var choices = Array.from(picker.querySelectorAll('[data-config-channel]')).filter(function (option) { return !option.hidden; });
+        if (event.key === 'Enter' && event.target.matches('[data-channel-search]')) { event.preventDefault(); if (choices[0]) choices[0].click(); return; }
+        if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+        event.preventDefault();
+        var index = choices.indexOf(event.target), direction = event.key === 'ArrowDown' ? 1 : -1;
+        var next = choices[(index < 0 ? (direction > 0 ? 0 : choices.length - 1) : index + direction + choices.length) % choices.length];
+        if (next) { choices.forEach(function (option) { option.tabIndex = option === next ? 0 : -1; }); next.focus(); }
+      });
+      picker.addEventListener('focusout', function () { requestAnimationFrame(function () { if (page && picker.isConnected && !picker.contains(document.activeElement)) closeChannelPicker(); }); });
+    }
+    if (picker.parentElement !== host) host.prepend(picker);
+    picker.querySelector('[data-channel-current]').textContent = channels[state.channel];
+    picker.querySelector('[data-channel-trigger]').title = channels[state.channel];
+    picker.querySelector('[data-channel-trigger]').setAttribute('aria-label', '切换渠道，当前：' + channels[state.channel]);
+    picker.querySelectorAll('[data-config-channel]').forEach(function (option) { option.setAttribute('aria-selected', String(Number(option.dataset.configChannel) === state.channel)); });
+  }
   function renderOrganization() {
+    closeChannelPicker();
     closeDepartmentMenu();
-    var content = sourceMarkup(source.tree) + '<div class="main___CWrje">' + sourceMarkup(source.toolbar) + sourceMarkup(source.table) + '</div>';
+    closeMemberSearch();
+    var retainedPicker = page.querySelector('.gaip-channel-picker');
+    var content = '<aside class="gaip-organization-sidebar" aria-label="渠道与组织节点"><div class="gaip-channel-slot"></div>' + sourceMarkup(source.tree) + '</aside><div class="main___CWrje">' + sourceMarkup(source.toolbar) + sourceMarkup(source.table) + '</div>';
     var existingContent = page.querySelector('.gaip-config-original > .content___r0pMd');
-    // Do not detach/recreate the header: shared Tab animations need stable nodes.
+    // Keep the header and channel switch trigger stable across channel changes.
     if (existingContent) {
       existingContent.innerHTML = content;
       var oldSearch = page.querySelector('.header___Vhyog > .searchWrap___gp0a3');
@@ -1545,25 +1689,24 @@
       var oldMenu = page.querySelector('.gaip-config-more');
       if (oldMenu) oldMenu.remove();
     } else {
-      page.innerHTML = '<div class="pageContainer___QCUaw gaip-config-original">' + sourceMarkup(source.header) +
+      page.innerHTML = '<div class="pageContainer___QCUaw gaip-config-original gaip-organization-layout">' + sourceMarkup(source.header) +
         '<div class="content___r0pMd">' + content + '</div></div>';
     }
     var memberPagination = page.querySelector('.table___BX44I .ant-pagination');
     if (memberPagination) memberPagination.remove();
     var organizationHeader = page.querySelector('.pageContainer___QCUaw > .header___Vhyog');
+    var oldTabs = organizationHeader.querySelector('.tabs___U1Hwt');
+    if (oldTabs) oldTabs.remove();
+    renderChannelPicker(page.querySelector('.gaip-channel-slot'), retainedPicker);
     var organizationHeaderActions = organizationHeader.querySelector('.headerRight___Fe2zg');
     var memberSearch = page.querySelector('.mainHeader___QGD6D .searchWrap___gp0a3');
     organizationHeader.insertBefore(memberSearch, organizationHeaderActions);
     insertBulkImportButton(organizationHeaderActions);
     insertAdminToolbarButton();
-    page.querySelectorAll('[data-config-channel]').forEach(function (tab) {
-      var selected = Number(tab.dataset.configChannel) === state.channel;
-      tab.classList.toggle('tabActive___H5olV', selected); tab.setAttribute('aria-selected', String(selected));
-    });
-    if (window.__GAIP_TABS__) window.__GAIP_TABS__.refresh();
     var searchInput = page.querySelector('input[aria-label="搜索成员"]');
     var searchClear = page.querySelector('[data-config-clear]');
     searchInput.value = state.query;
+    setupMemberSearch(searchInput);
     searchClear.setAttribute('aria-label', '清除搜索内容');
     syncMemberSearchClear();
     renderTree(); renderMembers(); bindTableScrollState();
@@ -1725,6 +1868,7 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
   }
   function handleClick(event) {
+    if (event.target.closest('[data-channel-trigger]')) { toggleChannelPicker(); return; }
     var departmentTrigger = event.target.closest('[data-department-menu]');
     if (departmentTrigger) { event.stopPropagation(); showDepartmentMenu(departmentTrigger, event.detail === 0); return; }
     var target = event.target.closest('[data-config-channel], [data-department], [data-collapse], [data-config-add], [data-edit], [data-more], [data-config-admin], [data-config-export], [data-config-clear], [data-config-bulk-import], [data-config-log]');
@@ -1736,7 +1880,7 @@
       collapsed[key] = !isDepartmentCollapsed(collapseDepartment);
       renderTree();
     }
-    else if (target.hasAttribute('data-config-channel')) { state.channel = Number(target.dataset.configChannel); state.department = 'all'; renderOrganization(); }
+    else if (target.hasAttribute('data-config-channel')) { state.channel = Number(target.dataset.configChannel); state.department = 'all'; renderOrganization(); closeChannelPicker(true); }
     else if (target.hasAttribute('data-department')) { state.department = target.dataset.department; renderTree(); renderMembers(); }
     else if (target.hasAttribute('data-config-add')) dialogController.openMember();
     else if (target.hasAttribute('data-edit')) dialogController.openMember(Number(target.dataset.edit));
@@ -1761,7 +1905,7 @@
     }
     else if (target.hasAttribute('data-config-admin')) dialogController.openDepartment(state.department, 'admin', target);
     else if (target.hasAttribute('data-config-export')) exportMembers();
-    else if (target.hasAttribute('data-config-clear')) { state.query = ''; page.querySelector('input[aria-label="搜索成员"]').value = ''; syncMemberSearchClear(); renderMembers(); }
+    else if (target.hasAttribute('data-config-clear')) { state.query = ''; page.querySelector('input[aria-label="搜索成员"]').value = ''; syncMemberSearchClear(); renderMemberSearch(); }
     else if (target.hasAttribute('data-config-bulk-import')) dialogController.openBulkImport(target);
     else if (target.hasAttribute('data-config-log')) openOrganizationOperationLog(target);
   }
@@ -1775,7 +1919,7 @@
       page = document.createElement('section'); page.className = 'gaip-config-page css-var-r0'; page.setAttribute('data-gaip-page-root', config.key);
       page.addEventListener('click', handleClick);
       page.addEventListener('keydown', function (event) { if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('[data-edit],[data-more],[data-department],[data-collapse],[data-department-menu]')) { event.preventDefault(); event.target.click(); } });
-      page.addEventListener('input', function (event) { if (event.target.matches('input[aria-label="搜索成员"]')) { state.query = event.target.value; syncMemberSearchClear(); renderMembers(); } });
+      page.addEventListener('input', function (event) { if (event.target.matches('input[aria-label="搜索成员"]')) { state.query = event.target.value; syncMemberSearchClear(); renderMemberSearch(); } });
       page.addEventListener('focusin', function (event) { if (event.target.matches('input[aria-label="搜索成员"], [data-config-clear]')) syncMemberSearchClear(); });
       page.addEventListener('focusout', function (event) { if (event.target.matches('input[aria-label="搜索成员"], [data-config-clear]')) requestAnimationFrame(syncMemberSearchClear); });
       document.documentElement.classList.add('gaip-config-open');
@@ -1787,6 +1931,8 @@
     document.body.setAttribute('data-gaip-page-label', config.label);
     var current = view();
     if (mountedView !== current) {
+      closeChannelPicker();
+      closeMemberSearch();
       closeDepartmentMenu();
       closeOrganizationOperationLog();
       closeBulkImportDialog();

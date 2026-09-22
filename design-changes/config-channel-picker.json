@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "page": "config-channel-picker",
+  "records": [
+    {
+      "id": "config.organization.channel-picker",
+      "element": "组织架构左侧渠道选择",
+      "locator": {
+        "selector": ".gaip-channel-picker"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "default / expanded / selected / hover / focus / empty",
+        "viewport": null
+      },
+      "appliesTo": [
+        "组织架构页六个渠道；不改管理员角色Tab与其他频道Tab"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "trigger.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "宽100%（跟随组织侧栏），所有屏宽高48px",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "trigger.font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px、400；标签14px、400",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "trigger.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "linear-gradient(90deg, #025b52 0%, #d5cdbe 100%)；background-origin/clip:border-box；background-repeat:no-repeat；default/hover/expanded保持一致",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "trigger.border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid transparent，圆角4px；hover/expanded内阴影inset 0 0 0 1px rgba(255,255,255,.18)",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "trigger.padding-gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "左右24px，内部gap10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "panel.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "与渠道按钮等宽100%；最大calc(100vw - 48px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "panel.surface": {
+          "before": null,
+          "initialLocal": null,
+          "target": "直接复用.gaip-filter-bar__popup：白底、全局边框、6px圆角及全局三层阴影",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "panel.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "全局面板4px；搜索容器margin4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "search.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "全局.gaip-filter-bar__input，height:var(--gaip-control-default,40px)，圆角var(--gaip-radius-control,4px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "option.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "全局.gaip-filter-bar__option：min-height36px，padding7px 12px，line-height22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "option.font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "继承全局下拉字体，不再局部设置选中字重700",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "option.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "全局默认文字与--filter-brand选中文字",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "option.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "全局hover rgba(2,91,82,.06)，选中rgba(2,91,82,.1)",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "list.max-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(280px,45vh)",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "icon.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "入口箭头18×18px；选项勾由全局option::after统一绘制，不再额外放SVG",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "focus.outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "入口保留2px rgba(2,91,82,.4)；搜索/选项复用全局focus样式，无局部粗outline",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增渠道下拉试版；原本为平铺Tab，无对应控件"
+        },
+        "trigger.color": {
+          "before": null,
+          "initialLocal": null,
+          "status": "active",
+          "basis": "source",
+          "reason": "new",
+          "target": "当前名称#fff，标签#c0c4ca"
+        },
+        "icon.asset": {
+          "before": null,
+          "initialLocal": null,
+          "status": "active",
+          "basis": "source",
+          "reason": "new",
+          "target": "复用shared/assets/modal-down.svg几何并内联到渠道按钮，fill=currentColor，白色#fff，不使用外部mask"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center.css",
+        "features/config-center/config-center.js",
+        "features/config-center/config-center-content.css",
+        "shared/styles/global-filter-bar.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-21",
+        "gaps": [
+          "共享样式接入和DOM交互检查；未进行真实file页面视觉验证。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
+    },
+    {
+      "id": "config.organization.sidebar-layout",
+      "element": "组织架构左右布局与跨渠道搜索结果",
+      "locator": {
+        "selector": ".gaip-organization-layout"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "default / search-results / empty",
+        "viewport": null
+      },
+      "appliesTo": [
+        "组织架构全部六渠道；不改其他频道及弹窗内容布局"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "rail.width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "clamp(240px,24vw,328px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "rail.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px 16px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "rail.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "rail.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "tree.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "toolbar.height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "58px；1000px以下自适应",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "workspace.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "workspace.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f8f9fa",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "member-results.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "420px宽，最大calc(100vw - 48px)，最大高min(420px,60vh)；1000px以下100%宽",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "member-results.surface": {
+          "before": null,
+          "initialLocal": null,
+          "target": "白底，1px solid #e3e5e7，圆角6px，阴影0 6px 24px rgba(47,54,64,.14)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "member-results.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "容器8px；结果10px 12px；间距4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "member-results.font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "姓名14px，账号/路径12px；主文字#2f3640，次级#707780",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "member-results.highlight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ebf8f7",
+          "status": "active",
+          "basis": "source",
+          "reason": "new sidebar layout / cross-channel search"
+        },
+        "workspace.border-top": {
+          "before": null,
+          "initialLocal": "仅右侧header顶边1px，左侧无顶边",
+          "target": "整页内容容器1px solid rgba(47,54,64,.12)；header border-top:0",
+          "status": "active",
+          "basis": "source"
+        },
+        "toolbar.divider": {
+          "before": null,
+          "initialLocal": "header底边1px＋mainHeader顶边1px",
+          "target": "保留header底边1px solid rgba(47,54,64,.12)，mainHeader顶边0",
+          "status": "active",
+          "basis": "source"
+        },
+        "global-search.height": {
+          "before": null,
+          "initialLocal": "58px",
+          "target": "桌面57px（58px栏减1px底边），1000px以下40px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "features/config-center/config-center.css",
+        "features/config-center/config-center.js",
+        "features/config-center/config-center-content.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-21",
+        "gaps": [
+          "已核验边框归属和CSS覆盖；真实浏览器观感待刷新验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-21"
+    }
+  ]
+}

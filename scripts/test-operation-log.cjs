@@ -319,7 +319,7 @@ async function main() {
     }
     assert.ok(source.includes('operation-log-mock.js?v=20260903-2'), entry + ': latest inline log mock');
     if (entry === '配置中心.html') {
-      assert.ok(source.includes('global-filter-bar.css?v=20260910-tree-combobox-1'), entry + ': shared filter styles');
+      assert.ok(source.includes('global-filter-bar.css?v=20260921-popup-search-1'), entry + ': shared filter styles');
       assert.ok(source.includes('global-filter-bar.js?v=20260910-tree-combobox-1'), entry + ': shared filter script');
       assert.ok(source.includes('global-operation-log.js?v=20260915-shared-filter-1'), entry + ': shared log filter');
     } else {

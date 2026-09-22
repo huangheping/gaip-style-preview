@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "page": "config-admin-settings",
+  "records": [
+    {
+      "id": "config.admin-role.info-icon",
+      "element": "管理员角色说明提示图标",
+      "locator": {
+        "selector": ".adminRoleHeading___fR73p .gaip-admin-info-icon"
+      },
+      "state": {
+        "channel": "config",
+        "variant": "four role tabs",
+        "viewport": null
+      },
+      "appliesTo": [
+        "组织架构设置管理员弹窗及同源组件预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "features/config-center/assets/提示2.svg（用户原附件，页面内联相同SVG几何）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "icon.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px × 16px，顶部1px，横向间距沿用8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "icon.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "圆形底色 #24D4C9，信息符号 #FFFFFF（保留附件原色）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "features/config-center/source-markup.js",
+        "features/config-center/config-center-content.css",
+        "features/config-center/assets/提示2.svg"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "实际浏览器视觉待刷新验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    }
+  ]
+}
