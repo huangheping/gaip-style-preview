@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ICON/通用/跳出Icon备份</title>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="-36.8471954%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FBB08E" offset="0%"></stop>
+            <stop stop-color="#004B75" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="AI对话" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="聊天对话框备份-2" transform="translate(-704, -447)">
+            <g id="编组-36备份" transform="translate(688, 320)">
+                <g id="编组-34" transform="translate(0, 69)">
+                    <g id="ICON/通用/跳出Icon备份" transform="translate(16, 58)">
+                        <rect id="矩形" opacity="0" x="2.2963602" y="2.47449866" width="11.4008612" height="11.4008612"></rect>
+                        <polygon id="路径" fill="url(#linearGradient-1)" transform="translate(8, 8) rotate(-45) translate(-8, -8)" points="8.51605905 2.60808418 13.9217927 7.99566219 8.52553905 13.3919158 7.71239664 12.5787734 11.723706 8.56746407 2.07820732 8.56748723 2.07820732 7.42376768 11.723706 7.42345891 7.70419134 3.41683871"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

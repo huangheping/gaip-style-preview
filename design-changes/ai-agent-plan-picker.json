@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "page": "Web AI Agent 做方案过渡版",
+  "records": [
+    {
+      "id": "ai-agent.plan-picker.transition",
+      "element": "原生技能浮层",
+      "locator": {
+        "selector": ".skillContent___UYdzg",
+        "representative": "Web 做方案点击后"
+      },
+      "state": {
+        "variant": "transition",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "共享 Web AI Agent 面板"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "interaction": {
+          "before": null,
+          "initialLocal": "自定义对话内方案/客户卡片",
+          "target": "原生技能浮层；current 参数保留卡片版",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": "494px（已有原生浮层规则）",
+          "target": "494px，原 CSS 不变",
+          "status": "active",
+          "basis": "source"
+        },
+        "max-height": {
+          "before": null,
+          "initialLocal": "380px（列表）",
+          "target": "380px，保留纵向滚动",
+          "status": "active",
+          "basis": "source"
+        },
+        "row.icon": {
+          "before": null,
+          "initialLocal": "40px 灰色圆底 / 16px 青色图标",
+          "target": "复用原生规则，配置技能继续使用其原有图标",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "reason": "用户要求临时复用最早技能列表交互，并保留现有版本供以后切回。",
+      "verification": {
+        "level": "browser-checked",
+        "note": "工作台与客户中心真实 HTTP 入口点击检查；截图见 outputs/agent-plan-picker-20261008。未宣称与用户截图像素精确一致或真实服务验收。"
+      }
+    },
+    {
+      "id": "ai-agent.plan-picker.selected-button",
+      "element": "做方案选中按钮",
+      "locator": {
+        "selector": ".skillToggle___OpRvz.gaip-agent-skill-active",
+        "representative": "Web 过渡浮层打开或技能已选择"
+      },
+      "state": {
+        "variant": "transition/current",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "共享 Web AI Agent 面板"
+      ],
+      "baseline": {
+        "kind": "local",
+        "ref": "outputs/agent-plan-picker-20261008/current.jpg"
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "过渡版未同步原生选中态，持续使用默认描边",
+          "target": "#2f3640（复用已有卡片版选中类）",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "默认深色文字和图标",
+          "target": "#fff；主图标 brightness(0) invert(1)",
+          "status": "active",
+          "basis": "source"
+        },
+        "close.filter": {
+          "before": null,
+          "initialLocal": "none，黑色 SVG 在深色底上不可见",
+          "target": "独立 button 的 img：brightness(0) invert(1)",
+          "status": "active",
+          "basis": "source"
+        },
+        "close.size": {
+          "before": null,
+          "initialLocal": "12px 装饰伪元素",
+          "target": "12px 图标，16×20px 独立按钮",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "reason": "用户要求保留过渡技能浮层并复用非过渡版按钮；右侧 X 反白。",
+      "verification": {
+        "level": "browser-checked",
+        "note": "工作台两版真实 HTTP 页面观察计算样式及截图；原生选择、清除、外部关闭与重开验证。未宣称与截图像素精确一致。 续修右侧 X 为独立清除按钮，实际标签移除见 outputs/agent-plan-picker-clear-20261008。"
+      }
+    },
+    {
+      "id": "ai-agent.plan-picker.title-focus",
+      "element": "侧栏标题彩蛋入口",
+      "locator": {
+        "selector": ".gaip-agent-brand .gaip-agent-picker-switch:focus-visible",
+        "representative": "Web AI Agent 侧栏标题"
+      },
+      "state": {
+        "variant": "transition/current",
+        "interaction": "keyboard-focus"
+      },
+      "appliesTo": [
+        "共享 Web AI Agent"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": "原 strong 无焦点状态",
+          "target": "2px solid #005d56，offset 3px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "reason": "隐藏切换标题保留普通外观，按钮键盘聚焦保留可见焦点。",
+      "verification": {
+        "level": "source-checked",
+        "note": "默认标题字号/颜色/行高经工作台计算样式复检与既有 strong 规则一致；焦点参数按源码记录，未作全站像素匹配声明。"
+      }
+    }
+  ]
+}
