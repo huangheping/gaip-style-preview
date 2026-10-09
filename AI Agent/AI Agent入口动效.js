@@ -373,10 +373,10 @@ void main() {
 
 const gaipAgentEntryAssets = {
   lottieRuntime: './AI Agent/素材/lottie.min.js',
-  processing: './AI Agent/素材/ai-agent-radar.json',
-  completed: './AI Agent/素材/ai-agent-completed.json',
+  processing: './shared/assets/icons/status/ai-agent/ai-agent-radar.json',
+  completed: './shared/assets/icons/status/ai-agent/ai-agent-completed.json',
   version1: './AI Agent/素材/creative-3.04cea590.png',
-  version2Poster: './AI Agent/素材/入口版本2.png',
+  version2Poster: './shared/assets/icons/business/ai-agent/入口版本2.png',
   version2Video: './AI Agent/素材/机器人猫客服悬浮入口循环动画v2.mp4',
   version2ProcessingVideo: './AI Agent/素材/机器人猫小面罩代码滚动悬浮入口循环动画v2.mp4',
 };
@@ -732,6 +732,7 @@ function scheduleGaipAgentEntryOrb() {
     gaipAgentEntryOrbScheduled = false;
     ensureGaipAgentEntryVersionTimeToggle();
     mountGaipAgentEntryOrb();
+    syncGaipAgentEntryMask();
   });
 }
 
@@ -745,7 +746,7 @@ if (document.readyState === 'loading') {
 
 // 持续监听，但只处理顶栏/入口结构变化，不响应业务列表或 Lottie 内部重绘。
 const gaipAgentEntryStructureSelector = '[class*="globalButton___"], [class*="aiIcon___"], ' +
-  '[data-gaip-region="user-actions"], [class*="right___"], .umi-plugin-layout-right';
+  '[data-gaip-region="user-actions"], [class*="right___"], .umi-plugin-layout-right, .ant-modal-mask';
 gaipAgentEntryObserver = new MutationObserver(function (records) {
   if (gaipAgentEntryMountedIcon && (!gaipAgentEntryMountedIcon.isConnected ||
       !gaipAgentEntryMountedIcon.querySelector('.gaip-agent-entry-orb') ||
@@ -808,4 +809,37 @@ window.setGaipAgentProcessing = function (processing) {
 window.setGaipAgentCompleted = function (completed) {
   setGaipAgentEntryState(completed === false ? 'idle' : 'completed');
 };
+
+// Only modal visibility changes need attribute observation; avoid watching every
+// business/Lottie style mutation on the document. The shell observer above owns
+// mask insertion/removal and entry remounts.
+const gaipAgentEntryMaskObserver = new MutationObserver(scheduleGaipAgentEntryOrb);
+
+function syncGaipAgentEntryMask() {
+  const masks = Array.from(document.querySelectorAll('.ant-modal-mask'));
+  gaipAgentEntryMaskObserver.disconnect();
+  masks.forEach(function (mask) {
+    gaipAgentEntryMaskObserver.observe(mask, {
+      attributes: true, attributeFilter: ['class', 'style', 'hidden', 'data-gaip-agent-minimized']
+    });
+    const root = mask.closest('.ant-modal-root');
+    if (root) gaipAgentEntryMaskObserver.observe(root, {
+      attributes: true, attributeFilter: ['class', 'style', 'hidden']
+    });
+  });
+  const entry = document.querySelector('[class*="globalButton___"]');
+  if (!entry) return;
+  const occluded = masks.some(function (mask) {
+    for (let node = mask; node; node = node.parentElement) {
+      if (node.hidden || node.getAttribute('data-gaip-agent-minimized') === 'true') return false;
+      const style = window.getComputedStyle(node);
+      if (style.display === 'none' || style.visibility === 'hidden' || style.visibility === 'collapse') return false;
+    }
+    return true;
+  });
+  const value = occluded ? 'true' : 'false';
+  if (entry.getAttribute('data-gaip-agent-entry-occluded') !== value) {
+    entry.setAttribute('data-gaip-agent-entry-occluded', value);
+  }
+}
 })();

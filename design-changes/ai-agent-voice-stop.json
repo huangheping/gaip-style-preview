@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "page": "Web AI Agent 语音与停止生成",
+  "records": [
+    {
+      "id": "ai-agent.voice-stop.online",
+      "element": "语音按钮、录音波形、生成停止按钮",
+      "locator": {
+        "selector": ".voiceBtn___6P10L,.voiceWaveform___Ua0tt,.gaip-agent-stop",
+        "representative": "Web 工作台 Agent 输入区"
+      },
+      "state": {
+        "channel": "workspace",
+        "variant": "idle/recording/recognizing/generating",
+        "viewport": "1280x720"
+      },
+      "appliesTo": [
+        "注册 Web 入口的共享 Agent，独立 H5 不变"
+      ],
+      "baseline": {
+        "id": "gaip.online.voice.20261008",
+        "kind": "online-source",
+        "ref": "https://gaip.gloryfh.com/web/workspace",
+        "capturedAt": "2026-10-08",
+        "evidence": [
+          "outputs/agent-voice-stop-20261008/online-umi.css",
+          "outputs/agent-voice-stop-20261008/online-umi.js",
+          "outputs/agent-voice-stop-20261008/voice-flow.txt"
+        ]
+      },
+      "properties": {
+        "microphone": {
+          "before": "线上28px SVG；按钮28x28，50%圆角；#2f3640ad；Hover/录音背景#e7e7e8",
+          "initialLocal": "无",
+          "target": "按钮仍28x28；img显式28x28、块级居中，取消二次缩放/基线偏移；bottom:2px对齐32px发送按钮中线",
+          "status": "active",
+          "basis": "online-source-and-browser"
+        },
+        "recording-icon": {
+          "before": "10px #414851 圆角方块",
+          "initialLocal": "无",
+          "target": "10px #414851 圆角方块",
+          "status": "active",
+          "basis": "online-source"
+        },
+        "waveform": {
+          "before": "58px Canvas；#2F3640/#000000渐变；线上原绘制常量",
+          "initialLocal": "无",
+          "target": "同线上绘制；频率输入为模拟",
+          "status": "active",
+          "basis": "online-source-and-browser"
+        },
+        "timer": {
+          "before": "12px/18px；#2f36408c",
+          "initialLocal": "无",
+          "target": "12px/18px；#2f36408c",
+          "status": "active",
+          "basis": "online-source"
+        },
+        "stop": {
+          "before": "32px #2F3640圆形，白色圆角方块 SVG",
+          "initialLocal": "仅原发送按钮32px，生成时无停止按钮",
+          "target": "同线上32px原SVG",
+          "status": "active",
+          "basis": "online-source-and-browser"
+        },
+        "selected-wave-offset": {
+          "before": "192px（线上原规则）",
+          "initialLocal": "无波形",
+          "target": "244px，保留原方案按钮，扩大波形左侧留白",
+          "status": "active",
+          "basis": "browser-geometry"
+        },
+        "canvas-min-width": {
+          "before": "auto",
+          "initialLocal": "无波形",
+          "target": "0，允许较宽的已选方案按钮挤压Canvas而不覆盖计时/麦克风",
+          "status": "active",
+          "basis": "browser-geometry"
+        },
+        "wave-offset": {
+          "before": "left:192px;right:86px",
+          "initialLocal": "无波形",
+          "target": "left:216px;right:98px；选中态left:244px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "AI Agent/AI Agent.css",
+        "AI Agent/AI Agent本地Mock.js",
+        "AI Agent/templates/markup-AI Agent本地Mock.html",
+        "shared/assets/icons/operations/ai-agent/语音输入.svg",
+        "shared/assets/icons/operations/ai-agent/停止生成.svg"
+      ],
+      "reason": "用户要求同步线上样式并明确只做模拟；保留线上锁定28/32px尺寸例外。 2026-10-09用户反馈尺寸/位置与两侧留白，绑定本地img尺寸并扩大留白；线上原件保留。",
+      "verification": {
+        "level": "needs-recheck",
+        "checkedAt": "2026-10-09",
+        "evidence": [
+          "knowledge/变更/2026-10-09-Web-AI-Agent上传.md"
+        ],
+        "gaps": [
+          "源码与层叠检查通过；此前截图仅为10月8日旧版证据。本次本地file页面被URL安全策略拒绝，当前像素与实际间距未复验。"
+        ]
+      }
+    }
+  ]
+}

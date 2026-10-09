@@ -1,3 +1,16 @@
+/* @gaip-markup-cache:start */
+// Generated from the owned templates/markup-*.html; run npm run build:templates.
+var __gaipMarkup_cc3534331f = (function () {
+  var templates = {"fragment-1":"<reasoning name=\"梳理家庭保障需求\">已分析家庭成员、收入情况与现有保障缺口。</reasoning>### 初步保障建议\n\n- 优先完善医疗险与重疾险\n- 家庭经济支柱补充定期寿险\n- 根据年度预算分阶段配置\n\n> 这是本地历史会话 Mock 数据。","fragment-2":"<reasoning name=\"分析客户顾虑\">客户的核心顾虑是现金流，而不是保障需求本身。</reasoning>可以先认可客户对现金流的重视，再从以下三点沟通：\n\n1. 明确可接受的年度预算\n2. 区分基础保障与升级保障\n3. 提供分阶段配置方案","fragment-3":"<reasoning name=\"拆解教育目标\">正在按照入学时间、目标金额和现有储备进行测算。</reasoning>### 教育金规划思路\n\n- 确认距离大学入学的年限\n- 估算学费及生活费总额\n- 扣除已有教育储备\n- 将剩余目标拆分为月度或年度投入","addMockAgentConversation-4":"<reasoning name=\"推理中\">正在理解你的需求并生成回答…</reasoning>{{gaip:0}}","renderHistoryMoreButton-5":"<button type=\"button\" class=\"moreBtn___oyzcW\" aria-label=\"更多操作\"><span role=\"img\" aria-label=\"more\" class=\"anticon anticon-more\"><!-- @gaip-icon:start shared/assets/icons/business/ai-agent/renderHistoryMoreButton-5-1.svg --><svg viewBox=\"64 64 896 896\" focusable=\"false\" data-icon=\"more\" width=\"1em\" height=\"1em\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M456 231a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0z\"></path></svg><!-- @gaip-icon:end --></span></button>","upsertAgentHistoryItem-6":"<div class=\"itemContent___ZbN65\"><p class=\"itemTitle___Rb48C\">{{gaip:0}}</p><time class=\"itemTime___yUfy2\" datetime=\"{{gaip:1}}\">{{gaip:2}}</time></div>{{gaip:3}}","renderSyntheticAgentSession-7":"<ul class=\"msgBox___NYtlO\">{{gaip:0}}</ul>","renderSyntheticAgentSession-8":"<li class=\"msgRow___wswRS msgUser___WR23E\"><div class=\"msgBubble___W9da6\"><pre class=\"userPre___VegVA\">{{gaip:0}}</pre></div></li>","renderSyntheticAgentSession-9":"<li class=\"msgRow___wswRS msgAi___JN4kV\"><div class=\"msgBubble___W9da6 bubbleCard___dWNNS\"><div class=\"aiMessage___HDimS\"><div class=\"aiContent___cP6kY\">{{gaip:0}}</div></div></div></li>","renderSyntheticAgentSession-10":"<br>","showSyntheticHistoryMenu-11":"<button type=\"button\" data-action=\"rename\">编辑名称</button><button type=\"button\" data-action=\"delete\">删除会话</button>","renderAgentInputTags-12":"<span class=\"tag___PKl7Z skillTag___g4XXW gaip-agent-plan-tag\" data-tag=\"plan\" data-plan-id=\"{{gaip:0}}\"><span class=\"icon___uCSIV\" aria-hidden=\"true\">◇</span><span class=\"text___u9Ggi\">{{gaip:1}}</span><span role=\"button\" tabindex=\"0\" class=\"close___ZupBD\" data-clear=\"plan\" aria-label=\"清除方案\"><!-- @gaip-icon:start shared/assets/icons/business/ai-agent/renderAgentInputTags-12-2.svg --><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3.1 2.4 6 5.3l2.9-2.9.7.7L6.7 6l2.9 2.9-.7.7L6 6.7 3.1 9.6l-.7-.7L5.3 6 2.4 3.1z\" fill=\"currentColor\"></path></svg><!-- @gaip-icon:end --></span></span>","renderPlanPanel-13":"<div class=\"gaip-agent-plan-hero\"><h2># 请选择要创建的方案</h2></div><div class=\"gaip-agent-plan-body\"><div class=\"gaip-agent-plan-main\"><div class=\"gaip-agent-field-head\">方案数量（{{gaip:0}}）</div><div class=\"gaip-agent-option-list gaip-agent-option-list-plan\">{{gaip:1}}</div></div><aside class=\"gaip-agent-client-main{{gaip:2}}\"><div class=\"gaip-agent-field-head\">{{gaip:3}}</div><div class=\"gaip-agent-option-list gaip-agent-option-list-client\">{{gaip:4}}</div><div class=\"gaip-agent-new-client-row\">没有找到？ <button type=\"button\" class=\"gaip-agent-new-client\">新建客户</button></div></aside></div>","renderPlanPanel-14":"<button type=\"button\" class=\"gaip-agent-option{{gaip:0}}\" data-plan-id=\"{{gaip:1}}\"><span class=\"gaip-agent-radio\" aria-hidden=\"true\"></span><span class=\"gaip-agent-option-text\"><span class=\"gaip-agent-option-title\">{{gaip:2}}</span><span class=\"gaip-agent-option-desc\">{{gaip:3}}</span></span></button>","renderPlanPanel-15":"<div class=\"gaip-agent-empty\">暂无可选方案</div>","renderPlanPanel-16":"<button type=\"button\" class=\"gaip-agent-client-option{{gaip:0}}\" data-client-id=\"{{gaip:1}}\"{{gaip:2}}><span class=\"gaip-agent-client-name\">{{gaip:3}}</span><span class=\"gaip-agent-client-code\">{{gaip:4}}</span></button>","renderPlanPanel-17":"<div class=\"gaip-agent-empty gaip-agent-empty-client\">暂无客户</div>","renderEmptyState-18":"<img class=\"gaip-agent-empty-title\" src=\"./shared/assets/icons/business/ai-agent/你可以这样问.svg\" alt=\"你可以这样问\"><div class=\"gaip-agent-suggestion-list\">{{gaip:0}}</div>","renderEmptyState-19":"<button type=\"button\" class=\"gaip-agent-suggestion\" data-suggestion=\"{{gaip:0}}\"><img class=\"gaip-agent-suggestion-icon\" src=\"./shared/assets/icons/business/ai-agent/跳出Icon.svg\" alt=\"\" aria-hidden=\"true\"><span>{{gaip:1}}</span></button>","applyAgentHeaderAssets-20":"<img class=\"gaip-agent-collapse-icon\" src=\"./shared/assets/icons/operations/ai-agent/收起.svg\" alt=\"\">","applyAgentHeaderAssets-21":"<!-- @gaip-icon:start shared/assets/icons/business/ai-agent/applyAgentHeaderAssets-21-3.svg --><svg class=\"gaip-agent-fullscreen-icon\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" focusable=\"false\"><g class=\"gaip-agent-icon-expand\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.2 3.5H3.5v3.7\"></path><path d=\"M12.8 3.5h3.7v3.7\"></path><path d=\"M7.2 16.5H3.5v-3.7\"></path><path d=\"M12.8 16.5h3.7v-3.7\"></path></g><g class=\"gaip-agent-icon-collapse\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3.8 7.2h3.4V3.8\"></path><path d=\"M16.2 7.2h-3.4V3.8\"></path><path d=\"M3.8 12.8h3.4v3.4\"></path><path d=\"M16.2 12.8h-3.4v3.4\"></path></g></svg><!-- @gaip-icon:end -->","ensureAgentSidebar-22":"<div class=\"gaip-agent-brand\"><img src=\"./shared/assets/icons/business/ai-agent/Agent头像.svg\" alt=\"\"><div><button type=\"button\" class=\"gaip-agent-picker-switch\" aria-label=\"切换做方案版本\"><strong>GAIP Agent助手</strong></button><span>Powered by Anthropic</span></div></div><button type=\"button\" class=\"gaip-agent-new-session\"><img src=\"./shared/assets/icons/business/ai-agent/新建对话.svg\" alt=\"\"><span>新建会话</span></button><div class=\"gaip-agent-history-label\">历史会话</div>","ensureAgentMessageActions-23":"<button type=\"button\" class=\"gaip-agent-message-copy\"><img src=\"./shared/assets/icons/operations/ai-agent/复制文本.svg\" alt=\"\" draggable=\"false\"></button><span class=\"gaip-agent-copy-error\" role=\"status\"></span>","skillToggleClear":"<button type=\"button\" class=\"gaip-agent-skill-clear\" aria-label=\"清除已选方案\" title=\"清除已选方案\"><img class=\"gaip-agent-skill-clear-icon\" src=\"./shared/assets/icons/third-party/ant-design/close-outlined.svg\" alt=\"\" draggable=\"false\"></button>","createPreviewModal-24":"<section class=\"agentModal___Nxp06\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"agentModalTitle\"><div class=\"ant-modal-content\"><header class=\"ant-modal-header\"><div class=\"headerTitle___cXSkY\"><span class=\"icon___H2jXW\"><img src=\"shared/assets/icons/business/ai-agent/Agent头像.svg\" alt=\"\"></span><div><div class=\"title___LmvBU\" id=\"agentModalTitle\">GAIP Agent 助手</div><div class=\"subtitle___S5Xy7\">我能帮到您自动化 AI 处理方案</div></div><div class=\"endIcons___IOP5L\"><button class=\"historyBtn___ElWTU\" type=\"button\" aria-label=\"历史对话\">◷</button><img class=\"newChatIcon___cOc4u\" src=\"shared/assets/icons/business/ai-agent/新建对话.svg\" alt=\"新建对话\"><img class=\"closeIcon___X96Lj\" src=\"shared/assets/icons/third-party/ant-design/close-outlined.svg\" alt=\"关闭\"></div></div></header><div class=\"modalBody___sDOgp\"><div class=\"bodyWrapper___o9oTx\"><div class=\"contentArea___p8GRa\"><div class=\"gaip-agent-preview-welcome\"><div><img src=\"shared/assets/icons/business/ai-agent/Agent头像.svg\" alt=\"\"><h3>今天想从哪里开始？</h3><p>可以创建客户、规划方案，也可以继续一段历史对话。</p></div></div></div><div class=\"footerArea___MESP6\"><div class=\"footerBox___QzN5g\"><textarea class=\"textarea___GMXtD\" placeholder=\"输入你想让 Agent 协助处理的任务\"></textarea><div class=\"gaip-agent-preview-actions\"><span>附件　技能</span><button type=\"button\">发送</button></div></div></div></div></div></div></section>","createAgentComposer-25":"<button type=\"button\" class=\"ant-btn ant-btn-circle ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only voiceBtn___6P10L\" aria-label=\"语音输入\" title=\"语音输入\"><span class=\"ant-btn-icon\"><img class=\"voiceIcon___Sik7i\" src=\"./shared/assets/icons/operations/ai-agent/语音输入.svg\" alt=\"\" draggable=\"false\"><span class=\"voiceStopIcon___LGkm1\" hidden></span><span class=\"gaip-agent-voice-spinner anticon anticon-loading anticon-spin\" hidden><img src=\"./shared/assets/icons/third-party/ant-design/loading-outlined.svg\" alt=\"\"></span></span></button><button type=\"button\" class=\"sendBtn___m_z0G abortBtn___SwE_5 gaip-agent-stop\" aria-label=\"停止生成\" title=\"停止\" hidden><img src=\"./shared/assets/icons/operations/ai-agent/停止生成.svg\" alt=\"\" draggable=\"false\"></button><button type=\"button\" class=\"ant-btn ant-btn-circle ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-icon-only sendBtn___m_z0G gaip-agent-voice-send\" aria-label=\"直接发送语音\" title=\"直接发送\" hidden><img src=\"./shared/assets/icons/third-party/ant-design/arrow-up-outlined.svg\" alt=\"\" draggable=\"false\"></button><div class=\"voiceWaveform___Ua0tt\" aria-label=\"语音波形\" hidden><canvas class=\"voiceCanvas___r9Kt9\" height=\"58\"></canvas><span class=\"voiceTimer___f6tNf\">0:00</span></div><span class=\"gaip-agent-composer-status\" role=\"status\" aria-live=\"polite\"></span>"};
+  return function (id, values) {
+    if (!Object.prototype.hasOwnProperty.call(templates, id)) throw new Error("Missing HTML template: " + id);
+    return templates[id].replace(/\{\{gaip:(\d+)\}\}/g, function (_, index) {
+      if (!values || !Object.prototype.hasOwnProperty.call(values, index)) throw new Error("Missing HTML binding: " + id + ":" + index);
+      return values[index];
+    });
+  };
+}());
+/* @gaip-markup-cache:end */
 (function () {
   'use strict';
 
@@ -31,7 +44,7 @@
         {
           id: 102,
           role: 'assistant',
-          content: '<reasoning name="梳理家庭保障需求">已分析家庭成员、收入情况与现有保障缺口。</reasoning>### 初步保障建议\n\n- 优先完善医疗险与重疾险\n- 家庭经济支柱补充定期寿险\n- 根据年度预算分阶段配置\n\n> 这是本地历史会话 Mock 数据。'
+          content: __gaipMarkup_cc3534331f("fragment-1")
         }
       ]
     },
@@ -44,7 +57,7 @@
         {
           id: 104,
           role: 'assistant',
-          content: '<reasoning name="分析客户顾虑">客户的核心顾虑是现金流，而不是保障需求本身。</reasoning>可以先认可客户对现金流的重视，再从以下三点沟通：\n\n1. 明确可接受的年度预算\n2. 区分基础保障与升级保障\n3. 提供分阶段配置方案'
+          content: __gaipMarkup_cc3534331f("fragment-2")
         }
       ]
     },
@@ -57,7 +70,7 @@
         {
           id: 106,
           role: 'assistant',
-          content: '<reasoning name="拆解教育目标">正在按照入学时间、目标金额和现有储备进行测算。</reasoning>### 教育金规划思路\n\n- 确认距离大学入学的年限\n- 估算学费及生活费总额\n- 扣除已有教育储备\n- 将剩余目标拆分为月度或年度投入'
+          content: __gaipMarkup_cc3534331f("fragment-3")
         }
       ]
     }
@@ -100,7 +113,7 @@
       {
         id: ++mockAgentMessageId,
         role: 'assistant',
-        content: '<reasoning name="推理中">正在理解你的需求并生成回答…</reasoning>' + mockAgentAnswer
+        content: __gaipMarkup_cc3534331f("addMockAgentConversation-4", [('' + (mockAgentAnswer))])
       }
     );
     return sessionId;
@@ -115,6 +128,7 @@
       agentEntryIdleTimer = null;
     }
     agentEntryCurrentState = state || 'idle';
+    updateAgentComposer(document.querySelector('.agentModal___Nxp06'));
     document.dispatchEvent(new CustomEvent('gaip-agent-entry-state', {
       detail: { state: state }
     }));
@@ -139,6 +153,8 @@
     return !!(wrap && wrap.getAttribute('data-gaip-agent-minimized') === 'true');
   }
 
+  var activeAgentChat = null;
+
   function createAgentChatResponse(signal, sessionId) {
     var encoder = new TextEncoder();
     var events = [
@@ -153,34 +169,53 @@
       { payload: { type: 'answer_chunk', data: '> 本内容为本地 Mock 数据，仅用于查看 GAIP Agent 助手原站对话样式。' }, wait: 0 }
     ];
     var timer = null;
+    var ended = false;
+    var answer = '';
+    var session = findMockAgentSession(sessionId);
+    var historyMessage = session && session.messages[session.messages.length - 1];
+    var chat;
     var stream = new ReadableStream({
       start: function (controller) {
+        function finish(stopped, cancelled) {
+          if (ended) return;
+          ended = true;
+          if (timer) clearTimeout(timer);
+          if (signal) signal.removeEventListener('abort', stop);
+          if (activeAgentChat === chat) activeAgentChat = null;
+          if (stopped && historyMessage) historyMessage.content = answer || '已停止生成。';
+          if (!cancelled) {
+            if (stopped) {
+              controller.enqueue(encoder.encode('data: ' + JSON.stringify({type: 'reasoning_done', data: {}}) + '\n\n'));
+              if (!answer) controller.enqueue(encoder.encode('data: ' + JSON.stringify({type: 'answer_chunk', data: '已停止生成。'}) + '\n\n'));
+            }
+            controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+            controller.close();
+          }
+          emitAgentEntryState(stopped ? 'idle' : 'completed');
+          if (!stopped && !shouldKeepAgentEntryCompleted()) scheduleAgentEntryIdle();
+        }
+        function stop() { finish(true, false); }
+        chat = { stop: stop, cancel: function () { finish(true, true); } };
+        activeAgentChat = chat;
+        if (signal) signal.addEventListener('abort', stop, { once: true });
         emitAgentEntryState('processing');
         var index = 0;
         function pushNext() {
-          if (signal && signal.aborted) {
-            try { controller.close(); } catch (_) {}
-            emitAgentEntryState('idle');
-            return;
-          }
+          if (ended) return;
+          if (signal && signal.aborted) { stop(); return; }
           if (index < events.length) {
             var item = events[index++];
+            if (item.payload.type === 'answer_chunk') answer += item.payload.data;
             controller.enqueue(encoder.encode('data: ' + JSON.stringify(item.payload) + '\n\n'));
             timer = setTimeout(pushNext, item.wait);
             return;
           }
-          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
-          controller.close();
-          emitAgentEntryState('completed');
-          if (!shouldKeepAgentEntryCompleted()) {
-            scheduleAgentEntryIdle();
-          }
+          finish(false, false);
         }
         pushNext();
       },
       cancel: function () {
-        if (timer) clearTimeout(timer);
-        emitAgentEntryState('idle');
+        if (chat) chat.cancel();
       }
     });
     return new Response(stream, {
@@ -195,6 +230,15 @@
   function dataFor(url, request) {
     var value = String(url || '');
     var requestBody = parseRequestBody(request && request.body);
+    // Native React caches this request at mount; keep both picker modes switchable.
+    if (/\/api\/gaip\/agent\/chat\/skills(?:\?|$)/.test(value)) {
+      return {
+        handled: true,
+        data: agentProposalCenterTemplates.map(function (item) {
+          return { skillName: item.name, displayName: item.name, description: item.description, source: 'platform' };
+        })
+      };
+    }
     if (value.indexOf('/api/gaip/agent/chat/session/list') >= 0) {
       var page = Math.max(1, Number(requestBody.curPage) || 1);
       var pageSize = Math.max(1, Number(requestBody.pageSize) || 20);
@@ -254,6 +298,47 @@
     }
     agentPendingSendContext = null;
     return Promise.resolve(createAgentChatResponse(options && options.signal, chatSessionId));
+  }
+
+  // Temporary rollout: keep the conversation card implementation below intact.
+  // Change this default back to 'current' when the transition is retired.
+  // ?agentPlanPicker=current / transition allows side-by-side review without storage.
+  var agentPlanPickerDefaultVersion = 'transition';
+  var requestedPlanPickerVersion = new URLSearchParams(window.location.search).get('agentPlanPicker');
+  var agentPlanPickerVersion = requestedPlanPickerVersion === 'current' || requestedPlanPickerVersion === 'transition'
+    ? requestedPlanPickerVersion : agentPlanPickerDefaultVersion;
+
+  function useTransitionPlanPicker() {
+    return agentPlanPickerVersion === 'transition';
+  }
+
+  function switchAgentPlanPicker(modal) {
+    var toggle = modal.querySelector('.skillToggle___OpRvz');
+    if (!toggle || toggle.classList.contains('disabled___nGfbI') || modal.__gaipPickerSwitchPending) return;
+    modal.__gaipPickerSwitchPending = true;
+    var textarea = modal.querySelector('textarea.textarea___GMXtD');
+    var draft = textarea ? textarea.value : '';
+    var nextVersion = useTransitionPlanPicker() ? 'current' : 'transition';
+    // Close through Ant's outside handler, never toggle during its leave animation.
+    modal.querySelector('.gaip-agent-picker-switch').dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+    var nativeClear = modal.querySelector('.container___jv7uB .skillTag___g4XXW:not(.gaip-agent-plan-tag) .close___ZupBD');
+    if (nativeClear) nativeClear.click();
+    window.requestAnimationFrame(function () {
+      modal.__gaipPickerSwitchPending = false;
+      if (!modal.isConnected) return;
+      Object.keys(agentSessionUiState).forEach(function (key) {
+        agentSessionUiState[key].plan = null;
+        agentSessionUiState[key].client = null;
+        agentSessionUiState[key].planPanelVisible = false;
+      });
+      agentPlanPickerVersion = nextVersion;
+      getAgentSessionState(modal).draft = draft;
+      ensureAgentSidebar(modal);
+      renderAgentInputTags(modal);
+      renderPlanPanel(modal);
+      if (textarea && textarea.value !== draft) setNativeTextareaValue(textarea, draft);
+      persistAgentDraft(modal);
+    });
   }
 
   var agentPlanSelectionState = {
@@ -443,13 +528,7 @@
   }
 
   function renderHistoryMoreButton() {
-    return '<button type="button" class="moreBtn___oyzcW" aria-label="更多操作">' +
-      '<span role="img" aria-label="more" class="anticon anticon-more">' +
-        '<svg viewBox="64 64 896 896" focusable="false" data-icon="more" width="1em" height="1em" fill="currentColor" aria-hidden="true">' +
-          '<path d="M456 231a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0z"></path>' +
-        '</svg>' +
-      '</span>' +
-    '</button>';
+    return __gaipMarkup_cc3534331f("renderHistoryMoreButton-5");
   }
 
   function upsertAgentHistoryItem(modal, sessionInfo) {
@@ -466,11 +545,7 @@
     item.setAttribute('data-gaip-agent-session-id', String(sessionInfo.sessionId));
     item.setAttribute('data-gaip-agent-synthetic', 'true');
     item.innerHTML =
-      '<div class="itemContent___ZbN65">' +
-        '<p class="itemTitle___Rb48C">' + escapeHtml(sessionInfo.title) + '</p>' +
-        '<time class="itemTime___yUfy2" datetime="' + escapeHtml(sessionInfo.updatedDt) + '">' + escapeHtml(sessionInfo.updatedDt) + '</time>' +
-      '</div>' +
-      renderHistoryMoreButton();
+      __gaipMarkup_cc3534331f("upsertAgentHistoryItem-6", [('' + (escapeHtml(sessionInfo.title))), ('' + (escapeHtml(sessionInfo.updatedDt))), ('' + (escapeHtml(sessionInfo.updatedDt))), ('' + (renderHistoryMoreButton()))]);
     if (!existing) list.insertBefore(item, list.firstElementChild || null);
     else list.insertBefore(item, list.firstElementChild || null);
     markHistoryItemActive(modal, item);
@@ -483,18 +558,12 @@
     var html;
     if (!chatPanel || !session) return;
     chatPanel.removeAttribute('data-gaip-empty-session');
-    html = '<ul class="msgBox___NYtlO">' + session.messages.map(function (message) {
+    html = __gaipMarkup_cc3534331f("renderSyntheticAgentSession-7", [('' + (session.messages.map(function (message) {
       if (message.role === 'user') {
-        return '<li class="msgRow___wswRS msgUser___WR23E">' +
-          '<div class="msgBubble___W9da6"><pre class="userPre___VegVA">' + escapeHtml(message.content) + '</pre></div>' +
-        '</li>';
+        return __gaipMarkup_cc3534331f("renderSyntheticAgentSession-8", [('' + (escapeHtml(message.content)))]);
       }
-      return '<li class="msgRow___wswRS msgAi___JN4kV">' +
-        '<div class="msgBubble___W9da6 bubbleCard___dWNNS">' +
-          '<div class="aiMessage___HDimS"><div class="aiContent___cP6kY">' + escapeHtml(stripMockReasoning(message.content)).replace(/\n/g, '<br>') + '</div></div>' +
-        '</div>' +
-      '</li>';
-    }).join('') + '</ul>';
+      return __gaipMarkup_cc3534331f("renderSyntheticAgentSession-9", [('' + (escapeHtml(stripMockReasoning(message.content)).replace(/\n/g, __gaipMarkup_cc3534331f("renderSyntheticAgentSession-10"))))]);
+    }).join('')))]);
     chatPanel.innerHTML = html;
   }
 
@@ -511,8 +580,7 @@
     menu.style.left = Math.round(rect.right - 116) + 'px';
     menu.style.top = Math.round(rect.bottom + 6) + 'px';
     menu.innerHTML =
-      '<button type="button" data-action="rename">编辑名称</button>' +
-      '<button type="button" data-action="delete">删除会话</button>';
+      __gaipMarkup_cc3534331f("showSyntheticHistoryMenu-11");
     document.body.appendChild(menu);
     menu.onclick = function (event) {
       var action = event.target && event.target.getAttribute('data-action');
@@ -753,15 +821,7 @@
     if (currentTag) currentTag.remove();
     if (plan) {
       container.insertAdjacentHTML('beforeend',
-        '<span class="tag___PKl7Z skillTag___g4XXW gaip-agent-plan-tag" data-tag="plan" data-plan-id="' + escapeHtml(plan.id) + '">' +
-          '<span class="icon___uCSIV" aria-hidden="true">◇</span>' +
-          '<span class="text___u9Ggi">' + escapeHtml(plan.name) + '</span>' +
-          '<span role="button" tabindex="0" class="close___ZupBD" data-clear="plan" aria-label="清除方案">' +
-            '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false">' +
-              '<path d="M3.1 2.4 6 5.3l2.9-2.9.7.7L6.7 6l2.9 2.9-.7.7L6 6.7 3.1 9.6l-.7-.7L5.3 6 2.4 3.1z" fill="currentColor"></path>' +
-            '</svg>' +
-          '</span>' +
-        '</span>');
+        __gaipMarkup_cc3534331f("renderAgentInputTags-12", [('' + (escapeHtml(plan.id))), ('' + (escapeHtml(plan.name)))]));
     }
     Array.prototype.slice.call(container.querySelectorAll('[data-clear]')).forEach(function (clearButton) {
       clearButton.onclick = function (event) {
@@ -792,8 +852,31 @@
     var state = getAgentSessionState(modal);
     var skillToggle = modal && modal.querySelector('.skillToggle___OpRvz');
     if (!skillToggle) return;
-    skillToggle.classList.toggle('gaip-agent-skill-active', !!state.planPanelVisible);
-    skillToggle.setAttribute('aria-pressed', state.planPanelVisible ? 'true' : 'false');
+    if (!skillToggle.querySelector('.gaip-agent-skill-clear')) {
+      skillToggle.insertAdjacentHTML('beforeend', __gaipMarkup_cc3534331f("skillToggleClear"));
+    }
+    var active = !!state.planPanelVisible;
+    if (useTransitionPlanPicker()) {
+      var popup = document.getElementById(skillToggle.getAttribute('aria-describedby'));
+      var popover = popup && popup.closest('.ant-popover');
+      var nativeSkill = modal.querySelector('.container___jv7uB .skillTag___g4XXW:not(.gaip-agent-plan-tag)');
+      active = !!nativeSkill || !!(popover && !popover.classList.contains('ant-popover-hidden'));
+      if (popover && !popover.__gaipAgentToggleObserver) {
+        popover.__gaipAgentToggleObserver = new MutationObserver(function () {
+          if (modal.isConnected) updateSkillToggleState(modal);
+        });
+        popover.__gaipAgentToggleObserver.observe(popover, { attributes: true, attributeFilter: ['class'] });
+      }
+    }
+    if (skillToggle.classList.contains('gaip-agent-skill-active') !== active) {
+      skillToggle.classList.toggle('gaip-agent-skill-active', active);
+    }
+    if (skillToggle.getAttribute('aria-pressed') !== String(active)) {
+      skillToggle.setAttribute('aria-pressed', String(active));
+    }
+    var clearButton = skillToggle.querySelector('.gaip-agent-skill-clear');
+    var disabled = skillToggle.classList.contains('disabled___nGfbI');
+    if (clearButton.disabled !== disabled) clearButton.disabled = disabled;
   }
 
   function captureAgentPlanScroll(modal) {
@@ -859,37 +942,11 @@
       messageList.appendChild(panel);
     }
     panel.innerHTML =
-      '<div class="gaip-agent-plan-hero">' +
-        '<h2># 请选择要创建的方案</h2>' +
-      '</div>' +
-      '<div class="gaip-agent-plan-body">' +
-        '<div class="gaip-agent-plan-main">' +
-          '<div class="gaip-agent-field-head">方案数量（' + agentPlanSelectionState.proposals.length + '）</div>' +
-          '<div class="gaip-agent-option-list gaip-agent-option-list-plan">' +
-            (agentPlanSelectionState.proposals.length ? agentPlanSelectionState.proposals.map(function (item) {
-              return '<button type="button" class="gaip-agent-option' + (plan && String(plan.id) === String(item.id) ? ' is-selected' : '') + '" data-plan-id="' + escapeHtml(item.id) + '">' +
-                '<span class="gaip-agent-radio" aria-hidden="true"></span>' +
-                '<span class="gaip-agent-option-text">' +
-                  '<span class="gaip-agent-option-title">' + escapeHtml(item.name) + '</span>' +
-                  '<span class="gaip-agent-option-desc">' + escapeHtml(item.description || '') + '</span>' +
-                '</span>' +
-              '</button>';
-            }).join('') : '<div class="gaip-agent-empty">暂无可选方案</div>') +
-          '</div>' +
-        '</div>' +
-        '<aside class="gaip-agent-client-main' + (!plan ? ' is-disabled' : '') + '">' +
-          '<div class="gaip-agent-field-head">' + (plan ? '关联客户（' + agentPlanSelectionState.clients.length + '）' : '请先选择方案') + '</div>' +
-          '<div class="gaip-agent-option-list gaip-agent-option-list-client">' +
-            (agentPlanSelectionState.clients.length ? agentPlanSelectionState.clients.map(function (item) {
-              return '<button type="button" class="gaip-agent-client-option' + (client && String(client.id) === String(item.id) ? ' is-selected' : '') + '" data-client-id="' + escapeHtml(item.id) + '"' + (!plan ? ' disabled aria-disabled="true"' : '') + '>' +
-                '<span class="gaip-agent-client-name">' + escapeHtml(item.name) + '</span>' +
-                '<span class="gaip-agent-client-code">' + escapeHtml(item.code || item.region || '') + '</span>' +
-              '</button>';
-            }).join('') : '<div class="gaip-agent-empty gaip-agent-empty-client">暂无客户</div>') +
-          '</div>' +
-          '<div class="gaip-agent-new-client-row">没有找到？ <button type="button" class="gaip-agent-new-client">新建客户</button></div>' +
-        '</aside>' +
-      '</div>';
+      __gaipMarkup_cc3534331f("renderPlanPanel-13", [('' + (agentPlanSelectionState.proposals.length)), ('' + (agentPlanSelectionState.proposals.length ? agentPlanSelectionState.proposals.map(function (item) {
+              return __gaipMarkup_cc3534331f("renderPlanPanel-14", [('' + (plan && String(plan.id) === String(item.id) ? ' is-selected' : '')), ('' + (escapeHtml(item.id))), ('' + (escapeHtml(item.name))), ('' + (escapeHtml(item.description || '')))]);
+            }).join('') : __gaipMarkup_cc3534331f("renderPlanPanel-15"))), ('' + (!plan ? ' is-disabled' : '')), ('' + (plan ? '关联客户（' + agentPlanSelectionState.clients.length + '）' : '请先选择方案')), ('' + (agentPlanSelectionState.clients.length ? agentPlanSelectionState.clients.map(function (item) {
+              return __gaipMarkup_cc3534331f("renderPlanPanel-16", [('' + (client && String(client.id) === String(item.id) ? ' is-selected' : '')), ('' + (escapeHtml(item.id))), ('' + (!plan ? ' disabled aria-disabled="true"' : '')), ('' + (escapeHtml(item.name))), ('' + (escapeHtml(item.code || item.region || '')))]);
+            }).join('') : __gaipMarkup_cc3534331f("renderPlanPanel-17")))]);
     var newClientButton = panel.querySelector('.gaip-agent-new-client');
     Array.prototype.slice.call(panel.querySelectorAll('[data-plan-id]')).forEach(function (button) {
       button.onclick = function (event) {
@@ -944,12 +1001,13 @@
     var empty = contentArea && contentArea.querySelector('.gaip-agent-empty-session');
     if (!contentArea || !chatPanel) return;
     if (!state.empty) {
+      chatPanel.removeAttribute('data-gaip-empty-session');
       removeEmptyState(modal);
       return;
     }
     if (state.planPanelVisible) {
       contentArea.removeAttribute('data-gaip-agent-empty');
-      if (empty) empty.style.display = 'none';
+      if (empty) empty.hidden = true;
       return;
     }
     contentArea.setAttribute('data-gaip-agent-empty', 'true');
@@ -958,21 +1016,15 @@
       empty.className = 'gaip-agent-empty-session';
       contentArea.insertBefore(empty, chatPanel);
     } else if (empty.getAttribute('data-gaip-rendered') === 'true') {
-      empty.style.display = '';
+      empty.hidden = false;
       return;
     }
-    empty.style.display = '';
+    empty.hidden = false;
     empty.setAttribute('data-gaip-rendered', 'true');
     empty.innerHTML =
-      '<img class="gaip-agent-empty-title" src="./AI Agent/素材/你可以这样问.svg" alt="你可以这样问">' +
-      '<div class="gaip-agent-suggestion-list">' +
-        agentEmptySuggestions.map(function (text) {
-          return '<button type="button" class="gaip-agent-suggestion" data-suggestion="' + escapeHtml(text) + '">' +
-            '<img class="gaip-agent-suggestion-icon" src="./AI Agent/素材/跳出Icon.svg" alt="" aria-hidden="true">' +
-            '<span>' + escapeHtml(text) + '</span>' +
-          '</button>';
-        }).join('') +
-      '</div>';
+      __gaipMarkup_cc3534331f("renderEmptyState-18", [('' + (agentEmptySuggestions.map(function (text) {
+          return __gaipMarkup_cc3534331f("renderEmptyState-19", [('' + (escapeHtml(text))), ('' + (escapeHtml(text)))]);
+        }).join('')))]);
     Array.prototype.slice.call(empty.querySelectorAll('[data-suggestion]')).forEach(function (button) {
       button.onclick = function (event) {
         var value = button.getAttribute('data-suggestion') || '';
@@ -1120,7 +1172,7 @@
     // CSS hides these underneath the custom icon; keep the nodes for reconciliation.
     if (preserveNative) return;
     Array.prototype.slice.call(button.querySelectorAll('img, svg, .anticon')).forEach(function (item) {
-      if (item !== icon) item.remove();
+      if (item !== icon && !item.closest('.gaip-agent-skill-clear')) item.remove();
     });
     Array.prototype.slice.call(button.children).forEach(function (item) {
       if (item !== icon && item.tagName === 'SPAN' && !item.textContent.trim()) item.remove();
@@ -1134,7 +1186,7 @@
       return span.textContent && span.textContent.trim();
     });
     if (title && title.textContent) title.textContent = '';
-    ensureAgentButtonIcon(skillToggle, 'gaip-agent-skill-icon', './AI Agent/素材/做方案.svg', '做方案');
+    ensureAgentButtonIcon(skillToggle, 'gaip-agent-skill-icon', './shared/assets/icons/business/ai-agent/做方案.svg', '做方案', useTransitionPlanPicker());
     if (skillToggleText && skillToggleText.textContent !== '做方案') skillToggleText.textContent = '做方案';
   }
 
@@ -1146,23 +1198,14 @@
     var attachmentToggle = modal.querySelector('.attachmentToggle___m40lT');
     var fullscreenButton = modal.querySelector('.gaip-agent-fullscreen-toggle');
     if (historyButton && !historyButton.querySelector('.gaip-agent-collapse-icon')) {
-      historyButton.innerHTML = '<img class="gaip-agent-collapse-icon" src="./AI Agent/素材/收起.svg" alt="">';
+      historyButton.innerHTML = __gaipMarkup_cc3534331f("applyAgentHeaderAssets-20");
     }
     if (endIcons && !fullscreenButton) {
       fullscreenButton = document.createElement('button');
       fullscreenButton.type = 'button';
       fullscreenButton.className = 'gaip-agent-fullscreen-toggle';
       fullscreenButton.innerHTML =
-        '<svg class="gaip-agent-fullscreen-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">' +
-          '<g class="gaip-agent-icon-expand" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-            '<path d="M7.2 3.5H3.5v3.7"></path><path d="M12.8 3.5h3.7v3.7"></path>' +
-            '<path d="M7.2 16.5H3.5v-3.7"></path><path d="M12.8 16.5h3.7v-3.7"></path>' +
-          '</g>' +
-          '<g class="gaip-agent-icon-collapse" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-            '<path d="M3.8 7.2h3.4V3.8"></path><path d="M16.2 7.2h-3.4V3.8"></path>' +
-            '<path d="M3.8 12.8h3.4v3.4"></path><path d="M16.2 12.8h-3.4v3.4"></path>' +
-          '</g>' +
-        '</svg>';
+        __gaipMarkup_cc3534331f("applyAgentHeaderAssets-21");
       if (closeIcon) {
         endIcons.insertBefore(fullscreenButton, closeIcon);
       } else {
@@ -1176,15 +1219,15 @@
       fullscreenButton.setAttribute('aria-pressed', isFullscreen ? 'true' : 'false');
     }
     if (closeIcon) {
-      if (closeIcon.getAttribute('src') !== './AI Agent/素材/最小化.svg') {
-        closeIcon.setAttribute('src', './AI Agent/素材/最小化.svg');
+      if (closeIcon.getAttribute('src') !== './shared/assets/icons/operations/ai-agent/最小化.svg') {
+        closeIcon.setAttribute('src', './shared/assets/icons/operations/ai-agent/最小化.svg');
         closeIcon.setAttribute('alt', '最小化');
       }
       closeIcon.setAttribute('role', 'button');
       closeIcon.setAttribute('aria-label', '最小化');
       closeIcon.setAttribute('title', '最小化');
     }
-    ensureAgentButtonIcon(attachmentToggle, 'gaip-agent-attachment-icon', './AI Agent/素材/上传附件.svg', '上传附件', true);
+    ensureAgentButtonIcon(attachmentToggle, 'gaip-agent-attachment-icon', './shared/assets/icons/business/ai-agent/上传附件.svg', '上传附件', true);
   }
 
   function getAgentModalWrap(modal) {
@@ -1200,13 +1243,12 @@
     var wrap = getAgentModalWrap(modal);
     var mask = getAgentModalMask(modal);
     if (!modal || !wrap) return;
+    cancelAgentVoice(modal);
     agentMinimizedModal = modal;
     emitAgentEntryMinimized(true);
     wrap.setAttribute('data-gaip-agent-minimized', 'true');
-    wrap.style.setProperty('display', 'none', 'important');
     if (mask) {
       mask.setAttribute('data-gaip-agent-minimized', 'true');
-      mask.style.setProperty('display', 'none', 'important');
     }
   }
 
@@ -1216,10 +1258,8 @@
     var mask = getAgentModalMask(modal);
     if (!wrap || wrap.getAttribute('data-gaip-agent-minimized') !== 'true') return false;
     wrap.removeAttribute('data-gaip-agent-minimized');
-    wrap.style.removeProperty('display');
     if (mask) {
       mask.removeAttribute('data-gaip-agent-minimized');
-      mask.style.removeProperty('display');
     }
     agentMinimizedModal = null;
     emitAgentEntryMinimized(false);
@@ -1238,18 +1278,7 @@
     var head;
     if (!wrapper || !historyButton) return;
     if (!wrapper.classList.contains('gaip-agent-redesign-wrapper')) wrapper.classList.add('gaip-agent-redesign-wrapper');
-    var modalWidth = Math.max(720, Math.min(1314, window.innerWidth - 96));
-    if (wrapper.classList.contains('gaip-agent-fullscreen')) {
-      if (modal.__gaipAgentAppliedWidth !== 'fullscreen') {
-        modal.style.setProperty('width', '100vw', 'important');
-        modal.style.setProperty('max-width', '100vw', 'important');
-        modal.__gaipAgentAppliedWidth = 'fullscreen';
-      }
-    } else if (modal.__gaipAgentAppliedWidth !== modalWidth) {
-      modal.style.setProperty('width', modalWidth + 'px', 'important');
-      modal.style.setProperty('max-width', modalWidth + 'px', 'important');
-      modal.__gaipAgentAppliedWidth = modalWidth;
-    }
+    if (!modal.classList.contains('gaip-agent-sized')) modal.classList.add('gaip-agent-sized');
     historyButton.setAttribute('aria-label', wrapper.classList.contains('gaip-agent-sidebar-collapsed') ? '展开左侧会话' : '收起左侧会话');
     historyButton.setAttribute('title', wrapper.classList.contains('gaip-agent-sidebar-collapsed') ? '展开左侧会话' : '收起左侧会话');
     head = wrapper.querySelector('.gaip-agent-sidebar-head');
@@ -1257,15 +1286,7 @@
       head = document.createElement('aside');
       head.className = 'gaip-agent-sidebar-head';
       head.innerHTML =
-        '<div class="gaip-agent-brand">' +
-          '<img src="./AI Agent/素材/Agent头像.svg" alt="">' +
-          '<div><strong>GAIP Agent助手</strong><span>Powered by Anthropic</span></div>' +
-        '</div>' +
-        '<button type="button" class="gaip-agent-new-session">' +
-          '<img src="./AI Agent/素材/新建对话.svg" alt="">' +
-          '<span>新建会话</span>' +
-        '</button>' +
-        '<div class="gaip-agent-history-label">历史会话</div>';
+        __gaipMarkup_cc3534331f("ensureAgentSidebar-22");
       wrapper.insertBefore(head, wrapper.firstChild);
     }
     if (historyWrapper) {
@@ -1285,9 +1306,14 @@
         enterNewSession(modal);
       };
     }
+    modal.setAttribute('data-gaip-agent-plan-picker', agentPlanPickerVersion);
+    var pickerSwitch = wrapper.querySelector('.gaip-agent-picker-switch');
+    if (pickerSwitch) pickerSwitch.setAttribute('aria-pressed', String(!useTransitionPlanPicker()));
     if (skillToggle) {
       skillToggle.setAttribute('tabindex', '0');
-      skillToggle.onclick = function (event) {
+      // Leave clicks to the original React/Ant skill popover in transition mode.
+      // It owns selection, input tags, outside-click dismissal and request skillName.
+      skillToggle.onclick = useTransitionPlanPicker() ? null : function (event) {
         event.preventDefault();
         event.stopPropagation();
         skillToggle.focus();
@@ -1300,7 +1326,6 @@
         event.stopPropagation();
         wrapper.classList.toggle('gaip-agent-fullscreen');
         modal.classList.toggle('gaip-agent-modal-fullscreen', wrapper.classList.contains('gaip-agent-fullscreen'));
-        modal.__gaipAgentAppliedWidth = null;
         ensureAgentSidebar(modal);
       };
     }
@@ -1336,7 +1361,7 @@
       var input = document.createElement('textarea');
       input.value = text;
       input.readOnly = true;
-      input.style.cssText = 'position:fixed;top:0;left:-9999px;font-size:16px;';
+      input.className = 'gaip-agent-copy-fallback';
       document.body.appendChild(input);
       try {
         input.select();
@@ -1378,7 +1403,7 @@
       var label = row.classList.contains('msgUser___WR23E') ? '复制我的消息' : '复制回答';
       actions = document.createElement('div');
       actions.className = 'gaip-agent-message-actions';
-      actions.innerHTML = '<button type="button" class="gaip-agent-message-copy"><img src="./AI Agent/素材/复制文本.svg" alt="" draggable="false"></button><span class="gaip-agent-copy-error" role="status"></span>';
+      actions.innerHTML = __gaipMarkup_cc3534331f("ensureAgentMessageActions-23");
       var button = actions.querySelector('button');
       var image = button.querySelector('img');
       var feedback = actions.querySelector('[role="status"]');
@@ -1393,12 +1418,12 @@
         try {
           await copyAgentText(agentMessageText(row));
           clearTimeout(button.__gaipCopyTimer);
-          image.src = './AI Agent/素材/复制成功.svg?v=20260921-copy2';
+          image.src = './shared/assets/icons/operations/ai-agent/复制成功.svg?v=20260921-copy2';
           showAgentCopyNotice(modal, row.classList.contains('msgUser___WR23E') ? '消息已复制' : '回答已复制');
           button.setAttribute('aria-label', '已复制');
           button.title = '已复制';
           button.__gaipCopyTimer = setTimeout(function () {
-            image.src = './AI Agent/素材/复制文本.svg';
+            image.src = './shared/assets/icons/operations/ai-agent/复制文本.svg';
             button.setAttribute('aria-label', label);
             button.title = label;
           }, 2000);
@@ -1434,6 +1459,7 @@
     var wrapper = modal && modal.querySelector('.modalRenderWrapper___qz3XP');
     if (!wrapper || wrapper.__gaipAgentScopedObserver) return;
     wrapper.__gaipAgentScopedObserver = new MutationObserver(function (records) {
+      if (!modal.isConnected) return;
       var messagesChanged = records.some(function (record) {
         var target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
         if (target && target.closest('.gaip-agent-message-actions')) return false;
@@ -1451,6 +1477,10 @@
         });
       });
       if (attachmentsChanged) ensureAgentAttachmentIcons(modal);
+      if (useTransitionPlanPicker() && records.some(function (record) {
+        var target = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+        return target && target.closest('.container___jv7uB, .skillToggle___OpRvz');
+      })) updateSkillToggleState(modal);
       var shouldRestore = records.some(function (record) {
         if (record.type === 'attributes') {
           return record.target && record.target.matches &&
@@ -1509,9 +1539,196 @@
     window.alert('当前页面没有加载工作台的新建客户抽屉入口。请在工作台总览打开 AI Agent 后使用该按钮。');
   }
 
+  // Canvas renderer copied from online VoiceWaveform; its drawing constants are unchanged.
+  var na=2,da=3,La=12,ya=.8,Da=1.5,ua=1,Ir=2;
+  var Ra=[[0,'#2F3640'],[.5,'#000000'],[1,'#2F3640']];
+function B(X,ee,he,vt){var hn=X.getContext("2d");if(hn){var mn=window.devicePixelRatio||1,Cn=X.width,Ln=X.height,Zn=ee.length;hn.clearRect(0,0,Cn,Ln);var $n=(na+da)*mn,cr=Ln/2,wr=Ln/2-La*mn,Sr=ya*mn,sr=Da*mn,ha=vt*$n,wa=hn.createLinearGradient(0,0,Cn,0);Ra.forEach(function(Vo){var bo=Vo[0],ko=Vo[1];wa.addColorStop(bo,ko)}),hn.fillStyle=wa;for(var va=0;va<=Zn;va++){var jr=(he+va)%Zn,Ia=ee[jr],Zr=Ia<=0?Sr:sr+Ia*(wr-sr),Ea=va*$n-ha,li=Math.abs((Ea+$n/2)/Cn-.5)*2,ri=Math.max(1-li,0),wi=(ua+(Ir-ua)*ri)*mn,yo=Ea+(na*mn-wi)/2;hn.beginPath(),L(hn,yo,cr-Zr,wi,Zr*2,wi/2),hn.fill()}}}
+function L(X,ee,he,vt,hn,mn){if(typeof X.roundRect=="function"){X.roundRect(ee,he,vt,hn,mn);return}var Cn=Math.min(mn,vt/2,hn/2);X.moveTo(ee+Cn,he),X.lineTo(ee+vt-Cn,he),X.quadraticCurveTo(ee+vt,he,ee+vt,he+Cn),X.lineTo(ee+vt,he+hn-Cn),X.quadraticCurveTo(ee+vt,he+hn,ee+vt-Cn,he+hn),X.lineTo(ee+Cn,he+hn),X.quadraticCurveTo(ee,he+hn,ee,he+hn-Cn),X.lineTo(ee,he+Cn),X.quadraticCurveTo(ee,he,ee+Cn,he),X.closePath()}
+
+  // Online layout/assets/waveform are preserved; only preview state is simulated.
+  function ensureAgentComposer(modal) {
+    var row = modal.querySelector('.inputRow___Sqmy8');
+    if (!row) return;
+    if (!row.querySelector('.voiceBtn___6P10L')) {
+      row.insertAdjacentHTML('beforeend', __gaipMarkup_cc3534331f('createAgentComposer-25'));
+    }
+    var nativeButton = row.querySelector('.sendBtn___m_z0G:not(.gaip-agent-stop):not(.gaip-agent-voice-send)');
+    if (nativeButton) {
+      Array.prototype.forEach.call(nativeButton.classList, function (token) {
+        if (token.indexOf('css-') !== 0) return;
+        row.querySelector('.voiceBtn___6P10L').classList.add(token);
+        row.querySelector('.gaip-agent-voice-send').classList.add(token);
+      });
+    }
+    if (!modal.__gaipVoice) modal.__gaipVoice = { status: 'idle', timer: null, frame: null };
+    updateAgentComposer(modal);
+  }
+
+  function updateAgentComposer(modal) {
+    if (!modal) return;
+    var voice = modal.__gaipVoice;
+    var mic = modal.querySelector('.voiceBtn___6P10L');
+    var stop = modal.querySelector('.gaip-agent-stop');
+    if (!voice || !mic || !stop) return;
+    var busy = !!activeAgentChat;
+    var recording = voice.status === 'recording';
+    var recognizing = voice.status === 'recognizing';
+    modal.setAttribute('data-gaip-agent-generating', String(busy));
+    modal.setAttribute('data-gaip-agent-voice', voice.status);
+    mic.disabled = busy || recognizing;
+    mic.classList.toggle('recording___bfB6o', recording);
+    mic.setAttribute('aria-label', recording ? '确认后转为文字' : recognizing ? '正在转写' : '语音输入');
+    mic.setAttribute('title', recording ? '确认后发送' : recognizing ? '' : '语音输入');
+    mic.querySelector('.voiceIcon___Sik7i').hidden = recording || recognizing;
+    mic.querySelector('.voiceStopIcon___LGkm1').hidden = !recording;
+    mic.querySelector('.gaip-agent-voice-spinner').hidden = !recognizing;
+    stop.hidden = !busy;
+    var direct = modal.querySelector('.gaip-agent-voice-send');
+    direct.hidden = !recording && !recognizing;
+    direct.disabled = recognizing;
+    modal.querySelector('.voiceWaveform___Ua0tt').hidden = !recording && !recognizing;
+  }
+
+  function cancelAgentVoice(modal) {
+    var voice = modal && modal.__gaipVoice;
+    if (!voice) return;
+    window.clearTimeout(voice.timer);
+    window.cancelAnimationFrame(voice.frame);
+    voice.status = 'idle';
+    voice.timer = voice.frame = null;
+    updateAgentComposer(modal);
+  }
+
+  function startAgentVoice(modal) {
+    var voice = modal.__gaipVoice;
+    if (!voice || voice.status !== 'idle' || activeAgentChat) return;
+    voice.status = 'recording';
+    voice.key = getAgentSessionKey(modal);
+    voice.started = performance.now();
+    voice.lastBucket = 0;
+    voice.buckets = null;
+    voice.cursor = 0;
+    updateAgentComposer(modal);
+    var canvas = modal.querySelector('.voiceCanvas___r9Kt9');
+    var timer = modal.querySelector('.voiceTimer___f6tNf');
+    function draw(now) {
+      if (!modal.isConnected || getAgentSessionKey(modal) !== voice.key) { cancelAgentVoice(modal); return; }
+      if (voice.status !== 'recording') return;
+      var elapsed = now - voice.started;
+      var sec = Math.floor(elapsed / 1000);
+      timer.textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+      var rect = canvas.getBoundingClientRect();
+      var ratio = window.devicePixelRatio || 1;
+      var size = Math.max(1, Math.floor(rect.width / 5));
+      if (!voice.buckets || voice.buckets.length !== size) {
+        canvas.width = Math.round(rect.width * ratio);
+        canvas.height = Math.round(rect.height * ratio);
+        voice.buckets = new Float32Array(size);
+        voice.cursor = 0;
+      }
+      if (now - voice.lastBucket >= 60) {
+        // A mock frequency bucket; never opens the microphone or an ASR socket.
+        voice.buckets[voice.cursor++ % size] = Math.abs(Math.sin(elapsed / 310) * Math.sin(elapsed / 73)) * .8;
+        voice.lastBucket = now;
+      }
+      B(canvas, voice.buckets, voice.cursor, Math.min((now - voice.lastBucket) / 60, 1));
+      voice.frame = window.requestAnimationFrame(draw);
+    }
+    voice.frame = window.requestAnimationFrame(draw);
+    modal.querySelector('.gaip-agent-composer-status').textContent = '正在录音（本地模拟）';
+  }
+
+  function finishAgentVoice(modal, send) {
+    var voice = modal.__gaipVoice;
+    if (!voice || voice.status !== 'recording') return;
+    window.cancelAnimationFrame(voice.frame);
+    voice.status = 'recognizing';
+    updateAgentComposer(modal);
+    voice.timer = window.setTimeout(function () {
+      if (!modal.isConnected || getAgentSessionKey(modal) !== voice.key) { cancelAgentVoice(modal); return; }
+      var textarea = modal.querySelector('.textarea___GMXtD');
+      var draft = textarea.value;
+      setNativeTextareaValue(textarea, draft + (draft.trim() ? ' ' : '') + '请帮我整理一份家庭保障方案。');
+      cancelAgentVoice(modal);
+      modal.querySelector('.gaip-agent-composer-status').textContent = '模拟转写完成';
+      if (send) window.requestAnimationFrame(function () {
+        if (!modal.isConnected || getAgentSessionKey(modal) !== voice.key) return;
+        var nativeSend = modal.querySelector('.sendBtn___m_z0G:not(.gaip-agent-stop):not(.gaip-agent-voice-send)');
+        if (nativeSend && !nativeSend.disabled) nativeSend.click();
+      });
+    }, 800);
+  }
+
+  function bindAgentComposer(modal) {
+    if (modal.__gaipComposerBound) return;
+    modal.__gaipComposerBound = true;
+    modal.addEventListener('click', function (event) {
+      var mic = event.target.closest && event.target.closest('.voiceBtn___6P10L');
+      var stop = event.target.closest && event.target.closest('.gaip-agent-stop');
+      var direct = event.target.closest && event.target.closest('.gaip-agent-voice-send');
+      if (!mic && !stop && !direct) return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      if (stop) { if (activeAgentChat) activeAgentChat.stop(); return; }
+      if (!modal.__gaipVoice || activeAgentChat) return;
+      if (direct || modal.__gaipVoice.status === 'recording') finishAgentVoice(modal, !!direct);
+      else startAgentVoice(modal);
+    }, true);
+    modal.addEventListener('keydown', function (event) {
+      var voice = modal.__gaipVoice;
+      if (!voice || voice.status === 'idle') return;
+      if (event.key === 'Escape') {
+        event.preventDefault(); event.stopPropagation(); cancelAgentVoice(modal);
+      } else if (event.key === 'Enter' && !event.shiftKey && !event.isComposing && event.target.matches('.textarea___GMXtD')) {
+        event.preventDefault(); event.stopPropagation(); finishAgentVoice(modal, true);
+      }
+    }, true);
+  }
+
   function bindAgentRedesignEvents(modal) {
     if (modal.__gaipAgentRedesignBound) return;
     modal.__gaipAgentRedesignBound = true;
+    modal.addEventListener('click', function (event) {
+      if (!event.target.closest || !event.target.closest('.gaip-agent-picker-switch')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      switchAgentPlanPicker(modal);
+    }, true);
+    // Delegate to the stable modal: React may replace the toggle after requests.
+    modal.addEventListener('keydown', function (event) {
+      if (event.target.closest && event.target.closest('.gaip-agent-skill-clear')) return;
+      var toggle = event.target.closest && event.target.closest('.skillToggle___OpRvz');
+      if (!toggle || (event.key !== 'Enter' && event.key !== ' ')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (!toggle.classList.contains('disabled___nGfbI')) toggle.click();
+    }, true);
+    modal.addEventListener('click', function (event) {
+      var clearButton = event.target.closest && event.target.closest('.gaip-agent-skill-clear');
+      if (!clearButton) return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      if (clearButton.disabled) return;
+      if (useTransitionPlanPicker()) {
+        var outside = modal.querySelector('.gaip-agent-picker-switch');
+        // A closing animation must not cause a second toggle to reopen the popup.
+        if (outside) outside.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+        // Keep React responsible for removing its own selection and input prefix.
+        var nativeClear = modal.querySelector('.container___jv7uB .skillTag___g4XXW:not(.gaip-agent-plan-tag) .close___ZupBD');
+        if (nativeClear) nativeClear.click();
+      } else {
+        var state = getAgentSessionState(modal);
+        state.plan = null;
+        state.client = null;
+        state.planPanelVisible = false;
+        renderPlanPanel(modal);
+        syncAgentInput(modal);
+        renderEmptyState(modal);
+      }
+      updateSkillToggleState(modal);
+    }, true);
     modal.addEventListener('click', function (event) {
       var closeIcon = event.target.closest && event.target.closest('.closeIcon___X96Lj');
       if (!closeIcon) return;
@@ -1576,7 +1793,7 @@
     }, false);
 
     modal.addEventListener('click', function (event) {
-      if (event.target && event.target.closest('.sendBtn___m_z0G')) {
+      if (event.target && event.target.closest('.sendBtn___m_z0G:not(.gaip-agent-stop):not(.gaip-agent-voice-send)')) {
         handleAgentSendClick(modal);
         window.setTimeout(function () {
           var textarea = modal.querySelector('textarea.textarea___GMXtD');
@@ -1608,6 +1825,8 @@
     ensureHistoryLoaded(modal);
     ensureNoHistoryEmptyState(modal);
     ensureInitialHistorySession(modal);
+    ensureAgentComposer(modal);
+    bindAgentComposer(modal);
     bindAgentRedesignEvents(modal);
     state = getAgentSessionState(modal);
     renderEmptyState(modal);
@@ -1633,13 +1852,14 @@
 
   function createPreviewModal() {
     var template = document.createElement('template');
-    template.innerHTML = '<section class="agentModal___Nxp06" role="dialog" aria-modal="true" aria-labelledby="agentModalTitle"><div class="ant-modal-content"><header class="ant-modal-header"><div class="headerTitle___cXSkY"><span class="icon___H2jXW"><img src="AI Agent/素材/Agent头像.svg" alt=""></span><div><div class="title___LmvBU" id="agentModalTitle">GAIP Agent 助手</div><div class="subtitle___S5Xy7">我能帮到您自动化 AI 处理方案</div></div><div class="endIcons___IOP5L"><button class="historyBtn___ElWTU" type="button" aria-label="历史对话">◷</button><img class="newChatIcon___cOc4u" src="AI Agent/素材/新建对话.svg" alt="新建对话"><img class="closeIcon___X96Lj" src="AI Agent/素材/关闭弹窗.svg" alt="关闭"></div></div></header><div class="modalBody___sDOgp"><div class="bodyWrapper___o9oTx"><div class="contentArea___p8GRa"><div class="gaip-agent-preview-welcome"><div><img src="AI Agent/素材/Agent头像.svg" alt=""><h3>今天想从哪里开始？</h3><p>可以创建客户、规划方案，也可以继续一段历史对话。</p></div></div></div><div class="footerArea___MESP6"><div class="footerBox___QzN5g"><textarea class="textarea___GMXtD" placeholder="输入你想让 Agent 协助处理的任务"></textarea><div class="gaip-agent-preview-actions"><span>附件　技能</span><button type="button">发送</button></div></div></div></div></div></div></section>';
+    template.innerHTML = __gaipMarkup_cc3534331f("createPreviewModal-24");
     return template.content.firstElementChild;
   }
 
   window.__GAIP_AGENT_MOCK__ = {
     dataFor: dataFor,
     fetch: fetchAgent,
+    stop: function () { if (activeAgentChat) activeAgentChat.stop(); },
     createPreviewModal: createPreviewModal
   };
 
@@ -1664,8 +1884,8 @@
     var shouldSchedule = records.some(function (record) {
       return Array.prototype.slice.call(record.addedNodes || []).some(function (node) {
         return node.nodeType === 1 && (
-          node.matches && node.matches('.agentModal___Nxp06, .historyWrapper___KBX5W, .modalRenderWrapper___qz3XP') ||
-          node.querySelector && node.querySelector('.agentModal___Nxp06, .historyWrapper___KBX5W, .modalRenderWrapper___qz3XP')
+          node.matches && node.matches('.agentModal___Nxp06, .historyWrapper___KBX5W, .modalRenderWrapper___qz3XP, #skill-popover-content-key') ||
+          node.querySelector && node.querySelector('.agentModal___Nxp06, .historyWrapper___KBX5W, .modalRenderWrapper___qz3XP, #skill-popover-content-key')
         );
       });
     });
