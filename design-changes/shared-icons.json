@@ -1,0 +1,3190 @@
+{
+  "schemaVersion": 1,
+  "page": "shared-icons",
+  "records": [
+    {
+      "id": "shared-icons.merge.01",
+      "element": "日历图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"01-2\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/operation-log/global-operation-log.css",
+        "channels/config-center/announcement-management.css",
+        "components/filter-bar/global-filter-bar.css",
+        "components/modal-controls/modal-controls.css",
+        "channels/activity/page.js",
+        "channels/product/page.js",
+        "channels/clues/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/config-center/announcement-calendar.svg",
+            "shared/assets/icons/forms/shared/modal-calendar.svg",
+            "shared/assets/icons/third-party/ant-design/calendar-outlined.svg"
+          ],
+          "target": "shared/assets/icons/forms/shared/control-calendar.svg",
+          "sha256": "8298b2ffc49636ad98ea2afbd65de50de8177252b3e94582e0719ba05791b0d1",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 01-2，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": null,
+            "height": null,
+            "viewBox": "64 64 896 896"
+          },
+          "consumerSizeEvidence": [],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/forms/shared/control-calendar.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.04",
+      "element": "更多操作展开 / 下拉",
+      "locator": {
+        "selector": "[data-icon-sequence=\"04-2\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/filter-bar/global-filter-bar.css",
+        "components/modal-controls/modal-controls.css",
+        "components/multi-select/global-multi-select.css",
+        "channels/customer/page.js",
+        "components/operation-log/global-operation-log.css",
+        "components/table/global-table.css",
+        "channels/config-center/templates/markup-config-center.html",
+        "channels/config-center/templates/tree.html",
+        "channels/activity/page.js",
+        "channels/clues/page.js",
+        "channels/login/page.js",
+        "channels/product/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/shared/control-down.svg",
+            "shared/assets/icons/business/config-center/renderChannelPicker-39-5.svg",
+            "shared/assets/icons/business/config-center/tree--inline-1.svg",
+            "shared/assets/icons/business/config-center/tree--inline-2.svg",
+            "shared/assets/icons/business/config-center/tree--inline-3.svg",
+            "shared/assets/icons/business/config-center/tree--inline-4.svg",
+            "shared/assets/icons/business/config-center/tree--inline-5.svg",
+            "shared/assets/icons/business/config-center/inline-6.svg",
+            "shared/assets/icons/third-party/ant-design/caret-down-filled.svg",
+            "shared/assets/icons/third-party/ant-design/caret-down-outlined.svg",
+            "shared/assets/icons/third-party/ant-design/down-outlined.svg",
+            "shared/assets/icons/business/customer/embedded-034d3716c7fb.svg"
+          ],
+          "target": "shared/assets/icons/forms/shared/modal-down.svg",
+          "sha256": "f2ea4a19d148fd3b9e76fef84ec0d7f81d879f6a62c36ac6fd69e8e0ec30a383",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "2026-10-08用户确认下拉改用更多操作展开造型；04-2仅保留稳定编号，不再保留旧造型。",
+          "sourceCanvas": {
+            "width": "32px",
+            "height": "32px",
+            "viewBox": "0 0 32 32"
+          },
+          "consumerSizeEvidence": [
+            {
+              "file": "channels/config-center/templates/markup-config-center.html",
+              "width": "32px",
+              "height": "32px",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/tree.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            }
+          ],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。",
+          "generatedFrom": "shared/assets/icons/forms/css/components--table--global-table-3.css"
+        },
+        "icon.drawing": {
+          "before": null,
+          "initialLocal": "原04-2旋转多边形（原件哈希保留于前轮记录与本轮快照）",
+          "target": "更多操作的6px border-box、1.5px边框旋转45deg轮廓；SVG等比适配32画布，可见宽16",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/forms/shared/modal-down.svg",
+        "scripts/build-local-icons.cjs",
+        "shared/assets/icons/forms/css/components--table--global-table-3.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-expand-merge-20261008/geometry-audit.json",
+          "outputs/icon-expand-merge-20261008/icons.log",
+          "outputs/icon-expand-merge-20261008/controls.log",
+          "outputs/icon-expand-merge-20261008/consumers-recheck.log"
+        ],
+        "gaps": [
+          "真实file视觉、点击命中与全部业务状态未验证；数学轮廓等价和DOM检查不代替浏览器验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.merge.05",
+      "element": "播放图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"05-3\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/customer/page.js",
+        "channels/workspace/page.js",
+        "channels/proposal-center/page.js",
+        "channels/learning-center/learning-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/business/learning-center/icon-lesson-play.svg",
+            "shared/assets/icons/business/learning-center/icon-video-player-play.svg",
+            "shared/assets/icons/business/learning-center/icon-lesson-review.svg"
+          ],
+          "target": "shared/assets/icons/third-party/ant-design/play-circle-filled.svg",
+          "sha256": "22cf77a3e9a549d11bcfdab7085e93bc7ee044f208dfabde391bb0bc5539b727",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 05-3，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": null,
+            "height": null,
+            "viewBox": "64 64 896 896"
+          },
+          "consumerSizeEvidence": [],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/third-party/ant-design/play-circle-filled.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.09",
+      "element": "关闭图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"09-5\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/activity/page.js",
+        "channels/product/page.js",
+        "channels/clues/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js",
+        "channels/proposal-center/proposal-center.css",
+        "channels/proposal-center/templates/markup-proposal-center.html",
+        "components/ai-agent/templates/markup-AI Agent本地Mock.html",
+        "components/modal/global-modal.css",
+        "components/modal/global-modal.js",
+        "components/operation-log/global-operation-log.js",
+        "components/海报分享/index.html",
+        "channels/config-center/templates/departmentUi-add-html.html",
+        "channels/config-center/templates/departmentUi-admin-html.html",
+        "channels/config-center/templates/departmentUi-rename-html.html",
+        "channels/config-center/templates/editor.html",
+        "channels/config-center/templates/markup-announcement-management-view.html",
+        "channels/config-center/templates/toolbar.html",
+        "components/modal/templates/markup-global-modal.html",
+        "channels/news-center/news-center.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/business/variants/news-close.svg",
+            "shared/assets/icons/operations/ai-agent/关闭弹窗.svg",
+            "shared/assets/icons/operations/海报分享/gaip-icon-close.svg",
+            "shared/assets/icons/operations/modal/close.svg",
+            "shared/assets/icons/forms/modal/closeIconMarkup-1-1.svg",
+            "shared/assets/icons/operations/proposal-center/plan-tag-close.svg",
+            "shared/assets/icons/business/config-center/departmentUi-add-html--inline-1.svg",
+            "shared/assets/icons/business/config-center/departmentUi-admin-html--inline-1.svg",
+            "shared/assets/icons/business/config-center/departmentUi-rename-html--inline-1.svg",
+            "shared/assets/icons/business/config-center/editor--inline-1.svg",
+            "shared/assets/icons/business/config-center/departmentUi-add-html--inline-2.svg",
+            "shared/assets/icons/business/config-center/departmentUi-rename-html--inline-2.svg",
+            "shared/assets/icons/business/config-center/editor--inline-2.svg",
+            "shared/assets/icons/business/config-center/editor--inline-3.svg",
+            "shared/assets/icons/business/config-center/toolbar--inline-2.svg",
+            "shared/assets/icons/third-party/ant-design/close-circle-filled.svg",
+            "shared/assets/icons/business/config-center/closeIcon-4-2.svg",
+            "shared/assets/icons/business/proposal-center/embedded-45049ec6a588.svg"
+          ],
+          "target": "shared/assets/icons/third-party/ant-design/close-outlined.svg",
+          "sha256": "fbb8cb83c104950478e0df31a65b639226c28f35d72d71c58225f5f32b30ccb9",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 09-5，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": null,
+            "height": null,
+            "viewBox": "64 64 896 896"
+          },
+          "consumerSizeEvidence": [
+            {
+              "file": "channels/config-center/templates/departmentUi-add-html.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/departmentUi-add-html.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/departmentUi-admin-html.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/departmentUi-rename-html.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/departmentUi-rename-html.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/editor.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/editor.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/editor.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/markup-announcement-management-view.html",
+              "width": null,
+              "height": null,
+              "class": null
+            },
+            {
+              "file": "channels/config-center/templates/toolbar.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            },
+            {
+              "file": "components/modal/templates/markup-global-modal.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            }
+          ],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/third-party/ant-design/close-outlined.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.11",
+      "element": "删除图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"11-1\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css",
+        "channels/proposal-center/page.js",
+        "components/海报分享/index.html",
+        "channels/activity/page.js",
+        "channels/product/page.js",
+        "channels/clues/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/workspace/page.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/third-party/ant-design/delete-outlined.svg",
+            "shared/assets/icons/business/proposal-center/embedded-2b14832daf2c.svg",
+            "shared/assets/icons/business/海报分享/inline-2.svg",
+            "shared/assets/icons/business/海报分享/inline-4.svg"
+          ],
+          "target": "shared/assets/icons/operations/config-center/delete.svg",
+          "sha256": "b96f0db3f54c7fa380ce1a4a908ba43477b7e802ac84da257be860eb76173b29",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 11-1，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": "16",
+            "height": "16",
+            "viewBox": null
+          },
+          "consumerSizeEvidence": [
+            {
+              "file": "components/海报分享/index.html",
+              "width": null,
+              "height": null,
+              "class": null
+            },
+            {
+              "file": "components/海报分享/index.html",
+              "width": null,
+              "height": null,
+              "class": null
+            }
+          ],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/operations/config-center/delete.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.12",
+      "element": "下载图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"12-2\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/activity/page.js",
+        "channels/product/page.js",
+        "channels/clues/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js",
+        "channels/proposal-center/templates/markup-proposal-center.html",
+        "components/operation-log/global-operation-log.js",
+        "components/海报分享/index.html",
+        "channels/config-center/templates/toolbar.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/operations/proposal-center/download2.0d6a1868.svg",
+            "shared/assets/icons/business/config-center/toolbar--inline-3.svg",
+            "shared/assets/icons/third-party/ant-design/arrow-down-outlined.svg",
+            "shared/assets/icons/business/induction/embedded-1515752a0d92.svg",
+            "shared/assets/icons/operations/海报分享/gaip-icon-download.svg",
+            "shared/assets/icons/business/induction/embedded-8cc0169c8da6.svg"
+          ],
+          "target": "shared/assets/icons/third-party/ant-design/download-outlined.svg",
+          "sha256": "ccf1699e0bcb20aac1c07b5c28ba457a2db488b32310ecc83e9bcce7c96f5000",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 12-2，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": null,
+            "height": null,
+            "viewBox": "64 64 896 896"
+          },
+          "consumerSizeEvidence": [
+            {
+              "file": "channels/config-center/templates/toolbar.html",
+              "width": "1em",
+              "height": "1em",
+              "class": null
+            }
+          ],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/third-party/ant-design/download-outlined.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.13",
+      "element": "组织文件夹图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"13-2\"]",
+        "representative": "全局图标预览保留版本，消费者见 appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "已有消费者的各尺寸/状态，绘图源统一",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/activity/page.js",
+        "channels/clues/page.js",
+        "channels/config-center/config-center-content.css",
+        "components/organization-tree/organization-tree.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/config-center/folder-open.svg",
+            "shared/assets/icons/forms/organization-tree/folder-open.svg"
+          ],
+          "target": "shared/assets/icons/third-party/ant-design/folder-open-outlined.svg",
+          "sha256": "f53dd0a677a6abe3815f84561fd63cbfba7c788deddc829522c48d419b94907e",
+          "status": "active",
+          "basis": "source",
+          "initialLocalEvidence": "outputs/icon-merges-20261001/before-hashes.json",
+          "reason": "用户选择保留 13-2，同用途指定版本使用此绘图源",
+          "sourceCanvas": {
+            "width": null,
+            "height": null,
+            "viewBox": "64 64 896 896"
+          },
+          "consumerSizeEvidence": [],
+          "sizeNote": "宿主宽高及CSS尺寸沿用本轮起点，未把原件画布尺寸当作浏览器实际显示尺寸。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/third-party/ant-design/folder-open-outlined.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-merges-20261001/audit.json",
+          "outputs/icon-merges-20261001/local-icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面颜色、几何及各业务状态未复验；保留 SVG 原件哈希不是浏览器绘制证明。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.03",
+      "element": "搜索图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"03-2\"]",
+        "representative": "全局图标预览03-2；消费者见appliesTo"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "各消费者既有尺寸与状态；统一绘图源",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/filter-bar/global-filter-bar.css",
+        "components/modal-controls/modal-controls.css",
+        "components/organization-tree/organization-tree.css",
+        "channels/activity/page.js",
+        "channels/clues/page.js",
+        "channels/news-center/news-center.js",
+        "channels/proposal-center/templates/markup-proposal-center.html",
+        "components/operation-log/global-operation-log.css",
+        "channels/product/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js",
+        "channels/wealth-center/wealth-center.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/shared/control-search.svg",
+            "shared/assets/icons/business/variants/wealth-search.svg",
+            "shared/assets/icons/third-party/ant-design/search-outlined.svg",
+            "shared/assets/icons/business/activity/embedded-100cdb61c868.svg",
+            "shared/assets/icons/business/ai-agent/搜索客户.svg",
+            "shared/assets/icons/business/clues/embedded-0a8d471e8cf6.svg",
+            "shared/assets/icons/operations/news-center/search.svg"
+          ],
+          "target": "shared/assets/icons/forms/shared/modal-search.svg",
+          "sha256": "590698a8933f000ffa2ebb7dbaecc791366fe4c2d2ad2b3fbf6c07777adb1554",
+          "sourceCanvas": {
+            "width": "32px",
+            "height": "32px",
+            "viewBox": "0 0 32 32"
+          },
+          "initialLocalEvidence": "outputs/icon-search-merge-20261001/before-hashes.json",
+          "sizeNote": "保留各消费者原宽高及CSS尺寸；32px原件画布不等于实际显示尺寸。",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户已明确03-1至03-7全部使用03-2"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/forms/shared/modal-search.svg",
+        "scripts/build-local-icons.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-search-merge-20261001/audit.json",
+          "outputs/icon-search-merge-20261001/icons.log"
+        ],
+        "gaps": [
+          "真实file页面视觉及全部状态未复验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.02",
+      "element": "时间图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"02-2\"]",
+        "representative": "全局图标预览02-2；公告时间输入框"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "各消费者既有尺寸与状态；统一绘图源",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/announcement-management.css",
+        "components/modal-controls/modal-controls.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/config-center/announcement-clock.svg",
+            "shared/assets/icons/forms/shared/modal-clock.svg"
+          ],
+          "target": "shared/assets/icons/forms/shared/modal-clock.svg",
+          "sha256": "65d8ec70dee4d2422dfc27e0113b1f2208b9866573107404e1660008e099593a",
+          "sourceCanvas": {
+            "width": "32px",
+            "height": "32px",
+            "viewBox": "0 0 32 32"
+          },
+          "initialLocalEvidence": "outputs/icon-time-merge-20261001/before-hashes.json",
+          "consumerSizeEvidence": "公告时间背景20px×20px，原声明不变；弹窗时钟样式文件逐字保留。源码尺寸，非浏览器测量。",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户指定02-2合并"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/forms/shared/modal-clock.svg",
+        "channels/config-center/announcement-management.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-time-merge-20261001/audit.json",
+          "outputs/icon-time-merge-20261001/announcements.log",
+          "outputs/icon-time-merge-20261001/modal-controls.log"
+        ],
+        "gaps": [
+          "真实file页面视觉及全部状态未复验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.08",
+      "element": "复制图标",
+      "locator": {
+        "selector": "[data-icon-sequence=\"08-1\"]",
+        "representative": "全局图标预览08-1；AI消息与资讯话术复制按钮、Ant复制调用"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "既有复制按钮与调用尺寸；合并绘图源",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/ai-agent/AI Agent本地Mock.js",
+        "components/ai-agent/templates/markup-AI Agent本地Mock.html",
+        "channels/activity/page.js",
+        "channels/product/page.js",
+        "channels/clues/page.js",
+        "channels/customer/page.js",
+        "channels/policy/page.js",
+        "channels/induction/page.js",
+        "channels/login/page.js",
+        "channels/proposal-center/page.js",
+        "channels/workspace/page.js",
+        "channels/news-center/news-center.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/operations/ai-agent/复制文本.svg",
+            "shared/assets/icons/business/variants/news-copy.svg",
+            "shared/assets/icons/third-party/ant-design/copy-outlined.svg"
+          ],
+          "target": "shared/assets/icons/operations/ai-agent/复制文本.svg",
+          "sha256": "6442ea8776451df671bd698480c333e3002344b1cbb5861c7dd8f4ab316fd723",
+          "sourceCanvas": {
+            "width": "32px",
+            "height": "32px",
+            "viewBox": "0 0 32 32"
+          },
+          "initialLocalEvidence": "outputs/icon-copy-merge-20261001/before-hashes.json",
+          "sizeNote": "保留消费者CSS、Ant宿主调用属性；完整采用08-1的浅灰圆角底和绘图。32px原件画布不等于实际显示尺寸。",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户明确08-1至08-3合并08-1"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/operations/ai-agent/复制文本.svg",
+        "shared/assets/icons/local-icons.generated.js"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "evidence": [
+          "outputs/icon-copy-merge-20261001/audit.json",
+          "outputs/icon-copy-merge-20261001/icons.log",
+          "outputs/icon-copy-merge-20261001/agent-copy.log",
+          "outputs/icon-copy-merge-20261001/news.log"
+        ],
+        "gaps": [
+          "真实file页面视觉及全部业务状态未复验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
+    },
+    {
+      "id": "shared-icons.merge.collapse-up",
+      "element": "更多操作收起 / 选择器收起",
+      "locator": {
+        "selector": ".gaipMultiSelect.isOpen .gaipMultiSelect__arrow::before, .gaip-table .gaip-table__row-actions .gaip-table__more[aria-expanded=\"true\"]::after",
+        "representative": "图标预览更多操作收起及两个真实控件"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "expanded",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/table/global-table.css",
+        "components/multi-select/global-multi-select.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": [
+            "shared/assets/icons/forms/css/components--multi-select--global-multi-select-3.css",
+            "shared/assets/icons/forms/css/components--table--global-table-3.css",
+            "shared/assets/icons/forms/css/components--table--global-table-4.css"
+          ],
+          "target": [
+            "shared/assets/icons/forms/css/components--table--global-table-3.css",
+            "shared/assets/icons/forms/css/components--table--global-table-4.css"
+          ],
+          "initialLocalEvidence": "outputs/icon-collapse-merge-20261002/before-hashes.json",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.drawing": {
+          "before": null,
+          "initialLocal": "选择器原12px背景图旋转180deg；表格6px方形边框旋转225deg。",
+          "target": {
+            "width": "6px",
+            "height": "6px",
+            "border-right": "1.5px solid currentColor",
+            "border-bottom": "1.5px solid currentColor",
+            "transform": "translateY(1px) rotate(225deg)"
+          },
+          "status": "active",
+          "basis": "source",
+          "note": "与选定表格原声明逐项相等；非浏览器测量。表格声明及选择器关闭态保持。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--table--global-table-3.css",
+        "shared/assets/icons/forms/css/components--table--global-table-4.css",
+        "shared/assets/icons/registry.json"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-02",
+        "evidence": [
+          "outputs/icon-collapse-merge-20261002/audit.json",
+          "outputs/icon-collapse-merge-20261002/icons.log",
+          "outputs/icon-collapse-merge-20261002/filter-bar.log"
+        ],
+        "gaps": [
+          "真实file页面视觉与点击未复验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-02"
+    },
+    {
+      "id": "shared-icons.sizing.wealth-search",
+      "element": "财富值搜索图标",
+      "locator": {
+        "selector": "svg.gaip-wealth-icon",
+        "representative": "财富值搜索图标"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/wealth-center/wealth-center.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "32px (合并后丢失尺寸类，素材固有宽度)",
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "note": "用户确认标准档位，普通图形画布16px；按钮外框保留。"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "32px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "note": "用户确认标准档位，普通图形画布16px；按钮外框保留。"
+        },
+        "icon.host-class": {
+          "before": null,
+          "initialLocal": null,
+          "target": "gaip-wealth-icon",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "scripts/build-local-icons.cjs",
+        "scripts/icon-merge-utils.cjs",
+        "shared/assets/icons/forms/css/channels--wealth-center--wealth-center-1.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.sizing.ai-close",
+      "element": "Web AI Agent 右上最小化图标",
+      "locator": {
+        "selector": ".gaip-agent-redesign-wrapper .headerTitle___cXSkY .closeIcon___X96Lj",
+        "representative": "工作台 AI Agent 右上最小化按钮"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "desktop"
+      },
+      "appliesTo": [
+        "components/ai-agent/AI Agent.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "box-sizing": {
+          "before": null,
+          "initialLocal": "content-box",
+          "target": "border-box",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "note": "32px点击框内保留24px图标显示区；用户要求整组统一，附件横线14×2px保留。"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": "30px",
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "30px",
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.asset": {
+          "before": null,
+          "initialLocal": "本轮前原件见 outputs/agent-minimize-icon-20261008/minimize.before.svg",
+          "target": "shared/assets/icons/operations/ai-agent/最小化.svg（附件横线形状保留，24px画布和统一配色适配）",
+          "status": "active",
+          "basis": "source",
+          "targetHash": "6d85e2a2d33ae5b3dda2ba5eb22c7a66e4f6dd0bd49b058351854cdfcbcf2c25"
+        },
+        "icon.fill": {
+          "before": null,
+          "initialLocal": "#2F3640",
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.canvas": {
+          "before": null,
+          "initialLocal": "32px",
+          "target": "24px",
+          "status": "active",
+          "basis": "mixed",
+          "note": "SVG由32px空白画布改为24px，横线重置居中，保持14×2px。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--ai-agent--AI Agent-34.css",
+        "shared/assets/icons/forms/css/components--ai-agent--AI Agent-39.css",
+        "shared/assets/icons/operations/ai-agent/最小化.svg"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/agent-header-controls-20261008/defaults.json",
+          "outputs/agent-header-controls-20261008/hover.json",
+          "outputs/agent-header-controls-20261008/variants.json",
+          "outputs/agent-header-controls-20261008/variant-hover.json",
+          "outputs/agent-header-controls-20261008/exit-hover-final.json",
+          "outputs/agent-header-controls-20261008/default.jpg",
+          "outputs/agent-header-controls-20261008/minimize-hover.jpg"
+        ],
+        "gaps": [
+          "线上基准未采集；现场代表为工作台HTTP桌面入口，未逐个频道截图。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.sizing.poster-close",
+      "element": "海报关闭图标",
+      "locator": {
+        "selector": ".gaip-icon-close",
+        "representative": "海报关闭图标"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/海报分享/index.styles-1.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "box-sizing": {
+          "before": null,
+          "initialLocal": "content-box",
+          "target": "border-box",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "note": "用户确认标准档位，普通图形画布16px；按钮外框保留。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--海报分享--index.styles-1-2.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.sizing.compact-down",
+      "element": "紧凑下拉图形",
+      "locator": {
+        "selector": "Ant down/caret-down SVG，配置组织树 switcher，.gaip-table__size-icon，.gaip-log-filters select，.gaip-log-footer select",
+        "representative": "紧凑下拉图形"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "Ant 本地组件别名",
+        "channels/config-center/templates/tree.html",
+        "components/table/global-table.css",
+        "components/operation-log/global-operation-log.css",
+        "components/icons/icon-catalog.js"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.display-viewBox": {
+          "before": null,
+          "initialLocal": "0 0 32 32",
+          "target": "7 7 18 18",
+          "status": "active",
+          "basis": "source",
+          "note": "紧凑Ant/组织树和目录20px预览保留适配窗口；2026-10-08中央SVG改为由More CSS生成。"
+        },
+        "background-size": {
+          "before": null,
+          "initialLocal": "12px 12px",
+          "target": "21.333333px 21.333333px",
+          "status": "active",
+          "basis": "source",
+          "note": "仅表格页量与操作日志下拉；原点击框、对齐、开合状态保留。"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/registry.json",
+        "shared/assets/icons/forms/css/components--table--global-table-1.css",
+        "components/operation-log/global-operation-log.css",
+        "scripts/build-local-icons.cjs",
+        "components/icons/icon-catalog.js"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-sizing-20261008/audit.json",
+          "outputs/icon-sizing-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实 file 页面视觉未复验；离线 SVG 像素边界和 DOM/CSS 模拟不代替浏览器布局。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.961878757160",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-wealth-notice .gaip-wealth-icon",
+        "representative": "shared/assets/icons/forms/css/channels--wealth-center--wealth-center-3.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/wealth-center/wealth-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--wealth-center--wealth-center-3.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.01bcde44386b",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".folderIcon___yjhFX",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-1.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-1.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.88a9af93018d",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-org-tree .folderIcon___yjhFX",
+        "representative": "shared/assets/icons/forms/css/components--organization-tree--organization-tree-1.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/organization-tree/organization-tree.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--organization-tree--organization-tree-1.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.2ec8718b5c32",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-node-search > svg",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-15.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "flex": {
+          "before": null,
+          "initialLocal": "0 0 15px",
+          "target": "0 0 16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-15.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.fcdada6f0071",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-node-search button svg",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-16.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-16.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.65cb51628b55",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-upload-icon",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-19.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-19.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.eb211e0a8490",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-upload-icon img",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-20.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-20.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.d5ade2f905d7",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-attachment-icon",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-21.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "flex": {
+          "before": null,
+          "initialLocal": "0 0 14px",
+          "target": "0 0 16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-21.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.d4e4432da3e8",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-attachment-icon svg",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-22.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-22.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.465c7b573e3f",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-bulk-status svg",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-23.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-23.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.416f5e986407",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".btnIcon___VmYho",
+        "representative": "shared/assets/icons/forms/css/channels--news-center--news-center-5.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/news-center/news-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--news-center--news-center-5.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.624f921b4847",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-news-page .searchInput___q6sEI .searchIcon___GmGN9",
+        "representative": "shared/assets/icons/forms/css/channels--news-center--news-center-6.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/news-center/news-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--news-center--news-center-6.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.d1bb7513e230",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-news-page .manageBtnIcon___Wmu7E",
+        "representative": "shared/assets/icons/forms/css/channels--news-center--news-center-7.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/news-center/news-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "17px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--news-center--news-center-7.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.d43eec391b7f",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-news-bridge-close svg",
+        "representative": "shared/assets/icons/forms/css/channels--news-center--news-center-8.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/news-center/news-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--news-center--news-center-8.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.8ac5fb716c98",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-news-bridge-talk svg",
+        "representative": "shared/assets/icons/forms/css/channels--news-center--news-center-9.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/news-center/news-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--news-center--news-center-9.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.57aae1a65bf1",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-lesson-action-icon",
+        "representative": "shared/assets/icons/forms/css/channels--learning-center--learning-center-10.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/learning-center/learning-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex": {
+          "before": null,
+          "initialLocal": "0 0 18px",
+          "target": "0 0 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--learning-center--learning-center-10.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.cad9c9874abd",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-lesson-action-icon--play",
+        "representative": "shared/assets/icons/forms/css/channels--learning-center--learning-center-11.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/learning-center/learning-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "url(\"../../third-party/ant-design/play-circle-filled.svg\") center / 18px 18px no-repeat",
+          "target": "url(\"../../third-party/ant-design/play-circle-filled.svg\") center / 16px 16px no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--learning-center--learning-center-11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.35d211b3e7ef",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-lesson-action-icon--review",
+        "representative": "shared/assets/icons/forms/css/channels--learning-center--learning-center-12.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/learning-center/learning-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background": {
+          "before": null,
+          "initialLocal": "url(\"../../third-party/ant-design/play-circle-filled.svg\") center / 18px 18px no-repeat",
+          "target": "url(\"../../third-party/ant-design/play-circle-filled.svg\") center / 16px 16px no-repeat",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--learning-center--learning-center-12.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.ea00f77f299f",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".card___vjewZ .leftIconBox___RPpoU svg",
+        "representative": "shared/assets/icons/forms/css/components--ai-agent--AI Agent-2.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/ai-agent/AI Agent.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "15px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--ai-agent--AI Agent-2.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.36693b4a9ccd",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".delete-btn svg",
+        "representative": "shared/assets/icons/forms/css/components--海报分享--index.styles-1-5.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/海报分享/index.styles-1.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "flex": {
+          "before": null,
+          "initialLocal": "0 0 14px",
+          "target": "0 0 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--海报分享--index.styles-1-5.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.fd59108428bf",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": "svg",
+        "representative": "shared/assets/icons/forms/css/components--海报分享--index.styles-1-7.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/海报分享/index.styles-1.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "17px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "17px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--海报分享--index.styles-1-7.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.91fe0f98a737",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-carousel-arrow svg",
+        "representative": "shared/assets/icons/forms/css/components--carousel-controls--global-carousel-controls-1.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/carousel-controls/global-carousel-controls.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "22px",
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "22px",
+          "target": "20px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--carousel-controls--global-carousel-controls-1.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.46e38f2a4ce4",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-wealth-upload-zone .gaip-wealth-icon",
+        "representative": "shared/assets/icons/forms/css/channels--wealth-center--wealth-center-2.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/wealth-center/wealth-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "26px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "26px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--wealth-center--wealth-center-2.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.90f885abf91c",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-file-type-icon",
+        "representative": "shared/assets/icons/forms/css/channels--proposal-center--proposal-center-1.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/proposal-center/proposal-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "22px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "22px",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--proposal-center--proposal-center-1.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.1f370553722e",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-config-page .gaip-organization-log-dialog .closeIcon___zxceU svg",
+        "representative": "shared/assets/icons/forms/css/channels--config-center--config-center-content-11.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/config-center/config-center-content.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/channels--config-center--config-center-content-11.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.1b28cc90297f",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-owner-close img",
+        "representative": "channels/proposal-center/proposal-center.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "channels/proposal-center/proposal-center.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "channels/proposal-center/proposal-center.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.ce6a25832a71",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-log-close img",
+        "representative": "components/operation-log/global-operation-log.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "32px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "32px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.4aca82a351d6",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-log-filters .gaip-log-search",
+        "representative": "components/operation-log/global-operation-log.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background-size": {
+          "before": null,
+          "initialLocal": "14px 14px",
+          "target": "16px 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.84bbf804602d",
+      "element": "图标标准显示尺寸",
+      "locator": {
+        "selector": ".gaip-log-dates input[type=\"date\"]",
+        "representative": "components/operation-log/global-operation-log.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background-size": {
+          "before": null,
+          "initialLocal": "14px 14px",
+          "target": "16px 16px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/operation-log/global-operation-log.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-size-standard-20261008/audit.json",
+          "outputs/icon-size-standard-20261008/icons.log"
+        ],
+        "gaps": [
+          "真实file页面尺寸、布局和交互状态未逐页验证；离线SVG图不替代现场。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.preview",
+      "element": "图标列表单尺寸预览",
+      "locator": {
+        "selector": ".iconCatalog__samples, .iconCatalog__stage, [data-icon-size]",
+        "representative": "components/icons/icon-catalog.css"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/icons/icon-catalog.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.display-sizes": {
+          "before": null,
+          "initialLocal": [
+            "原声明 / 32px对比"
+          ],
+          "target": [
+            "20px"
+          ],
+          "status": "active",
+          "basis": "source"
+        },
+        "grid-template-columns": {
+          "before": null,
+          "initialLocal": "1fr 1fr",
+          "target": "minmax(0, 1fr)",
+          "status": "active",
+          "basis": "source"
+        },
+        "min-height": {
+          "before": null,
+          "initialLocal": "112px",
+          "target": "64px",
+          "status": "active",
+          "basis": "source"
+        },
+        "margin-bottom": {
+          "before": null,
+          "initialLocal": "8px",
+          "target": "0px",
+          "status": "active",
+          "basis": "source",
+          "note": "移除逐卡尺寸说明后，展示区不再额外留底部间距。"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": "8px",
+          "target": "normal (单个网格项，无间距)",
+          "status": "active",
+          "basis": "source",
+          "note": "桌面和窄屏均移除三栏样例间距声明。"
+        }
+      },
+      "sources": [
+        "components/icons/icon-catalog.css",
+        "components/icons/icon-catalog-sizes.css",
+        "components/icons/templates/markup-icon-catalog.html",
+        "scripts/build-icon-catalog.cjs"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-preview-single-size-20261008/preview.diff",
+          "outputs/icon-preview-single-size-20261008/icons.log",
+          "outputs/icon-preview-single-size-20261008/preservation.json",
+          "outputs/icon-preview-single-size-20261008/standards.log"
+        ],
+        "gaps": [
+          "真实file页面布局未验证；DOM和CSS源码检查不代表浏览器视觉验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.standard.tokens",
+      "element": "图标三档尺寸变量",
+      "locator": {
+        "selector": ":root",
+        "representative": "业务共享样式与图标目录同源"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "shared/styles/channel-foundation.css",
+        "components/icons/icon-catalog.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "--gaip-icon-size-sm": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "--gaip-icon-size-md": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "--gaip-icon-size-lg": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/icon-size-tokens.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "gaps": [
+          "业务各实例原生布局仍待复验"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.sizing.select-chevron-pair",
+      "element": "多选展开与收起箭头配对",
+      "locator": {
+        "selector": ".gaipMultiSelect__arrow::before",
+        "representative": "独立多选及筛选栏多选"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "closed/open",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/multi-select/global-multi-select.css",
+        "components/filter-bar/global-filter-bar.css"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "background-size": {
+          "before": null,
+          "initialLocal": "contain（12px图框）",
+          "target": "16.970563px（16/32绘图宽度映射为8.485282px）",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.open-transform": {
+          "before": null,
+          "initialLocal": "筛选栏180deg覆盖更多操作收起225deg",
+          "target": "translateY(1px) rotate(225deg)",
+          "status": "active",
+          "basis": "source",
+          "reason": "继承More边框绘图时保持正确朝上，而非再次旋转旧SVG"
+        }
+      },
+      "sources": [
+        "shared/assets/icons/forms/css/components--multi-select--global-multi-select-2.css",
+        "shared/assets/icons/forms/css/components--filter-bar--global-filter-bar-1.css",
+        "shared/assets/icons/forms/css/components--filter-bar--global-filter-bar-2.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/icon-expand-merge-20261008/geometry-audit.json",
+          "outputs/icon-expand-merge-20261008/icons.log",
+          "outputs/icon-expand-merge-20261008/controls.log",
+          "outputs/icon-expand-merge-20261008/consumers-recheck.log"
+        ],
+        "gaps": [
+          "真实file视觉、点击命中与全部业务状态未验证；数学轮廓等价和DOM检查不代替浏览器验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.ai-header.peer-canvas",
+      "element": "收起/展开会话与全屏/退出全屏图标显示区",
+      "locator": {
+        "selector": ".gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU img, .gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-fullscreen-icon",
+        "representative": "工作台 AI Agent 顶栏两个切换按钮"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "expanded / collapsed / fullscreen / windowed",
+        "viewport": "desktop"
+      },
+      "properties": {
+        "icon.width": {
+          "before": null,
+          "initialLocal": "会话22px；全屏20px",
+          "target": "24px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "会话22px；全屏20px",
+          "target": "24px",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        "components/ai-agent/AI Agent.css",
+        "shared/assets/icons/forms/css/components--ai-agent--AI Agent-38.css"
+      ],
+      "appliesTo": [
+        "所有注册Web入口共享AI Agent"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/agent-header-controls-20261008/defaults.json",
+          "outputs/agent-header-controls-20261008/hover.json",
+          "outputs/agent-header-controls-20261008/variants.json",
+          "outputs/agent-header-controls-20261008/variant-hover.json",
+          "outputs/agent-header-controls-20261008/exit-hover-final.json",
+          "outputs/agent-header-controls-20261008/default.jpg",
+          "outputs/agent-header-controls-20261008/minimize-hover.jpg"
+        ],
+        "gaps": [
+          "线上基准未采集；现场代表为工作台HTTP桌面入口，未逐个频道截图。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "shared-icons.ai-header.button-surface",
+      "element": "顶栏三个操作按钮底色与圆角",
+      "locator": {
+        "selector": ".gaip-agent-redesign-wrapper .headerTitle___cXSkY .historyBtn___ElWTU, .gaip-agent-redesign-wrapper .headerTitle___cXSkY .gaip-agent-fullscreen-toggle, .gaip-agent-redesign-wrapper .headerTitle___cXSkY .closeIcon___X96Lj",
+        "representative": "工作台 AI Agent 顶栏的收起、全屏、最小化"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default / hover",
+        "viewport": "desktop"
+      },
+      "properties": {
+        "border-radius": {
+          "before": null,
+          "initialLocal": "会话/全屏8px；最小化0px",
+          "target": "8px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "background.hover": {
+          "before": null,
+          "initialLocal": "会话/全屏#F2F4F5；最小化无Hover底色",
+          "target": "#F2F4F5",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "transition": {
+          "before": null,
+          "initialLocal": "会话background/color 0.15s；全屏/最小化无共同过渡",
+          "target": "background 0.15s",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        "components/ai-agent/AI Agent.css"
+      ],
+      "appliesTo": [
+        "所有注册Web入口共享AI Agent"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "outputs/agent-header-controls-20261008/defaults.json",
+          "outputs/agent-header-controls-20261008/hover.json",
+          "outputs/agent-header-controls-20261008/variants.json",
+          "outputs/agent-header-controls-20261008/variant-hover.json",
+          "outputs/agent-header-controls-20261008/exit-hover-final.json",
+          "outputs/agent-header-controls-20261008/default.jpg",
+          "outputs/agent-header-controls-20261008/minimize-hover.jpg"
+        ],
+        "gaps": [
+          "线上基准未采集；现场代表为工作台HTTP桌面入口，未逐个频道截图。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ async function main() {
     }; };
     req.m[49704] = module => { module.exports = { Wi: async () => ({code:'20000',data:{filePath:'local-test.png',fileStorageId:'test'}}) }; };
     const React = req(67294), ReactDOM = req(73935), Terminal = req(92237).default;
-    w.eval(read('shared/scripts/global-modal.js')); w.eval(read('shared/scripts/global-date-picker.js')); w.eval(read('shared/scripts/modal-controls.js'));
+    w.eval(read('components/modal/global-modal.js')); w.eval(read('components/date-picker/global-date-picker.js')); w.eval(read('components/modal-controls/modal-controls.js'));
     const api = w.__GAIP_MODAL_CONTROLS__;
     for (const variant of ['converted','closed','closed-empty-options']) {
       const mode = variant === 'converted' ? 'converted' : 'closed';

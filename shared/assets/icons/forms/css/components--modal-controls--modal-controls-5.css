@@ -1,0 +1,1 @@
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow, .ant-picker-suffix){ color: var(--mc-muted) !important; width: 16px !important; height: 16px !important; border: 0 !important; flex-shrink: 0; }

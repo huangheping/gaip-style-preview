@@ -1,0 +1,5 @@
+html.gaip-popup-preview-isolated,
+html.gaip-popup-preview-isolated body { background: #f5f7f6 !important; }
+.gaip-popup-preview-foreground { z-index: 2147483000 !important; }
+.ant-modal-root.gaip-popup-preview-foreground,
+.ant-drawer-root.gaip-popup-preview-foreground { position: relative !important; }

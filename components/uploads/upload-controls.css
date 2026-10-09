@@ -1,0 +1,26 @@
+/* Catalogue geometry only; source control skins are built from their owners. */
+.uploadCatalog { color: #2f3640; }
+.uploadCatalog [hidden] { display: none !important; }
+.uploadCatalog__group + .uploadCatalog__group { margin-top: 40px; }
+.uploadCatalog__group > h3 { margin: 0 0 20px; font-size: 18px; line-height: 26px; font-weight: 600; }
+.uploadCatalog__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 24px; }
+.uploadCatalog__case { min-width: 0; }
+.uploadCatalog__case > h4 { margin: 0 0 12px; font-size: 14px; line-height: 22px; font-weight: 500; }
+.uploadCatalog .uploadCatalog__surface { min-height: 180px; padding: 24px; margin: 0; }
+.uploadCatalog .uploadControl { --filter-brand: #005b52; --teal: #025b52; --teal-soft: #eaf7f5; min-width: 0; font: inherit; }
+.uploadCatalog .uploadControl button, .uploadCatalog .uploadControl label { font-family: inherit; }
+.uploadCatalog .uploadControl__icon { width: 16px; height: 16px; object-fit: contain; }
+.uploadCatalog .uploadControl__limits { display: block; margin-top: 12px; color: #879295; font-size: 12px; line-height: 20px; overflow-wrap: anywhere; }
+.uploadCatalog .lc-cover-picker { width: min(100%,280px); }
+.uploadCatalog .lc-field-help { font-size: 12px; line-height: 20px; color: #747c80; margin: 4px 0; }
+.uploadCatalog .uploadControl__attachment { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 6px; background: #f4f5f5; cursor: pointer; }
+.uploadCatalog .uploadControl [data-upload-choose]:focus-visible { outline: 2px solid #00887b; outline-offset: 2px; }
+.uploadCatalog .is-dragging [data-upload-choose] { outline: 2px solid #00887b; outline-offset: 2px; }
+.uploadCatalog [data-upload-error] { margin: 12px 0 0; font-size: 12px; line-height: 20px; color: #d9363e; overflow-wrap: anywhere; }
+.uploadCatalog__files:empty { display: none; }
+.uploadCatalog__files { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.uploadCatalog__file { display: flex; align-items: center; gap: 10px; min-width: 0; width: 100%; padding: 8px 0; border-top: 1px solid #e7eae9; font-size: 13px; line-height: 20px; }
+.uploadCatalog__file img { width: 64px; height: 64px; flex: 0 0 64px; object-fit: contain; background: #f8faf9; }
+.uploadCatalog__file span { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+.uploadCatalog__file button { flex: 0 0 auto; color: #005b52; border: 0; background: none; cursor: pointer; font: inherit; }
+@media (max-width: 1100px) { .uploadCatalog__grid { grid-template-columns: minmax(0,1fr); } }

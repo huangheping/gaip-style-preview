@@ -32,10 +32,10 @@ async function run(entry) {
     w.__GAIP_WEALTH_CENTER__ = { isOpen: () => key() === 'wealth', closeForNavigation() {} };
     for (const file of [
       'shared/scripts/learning-nav.js',
-      'features/news-center/mock-data.js', 'features/news-center/news-center.js',
-      'features/wealth-center/wealth-nav.js',
-      'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js',
-      'features/config-center/source-markup.js', 'features/config-center/config-center.js'
+      'channels/news-center/templates.generated.js', 'channels/news-center/news-center.js',
+      'channels/wealth-center/wealth-nav.js',
+      'shared/scripts/organization-store.js', 'components/organization-tree/organization-tree.js',
+      'channels/config-center/source-markup.js', 'channels/config-center/config-center.js'
     ]) w.eval(source(file));
     await tick(); await tick();
     const states = [
@@ -93,6 +93,6 @@ async function run(entry) {
     console.log('PASS', entry, states.length + ' virtual states, ' + redraws + ' stale redraws, all native returns, parent toggles and observer stability (DOM only)');
   } finally { w.close(); }
 }
-(async () => { await run('登录.html'); await run('财富值中心.html'); })().catch(error => {
+(async () => { await run('channels/login/index.html'); await run('channels/wealth-center/index.html'); })().catch(error => {
   console.error(error); process.exitCode = 1;
 });

@@ -3,6 +3,41 @@
   "page": "全局表格",
   "records": [
     {
+      "id": "global-table.row-menu-trigger-hover",
+      "element": "带更多菜单的表格行操作悬停与展开触发态",
+      "locator": {
+        "selector": ".gaip-table[data-row-menu] .gaip-table__row-actions .gaip-table__button:hover:not(:disabled), .gaip-table[data-row-menu] .gaip-table__row-actions .gaip-table__more[aria-expanded=\"true\"]:not(:disabled)",
+        "representative": "课程管理 / 全局表格目录"
+      },
+      "state": { "channel": "shared", "variant": "hover / expanded-trigger", "viewport": "1600x1000" },
+      "appliesTo": ["课程管理", "全局组件目录/global-table"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "background": { "before": null, "initialLocal": "#f5f5f5", "target": "#e8f3f0", "status": "active", "basis": "source", "reason": "对齐普通共享表格行操作；弹出菜单项规则保持不变" }
+      },
+      "sources": ["components/table/global-table.css"],
+      "verification": {
+        "level": "browser-checked", "checkedAt": "2026-10-09",
+        "evidence": ["outputs/course-action-hover-20261009/acceptance.md", "outputs/course-action-hover-20261009/menu.png"],
+        "gaps": ["未采集线上基准；实际浏览器范围为课程三项操作、菜单两项及禁用态、直播编辑和目录代表按钮。"]
+      },
+      "status": "active", "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "global-table.empty-alignment",
+      "element": "共享表格空状态对齐",
+      "locator": { "selector": ".gaip-table .gaip-table__table td.gaip-table__empty", "representative": "46 学情操作日志 / 全局表格预览" },
+      "state": { "channel": "shared", "variant": "empty / loading / error", "viewport": null },
+      "appliesTo": ["全局表格预览", "46 学情操作日志", "共享表格rowVerticalAlign=top消费者"],
+      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
+      "properties": {
+        "vertical-align": { "before": null, "initialLocal": "预览middle；top数据行配置误作用于空状态", "target": "空/加载/错误状态middle，正文top配置仅作用于非空状态单元格；水平center保持不变", "status": "active", "basis": "source" }
+      },
+      "sources": ["components/table/global-table.css"],
+      "verification": { "level": "needs-recheck", "checkedAt": "2026-09-29", "evidence": ["scripts/test-information-detail-source.cjs"], "gaps": ["DOM/CSS级比较，不代替浏览器实际像素位置验收。"] },
+      "status": "active", "updatedAt": "2026-09-29"
+    },
+    {
       "id": "global-table.surface",
       "element": "表格外框",
       "locator": {
@@ -68,8 +103,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -131,8 +166,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -211,8 +246,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -267,8 +302,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -347,8 +382,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -421,8 +456,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -468,8 +503,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -566,8 +601,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -661,8 +696,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -724,8 +759,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -795,8 +830,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -842,8 +877,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -929,8 +964,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -976,8 +1011,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1023,8 +1058,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1070,8 +1105,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1133,8 +1168,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1195,8 +1230,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1250,8 +1285,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1305,8 +1340,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1352,8 +1387,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格-20260909-140946/features/learning-center/learning-v11.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格-20260909-140946/channels/learning-center/learning-v11.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1411,8 +1446,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1470,8 +1505,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1515,7 +1550,7 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css"
+        "components/table/global-table.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1573,7 +1608,7 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css"
+        "components/table/global-table.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1624,7 +1659,7 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css"
+        "components/table/global-table.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1675,7 +1710,7 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css"
+        "components/table/global-table.css"
       ],
       "verification": {
         "level": "source-only",
@@ -1728,8 +1763,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1817,8 +1852,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1879,8 +1914,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -1973,8 +2008,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -2043,8 +2078,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -2097,8 +2132,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "shared/scripts/global-table.js"
+        "components/table/global-table.css",
+        "components/table/global-table.js"
       ],
       "verification": {
         "level": "browser-checked",
@@ -2159,8 +2194,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格视觉-20260909-153354/shared/styles/global-table.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格视觉-20260909-153354/components/table/global-table.css"
       ],
       "status": "active",
       "updatedAt": "2026-09-09T15:38:11",
@@ -2205,8 +2240,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "../本地回退备份/全局表格视觉-20260909-153354/shared/styles/global-table.css"
+        "components/table/global-table.css",
+        "../本地回退备份/全局表格视觉-20260909-153354/components/table/global-table.css"
       ],
       "status": "active",
       "updatedAt": "2026-09-09T15:38:11",
@@ -2247,7 +2282,7 @@
           "status": "active",
           "basis": "source",
           "target": "20px",
-          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "padding": {
           "before": null,
@@ -2255,7 +2290,7 @@
           "status": "active",
           "basis": "source",
           "target": "0 8px",
-          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "border-radius": {
           "before": null,
@@ -2263,7 +2298,7 @@
           "status": "active",
           "basis": "source",
           "target": "3px",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "font-size": {
           "before": null,
@@ -2271,7 +2306,7 @@
           "status": "active",
           "basis": "source",
           "target": "12px",
-          "reason": "纠正未加载旧快照参考；以组织架构实际生效覆盖规则和浏览器计算样式为准"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "line-height": {
           "before": null,
@@ -2279,7 +2314,7 @@
           "status": "active",
           "basis": "source",
           "target": "1",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "font-weight": {
           "before": null,
@@ -2287,7 +2322,7 @@
           "status": "active",
           "basis": "source",
           "target": "400",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "border": {
           "before": null,
@@ -2295,24 +2330,27 @@
           "status": "active",
           "basis": "source",
           "target": "0",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
-        "features/learning-center/learning-center.css（旧标签配色）"
+        "components/table/global-table-tag.css",
+        "docs/table-tag-spec.md"
       ],
       "status": "active",
-      "updatedAt": "2026-09-09T16:30:48",
+      "updatedAt": "2026-09-28",
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09T16:31:22",
-        "gaps": [
-          "线上基准未采集。"
-        ],
+        "checkedAt": "2026-09-28",
         "evidence": [
-          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
         ]
       }
     },
@@ -2344,33 +2382,36 @@
           "initialLocal": "#2f3640",
           "status": "active",
           "basis": "source",
-          "target": "#2f3640",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#626B75",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "background": {
           "before": null,
           "initialLocal": "#e5e6e8",
           "status": "active",
           "basis": "source",
-          "target": "#e5e6e8",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#F0F1F2",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
-        "features/learning-center/learning-center.css（旧标签配色）"
+        "components/table/global-table-tag.css",
+        "docs/table-tag-spec.md"
       ],
       "status": "active",
-      "updatedAt": "2026-09-09T16:25:21",
+      "updatedAt": "2026-09-28",
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09T16:31:22",
-        "gaps": [
-          "线上基准未采集。"
-        ],
+        "checkedAt": "2026-09-28",
         "evidence": [
-          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
         ]
       }
     },
@@ -2402,33 +2443,36 @@
           "initialLocal": "#ffffff",
           "status": "active",
           "basis": "source",
-          "target": "#ffffff",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#08776B",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "background": {
           "before": null,
           "initialLocal": "#389e0d",
           "status": "active",
           "basis": "source",
-          "target": "#389e0d",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#E5F6F3",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
-        "features/learning-center/learning-center.css（旧标签配色）"
+        "components/table/global-table-tag.css",
+        "docs/table-tag-spec.md"
       ],
       "status": "active",
-      "updatedAt": "2026-09-09T16:25:21",
+      "updatedAt": "2026-09-28",
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09T16:31:22",
-        "gaps": [
-          "线上基准未采集。"
-        ],
+        "checkedAt": "2026-09-28",
         "evidence": [
-          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
         ]
       }
     },
@@ -2460,33 +2504,36 @@
           "initialLocal": "#805b0d",
           "status": "active",
           "basis": "source",
-          "target": "#805b0d",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#345AC6",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         },
         "background": {
           "before": null,
           "initialLocal": "#f4d67c",
           "status": "active",
           "basis": "source",
-          "target": "#f4d67c",
-          "reason": "组织架构尺寸与文字排版；沿用课程管理配色"
+          "target": "#EDF2FF",
+          "reason": "2026-09-28 接入全局表格标签；尺寸保持，六色由共享标签组件维护，首次本地值保留。"
         }
       },
       "sources": [
-        "shared/styles/global-table.css",
-        "features/config-center/config-center-content.css（最终覆盖规则，仅尺寸参考）",
-        "features/learning-center/learning-center.css（旧标签配色）"
+        "components/table/global-table-tag.css",
+        "docs/table-tag-spec.md"
       ],
       "status": "active",
-      "updatedAt": "2026-09-09T16:25:21",
+      "updatedAt": "2026-09-28",
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09T16:31:22",
-        "gaps": [
-          "线上基准未采集。"
-        ],
+        "checkedAt": "2026-09-28",
         "evidence": [
-          "Chromium148真实组织架构标签计算样式：20px高度、12px字号、0 8px内边距、3px圆角；修正后同源预览尺寸和原课程配色断言、课程控制器浏览器回归通过。"
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
         ]
       }
     }

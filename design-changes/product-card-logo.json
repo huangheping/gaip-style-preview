@@ -77,8 +77,8 @@
         }
       },
       "sources": [
-        "shared/styles/product-card-logo.css",
-        "shared/scripts/product-card-logo.js",
+        "channels/product/product-card-logo.css",
+        "channels/product/product-card-logo.js",
         "web/logos/"
       ],
       "verification": {

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="radar___PxGoN" width="160" height="152" data-ui-view-box="0 0 160 152" data-children="array" data-kind="jsxs">
+        <template data-slot="radarContent"></template>
+        <polygon data-ui-fill="none" data-ui-stroke="transparent" data-props="polygonProps" data-kind="jsx"></polygon>
+        <template data-slot="radarContent2"></template>
+        <polygon class="radarData___Tv_3g" data-ui-fill="rgba(31, 110, 100, 0.18)" data-ui-stroke="#1f6e64" data-ui-stroke-width="1.5" data-props="radarDataProps" data-kind="jsx"></polygon>
+        <template data-slot="radarContent3"></template>
+      </svg>

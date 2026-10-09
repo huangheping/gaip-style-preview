@@ -15,9 +15,9 @@ function styles(file) {
   try{
     const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
     page.on('pageerror',e=>errors.push(e.message));
-    await page.setContent(read('全局组件/index.html').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').replace(/<link\b[^>]*>/g,''));
-    for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','shared/styles/global-multi-select.css','shared/styles/organization-tree.css','shared/styles/global-filter-bar.css', 'shared/styles/global-date-picker.css','全局组件/components-preview.css'])await page.addStyleTag({content:styles(f)});
-    for(const f of ['shared/scripts/organization-store.js','shared/scripts/organization-tree.js','shared/scripts/global-multi-select.js','shared/scripts/global-date-picker.js', 'shared/scripts/global-filter-bar.js','shared/scripts/global-modal.js','全局组件/components-registry.js','全局组件/components-preview.js'])await page.addScriptTag({content:read(f)});
+    await page.setContent(read('components/index.html').replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').replace(/<link\b[^>]*>/g,''));
+    for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','components/multi-select/global-multi-select.css','components/organization-tree/organization-tree.css','components/filter-bar/global-filter-bar.css', 'components/date-picker/global-date-picker.css','components/components-preview.css'])await page.addStyleTag({content:styles(f)});
+    for(const f of ['shared/scripts/organization-store.js','components/organization-tree/organization-tree.js','components/multi-select/global-multi-select.js','components/date-picker/global-date-picker.js', 'components/filter-bar/global-filter-bar.js','components/modal/global-modal.js','components/components-registry.js','components/components-preview.js'])await page.addScriptTag({content:read(f)});
     await page.locator('[data-component="filter-bar"]').click();
     const scope=page.locator('[data-gaip-filter-demo]'),multi=scope.locator('.gaipMultiSelect'),combo=multi.locator('[role="combobox"]'),reset=scope.locator('[data-gaip-filter-action="reset"]');
     assert.equal(await reset.getAttribute('data-active'),'false');

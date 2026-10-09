@@ -10,10 +10,10 @@ risk: high
 - `shared/config/channels.js`：频道名称、路由、入口、图标和类型的唯一来源。
 - `shared/scripts/channel-entry-navigation.js`：用 History API 同步地址栏入口文件名，不重新加载页面。
 - `shared/scripts/learning-nav.js`：学习中心虚拟频道和主导航图标。
-- `features/wealth-center/wealth-nav.js`：财富值中心的可展开一级菜单与三个子频道。
-- `features/news-center/news-center.js`：资讯中心虚拟频道入口与主导航项。
-- `features/config-center/config-center.js`：配置中心一级展开菜单、组织架构/公告管理/操作日志二级页面与虚拟频道生命周期。
-- `shared/styles/channel-foundation.css`：通过 `gaip-main-menu-*` 统一可展开父项的图标列、文字列、固定右侧箭头、旋转动效与折叠侧栏表现。
+- `channels/wealth-center/wealth-nav.js`：财富值中心的可展开一级菜单与三个子频道。
+- `channels/news-center/news-center.js`：资讯中心虚拟频道入口与主导航项。
+- `channels/config-center/config-center.js`：配置中心一级展开菜单、组织架构/公告管理/操作日志二级页面与虚拟频道生命周期。
+- `shared/styles/main-nav.css`：通过 `gaip-main-menu-*` 统一可展开父项的图标列、文字列、固定右侧箭头、旋转动效与折叠侧栏表现。
 - `shared/scripts/global-breadcrumb.js`：全局面包屑。
 
 ## 不变量
@@ -51,7 +51,8 @@ risk: high
 
 | 项目 | 固定值 |
 | --- | --- |
-| 一级/二级菜单项高度 / 行高 | `36px`（共享框架 CSS，2026-09-07 用户调整） |
+| 普通一级叶子 / 二级菜单项高度与行高 | `32px`（本轮合并前工作区实测，保留已有调整） |
+| 可展开一级父项高度与行高 | `36px`（本轮合并前工作区实测） |
 | 父项外边距 | 上下 `4px`，左右 `0` |
 | 父项左内边距 | `24px` |
 | 左边框占位 | `4px solid transparent` |
@@ -80,15 +81,17 @@ risk: high
 
 ### 图标资产
 
+- 2026-09-29 主导航替换为用户新版12个SVG，原件集中于`shared/assets/main-nav/`。全部经`shared/scripts/templates/markup-learning-nav.html`输出内联SVG，共享`main-nav.css`的颜色与尺寸；不再分叶子蒙版、财富值内联、配置滤镜三套实现。下次换图同步模板、构建缓存和引用版本，视觉台账见`design-changes/shared-main-nav-icons.json`。
+
 - 优先复用线上构建包或项目已有的原始图标文件/DOM，不凭记忆绘制近似图标。
-- 图标容器统一占用 `18px × 18px`，视觉图形可按原资产尺寸呈现，但不得改变图标列宽或文字起点。
-- 固定填色的 SVG `<img>` 需要随当前态变色时，原 `<img>` 必须保持 `display`、`visibility` 和 `opacity: 1`，只通过 CSS `filter` 改色。禁止隐藏原图后依赖 `mask` / `-webkit-mask`，避免 `file://` 或浏览器策略导致图标消失。
-- 原始内联 SVG 已使用 `currentColor` 时，直接继承父项颜色，不重新写 path。
+- 图标容器统一 `18px × 18px`，SVG图形为`16px × 16px`并居中（四周各1px）；分别由`--gaip-nav-icon-size`与`--gaip-nav-glyph-size`维护。默认色`#2F3640`，hover/键盘聚焦及当前态`#025B52`，透明度`1`，无颜色过渡；不改变图标列宽或文字起点。
+- 主题笔画/填充统一`currentColor`，禁止另加img滤镜或mask。保留原稿path、stroke-width、fill-rule和transform；薄荷原稿的0.4px白色轮廓保留，不作为主题状态色。
+- `scripts/check-project-structure.cjs`检查12份模板与原件几何一致、主题着色及透明度；`scripts/test-main-nav-icons-browser.cjs`在工作台/产品两个真实file入口检查12项四种状态、对齐、折叠CSS尺寸与Hash导航。该双入口结果不等于所有业务页面全量验收。
 
 ### 实现与验证清单
 
 1. 在 `shared/config/channels.js` 只登记一份频道、views 和资源。
-2. 可展开父项复用 `channel-foundation.css` 的 `gaip-main-menu-*` 契约；频道样式只补原始图标和必要的二级内容差异。
+2. 可展开父项复用 `main-nav.css` 的 `gaip-main-menu-*` 契约；频道只提供内容与状态；主导航固定样式统一在 main-nav.css 维护，不在频道 CSS 追加覆盖。
 3. 主菜单滚动父层由 `channel-regions.js` 统一标记，频道不得重设滚动条或百宝箱层级。
 4. 真实导航仅绑定一级叶子项和二级链接；父项事件必须 `preventDefault()` / `stopPropagation()` 并保持 Hash 不变。
 5. 运行 `scripts/test-expandable-main-nav.cjs`，覆盖父项纯开合、键盘、双向频道隔离、图标可见、父子当前态及共享滚动层。
@@ -104,3 +107,7 @@ risk: high
 - [[../决策/ADR-001-继续使用Hash无刷新路由|ADR-001：继续使用 Hash 无刷新路由]]
 - [[频道资源加载]]
 - [[docs/channel-structure|频道页面结构命名规范]]
+
+## 2026-09-29 样式集中维护
+
+自有主导航样式唯一入口为 `shared/styles/main-nav.css`，包含图标、普通项、父子项、排序、滚动与百宝箱底部。原 learning-nav.css 已替换，channel-foundation.css 只保留共享变量、内容基础与顶栏面包屑。配置、财富值及资讯频道不再拥有主导航样式；Umi 基线和 global-font.css 仍提供框架与字体。资源加载顺序为基础框架后加载主导航；既有 React 节点与控制器保持不变。验收范围见[[knowledge/变更/当前未发布变更#主导航 CSS 集中维护（2026-09-29）]]。

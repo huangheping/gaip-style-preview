@@ -1,3 +1,16 @@
+/* @gaip-markup-cache:start */
+// Generated from the owned templates/markup-*.html; run npm run build:templates.
+var __gaipMarkup_e817834a30 = (function () {
+  var templates = {"createItem-1":"<a href=\"{{gaip:0}}\" data-gaip-breadcrumb-link=\"{{gaip:1}}\">{{gaip:2}}</a>","createItem-2":"<button type=\"button\" data-gaip-breadcrumb-action=\"{{gaip:0}}\">{{gaip:1}}</button>","createItem-3":"<span{{gaip:0}}>{{gaip:1}}</span>","createItem-4":"<li class=\"{{gaip:0}}\"><span class=\"ant-breadcrumb-link\">{{gaip:1}}</span></li>","createMarkup-5":"<ol>{{gaip:0}}</ol>","createMarkup-6":"<li class=\"ant-breadcrumb-separator\" aria-hidden=\"true\">/</li>"};
+  return function (id, values) {
+    if (!Object.prototype.hasOwnProperty.call(templates, id)) throw new Error("Missing HTML template: " + id);
+    return templates[id].replace(/\{\{gaip:(\d+)\}\}/g, function (_, index) {
+      if (!values || !Object.prototype.hasOwnProperty.call(values, index)) throw new Error("Missing HTML binding: " + id + ":" + index);
+      return values[index];
+    });
+  };
+}());
+/* @gaip-markup-cache:end */
 (function () {
   'use strict';
 
@@ -57,28 +70,23 @@
       (isCurrent ? ' gaip-breadcrumb-item--current' : '');
 
     if (item.href) {
-      content = '<a href="' + escapeHtml(item.href) +
-        '" data-gaip-breadcrumb-link="' + escapeHtml(item.key || '') + '">' +
-        escapeHtml(item.label) + '</a>';
+      content = __gaipMarkup_e817834a30("createItem-1", [('' + (escapeHtml(item.href))), ('' + (escapeHtml(item.key || ''))), ('' + (escapeHtml(item.label)))]);
     } else if (item.action) {
-      content = '<button type="button" data-gaip-breadcrumb-action="' +
-        escapeHtml(item.action) + '">' + escapeHtml(item.label) + '</button>';
+      content = __gaipMarkup_e817834a30("createItem-2", [('' + (escapeHtml(item.action))), ('' + (escapeHtml(item.label)))]);
     } else {
-      content = '<span' + currentAttribute + '>' + escapeHtml(item.label) + '</span>';
+      content = __gaipMarkup_e817834a30("createItem-3", [('' + (currentAttribute)), ('' + (escapeHtml(item.label)))]);
     }
 
-    return '<li class="' + itemClass + '">' +
-      '<span class="ant-breadcrumb-link">' + content + '</span>' +
-      '</li>';
+    return __gaipMarkup_e817834a30("createItem-4", [('' + (itemClass)), ('' + (content))]);
   }
 
   function createMarkup(items) {
-    return '<ol>' + items.map(function (item, index) {
+    return __gaipMarkup_e817834a30("createMarkup-5", [('' + (items.map(function (item, index) {
       var markup = createItem(item, index === items.length - 1);
       if (index === items.length - 1) return markup;
       return markup +
-        '<li class="ant-breadcrumb-separator" aria-hidden="true">/</li>';
-    }).join('') + '</ol>';
+        __gaipMarkup_e817834a30("createMarkup-6");
+    }).join('')))]);
   }
 
   function bindActions(breadcrumb, detail, channel) {

@@ -60,8 +60,8 @@
         }
       },
       "sources": [
-        "features/config-center/config-center-content.css",
-        "features/config-center/config-center.js: editMember"
+        "channels/config-center/config-center-content.css",
+        "channels/config-center/config-center.js: editMember"
       ],
       "verification": {
         "level": "source-only",
@@ -106,8 +106,8 @@
         }
       },
       "sources": [
-        "features/config-center/config-center-content.css",
-        "shared/styles/modal-controls.css: 背景/边框/文字恢复共享禁用态，仅覆盖勾为共享边框色"
+        "channels/config-center/config-center-content.css",
+        "components/modal-controls/modal-controls.css: 背景/边框/文字恢复共享禁用态，仅覆盖勾为共享边框色"
       ],
       "verification": {
         "level": "source-only",
@@ -159,8 +159,8 @@
         }
       },
       "sources": [
-        "features/config-center/config-center.js",
-        "features/config-center/config-center-content.css"
+        "channels/config-center/config-center.js",
+        "channels/config-center/config-center-content.css"
       ],
       "verification": {
         "level": "source-only",
@@ -204,8 +204,8 @@
         }
       },
       "sources": [
-        "features/config-center/config-center-content.css",
-        "features/config-center/config-center.js"
+        "channels/config-center/config-center-content.css",
+        "channels/config-center/config-center.js"
       ],
       "verification": {
         "level": "source-only",

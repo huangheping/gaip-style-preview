@@ -50,9 +50,9 @@
         }
       },
       "sources": [
-        "AI Agent/templates/markup-AI Agent本地Mock.html",
-        "AI Agent/AI Agent.css",
-        "AI Agent/AI Agent入口动效.js"
+        "components/ai-agent/templates/markup-AI Agent本地Mock.html",
+        "components/ai-agent/AI Agent.css",
+        "components/ai-agent/AI Agent入口动效.js"
       ],
       "verification": {
         "level": "source-only",

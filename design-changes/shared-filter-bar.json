@@ -36,7 +36,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__tree-clear"
         }
       ],
@@ -84,7 +84,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__tree-input"
         }
       ],
@@ -139,7 +139,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field--wide, .gaip-filter-bar__field[data-type=\"search\"]"
         }
       ],
@@ -201,7 +201,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field[data-type=\"switch\"]"
         }
       ],
@@ -263,7 +263,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field[data-type=\"numberRange\"]"
         }
       ],
@@ -311,7 +311,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__range > .gaip-filter-bar__input"
         }
       ],
@@ -380,7 +380,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect .gaipMultiSelect__clear"
         }
       ],
@@ -435,7 +435,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field[data-type=\"multiSelect\"]"
         }
       ],
@@ -497,7 +497,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field[data-type=\"dateRange\"]"
         }
       ],
@@ -545,7 +545,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__date-shell"
         }
       ],
@@ -600,7 +600,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__date"
         }
       ],
@@ -648,7 +648,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__date:placeholder-shown"
         }
       ],
@@ -745,7 +745,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__popup, .gaip-filter-bar .gaipMultiSelect__dropdown"
         }
       ],
@@ -793,7 +793,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__popup"
         }
       ],
@@ -841,7 +841,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__popup::backdrop"
         }
       ],
@@ -889,7 +889,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__popup button"
         }
       ],
@@ -986,7 +986,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__option, .gaip-filter-bar .gaipMultiSelect__option"
         }
       ],
@@ -1034,7 +1034,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__option:hover, .gaip-filter-bar__option:focus-visible, .gaip-filter-bar .gaipMultiSelect__option:hover, .gaip-filter-bar .gaipMultiSelect__option:focus-visible"
         }
       ],
@@ -1096,7 +1096,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__option[aria-selected=\"true\"], .gaip-filter-bar .gaipMultiSelect__option[aria-selected=\"true\"]"
         }
       ],
@@ -1144,7 +1144,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]"
         }
       ],
@@ -1213,7 +1213,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__option[aria-selected=\"true\"]::after"
         }
       ],
@@ -1261,7 +1261,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar"
         }
       ],
@@ -1316,7 +1316,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-head"
         }
       ],
@@ -1413,7 +1413,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-nav"
         }
       ],
@@ -1510,7 +1510,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__year"
         }
       ],
@@ -1558,7 +1558,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__year:focus"
         }
       ],
@@ -1606,7 +1606,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-grid"
         }
       ],
@@ -1661,7 +1661,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__weekday"
         }
       ],
@@ -1751,7 +1751,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__day"
         }
       ],
@@ -1799,7 +1799,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__day.is-outside"
         }
       ],
@@ -1847,7 +1847,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__day[aria-current=\"date\"]"
         }
       ],
@@ -1902,7 +1902,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__day:hover:not(:disabled), .gaip-filter-bar__calendar-nav:hover"
         }
       ],
@@ -1957,7 +1957,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__day[aria-pressed=\"true\"]"
         }
       ],
@@ -2019,7 +2019,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-footer"
         }
       ],
@@ -2102,7 +2102,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-action"
         }
       ],
@@ -2150,7 +2150,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__calendar-action:hover:not(:disabled)"
         }
       ],
@@ -2205,7 +2205,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__popup button:disabled"
         }
       ],
@@ -2252,7 +2252,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__tag-text"
         }
       ],
@@ -2299,7 +2299,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__option > span:last-child"
         }
       ],
@@ -2375,7 +2375,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo"
         }
       ],
@@ -2430,7 +2430,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__note"
         }
       ],
@@ -2485,7 +2485,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__toggles"
         }
       ],
@@ -2533,7 +2533,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__toggles label"
         }
       ],
@@ -2595,7 +2595,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__toggles input"
         }
       ],
@@ -2650,7 +2650,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__values"
         }
       ],
@@ -2740,7 +2740,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo__values pre"
         }
       ],
@@ -2788,7 +2788,7 @@
       },
       "sources": [
         {
-          "path": "全局组件/components-preview.css",
+          "path": "components/components-preview.css",
           "selector": ".filterDemo"
         }
       ],
@@ -2885,11 +2885,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -2944,11 +2944,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__fields"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3003,7 +3003,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__field"
         }
       ],
@@ -3072,11 +3072,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__label"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3124,11 +3124,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__control"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3253,11 +3253,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__input"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3305,11 +3305,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__input::placeholder"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3357,11 +3357,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled)"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3416,11 +3416,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__input:focus, .gaip-filter-bar .gaip-filter-bar__input:focus-visible"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3468,11 +3468,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__input[aria-invalid=\"true\"]"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3541,11 +3541,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__error"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3600,7 +3600,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__select"
         }
       ],
@@ -3662,11 +3662,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__search::before"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3721,11 +3721,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__search input"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3801,11 +3801,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__clear"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3853,11 +3853,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__range"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3912,11 +3912,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__separator"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -3978,11 +3978,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-line"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4044,11 +4044,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-input"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4110,11 +4110,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-track"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4183,11 +4183,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-track::after"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4235,11 +4235,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-input:checked + .gaip-filter-bar__switch-track"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4294,11 +4294,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__switch-input:focus-visible + .gaip-filter-bar__switch-track"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4360,11 +4360,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__actions"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4454,11 +4454,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__button"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4513,11 +4513,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__button:hover"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4579,11 +4579,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4631,11 +4631,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaip-filter-bar__button--primary:hover"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4690,11 +4690,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar button:focus-visible"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4742,11 +4742,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .is-disabled input, .gaip-filter-bar .is-disabled select"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4794,11 +4794,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4853,11 +4853,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect__control"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4905,11 +4905,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect__control:hover"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -4964,11 +4964,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect.isOpen .gaipMultiSelect__control, .gaip-filter-bar .gaipMultiSelect__control:focus-visible"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -5037,11 +5037,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect__arrow::before"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -5096,11 +5096,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect__clear"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -5155,11 +5155,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar .gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -5207,11 +5207,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/全局筛选栏-20260909-tVXgLR/before/channels/learning-center/learning-v11.css",
           "note": "原课程管理起点可追溯；新增控件或未采集精确值为null，不冒充线上值"
         }
       ],
@@ -5260,7 +5260,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__tag, .gaipMultiSelect__overflow"
         }
       ],
@@ -5322,11 +5322,11 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-filter-bar.css",
+          "path": "components/filter-bar/global-filter-bar.css",
           "selector": ".gaip-filter-bar__button--reset-active"
         },
         {
-          "path": "shared/scripts/global-filter-bar.js",
+          "path": "components/filter-bar/global-filter-bar.js",
           "selector": "hasResettableChanges / data-active"
         }
       ],
@@ -5380,7 +5380,7 @@
         }
       },
       "sources": [
-        "shared/styles/global-filter-bar.css"
+        "components/filter-bar/global-filter-bar.css"
       ],
       "verification": {
         "level": "source-only",

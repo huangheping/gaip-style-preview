@@ -1,0 +1,5 @@
+body[data-gaip-page="workspace"] .homeInfoShare svg{
+  flex-basis: 18px;
+  width: 18px;
+  height: 18px;
+}

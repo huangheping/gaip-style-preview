@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <base href="../../">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAIP · 项目目录</title>
+  <link rel="icon" href="web/favicon.ico">
+  <link rel="stylesheet" href="shared/styles/global-font.css">
+  <link rel="stylesheet" href="app/project-index/styles.css">
+  <script src="app/project-index/script.js" defer></script>
+</head>
+<body class="project-directory">
+  <a class="skip-link" href="#channels">跳到频道目录</a>
+  <div class="directory-shell">
+    <header class="directory-header">
+      <a class="wordmark" href="app/project-index/index.html" aria-label="GAIP 项目目录">GAIP<span>PROJECT DIRECTORY</span></a>
+      <span class="environment">本地测试项目</span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="directory-title">
+        <div><p class="eyebrow">页面 · 组件 · 项目资料</p><h1 id="directory-title">项目目录</h1><p class="intro-copy">从这里打开预览，也能找到每个频道自己的文件夹。</p></div>
+        <a class="login-link" href="{{LOGIN_ENTRY}}">打开登录页 <span aria-hidden="true">↗</span></a>
+      </section>
+      <section id="channels" aria-labelledby="channels-title">
+        <div class="section-heading"><div><h2 id="channels-title">频道页面 <span>{{CHANNEL_COUNT}}</span></h2><p>HTML、CSS、JS 与频道素材，集中在各自目录。</p></div><div class="search-field"><label for="channel-search">查找频道</label><input id="channel-search" type="search" placeholder="输入频道名称或目录名" autocomplete="off"></div></div>
+        <p class="result-count" role="status" aria-live="polite" data-result-count>共 {{CHANNEL_COUNT}} 个频道</p>
+        <div class="channel-grid">
+<!-- CHANNEL_CARDS -->
+        </div>
+        <p class="empty-state" data-empty hidden>没有找到对应频道，试试其他名称。</p>
+      </section>
+      <section class="folder-guide" aria-labelledby="folders-title">
+        <h2 id="folders-title">文件夹里装的是什么？</h2>
+        <p class="intro-copy">日常主要看频道页面和组件库；工具、历史资料与备份分开存放。</p>
+        <div class="folder-grid">
+          <a href="channels/"><strong>频道页面</strong><code>channels/</code><span>各频道的 HTML、CSS、JS、图片与图标</span></a>
+          <a href="components/"><strong>共享组件</strong><code>components/</code><span>弹窗、表格、筛选、日期选择、AI 助手</span></a>
+          <a href="shared/"><strong>公共依赖</strong><code>shared/</code><span>所有频道共用的导航、字体、配置和模拟数据</span></a>
+          <a href="knowledge/"><strong>项目知识</strong><code>knowledge/</code><span>Obsidian 笔记、双链、页面与模块索引</span></a>
+          <a href="docs/"><strong>维护文档</strong><code>docs/</code><span>规则、进度、验收说明与历史记录</span></a>
+          <a href="outputs/"><strong>本地备份与测试报告</strong><code>outputs/</code><span>旧文件、验证截图和测试副本，不是当前页面</span></a>
+        </div>
+        <a class="login-link" href="目录说明.md">查看全部文件夹的中文说明 <span aria-hidden="true">↗</span></a>
+      </section>
+      <section class="resources" aria-labelledby="resources-title">
+        <div class="section-heading"><div><h2 id="resources-title">组件与项目资料</h2><p>共用组件、维护规则和项目知识的统一入口。</p></div></div>
+        <div class="resource-grid">
+          <a href="components/index.html"><span>01 / COMPONENTS</span><strong>组件库 <i aria-hidden="true">↗</i></strong><small>查看共享组件与实际效果</small></a>
+          <a href="components/弹窗预览.html"><span>02 / DIALOGS</span><strong>弹窗预览 <i aria-hidden="true">↗</i></strong><small>从真实实现查看业务弹窗</small></a>
+          <a href="knowledge/INDEX.md"><span>03 / KNOWLEDGE</span><strong>项目知识 <i aria-hidden="true">↗</i></strong><small>页面、模块、决策与变更索引</small></a>
+          <a href="README.md"><span>04 / GUIDE</span><strong>目录与维护说明 <i aria-hidden="true">↗</i></strong><small>文件归属、常用命令与当前进度</small></a>
+        </div>
+      </section>
+    </main>
+    <footer class="directory-footer"><span>GAIP 本地工作目录</span><a href="docs/standardization-status.md">查看整理进度 <span aria-hidden="true">↗</span></a></footer>
+  </div>
+</body>
+</html>

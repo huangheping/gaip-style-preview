@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "page": "ai-agent-composer-hint",
+  "records": [
+    {
+      "id": "ai-agent.composer.empty-hint",
+      "element": "Web输入框滚动提示",
+      "locator": {
+        "selector": ".agentModal___Nxp06 .gaip-agent-composer-placeholder",
+        "representative": "Web AI Agent空输入提示"
+      },
+      "state": {
+        "channel": "shared-web",
+        "variant": "empty",
+        "viewport": null
+      },
+      "appliesTo": [
+        "原版及过渡版共享Web AI Agent输入框"
+      ],
+      "baseline": {
+        "id": "mobile-h5-hint-20261009",
+        "kind": "agreed-local",
+        "ref": "../AI对话移动H5/src/styles.css及index.html（2026-10-09读取）",
+        "capturedAt": "2026-10-09",
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": "#949e99",
+          "initialLocal": null,
+          "target": "#949e99",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": "16px",
+          "initialLocal": "16px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "line-height": {
+          "before": "25px",
+          "initialLocal": null,
+          "target": "25px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/ai-agent/AI Agent.css",
+        "components/ai-agent/AI Agent本地Mock.js",
+        "components/ai-agent/templates/markup-AI Agent本地Mock.html"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "真实Web位置、滚动观感与原生Umi点击未验证；比较对象是独立H5源码的两条文案、25px行高及10s/44/50/94/100%滚动轨迹。"
+        ],
+        "evidence": [
+          "outputs/agent-composer-hint-20261009/acceptance.md"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    }
+  ]
+}

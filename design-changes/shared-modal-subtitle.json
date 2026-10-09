@@ -15,7 +15,7 @@
       "color": {"before": null, "initialLocal": "04 #858c94；07继承正文色", "target": "var(--gaip-modal-muted)，rgba(47,54,64,.68)", "basis": "source"},
       "margin": {"before": null, "initialLocal": "共享主标题margin已清零；副标题各自未设置统一间距", "target": "副标题8px 0 0，主标题下边距0", "basis": "source"}
     },
-    "sources": ["shared/scripts/global-modal.js adoptForm", "shared/styles/global-modal.css", "features/proposal-center/proposal-center.css", "features/activity/activity-sync.css"],
+    "sources": ["components/modal/global-modal.js adoptForm", "components/modal/global-modal.css", "channels/proposal-center/proposal-center.css", "channels/activity/activity-sync.css"],
     "verification": {"level": "needs-recheck", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "真实浏览器视觉未验证"]},
     "status": "active",
     "updatedAt": "2026-09-08"

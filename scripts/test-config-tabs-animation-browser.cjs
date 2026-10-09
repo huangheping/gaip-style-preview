@@ -6,8 +6,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  // Isolated real controller, not a full file-page navigation.
  await p.setContent('<div id="root"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><ul class="ant-menu-root"></ul></aside><main class="ant-pro-layout-content"></main></div>');
  await p.evaluate(()=>{location.hash='/workspace?gaip-channel=config&gaip-view=organization';});
- for(const f of ['shared/styles/global-filter-bar.css','features/config-center/config-center.css','features/config-center/config-center-content.css','shared/styles/organization-tree.css','shared/styles/global-tabs.css'])await p.addStyleTag({content:read(f)});
- for(const f of ['shared/config/channels.js','shared/scripts/global-tabs.js','shared/scripts/global-modal.js','shared/scripts/organization-store.js','shared/scripts/organization-tree.js','features/config-center/source-markup.js','features/config-center/config-center.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
+ for(const f of ['components/filter-bar/global-filter-bar.css','channels/config-center/config-center.css','channels/config-center/config-center-content.css','components/organization-tree/organization-tree.css','components/tabs/global-tabs.css'])await p.addStyleTag({content:read(f)});
+ for(const f of ['shared/config/channels.js','components/tabs/global-tabs.js','components/modal/global-modal.js','shared/scripts/organization-store.js','components/organization-tree/organization-tree.js','channels/config-center/source-markup.js','channels/config-center/config-center.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
  // Historical filename retained for existing scripts; organization now uses a dropdown.
  await p.locator('[data-channel-trigger]').waitFor();
  for(let i=0;i<6;i++){

@@ -14,7 +14,7 @@ async function checkSourceModules() {
   factories[23856]({ exports: baseline }, baseline, { d: define });
   const before = JSON.parse(JSON.stringify(baseline.Lg));
   const context = { Promise, window: {}, self: { webpackChunk: [] } };
-  vm.runInNewContext(read('features/induction/induction-update.js'), context);
+  vm.runInNewContext(read('channels/induction/induction-update.js'), context);
   const cache = {};
   const request = id => {
     if (!cache[id]) {
@@ -61,9 +61,9 @@ async function checkBrowser() {
     const chapter = page.locator('.chapterTab___f0dZr');
     const title = page.locator('.contentTitle___WbQHn');
     const sections = page.locator('.sectionTab___Koi6V');
-    for (const entry of ['薄荷入职指引.html', '工作台.html']) {
+    for (const entry of ['channels/induction/index.html', 'channels/workspace/index.html']) {
       await page.goto('file://' + path.join(root, entry));
-      if (entry === '工作台.html') {
+      if (entry === 'channels/workspace/index.html') {
         await page.locator('.ant-menu-item').filter({ hasText: /^薄荷入职引导$/ }).click();
       }
       await chapter.filter({ hasText: '第2章 培训准备' }).click();

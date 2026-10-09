@@ -1,15 +1,14 @@
 # 全局样式修改记录
 
-用于记录需要同步给前端的全局视觉调整。每次修改全局字体、字重、颜色、滚动条或
-其他跨页面样式后，在这里补一条即可。
+本文保留 2026-07 的历史记录，不作为当前样式参数或新增变更的维护入口。现行视觉记录按 [[docs/visual-change-workflow]] 维护在 `design-changes/`；字体使用真实 Regular 400 / Bold 700，滚动条保留平台宽度，具体见 `design-changes/global-font.json` 与 `shared/styles/global-font.css`。下文旧路径和旧参数仅供追溯。
 
-## 已完成
+## 历史已完成
 
 | 日期 | 调整项 | 调整内容 | 前端实现位置 |
 | --- | --- | --- | --- |
-| 2026-07-31 | 全局面包屑 | 统一为“工作台总览 / 当前频道 / 当前详情”层级；工作台首页不重复显示根节点；名称与路由来自频道注册表，当前节点补充 `aria-current`，学习中心不再维护独立面包屑结构 | `shared/scripts/global-breadcrumb.js`、`features/learning-center/learning-center.js`、`shared/styles/channel-foundation.css` |
+| 2026-07-31 | 全局面包屑 | 统一为“工作台总览 / 当前频道 / 当前详情”层级；工作台首页不重复显示根节点；名称与路由来自频道注册表，当前节点补充 `aria-current`，学习中心不再维护独立面包屑结构 | `shared/scripts/global-breadcrumb.js`、`channels/learning-center/learning-center.js`、`shared/styles/channel-foundation.css` |
 | 2026-07-31 | 频道配置规范 | 9 个频道的标准名称、别名、Hash 路由、独立入口、图标和页面类型统一由一个频道注册表维护，主导航、入口同步和结构标识共用同一数据源 | `shared/config/channels.js`、`shared/scripts/learning-nav.js`、`shared/scripts/channel-entry-navigation.js`、`shared/scripts/channel-regions.js` |
-| 2026-07-31 | 频道首页基础规范 | 建立全局顶栏 `56px`、主导航侧栏 `212px` 以及颜色、间距、圆角、控件高度等基础变量；现阶段只接入安全的结构约束，不强制覆盖各频道业务布局；移除学习中心私有滚动条规则，统一继承全局滚动条 | `shared/styles/channel-foundation.css`、`features/learning-center/learning-center.css`、`docs/channel-home-standard.md` |
+| 2026-07-31 | 频道首页基础规范 | 建立全局顶栏 `56px`、主导航侧栏 `212px` 以及颜色、间距、圆角、控件高度等基础变量；现阶段只接入安全的结构约束，不强制覆盖各频道业务布局；移除学习中心私有滚动条规则，统一继承全局滚动条 | `shared/styles/channel-foundation.css`、`channels/learning-center/learning-center.css`、`docs/channel-home-standard.md` |
 | 2026-07-31 | 全局字体变更 | 全局字体由 `Alibaba PuHuiTi 3` 改为 `HarmonyOS Sans SC`，使用 `HarmonyOS_Sans_SC_Regular.ttf`；继续只注册真实 `Regular 400` | `shared/styles/global-font.css`、`assets/fonts/` |
 | 2026-07-30 | 全局字体 | 全局字体改为 `Alibaba PuHuiTi 3`，使用 `AlibabaPuHuiTi-3-55-Regular.woff2`；当前注册字重为 `400` | `shared/styles/global-font.css`、`assets/fonts/` |
 | 2026-07-30 | 全局字重 | 所有文字统一使用字体文件自带的真实 `Regular 400`；不设置多级字重，并通过 `font-synthesis: none` 禁止浏览器模拟粗体 | `shared/styles/global-font.css` |
@@ -17,7 +16,7 @@
 | 2026-07-30 | 全局滚动条 | 所有页面及内部组件统一使用 `8px` 中性灰滚动条，轨道透明、滑块圆角 `4px`，悬停时加深；覆盖原构建包的 `4px / 6px / thin` 和绿色等组件级样式，避免 macOS 默认悬浮滚动条平时不可见 | `shared/styles/global-font.css` |
 | 2026-07-30 | 主导航图标 | 主导航统一替换为新版 `18 × 18px` SVG 图标，并通过蒙版继承菜单文字颜色，保证默认态和选中态一致；源文件集中存放在 `assets/navigation/`，页面样式使用内嵌 Data URI，兼容直接双击 HTML 的 `file://` 预览方式 | `shared/scripts/learning-nav.js`、`shared/styles/learning-nav.css`、`assets/navigation/` |
 
-## 全局字号使用规则
+## 当时的字号规则
 
 | 字号变量 | 数值 | 建议用途 |
 | --- | --- | --- |
@@ -30,7 +29,7 @@
 - 常规界面不再使用 `11 / 13 / 15 / 17px`。
 - `20px` 及以上字号继续用于页面主标题、核心指标和特殊展示，不纳入本次归并。
 
-## 全局字重使用规则
+## 当时的字重规则
 
 - 页面正文、标题、按钮、导航、表格及数据均使用 `Regular 400`，组件不再通过
   `500 / 600 / 700` 区分层级。
@@ -39,7 +38,7 @@
   之前的 Alibaba PuHuiTi 字体文件继续保留，但全局样式不加载。
 - 原始构建包中的字重声明不直接改写，由全局样式统一覆盖为 `400`。
 
-## 后续记录格式
+## 当时的记录格式（已被视觉台账流程替代）
 
 新增记录时写清四件事：日期、调整项、最终数值或规则、对应代码文件。尚未确定的修改
 先放在“待调整”，确定并落地后再移到“已完成”。

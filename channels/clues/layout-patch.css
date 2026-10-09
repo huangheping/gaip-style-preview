@@ -1,0 +1,6 @@
+/* Toolbar layout owned by the clues channel. */
+#gaip-clue-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px 0;}
+#gaip-clue-toolbar .gaip-clue-summary { display: flex; align-items: center; gap: 6px; min-height: 48px; font-size: 14px; color: #2f3640; }
+#gaip-clue-toolbar .gaip-clue-toolbar-right { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex: 1; }
+#gaip-clue-toolbar .gaip-clue-search { max-width: 348px; width: 348px; flex: 0 0 348px; }
+#gaip-clue-toolbar .gaip-clue-buttons { margin-top: 0; flex-shrink: 0; }

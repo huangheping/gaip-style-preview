@@ -14,7 +14,7 @@
         "marker.font-size": { "before": null, "initialLocal": "Ant与新增线索14px；字面span继承所在标签/标题字号", "target": "14px; line-height:inherit", "basis": "mixed", "status": "active" },
         "marker.text-gap": { "before": null, "initialLocal": "前置4px；终态后置margin-left:2px；公告及节点字面空格", "target": "4px; Ant/07 margin-inline-end；字面星号使用column-gap", "basis": "mixed", "status": "active" }
       },
-      "sources": ["shared/styles/global-modal.css", "web/p__clues__index.29eaa724.chunk.css (read-only conflict evidence)", "features/config-center/announcement-management-view.js (unchanged grouped constraints)", "features/config-center/config-center.js (unchanged source)"],
+      "sources": ["components/modal/global-modal.css", "web/p__clues__index.29eaa724.chunk.css (read-only conflict evidence)", "channels/config-center/announcement-management-view.js (unchanged grouped constraints)", "channels/config-center/config-center.js (unchanged source)"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "evidence": ["scripts/test-modal-required-marker-browser.cjs: isolated Chromium148 positions/gap/color, optional/multiline, CSS order and original label linkage"], "gaps": ["来源整页视觉未验收；独立真实浏览器规则验证不代表所有来源弹窗已逐一打开"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -30,7 +30,7 @@
         "feedback.min-height": { "before": null, "initialLocal": "本地错误隐藏时不占空间；Ant报错后以原字段marginBottom补偿additional并生成负margin offset", "target": "预留20px反馈行+4px上距；空状态伪元素24px，显示时由真实反馈节点占位；多行height:auto、正常换行；有永久extra说明的Ant额外保留错误行，不覆盖说明", "basis": "source", "status": "active" },
         "feedback.spacing": { "before": null, "initialLocal": "原字段/网格间隔20px（窄屏16px）与动态错误行叠加", "target": "有反馈行的字段margin-bottom:0；全部直接字段都接入反馈的grid row-gap及margin-bottom:0，由反馈24px行提供字段间隔；混合布局、列间距与独立分组间隔保留；Ant additional padding-top:4px、explain/extra margin:0，负margin-offset不参与布局", "basis": "source", "status": "active" }
       },
-      "sources": ["shared/scripts/global-modal.js#adoptFeedback", "shared/styles/global-modal.css"],
+      "sources": ["components/modal/global-modal.js#adoptFeedback", "components/modal/global-modal.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["真实浏览器单行/多行高度及窄屏视觉仍待验收；不改变没有内联错误节点的原生气泡校验"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -45,7 +45,7 @@
         "07.error-text": { "before": null, "initialLocal": "浏览器原生气泡，无页面内错误节点", "target": "共享红色错误说明：12px/20px，#ff4d4f，控件下方4px；普通输入/文本域aria-invalid复用现有红边", "basis": "source", "status": "active" },
         "nested-error.margin-top": { "before": null, "initialLocal": "外壳4px，内层错误文字另有4px", "target": "外壳4px，内层0；单层错误仍4px", "basis": "source", "status": "active" }
       },
-      "sources": ["features/activity/activity-sync.js", "shared/styles/global-modal.css"],
+      "sources": ["channels/activity/activity-sync.js", "components/modal/global-modal.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["浏览器视觉未验证；原生数值约束保留，单选组仅一条错误，不改变其选中配色"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -147,9 +147,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "source-only",
@@ -197,9 +197,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "source-only",
@@ -254,9 +254,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "needs-recheck",
@@ -325,9 +325,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "source-only",
@@ -382,9 +382,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "needs-recheck",
@@ -453,9 +453,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "source-only",
@@ -503,9 +503,9 @@
         }
       },
       "sources": [
-        "shared/scripts/global-modal.js",
-        "shared/styles/global-modal.css",
-        "首次本地依据：features/config-center/config-center-content.css、features/activity/activity-sync.css、features/wealth-center/wealth-center.css、features/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
+        "components/modal/global-modal.js",
+        "components/modal/global-modal.css",
+        "首次本地依据：channels/config-center/config-center-content.css、channels/activity/activity-sync.css、channels/wealth-center/wealth-center.css、channels/config-center/announcement-management.css、原站编辑对话名称TextArea内联样式"
       ],
       "verification": {
         "level": "needs-recheck",

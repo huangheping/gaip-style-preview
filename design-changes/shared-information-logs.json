@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "page": "信息展示 · 四类操作日志弹窗",
+  "notes": "仅03/14/37/46；不修改操作确认、其他信息弹窗或内联日志。线上交付基准未采集；initialLocal为本轮修改前源规则，不是线上值。",
+  "records": [
+    {
+      "id": "information.logs.frame",
+      "element": "日志弹窗共享外壳、标题与关闭",
+      "locator": {"selector": "dialog.gaip-info-modal", "representative": "03 操作日志"},
+      "state": {"channel": "共享日志/配置中心/学习中心", "variant": "open", "viewport": "1440/640/390 × 1000"},
+      "appliesTo": ["03 operation-log", "14 config-organization-log", "37 learning-course-log", "46 learning-study-log"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "width": {"before": null, "initialLocal": {"03":"min(1680px, calc(100vw - 48px))", "14":"min(1360px, calc(100vw - 48px))", "37/46":"1200px，受共享视口约束"}, "target":"min(1200px, calc(100vw - 48px)); <=640px: calc(100vw - 24px)", "status":"active", "basis":"mixed"},
+        "height": {"before":null,"initialLocal":{"03":"min(920px, calc(100dvh - 48px))","14":"min(800px, calc(100dvh - 48px))","37/46":"min(720px, var(--gaip-modal-max-height))"},"target":"03/14/37为min(800px, var(--gaip-modal-max-height))；46外壳及直接surface自然高度，以相同值作max-height，过滤区不收缩，长表格限高滚动","status":"active","basis":"mixed"},
+        "padding": {"before":null,"initialLocal":{"03":"header 24px 24px 18px; 内容各自margin","14":"header 24px 24px 27px; body 0 24px 24px","37/46":"24px"},"target":"外壳24px; <=640px为16px; header与body间20px; body不重复padding","status":"active","basis":"mixed"},
+        "border-radius": {"before":null,"initialLocal":{"03":"12px","14/37/46":"8px"},"target":"var(--gaip-radius-container): 8px","status":"active","basis":"source"},
+        "title.font-size/weight/line-height/color": {"before":null,"initialLocal":{"03":"24px / h2默认字重 / 1.4 / #253b39","14":"20px / 500 / 继承 / #2f3640","37/46":"18px / 700 / 28px / #2f3640"},"target":"共享标题18px / 700 / 28px / #2f3640; 字体沿用本地HarmonyOS Sans SC Bold","status":"active","basis":"mixed"},
+        "subtitle.font-size/line-height/color": {"before":null,"initialLocal":{"03":"13px / 继承1.6 / #7a848e"},"target":"共享副标题14px / 22px / rgba(47,54,64,.68)","status":"active","basis":"source"},
+        "close.width/height/icon": {"before":null,"initialLocal":{"03":"36px热区 / 32px图片","14":"原closeIcon结构","37/46":"32px热区 / 16px共享图标"},"target":"32px热区 / 16px共享关闭蒙版；保留来源事件","status":"active","basis":"mixed"},
+        "shadow": {"before":null,"initialLocal":{"03":"0 24px 90px rgba(18,42,40,.22)"},"target":"0 12px 32px rgba(17,35,39,.18)","status":"active","basis":"source"}
+      },
+      "sources": ["components/modal/global-modal.css: .gaip-info-modal", "components/modal/global-modal.js: adoptInformation", "components/operation-log/global-operation-log.js", "channels/config-center/config-center.js", "channels/learning-center/learning-app.js"],
+      "verification": {"level":"needs-recheck","checkedAt":"2026-09-29","evidence":["scripts/test-information-detail-source.cjs：46真实工厂0/1/25条、搜索/重置/分页/关闭重开DOM检查", "scripts/test-information-log-browser.cjs：新增46外壳空表收缩/重增多行/滚到底断言，仅语法检查；历史隔离浏览器结果不覆盖本次46修改"],"gaps":["46本次实际像素高度和滚到底尚未浏览器验证；工具访问拒绝未绕过。","历史隔离文档测试不代表完整业务页面；未采集线上基准。"]},
+      "status":"active","updatedAt":"2026-09-29"
+    },
+    {
+      "id":"information.logs.table-skin",
+      "element":"四类日志完整共享表格",
+      "locator":{"selector":".gaip-info-modal .gaip-table__table","representative":"14 组织架构操作日志"},
+      "state":{"channel":"共享日志/配置中心/学习中心","variant":"default / scroll / empty","viewport":"1440/640/390 × 1000"},
+      "appliesTo":["03 operation-log","14 config-organization-log","37 learning-course-log","46 learning-study-log"],
+      "baseline":{"id":null,"kind":"unknown","ref":null,"capturedAt":null,"evidence":[]},
+      "properties":{
+        "table.font-size/line-height":{"before":null,"initialLocal":{"03":"13px","14":"原logTable/Ant规则"},"target":"共享表格14px / 22px；既有标签独立规格保留","status":"active","basis":"source"},
+        "table.cell.padding":{"before":null,"initialLocal":null,"target":"共享表格14px 16px","status":"active","basis":"source"},
+        "table.header.background":{"before":null,"initialLocal":{"03":"#edf6f5"},"target":"共享表格#F8F5F3；包含滚动条上方角落","status":"active","basis":"mixed"},
+        "table.height":{"before":null,"initialLocal":{"03/14":"旧滚动层撑满正文","37/46":"共享表格自然收缩，前轮被额外flex-grow:1覆盖"},"target":"共享表格自然高度，滚动区flex-grow:0；03/14/37按正文剩余空间计算；46取消内容区底边作为测量边界，由外壳flex链限高，避免少行切多行时锁死小高度","status":"active","basis":"mixed"},
+        "pagination.gap/padding":{"before":null,"initialLocal":null,"target":"共享表格gap 12px 20px / padding 12px 16px","status":"active","basis":"source"},
+        "03.narrow-select.width":{"before":null,"initialLocal":"<=600px两个短选择框各占100%；640px受共享筛选容器查询影响","target":"<=640px两个短选择框各占calc(50% - 6px)，日期和搜索保留全宽；仅信息弹窗，内联不变","status":"active","basis":"mixed"}
+      },
+      "sources":["components/table/global-table.css（只引用，未修改）","components/table/global-table.js（只引用，未修改）","components/modal/global-modal.css","components/operation-log/global-operation-log.css","channels/config-center/templates/markup-config-center.html","components/operation-log/templates/markup-global-operation-log.html"],
+      "verification":{"level":"needs-recheck","checkedAt":"2026-09-29","evidence":["scripts/test-information-detail-source.cjs：46源工厂DOM回归", "scripts/test-information-log-browser.cjs：历史隔离测试；46新增断言未执行"],"gaps":["46高度修复的视觉及滚动待浏览器复验；其他三类未改布局。", "未采集线上基准与全部旧分页视觉值。"]},
+      "status":"active","updatedAt":"2026-09-29"
+    }
+  ]
+}

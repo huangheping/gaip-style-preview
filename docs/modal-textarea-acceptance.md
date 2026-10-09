@@ -9,17 +9,17 @@
 | 23 编辑客户资料介绍 | 客户中心360 → 客户画像 → 客户资料介绍 → 编辑；`web/p__customer__index.cf63b31b.async.js` | 原始React组件及项目自带Ant在DOM环境运行；实际输入更新原计数，共享手柄/底栏/关闭接入，卸载重开通过 |
 | 24 新增 / 编辑沟通纪要 | 客户中心360 → 沟通纪要 → 新增/编辑；同一客户频道分包 | 同上，并检查源保存中禁用状态；没有替换原表单校验或保存函数 |
 | 18 编辑对话名称 | `web/umi.0b0663b5.js` 的 RenameModal | 源声明自动增高及计数；不添加手动手柄。既有结构回归覆盖，不冒充本轮实际来源渲染 |
-| 33 新建公告、34 编辑公告 | `features/config-center/announcement-management-view.js` | 真实工厂共用标题字段与自动增高函数；原计数已接入，不添加手动手柄；既有公告测试覆盖 |
-| 07 活动报名信息 | `features/activity/activity-sync.js` 的备注字段 | 已补齐无计数变体的共享手柄；保留原字段与校验，不增加计数，不与原生手柄同时显示 |
+| 33 新建公告、34 编辑公告 | `channels/config-center/announcement-management-view.js` | 真实工厂共用标题字段与自动增高函数；原计数已接入，不添加手动手柄；既有公告测试覆盖 |
+| 07 活动报名信息 | `channels/activity/activity-sync.js` 的备注字段 | 已补齐无计数变体的共享手柄；保留原字段与校验，不增加计数，不与原生手柄同时显示 |
 | 22 新增线索 | `web/p__clues__index.d44f30db.async.js` 的备注字段 | 源Ant TextArea声明自动增高、无计数显示；保留这一变体，不强制变成可拖拽计数框 |
 
 在上述当前源码的带计数字段中未发现漏接。此结论不代表能够静态发现任意自定义运行时表单；新增业务仍须登记和明确接入。
 
 ## 唯一实现
 
-- `shared/scripts/global-modal.js`：识别弹窗及原字段、外壳、计数节点。
-- `shared/styles/global-modal.css`：输入外框、正文、独立计数行及外框手柄视觉；具体参数只维护于 `design-changes/modal-interiors.json`。
-- `shared/scripts/modal-controls.js`：外框手柄控制原textarea高度，处理禁用、键盘、拖动和清理。
+- `components/modal/global-modal.js`：识别弹窗及原字段、外壳、计数节点。
+- `components/modal/global-modal.css`：输入外框、正文、独立计数行及外框手柄视觉；具体参数只维护于 `design-changes/modal-interiors.json`。
+- `components/modal-controls/modal-controls.js`：外框手柄控制原textarea高度，处理禁用、键盘、拖动和清理。
 - 预览继续调用来源，不能为了通过预览验收复制字段或另写样式。
 
 ## 固定契约

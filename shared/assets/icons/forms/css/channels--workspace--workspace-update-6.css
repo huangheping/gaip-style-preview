@@ -1,0 +1,5 @@
+body[data-gaip-page="workspace"] .homeInfoTabIcon,
+body[data-gaip-page="workspace"] .homeInfoTabIcon img{
+  width: 36px;
+  height: 36px;
+}

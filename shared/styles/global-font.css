@@ -1,6 +1,6 @@
 @font-face {
   font-family: "HarmonyOS Sans SC";
-  src: url("../../assets/fonts/HarmonyOS_Sans_SC_Regular.ttf") format("truetype");
+  src: url("../assets/fonts/HarmonyOS_Sans_SC_Regular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -9,7 +9,7 @@
 /* One project family, exactly two real local faces. No synthetic/intermediate weights. */
 @font-face {
   font-family: "HarmonyOS Sans SC";
-  src: url("../../assets/fonts/HarmonyOS_Sans_SC_Bold.ttf") format("truetype");
+  src: url("../assets/fonts/HarmonyOS_Sans_SC_Bold.ttf") format("truetype");
   font-style: normal;
   font-weight: 700;
   font-display: swap;

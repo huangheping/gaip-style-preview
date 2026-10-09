@@ -1,0 +1,9 @@
+.gaip-course-reader-complete-icon{
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border: 2px solid rgba(47, 54, 64, 0.2);
+  border-radius: 50%;
+}

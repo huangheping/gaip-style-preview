@@ -1,0 +1,4 @@
+interface:
+  display_name: "GAIP 频道与导航维护"
+  short_description: "维护 GAIP 频道、Hash 路由及跨入口资源的一致性"
+  default_prompt: "使用 $gaip-channel-maintenance 定位当前入口的频道、Hash 或资源问题，修复并验证相关路径。"

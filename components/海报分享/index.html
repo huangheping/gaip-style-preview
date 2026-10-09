@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>GAIP 文章海报分享</title>
+  <link rel="stylesheet" href="../../shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="index.styles-1.css?v=20261008-icon-standard-1">
+</head>
+<body>
+  <script src="index.script-2.js"></script>
+  <div class="app-shell" aria-hidden="true">
+    <aside class="app-sidebar">
+      <div class="app-brand">GLORY <span>|</span> GAIP</div>
+      <div class="nav-caption">核心功能</div>
+      <div class="app-nav">
+        <div class="active">工作台总览</div>
+        <div>客户中心360</div>
+        <div>保单列表</div>
+        <div>方案中心</div>
+        <div>产品中心</div>
+        <div>活动中心</div>
+      </div>
+    </aside>
+    <main class="app-main">
+      <header class="app-header">
+        <div class="crumbs">首页 <b>/　工作台总览</b></div>
+        <div class="app-avatar"></div>
+      </header>
+      <div class="dashboard-ghost">
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+        <div class="ghost-card"></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="scrim">
+    <main class="share-dialog" id="shareDialog" aria-label="文章海报分享弹窗">
+      <aside class="template-rail">
+        <div class="rail-title">
+          <h2>选择分享模板</h2>
+          <span class="rail-count">13 款</span>
+        </div>
+
+        <div class="template-list" id="templateList" role="listbox" aria-label="分享海报模板"></div>
+
+        <div class="rail-footer">
+          <div class="toggle-row">
+            <div class="toggle-copy">
+              <strong>展示个人名片</strong>
+              <span>在海报底部添加联系方式</span>
+            </div>
+            <button class="switch" id="cardSwitch" type="button" role="switch" aria-checked="false" aria-label="展示个人名片"></button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="preview-stage" aria-label="海报预览">
+        <div class="stage-toolbar">
+          <div class="toolbar-label">海报内容将随设置实时更新</div>
+          <div class="toolbar-actions">
+            <button class="icon-btn" id="closeBtn" type="button" aria-label="关闭弹窗" title="关闭">
+              <img class="gaip-icon gaip-icon-close" src="./../../shared/assets/icons/third-party/ant-design/close-outlined.svg" alt="">
+            </button>
+          </div>
+        </div>
+
+        <div class="stage-center">
+          <div class="poster-column">
+            <div class="poster-wrap">
+              <article class="poster article-content" id="poster">
+                <img class="poster-source" id="posterSource" src="./assets/poster-01-news.jpg" alt="当前分享海报模板">
+                <section class="poster-hero" aria-hidden="true">
+                  <div class="poster-brand">GLORY <i>|</i> GAIP</div>
+                  <div class="poster-date">
+                    <b id="posterDateDay">08/25</b>
+                    <span id="posterDateYear">2026 资讯洞察</span>
+                  </div>
+                </section>
+                <section class="poster-body">
+                  <h1 class="poster-title">
+                    <span class="poster-featured-badge" id="posterFeaturedBadge" hidden><img src="./../../shared/assets/icons/status/海报分享/featured-ai.svg" alt=""></span><span id="posterTitle">企业主传承讨论前置，信托架构更强调治理规则</span>
+                  </h1>
+                  <div class="poster-meta">
+                    <img class="poster-meta-icon" src="./../../shared/assets/icons/business/海报分享/tag.svg" alt="">
+                    <span id="posterMeta">家族信托 | 受益人安排 / 企业传承</span>
+                  </div>
+                  <p class="poster-summary" id="posterSummary">越来越多企业主把家族治理、企业股权和现金流安排同时纳入传承设计，单一资产隔离已不能满足复杂需求。</p>
+                </section>
+                <div class="poster-identity-layer">
+                  <div class="poster-card" id="posterCard">
+                    <div class="poster-qr" id="posterQr" hidden></div>
+                    <div class="poster-card-copy" id="posterCardCopy" hidden>
+                      <strong id="posterCardTitle" hidden>扫码添加我的微信</strong>
+                      <span id="posterShare" hidden>由 <b id="posterName"></b> 分享</span>
+                    </div>
+                    <div class="poster-avatar" id="posterAvatar" hidden></div>
+                  </div>
+                  <div class="poster-disclaimer">以上内容由 AI 辅助生成，仅供参考，不构成具体产品收益承诺</div>
+                </div>
+              </article>
+            </div>
+            <div class="poster-actions">
+              <button class="primary-btn" id="downloadBtn" type="button">
+                <img class="gaip-icon" src="./../../shared/assets/icons/third-party/ant-design/download-outlined.svg" alt="">
+                <span>保存海报</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="phone-preview" aria-label="手机预览提示">
+            <img class="preview-qr" src="./../../shared/assets/icons/brand/海报分享/fake-qr.svg" alt="演示二维码，不可识别">
+            <strong>手机端效果</strong>
+            <span>使用手机扫码查看</span>
+          </aside>
+        </div>
+      </section>
+
+      <aside class="card-panel" aria-label="个人名片设置">
+        <div class="panel-inner">
+          <div class="panel-heading">
+            <div>
+              <h2>个人名片</h2>
+              <p>填写即可展示，未填写内容不会出现在海报中。</p>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="nameInput">分享人姓名 <span>选填</span></label>
+            <input class="text-input" id="nameInput" type="text" maxlength="20" placeholder="请输入姓名" autocomplete="name">
+            <div class="input-meta"><span id="nameCount">0</span>/20</div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">头像 <span>建议 1:1</span></div>
+            <div class="upload-card" id="avatarUploader" data-kind="avatar" role="button" tabindex="0" aria-label="上传头像">
+              <div class="upload-visual avatar" id="avatarVisual">
+                <img class="upload-placeholder-icon" src="./../../shared/assets/icons/business/海报分享/up-load-icon1.svg" alt="">
+              </div>
+              <div class="upload-copy">
+                <strong id="avatarTitle">上传头像</strong>
+                <span class="empty-hint">点击或拖入图片，JPG/PNG，最大 5MB</span>
+                <div class="upload-actions">
+                  <button class="small-btn replace-btn" type="button" data-kind="avatar">
+                    <!-- @gaip-icon:start shared/assets/icons/business/海报分享/inline-1.svg --><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66L20 8M20 3v5h-5"/></svg><!-- @gaip-icon:end -->
+                    更换
+                  </button>
+                  <button class="small-btn danger delete-btn" type="button" data-kind="avatar">
+                    <!-- @gaip-icon:start shared/assets/icons/operations/config-center/delete.svg binding-68 --><svg viewBox="0 0 16 16" aria-hidden="true"><g fill="none" fill-rule="evenodd"><path d="M0 0h16v16H0z"/><path d="M11 1v1.9h5v1.2h-2.4v11.5H2.4V4.1H0V2.9h5V1h6Zm1.4 3.1H3.6v10.3h8.8V4.1ZM7 7v4H5.8V7H7Zm3.2 0v4H9V7h1.2Zm-.4-4.8H6.2v.6h3.6v-.6Z" fill="#ef4444" fill-rule="nonzero"/></g></svg><!-- @gaip-icon:end -->
+                    删除
+                  </button>
+                </div>
+              </div>
+            </div>
+            <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">个人微信二维码 <span>清晰完整</span></div>
+            <div class="upload-card" id="qrUploader" data-kind="qr" role="button" tabindex="0" aria-label="上传微信二维码">
+              <div class="upload-visual qr" id="qrVisual">
+                <img class="upload-placeholder-icon" src="./../../shared/assets/icons/business/海报分享/up-load-icon2.svg" alt="">
+              </div>
+              <div class="upload-copy">
+                <strong id="qrTitle">上传二维码</strong>
+                <span class="empty-hint">点击或拖入图片，请勿裁掉二维码边缘</span>
+                <div class="upload-actions">
+                  <button class="small-btn replace-btn" type="button" data-kind="qr">
+                    <!-- @gaip-icon:start shared/assets/icons/business/海报分享/inline-3.svg --><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66L20 8M20 3v5h-5"/></svg><!-- @gaip-icon:end -->
+                    更换
+                  </button>
+                  <button class="small-btn danger delete-btn" type="button" data-kind="qr">
+                    <!-- @gaip-icon:start shared/assets/icons/operations/config-center/delete.svg binding-70 --><svg viewBox="0 0 16 16" aria-hidden="true"><g fill="none" fill-rule="evenodd"><path d="M0 0h16v16H0z"/><path d="M11 1v1.9h5v1.2h-2.4v11.5H2.4V4.1H0V2.9h5V1h6Zm1.4 3.1H3.6v10.3h8.8V4.1ZM7 7v4H5.8V7H7Zm3.2 0v4H9V7h1.2Zm-.4-4.8H6.2v.6h3.6v-.6Z" fill="#ef4444" fill-rule="nonzero"/></g></svg><!-- @gaip-icon:end -->
+                    删除
+                  </button>
+                </div>
+              </div>
+            </div>
+            <input id="qrInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          </div>
+
+          <div class="panel-tip">
+            <img class="panel-tip-icon" src="./../../shared/assets/icons/status/海报分享/tishi-icon.svg" alt="">
+            <span>头像及个人微信二维码建议使用1:1比例的图片，保证图片不会被裁切。</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toastMessage"></span>
+    <button id="toastAction" type="button"></button>
+  </div>
+
+  <script src="index.script-3.js?v=20260925-html-structure-1"></script>
+</body>
+</html>

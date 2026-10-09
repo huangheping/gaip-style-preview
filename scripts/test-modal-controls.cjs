@@ -5,9 +5,9 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 async function main() {
-  const dom = new JSDOM('<body><main><select id="page"><option>A</option></select><input type="date"></main><div class="ant-drawer"><div class="ant-modal"><select><option>A</option></select></div></div><div class="ant-modal agentModal___Nxp06"><select><option>A</option></select></div><dialog open id="modal"><select aria-label="类型" id="select"><option value="a">甲</option><option value="b">乙</option><option disabled value="c">丙</option></select><select multiple id="multi"><option value="a" selected>甲</option><option value="b">乙</option></select><input type="date" aria-label="日期" min="2026-09-02" max="2026-09-20" value="2026-09-08"><input type="time" step="900" value="09:00"><input type="text" value="保留"><div class="ant-select"><input id="ant" aria-expanded="true" aria-controls="list"></div></dialog></body>', { url: 'file://' + root + '/登录.html', runScripts: 'outside-only', pretendToBeVisual: true });
+  const dom = new JSDOM('<body><main><select id="page"><option>A</option></select><input type="date"></main><div class="ant-drawer"><div class="ant-modal"><select><option>A</option></select></div></div><div class="ant-modal agentModal___Nxp06"><select><option>A</option></select></div><dialog open id="modal"><select aria-label="类型" id="select"><option value="a">甲</option><option value="b">乙</option><option disabled value="c">丙</option></select><select multiple id="multi"><option value="a" selected>甲</option><option value="b">乙</option></select><input type="date" aria-label="日期" min="2026-09-02" max="2026-09-20" value="2026-09-08"><input type="time" step="900" value="09:00"><input type="text" value="保留"><div class="ant-select"><input id="ant" aria-expanded="true" aria-controls="list"></div></dialog></body>', { url: 'file://' + root + '/channels/login/index.html', runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window, d = w.document, tick = () => new Promise(r => w.setTimeout(r, 5));
-  w.eval(read('shared/scripts/global-date-picker.js')); w.eval(read('shared/scripts/modal-controls.js')); await tick();
+  w.eval(read('components/date-picker/global-date-picker.js')); w.eval(read('components/modal-controls/modal-controls.js')); await tick();
   const api = w.__GAIP_MODAL_CONTROLS__, modal = d.querySelector('#modal');
   assert.equal(d.querySelectorAll('.gaip-native-trigger').length, 2);
   for (const outside of d.querySelectorAll('main, .ant-drawer, .agentModal___Nxp06')) assert.ok(!outside.querySelector('.gaip-native-trigger'));
@@ -89,7 +89,7 @@ async function main() {
   const numberBefore = form.querySelectorAll('.gaip-mc-clear').length; api.scan(); api.scan(); assert.equal(form.querySelectorAll('.gaip-mc-clear').length, numberBefore);
   d.querySelector('main').appendChild(clearText); api.scan(); assert.ok(!clearButton.isConnected); assert.ok(!clearText.classList.contains('gaip-mc-clearable'));
   form.remove(); api.scan();
-  const css = read('shared/styles/modal-controls.css'), style = d.createElement('style'); style.textContent = css; d.head.appendChild(style);
+  const css = read('components/modal-controls/modal-controls.css'), style = d.createElement('style'); style.textContent = css; d.head.appendChild(style);
   assert.ok(style.sheet.cssRules.length > 50);
   for (const rule of style.sheet.cssRules) if (rule.selectorText) {
     let depth = 0, current = ''; const selectors = [];
@@ -140,14 +140,14 @@ async function main() {
   assert.match(nativeCalendarRule.style.getPropertyValue('background'), /var\(--mc-calendar\)/);
   assert.equal(nativeClockRule.style.getPropertyValue('background-image'), 'var(--mc-clock)');
   const iconTokens = rules.find(r => r.selectorText === '.gaip-modal-controls, .gaip-modal-popup').style;
-  for (const [token, asset] of [['--mc-calendar', 'modal-calendar.svg'], ['--mc-clock', 'modal-clock.svg']]) {
-    assert.ok(iconTokens.getPropertyValue(token).includes('../assets/' + asset));
-    const svg = read('shared/assets/' + asset);
-    assert.match(svg, /viewBox="0 0 32 32"/, 'retain user attachment geometry');
-    assert.match(svg, /#2F3640/, 'retain user attachment color');
+  for (const [token, asset] of [['--mc-calendar', 'control-calendar.svg'], ['--mc-clock', 'modal-clock.svg']]) {
+    assert.ok(iconTokens.getPropertyValue(token).includes('../../shared/assets/icons/forms/shared/' + asset));
+    const svg = read('shared/assets/icons/forms/shared/' + asset);
+    if(token==='--mc-calendar'){assert.match(svg,/viewBox="64 64 896 896"/,'use selected 01-2 canvas');assert.match(svg,/fill-opacity="0.25"/,'retain selected 01-2 opacity');}
+    else {assert.match(svg,/viewBox="0 0 32 32"/,'retain unselected clock geometry');assert.match(svg,/#2F3640/,'retain unselected clock color');}
   }
-  assert.match(read('shared/assets/modal-calendar.svg'), /ICON\/通用\/日历/);
-  assert.match(read('shared/assets/modal-clock.svg'), /ICON\/通用\/时间/);
+  assert.match(read('shared/assets/icons/forms/shared/control-calendar.svg'), /M880 184H712/);
+  assert.match(read('shared/assets/icons/forms/shared/modal-clock.svg'), /ICON\/通用\/时间/);
   d.querySelector('main').appendChild(suffixes[0]);
   assert.ok(!suffixes[0].matches(calendarRule.selectorText), 'page picker remains outside modal icon scope');
   assert.ok(!d.querySelector('main input[type="date"]').matches(nativeCalendarRule.selectorText));
@@ -164,7 +164,7 @@ async function main() {
   assert.ok(!rules.some(r => r.selectorText.endsWith('.gaip-native-trigger[aria-expanded="true"]')), 'expanded must not override active at higher specificity');
   assert.ok(rules.findIndex(r => r.selectorText.includes('.ant-select-status-error')) > activeIndex, 'error border remains after interaction rules');
   assert.equal(rules.find(r => r.selectorText === '.gaip-modal-controls, .gaip-modal-popup').style.getPropertyValue('--mc-ring').trim(), 'none');
-  const fieldCss = read('shared/styles/global-modal.css');
+  const fieldCss = read('components/modal/global-modal.css');
   assert.match(fieldCss, /--gaip-form-interaction: #24D4C9/);
   assert.match(fieldCss, /--gaip-form-active: #1FBFB5/);
   assert.ok(!/--gaip-form-focus-ring: (?!none)[^;]+;/.test(fieldCss), 'no normal/error form focus halo');
@@ -187,9 +187,9 @@ async function main() {
   const searchPrefix = rules.find(r => r.selectorText.endsWith('.gaip-mc-search-shell::before'));
   assert.equal(searchPrefix.style.getPropertyValue('mask'), 'none', 'file previews must not rely on external SVG mask loading for the search prefix');
   assert.equal(searchPrefix.style.getPropertyValue('-webkit-mask'), 'none');
-  assert.match(searchPrefix.style.getPropertyValue('background'), /url\(['"]?\.\.\/assets\/modal-search\.svg['"]?\)/);
+  assert.match(searchPrefix.style.getPropertyValue('background'), /url\(['"]?\.\.\/\.\.\/shared\/assets\/icons\/forms\/shared\/modal-search\.svg['"]?\)/);
   assert.equal(searchPrefix.style.getPropertyValue('flex'), '0 0 16px');
-  assert.match(read('shared/assets/modal-search.svg'), /<svg[^>]+viewBox=/, 'the direct image asset exists and retains SVG geometry');
+  assert.match(read('shared/assets/icons/forms/shared/modal-search.svg'), /<svg[^>]+viewBox=/, 'the direct image asset exists and retains SVG geometry');
   assert.equal(rules.find(r => r.selectorText === '.gaip-modal-controls, .gaip-modal-popup').style.getPropertyValue('--mc-selection').trim(), '#24D4C9');
   const clearPosition = rules.find(r => r.selectorText.endsWith(':is(.ant-select-clear, .ant-picker-clear)'));
   const clearImage = rules.find(r => r.selectorText.endsWith('.gaip-mc-clear)::before'));
@@ -207,7 +207,7 @@ async function main() {
   assert.equal(clearBox.style.getPropertyValue('min-height'), '24px');
   const clearHover = rules.find(r => r.selectorText.endsWith('.gaip-mc-clear):is(:hover, :active)'));
   assert.equal(clearHover.style.getPropertyValue('background'), clearBox.style.getPropertyValue('background'), 'pointer interaction keeps the default backing without a gray square');
-  assert.match(read('shared/assets/modal-clear.svg'), /fill="#2F3640"/, 'direct SVG has its own color instead of document currentColor');
+  assert.match(read('shared/assets/icons/forms/shared/modal-clear.svg'), /fill="#2F3640"/, 'direct SVG has its own color instead of document currentColor');
   assert.equal(clearPosition.style.getPropertyValue('margin-top'), '0');
   assert.equal(clearPosition.style.getPropertyValue('transform'), 'translateY(-50%)');
   const arrowPosition = rules.find(r => r.selectorText.endsWith(':is(.ant-select-arrow, .gaipMultiSelect__arrow)') && r.style.getPropertyValue('top'));
@@ -220,25 +220,25 @@ async function main() {
     assert.match(rule.style.getPropertyValue('background'), /var\(--mc-down\)/);
   }
   assert.match(css, /\[hidden\] \{ display: none !important;/, 'clear enhancement must not reveal hidden business buttons');
-  const positioning = d.createElement('style'); positioning.textContent = read('shared/styles/global-modal-position.css'); d.head.appendChild(positioning);
+  const positioning = d.createElement('style'); positioning.textContent = read('components/modal/global-modal-position.css'); d.head.appendChild(positioning);
   const clueRule = Array.from(positioning.sheet.cssRules).find(r => r.selectorText && r.selectorText.endsWith('> .ant-modal.createClueWrapper___mpoSg'));
   assert.equal(clueRule.style.getPropertyValue('transform'), 'none', '22 removes legacy translate after shared grid centering');
   assert.equal(clueRule.style.getPropertyPriority('transform'), 'important');
-  for (const file of ['登录.html', '工作台.html', '全局组件/弹窗预览.html']) assert.match(read(file), /shared\/scripts\/modal-controls\.js/);
+  for (const file of ['channels/login/index.html', 'channels/workspace/index.html', 'components/弹窗预览.html']) assert.match(read(file), /components\/modal-controls\/modal-controls\.js/);
   api.destroy(); await tick(); dom.window.close();
   console.log('PASS: modal-only scope; native select/multi/date/time; min/max/step; event identity; Escape; disabled; popup ownership and cleanup (DOM/source, not visual QA).');
 }
 async function testBulkImportSelect() {
-  const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'file://' + root + '/全局组件/弹窗预览.html?embed=config-bulk-import-members', runScripts: 'outside-only', pretendToBeVisual: true });
+  const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'file://' + root + '/components/弹窗预览.html?embed=config-bulk-import-members', runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window, d = w.document;
   w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
   // Use the actual Ant owner rule: a DOM .click() alone ignores hit-testing CSS.
-  const antRule = read('features/config-center/ant-source.css').match(/:where\(\.css-10wz6x1\)\.ant-modal\{[^}]+\}/)[0];
+  const antRule = read('channels/config-center/ant-source.css').match(/:where\(\.css-10wz6x1\)\.ant-modal\{[^}]+\}/)[0];
   const style = d.createElement('style');
-  style.textContent = antRule + '\n' + read('shared/styles/modal-controls.css'); d.head.appendChild(style);
-  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'shared/scripts/global-date-picker.js', 'shared/scripts/modal-controls.js', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) w.eval(read(file));
+  style.textContent = antRule + '\n' + read('components/modal-controls/modal-controls.css'); d.head.appendChild(style);
+  for (const file of ['shared/config/channels.js', 'components/modal/global-modal.js', 'components/date-picker/global-date-picker.js', 'components/modal-controls/modal-controls.js', 'shared/scripts/organization-store.js', 'components/organization-tree/organization-tree.js', 'channels/config-center/source-markup.js', 'channels/config-center/config-center.js']) w.eval(read(file));
   const dialog = w.__GAIP_CONFIG_DIALOGS__.openBulkImport(), api = w.__GAIP_MODAL_CONTROLS__;
   const tick = () => new Promise(r => w.setTimeout(r, 10));
   await tick(); api.scan();
@@ -312,9 +312,9 @@ async function testBulkImportSelect() {
 }
 async function testCountedResize() {
   const field = (id, resize = 'vertical') => `<span class="gaip-kit-counted gaip-form-input-shell gaip-form-textarea-shell"><textarea id="${id}" class="gaip-form-control" rows="5" maxlength="500" style="resize:${resize};height:200px;min-height:42px">原内容</textarea><span class="gaip-kit-count">3 / 500</span></span>`;
-  const dom = new JSDOM(`<style>${read('shared/styles/global-modal.css')}</style><dialog open class="gaip-modal-kit gaip-modal-form">${field('text')}${field('auto', 'none')}</dialog><main>${field('outside')}</main>`, { runScripts: 'outside-only', pretendToBeVisual: true });
+  const dom = new JSDOM(`<style>${read('components/modal/global-modal.css')}</style><dialog open class="gaip-modal-kit gaip-modal-form">${field('text')}${field('auto', 'none')}</dialog><main>${field('outside')}</main>`, { runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window, d = w.document;
-  w.eval(read('shared/scripts/global-date-picker.js')); w.eval(read('shared/scripts/modal-controls.js'));
+  w.eval(read('components/date-picker/global-date-picker.js')); w.eval(read('components/modal-controls/modal-controls.js'));
   await new Promise(r => w.setTimeout(r, 5));
   const api = w.__GAIP_MODAL_CONTROLS__, text = d.querySelector('#text'), shell = text.parentElement, owner = text.closest('dialog');
   api.scan(); api.scan();
@@ -363,7 +363,7 @@ async function testCountedResize() {
   assert.equal(shell.querySelector('.gaip-mc-resize-handle'), null, 'dynamic exclusion cleans enhancement');
   shell.removeAttribute('data-gaip-form-field'); await new Promise(r => w.setTimeout(r, 5)); assert.ok(shell.querySelector('.gaip-mc-resize-handle'));
   // A new business source can opt in without imitating Ant's private classnames.
-  w.eval(read('shared/scripts/global-modal.js'));
+  w.eval(read('components/modal/global-modal.js'));
   const custom = d.createElement('div'); custom.className = 'ant-modal';
   custom.innerHTML = '<div class="ant-modal-content"><div class="ant-modal-header"><h3>新业务</h3></div><div class="ant-modal-body"><span data-gaip-modal-part="counted-textarea"><textarea style="resize:vertical">原字段</textarea><span data-gaip-modal-part="count">3 / 100</span></span></div></div>';
   d.body.appendChild(custom); w.__GAIP_MODAL_COMPONENT__.adoptForm(custom); api.scan();
@@ -378,7 +378,7 @@ async function testCountedResize() {
 async function testInvalidFocus() {
   const dom = new JSDOM('<body><input id="outside"><dialog open class="gaip-modal-form"><div id="scroll" style="overflow-y:auto"><div class="ant-form-item" id="first"><select required><option value="">请选择</option><option>A</option></select></div><div class="ant-form-item"><input required id="second"></div></div><footer><button id="save">保存</button></footer></dialog><dialog open class="gaip-modal"><input id="confirm"></dialog></body>', {runScripts:'outside-only', pretendToBeVisual:true});
   const w = dom.window, d = w.document, tick = () => new Promise(r => w.setTimeout(r, 5));
-  w.eval(read('shared/scripts/global-date-picker.js')); w.eval(read('shared/scripts/modal-controls.js')); await tick();
+  w.eval(read('components/date-picker/global-date-picker.js')); w.eval(read('components/modal-controls/modal-controls.js')); await tick();
   const api = w.__GAIP_MODAL_CONTROLS__, select = d.querySelector('select'), trigger = select.nextElementSibling, input = d.querySelector('#second');
   const scroll = d.querySelector('#scroll'), first = d.querySelector('#first');
   Object.defineProperties(scroll, {scrollHeight:{value:800}, clientHeight:{value:200}, offsetHeight:{value:200}});

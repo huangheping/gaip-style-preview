@@ -1,0 +1,9 @@
+#root .gaip-main-menu-leading-icon{
+  display: grid !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  align-items: center;
+  justify-items: center;
+  line-height: 0;
+}

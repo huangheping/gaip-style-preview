@@ -8,17 +8,17 @@ const root=path.resolve(__dirname,'..'), read=f=>fs.readFileSync(path.join(root,
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   // Exercise actual file entry and its real stylesheet order.
-  await page.goto('file://'+path.join(root,'全局组件/index.html')+'?component=global-table');
+  await page.goto('file://'+path.join(root,'components/index.html')+'?component=global-table');
   await page.locator('[data-gaip-table-demo] tbody tr').first().waitFor();
   const table=page.locator('[data-gaip-table-demo]');
   assert.equal(await table.locator('[aria-current="page"]').textContent(),'1','single page still displays current page');assert.equal(await table.locator('select').count(),0,'no system selector');
   assert.equal(await table.locator('header, h3, [aria-sort], [data-table-action="sort"]').count(),0,'no internal title row or sorting controls');
   const scrollbar=await table.locator('.gaip-table__scroll').evaluate(n=>({width:getComputedStyle(n).scrollbarWidth,color:getComputedStyle(n).scrollbarColor,global:getComputedStyle(document.body).scrollbarColor}));
   if(await page.evaluate(()=>CSS.supports('scrollbar-color','red blue'))){assert.equal(scrollbar.width,'auto');assert.match(scrollbar.color,/0.18/);assert.match(scrollbar.global,/0.32/,'outside table unchanged');}else{console.log('Scrollbar color unsupported in this Chromium; global rule uses native fallback.');}
-  const tagMetrics=await table.locator('.gaip-table__tag').evaluateAll(nodes=>nodes.map(n=>{const s=getComputedStyle(n);return {height:n.getBoundingClientRect().height,padding:s.paddingLeft,radius:s.borderRadius,font:s.fontSize,line:s.lineHeight,text:s.color,bg:s.backgroundColor,tone:n.className};}));
+  const tagMetrics=await table.locator('.gaip-table__tag').evaluateAll(nodes=>nodes.map(n=>{const s=getComputedStyle(n);return {height:n.getBoundingClientRect().height,padding:s.paddingLeft,radius:s.borderRadius,font:s.fontSize,line:s.lineHeight,text:s.color,bg:s.backgroundColor,tone:n.dataset.gaipTableTag};}));
   assert.ok(tagMetrics.length>=4&&tagMetrics.every(t=>t.height===20&&t.padding==='8px'&&t.radius==='3px'&&t.font==='12px'&&t.line==='12px'),'organization tag dimensions are shared');
-  assert.ok(tagMetrics.some(t=>t.tone.includes('--success')&&t.bg==='rgb(56, 158, 13)'&&t.text==='rgb(255, 255, 255)'),'course success colors retained');
-  assert.ok(tagMetrics.some(t=>t.tone.includes('--highlight')&&t.bg==='rgb(244, 214, 124)'),'course highlight colors retained');
+  assert.ok(tagMetrics.some(t=>t.tone==='success'&&t.bg==='rgb(223, 245, 236)'&&t.text==='rgb(8, 123, 99)'),'shared success palette');
+  assert.ok(tagMetrics.some(t=>t.tone==='info'&&t.bg==='rgb(232, 240, 255)'),'featured uses shared info palette');
   const safeTag=await page.evaluate(()=>{const tag=window.__GAIP_TABLE__.tag('<img src=x onerror=alert(1)>',{tone:'unknown injected'});return {text:tag.textContent,children:tag.children.length,classes:tag.className};});
   assert.equal(safeTag.text,'<img src=x onerror=alert(1)>');assert.equal(safeTag.children,0);assert.equal(safeTag.classes,'gaip-table__tag gaip-table__tag--neutral');
   const measure=()=>table.evaluate(n=>{let s=n.querySelector('.gaip-table__scroll'),p=n.querySelector('nav'),h=n.querySelector('th');return {root:n.getBoundingClientRect().toJSON(),scroll:s.getBoundingClientRect().toJSON(),pager:p.getBoundingClientRect().toJSON(),head:h.getBoundingClientRect().toJSON(),overflow:s.scrollHeight>s.clientHeight+1};});
@@ -39,6 +39,7 @@ const root=path.resolve(__dirname,'..'), read=f=>fs.readFileSync(path.join(root,
   assert.equal(await table.evaluate(n=>n.classList.contains('has-hidden-left')),false,'left edge starts without shadow');
   assert.equal(await table.evaluate(n=>n.classList.contains('has-hidden-right')),true,'right hidden content gets a shadow');
   await table.locator('.gaip-table__scroll').evaluate(n=>{n.scrollLeft=100;n.scrollTop=400;});await page.waitForTimeout(180);
+  await page.waitForFunction(()=>['left','right'].every(side=>{const n=document.querySelector('[data-gaip-table-demo] [data-fixed-edge="'+side+'"]');return n&&getComputedStyle(n,'::after').boxShadow!=='none';}));
   const edges=await table.evaluate(n=>{const l=n.querySelector('[data-fixed-edge="left"]'),r=n.querySelector('[data-fixed-edge="right"]');return {left:getComputedStyle(l,'::after').boxShadow,right:getComputedStyle(r,'::after').boxShadow,leftBorder:getComputedStyle(l).borderRightWidth,rightBorder:getComputedStyle(r).borderLeftWidth};});
   assert.notEqual(edges.left,'none');assert.notEqual(edges.right,'none');assert.equal(edges.leftBorder,'0px');assert.equal(edges.rightBorder,'0px');
 
@@ -63,8 +64,8 @@ const root=path.resolve(__dirname,'..'), read=f=>fs.readFileSync(path.join(root,
   await page.locator('[data-component="filter-bar"]').click();await page.locator('[data-component="global-table"]').click();await page.waitForTimeout(100);m=await measure();assert.ok(m.root.bottom<=977);
   // Load the real course controller in an isolated copy of its page shell.
   await page.goto('about:blank');await page.setContent('<!doctype html><div class="gaip-learning-page" id="page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></div>');
-  for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css', 'shared/styles/global-date-picker.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','shared/styles/global-table.css'])await page.addStyleTag({content:read(f)});
-  for(const f of ['shared/scripts/global-modal.js','shared/scripts/global-multi-select.js','shared/scripts/global-date-picker.js', 'shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'])await page.evaluate(({source,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(source);},{source:read(f),url:'file://'+path.join(root,f)});
+  for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','components/multi-select/global-multi-select.css','components/filter-bar/global-filter-bar.css', 'components/date-picker/global-date-picker.css','channels/learning-center/learning-center.css','components/table/global-table.css','components/table/global-table-tag.css'])await page.addStyleTag({content:read(f)});
+  for(const f of ['components/modal/global-modal.js','components/multi-select/global-multi-select.js','components/date-picker/global-date-picker.js', 'components/filter-bar/global-filter-bar.js','components/table/global-table-tag.js','components/table/global-table.js','channels/learning-center/learning-data.js','channels/learning-center/learning-app.js'])await page.evaluate(({source,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(source);},{source:read(f),url:'file://'+path.join(root,f)});
   await page.evaluate(()=>{const D=window.__GAIP_LEARNING_DATA__;for(let i=0;i<65;i++){let c=D.newCourse();c.title='浏览器分页测试 '+i;c.description='测试';c.image=D.course('c1').image;c.groups=['all'];c.required=false;D.save(c);}window.__GAIP_LEARNING_APP__.mount(document.querySelector('#page'));});
   await page.locator('[data-learning-action="课程管理"]').click();
   const manager=page.locator('.lc-manage-results');

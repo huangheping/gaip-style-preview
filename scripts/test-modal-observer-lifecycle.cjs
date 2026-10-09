@@ -19,7 +19,7 @@ async function main() {
   const dom = new JSDOM('<!doctype html><body></body>', { runScripts: 'outside-only', pretendToBeVisual: true });
   const w = dom.window, d = w.document;
   const tick = () => new Promise(resolve => w.setTimeout(resolve, 20));
-  w.eval(fs.readFileSync(path.join(root, 'shared/scripts/global-modal.js'), 'utf8'));
+  w.eval(fs.readFileSync(path.join(root, 'components/modal/global-modal.js'), 'utf8'));
   await tick(); // DOMContentLoaded has started the actual shared observer.
   let refreshCalls = 0;
   for (let cycle = 0; cycle < 2; cycle++) {

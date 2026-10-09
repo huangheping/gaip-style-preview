@@ -18,11 +18,18 @@
     return new URL(path, root).href;
   }
 
+  // DOM 属性解析相对路径与 base；原始属性选择器无法匹配同一资源的不同写法。
+  function hasAsset(selector, property, url) {
+    return Array.prototype.some.call(document.querySelectorAll(selector), function (node) {
+      return node[property] === url;
+    });
+  }
+
   function loadStyle(path, channelKey) {
     var url = assetUrl(path);
     var link;
-    if (loaded[url] || document.querySelector('link[href="' + url + '"]')) return;
-    loaded[url] = true;
+    if (loaded['style:' + url] || hasAsset('link[rel="stylesheet"][href]', 'href', url)) return;
+    loaded['style:' + url] = true;
     link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = url;
@@ -33,8 +40,8 @@
   function loadScript(path, channelKey) {
     var url = assetUrl(path);
     var script;
-    if (loaded[url] || document.querySelector('script[src="' + url + '"]')) return;
-    loaded[url] = true;
+    if (loaded['script:' + url] || hasAsset('script[src]', 'src', url)) return;
+    loaded['script:' + url] = true;
     script = document.createElement('script');
     script.src = url;
     script.async = false;

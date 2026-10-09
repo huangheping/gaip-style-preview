@@ -8,7 +8,7 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
 async function main() {
   const dom = new JSDOM('<!doctype html><div id="root"><aside class="ant-layout-sider"><ul class="ant-menu ant-menu-root"></ul></aside><main class="ant-pro-layout-content"></main></div>', {
-    url: 'file://' + root + '/财富值中心.html#/proposal', runScripts: 'outside-only', pretendToBeVisual: true
+    url: 'file://' + root + '/channels/wealth-center/index.html#/proposal', runScripts: 'outside-only', pretendToBeVisual: true
   });
   const w = dom.window, d = w.document, observers = [];
   const Observer = w.MutationObserver;
@@ -42,7 +42,7 @@ async function main() {
     let clicks = 0;
     customer.addEventListener('click', () => { clicks++; w.location.hash = '#/customer'; });
     const styles = d.createElement('style');
-    styles.textContent = read('shared/styles/channel-foundation.css');
+    styles.textContent = read('shared/styles/main-nav.css');
     d.head.appendChild(styles);
     w.eval(read('shared/scripts/channel-regions.js'));
     const visualKeys = () => Array.from(menu.children).sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(li => li.dataset.key);

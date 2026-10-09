@@ -4,8 +4,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 (async()=>{const b=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});try{
  const p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.setContent('<section id="page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section>');
- for(const f of ['shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','shared/styles/global-page-form.css'])await p.addStyleTag({content:read(f)});
- for(const f of ['shared/scripts/global-modal.js','shared/scripts/global-multi-select.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
+ for(const f of ['shared/styles/global-font.css','components/modal/global-modal.css','components/multi-select/global-multi-select.css','components/filter-bar/global-filter-bar.css','components/table/global-table.css','channels/learning-center/learning-center.css','shared/styles/global-page-form.css'])await p.addStyleTag({content:read(f)});
+ for(const f of ['shared/assets/icons/local-icons.generated.js','components/modal/global-modal.js','components/multi-select/global-multi-select.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','channels/learning-center/learning-data.js','channels/learning-center/learning-app.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
  await p.evaluate(()=>window.__GAIP_LEARNING_APP__.mount(document.querySelector('#page')));
  await p.locator('[data-learning-action="课程管理"]').click();await p.locator('[data-lc="create"]').click();
  assert.equal(await p.locator('[data-course-boolean="required"]:checked').count(),0,'new course requires explicit choice');
@@ -25,7 +25,7 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  await combo.focus();await p.keyboard.press('Escape');assert.equal(await combo.getAttribute('aria-expanded'),'false');
  await p.locator('[data-course-boolean="required"][value="true"]').check();await p.getByRole('switch',{name:'设为精选'}).check();
  // Real browser local image upload; no network and no media playback.
- await p.locator('[data-upload="cover"]').setInputFiles({name:'封面.jpg',mimeType:'image/jpeg',buffer:fs.readFileSync(path.join(root,'assets/learning/course-01-arkos.jpg'))});
+ await p.locator('[data-upload="cover"]').setInputFiles({name:'封面.jpg',mimeType:'image/jpeg',buffer:fs.readFileSync(path.join(root,'channels/learning-center/assets/images/course-01-arkos.jpg'))});
  await p.locator('.lc-cover-picker img').waitFor();assert.equal(await p.locator('#lc-course-title').inputValue(),'新版基本信息测试');
  await p.locator('[data-lc="save-draft-return"]').click();
  const saved=await p.evaluate(()=>window.__GAIP_LEARNING_DATA__.state().courses.find(c=>c.title==='新版基本信息测试'));
@@ -59,7 +59,10 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  assert.equal(persisted.lessons[1].handout.name,'学习讲义.pdf');
  await lesson(secondId).locator('[data-lc="remove-handout"]').click();assert.equal(await lesson(secondId).locator('[data-lc="remove-handout"]').count(),0);
  await lesson(secondId).locator('[data-lc="save-lesson"]').click();
- await lesson(secondId).locator('[data-lc="move-up"]').click();
+ assert.equal(await p.locator('[data-lc="move-up"],[data-lc="move-down"]').count(),0);
+ await lesson(firstId).evaluate(n=>{const e=n.closest('.lc-editor');e.scrollTop+=n.getBoundingClientRect().top-e.getBoundingClientRect().top-20;});
+ const from=await lesson(secondId).locator('[data-drag]').boundingBox(),to=await lesson(firstId).boundingBox();
+ await p.mouse.move(from.x+12,from.y+12);await p.mouse.down();await p.mouse.move(to.x+40,to.y+20,{steps:12});await p.mouse.up();
  assert.equal(await p.locator('[data-edit-lesson]').first().getAttribute('data-edit-lesson'),secondId);
  await p.locator('[data-lc="save-order"]').click();
  assert.deepEqual(await p.evaluate(id=>window.__GAIP_LEARNING_DATA__.course(id).lessons.map(l=>l.id),saved.id),[secondId,firstId]);

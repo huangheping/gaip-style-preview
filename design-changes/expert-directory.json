@@ -29,7 +29,7 @@
         "image.asset": {
           "before": null,
           "initialLocal": null,
-          "target": "shared/assets/expert-directory/zhou-keqin-william.jpg",
+          "target": "components/expert-directory/assets/zhou-keqin-william.jpg",
           "status": "active",
           "basis": "source",
           "reason": "new"
@@ -60,7 +60,7 @@
         }
       },
       "sources": [
-        "shared/scripts/expert-directory.js",
+        "components/expert-directory/expert-directory.js",
         "web/106.89b4424f.chunk.css (.expertCardAvatar___dpYtz，复用原样式)",
         "用户附件：周克勤William.jpg；复制后SHA256一致：fb65dd69d8e8b282efbd24bce5e4e9c2ac39da7063faf96686c2782e16cd928f"
       ],
@@ -154,7 +154,7 @@
         }
       },
       "sources": [
-        "shared/scripts/expert-directory.js",
+        "components/expert-directory/expert-directory.js",
         "web/106.89b4424f.chunk.css (.expertCardType___CoZU5 / .expertCardHeader___My9Or，复用原样式)"
       ],
       "verification": {
@@ -192,7 +192,7 @@
         "image.asset": {
           "before": null,
           "initialLocal": null,
-          "target": "shared/assets/expert-directory/zhou-keqin-william-qr.png",
+          "target": "components/expert-directory/assets/zhou-keqin-william-qr.png",
           "status": "active",
           "basis": "source",
           "reason": "new"
@@ -223,7 +223,7 @@
         }
       },
       "sources": [
-        "shared/scripts/expert-directory.js",
+        "components/expert-directory/expert-directory.js",
         "web/106.89b4424f.chunk.css (.expertQrCode___cX0uw，复用原样式)",
         "用户附件：编组 5备份 11.png；原样复制，SHA256：697001d7b2497dd4a08eecb0d8f4377ee2eef87107316aa339f612a652766c94"
       ],
@@ -269,7 +269,7 @@
         }
       },
       "sources": [
-        "shared/scripts/expert-directory.js（decorate）"
+        "components/expert-directory/expert-directory.js（decorate）"
       ],
       "verification": {
         "level": "browser-checked",

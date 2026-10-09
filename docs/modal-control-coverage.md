@@ -4,9 +4,9 @@
 
 ## 唯一来源与边界
 
-- 普通输入、文本域、标签及帮助/错误提示：`shared/styles/global-modal.css`。
-- 复合控件、状态主题、清除/展开图标、选择面板：`shared/styles/modal-controls.css`。
-- 弹窗识别、外置面板归属、原生选择控件适配：`shared/scripts/modal-controls.js`。
+- 普通输入、文本域、标签及帮助/错误提示：`components/modal/global-modal.css`。
+- 复合控件、状态主题、清除/展开图标、选择面板：`components/modal-controls/modal-controls.css`。
+- 弹窗识别、外置面板归属、原生选择控件适配：`components/modal-controls/modal-controls.js`。
 - 预览和业务入口加载同一套文件；不维护预览专用表单 DOM/CSS。
 - 仅 `.gaip-modal-controls` 所属弹窗、明确属于弹窗的 `.gaip-modal-popup` 展开面板。页面表单、抽屉、AI Agent 主面板不接入。弹窗外的日志页面仍使用自己的样式及原生日期面板。
 - Ant 选择器保留原本组件和事件；原生 select/date/time 的数据控件保留，共享面板回写原控件并触发 input/change，继续使用原 required/min/max/step 校验。

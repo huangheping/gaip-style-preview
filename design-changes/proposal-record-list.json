@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "page": "方案中心 - 我的方案记录",
+  "records": [
+    {
+      "id": "proposal.records.scroll-region",
+      "element": "我的方案记录列表滚动区",
+      "locator": {
+        "selector": ".gaip-record-layout .gaip-record-list",
+        "representative": "方案中心 > 我的方案记录 > 右侧记录列表"
+      },
+      "state": {
+        "channel": "proposal",
+        "variant": "records/overflow/default/hover",
+        "viewport": "频道内容区低于全部记录总高度时"
+      },
+      "appliesTo": [
+        "方案中心直达入口",
+        "其他正式入口通过 Hash 切换到方案中心"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "内容自然增高，无视口剩余高度约束",
+          "target": "记录面板占用频道标题与Tab以下的视口剩余高度",
+          "basis": "source"
+        },
+        "overflow-y": {
+          "before": null,
+          "initialLocal": "visible（未声明）",
+          "target": "auto，仅记录列表独立纵向滚动",
+          "basis": "source"
+        },
+        "scrollbar-width": {
+          "before": null,
+          "initialLocal": "浏览器默认且记录区不构成滚动容器",
+          "target": "thin / WebKit 6px",
+          "basis": "source"
+        },
+        "scrollbar-thumb": {
+          "before": null,
+          "initialLocal": "无",
+          "target": "rgba(47,54,64,.22)，hover rgba(47,54,64,.36)，圆角6px",
+          "basis": "source"
+        },
+        "content-width": {
+          "before": null,
+          "initialLocal": "右侧8px内边距与6px稳定滚动槽共同挤占卡片宽度",
+          "target": "滚动区向右侧主区内边距扩展14px，8px间距与6px滚动槽不占用卡片内容宽度",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "channels/proposal-center/proposal-center.css .gaip-record-layout",
+        "channels/proposal-center/proposal-center.css .gaip-record-main",
+        "channels/proposal-center/proposal-center.css .gaip-record-list",
+        "channels/proposal-center/proposal-center.css .gaip-record-sidebar"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "gaps": [
+          "真实 file 页面被当前浏览器安全策略拒绝读取",
+          "修改后实际滚动命中与滚动条像素待现场复验"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    }
+  ]
+}

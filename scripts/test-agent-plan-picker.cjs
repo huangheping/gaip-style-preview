@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
-const source = fs.readFileSync(path.join(__dirname, '../AI Agent/AI Agent本地Mock.js'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '../components/ai-agent/AI Agent本地Mock.js'), 'utf8');
 const tick = () => new Promise(resolve => setTimeout(resolve, 70));
 async function scenario(query, version) {
   const dom = new JSDOM('<section class="agentModal___Nxp06"><div class="modalRenderWrapper___qz3XP"><button class="historyBtn___ElWTU"></button><div id="agentModalContentArea"><div class="chatPanel___qIDO_"><ul class="msgBox___NYtlO"><li class="sentinel___SbISb"></li></ul></div></div><footer><div class="container___jv7uB"><span class="tag___PKl7Z skillTag___g4XXW" id="native-tag">Native skill<span class="close___ZupBD"></span></span></div><textarea class="textarea___GMXtD"></textarea><div class="skillToggle___OpRvz"><svg id="react-owned"></svg><span>技能</span></div></footer></div></section>', {url:'http://localhost/channels/workspace/index.html'+query+'#/workspace', runScripts:'outside-only', pretendToBeVisual:true});

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>保单列表 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/policy/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="policy-tag">
+  <span class="tag___nTbva" data-children="single" data-kind="jsx">
+    <template data-slot="tagContent"></template>
+  </span>
+</template>
+
+<template id="policy-card">
+  <div class="card___hah9M" data-children="array" data-kind="jsxs">
+    <div class="header___qTLOe" data-children="array" data-kind="jsxs">
+      <div class="headerTop___tmsWs" data-children="single" data-kind="jsx">
+        <span class="productName___bta_9" data-children="single" data-kind="jsx">
+          <template data-slot="productNameContent"></template>
+        </span>
+      </div>
+      <div class="headerCenter___DgS2i" data-children="array" data-kind="jsxs">
+        <template data-slot="headerCenterContent"></template>
+        <span class="policyNo___jjnUH" data-children="array" data-kind="jsxs">
+          保单号：
+          <template data-slot="policyNoContent"></template>
+        </span>
+      </div>
+    </div>
+    <div class="fields___Xv81U" data-children="array" data-kind="jsxs">
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          持有人
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          保司
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent2"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          年缴
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent3"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          缴费年期
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent4"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          GAIP关联客户
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent5"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          保单状态
+        </span>
+        <span data-children="single" data-props="spanProps" data-kind="jsx">
+          <template data-slot="spanContent"></template>
+        </span>
+      </div>
+      <div class="fieldItem___U06po" data-children="array" data-kind="jsxs">
+        <span class="fieldLabel___d5MNE" data-children="single" data-kind="jsx">
+          下期保费到期日
+        </span>
+        <span class="fieldValue___jQJOY" data-children="single" data-kind="jsx">
+          <template data-slot="fieldValueContent6"></template>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="policy-fieldItem">
+  <div class="fieldItem___U06po" data-children="single" data-key="fieldItemKey" data-kind="jsx">
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="policy-card-2">
+  <div class="card___hah9M" data-children="array" data-kind="jsxs">
+    <div class="header___qTLOe" data-children="array" data-kind="jsxs">
+      <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+      <div data-component="gaip_policy_source_style_1Type" data-ui-class-name="gaip-policy-source-style-1" data-props="gaip_policy_source_style_1Props" data-kind="jsx"></div>
+    </div>
+    <div data-props="divProps" data-kind="jsx"></div>
+    <div class="fields___Xv81U" data-children="single" data-kind="jsx">
+      <template data-slot="fieldsContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="policy-modal">
+  <div data-component="modalType" data-ui-class-name="modal___e8las" data-ui-title="选择要绑定的客户" data-children="single" data-props="modalProps" data-kind="jsx">
+    <div class="content___hg33M" data-children="single" data-kind="jsx">
+      <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+    </div>
+  </div>
+</template>
+
+<template id="policy-component">
+  <div data-component="componentType" data-key="componentKey" data-kind="jsx"></div>
+</template>
+
+<template id="policy-cardGrid">
+  <div class="cardGrid___RG4Aj" data-children="single" data-kind="jsx">
+    <template data-slot="cardGridContent"></template>
+  </div>
+</template>
+
+<template id="policy-emptyWrap">
+  <div class="emptyWrap___jqgU_" data-children="single" data-kind="jsx">
+    <div data-component="componentType" data-ui-description="暂无保单数据" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="policy-component-2">
+  <div data-component="componentType" data-props="componentProps" data-key="componentKey" data-kind="jsx"></div>
+</template>
+
+<template id="policy-cardGrid-2">
+  <div class="cardGrid___RG4Aj" data-children="single" data-kind="jsx">
+    <template data-slot="cardGridContent"></template>
+  </div>
+</template>
+
+<template id="policy-searchIcon">
+  <div data-component="searchIconType" data-ui-class-name="searchIcon___sVljD" data-kind="jsx"></div>
+</template>
+
+<template id="policy-pageContainer">
+  <div class="pageContainer___ZWY0L" data-children="array" data-kind="jsxs">
+    <div class="banner___As3hl" data-children="array" data-kind="jsxs">
+      <h1 class="bannerTitle___y_MHO" data-children="single" data-kind="jsx">
+        保单列表
+      </h1>
+      <p class="bannerSubtitle___rhL1D" data-children="single" data-kind="jsx">
+        保单集中管理，高效检索跟踪，助力您精准把控保单全生命周期，提升客户服务专业度
+      </p>
+      <div class="bannerActions___CHOZT" data-children="single" data-kind="jsx">
+        <div data-component="searchInputType" data-ui-class-name="searchInput___Dm6Xw" data-ui-placeholder="搜索保单号/持有人/保司/产品" data-props="searchInputProps" data-kind="jsx"></div>
+      </div>
+    </div>
+    <div class="mainContent___qJpOg" data-children="single" data-kind="jsx">
+      <div class="cardListWrap___F0ohv" data-children="single" data-props="cardListWrapProps" data-kind="jsx">
+        <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+      </div>
+    </div>
+    <div data-component="componentType2" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType3" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType4" data-props="componentProps4" data-kind="jsx"></div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

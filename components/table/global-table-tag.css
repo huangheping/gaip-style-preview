@@ -1,0 +1,70 @@
+/* One palette for table labels, including legacy tables and real-source previews. */
+:root {
+  --table-tag-highlight-fg: #805b0d; --table-tag-highlight-bg: #f4d67c;
+  --table-tag-neutral-fg: #626b75; --table-tag-neutral-bg: #f0f1f2;
+  --table-tag-neutral-solid-fg: #ffffff; --table-tag-neutral-solid-bg: #626b75;
+  --table-tag-info-fg: #245dcc; --table-tag-info-bg: #e8f0ff;
+  --table-tag-success-fg: #087b63; --table-tag-success-bg: #dff5ec;
+  --table-tag-warning-fg: #995800; --table-tag-warning-bg: #fff0d5;
+  --table-tag-identity-fg: #625c55; --table-tag-identity-bg: #f1eeea;
+  --table-tag-identity-solid-fg: #ffffff; --table-tag-identity-solid-bg: var(--table-tag-identity-fg);
+  --table-tag-danger-solid-fg: #ffffff; --table-tag-danger-solid-bg: #bd3043;
+  --table-tag-danger-fg: #bd3043; --table-tag-danger-bg: #ffe8ec;
+}
+[data-gaip-table-tag] { --tag-fg: var(--table-tag-neutral-fg); --tag-bg: var(--table-tag-neutral-bg); }
+[data-gaip-table-tag="highlight"] { --tag-fg: var(--table-tag-highlight-fg); --tag-bg: var(--table-tag-highlight-bg); }
+[data-gaip-table-tag="info"] { --tag-fg: var(--table-tag-info-fg); --tag-bg: var(--table-tag-info-bg); }
+[data-gaip-table-tag="success"] { --tag-fg: var(--table-tag-success-fg); --tag-bg: var(--table-tag-success-bg); }
+[data-gaip-table-tag="warning"] { --tag-fg: var(--table-tag-warning-fg); --tag-bg: var(--table-tag-warning-bg); }
+[data-gaip-table-tag="danger"] { --tag-fg: var(--table-tag-danger-fg); --tag-bg: var(--table-tag-danger-bg); }
+[data-gaip-table-tag="identity"] { --tag-fg: var(--table-tag-identity-fg); --tag-bg: var(--table-tag-identity-bg); }
+[data-gaip-table-tag="identity"][data-gaip-table-tag-variant="solid"] { --tag-fg: var(--table-tag-identity-solid-fg); --tag-bg: var(--table-tag-identity-solid-bg); }
+[data-gaip-table-tag="neutral"][data-gaip-table-tag-variant="solid"] { --tag-fg: var(--table-tag-neutral-solid-fg); --tag-bg: var(--table-tag-neutral-solid-bg); }
+[data-gaip-table-tag="danger"][data-gaip-table-tag-variant="solid"] { --tag-fg: var(--table-tag-danger-solid-fg); --tag-bg: var(--table-tag-danger-solid-bg); }
+/* Important declarations supersede scoped legacy/Ant skins only on adopted labels. */
+td [data-gaip-table-tag], [data-gaip-table-tag-owned] {
+  display: inline-flex !important; align-items: center !important; justify-content: center;
+  box-sizing: border-box !important; flex-shrink: 0; vertical-align: middle;
+  height: 20px !important; min-height: 20px !important; padding: 0 8px !important;
+  border: 0 !important; border-radius: 3px !important; box-shadow: none !important;
+  font-size: 12px !important; font-weight: 400 !important; line-height: 1 !important;
+  white-space: nowrap; color: var(--tag-fg) !important; background: var(--tag-bg) !important;
+}
+td [data-gaip-table-tag="empty"], [data-gaip-table-tag-owned][data-gaip-table-tag="empty"] {
+  padding: 0 !important; background: transparent !important; border-radius: 0 !important;
+}
+
+[data-gaip-table-tag][hidden] { display: none !important; }
+/* Static labels must not animate through the previous palette during async adoption. */
+td [data-gaip-table-tag], [data-gaip-table-tag-owned] { transition: none !important; }
+td [data-gaip-table-tag] > span { font-size: inherit !important; font-weight: inherit !important; line-height: inherit !important; color: inherit !important; }
+/* The same inline vectors serve the catalog and adopted business labels. */
+td [data-gaip-table-tag], [data-gaip-table-tag-owned] { gap: 4px !important; }
+/* @gaip-icon:start shared/assets/icons/forms/css/components--table--global-table-tag-1.css */[data-gaip-table-tag] > .gaip-table-tag__icon{
+  display: block; width: 12px !important; height: 12px !important;
+  min-width: 12px; flex: 0 0 12px; margin: 0 !important;
+  color: inherit !important; pointer-events: none;
+}/* @gaip-icon:end */
+[data-gaip-table-tag] [data-gaip-table-tag-legacy-icon] { display: none !important; }
+
+/* Shared groups also adopt the two existing non-React organization containers. */
+[data-gaip-table-tag-group], td .licenseCell___BqdK0, td .memberIdentityTags___f8Q2m {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start;
+  gap: 6px 8px !important; min-width: 0; max-width: 100%;
+}
+[data-gaip-table-tag-group] > [data-gaip-table-tag],
+td .licenseCell___BqdK0 > [data-gaip-table-tag], td .memberIdentityTags___f8Q2m > [data-gaip-table-tag] { margin: 0 !important; }
+[data-gaip-table-tag-owned] { min-width: 0; max-width: 100%; }
+[data-gaip-table-tag-owned] > .gaip-table-tag__text {
+  display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font: inherit; color: inherit;
+}
+[data-tag-truncated]:focus-visible { outline: 2px solid #025b52; outline-offset: 2px; }
+.gaip-table-tag-tooltip {
+  position: fixed; z-index: 1200; inset: auto; margin: 0; box-sizing: border-box;
+  width: max-content; max-width: min(320px, calc(100vw - 24px)); max-height: calc(100vh - 24px);
+  overflow: auto; overflow-wrap: anywhere; white-space: normal; padding: 8px 12px;
+  border: 1px solid #e8eaec; border-radius: 6px; background: #fff; color: #2f3640;
+  font-size: 12px; line-height: 20px; font-weight: 400; box-shadow: 0 6px 24px rgba(47,54,64,.12);
+}
+.gaip-table-tag-tooltip::backdrop { background: transparent; pointer-events: none; }

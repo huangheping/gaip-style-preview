@@ -3,10 +3,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
-const source = fs.readFileSync(path.join(__dirname, '../features/learning-center/learning-data.js'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '../channels/learning-center/learning-data.js'), 'utf8');
 function boot(saved) {
   const dom = new JSDOM('', { url: 'https://local.example/', runScripts: 'outside-only' });
-  Object.defineProperty(dom.window.document, 'currentScript', { value: { src: 'https://local.example/features/learning-center/learning-data.js' } });
+  Object.defineProperty(dom.window.document, 'currentScript', { value: { src: 'https://local.example/channels/learning-center/learning-data.js' } });
   if (saved) dom.window.localStorage.setItem('gaip-learning-v11', saved);
   dom.window.eval(source); return { dom, D: dom.window.__GAIP_LEARNING_DATA__ };
 }

@@ -30,11 +30,12 @@ function submit(form) {
 }
 
 const dom = new JSDOM('<!doctype html><html><body><main id="host"></main></body></html>', {
-  url: 'file://' + root + '/配置中心.html#/workspace?gaip-channel=config&gaip-view=announcement-management',
+  url: 'file://' + root + '/channels/config-center/index.html#/workspace?gaip-channel=config&gaip-view=announcement-management',
   runScripts: 'outside-only',
   pretendToBeVisual: true
 });
 const w = dom.window;
+w.eval(fs.readFileSync(path.join(root,'shared/assets/icons/local-icons.generated.js'),'utf8'));
 const d = w.document;
 // Fixture availability is date-dependent; keep the test in its intended period.
 const RealDate = w.Date;
@@ -44,9 +45,8 @@ w.Date = class extends RealDate {
   static now() { return fixtureNow; }
 };
 installDialog(w);
-w.eval(source('shared/scripts/global-modal.js'));
-w.eval(source('features/config-center/announcement-management-data.js'));
-w.eval(source('features/config-center/announcement-management-view.js'));
+w.eval(source('components/modal/global-modal.js'));
+w.eval(source('channels/config-center/announcement-management-view.js'));
 
 const api = w.__GAIP_ANNOUNCEMENT_MANAGEMENT__;
 assert.ok(api, 'announcement management controller is available');
@@ -149,12 +149,12 @@ assert.ok(dialog.querySelector('.gaip-modal__close svg'), 'delete confirmation u
 dialog.querySelector('[data-announcement-confirm-delete]').click();
 assert.equal(api.getRecords().some(record => record.id === 'announcement-007'), false, 'confirmed delete removes an offline record');
 
-const css = source('features/config-center/announcement-management.css');
+const css = source('channels/config-center/announcement-management.css');
 assert.match(css, /gaip-announcement-page\s*\{[\s\S]*border-top:\s*1px solid rgba\(47, 54, 64, \.12\)/, 'announcement content starts with the shared channel divider');
 assert.match(css, /gaip-announcement-table \.ant-table-thead\s*\{[\s\S]*position:\s*sticky/);
 assert.match(css, /gaip-announcement-modal-header\.ant-modal-header\s*\{[\s\S]*padding:\s*24px 64px 24px 24px/);
 assert.match(css, /gaip-announcement-modal-body > \.gaip-announcement-form\s*\{[^}]*padding:\s*0 0 24px/, 'inner form does not duplicate shared body horizontal padding');
-assert.match(source('shared/styles/global-modal.css'), /\.gaip-modal__form-body\s*\{[^}]*padding-inline:\s*24px\s*!important/, 'shared body owns the horizontal breathing room');
+assert.match(source('components/modal/global-modal.css'), /\.gaip-modal__form-body\s*\{[^}]*padding-inline:\s*24px\s*!important/, 'shared body owns the horizontal breathing room');
 assert.match(css, /ant-modal-footer\.gaip-announcement-modal-footer\s*\{[\s\S]*min-height:\s*72px/);
 assert.match(css, /gaip-announcement-modal-footer \.ant-btn\s*\{[\s\S]*min-width:\s*88px;[\s\S]*height:\s*40px/);
 assert.match(css, /ant-pagination-prev svg,[\s\S]*width:\s*14px;[\s\S]*height:\s*14px/);
@@ -162,8 +162,8 @@ assert.match(css, /gaip-announcement-action\.ant-btn\[disabled\][\s\S]*cursor:\s
 assert.match(css, /var\(--ant-color-error,\s*#ff4d4f\)/, 'danger actions use the global Ant error color token');
 assert.match(css, /gaip-announcement-time-controls\s*\{[\s\S]*grid-template-columns:/, 'date and time controls share one row inside each range endpoint');
 assert.match(css, /input\[type="date"\][\s\S]*background-size:\s*20px 20px/, 'date and time controls use one visible icon size');
-assert.match(css, /announcement-calendar\.svg/);
-assert.match(css, /announcement-clock\.svg/);
+assert.match(css, /control-calendar\.svg/);
+assert.match(css, /modal-clock\.svg/);
 assert.match(css, /gaip-announcement-title-input\.ant-input\s*\{[\s\S]*max-height:\s*112px/, 'long titles grow until the controlled maximum height');
 assert.match(css, /gaip-announcement-title-tooltip\.ant-tooltip\s*\{[\s\S]*width:\s*min\(520px/, 'multilingual title tooltip has a controlled desktop width');
 

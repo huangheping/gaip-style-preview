@@ -1,145 +1,734 @@
 {
   "schemaVersion": 1,
-  "page": "全局组件/index.html",
+  "page": "components/index.html",
   "records": [
     {
-      "id": "component-catalog.tabs-demo-spacing",
-      "element": "Tab预览分组及卡片外说明",
-      "locator": { "selector": ".tabsDemo, .tabsDemo__heading, .tabsDemo__status, .tabsDemo__help, .tabsDemo__surface", "representative": "下划线Tab预览页" },
-      "state": { "variant": "default", "viewport": "480px / 1440px" },
-      "appliesTo": ["全局组件/index.html?component=underline-tabs；不影响业务页面Tab"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "example.gap": { "before": null, "initialLocal": "未分组，无专属gap", "target": "24px", "status": "active", "basis": "source" },
-        "heading.margin-bottom": { "before": null, "initialLocal": null, "target": "12px", "status": "active", "basis": "source", "reason": "new" },
-        "heading.gap": { "before": null, "initialLocal": null, "target": "8px 16px，窄屏换行", "status": "active", "basis": "source", "reason": "new" },
-        "heading.typography": { "before": null, "initialLocal": null, "target": "14px/22px #2f3640；margin0", "status": "active", "basis": "source", "reason": "new" },
-        "note.typography": { "before": null, "initialLocal": "无专属样式，继承页面", "target": "13px/20px #68747c；margin0", "status": "active", "basis": "source" },
-        "surface.min-height": { "before": null, "initialLocal": "160px", "target": "0（高度由真实Tab和现有卡片padding决定）", "status": "active", "basis": "source" }
+      "id": "component-catalog.upload-controls-preview",
+      "element": "上传控件单页分组与预览卡片",
+      "locator": {
+        "selector": ".uploadCatalog__grid, .uploadCatalog__surface, .uploadCatalog__case > h4",
+        "representative": "单个上传目录内12个功能控件"
       },
-      "sources": ["全局组件/components-preview.css", "全局组件/components-preview.js"],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-15", "gaps": ["独立浏览器加载真实预览源码核对1440/480px几何并查看截图；未操作用户当前已打开标签页。"] },
+      "state": {
+        "variant": "empty/selected/error",
+        "viewport": "宽屏及max-width:1100px"
+      },
+      "appliesTo": [
+        "components/index.html?component=uploads；业务页面保持不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "grid.columns": {
+          "before": null,
+          "initialLocal": null,
+          "target": "两列minmax(0,1fr)；max-width:1100px时单列",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求单页展示，撤回整页iframe"
+        },
+        "grid.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "行28px / 列24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "180px（可随内容增长）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "title.typography": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px / 22px / 500；卡片外下间距12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/uploads/upload-controls.css",
+        "components/uploads/upload-source-styles.generated.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "真实浏览器像素/原生文件选择器/图片解码未验证"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+      "element": "Tab预览分组及卡片外说明",
+      "locator": {
+        "selector": ".tabsDemo, .tabsDemo__heading, .tabsDemo__status, .tabsDemo__help, .tabsDemo__surface",
+        "representative": "下划线Tab预览页"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": "480px / 1440px"
+      },
+      "appliesTo": [
+        "components/index.html?component=underline-tabs；不影响业务页面Tab"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "example.gap": {
+          "before": null,
+          "initialLocal": "未分组，无专属gap",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "heading.margin-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "heading.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px 16px，窄屏换行",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "heading.typography": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px/22px #2f3640；margin0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "note.typography": {
+          "before": null,
+          "initialLocal": "无专属样式，继承页面",
+          "target": "13px/20px #68747c；margin0",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.min-height": {
+          "before": null,
+          "initialLocal": "160px",
+          "target": "0（高度由真实Tab和现有卡片padding决定）",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/components-preview.js"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "独立浏览器加载真实预览源码核对1440/480px几何并查看截图；未操作用户当前已打开标签页。"
+        ]
+      },
       "status": "active",
       "updatedAt": "2026-09-15"
     },
     {
       "id": "component-catalog.global-font",
       "element": "组件目录文字及海报分享文字",
-      "locator": { "selector": ".catalogBrandMark, .catalogBrand strong, .componentDetails code, .componentSource code, body, .app-brand, .thumb-brand, .poster-avatar", "representative": "目录说明文字与海报分享独立文档（含Canvas导出文字）" },
-      "state": { "variant": "default", "viewport": null },
-      "appliesTo": ["全局组件/index.html", "全局组件/海报分享/index.html", "通过global-poster-share打开海报分享的业务消费者"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "catalog.font-family": { "before": null, "initialLocal": "品牌Georgia, serif!important；代码Menlo, Consolas, monospace!important（源声明，未实测层叠）", "target": "移除局部声明，继承global-font.css的--gaip-global-font", "status": "active", "basis": "source" },
-        "poster.font-family": { "before": null, "initialLocal": "GAIP PuHui, Noto Sans SC, sans-serif；局部Georgia, serif", "target": "同源global-font.css的--gaip-global-font（当前HarmonyOS Sans SC）", "status": "active", "basis": "source" },
-        "poster.font-weight": { "before": null, "initialLocal": "body:300", "target": "移除局部body声明，由全局--gaip-global-font-weight:400提供", "status": "active", "basis": "source" },
-        "poster.font-synthesis": { "before": null, "initialLocal": "weight", "target": "继承global-font.css的none", "status": "active", "basis": "source" },
-        "poster-canvas.font-family": { "before": null, "initialLocal": "sans-serif", "target": "读取body计算字体；保留原绘制字号与400/600字重，绘制前等待字体加载", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": ".catalogBrandMark, .catalogBrand strong, .componentDetails code, .componentSource code, body, .app-brand, .thumb-brand, .poster-avatar",
+        "representative": "目录说明文字与海报分享独立文档（含Canvas导出文字）"
       },
-      "sources": ["全局组件/components-preview.css", "全局组件/index.html", "全局组件/海报分享/index.html#posterCanvasFont", "shared/styles/global-font.css（复用，未修改）"],
-      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["真实浏览器字体加载、排版与海报PNG观感待验收；图片素材内已烘焙文字不属于CSS字体范围"] },
+      "state": {
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html",
+        "components/海报分享/index.html",
+        "通过global-poster-share打开海报分享的业务消费者"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "catalog.font-family": {
+          "before": null,
+          "initialLocal": "品牌Georgia, serif!important；代码Menlo, Consolas, monospace!important（源声明，未实测层叠）",
+          "target": "移除局部声明，继承global-font.css的--gaip-global-font",
+          "status": "active",
+          "basis": "source"
+        },
+        "poster.font-family": {
+          "before": null,
+          "initialLocal": "GAIP PuHui, Noto Sans SC, sans-serif；局部Georgia, serif",
+          "target": "同源global-font.css的--gaip-global-font（当前HarmonyOS Sans SC）",
+          "status": "active",
+          "basis": "source"
+        },
+        "poster.font-weight": {
+          "before": null,
+          "initialLocal": "body:300",
+          "target": "移除局部body声明，由全局--gaip-global-font-weight:400提供",
+          "status": "active",
+          "basis": "source"
+        },
+        "poster.font-synthesis": {
+          "before": null,
+          "initialLocal": "weight",
+          "target": "继承global-font.css的none",
+          "status": "active",
+          "basis": "source"
+        },
+        "poster-canvas.font-family": {
+          "before": null,
+          "initialLocal": "sans-serif",
+          "target": "读取body计算字体；保留原绘制字号与400/600字重，绘制前等待字体加载",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/index.html",
+        "components/海报分享/index.html#posterCanvasFont",
+        "shared/styles/global-font.css（复用，未修改）"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "真实浏览器字体加载、排版与海报PNG观感待验收；图片素材内已烘焙文字不属于CSS字体范围"
+        ]
+      },
       "status": "active",
       "updatedAt": "2026-09-09"
     },
     {
       "id": "component-catalog.preview-surface-separation",
       "element": "组件目录的独立白色预览卡片与外部说明区",
-      "locator": { "selector": ".componentPreviewSurface, .componentEntryHeader, .componentDetails, .componentEntryFooter" },
-      "state": { "variant": "default", "viewport": null },
-      "appliesTo": ["全局组件/index.html 的8个已登记标签页"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "entry.background": { "before": null, "initialLocal": "#fff", "target": "transparent", "status": "active", "basis": "source" },
-        "entry.border": { "before": null, "initialLocal": "1px solid #dfe3e5", "target": "none", "status": "active", "basis": "source" },
-        "entry.border-radius": { "before": null, "initialLocal": "6px", "target": "0", "status": "active", "basis": "source" },
-        "surface.background": { "before": null, "initialLocal": null, "target": "#fff", "status": "active", "basis": "source", "reason": "new" },
-        "surface.border": { "before": null, "initialLocal": null, "target": "1px solid #dfe3e5", "status": "active", "basis": "source", "reason": "new" },
-        "surface.border-radius": { "before": null, "initialLocal": null, "target": "6px", "status": "active", "basis": "source", "reason": "new" },
-        "surface.padding": { "before": null, "initialLocal": null, "target": "26px；≤640px为16px；表单框架沿用32px/≤620px为16px", "status": "active", "basis": "source", "reason": "new" },
-        "surface.min-height": { "before": null, "initialLocal": null, "target": "160px", "status": "active", "basis": "source", "reason": "new" },
-        "catalog.margin-top": { "before": null, "initialLocal": "0", "target": "28px", "status": "active", "basis": "source" },
-        "header.padding": { "before": null, "initialLocal": "24px 26px 22px", "target": "0 0 20px", "status": "active", "basis": "source" },
-        "details.gap": { "before": null, "initialLocal": "0", "target": "24px", "status": "active", "basis": "source" },
-        "details.margin-top": { "before": null, "initialLocal": "0", "target": "28px", "status": "active", "basis": "source" },
-        "details.section-padding": { "before": null, "initialLocal": "22px 26px 24px", "target": "0；≤900px后续分区padding-top:20px", "status": "active", "basis": "source" },
-        "footer.padding": { "before": null, "initialLocal": "13px 26px", "target": "16px 0 0", "status": "active", "basis": "source" },
-        "footer.margin-top": { "before": null, "initialLocal": "0", "target": "24px", "status": "active", "basis": "source" },
-        "footer.background": { "before": null, "initialLocal": "#fafbfb", "target": "transparent", "status": "active", "basis": "source" },
-        "preview-band.gap": { "before": null, "initialLocal": "24px", "target": "16px", "status": "active", "basis": "source" },
-        "preview-band.padding": { "before": null, "initialLocal": "22px 26px", "target": "0", "status": "active", "basis": "source" },
-        "preview-band.background": { "before": null, "initialLocal": "#f6fbfa；弹窗目录为渐变", "target": "transparent", "status": "active", "basis": "source" },
-        "preview-band.border": { "before": null, "initialLocal": "上下1px solid #e6e9eb", "target": "none", "status": "active", "basis": "source" },
-        "preview-band.min-height": { "before": null, "initialLocal": "112px", "target": "auto", "status": "active", "basis": "source" },
-        "multi-stage.width": { "before": null, "initialLocal": "min(390px,46vw)；≤600px为100%", "target": "min(390px,100%)；≤600px为100%", "status": "active", "basis": "source" },
-        "multi-stage.padding": { "before": null, "initialLocal": "14px", "target": "0", "status": "active", "basis": "source" },
-        "multi-stage.border": { "before": null, "initialLocal": "1px solid #dce9e7", "target": "none", "status": "active", "basis": "source" },
-        "multi-stage.border-radius": { "before": null, "initialLocal": "6px", "target": "0", "status": "active", "basis": "source" },
-        "multi-stage.background": { "before": null, "initialLocal": "rgba(255,255,255,.86)", "target": "transparent", "status": "active", "basis": "source" },
-        "filter-demo.padding": { "before": null, "initialLocal": "0 26px 24px；≤640px横向16px", "target": "0", "status": "active", "basis": "source" },
-        "table-demo.padding": { "before": null, "initialLocal": "20px 24px；≤640px为12px", "target": "0", "status": "active", "basis": "source" },
-        "restore.margin-top": { "before": null, "initialLocal": null, "target": "16px", "status": "active", "basis": "source", "reason": "new" }
+      "locator": {
+        "selector": ".componentPreviewSurface, .componentEntryHeader, .componentDetails, .componentEntryFooter"
       },
-      "sources": ["全局组件/components-preview.css", "全局组件/components-preview.js#previewSurface"],
-      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["真实页面像素、窄屏裁切与下拉命中尚未浏览器验收；已做8标签DOM结构、挂载与交互回归"] },
-      "status": "active", "updatedAt": "2026-09-09"
+      "state": {
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html 的8个已登记标签页"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "entry.background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.border": {
+          "before": null,
+          "initialLocal": "1px solid #dfe3e5",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.border-radius": {
+          "before": null,
+          "initialLocal": "6px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #dfe3e5",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "26px；≤640px为16px；表单框架沿用32px/≤620px为16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "surface.min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "160px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "catalog.margin-top": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "28px",
+          "status": "active",
+          "basis": "source"
+        },
+        "header.padding": {
+          "before": null,
+          "initialLocal": "24px 26px 22px",
+          "target": "0 0 20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "details.gap": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "details.margin-top": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "28px",
+          "status": "active",
+          "basis": "source"
+        },
+        "details.section-padding": {
+          "before": null,
+          "initialLocal": "22px 26px 24px",
+          "target": "0；≤900px后续分区padding-top:20px",
+          "status": "active",
+          "basis": "source"
+        },
+        "footer.padding": {
+          "before": null,
+          "initialLocal": "13px 26px",
+          "target": "16px 0 0",
+          "status": "active",
+          "basis": "source"
+        },
+        "footer.margin-top": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "footer.background": {
+          "before": null,
+          "initialLocal": "#fafbfb",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "preview-band.gap": {
+          "before": null,
+          "initialLocal": "24px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "preview-band.padding": {
+          "before": null,
+          "initialLocal": "22px 26px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "preview-band.background": {
+          "before": null,
+          "initialLocal": "#f6fbfa；弹窗目录为渐变",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "preview-band.border": {
+          "before": null,
+          "initialLocal": "上下1px solid #e6e9eb",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "preview-band.min-height": {
+          "before": null,
+          "initialLocal": "112px",
+          "target": "auto",
+          "status": "active",
+          "basis": "source"
+        },
+        "multi-stage.width": {
+          "before": null,
+          "initialLocal": "min(390px,46vw)；≤600px为100%",
+          "target": "min(390px,100%)；≤600px为100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "multi-stage.padding": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "multi-stage.border": {
+          "before": null,
+          "initialLocal": "1px solid #dce9e7",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "multi-stage.border-radius": {
+          "before": null,
+          "initialLocal": "6px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "multi-stage.background": {
+          "before": null,
+          "initialLocal": "rgba(255,255,255,.86)",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "filter-demo.padding": {
+          "before": null,
+          "initialLocal": "0 26px 24px；≤640px横向16px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "table-demo.padding": {
+          "before": null,
+          "initialLocal": "20px 24px；≤640px为12px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "restore.margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/components-preview.js#previewSurface"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "真实页面像素、窄屏裁切与下拉命中尚未浏览器验收；已做8标签DOM结构、挂载与交互回归"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
     },
     {
       "id": "component-catalog.modal-preview-surface",
       "element": "独立真实弹窗预览的外部标题与白色舞台",
-      "locator": { "selector": ".previewCard, .previewCardHeader, .frameWrap" },
-      "state": { "variant": "default/highlighted", "viewport": null },
-      "appliesTo": ["全局组件/弹窗预览.html 的非embed目录模式"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "entry.margin-top": { "before": null, "initialLocal": "24px", "target": "32px", "status": "active", "basis": "source" },
-        "entry.background": { "before": null, "initialLocal": "#fff", "target": "transparent", "status": "active", "basis": "source" },
-        "entry.border": { "before": null, "initialLocal": "1px solid var(--line)", "target": "none", "status": "active", "basis": "source" },
-        "entry.border-radius": { "before": null, "initialLocal": "12px", "target": "0", "status": "active", "basis": "source" },
-        "entry.box-shadow": { "before": null, "initialLocal": "0 12px 36px rgba(35,52,50,.05)", "target": "none", "status": "active", "basis": "source" },
-        "header.padding": { "before": null, "initialLocal": "17px 22px", "target": "0 0 16px", "status": "active", "basis": "source" },
-        "header.min-height": { "before": null, "initialLocal": "82px", "target": "auto", "status": "active", "basis": "source" },
-        "header.border-bottom": { "before": null, "initialLocal": "1px solid var(--line)", "target": "none", "status": "active", "basis": "source" },
-        "surface.background": { "before": null, "initialLocal": "#e9eeec", "target": "#fff", "status": "active", "basis": "source" },
-        "surface.border": { "before": null, "initialLocal": "none", "target": "1px solid var(--line)", "status": "active", "basis": "source" },
-        "surface.border-radius": { "before": null, "initialLocal": "0", "target": "12px", "status": "active", "basis": "source" },
-        "surface.box-shadow": { "before": null, "initialLocal": "none", "target": "0 12px 36px rgba(35,52,50,.05)；highlighted:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08)", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": ".previewCard, .previewCardHeader, .frameWrap"
       },
-      "sources": ["全局组件/弹窗预览.html#style"],
-      "verification": { "level": "source-only", "checkedAt": "2026-09-09", "gaps": ["iframe真实视觉待验收；未修改iframe内业务弹窗"] },
-      "status": "active", "updatedAt": "2026-09-09"
+      "state": {
+        "variant": "default/highlighted",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/弹窗预览.html 的非embed目录模式"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "entry.margin-top": {
+          "before": null,
+          "initialLocal": "24px",
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.border": {
+          "before": null,
+          "initialLocal": "1px solid var(--line)",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.border-radius": {
+          "before": null,
+          "initialLocal": "12px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "entry.box-shadow": {
+          "before": null,
+          "initialLocal": "0 12px 36px rgba(35,52,50,.05)",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "header.padding": {
+          "before": null,
+          "initialLocal": "17px 22px",
+          "target": "0 0 16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "header.min-height": {
+          "before": null,
+          "initialLocal": "82px",
+          "target": "auto",
+          "status": "active",
+          "basis": "source"
+        },
+        "header.border-bottom": {
+          "before": null,
+          "initialLocal": "1px solid var(--line)",
+          "target": "none",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.background": {
+          "before": null,
+          "initialLocal": "#e9eeec",
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.border": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.border-radius": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "surface.box-shadow": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "0 12px 36px rgba(35,52,50,.05)；highlighted:0 0 0 2px rgba(2,91,82,.28),0 12px 36px rgba(35,52,50,.08)",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/弹窗预览.html#style"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "iframe真实视觉待验收；未修改iframe内业务弹窗"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
     },
     {
       "id": "component-catalog.single-form-frame",
       "element": "表单框架子级与单个展示容器",
-      "locator": { "selector": ".catalogNavItem--child, .catalogFormStage, .catalogFormFrame" },
-      "state": { "variant": "default", "viewport": "1326/768/390宽度" },
-      "appliesTo": ["全局组件/index.html"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "child.indent": { "before": null, "initialLocal": null, "target": "20px，宽度扣除20px", "status": "active", "basis": "source", "reason": "new" },
-        "stage.padding": { "before": null, "initialLocal": null, "target": "32px；≤620px为16px", "status": "active", "basis": "source", "reason": "new" },
-        "frame.width": { "before": null, "initialLocal": null, "target": "100%，max-width:640px", "status": "active", "basis": "source", "reason": "new" },
-        "placeholder.min-height": { "before": null, "initialLocal": null, "target": "180px", "status": "active", "basis": "source", "reason": "new" },
-        "placeholder.background": { "before": null, "initialLocal": "transparent", "target": "#f3f5f7（仅目录范围示意）", "status": "active", "basis": "source" },
-        "placeholder.color": { "before": null, "initialLocal": null, "target": "var(--gaip-modal-muted)", "status": "active", "basis": "source", "reason": "new" }
+      "locator": {
+        "selector": ".catalogNavItem--child, .catalogFormStage, .catalogFormFrame"
       },
-      "sources": ["全局组件/components-preview.css", "shared/styles/global-modal.css", "shared/scripts/global-modal.js#adoptForm"],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["独立目录展示夹具；不代替业务弹窗验收"] },
-      "status": "active", "updatedAt": "2026-09-09"
+      "state": {
+        "variant": "default",
+        "viewport": "1326/768/390宽度"
+      },
+      "appliesTo": [
+        "components/index.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "child.indent": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px，宽度扣除20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "stage.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px；≤620px为16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "frame.width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%，max-width:640px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "placeholder.min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "180px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "placeholder.background": {
+          "before": null,
+          "initialLocal": "transparent",
+          "target": "#f3f5f7（仅目录范围示意）",
+          "status": "active",
+          "basis": "source"
+        },
+        "placeholder.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--gaip-modal-muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/modal/global-modal.css",
+        "components/modal/global-modal.js#adoptForm"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "独立目录展示夹具；不代替业务弹窗验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-09"
     },
     {
       "id": "component-catalog.original-four-tabs",
       "element": "原四项组件导航按钮与响应式容器",
-      "locator": { "selector": ".catalogNavItem, .catalogSidebar, .catalogMain" },
-      "state": { "variant": "default", "viewport": "1326/768/390宽度" },
-      "appliesTo": ["全局组件/index.html"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "nav.width": { "before": null, "initialLocal": "auto（块级链接）", "target": "100%（按钮）；窄屏沿用210px flex basis", "status": "active", "basis": "source" },
-        "container.min-width": { "before": null, "initialLocal": "auto", "target": "0（侧栏与主区，避免窄屏网格撑开）", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": ".catalogNavItem, .catalogSidebar, .catalogMain"
       },
-      "sources": ["全局组件/components-preview.css"],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["目录独立夹具，不代表业务弹窗验收"] },
+      "state": {
+        "variant": "default",
+        "viewport": "1326/768/390宽度"
+      },
+      "appliesTo": [
+        "components/index.html"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "nav.width": {
+          "before": null,
+          "initialLocal": "auto（块级链接）",
+          "target": "100%（按钮）；窄屏沿用210px flex basis",
+          "status": "active",
+          "basis": "source"
+        },
+        "container.min-width": {
+          "before": null,
+          "initialLocal": "auto",
+          "target": "0（侧栏与主区，避免窄屏网格撑开）",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/components-preview.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-09",
+        "gaps": [
+          "目录独立夹具，不代表业务弹窗验收"
+        ]
+      },
       "status": "active",
       "updatedAt": "2026-09-09"
     },
@@ -155,7 +744,7 @@
         "viewport": "1326×1035；768/390宽度响应式检查"
       },
       "appliesTo": [
-        "全局组件/index.html"
+        "components/index.html"
       ],
       "baseline": {
         "id": null,
@@ -223,7 +812,7 @@
         }
       },
       "sources": [
-        "全局组件/components-preview.css#catalogGuide"
+        "components/components-preview.css#catalogGuide"
       ],
       "verification": {
         "level": "source-only",
@@ -247,7 +836,7 @@
         "viewport": "1326/768/390宽度"
       },
       "appliesTo": [
-        "全局组件/index.html"
+        "components/index.html"
       ],
       "baseline": {
         "id": null,
@@ -339,8 +928,8 @@
         }
       },
       "sources": [
-        "全局组件/components-preview.css#specimenCatalog",
-        "全局组件/modal-component-specimens.js"
+        "components/components-preview.css#specimenCatalog",
+        "components/modal-component-specimens.js"
       ],
       "verification": {
         "level": "source-only",
@@ -364,7 +953,7 @@
         "viewport": null
       },
       "appliesTo": [
-        "全局组件/index.html"
+        "components/index.html"
       ],
       "baseline": {
         "id": null,
@@ -432,7 +1021,7 @@
         }
       },
       "sources": [
-        "全局组件/components-preview.css"
+        "components/components-preview.css"
       ],
       "verification": {
         "level": "source-only",
@@ -443,6 +1032,757 @@
       },
       "status": "reverted",
       "updatedAt": "2026-09-09"
+    },
+    {
+      "id": "component-catalog.table-tag-source-tooltip",
+      "element": "标签来源提示与预览键盘焦点",
+      "locator": {
+        "selector": ".tagSourceTooltip, .tagCatalog__sourceHint, .tagCatalog [data-tag-source]:focus-visible",
+        "representative": "全局组件 → 表格标签"
+      },
+      "state": {
+        "variant": "hover / focus",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html?component=table-tags；74个文案"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "tooltip.size": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "width340px；max-width calc(100vw - 24px)；max-height calc(100vh - 24px)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "tooltip.padding": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "12px 14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "tooltip.surface": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "#fff；1px solid #e9ebed；8px圆角；0 6px 24px rgba(47,54,64,.12)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "tooltip.typography": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "12px/20px；#2f3640；标题700，字段#78818b",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "tooltip.items": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "列表顶部8px，来源间距8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "hint.typography": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "12px/20px #78818b；margin 0 0 12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "tag.focus-outline": {
+          "before": null,
+          "initialLocal": "无来源浮层及专属提示样式",
+          "target": "2px solid #2f3640，offset3px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/components-preview.js",
+        "components/templates/markup-components-preview.html"
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "DOM验证来源覆盖、键盘/悬停/关闭和模拟尺寸避让；浏览器视觉与实际命中未验证，不以DOM尺寸桩冒充原生布局。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "component-catalog.table-tag-channel-layout",
+      "element": "表格标签按频道与来源展示",
+      "locator": {
+        "selector": ".tagCatalog__channel, .tagCatalog__page, .tagCatalog__group, .tagCatalog__filters",
+        "representative": "全局组件 → 表格标签"
+      },
+      "state": {
+        "variant": "default / filtered",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html?component=table-tags；业务标签样式不变"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "channel.heading": {
+          "before": null,
+          "initialLocal": "无频道标题",
+          "target": "18px/26px 700 #2f3640；下间距14px；频道间距32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "page.surface": {
+          "before": null,
+          "initialLocal": "无表格分组卡片",
+          "target": "1px solid #e8eaec；6px圆角；卡片间距12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "page.heading": {
+          "before": null,
+          "initialLocal": "无表格标题",
+          "target": "14px/22px 700 #2f3640；#f8f5f3底色；内距12px 16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "field.label": {
+          "before": null,
+          "initialLocal": "14px 400 #2f3640类别名",
+          "target": "14px/22px 400 #626b75字段名",
+          "status": "active",
+          "basis": "source"
+        },
+        "field.container": {
+          "before": null,
+          "initialLocal": "外层左右20px",
+          "target": "卡片内容左右16px；每行上下15px；字段列160px；640px以下改单列",
+          "status": "active",
+          "basis": "source"
+        },
+        "filter.spacing": {
+          "before": null,
+          "initialLocal": "3列网格10px gap；内距14px 16px",
+          "target": "自适应换行；gap8px；内距8px 12px；名称与数量间距12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "search.width": {
+          "before": null,
+          "initialLocal": "240px",
+          "target": "280px，窄屏100%",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/templates/markup-components-preview.html"
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "DOM验证来源层级、105使用实例与74文案、组合筛选及原标签颜色/SVG复用；实际浏览器视觉与窄屏布局未验证。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "component-catalog.table-tag-color-guide",
+      "element": "标签颜色逻辑说明区",
+      "locator": {
+        "selector": ".tagColorGuide, .tagColorGuide__row",
+        "representative": "表格标签预览顶部"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html?component=table-tags"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "surface": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "1px solid #e8eaec；6px圆角；内距18px 20px，640px以下16px；下间距24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "title": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "16px/24px 700 #2f3640",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "intro-and-note": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "13px/22px #78828b；上间距8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "rule-text": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "13px/22px #626b75",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "rows": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "上间距12px；行内距12px 0；1px solid #f0f1f2分隔，最后行无分隔",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "layout": {
+          "before": null,
+          "initialLocal": "无独立颜色说明区",
+          "target": "默认80px+两列自适应，列间距16px；900px以下两列；640px以下单列；示例间距8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/components-preview.css",
+        "components/templates/markup-components-preview.html"
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "同源工厂示例和原目录DOM回归；实际浏览器视觉与窄屏布局未验证。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "component-catalog.table-action-popover",
+      "element": "表格操作区与更多浮层（共享显式接入）",
+      "locator": {
+        "selector": ".gaip-table[data-row-menu] .gaip-table__row-actions .gaip-table__button, .gaip-table-actions-menu",
+        "representative": "全局表格预览行内更多按钮"
+      },
+      "state": {
+        "variant": "closed / open / hover / focus / danger / disabled",
+        "viewport": "viewport-clamped"
+      },
+      "appliesTo": [
+        "全局表格组件预览",
+        "学习中心课程管理；其他业务表格不自动接入"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "panel.surface": {
+          "before": null,
+          "initialLocal": null,
+          "target": "白底；1px #ECEEED 边框；8px圆角；0 6px 24px rgba(47,54,64,.12)阴影",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增预览原型"
+        },
+        "panel.spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "面板宽144px；内边距6px，纵向按钮间距2px，距触发器8px，视口安全边距12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "button.geometry": {
+          "before": null,
+          "initialLocal": null,
+          "target": "行内与菜单按钮均14px / 22px、字重400、高32px、border-box、圆角4px；行内内距4px、间距8px；菜单填满宽度、左对齐、内距5px 12px、纵向间距2px",
+          "status": "active",
+          "basis": "source"
+        },
+        "button.color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "行内与菜单文字共用var(--gaip-color-brand, #025B52)；hover及更多展开底#F5F5F5；focus轮廓2px #00887B、内偏移2px；危险文字#B82E24，禁用文字#A8AFAC且透明底",
+          "status": "active",
+          "basis": "source"
+        },
+        "operation.width": {
+          "before": null,
+          "initialLocal": "160px，仅宽表固定右侧",
+          "target": "192px，预览所有场景固定右侧",
+          "status": "active",
+          "basis": "source"
+        },
+        "trigger.appearance": {
+          "before": null,
+          "initialLocal": "灰色加粗省略号，字距1px",
+          "target": "更多文字＋6px currentColor下箭头；文字同操作按钮品牌绿、字重400、字距0、图文间距6px；展开时箭头朝上",
+          "status": "active",
+          "basis": "source"
+        },
+        "disabled.hint": {
+          "before": null,
+          "initialLocal": null,
+          "target": "说明文字12px / 18px；颜色#747C80；外边距4px 8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "新增课程删除禁用说明"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table.css"
+        },
+        {
+          "file": "components/table/global-table.js"
+        },
+        {
+          "file": "components/table-preview.js"
+        },
+        {
+          "file": "components/templates/markup-components-preview.html"
+        },
+        {
+          "file": "channels/learning-center/templates/markup-learning-app.html"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "scripts/test-component-preview-layout.cjs",
+          "outputs/table-actions/before",
+          "outputs/table-actions/vertical-before",
+          "outputs/table-actions/style-before.css",
+          "scripts/test-learning-course-manage.cjs",
+          "scripts/test-learning-confirm-scenes.cjs",
+          "outputs/table-actions/course-before"
+        ],
+        "gaps": [
+          "真实浏览器视觉、原生popover顶层与实际点击命中未验证；DOM避让使用模拟几何"
+        ],
+        "note": "共享菜单保持已确认的预览视觉参数并接入课程管理；目录与课程管理DOM回归通过，真实浏览器视觉及原生popover未验证。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "component-catalog.usage-links",
+      "element": "项目使用位置查看按钮",
+      "locator": {
+        "selector": ".componentUsageLink",
+        "representative": "全局表格项目使用位置"
+      },
+      "state": {
+        "variant": "default / hover / focus",
+        "viewport": "responsive"
+      },
+      "appliesTo": [
+        "components/index.html?component=global-table，12个页面或弹窗查看入口"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "button.appearance": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px / 20px，最小高28px，内距3px 8px，4px圆角，1px #DCE5E2边框，白底#025B52文字；hover底#F5F5F5；focus 2px #00887B轮廓及2px外偏移",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "button.spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "按钮间距8px；文案与按钮间距12px，换行间距6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/components-preview.css"
+        },
+        {
+          "file": "components/templates/markup-components-preview.html"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "scripts/test-component-preview-layout.cjs",
+          "scripts/test-learning-course-manage.cjs",
+          "outputs/table-actions/usage-links-before.css"
+        ],
+        "gaps": [
+          "真实浏览器按钮点击与布局未验证"
+        ],
+        "note": "链接目标文件与弹窗身份、直达子页及权限拒绝通过DOM检查；未改变业务表格外观。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "table-tags.geometry-preview",
+      "element": "标签尺寸说明与宽窄列示例",
+      "locator": {
+        "selector": ".tagSpec",
+        "representative": "标签尺寸说明与宽窄列示例"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "标签尺寸说明与宽窄列示例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "summary-padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "local"
+        },
+        "summary-gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "local"
+        },
+        "summary-background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#faf9f8",
+          "status": "active",
+          "basis": "local"
+        },
+        "summary-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "local"
+        },
+        "metrics-gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px 24px",
+          "status": "active",
+          "basis": "local"
+        },
+        "heading-font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px / 14px",
+          "status": "active",
+          "basis": "local"
+        },
+        "note-font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px / 20px",
+          "status": "active",
+          "basis": "local"
+        },
+        "sample-column-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "240px / 120px，max-width 100%",
+          "status": "active",
+          "basis": "local"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/components-preview.css"
+        }
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs"
+        ],
+        "gaps": [
+          "真实浏览器布局、文字裁切和提示避让未验证"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
+    },
+    {
+      "id": "component-catalog.icon-inventory",
+      "element": "图标盘点排列与来源筛选",
+      "locator": {
+        "selector": ".iconCatalog",
+        "representative": "全局组件 → 图标"
+      },
+      "state": {
+        "variant": "inventory / standard-placeholder",
+        "viewport": "自适应网格，620px工具栏换行"
+      },
+      "appliesTo": [
+        "components/index.html?component=icons"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "card.min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "220px（窄屏不超过容器）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "grid.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "card.padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "card.radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "stage.min-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "112px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "compare.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32 × 32px，SVG/位图保持比例",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "unknown-size.preview": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16 × 16px，明确标注实际尺寸待确认",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/icons/icon-catalog.css"
+        },
+        {
+          "file": "components/icons/templates/markup-icon-catalog.html"
+        }
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "scripts/test-component-preview-layout.cjs",
+          "scripts/build-icon-catalog.cjs --check"
+        ],
+        "gaps": [
+          "真实file浏览器视觉、伪元素几何和点击命中未验证",
+          "引用与模块依赖不等于所有业务状态已验证显示"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
+    },
+    {
+      "id": "component-catalog.icon-review-number",
+      "element": "同用途图标评审编号",
+      "locator": {
+        "selector": ".iconCatalog__sequence strong",
+        "representative": "图标预览的编号 01-1"
+      },
+      "state": {
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "components/index.html?component=icons 中的同用途版本；不影响业务图标"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025b52",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#eef6f3",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #cbded9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px 8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "sequence.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "sequence.margin-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "components/icons/icon-catalog.css",
+        ".iconCatalog__sequence",
+        ".iconCatalog__sequence strong"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-01",
+        "gaps": [
+          "本轮 file URL 被浏览器工具政策拒绝，真实布局未验证；编号筛选与图形保留以 DOM 回归另验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-01"
     }
   ]
 }

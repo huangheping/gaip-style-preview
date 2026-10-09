@@ -11,10 +11,10 @@
     "properties": {
       "font-family": {"before": null, "initialLocal": "HarmonyOS Sans SC, PingFang SC, sans-serif（全局继承）", "target": "HarmonyOS Sans SC, sans-serif（试点验收后合并到全局同一家族）", "status": "active", "basis": "source"},
       "font-weight": {"before": null, "initialLocal": "400（全局重置）", "target": "正文/辅助/按钮400；主标题700沿用共享标题规则", "status": "active", "basis": "computed"},
-      "font-files": {"before": null, "initialLocal": "Regular与标题专用Bold分别登记", "target": "global-font.css统一登记400→assets/fonts/HarmonyOS_Sans_SC_Regular.ttf；700→assets/fonts/HarmonyOS_Sans_SC_Bold.ttf；不登记Medium", "status": "active", "basis": "source"},
+      "font-files": {"before": null, "initialLocal": "Regular与标题专用Bold分别登记", "target": "global-font.css统一登记400→shared/assets/fonts/HarmonyOS_Sans_SC_Regular.ttf；700→shared/assets/fonts/HarmonyOS_Sans_SC_Bold.ttf；不登记Medium", "status": "active", "basis": "source"},
       "font-synthesis": {"before": null, "initialLocal": "none（全局继承）", "target": "none", "status": "active", "basis": "computed"}
     },
-    "sources": ["shared/styles/global-font.css", "shared/styles/global-modal.css", "scripts/test-project-font-browser.cjs"],
+    "sources": ["shared/styles/global-font.css", "components/modal/global-modal.css", "scripts/test-project-font-browser.cjs"],
     "verification": {"level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["真实共享工厂的独立浏览器夹具；字体实际渲染已验证，未逐个业务来源整页验收", "已有配置中心测试仍断言旧scrollbar-gutter:stable，不属于本次字体修改"]},
     "status": "active", "updatedAt": "2026-09-09"
   }, {
@@ -27,7 +27,7 @@
     "properties": {
       "margin": {"before": null, "initialLocal": "公共清零无important；配置中心作用域Ant规则给第二个按钮margin-inline-start:8px，叠加容器gap:12px", "target": "公共按钮margin:0 !important，间距仅由原容器gap:12px控制", "status": "active", "basis": "source"}
     },
-    "sources": ["shared/styles/global-modal.css", "features/config-center/ant-source.css（只读依据）"],
+    "sources": ["components/modal/global-modal.css", "channels/config-center/ant-source.css（只读依据）"],
     "verification": {"level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上交付基准未知", "浏览器file访问受限；实际视觉待刷新复核"]},
     "status": "active",
     "updatedAt": "2026-09-08"

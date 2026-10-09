@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>工作台总览 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/workspace/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="workspace-btnGenerate">
+  <div data-component="btnGenerateType" data-ui-type="primary" data-ui-class-name="btnGenerate___dRv3f" data-children="array" data-props="btnGenerateProps" data-kind="jsxs">
+    <template data-text="开始生成 "></template>
+    <div data-component="componentType" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="workspace-btnNewCustomer">
+  <div data-component="btnNewCustomerType" data-ui-class-name="btnNewCustomer___Rsj8E" data-children="single" data-props="btnNewCustomerProps" data-kind="jsx">
+    + 新建客户
+  </div>
+</template>
+
+<template id="workspace-banner">
+  <div class="banner___n4b1A" data-children="array" data-kind="jsxs">
+    <div class="bannerContent___Mu3Gg" data-children="array" data-kind="jsxs">
+      <h1 class="bannerTitle___gBpoc" data-children="array" data-kind="jsxs">
+        <span class="t___iFM9z" data-children="single" data-kind="jsx">
+          为客户生成
+        </span>
+        AI专属方案
+      </h1>
+      <p class="bannerSub___RaNof" data-children="single" data-kind="jsx">
+        AI Exclusive Solution
+      </p>
+      <div class="bannerActions___m4KZD" data-children="array" data-kind="jsxs">
+        <template data-slot="bannerActionsContent"></template>
+        <template data-slot="bannerActionsContent2"></template>
+      </div>
+    </div>
+    <div class="bannerRight___lQSeO" data-children="single" data-kind="jsx">
+      <p data-children="array" data-kind="jsxs">
+        输入客户基本信息，快速获得专属产品推荐
+        <br data-kind="jsx" />
+        带着方案去签单
+      </p>
+    </div>
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType2" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType3" data-props="componentProps3" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="workspace-pannelHeader">
+  <div class="pannelHeader___uIyRz" data-children="array" data-kind="jsxs">
+    <span class="tit___E3vkN" data-children="single" data-kind="jsx">
+      <template data-slot="titContent"></template>
+    </span>
+    <p class="tip___NK57s" data-children="single" data-kind="jsx">
+      <template data-slot="tipContent"></template>
+    </p>
+  </div>
+</template>
+
+<template id="workspace-legendItem">
+  <div class="legendItem___eJe2a" data-children="array" data-key="legendItemKey" data-kind="jsxs">
+    <span class="legendDot___vWLeA" data-props="legendDotProps" data-kind="jsx"></span>
+    <span class="legendLabel___rnHv2" data-children="single" data-kind="jsx">
+      <template data-slot="legendLabelContent"></template>
+    </span>
+    <span class="legendValue___c4s0b" data-children="single" data-kind="jsx">
+      <template data-slot="legendValueContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="workspace-div">
+  <div data-children="array" data-kind="jsxs">
+    <div data-children="single" data-kind="jsx">
+      <template data-slot="divContent"></template>
+    </div>
+    <div data-children="array" data-kind="jsxs">
+      <template data-slot="divContent2"></template>
+      人 (
+      <template data-slot="divContent3"></template>
+      %)
+    </div>
+  </div>
+</template>
+
+<template id="workspace-component">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-key="componentKey" data-kind="jsx">
+    <circle data-ui-cx="60" data-ui-cy="60" data-ui-r="45" data-ui-fill="none" data-ui-transform="rotate(-90 60 60)" data-props="circleProps" data-kind="jsx"></circle>
+  </div>
+</template>
+
+<template id="workspace-card">
+  <div class="card___os13G" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-ui-title="客户转化漏斗" data-ui-tip="按客户状态统计当前分布" data-kind="jsx"></div>
+    <div class="funnelContent___UYC9n" data-children="array" data-kind="jsxs">
+      <div class="funnelLegend___ZBeI9" data-children="single" data-kind="jsx">
+        <template data-slot="funnelLegendContent"></template>
+      </div>
+      <div class="donutWrap___G0kX2" data-children="array" data-kind="jsxs">
+        <!-- @gaip-icon:start shared/assets/icons/business/workspace/workspace-card-1.svg --><svg data-ui-view-box="0 0 120 120" class="donutSvg___YpkBs" data-children="single" data-kind="jsx">
+          <template data-slot="donutSvgContent"></template>
+        </svg><!-- @gaip-icon:end -->
+        <div class="donutCenter___uMZui" data-children="array" data-kind="jsxs">
+          总共
+          <br data-kind="jsx" />
+          <template data-slot="donutCenterContent"></template>
+          人
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-yTick">
+  <span class="yTick___PupkG" data-children="single" data-key="yTickKey" data-kind="jsx">
+    <template data-slot="yTickContent"></template>
+  </span>
+</template>
+
+<template id="workspace-barTooltip">
+  <div class="barTooltip___mfbSZ" data-children="array" data-kind="jsxs">
+    <template data-slot="barTooltipContent"></template>
+    <br data-kind="jsx" />
+    <template data-slot="barTooltipContent2"></template>
+    万元
+  </div>
+</template>
+
+<template id="workspace-barCol">
+  <div class="barCol___hlo_6" data-children="array" data-key="barColKey" data-kind="jsxs">
+    <div class="barBg___KHpI8" data-kind="jsx"></div>
+    <div data-children="single" data-props="divProps" data-kind="jsx">
+      <template data-slot="divContent"></template>
+    </div>
+    <span class="barLabel___b5DMG" data-children="single" data-kind="jsx">
+      <template data-slot="barLabelContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="workspace-card-2">
+  <div class="card___Ff78w" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-ui-title="FYP 月度趋势" data-ui-tip="单位：万元" data-kind="jsx"></div>
+    <div class="chartArea___Qgbw7" data-children="array" data-kind="jsxs">
+      <div class="yAxis___DvvZi" data-children="single" data-kind="jsx">
+        <template data-slot="yAxisContent"></template>
+      </div>
+      <div class="barChart___R_Vxe" data-children="single" data-kind="jsx">
+        <template data-slot="barChartContent"></template>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-renewalItem">
+  <div class="renewalItem___OIVJn" data-children="array" data-props="renewalItemProps" data-key="renewalItemKey" data-kind="jsxs">
+    <div data-children="array" data-kind="jsxs">
+      <p class="name___rT1lO" data-children="single" data-kind="jsx">
+        <template data-slot="nameContent"></template>
+      </p>
+      <p class="policyNo___xFZjB" data-children="array" data-kind="jsxs">
+        保单号：
+        <template data-slot="policyNoContent"></template>
+      </p>
+    </div>
+    <div data-children="array" data-kind="jsxs">
+      <p class="expiryDate___oaleu" data-children="array" data-kind="jsxs">
+        <template data-text="到期 "></template>
+        <template data-slot="expiryDateContent"></template>
+      </p>
+      <p class="deadline___MbCaQ" data-children="single" data-kind="jsx">
+        <template data-slot="deadlineContent"></template>
+      </p>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-empty">
+  <div data-component="emptyType" data-ui-description="暂无预警消息" data-ui-class-name="empty___WdhDr" data-kind="jsx"></div>
+</template>
+
+<template id="workspace-pannel">
+  <div class="pannel___NXtiL" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-ui-title="续保预警" data-props="componentProps" data-kind="jsx"></div>
+    <div class="renewalList___h5kgV" data-children="single" data-kind="jsx">
+      <template data-slot="renewalListContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-statUnit">
+  <span class="statUnit___IlJmD" data-children="single" data-kind="jsx">
+    <template data-text=" 天"></template>
+  </span>
+</template>
+
+<template id="workspace-statsRow">
+  <div class="statsRow___qThlc" data-children="array" data-kind="jsxs">
+    <div class="statCard___to1WS" data-children="array" data-kind="jsxs">
+      <h5 class="statLabel___wU7U1" data-children="single" data-kind="jsx">
+        我的客户总数
+      </h5>
+      <p class="statValue___QPSfg" data-children="single" data-kind="jsx">
+        <template data-slot="statValueContent"></template>
+      </p>
+    </div>
+    <div class="statCard___to1WS" data-children="array" data-kind="jsxs">
+      <h5 class="statLabel___wU7U1" data-children="single" data-kind="jsx">
+        本月新增
+      </h5>
+      <p class="statValue___QPSfg" data-children="single" data-kind="jsx">
+        <template data-slot="statValueContent2"></template>
+      </p>
+      <img class="icon___SOC7V" data-props="iconProps" data-kind="jsx" />
+    </div>
+    <div class="statCard___to1WS" data-children="array" data-kind="jsxs">
+      <h5 class="statLabel___wU7U1" data-children="single" data-kind="jsx">
+        签约率
+      </h5>
+      <p class="statValue___QPSfg" data-children="array" data-kind="jsxs">
+        <template data-slot="statValueContent3"></template>
+        <span class="statUnit___IlJmD" data-children="single" data-kind="jsx">
+          <template data-text=" %"></template>
+        </span>
+      </p>
+      <img class="icon___SOC7V" data-props="iconProps2" data-kind="jsx" />
+    </div>
+    <div class="statCard___to1WS" data-children="array" data-kind="jsxs">
+      <h5 class="statLabel___wU7U1" data-children="single" data-kind="jsx">
+        平均交付周期
+      </h5>
+      <p class="statValue___QPSfg" data-children="single" data-kind="jsx">
+        <template data-slot="statValueContent4"></template>
+      </p>
+      <img class="icon___SOC7V" data-props="iconProps3" data-kind="jsx" />
+    </div>
+  </div>
+</template>
+
+<template id="workspace-div-2">
+  <div data-children="single" data-props="divProps" data-kind="jsx">
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="workspace-component-2">
+  <div data-props="componentProps" data-component="componentType" data-kind="jsx"></div>
+</template>
+
+<template id="workspace-empty-2">
+  <div data-component="emptyType" data-ui-description="暂无焦点提醒" data-ui-class-name="empty___wLIiL" data-kind="jsx"></div>
+</template>
+
+<template id="workspace-time">
+  <span class="time___nV4i_" data-children="array" data-kind="jsxs">
+    <template data-slot="timeContent"></template>
+    天未更新
+  </span>
+</template>
+
+<template id="workspace-focusItem">
+  <div class="focusItem___mfnI2" data-children="array" data-props="focusItemProps" data-key="focusItemKey" data-kind="jsxs">
+    <div class="name___cJsWV" data-children="single" data-kind="jsx">
+      <div data-component="nameTxtType" data-ui-class-name="nameTxt___kXGxL" data-props="nameTxtProps" data-kind="jsx"></div>
+    </div>
+    <div class="content___LHqcS" data-children="array" data-kind="jsxs">
+      <p class="desc___Gi5mh" data-children="single" data-kind="jsx">
+        <template data-slot="descContent"></template>
+      </p>
+      <span class="tag___RCqFV" data-children="array" data-kind="jsxs">
+        <div data-component="iconType" data-ui-class-name="icon___O_rza" data-kind="jsx"></div>
+        <template data-slot="tagContent"></template>
+      </span>
+      <template data-slot="contentContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-component-3">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <span class="badge___g01iy" data-children="array" data-kind="jsxs">
+      <template data-slot="badgeContent"></template>
+      <template data-text=" 条待处理"></template>
+    </span>
+    <div class="focusList___v97XO" data-children="single" data-kind="jsx">
+      <template data-slot="focusListContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="workspace-pannel-2">
+  <div class="pannel___jPegV" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-ui-title="今日焦点" data-ui-tip="基于客户阶段与信息新鲜度自动推送，优先处理沉默与方案停滞客户" data-kind="jsx"></div>
+    <template data-slot="pannelContent"></template>
+  </div>
+</template>
+
+<template id="workspace-pageContainer">
+  <div class="pageContainer___Npetg" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-kind="jsx"></div>
+    <div data-component="componentType2" data-props="componentProps" data-kind="jsx"></div>
+    <div class="panels___HtwQH" data-children="array" data-kind="jsxs">
+      <div class="panelsColumn___NChSr" data-children="array" data-kind="jsxs">
+        <div data-component="componentType3" data-props="componentProps2" data-kind="jsx"></div>
+        <div data-component="componentType4" data-kind="jsx"></div>
+      </div>
+      <div class="panelsColumn___NChSr" data-children="array" data-kind="jsxs">
+        <div data-component="componentType5" data-props="componentProps3" data-kind="jsx"></div>
+        <div data-component="componentType6" data-props="componentProps4" data-kind="jsx"></div>
+      </div>
+    </div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

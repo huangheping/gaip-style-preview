@@ -1,0 +1,6 @@
+/* Standard display canvases; click targets and optical paths are independent. */
+:root {
+  --gaip-icon-size-sm: 16px;
+  --gaip-icon-size-md: 20px;
+  --gaip-icon-size-lg: 24px;
+}

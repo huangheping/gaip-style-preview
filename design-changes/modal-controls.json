@@ -95,11 +95,11 @@
         }
       },
       "sources": [
-        "shared/scripts/modal-controls.js",
-        "shared/styles/modal-controls.css",
+        "components/modal-controls/modal-controls.js",
+        "components/modal-controls/modal-controls.css",
         "shared/assets/modal-calendar.svg",
         "shared/assets/modal-clock.svg",
-        "首次本地依据：shared/styles/global-modal.css、features/config-center/config-center-content.css、shared/styles/global-multi-select.css、features/config-center/announcement-management.css"
+        "首次本地依据：components/modal/global-modal.css、channels/config-center/config-center-content.css、components/multi-select/global-multi-select.css、channels/config-center/announcement-management.css"
       ],
       "verification": {
         "level": "needs-recheck",

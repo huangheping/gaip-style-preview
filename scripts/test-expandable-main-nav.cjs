@@ -44,11 +44,12 @@ async function main() {
   for (const file of [
     'shared/config/channels.js',
     'shared/scripts/channel-regions.js',
-    'features/wealth-center/wealth-nav.js',
+    'channels/wealth-center/wealth-nav.js',
     'shared/scripts/organization-store.js',
-    'shared/scripts/organization-tree.js',
-    'features/config-center/source-markup.js',
-    'features/config-center/config-center.js'
+    'components/organization-tree/organization-tree.js',
+    'channels/config-center/source-markup.js',
+    'channels/config-center/config-center.js',
+    'shared/scripts/learning-nav.js'
   ]) w.eval(source(file));
   await tick();
 
@@ -71,11 +72,11 @@ async function main() {
   assert.ok(!configGroup.classList.contains('is-open'));
   assert.equal(wealthGroup.querySelectorAll('.gaip-main-menu-caret-icon').length, 1);
   assert.equal(configGroup.querySelectorAll('.gaip-main-menu-caret-icon').length, 1);
-  const configIcon = configGroup.querySelector('.gaip-config-original-icon img');
-  assert.ok(configIcon, 'config icon uses the synchronized online SVG asset');
-  assert.match(configIcon.getAttribute('src'), /features\/config-center\/assets\/organization\.svg$/);
-  assert.equal(configGroup.querySelector('.gaip-config-original-icon svg'), null, 'the online icon path is not redrawn in JavaScript');
-  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'features/config-center/assets/organization.svg'))).digest('hex'), '1a4d8a89c5db7291afe6aa59cf9078e1715416700698d5aeb9a2198b896d9c59', 'the local icon stays byte-identical to the online bundle asset');
+  const configIcon = configGroup.querySelector('[data-gaip-nav-icon="organization"] > svg');
+  assert.ok(configIcon, 'config icon uses the user-supplied SVG asset');
+  assert.equal(configIcon.getAttribute('viewBox'), '0 0 18 18');
+  assert.equal(configGroup.querySelector('.gaip-config-original-icon img'), null, 'no separate fixed-color image path');
+  assert.ok([...configIcon.querySelectorAll('[stroke]')].every(n => ['none', 'currentColor'].includes(n.getAttribute('stroke'))));
 
   const wealthHash = w.location.hash;
   configToggle.click();
@@ -110,8 +111,8 @@ async function main() {
   assert.equal(w.location.hash, configHash, 'wealth parent never changes the current config hash');
   assert.ok(d.querySelector('.gaip-config-page'), 'wealth parent is not treated as leaving config');
 
-  const sharedCss = source('shared/styles/channel-foundation.css');
-  const configCss = source('features/config-center/config-center.css');
+  const sharedCss = source('shared/styles/main-nav.css');
+  const configCss = sharedCss;
   assert.match(sharedCss, /inset-inline-end:\s*16px\s*!important/);
   assert.match(sharedCss, /translateY\(-50%\) rotate\(180deg\)/);
   assert.match(sharedCss, /prefers-reduced-motion:\s*reduce/);
@@ -129,11 +130,15 @@ async function main() {
   assert.match(configCss, /background-color:\s*rgba\(0,0,0,\.03\)\s*!important/, 'config parent uses the same gray hover as wealth');
   assert.match(configCss, /padding:\s*0 0 0 55px\s*!important/, 'config children align with ordinary and wealth navigation labels');
   assert.match(configCss, /\.gaip-config-menu\.is-current[\s\S]*background-color:\s*transparent\s*!important/, 'a selected config child colors the parent foreground without a selected parent background');
-  assert.match(configCss, /\.gaip-config-menu\.is-current \.gaip-config-original-icon img[\s\S]*filter:/, 'the selected tint keeps the synchronized online img visible');
-  assert.doesNotMatch(configCss, /(?:-webkit-)?mask:/, 'the icon does not depend on an external SVG mask');
-  const wealthCss = source('features/wealth-center/wealth-center.css');
+  assert.doesNotMatch(configCss, /\.gaip-config-original-icon img/, 'config no longer owns a separate image-color implementation');
+  assert.doesNotMatch(configCss, /(?:-webkit-)?mask(?:-image)?:[^;}]*?(?:url|var)\(/, 'the icon does not depend on an external SVG mask');
+  const wealthCss = sharedCss;
   assert.match(wealthCss, /\.gaip-wealth-menu-group\.is-current[\s\S]*background-color:\s*transparent\s*!important/, 'a selected wealth child uses the same foreground-only parent state as config');
   assert.match(wealthCss, /\.gaip-wealth-menu-group\s*>\s*\.gaip-wealth-submenu\s*>\s*\.gaip-wealth-subitem\.ant-menu-item-selected[\s\S]*border-left-color:\s*#24d4c9\s*!important/, 'the selected wealth child owns the green background and left border');
+
+  for (const file of ['shared/styles/channel-foundation.css', 'channels/config-center/config-center.css', 'channels/wealth-center/wealth-center.css', 'channels/news-center/news-center.css']) {
+    assert.doesNotMatch(source(file), /\.gaip-(?:main-menu|sidebar-hub|sidebar-nav-scroll|wealth-menu|wealth-submenu|wealth-subitem|config-menu|config-toggle|config-original-icon|news-menu)/, file + ' must not own main-navigation styles');
+  }
 
   pendingFrames.forEach(id => w.cancelAnimationFrame(id));
   // Do not call window.close(): the production child-list observer sees jsdom's

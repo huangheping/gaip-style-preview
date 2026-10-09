@@ -10,14 +10,14 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
   try {
     const page = await browser.newPage();
     await page.setContent('<div id="standalone" style="width:300px"></div><div class="gaip-filter-bar"><div id="filtered" style="width:300px"></div></div>');
-    for (const file of ['web/umi.c6286171.css', 'shared/styles/global-font.css', 'shared/styles/global-multi-select.css', 'shared/styles/global-filter-bar.css']) {
+    for (const file of ['web/umi.c6286171.css', 'shared/styles/global-font.css', 'components/multi-select/global-multi-select.css', 'components/filter-bar/global-filter-bar.css']) {
       const css = read(file).replace(/url\((['"]?)([^)'"?#]+\.svg)\1\)/g, (_, quote, asset) => {
         const bytes = fs.readFileSync(path.resolve(root, path.dirname(file), asset));
         return 'url("data:image/svg+xml;base64,' + bytes.toString('base64') + '")';
       });
       await page.addStyleTag({ content: css });
     }
-    await page.addScriptTag({ content: read('shared/scripts/global-multi-select.js') });
+    await page.addScriptTag({ content: read('components/multi-select/global-multi-select.js') });
     await page.evaluate(() => {
       for (const id of ['standalone', 'filtered']) window.__GAIP_MULTI_SELECT__.mount(document.getElementById(id), { options: ['甲', '乙', '丙'], value: ['甲', '乙', '丙'], maxVisible: 2 });
     });
@@ -46,8 +46,10 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
       const open = await snapshot();
       assert.equal(open.control['border-color'], 'rgb(2, 91, 82)');
       assert.equal(open.control['box-shadow'], 'none');
-      assert.equal(open.arrow.width, '12px');
-      assert.equal(open.arrow['background-image'], 'url("data:image/svg+xml;base64,' + fs.readFileSync(path.join(root, 'shared/assets/modal-down.svg')).toString('base64') + '")');
+      assert.equal(open.arrow.width, '6px');
+      assert.equal(open.arrow.height, '6px');
+      assert.equal(open.arrow['border-width'], '0px 1.5px 1.5px 0px');
+      assert.equal(open.arrow['background-image'], 'none');
       assert.equal(open.option.padding, '7px 12px');
       await host.locator('[data-value="甲"]').click();
       await host.locator('[data-value="甲"]').hover();

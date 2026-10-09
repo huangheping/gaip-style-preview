@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "page": "信息展示弹窗：06、27、28、29、30、31",
+  "records": [
+    {
+      "id": "information.product-tabs-expert-scroll",
+      "element": "29 产品详情页签与30专家正文滚动边界",
+      "locator": {"selector": ".productModal___bp0hy .tabList___YJKIv, .gaip-info-modal[data-gaip-info-variant=experts] .gaip-info__body", "representative": "29 产品详情 / 30 业务线对接专家"},
+      "state": {"channel": "产品中心", "variant": "open / selected / scroll", "viewport": "桌面与<=640px"},
+      "appliesTo": ["29 product-detail", "30 product-expert"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "29.tabs": {"before": null, "initialLocal": "私有18px/500，padding24px 16px 26px，铺满按钮的下划线", "target": "增强原按钮，引用global-tabs.css的16px/400-700、64px栏高与71×4px指示条", "status": "active", "basis": "source"},
+        "30.scroll.content-gap": {"before": null, "initialLocal": "正文padding0；原生滚动条紧贴内容右侧", "target": "正文滚动边界向右延伸共享外边距；padding-right使用共享24px/窄屏16px，保持内容左右对齐；不定义滚动条宽度", "status": "active", "basis": "source"},
+        "30.top.clipping": {"before": null, "initialLocal": "expertDockIcon top:-4px；contentPlaceholder overflow:hidden", "target": "顶部图标top0；正文包装层自然尺寸且不裁切内部内容", "status": "active", "basis": "source"}
+      },
+      "sources": ["components/modal/global-modal.css", "components/tabs/global-tabs.js", "channels/product/page.css"],
+      "verification": {"level": "needs-recheck", "checkedAt": "2026-10-08", "evidence": ["scripts/test-information-modal-lifecycle.cjs：29真实来源Tab的自动接入、CSS字号/栏高/内边距/字重、点击/键盘/附件/节点稳定，27—31关闭重开通过", "scripts/test-information-detail-source.cjs：30真实来源DOM及滚动边距/内部裁切/图标top0契约通过", "outputs/product-information-20261008/acceptance.md"], "gaps": ["真实浏览器视觉与实际滚动尚未验证"]},
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    },
+    {
+      "id": "information.details.shell",
+      "element": "信息展示共用外壳、标题、关闭与正文边界",
+      "locator": {"selector": ".gaip-info-modal[data-gaip-info-variant]:not([data-gaip-info-variant=logs])", "representative": "27 历史方案详情"},
+      "state": {"channel": "方案中心/客户中心/活动中心/产品中心/入职引导", "variant": "default / scroll / loading / empty", "viewport": "1440/640/390 × 1000"},
+      "appliesTo": ["06 proposal-file", "27 customer-proposal-detail", "28 activity-record", "29 product-detail", "30 product-expert", "31 induction-complete"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "surface.width": {"before": null, "initialLocal": {"06": "min(1080px,100vw - 80px)", "27": "1200px", "28": "800px", "29": "78vw", "30": "80vw", "31": "608px"}, "target": "06/30 1080px，27/29 1200px，28 800px，31 608px；桌面最大100vw-48px，<=640px为100vw-24px", "status": "active", "basis": "mixed"},
+        "surface.height": {"before": null, "initialLocal": {"06": "min(680px,100vh - 80px)，min-height 520px", "27": "Ant body max-height90vh", "29": "85vh", "30": "body max-height80vh", "31": "自然高度"}, "target": "06/27/29/30为min(800px,共享安全高度)；28自然高度且以上限约束，31自然高度，不强制撑高", "status": "active", "basis": "mixed"},
+        "30.focus-wrapper/scroll": {"before": null, "initialLocal": "Ant中间焦点包装层高度auto，外壳overflow:hidden，正文高度传递不完整", "target": "仅包含surface的焦点包装层height100%/min-height0/flex-column；正文flex1 1 0/overflow:auto，焦点哨兵不参与", "status": "active", "basis": "source"},
+        "surface.padding/radius": {"before": null, "initialLocal": {"06": "header16px 72px 15px 24px/radius7px", "27": "header16px 24px/body24px/radius12px", "31": "48px 32px/radius8px"}, "target": "24px，<=640px为16px；圆角8px", "status": "active", "basis": "mixed"},
+        "header.font/gap": {"before": null, "initialLocal": {"06": "16px/600/23px", "27": "16px/600/22px", "28": "20px+额外24px下边距", "29": "18px/500"}, "target": "18px/700/28px，本地HarmonyOS字体；标题区至正文20px；31保留无标题居中结果布局", "status": "active", "basis": "mixed"},
+        "close.size/icon": {"before": null, "initialLocal": "来源图片/Ant图标/不同热区", "target": "共享32px热区/16px关闭蒙版；保留来源回调", "status": "active", "basis": "mixed"},
+        "body.font/color": {"before": null, "initialLocal": "来源各自定义", "target": "基础14px/22px/#2F3640；文档层次、图片、标签和产品概要保留自身角色；专家分区/类型16px，辅助名14px", "status": "active", "basis": "source"},
+        "31.result.spacing": {"before": null, "initialLocal": "图标底距36px，说明16px/26px/底距32px", "target": "图标与说明/说明与按钮间距24px，说明14px/22px，共享主按钮", "status": "active", "basis": "source"}
+      },
+      "sources": ["components/modal/global-modal.css", "components/modal/global-modal.js: informationSources / adoptInformation", "channels/product/index.html", "channels/product/page.js", "channels/proposal-center/proposal-center.js"],
+      "verification": {"level": "needs-recheck", "checkedAt": "2026-09-29", "evidence": ["scripts/test-information-detail-source.cjs：真实产品页入口、Ant包装层与专家正文DOM通过；28真实源组件0/1/50/200/1行通过", "scripts/test-information-detail-browser.cjs：历史隔离验收；本次新增高度收缩/滚到底断言仅语法检查，未运行"], "gaps": ["28/30修复后的像素尺寸、少行留白和实际滚到底尚未浏览器验证；浏览器工具拒绝本地页面，不用间接执行绕过。", "历史隔离验收不覆盖本次修改；未验证完整业务页面或预览页。", "下载/导出接口与业务权限流程未做真实后端验收；未采集线上视觉基准。"]},
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "information.registration.table",
+      "element": "28 报名记录共享表格",
+      "locator": {"selector": ".gaip-signup-record-dialog .gaip-table", "representative": "28 报名记录"},
+      "state": {"channel": "活动中心", "variant": "default / scroll / empty / error", "viewport": "1440/640/390 × 1000"},
+      "appliesTo": ["28 activity-record"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "table.header.background": {"before": null, "initialLocal": "#eaf7f6", "target": "共享表格#F8F5F3", "status": "active", "basis": "source"},
+        "table.font/padding": {"before": null, "initialLocal": "Ant ProTable来源样式", "target": "引用global-table.css：14px/22px，单元格14px 16px", "status": "active", "basis": "source"},
+        "table.height/name": {"before": null, "initialLocal": "外壳固定限高；活动名称200px；表格测量依赖内容区底边", "target": "少量自然收缩，多量达到共享上限后表体滚动，不分页；时间180px/姓名120px，活动名称使用剩余宽度、完整换行；取消内容驱动的循环测量边界", "status": "active", "basis": "source"}
+      },
+      "sources": ["channels/activity/index.html: activity-signup-record-table", "channels/activity/page.js: SignupRecordTable", "components/table/global-table.css（引用）", "components/table/global-table.js（引用）"],
+      "verification": {"level": "needs-recheck", "checkedAt": "2026-09-29", "evidence": ["scripts/test-information-detail-source.cjs：0/1/50/200/1条、完整长名称、无分页、共享表格和滚动结构DOM通过"], "gaps": ["本次少行收缩/多行滚动及换行的实际视觉未验证，浏览器断言只做语法检查。", "使用隔离请求数据，不代表真实报名接口验收。"]},
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    }
+  ]
+}

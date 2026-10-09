@@ -1,0 +1,8 @@
+.gaip-announcement-pagination .ant-pagination-prev .anticon,
+.gaip-announcement-pagination .ant-pagination-next .anticon,
+.gaip-announcement-pagination .ant-pagination-prev svg,
+.gaip-announcement-pagination .ant-pagination-next svg{
+  display: block;
+  width: 14px;
+  height: 14px;
+}

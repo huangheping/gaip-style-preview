@@ -6,11 +6,11 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
-const outputPath = path.join(root, '全局组件', '弹窗自动索引.generated.js');
+const outputPath = path.join(root, "components", "弹窗自动索引.generated.js");
 const runtimePath = path.join(root, 'shared', 'scripts', 'modal-registry.js');
-const baselinePath = path.join(root, '全局组件', '弹窗源登记.js');
+const baselinePath = path.join(root, "components", "弹窗源登记.js");
 const checkOnly = process.argv.includes('--check');
-const scanRoots = ['shared', 'features', 'AI Agent'].map((directory) => path.join(root, directory));
+const scanRoots = ['shared', 'channels', 'components'].map((directory) => path.join(root, directory));
 const ignoredDirectories = new Set(['node_modules', '.git', '原版备份_20260812']);
 const markerPattern = /\/\*\s*@gaip-modal\s*([\s\S]*?)\*\//g;
 

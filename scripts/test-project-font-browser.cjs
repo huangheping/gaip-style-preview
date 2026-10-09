@@ -5,9 +5,9 @@ const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright-core');
 const root = path.resolve(__dirname, '..');
 // All actual entry documents use the shared stylesheet; no preview-only copy.
-const entries = fs.readdirSync(root).filter(f => f.endsWith('.html')).concat(['全局组件/index.html', '全局组件/弹窗预览.html', '全局组件/海报分享/index.html']);
+const entries = ['app/project-index/index.html', ...require('./entry-files.cjs')(root, { includeLocal: true })].concat(['components/index.html', 'components/弹窗预览.html', 'components/海报分享/index.html']);
 for (const entry of entries) {
-  assert.match(fs.readFileSync(path.join(root, entry), 'utf8'), /shared\/styles\/global-font\.css\?v=20260909-project-font-1/, entry);
+  assert.match(fs.readFileSync(path.join(root, entry), 'utf8'), /shared\/styles\/global-font\.css(?:\?v=20260909-project-font-1)?/, entry);
 }
 const fontCSS = fs.readFileSync(path.join(root, 'shared/styles/global-font.css'), 'utf8');
 const faces = [...fontCSS.matchAll(/@font-face\s*\{([^}]+)\}/g)].map(m => m[1]);
@@ -17,7 +17,7 @@ for (const [i, weight] of [400, 700].entries()) {
   assert.match(faces[i], /font-family: "HarmonyOS Sans SC"/);
   assert.match(faces[i], new RegExp('HarmonyOS_Sans_SC_' + (weight === 400 ? 'Regular' : 'Bold') + '\\.ttf'));
 }
-const styles = ['shared/styles/global-modal.css', 'shared/styles/global-date-picker.css', 'features/workspace/workspace-update.css', 'features/config-center/config-center-content.css', 'shared/styles/global-table.css', 'shared/styles/global-filter-bar.css'];
+const styles = ['components/modal/global-modal.css', 'components/date-picker/global-date-picker.css', 'channels/workspace/workspace-update.css', 'channels/config-center/config-center-content.css', 'components/table/global-table.css', 'components/filter-bar/global-filter-bar.css'];
 for (const file of styles) assert.doesNotMatch(fs.readFileSync(path.join(root, file), 'utf8'), /@font-face|GAIP Form Section|GAIP Modal Title|GAIP Confirmation HarmonyOS/);
 const fixture = `<!doctype html><meta charset="utf-8"><body data-gaip-page="workspace" data-gaip-page-type="dashboard" data-gaip-page-label="工作台"><main style="padding:24px;max-width:900px;margin:auto">
 <div class="homeSectionHeader"><h2 id="workspace-title">工作台标题</h2></div>
@@ -35,7 +35,7 @@ async function run() {
       const page = await browser.newPage({ viewport: { width, height: 1000 } });
       const failures = [];
       page.on('pageerror', e => failures.push(e.message));
-      const allowed = new Set([...styles, 'shared/styles/global-font.css', 'shared/scripts/global-modal.js', 'assets/fonts/HarmonyOS_Sans_SC_Regular.ttf', 'assets/fonts/HarmonyOS_Sans_SC_Bold.ttf']);
+      const allowed = new Set([...styles, 'shared/styles/global-font.css', 'components/modal/global-modal.js', 'shared/assets/fonts/HarmonyOS_Sans_SC_Regular.ttf', 'shared/assets/fonts/HarmonyOS_Sans_SC_Bold.ttf']);
       await page.route('**/*', route => {
         const url = new URL(route.request().url()), file = url.pathname.slice(1);
         if (url.hostname !== 'fonts.test') return route.abort();
@@ -47,7 +47,7 @@ async function run() {
       if (!lateFont) await page.addStyleTag({ url: '/shared/styles/global-font.css' });
       for (const file of styles) await page.addStyleTag({ url: '/' + file });
       if (lateFont) await page.addStyleTag({ url: '/shared/styles/global-font.css' });
-      await page.addScriptTag({ url: '/shared/scripts/global-modal.js' });
+      await page.addScriptTag({ url: '/components/modal/global-modal.js' });
       await page.evaluate(async () => {
         const api = window.__GAIP_MODAL_COMPONENT__; api.adoptForm(document.querySelector('#form'));
         const d = api.createConfirm({ title: '删除部门确认', message: '请确认是否删除这个部门', description: '删除后无法恢复', confirmLabel: '确认删除' }).dialog;

@@ -25,7 +25,7 @@
         "icon.asset": {
           "before": null,
           "initialLocal": "Ant Design 通用回形针（web/umi.0b0663b5.js 模块 5392）",
-          "target": "按类型使用 AI Agent/素材/附件类型/{图片,PDF,word,xlsx}.svg；其他类型回形针",
+          "target": "按类型使用 components/ai-agent/素材/附件类型/{图片,PDF,word,xlsx}.svg；其他类型回形针",
           "status": "active",
           "basis": "source"
         },
@@ -45,8 +45,8 @@
         }
       },
       "sources": [
-        "AI Agent/AI Agent本地Mock.js",
-        "AI Agent/AI Agent改版.css"
+        "components/ai-agent/AI Agent本地Mock.js",
+        "components/ai-agent/AI Agent.css"
       ],
       "verification": {
         "level": "browser-checked",
@@ -86,7 +86,7 @@
         }
       },
       "sources": [
-        "AI Agent/AI Agent改版.css"
+        "components/ai-agent/AI Agent.css"
       ],
       "verification": {
         "level": "browser-checked",

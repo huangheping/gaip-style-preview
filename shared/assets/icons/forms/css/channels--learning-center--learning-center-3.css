@@ -1,0 +1,4 @@
+.gaip-course-detail-back:hover .gaip-course-detail-back-icon,
+.gaip-course-detail-back:focus-visible .gaip-course-detail-back-icon{
+  transform: translateX(-2px);
+}

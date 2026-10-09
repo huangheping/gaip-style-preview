@@ -1,0 +1,8 @@
+.gaip-course-detail-back-icon{
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  background: url("../../business/learning-center/icon-detail-back.svg") center / 18px 18px no-repeat;
+  transition: transform 0.2s ease;
+}

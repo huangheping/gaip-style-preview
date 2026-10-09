@@ -1,0 +1,948 @@
+{
+  "schemaVersion": 1,
+  "page": "全局表格标签",
+  "records": [
+    {
+      "id": "shared-table-tags.draft-solid",
+      "element": "草稿标签深底白字",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"neutral\"][data-gaip-table-tag-variant=\"solid\"]",
+        "representative": "直播管理/课程管理的草稿及同源组件目录"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "draft / solid",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "共享工厂及旧表格适配中的草稿；当前登记来源为直播管理、课程管理"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#626b75",
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source"
+        },
+        "background-color": {
+          "before": null,
+          "initialLocal": "#f0f1f2",
+          "target": "#626b75",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "components/table/global-table-tag.css",
+          "selector": "[data-gaip-table-tag=\"neutral\"][data-gaip-table-tag-variant=\"solid\"]"
+        },
+        {
+          "path": "components/table/global-table-tag.js",
+          "symbol": "groups/variantFor"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "已核对同源目录、课程管理/直播管理实际草稿；线上基准未采集，跨频道全量回归在组织日志旧分页选择器处中断"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "shared-table-tags.geometry",
+      "element": "全局表格与日志标签",
+      "locator": {
+        "selector": "td [data-gaip-table-tag], [data-gaip-table-tag-owned]",
+        "representative": "组织身份 / 线索规划方向 / 财富值状态"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "组织、线索、活动、公告、财富值、课程、直播、学情、操作日志和同源目录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "组织与共享表格20px；其他标签按各页行高和内距",
+          "target": "20px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "组织和共享表格12px；线索规划方向14px",
+          "target": "12px，嵌套文字继承",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "组织0 8px；线索规划方向1px 12px",
+          "target": "0 8px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "组织3px；共享日志4px",
+          "target": "3px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "组织/共享表格无边框；Ant标签自带边框",
+          "target": "0",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "channels/config-center/config-center-content.css"
+        },
+        {
+          "file": "channels/clues/page.css"
+        },
+        {
+          "file": "components/operation-log/global-operation-log.css"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-28",
+        "evidence": [
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "shared-table-tags.neutral",
+      "element": "表格标签 neutral",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"neutral\"]",
+        "representative": "neutral"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "neutral",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "该语义的已收录文案，按组件 groups 明确映射"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "共享表格#2f3640/#e5e6e8；财富值#eef1f1底；共享查看日志#7651b9/#f4efff",
+          "target": "#626B75 / #F0F1F2",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "docs/table-tag-audit.json",
+          "note": "历史盘点依据；并非本次全量基线重采集"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-28",
+        "evidence": [
+          "scripts/test-table-tags-browser.cjs",
+          "outputs/table-tags/browser-results.json",
+          "outputs/table-tags/catalog.png",
+          "outputs/table-tags/clues.png",
+          "outputs/table-tags/organization.png"
+        ],
+        "gaps": [
+          "本地 Mock；未验证真实后端和未出现的权限分支"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-28"
+    },
+    {
+      "id": "shared-table-tags.info",
+      "element": "表格标签 info",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"info\"]",
+        "representative": "info"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "info",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "信息、进行中及修改操作；角色身份单列在 identity 记录"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "课程精选#805b0d/#f4d67c；组织角色四套配色；共享编辑日志#345ac6/#edf2ff",
+          "target": "#245DCC / #E8F0FF",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户2026-09-29要求提高彩色标签饱和度，并确认角色身份使用主色黑底白字；首次本地值保留。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "docs/table-tag-audit.json",
+          "note": "历史盘点依据；并非本次全量基线重采集"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "components/table/global-table-tag.css",
+          "scripts/test-table-tags.cjs"
+        ],
+        "gaps": [
+          "本轮真实浏览器视觉未验证；旧截图不能代表新配色与黑底样式"
+        ],
+        "note": "CSS色值对比度 5.22:1；主色黑按项目当前变量计算，不等于浏览器采样"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.success",
+      "element": "表格标签 success",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"success\"]",
+        "representative": "success"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "success",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "该语义的已收录文案，按组件 groups 明确映射"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "课程有效态#fff/#389e0d；共享新增日志#087452/#e9f8f0；财富值#087966/#eaf7f2",
+          "target": "#087B63 / #DFF5EC",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户2026-09-29要求提高彩色标签饱和度，并确认角色身份使用主色黑底白字；首次本地值保留。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "docs/table-tag-audit.json",
+          "note": "历史盘点依据；并非本次全量基线重采集"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "components/table/global-table-tag.css",
+          "scripts/test-table-tags.cjs"
+        ],
+        "gaps": [
+          "本轮真实浏览器视觉未验证；旧截图不能代表新配色与黑底样式"
+        ],
+        "note": "CSS色值对比度 4.58:1；主色黑按项目当前变量计算，不等于浏览器采样"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.warning",
+      "element": "表格标签 warning",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"warning\"]",
+        "representative": "warning"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "warning",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "该语义的已收录文案，按组件 groups 明确映射"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "财富值#a86314/#fff3e0；其他表格各自样式",
+          "target": "#995800 / #FFF0D5",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户2026-09-29要求提高彩色标签饱和度，并确认角色身份使用主色黑底白字；首次本地值保留。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "docs/table-tag-audit.json",
+          "note": "历史盘点依据；并非本次全量基线重采集"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "components/table/global-table-tag.css",
+          "scripts/test-table-tags.cjs"
+        ],
+        "gaps": [
+          "本轮真实浏览器视觉未验证；旧截图不能代表新配色与黑底样式"
+        ],
+        "note": "CSS色值对比度 4.98:1；主色黑按项目当前变量计算，不等于浏览器采样"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.danger",
+      "element": "表格标签 danger",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"danger\"]",
+        "representative": "danger"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "danger",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "该语义的已收录文案，按组件 groups 明确映射"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "共享删除日志#bf3e45/#fff0f0；财富值#c43f4d/#fbe7ea",
+          "target": "#BD3043 / #FFE8EC",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户2026-09-29要求提高彩色标签饱和度，并确认角色身份使用主色黑底白字；首次本地值保留。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "docs/table-tag-audit.json",
+          "note": "历史盘点依据；并非本次全量基线重采集"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "components/table/global-table-tag.css",
+          "scripts/test-table-tags.cjs"
+        ],
+        "gaps": [
+          "本轮真实浏览器视觉未验证；旧截图不能代表新配色与黑底样式"
+        ],
+        "note": "CSS色值对比度 4.91:1；主色黑按项目当前变量计算，不等于浏览器采样"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.identity",
+      "element": "角色、职责与持牌地区身份标签",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"identity\"]",
+        "representative": "管理员 / 人管 / 佣金 / 线索管理 / 线索跟进 / 新加坡 / 美国 / 百慕大 / 香港"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "identity",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "组织架构成员表格角色与持牌地区标签",
+        "同源组件分类预览"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "#345AC6 / #EDF2FF（本次扩展前的共享蓝色）",
+          "target": "职责与持牌地区 soft：#625C55 / #F1EEEA；管理员 solid：#FFFFFF / var(--table-tag-identity-fg)，当前底色 #625C55",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户要求持牌地区与身份色统一，管理员使用身份色反色；深底复用身份色前景变量，保留首次基准。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "outputs/table-tags/identity-license-before",
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs",
+          "outputs/table-tags/identity-license-result.json"
+        ],
+        "gaps": [
+          "真实浏览器视觉未复验"
+        ],
+        "note": "源码快照比较通过：仅4个地区语义、管理员身份深底和持牌图形改变，其余70个文案颜色、74个强度、73个图标映射及尺寸与其他调色变量保留；新盾牌路径与固定Ant官方原件一致。标签和预览DOM通过；不是浏览器视觉采样。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.failure-solid",
+      "element": "失败结果标签（已由深底改为浅底）",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"danger\"][data-gaip-table-tag-variant=\"soft\"]",
+        "representative": "失败 / 解析失败 / 创建失败"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "soft",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "当前表格中完整匹配的失败结果标签",
+        "全局组件目录的失败结果分类"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "#BF3E45 / #FFF0F0",
+          "target": "#BD3043 / #FFE8EC；SVG继承文字红色",
+          "status": "active",
+          "basis": "source",
+          "reason": "用户反馈红底反白加实心图标过重，三种失败标签改为浅红底红字红图标，保留首次本地基准。"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "components/table/global-table-tag.css",
+          "scripts/test-table-tags.cjs"
+        ],
+        "gaps": [
+          "本轮真实浏览器视觉未验证；旧截图不能代表新配色与黑底样式"
+        ],
+        "note": "共享danger浅色值复用，保留失败SVG、尺寸、其余71文案颜色及强度；本轮真实浏览器视觉未验证。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.icons",
+      "element": "持牌、规划与状态标签图标",
+      "locator": {
+        "selector": "[data-gaip-table-tag] > .gaip-table-tag__icon",
+        "representative": "持牌 / 身份规划 / 预警 / 失败 / 待分配 / 学习状态"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "soft / solid",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "组织架构表格持牌标签",
+        "线索表格六种规划方向",
+        "同源分类预览",
+        "显式指定允许图标的共享标签",
+        "预警、3种失败、4种待处理、3种学习状态，加跟进中，共12个状态文案"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": "组织source-979136d24698.png；线索embedded-94686680e4e6/b1dff3d59116/11bc6dc63761/43d3143083a5/2cfed9a93301/b84cba154981.png",
+          "target": "同一HTML模板内14种SVG：Lucide 7种线性图形、复用circle的1种实心圆点、Ant Design Icons 6种实心图形；持牌使用 safety-certificate 原始路径，兼容 badge-check 接口名，固定来源见ICONS-LICENSE.txt",
+          "status": "active",
+          "basis": "source"
+        },
+        "width/height": {
+          "before": null,
+          "initialLocal": "组织表格12×12px；线索14×14px",
+          "target": "图标位12×12px；待分配/待跟进/跟进中均为居中6px实心圆点",
+          "status": "active",
+          "basis": "source"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": "PNG固有金色 / 青色",
+          "target": "currentColor：线性图标使用stroke，实心图标使用fill；深底自动反白，内部符号镂空",
+          "status": "active",
+          "basis": "source"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": "组织包装margin-right 4px；线索gap 4px",
+          "target": "共享gap 4px；旧包装隐藏避免叠加",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "components/table/templates/markup-global-table-tag.html"
+        },
+        {
+          "file": "components/table/ICONS-LICENSE.txt"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "outputs/table-tags/identity-license-before",
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs",
+          "outputs/table-tags/identity-license-result.json"
+        ],
+        "gaps": [
+          "真实浏览器视觉未复验"
+        ],
+        "note": "源码快照比较通过：仅4个地区语义、管理员身份深底和持牌图形改变，其余70个文案颜色、74个强度、73个图标映射及尺寸与其他调色变量保留；新盾牌路径与固定Ant官方原件一致。标签和预览DOM通过；不是浏览器视觉采样。"
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.highlight",
+      "element": "精选推荐标签",
+      "locator": {
+        "selector": "[data-gaip-table-tag=\"highlight\"]",
+        "representative": "课程精选及组件目录同源标签"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "soft",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "课程管理精选",
+        "共享表格预览精选",
+        "表格标签库的推荐色说明、筛选及来源实例"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color/background": {
+          "before": null,
+          "initialLocal": "#245DCC / #E8F0FF",
+          "target": "#805B0D / #F4D67C",
+          "status": "active",
+          "basis": "source",
+          "reason": "按用户要求恢复原课程精选金色；原值依据global-table.css与历史审计"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        },
+        {
+          "file": "components/table/global-table-tag.js"
+        },
+        {
+          "file": "components/table/global-table.css"
+        },
+        {
+          "file": "docs/table-tag-audit.json"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-29",
+        "evidence": [
+          "outputs/table-tags/featured-before",
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs"
+        ],
+        "gaps": [
+          "真实浏览器视觉未复验；DOM验证不等于实际颜色采样"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "shared-table-tags.group",
+      "element": "共享标签组与组织成员标签组合",
+      "locator": {
+        "selector": "[data-gaip-table-tag-group], td .licenseCell___BqdK0, td .memberIdentityTags___f8Q2m",
+        "representative": "共享标签组与组织成员标签组合"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "共享标签组与组织成员标签组合"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": "目录8px，组织持牌6px，身份4px",
+          "target": "6px 8px",
+          "status": "active",
+          "basis": "local"
+        },
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "local"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        }
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs"
+        ],
+        "gaps": [
+          "真实浏览器布局、文字裁切和提示避让未验证"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
+    },
+    {
+      "id": "shared-table-tags.overflow",
+      "element": "自有长文案标签",
+      "locator": {
+        "selector": "[data-gaip-table-tag-owned]",
+        "representative": "自有长文案标签"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "自有长文案标签"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "local"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "local"
+        },
+        "focus-outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid #025b52; offset 2px",
+          "status": "active",
+          "basis": "local"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        }
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs"
+        ],
+        "gaps": [
+          "真实浏览器布局、文字裁切和提示避让未验证"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
+    },
+    {
+      "id": "shared-table-tags.full-text-tooltip",
+      "element": "长标签全文提示",
+      "locator": {
+        "selector": ".gaip-table-tag-tooltip",
+        "representative": "长标签全文提示"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "长标签全文提示"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "min(320px, calc(100vw - 24px))",
+          "status": "active",
+          "basis": "local"
+        },
+        "max-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "calc(100vh - 24px)",
+          "status": "active",
+          "basis": "local"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px 12px",
+          "status": "active",
+          "basis": "local"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #e8eaec",
+          "status": "active",
+          "basis": "local"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "local"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "local"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2f3640",
+          "status": "active",
+          "basis": "local"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "local"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "local"
+        },
+        "box-shadow": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 6px 24px rgba(47,54,64,.12)",
+          "status": "active",
+          "basis": "local"
+        }
+      },
+      "sources": [
+        {
+          "file": "components/table/global-table-tag.css"
+        }
+      ],
+      "verification": {
+        "level": "source-checked",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "scripts/test-table-tags.cjs",
+          "scripts/test-component-preview-layout.cjs"
+        ],
+        "gaps": [
+          "真实浏览器布局、文字裁切和提示避让未验证"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
+    }
+  ]
+}

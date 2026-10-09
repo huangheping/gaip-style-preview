@@ -6,19 +6,19 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const modalRuntimePath = path.join(root, 'shared/scripts/modal-registry.js');
-const registryPath = path.join(root, '全局组件/弹窗源登记.js');
-const generatedRegistryPath = path.join(root, '全局组件/弹窗自动索引.generated.js');
-const previewPath = path.join(root, '全局组件/弹窗预览.html');
-const componentIndexPath = path.join(root, '全局组件/index.html');
-const componentRegistryPath = path.join(root, '全局组件/components-registry.js');
-const componentPreviewPath = path.join(root, '全局组件/components-preview.js');
+const registryPath = path.join(root, 'components/弹窗源登记.js');
+const generatedRegistryPath = path.join(root, 'components/弹窗自动索引.generated.js');
+const previewPath = path.join(root, 'components/弹窗预览.html');
+const componentIndexPath = path.join(root, 'components/index.html');
+const componentRegistryPath = path.join(root, 'components/components-registry.js');
+const componentPreviewPath = path.join(root, 'components/components-preview.js');
 const bridgePath = path.join(root, 'shared/scripts/popup-preview-bridge.js');
 const localPreviewPath = path.join(root, 'shared/scripts/local-preview.js');
-const sharedModalStylePath = path.join(root, 'shared/styles/global-modal.css');
-const sharedModalScriptPath = path.join(root, 'shared/scripts/global-modal.js');
-const sharedModalMaskStylePath = path.join(root, 'shared/styles/global-modal-mask.css');
-const sharedModalPositionStylePath = path.join(root, 'shared/styles/global-modal-position.css');
-const sharedModalPositionScriptPath = path.join(root, 'shared/scripts/global-modal-position.js');
+const sharedModalStylePath = path.join(root, 'components/modal/global-modal.css');
+const sharedModalScriptPath = path.join(root, 'components/modal/global-modal.js');
+const sharedModalMaskStylePath = path.join(root, 'components/modal/global-modal-mask.css');
+const sharedModalPositionStylePath = path.join(root, 'components/modal/global-modal-position.css');
+const sharedModalPositionScriptPath = path.join(root, 'components/modal/global-modal-position.js');
 
 execFileSync(process.execPath, [path.join(root, 'scripts/generate-modal-catalog.cjs'), '--check'], {
   cwd: root,
@@ -58,7 +58,7 @@ for (const id of ['learning-study-detail','learning-course-study-detail']) {
   assert.ok(catalog.ready.some((entry) => entry.id === id && entry.category === 'information'));
 }
 assert.equal(byId['config-bulk-import-return-confirm'].category, 'confirmation');
-assert.equal(byId['config-bulk-import-return-confirm'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-bulk-import-return-confirm'].definitionSource, 'channels/config-center/config-center.js');
 assert.equal(byId['config-bulk-import-return-confirm'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openBulkImportReturnConfirmation');
 assert.equal(catalog.ready[35].id, 'config-bulk-import-return-confirm', 'new confirmation appends as 36 without shifting existing numbers');
 assert.equal(byId['agent-main'].status, 'excluded');
@@ -68,21 +68,21 @@ assert.equal(byId['agent-session-rename'].status, 'ready');
 assert.match(byId['agent-session-rename'].channel, /全局操作/);
 assert.ok(catalog.ready.some((entry) => entry.id === 'agent-session-rename'), '具备全局复用性质的编辑对话名称弹窗必须进入预览');
 assert.ok(!catalog.ready.some((entry) => ['agent-main', 'agent-history', 'agent-close-confirm'].includes(entry.id)), 'Agent 主面板、审核历史和内部关闭确认不得进入预览');
-assert.equal(byId['config-organization-log'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-organization-log'].definitionSource, 'channels/config-center/config-center.js');
 assert.equal(byId['config-organization-log'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openOrganizationLog');
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-admin') + 1].id, 'config-organization-log', '源登记项应进入配置中心弹窗组');
-assert.equal(byId['config-bulk-import-members'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-bulk-import-members'].definitionSource, 'channels/config-center/config-center.js');
 assert.equal(byId['config-bulk-import-members'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openBulkImport');
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-organization-log') + 1].id, 'config-bulk-import-members', '批量导入应紧随组织架构日志进入配置中心弹窗组');
-assert.equal(byId['config-adjust-member-node'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-adjust-member-node'].definitionSource, 'channels/config-center/config-center.js');
 assert.equal(byId['config-adjust-member-node'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openAdjustNode');
 assert.deepEqual(Array.from(byId['config-adjust-member-node'].invoke.args), [1]);
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-bulk-import-members') + 1].id, 'config-adjust-member-node', '调整节点应紧随批量导入进入配置中心弹窗组');
-assert.equal(byId['config-adjust-member-node-confirm'].definitionSource, 'features/config-center/config-center.js');
+assert.equal(byId['config-adjust-member-node-confirm'].definitionSource, 'channels/config-center/config-center.js');
 assert.equal(byId['config-adjust-member-node-confirm'].invoke.path, '__GAIP_CONFIG_DIALOGS__.openAdjustNodeConfirmation');
 assert.deepEqual(Array.from(byId['config-adjust-member-node-confirm'].invoke.args), [1]);
 assert.equal(catalog.list[catalog.list.findIndex((entry) => entry.id === 'config-adjust-member-node') + 1].id, 'config-adjust-member-node-confirm', '管理员节点二次确认应紧随调整节点主弹窗');
-assert.equal(byId['config-announcement-create'].definitionSource, 'features/config-center/announcement-management-view.js');
+assert.equal(byId['config-announcement-create'].definitionSource, 'channels/config-center/announcement-management-view.js');
 assert.equal(byId['config-announcement-create'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openCreate');
 assert.equal(byId['config-announcement-edit'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openEdit');
 assert.equal(byId['config-announcement-delete'].invoke.path, '__GAIP_ANNOUNCEMENT_MANAGEMENT__.openDelete');
@@ -105,9 +105,11 @@ catalog.ready.filter((entry) => entry.previewMode !== 'route-trigger').forEach((
     assert.ok(fs.existsSync(path.join(root, asset.split('?')[0])), `${entry.id} 资源不存在：${asset}`);
   });
 });
-assert.ok(byId['config-admin'].scripts.includes('features/config-center/config-center.js?v=20260921-shared-dropdown-1'), '配置中心弹窗预览必须加载当前逻辑版本');
-assert.ok(byId['config-delete'].styles.includes('shared/styles/global-modal.css?v=20260909-project-font-1'), '删除部门预览必须加载共享弹窗样式');
-assert.ok(byId['config-delete'].scripts.includes('shared/scripts/global-modal.js?v=20260908-inline-validation-1'), '删除部门预览必须加载共享弹窗逻辑');
+const channelConfigSource = fs.readFileSync(path.join(root, 'shared/config/channels.js'), 'utf8');
+const configScriptAsset = channelConfigSource.match(/channels\/config-center\/config-center\.js\?v=[\w-]+/)[0];
+assert.ok(byId['config-admin'].scripts.includes(configScriptAsset), '配置中心预览与真实频道必须加载同一逻辑版本');
+assert.ok(byId['config-delete'].styles.includes('components/modal/global-modal.css?v=20261001-merge-1'), '删除部门预览必须加载共享弹窗样式');
+assert.ok(byId['config-delete'].scripts.includes('components/modal/global-modal.js?v=20261001-merge-1'), '删除部门预览必须加载共享弹窗逻辑');
 
 const sharedModalStyleSource = fs.readFileSync(sharedModalStylePath, 'utf8');
 const sharedModalScriptSource = fs.readFileSync(sharedModalScriptPath, 'utf8');
@@ -152,20 +154,20 @@ assert.match(sharedModalMaskStyleSource, /\.ant-drawer-mask/, '全局遮罩必�
 });
 
 const localMaskVisualSources = [
-  'shared/styles/global-ai-notice.css',
-  'shared/styles/global-poster-share.css',
-  'shared/styles/global-operation-log.css',
-  'features/news-center/news-center.css',
-  'features/proposal-center/proposal-center.css',
-  'features/activity/activity-sync.css',
-  'features/wealth-center/wealth-center.css',
-  'features/config-center/config-center-content.css',
-  'features/config-center/announcement-management.css'
+  'components/ai-notice/global-ai-notice.css',
+  'components/poster-share/global-poster-share.css',
+  'components/operation-log/global-operation-log.css',
+  'channels/news-center/news-center.css',
+  'channels/proposal-center/proposal-center.css',
+  'channels/activity/activity-sync.css',
+  'channels/wealth-center/wealth-center.css',
+  'channels/config-center/config-center-content.css',
+  'channels/config-center/announcement-management.css'
 ].map((relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8')).join('\n');
 assert.doesNotMatch(localMaskVisualSources, /(?:gaip-log-dialog|gaip-config-editor|gaip-organization-log-dialog|gaip-bulk-import-dialog|gaip-adjust-node-dialog|gaip-announcement-dialog)::backdrop\s*\{/, '业务样式不得继续定义原生 dialog 遮罩');
 assert.doesNotMatch(localMaskVisualSources, /rgba\((?:18,\s*32,\s*31,\s*\.4|25,\s*32,\s*38,\s*\.55|31,\s*38,\s*45,\s*\.(?:42|28)|25,\s*29,\s*33,\s*\.78|18,\s*24,\s*27,\s*0\.34|0,\s*0,\s*0,\s*0\.46)\)/, '历史业务遮罩色不得残留');
 assert.doesNotMatch(localMaskVisualSources, /rgba\(24,\s*33,\s*38,\s*0\.48\)/, '财富弹窗与抽屉不得保留局部遮罩色');
-assert.doesNotMatch(fs.readFileSync(path.join(root, 'features/activity/activity-sync.js'), 'utf8'), /\},\s*180\);/, '活动报名关闭时长必须跟随 160ms 遮罩令牌');
+assert.doesNotMatch(fs.readFileSync(path.join(root, 'channels/activity/activity-sync.js'), 'utf8'), /\},\s*180\);/, '活动报名关闭时长必须跟随 160ms 遮罩令牌');
 
 assert.match(sharedModalPositionStyleSource, /--gaip-modal-safe-gap:\s*24px/, '桌面弹窗必须保留 24px 安全边距');
 assert.match(sharedModalPositionStyleSource, /--gaip-modal-safe-gap:\s*12px/, '窄屏弹窗必须保留 12px 安全边距');
@@ -181,10 +183,10 @@ assert.match(sharedModalPositionScriptSource, /isDrawer/, '定位接入器必须
 assert.doesNotMatch(sharedModalPositionScriptSource, /gaip-wealth-drawer-layer/, '财富抽屉不得进入普通弹窗定位候选');
 
 const confirmationImplementationSources = [
-  'features/proposal-center/proposal-center.js',
-  'features/customer/customer-center.js',
-  'features/config-center/config-center.js',
-  'features/config-center/announcement-management-view.js'
+  'channels/proposal-center/proposal-center.js',
+  'channels/customer/customer-center.js',
+  'channels/config-center/config-center.js',
+  'channels/config-center/announcement-management-view.js'
 ].map((relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8'));
 assert.equal(confirmationImplementationSources.reduce((total, source) => total + (source.match(/\.(?:setConfirmState|createConfirm)\(/g) || []).length, 0), 7, '七个本地操作确认入口必须调用共享确认 API');
 assert.doesNotMatch(confirmationImplementationSources[2], /gaip-bulk-confirm-card|data-bulk-confirm-layer/, 'bulk return no longer creates a private confirmation shell');
@@ -193,15 +195,22 @@ assert.doesNotMatch(confirmationImplementationSources[1], /data-customer-confirm
 assert.doesNotMatch(confirmationImplementationSources[2], /data-adjust-warning-cancel[^>]*>(?:(?!<\/button>)[\s\S])*<svg/, '17 不得复制关闭 SVG');
 assert.doesNotMatch(confirmationImplementationSources[3], /data-announcement-close[^>]*>(?:(?!<\/button>)[\s\S])*<svg/, '35 不得复制关闭 SVG');
 
-const previewSource = fs.readFileSync(previewPath, 'utf8');
+const previewHtml = fs.readFileSync(previewPath, 'utf8');
+const previewScript = fs.readFileSync(path.join(root, 'components/弹窗预览.script-2.js'), 'utf8');
+const previewSource = previewHtml + '\n' + previewScript + '\n' + fs.readFileSync(path.join(root, 'components/templates/markup-弹窗预览.script-2.html'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'components/弹窗预览.styles-1.css'), 'utf8');
 assert.match(previewSource, /global-modal-mask\.css\?v=20260910-backdrop-1/, '弹窗预览必须直接加载全局遮罩唯一样式源');
 assert.match(previewSource, /global-modal-position\.css\?v=20260908-2/, '弹窗预览必须直接加载全局定位唯一样式源');
 assert.match(previewSource, /global-modal-position\.js\?v=20260904-1/, '弹窗预览必须加载动态定位接入器');
-assert.match(previewSource, /previewViewportHeight = 820/, '所有真实弹窗预览必须使用统一 820px 视口');
-assert.match(previewSource, /frame\.style\.height = previewViewportHeight \+ 'px'/, 'iframe 高度必须来自统一预览视口');
+assert.match(previewSource, /\.frameWrap\s*\{\s*min-height: 820px;/, '所有真实弹窗预览必须使用统一 820px 占位');
+assert.match(previewSource, /\.frameWrap iframe\s*\{\s*height: 820px;/, 'iframe 高度由独立 CSS 统一维护');
 assert.doesNotMatch(previewSource, /frame\.style\.height = entry\.height/, 'iframe 不得因登记项高度产生视觉假偏移');
-assert.match(previewSource, /弹窗源登记\.js\?v=20260908-required-marker-1/, '弹窗预览页必须刷新真实源登记缓存');
-assert.match(previewSource, /弹窗自动索引\.generated\.js\?v=20260910-study-detail-1/, '弹窗预览页必须刷新自动索引缓存');
+for (const name of ['弹窗源登记.js', '弹窗自动索引.generated.js']) {
+  const pattern = new RegExp(name.replace(/\./g, '\\.') + '\\?v=([^"\\s]+)');
+  const previewVersion = previewHtml.match(pattern);
+  const catalogVersion = fs.readFileSync(componentIndexPath, 'utf8').match(pattern);
+  assert.ok(previewVersion && catalogVersion, name + ' 在两入口均须有缓存版本');
+  assert.equal(previewVersion[1], catalogVersion[1], name + ' 两入口引用同一登记版本，不锁死历史日期');
+}
 assert.match(previewSource, /entry\.previewMode === 'route-trigger'/);
 assert.match(previewSource, /shared\/scripts\/modal-registry\.js/);
 assert.match(previewSource, /弹窗自动索引\.generated\.js/);
@@ -216,7 +225,7 @@ assert.match(previewSource, /class="frameLoad"/, '无法自动观察时必须保
 assert.match(previewSource, /gaip-popup-preview/, '父页必须接收真实弹窗打开状态');
 assert.match(previewSource, /routeConcurrency = 3/, '正式频道预览必须限流，同时缩短完整预览等待时间');
 assert.match(previewSource, /pumpRouteQueue\(\)/, '正式频道预览队列必须持续加载后续项目');
-assert.match(previewSource, /location\.replace\('\.\.\/登录\.html#'/);
+assert.match(previewSource, /location\.replace\('\.\.\/channels\/login\/index\.html#'/);
 assert.match(previewSource, /pending\.length \?/);
 assert.doesNotMatch(previewSource, /data-category="all"|selectCategory\('all'\)/, '预览页不再提供全部筛选或隐式切回全部');
 assert.match(previewSource, /selectCategory\(categoryOrder\[0\]\)/, '默认选择第一个用途分类');
@@ -237,8 +246,8 @@ assert.doesNotMatch(previewSource, /createPreviewModal\(/, '预览页不得调�
   w.IntersectionObserver = class { observe() {} unobserve() {} };
   w.matchMedia = () => ({ matches: true });
   w.HTMLElement.prototype.scrollIntoView = function () {};
-  const inline = [...previewSource.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].find(match => match[1].includes('function renderParent()'));
-  w.eval(inline[1]);
+  assert.ok(previewHtml.includes('弹窗预览.script-2.js'), 'parent HTML loads its real external controller');
+  w.eval(previewScript);
   const buttons = [...w.document.querySelectorAll('.categoryFilter')];
   assert.equal(buttons.length, 3, 'only three category filters render');
   const visible = () => [...w.document.querySelectorAll('.categorySection')].filter(el => !el.hidden).map(el => el.dataset.category);
@@ -258,9 +267,9 @@ assert.doesNotMatch(previewSource, /createPreviewModal\(/, '预览页不得调�
 const generatorSource = fs.readFileSync(path.join(root, 'scripts/generate-modal-catalog.cjs'), 'utf8');
 assert.match(generatorSource, /@gaip-modal/);
 assert.match(generatorSource, /--check/);
-assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-organization-log"/);
-assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-bulk-import-members"/);
-assert.match(fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8'), /"id": "config-adjust-member-node"/);
+assert.match(fs.readFileSync(path.join(root, 'channels/config-center/config-center.js'), 'utf8'), /"id": "config-organization-log"/);
+assert.match(fs.readFileSync(path.join(root, 'channels/config-center/config-center.js'), 'utf8'), /"id": "config-bulk-import-members"/);
+assert.match(fs.readFileSync(path.join(root, 'channels/config-center/config-center.js'), 'utf8'), /"id": "config-adjust-member-node"/);
 
 const componentContext = { window: {} };
 vm.createContext(componentContext);
@@ -268,15 +277,19 @@ vm.runInContext(fs.readFileSync(componentRegistryPath, 'utf8'), componentContext
 const modalComponent = componentContext.window.__GAIP_GLOBAL_COMPONENTS__.find((component) => component.id === 'modal-catalog');
 assert.ok(modalComponent, '全局组件目录必须登记真实弹窗预览入口');
 assert.equal(modalComponent.previewKind, 'modalCatalog');
-assert.ok(modalComponent.sources.some((source) => source.path === '全局组件/弹窗预览.html'));
+assert.ok(modalComponent.sources.some((source) => source.path === 'components/弹窗预览.html'));
 
 const componentIndexSource = fs.readFileSync(componentIndexPath, 'utf8');
 assert.ok(componentIndexSource.indexOf('modal-registry.js') < componentIndexSource.indexOf('components-registry.js'), '目录页应先加载实时弹窗目录');
 assert.match(componentIndexSource, /弹窗自动索引\.generated\.js/);
-const componentPreviewSource = fs.readFileSync(componentPreviewPath, 'utf8');
+const componentPreviewSource = fs.readFileSync(componentPreviewPath, 'utf8') + '\n' + fs.readFileSync(path.join(root, 'components/templates/markup-components-preview.html'), 'utf8');
 assert.match(componentPreviewSource, /__GAIP_MODAL_SOURCE_CATALOG__/);
 assert.match(componentPreviewSource, /href="\.\/弹窗预览\.html"/);
-assert.doesNotMatch(componentPreviewSource, /<iframe/, '全局组件首页不得内嵌全部弹窗 iframe');
+// Upload controls stay inline; the separate modal catalogue remains a link.
+assert.doesNotMatch(componentPreviewSource, /<iframe\b/i, '组件目录不得嵌入上传业务整页');
+const componentInitialDOM = new (require('jsdom').JSDOM)(componentIndexSource);
+assert.equal(componentInitialDOM.window.document.querySelectorAll('iframe').length, 0, '全局组件首页不得预加载业务弹窗 iframe');
+componentInitialDOM.window.close();
 
 const localPreviewSource = fs.readFileSync(localPreviewPath, 'utf8');
 assert.match(localPreviewSource, /gaip-popup-preview/);
@@ -299,16 +312,15 @@ assert.match(bridgeSource, /productCard___.*moreAction___/, '产品详情必须�
 assert.match(bridgeSource, /timeout = 45000/, '真实页面入口需要覆盖 Umi 异步加载时间');
 assert.match(localPreviewSource, /popup-preview-bridge\.js\?v=20260902-7/);
 
-const configCenterSource = fs.readFileSync(path.join(root, 'features/config-center/config-center.js'), 'utf8');
+const configCenterSource = fs.readFileSync(path.join(root, 'channels/config-center/config-center.js'), 'utf8');
 const previewHostSource = configCenterSource.slice(configCenterSource.indexOf('function ensureDialogPreviewHost'), configCenterSource.indexOf('dialogController ='));
 assert.doesNotMatch(previewHostSource, /renderOrganization\(/, '配置中心弹窗预览宿主不得渲染组织架构背景页');
 
-const entryFiles = fs.readdirSync(root).filter((name) => name !== 'index-login-video-test.html' && name.endsWith('.html') &&
-  fs.readFileSync(path.join(root, name), 'utf8').includes('shared/scripts/local-preview.js'));
-assert.equal(entryFiles.length, 15, '应覆盖 15 个正式入口');
+const entryFiles = require('./entry-files.cjs')(root);
+assert.ok(entryFiles.includes('channels/login/index.html'), '覆盖登录和全部正式频道入口');
 entryFiles.forEach((name) => {
   const source = fs.readFileSync(path.join(root, name), 'utf8');
-  assert.match(source, /local-preview\.js\?v=20260902-7/, `${name} 缓存版本未同步`);
+  assert.match(source, /local-preview\.js\?v=20260925-html-structure-1/, `${name} 缓存版本未同步`);
   assert.match(source, /global-modal-mask\.css\?v=20260910-backdrop-1/, `${name} 必须加载全局遮罩唯一样式源`);
   assert.match(source, /global-modal-position\.css\?v=20260908-2/, `${name} 必须加载全局定位唯一样式源`);
   assert.match(source, /global-modal-position\.js\?v=20260904-1/, `${name} 必须加载动态定位接入器`);

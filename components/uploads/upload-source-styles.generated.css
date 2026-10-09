@@ -1,0 +1,61 @@
+/* Generated source control styles, scoped to uploads only. */
+/* channels/learning-center/learning-center.css */
+.uploadCatalog .uploadControl .lc-button {display: inline-flex; min-height: 36px; align-items: center; justify-content: center; gap: 6px; padding: 6px 16px; border: 1px solid #d9dddc; border-radius: 4px; color: #2f3640; background: #fff; cursor: pointer; white-space: nowrap;}
+.uploadCatalog .uploadControl .lc-button:hover:not(:disabled) {border-color: #006d62; color: #006d62;}
+.uploadCatalog .uploadControl .lc-button.lc-primary,.uploadCatalog .uploadControl .lc-button.is-selected {background: #006d62; border-color: #006d62; color: #fff;}
+.uploadCatalog .uploadControl .lc-button.lc-primary:hover:not(:disabled) {background: #025b52; color: #fff;}
+.uploadCatalog .uploadControl .lc-button.lc-link {background: transparent; border: 0; padding: 0 4px; color: #006d62;}
+.uploadCatalog .uploadControl .lc-cover-picker {position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; aspect-ratio: 16 / 9; border: 1px dashed #c7cecb; border-radius: 4px; background: #f8faf9; color: var(--filter-brand); cursor: pointer; overflow: hidden;}
+.uploadCatalog .uploadControl .lc-cover-picker:hover,.uploadCatalog .uploadControl .lc-cover-picker:focus-visible {border-color: var(--filter-brand); outline: 2px solid rgba(2,91,82,.12);}
+.uploadCatalog .uploadControl .lc-cover-picker img {display: block; width: 100%; height: 100%; object-fit: cover;}
+.uploadCatalog .uploadControl .lc-cover-picker-caption {font-size: 12px; color: #747c80;}
+.uploadCatalog .uploadControl .lc-cover-picker img + .lc-cover-picker-caption {position: absolute; bottom: 0; left: 0; right: 0; padding: 6px; text-align: center; background: rgba(47,54,64,.72); color: #fff;}
+.uploadCatalog .uploadControl .lc-lesson-file {min-width: 0; display: flex; flex-direction: column;}
+.uploadCatalog .uploadControl .lc-lesson-file h5 {margin: 0 0 8px; font-size: 14px; font-weight: 400; color: #535e64;}
+.uploadCatalog .uploadControl .lc-lesson-file h5 > span:not(.lc-required) {font-size: 12px; color: #8a9097; margin-left: 4px;}
+.uploadCatalog .uploadControl .lc-lesson-file-box {flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; border: 1px solid #e7eae9; border-radius: 4px; padding: 14px 16px;}
+.uploadCatalog .uploadControl .lc-lesson-file-description {width: 100%; min-width: 0; min-height: 46px;}
+.uploadCatalog .uploadControl .lc-lesson-file-description > strong,.uploadCatalog .uploadControl .lc-lesson-file-description > .lc-local-file-link {display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.uploadCatalog .uploadControl .lc-upload-feedback {width: 100%; min-width: 0; min-height: 48px;}
+.uploadCatalog .uploadControl .lc-upload-icon {width: 16px; height: 16px; flex: 0 0 16px;}
+.uploadCatalog .uploadControl .lc-lesson-file-actions .lc-file-picker {display: inline-flex; align-items: center; justify-content: center; gap: 8px;}
+.uploadCatalog .uploadControl .lc-lesson-file-description strong {font-size: 14px; font-weight: 400; line-height: 22px; overflow-wrap: anywhere;}
+.uploadCatalog .uploadControl .lc-lesson-file-actions {display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: auto;}
+.uploadCatalog .uploadControl .lc-file-picker.lc-file-replace {background: #111; border-color: #111; color: #fff;}
+.uploadCatalog .uploadControl .lc-file-picker.lc-file-replace:hover,.uploadCatalog .uploadControl .lc-file-picker.lc-file-replace:focus-visible {background: #292929; border-color: #292929; color: #fff;}
+.uploadCatalog .uploadControl .lc-file-picker {box-sizing: border-box;}
+.uploadCatalog .uploadControl .lc-file-picker:focus-visible {outline: 2px solid #00887b; outline-offset: 2px;}
+.uploadCatalog .uploadControl .lc-live-image-slot {position: relative; width: min(100%,375px); aspect-ratio: 750 / 320; display: grid; place-items: center; background: #f8faf9; border: 1px dashed #c7cecb; border-radius: 4px; overflow: hidden;}
+.uploadCatalog .uploadControl .lc-live-image-slot img {position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;}
+.uploadCatalog .uploadControl .lc-live-upload {align-self: flex-start;}
+/* channels/config-center/config-center-content.css */
+.uploadCatalog .uploadControl .gaip-bulk-upload-button {display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 0 0 auto; height: 34px; padding: 0 14px; border: 1px solid rgba(47,54,64,.2); border-radius: 6px; background: #fff; color: #2f3640; font-size: 14px; line-height: 1; cursor: pointer; transition: background-color .16s, border-color .16s;}
+.uploadCatalog .uploadControl .gaip-bulk-upload-button:hover {border-color: rgba(47,54,64,.34); background: rgba(47,54,64,.025);}
+.uploadCatalog .uploadControl .gaip-bulk-upload-button:focus-within {outline: 2px solid rgba(36,212,201,.28); outline-offset: 2px;}
+.uploadCatalog .uploadControl .gaip-bulk-upload-button input {position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none;}
+/* channels/clues/page.css */
+.uploadCatalog .uploadControl .uploadBtn___WBpgy {display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 104px; height: 104px; background: #00000008; border-radius: 8px; border: 1px dashed rgba(0, 0, 0, 0.2); cursor: pointer; gap: 6px; transition: border-color 0.15s,
+    background 0.15s;}
+.uploadCatalog .uploadControl .uploadBtn___WBpgy:hover {border-color: #1f9e8e; background: #f0fdfa;}
+.uploadCatalog .uploadControl .uploadPlus___y6lZP {font-size: 20px; color: #9ca3af;}
+.uploadCatalog .uploadControl .uploadText___VRcVH {font-size: 12px; color: #9ca3af; text-align: center; line-height: 1.4; padding: 0 6px;}
+/* components/海报分享/index.styles-1.css */
+.uploadCatalog .uploadControl .upload-card:focus-visible {outline: 2px solid rgba(36, 212, 201, 0.36); outline-offset: 2px;}
+.uploadCatalog .uploadControl .upload-card {position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; min-height: 92px; padding: 12px; border: 1px dashed #dddddd; border-radius: 4px; background: #fafafa; cursor: pointer; transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;}
+.uploadCatalog .uploadControl .upload-card:hover,.uploadCatalog .uploadControl .upload-card.is-dragging {border-color: var(--teal); background: var(--teal-soft); box-shadow: none;}
+.uploadCatalog .uploadControl .upload-visual {display: grid; place-items: center; width: 64px; height: 64px; overflow: hidden; border: 1px solid rgba(2, 91, 82, 0.16); color: var(--teal); background: #f2f8f7; transition: border-color 160ms ease, background 160ms ease;}
+.uploadCatalog .uploadControl .upload-visual .upload-placeholder-icon {display: block; width: 24px; height: 24px; flex: 0 0 24px; object-fit: contain;}
+.uploadCatalog .uploadControl .upload-card:hover .upload-visual,.uploadCatalog .uploadControl .upload-card.is-dragging .upload-visual {border-color: rgba(2, 91, 82, 0.35); background: #fff;}
+.uploadCatalog .uploadControl .upload-visual.avatar {border-radius: 50%;}
+.uploadCatalog .uploadControl .upload-visual.qr {border-radius: 4px;}
+.uploadCatalog .uploadControl .upload-visual img {width: 100%; height: 100%; object-fit: cover;}
+.uploadCatalog .uploadControl .upload-copy strong,.uploadCatalog .uploadControl .upload-copy span {display: block;}
+.uploadCatalog .uploadControl .upload-copy {min-width: 0;}
+.uploadCatalog .uploadControl .upload-copy strong {overflow: hidden; margin-bottom: 6px; font-size: 14px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap;}
+.uploadCatalog .uploadControl .upload-copy span {color: #879295; font-size: 12px; line-height: 1.45;}
+.uploadCatalog .uploadControl .upload-card.has-image .upload-actions {display: flex;}
+.uploadCatalog .uploadControl .upload-card.has-image .empty-hint {display: none;}
+/* channels/customer/page.css */
+.uploadCatalog .uploadControl .importBtn___ZrdGJ {display: flex; align-items: center; justify-content: center; height: 54px; padding: 0 30px; border: 0; border-radius: 0; font-size: 16px; font-weight: 400; -webkit-appearance: none; appearance: none;}
+.uploadCatalog .uploadControl .importBtn___ZrdGJ {height: 53px; color: #025b52; border-left: 1px solid rgba(2, 91, 82, 0.13);}
+.uploadCatalog .uploadControl .importBtn___ZrdGJ:hover,.uploadCatalog .uploadControl .importBtn___ZrdGJ:active,.uploadCatalog .uploadControl .importBtn___ZrdGJ:focus {color: #025b52 !important; background: transparent !important; border-left: 1px solid rgba(2, 91, 82, 0.13);}

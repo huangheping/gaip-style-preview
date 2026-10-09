@@ -1,0 +1,9 @@
+.gaip-course-player-nav-icon{
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  background: currentColor;
+  mask: url("../../business/learning-center/icon-detail-back.svg") center / 14px 14px no-repeat;
+  -webkit-mask: url("../../business/learning-center/icon-detail-back.svg") center / 14px 14px no-repeat;
+}

@@ -2,8 +2,8 @@
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright-core');
 const root = path.resolve(__dirname, '..');
-const styles = ['shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/global-multi-select.css','shared/styles/organization-tree.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','shared/styles/global-tabs.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','shared/styles/global-page-form.css'];
-const scripts = ['shared/scripts/global-modal.js','shared/scripts/global-multi-select.js','shared/scripts/organization-store.js','shared/scripts/organization-tree.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','shared/scripts/global-tabs.js','shared/scripts/operation-log-xlsx.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'];
+const styles = ['shared/styles/global-font.css','components/modal/global-modal.css','components/multi-select/global-multi-select.css','components/organization-tree/organization-tree.css','components/filter-bar/global-filter-bar.css','components/table/global-table.css','components/tabs/global-tabs.css','channels/learning-center/learning-center.css','shared/styles/global-page-form.css'];
+const scripts = ['components/modal/global-modal.js','components/multi-select/global-multi-select.js','shared/scripts/organization-store.js','components/organization-tree/organization-tree.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','components/tabs/global-tabs.js','components/operation-log/operation-log-xlsx.js','channels/learning-center/learning-data.js','channels/learning-center/learning-app.js'];
 const fixture = '<!doctype html><html><head><meta charset="utf-8">' + styles.map(f=>'<link rel="stylesheet" href="/'+f+'">').join('') + '<style>body{margin:0}#page{margin-left:212px;height:100vh}</style></head><body><section id="page" class="gaip-learning-page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section>' + scripts.map(f=>'<script src="/'+f+'"></script>').join('') + '<script>__GAIP_LEARNING_APP__.mount(document.querySelector("#page"));</script></body></html>';
 (async()=>{
   const browser = await chromium.launch({headless:true, ...(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : {})});
@@ -13,12 +13,12 @@ const fixture = '<!doctype html><html><head><meta charset="utf-8">' + styles.map
     await ctx.route('**/*', route=>{
       const u=new URL(route.request().url()), relative=decodeURIComponent(u.pathname).slice(1), file=path.resolve(root,relative);
       if(u.origin!=='https://gaip.local.test')return route.abort();
-      if(relative==='学习中心.html')return route.fulfill({contentType:'text/html',body:fixture});
+      if(relative==='channels/learning-center/index.html')return route.fulfill({contentType:'text/html',body:fixture});
       if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile())return route.fulfill({status:404,body:''});
       const types={'.js':'text/javascript','.css':'text/css','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2'};
       return route.fulfill({contentType:types[path.extname(file)]||'application/octet-stream',body:fs.readFileSync(file)});
     });
-    const p=await ctx.newPage();await p.goto('https://gaip.local.test/学习中心.html#/clues?gaip-channel=learning');
+    const p=await ctx.newPage();await p.goto('https://gaip.local.test/channels/learning-center/index.html#/clues?gaip-channel=learning');
     const click=a=>p.locator('[data-lc="'+a+'"]').first().click();
     await p.locator('[data-learning-action="课程管理"]').click();await click('create');
     assert.equal(await p.locator('.lc-course-lessons-editor').count(),0);
@@ -103,7 +103,7 @@ const fixture = '<!doctype html><html><head><meta charset="utf-8">' + styles.map
     await p.locator('[data-lc="lesson-status"][data-id="c2l2"]').click();assert.equal(await p.locator('dialog .gaip-modal__title').textContent(),'无法下架课节');await p.getByRole('button',{name:'我知道了',exact:true}).click();
     assert.equal(await p.evaluate(()=>__GAIP_LEARNING_DATA__.course('c2').status),'published');
     // A normal learner cannot use a forged preview URL.
-    await p.evaluate(c=>{__GAIP_LEARNING_DATA__.state().courses.push(c);__GAIP_LEARNING_DATA__.setUser('u2');},returned);const denied=await ctx.newPage();await denied.goto('https://gaip.local.test/学习中心.html#/clues?gaip-channel=learning&gaip-preview='+returned.id);
+    await p.evaluate(c=>{__GAIP_LEARNING_DATA__.state().courses.push(c);__GAIP_LEARNING_DATA__.setUser('u2');},returned);const denied=await ctx.newPage();await denied.goto('https://gaip.local.test/channels/learning-center/index.html#/clues?gaip-channel=learning&gaip-preview='+returned.id);
     assert.equal(await denied.locator('.gaip-course-detail-title').count(),0);assert.equal(await denied.locator('[data-lc="preview-course"]').count(),0);await denied.close();
     assert.deepEqual(errors,[]);console.log('PASS first-save branches, explicit required selection, new-window draft preview + no progress writes, published-only learner list, active-only statistics/export, atomic last-lesson guard, real popup UI. Local controller fixture; not full Umi entry.');
   } finally {await browser.close();}

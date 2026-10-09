@@ -5,18 +5,19 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const entries = [
-  ['财富值中心.html', '#/workspace?gaip-channel=wealth&gaip-view=import-workbench'],
-  ['资讯中心.html', '#/workspace?gaip-channel=news'],
-  ['学习中心.html', '#/workspace?gaip-channel=learning']
+  ['channels/wealth-center/index.html', '#/workspace?gaip-channel=wealth&gaip-view=import-workbench'],
+  ['channels/news-center/index.html', '#/workspace?gaip-channel=news'],
+  ['channels/learning-center/index.html', '#/workspace?gaip-channel=learning']
 ];
 const foreignHash = '#/workspace?gaip-channel=config&gaip-view=organization';
 
 function startupScript(file) {
   const html = fs.readFileSync(path.join(root, file), 'utf8');
-  const scripts = Array.from(html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g));
-  const match = scripts.find((entry) => entry[1].includes('location.hash'));
-  assert.ok(match, `${file} 缺少默认 Hash 初始化脚本`);
-  return match[1];
+  const scripts = Array.from(html.matchAll(/<script\b[^>]*src=["']([^"']+)["'][^>]*><\/script>/g));
+  const sources = scripts.map(entry => fs.readFileSync(path.resolve(root, entry[1].split('?')[0]), 'utf8'));
+  const match = sources.find(source => source.includes('if (!location.hash)'));
+  assert.ok(match, `${file} 缺少外置默认 Hash 初始化脚本`);
+  return match;
 }
 
 entries.forEach(([file, defaultHash]) => {

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>薄荷入职指引 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/induction/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="induction-modal">
+  <div data-component="modalType" data-ui-class-name="modal___l2z3p" data-children="single" data-props="modalProps" data-kind="jsx">
+    <div class="content___D6zDR" data-children="array" data-kind="jsxs">
+      <div class="iconWrap___QsX_H" data-kind="jsx"></div>
+      <p class="desc___uFvhJ" data-children="array" data-kind="jsxs">
+        您已完成所有入职引导，
+        <br data-kind="jsx" />
+        快去添加您的第一位客户吧～
+      </p>
+      <div data-component="createBtnType" data-ui-class-name="createBtn___ws4d7" data-ui-type="primary" data-children="single" data-props="createBtnProps" data-kind="jsx">
+        创建客户
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="induction-gaip-induction-source-style-1">
+  <img alt="" class="gaip-induction-source-style-1" data-props="gaip_induction_source_style_1Props" data-kind="jsx" />
+</template>
+
+<template id="induction-gaip-induction-source-style-2">
+  <img alt="" class="gaip-induction-source-style-2" data-props="gaip_induction_source_style_2Props" data-kind="jsx" />
+</template>
+
+<template id="induction-div">
+  <div data-children="single" data-props="divProps" data-key="divKey" data-kind="jsx">
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="induction-div-2">
+  <div data-children="single" data-props="divProps" data-key="divKey" data-kind="jsx">
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="induction-nextBtn">
+  <div data-component="nextBtnType" data-ui-class-name="nextBtn___KDxum" data-ui-type="primary" data-children="single" data-props="nextBtnProps" data-kind="jsx">
+    完成
+  </div>
+</template>
+
+<template id="induction-nextBtn-2">
+  <div data-component="nextBtnType" data-ui-class-name="nextBtn___KDxum" data-ui-type="primary" data-children="single" data-props="nextBtnProps" data-kind="jsx">
+    下一步
+  </div>
+</template>
+
+<template id="induction-component">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-tip="下载中..." data-ui-size="large" data-props="componentProps" data-kind="jsx"></div>
+    <div class="pageContainer___lYllu" data-children="array" data-kind="jsxs">
+      <div class="modHeader___QgHKa" data-children="array" data-kind="jsxs">
+        <div class="modHeaderLeft___Tugzr" data-children="array" data-kind="jsxs">
+          <span class="modHeaderTitle___vGmnn" data-children="single" data-kind="jsx">
+            薄荷入职引导
+          </span>
+          <span class="modHeaderSubtitle___ey3PT" data-children="single" data-kind="jsx">
+            亲爱的伙伴，欢迎加入薄荷
+          </span>
+        </div>
+        <div class="modHeaderRight___Oa9BK" data-children="array" data-kind="jsxs">
+          <div data-component="modHeaderBtnPrimaryType" data-ui-class-name="modHeaderBtnPrimary___Gypva" data-children="single" data-props="modHeaderBtnPrimaryProps" data-kind="jsx">
+            下载薄荷入职手册
+          </div>
+          <div data-component="modHeaderBtnType" data-ui-class-name="modHeaderBtn___ABv0b" data-children="single" data-props="modHeaderBtnProps" data-kind="jsx">
+            一键下载展业工具
+          </div>
+        </div>
+      </div>
+      <div class="chapterTabs___nqSpI" data-children="array" data-kind="jsxs">
+        <div class="chapterTabList___bQyho" data-children="single" data-kind="jsx">
+          <template data-slot="chapterTabListContent"></template>
+        </div>
+        <div class="progressArea___bT5Nv" data-children="array" data-kind="jsxs">
+          <span class="progressText___DOW0x" data-children="array" data-kind="jsxs">
+            <template data-text="已完成 "></template>
+            <template data-slot="progressTextContent"></template>
+            <template data-text=" / "></template>
+            <template data-slot="progressTextContent2"></template>
+            <template data-text=" 节 ·"></template>
+            <template data-text=" "></template>
+            <template data-slot="progressTextContent3"></template>
+            %
+          </span>
+          <div data-component="progressBarType" data-ui-class-name="progressBar___gzApd" data-ui-stroke-color="#24D4C9" data-ui-trail-color="#e5e6eb" data-props="progressBarProps" data-kind="jsx"></div>
+        </div>
+      </div>
+      <div class="sectionTabs___AgR2r" data-children="single" data-kind="jsx">
+        <template data-slot="sectionTabsContent"></template>
+      </div>
+      <div data-component="componentType3" data-props="componentProps2" data-kind="jsx"></div>
+      <div class="bottomBar___ipcrV" data-children="array" data-kind="jsxs">
+        <div class="bottomBarText___gc6nv" data-children="array" data-kind="jsxs">
+          <p data-children="single" data-kind="jsx">
+            以客户为中心，以专业成就关爱之心，做时间的朋友。
+          </p>
+          <p data-children="single" data-kind="jsx">
+            很高兴有您这样的人才与我们携手同行。本页面是新员工入职引导，请逐一阅览学习。
+          </p>
+        </div>
+        <div class="bottomBarActions___Pqf7Y" data-children="array" data-kind="jsxs">
+          <div data-component="prevBtnType" data-ui-class-name="prevBtn___MvNIw" data-children="single" data-props="prevBtnProps" data-kind="jsx">
+            上一步
+          </div>
+          <template data-slot="bottomBarActionsContent"></template>
+        </div>
+      </div>
+      <div data-component="componentType4" data-props="componentProps3" data-kind="jsx"></div>
+    </div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

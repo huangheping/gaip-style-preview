@@ -1,0 +1,30 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..');
+const parent=path.join(root,'outputs/scaffold-tests');fs.mkdirSync(parent,{recursive:true});
+const scratch=fs.mkdtempSync(path.join(parent,'run-')),target=path.join(scratch,'project');
+const generator=path.join(root,'scripts/scaffold.cjs');
+const run=args=>spawnSync(process.execPath,[generator,...args],{encoding:'utf8'});
+let r=run(['project','--target',target,'--title','A < B & C']);assert.equal(r.status,0,r.stderr);
+assert.match(fs.readFileSync(path.join(target,'channels/home/index.html'),'utf8'),/A &lt; B &amp; C/);
+r=spawnSync(process.execPath,[path.join(target,'scripts/check.cjs')],{encoding:'utf8'});assert.equal(r.status,0,r.stdout+r.stderr);
+const before=fs.readFileSync(path.join(target,'PROJECT_STATE.md'),'utf8');
+assert.notEqual(run(['project','--target',target]).status,0,'existing project cannot be overwritten');
+assert.equal(fs.readFileSync(path.join(target,'PROJECT_STATE.md'),'utf8'),before);
+assert.notEqual(run(['page','--id','../escape']).status,0,'invalid page path rejected');
+const pageScript=path.join(target,'channels/home/script.js'),originalScript=fs.readFileSync(pageScript,'utf8');
+for (const leak of ["element.style.color='red'", "Object.assign(element.style,{padding:'8px'})", "const view={style:{color:'red'}}", "const view={styles:{body:{padding:24}}}", "const view={bodyStyle:{maxHeight:'80vh'}}", "element.innerHTML='<div>fixed page</div>'"]) {
+ fs.writeFileSync(pageScript,leak);
+ const result=spawnSync(process.execPath,[path.join(target,'scripts/check.cjs')],{encoding:'utf8'});
+ assert.notEqual(result.status,0,'new projects must reject JS-owned fixed style: '+leak);
+}
+fs.writeFileSync(pageScript,originalScript);
+fs.writeFileSync(pageScript,'const image="data:image/png;base64,YQ==";');
+r=spawnSync(process.execPath,[path.join(target,'scripts/check.cjs')],{encoding:'utf8'});
+assert.notEqual(r.status,0,'new projects must keep fixed images in owner assets');
+assert.match(r.stderr,/data:image/);
+fs.writeFileSync(pageScript,originalScript);
+assert.equal(JSON.parse(fs.readFileSync(path.join(target,'package.json'),'utf8')).devDependencies.acorn,'8.15.0');
+fs.appendFileSync(path.join(target,'channels/home/index.html'),'<style>body{color:red}</style>');
+r=spawnSync(process.execPath,[path.join(target,'scripts/check.cjs')],{encoding:'utf8'});assert.notEqual(r.status,0,'inline style regression must fail');
+console.log('PASS: portable scaffold, title escaping, no overwrite, no traversal, and a real inline-style failure. Evidence: '+scratch);

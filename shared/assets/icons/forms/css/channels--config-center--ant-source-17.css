@@ -1,0 +1,1 @@
+:where(.css-10wz6x1).ant-table-wrapper .ant-table-row-expand-icon::after{top:calc(var(--ant-padding-xxs) - var(--ant-line-width));bottom:calc(var(--ant-padding-xxs) - var(--ant-line-width));inset-inline-start:var(--ant-table-expand-icon-half-inner);width:var(--ant-line-width);transform:rotate(90deg);}

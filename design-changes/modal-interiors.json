@@ -29,7 +29,7 @@
       "semantic-colors": {"before": null, "initialLocal": "16必填#cf1322、22必填#ff1212、33/34必填#e04b4b；13禁用选项父级opacity .5", "target": "上述必填标记共用error token #ff4d4f；禁用选项文字使用placeholder token rgba(47,54,64,.42)，取消父层二次淡化；带壳禁用textarea与input共用禁用态，保留禁用属性与值", "basis": "source"},
       "standard-footer-23-24": {"before": null, "initialLocal": "23代理按钮依赖后续通用识别加共享类，用户截图显示成左侧文字；24源分割线1px rgba(47,54,64,.06)，位于正文24px内缩区域；旧底栏无统一边框契约", "target": "仅23/24接入同一standard底栏：flex右对齐/垂直居中、按钮间距12px、内距16px 24px、顶部1px rgba(47,54,64,.08)；24嵌套底栏margin-inline:-24px使分割线延至外壳边缘，内部仍保留24px按钮边距。23按钮创建即绑定既有共享主/次按钮样式（40px高、4px圆角、左右16px、14/22文字），24保留单个保存按钮；其他底栏不变", "basis": "source"}
     },
-    "sources": ["shared/scripts/global-modal.js adoptInteriors", "shared/styles/global-modal.css", "shared/styles/modal-controls.css", "features/config-center/config-center-content.css（本地初值）", "features/activity/activity-sync.css（本地初值）", "web/p__clues__index.29eaa724.chunk.css（只读初值）"],
+    "sources": ["components/modal/global-modal.js adoptInteriors", "components/modal/global-modal.css", "components/modal-controls/modal-controls.css", "channels/config-center/config-center-content.css（本地初值）", "channels/activity/activity-sync.css（本地初值）", "web/p__clues__index.29eaa724.chunk.css（只读初值）"],
     "verification": {"level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "file://浏览器自动化被拒绝，未绕过限制；实际布局、滚动、图标及交互视觉待人工刷新验收", "DOM测试不等于真实浏览器视觉验收"]},
     "status": "active",
     "updatedAt": "2026-09-08"

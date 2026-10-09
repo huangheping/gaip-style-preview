@@ -1,0 +1,9 @@
+.ant-layout-sider{
+  --gaip-nav-row-height: 32px;
+  --gaip-nav-parent-height: 36px;
+  --gaip-nav-icon-size: 18px;
+  --gaip-nav-glyph-size: 16px;
+  --gaip-nav-icon-default: #2f3640;
+  --gaip-nav-icon-hover: #025b52;
+  --gaip-nav-icon-current: #025b52;
+}

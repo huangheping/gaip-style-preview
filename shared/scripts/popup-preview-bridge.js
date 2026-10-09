@@ -143,12 +143,10 @@
   function prunePageBehindPopup(surface) {
     var style = document.getElementById('gaip-popup-preview-isolation-style');
     if (!style) {
-      style = document.createElement('style');
+      style = document.createElement('link');
       style.id = 'gaip-popup-preview-isolation-style';
-      style.textContent =
-        'html.gaip-popup-preview-isolated,html.gaip-popup-preview-isolated body{background:#f5f7f6!important;}' +
-        '.gaip-popup-preview-foreground{z-index:2147483000!important;}' +
-        '.ant-modal-root.gaip-popup-preview-foreground,.ant-drawer-root.gaip-popup-preview-foreground{position:relative!important;}';
+      style.rel = 'stylesheet';
+      style.href = new URL('shared/styles/popup-preview-isolation.css', document.baseURI).href;
       document.head.appendChild(style);
     }
     var foreground = surface.closest('.ant-modal-root, .ant-drawer-root, dialog[open]') || surface;

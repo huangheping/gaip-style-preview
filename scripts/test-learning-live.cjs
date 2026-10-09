@@ -5,16 +5,16 @@ const dom=new JSDOM('<body/>',{url:'https://local.example/',runScripts:'outside-
 function load(f){Object.defineProperty(w.document,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});w.eval(fs.readFileSync(path.join(root,f),'utf8'));}
 // Isolate the empty-state/domain fixtures; shipped examples have their own migration test.
 w.localStorage.setItem('gaip-learning-live-v12',JSON.stringify({version:1,banners:[],logs:[],mockBatches:{'live-examples-20260916':true}}));
-load('features/learning-center/learning-data.js');load('features/learning-center/learning-live-data.js');
+load('channels/learning-center/learning-data.js');load('channels/learning-center/learning-live-data.js');
 const D=w.__GAIP_LEARNING_DATA__,L=w.__GAIP_LEARNING_LIVE_DATA__,before=JSON.stringify(D.state());
 assert.equal(L.presentation({name:'后台内部名称',startAt:'2020-01-01'}).title,'直播活动');
 assert.equal(L.presentation({startAt:'2020-01-01'}).status,'开播时间待定');
 const begins=Date.parse('2026-09-20T00:00:00Z');
 assert.equal(L.presentation({liveStartAt:new Date(begins).toISOString()},begins-60000).status,'距开播：00天00时01分');
-assert.equal(L.presentation({liveStartAt:new Date(begins).toISOString()},begins).status,'直播中');
+assert.equal(L.presentation({liveStartAt:new Date(begins).toISOString()},begins).status,'正在直播中');
 assert.equal(L.presentation({liveStartAt:'invalid'}).live,false);
 let clock=Date.now();w.Date.now=()=>clock;
-function valid(name){return Object.assign(L.fresh(),{name,image:'assets/learning/course-01-arkos.jpg',type:'url',content:'https://example.com/'+name,groups:['all'],startAt:new Date(clock+300000).toISOString(),endAt:new Date(clock+900000).toISOString()});}
+function valid(name){return Object.assign(L.fresh(),{name,image:'channels/learning-center/assets/images/course-01-arkos.jpg',type:'url',content:'https://example.com/'+name,groups:['all'],startAt:new Date(clock+300000).toISOString(),endAt:new Date(clock+900000).toISOString()});}
 assert.equal(L.list().length,0);assert.equal(L.visible().length,0);
 let b=L.fresh();b.name='仅名字';b=L.save(b);assert.equal(b.status,'draft');assert.throws(()=>L.publish(b.id,'schedule'),/图片/);
 assert.throws(()=>L.save({...L.fresh(),name:'仅名字'}),/已存在/);
@@ -25,7 +25,7 @@ a.name='排期改名';a=L.save(a);assert.equal(L.logs().length,logs,'draft edits
 clock+=310000;L.tick();assert.equal(L.get(a.id).status,'draft','saving complete draft never schedules');
 a.startAt=new Date(clock+300000).toISOString();a.endAt=new Date(clock+900000).toISOString();L.save(a);L.publish(a.id,'schedule');
 assert.equal(L.visible().length,0);clock+=240000;const near=L.get(a.id);near.name='临近排期改名';L.save(near);assert.equal(L.get(a.id).scheduled,true,'unchanged confirmed schedule may be edited within 2 minutes');clock+=60001;L.tick();assert.equal(L.get(a.id).status,'published');assert.equal(L.visible().length,1);assert.equal(L.logs()[0].operator,'系统');
-let published=L.get(a.id);published.name='上架改名';published.image='forged';L.save(published);assert.equal(L.get(a.id).image,'assets/learning/course-01-arkos.jpg');assert.equal(L.logs()[0].field,'Banner 名称');
+let published=L.get(a.id);published.name='上架改名';published.image='forged';L.save(published);assert.equal(L.get(a.id).image,'channels/learning-center/assets/images/course-01-arkos.jpg');assert.equal(L.logs()[0].field,'Banner 名称');
 assert.throws(()=>L.remove(a.id),/草稿/);L.offline(a.id);assert.equal(L.visible().length,0);assert.throws(()=>L.publish(a.id,'now'),/草稿/);assert.throws(()=>L.save(L.get(a.id)),/只读/);
 let early=L.save(valid('立即'));L.publish(early.id,'now');assert.equal(Date.parse(L.get(early.id).startAt),clock);L.tick(clock+600000);assert.equal(L.logs().filter(r=>r.object==='立即'&&r.action==='上架').length,1);
 clock+=1000000;L.tick();assert.equal(L.get(early.id).status,'offline');assert.equal(L.logs()[0].operator,'系统');
@@ -34,6 +34,14 @@ const badTime=L.save({...valid('短排期'),startAt:new Date(clock+120000).toISO
 const one=L.save(valid('重复1')),two=L.save({...valid('重复2'),content:one.content});assert.throws(()=>L.publish(one.id,'now'),/已关联/);L.remove(two.id);L.publish(one.id,'now');
 const catchup=L.save(valid('离线补算'));L.publish(catchup.id,'schedule');clock+=1000000;L.tick();assert.equal(L.get(catchup.id).status,'offline');assert.equal(L.logs().filter(r=>r.object==='离线补算'&&['上架','下架'].includes(r.action)).length,2);L.tick();assert.equal(L.logs().filter(r=>r.object==='离线补算'&&['上架','下架'].includes(r.action)).length,2);
 assert.equal(JSON.stringify(D.state()),before,'course/progress/log data untouched');
+// Custom row modifiers must retain the shared button base class.
+for (const f of ['shared/assets/icons/local-icons.generated.js','components/modal/global-modal.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','channels/learning-center/learning-live.js']) load(f);
+const manager=w.document.createElement('section');w.document.body.append(manager);
+const dispose=w.__GAIP_LEARNING_LIVE__.mountManager(manager);
+const deletes=Array.from(manager.querySelectorAll('td button')).filter(n=>n.textContent==='删除');
+assert.ok(deletes.length>0,'fixture includes deletable drafts');
+for(const n of deletes){assert.ok(n.classList.contains('gaip-table__button'),'danger modifier cannot replace the shared base class');assert.ok(n.classList.contains('is-danger'));}
+dispose();manager.remove();
 D.setUser('u2');assert.throws(()=>L.save(valid('无权限')),/权限/);assert.deepEqual(Array.from(L.logs()),[]);
 D.user().roles=['live'];assert.ok(L.admin());assert.ok(!D.admin('course'));assert.ok(L.list().length);
 const snapshots=JSON.stringify(L.list());w.Storage.prototype.setItem=function(){throw new Error('quota');};assert.throws(()=>L.save(valid('存储失败')),/未保存/);assert.equal(JSON.stringify(L.list()),snapshots);

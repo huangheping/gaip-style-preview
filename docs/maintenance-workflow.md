@@ -11,13 +11,13 @@
 | 局部 CSS 数值 | 定位拥有该 UI 的源规则、层叠/响应式、相关视口、diff | 改到共享控件或交互状态时核对跨频道及开/关、hover/focus；不按图片数量扩大测试 |
 | JS、频道登记、HTML 入口 | `./scripts/verify-local-navigation.sh`、修改 JS 的 `node --check`、相关业务测试 | 主导航/Hash 改动运行 `node scripts/test-expandable-main-nav.cjs`，验证两条入口路径 |
 | 弹窗、共享遮罩/定位、预览 | `node scripts/generate-modal-catalog.cjs --check`、`node scripts/test-popup-preview.cjs` | 登记变化先生成；业务变化加相应 DOM 测试；遮罩/点击必须区分真实浏览器与模拟结果 |
-| 发布（已有用户授权） | 核对 diff 和排除清单，运行受影响套件、索引与导航保护 | 涉及多个模块再跑完整业务套件；只提交本次明确范围，不混入试验素材 |
+| 发布（已有用户授权） | 按[本地 GitHub 同步规则](github-sync-rules.md)核对范围，运行受影响套件、索引与导航保护 | 涉及多个模块再跑完整业务套件；提交、排除与状态判断统一按该规则 |
 
-检查通过后不反复执行同一套件。已有测试因资产合法替换而需要更新时保持真实断言；不要新增只复述实现的断言。
+根规则要求的标准化和知识检查保留；本表用于选择额外相关验证。检查通过后不反复执行同一套件。已有测试因资产合法替换而需要更新时保持真实断言；不要新增只复述实现的断言。
 
 ### 导航的现场验收
 
-- `工作台.html#/workspace` → 改版频道 → 另一个频道。
+- `channels/workspace/index.html#/workspace` → 改版频道 → 另一个频道。
 - 另一个 HTML 入口 → 改版频道；刷新后仍处于当前 Hash 对应频道。
 - 主导航父项只展开/收起；二级项才导航；页面主文档不重载。
 
@@ -50,7 +50,7 @@ JSDOM 不实现真实点击命中、原生 dialog 顶层和完整渲染。报告
 - 新增或迁移操作确认同时登记 `type: "confirm"`、`category: "confirmation"` 并调用 `__GAIP_MODAL_COMPONENT__`；业务不复制标题、关闭、footer 和按钮结构。
 - 抽屉用 `type: "drawer"`；明确不展示/不可达项用 `status: "excluded"` 并给原因。AI Agent 主面板不自动纳入。
 - 共享 `global-modal-position.css/js` 管理视口定位，`global-modal-mask.css` 管理遮罩；自定义宿主调用 `__GAIP_MODAL_POSITION__.adopt(host)` 或登记到接入器。
-- 新本地弹窗不添加到历史 `全局组件/弹窗源登记.js`；生成器输出 `全局组件/弹窗自动索引.generated.js`，不得手改。
+- 新本地弹窗不添加到历史 `components/弹窗源登记.js`；生成器输出 `components/弹窗自动索引.generated.js`，不得手改。
 - 修改登记运行生成器，再运行 `--check` 与预览测试。共享源码变化同步所有实际消费者的缓存版本；新增 HTML 必须先证明属于入口/预览的必要组成。
 
 ## 知识库同步与多任务
@@ -61,11 +61,11 @@ JSDOM 不实现真实点击命中、原生 dialog 顶层和完整渲染。报告
 
 另一任务使用同一 checkout 时能读到磁盘更新，但不保证正在运行的任务立即重读全部规则；独立 worktree 中的修改需合并后才出现在本地预览。交付时写出所在 Git 根目录及仍未发布的事项，不主动移动用户任务。
 
-发布授权与源码修改授权分别判断。此前任务的“同步 GitHub”不是未来全部任务自动发布授权；同一未完成发布任务内的明确授权无需反复询问。保留当前变更中标记不发布的内容。
+GitHub 同步的授权含义、排除、执行步骤和结果状态统一见[本地 GitHub 同步规则](github-sync-rules.md)。本文件只维护任务检查矩阵和知识更新流程，不再维护另一套发布流程。
 
 ## 相关入口
 
 - [项目规则](../AGENTS.md)
-- [审计依据与非 Agent/Skill 改进清单](agent-skill-audit-2026-09-07.md)
+- [当前 Agent / Skill 审计与验收](agent-skill-audit-2026-09-30.md)；[旧审计](agent-skill-audit-2026-09-07.md) 保留历史依据
 - [频道 Skill](../.agents/skills/gaip-channel-maintenance/SKILL.md)
 - [弹窗 Skill](../.agents/skills/gaip-modal-maintenance/SKILL.md)

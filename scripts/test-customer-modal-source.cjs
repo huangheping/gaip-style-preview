@@ -32,7 +32,7 @@ async function main() {
     }; };
     const React = req(67294), ReactDOM = req(73935), source = req(25021).default;
     assert.ok(source.Intro && source.Meeting);
-    w.eval(read('shared/scripts/global-modal.js')); w.eval(read('shared/scripts/global-date-picker.js')); w.eval(read('shared/scripts/modal-controls.js'));
+    w.eval(read('components/modal/global-modal.js')); w.eval(read('components/date-picker/global-date-picker.js')); w.eval(read('components/modal-controls/modal-controls.js'));
     for (const [name, Component, props] of [
       ['23', source.Intro, { detail: { bio: '来源正文', name: '', phone: '' }, onClose() {}, onSuccess() {} }],
       ['24', source.Meeting, { initialData: { communicationSummary: '来源纪要' }, onClose() {}, onSave() {}, saving: false }]

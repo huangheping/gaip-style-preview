@@ -1,0 +1,39 @@
+/* Read-only business status labels for cards and detail summaries. */
+:root {
+  --gaip-status-tag-success-fg: #087b63;
+  --gaip-status-tag-success-bg: #dff5ec;
+  --gaip-status-tag-warning-fg: #995800;
+  --gaip-status-tag-warning-bg: #fff0d5;
+}
+
+[data-gaip-status-tag] {
+  --gaip-status-tag-fg: var(--gaip-status-tag-success-fg);
+  --gaip-status-tag-bg: var(--gaip-status-tag-success-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--gaip-status-tag-bg);
+  color: var(--gaip-status-tag-fg);
+  font-family: var(--gaip-global-font);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+[data-gaip-status-tag="success"] {
+  --gaip-status-tag-fg: var(--gaip-status-tag-success-fg);
+  --gaip-status-tag-bg: var(--gaip-status-tag-success-bg);
+}
+
+[data-gaip-status-tag="warning"] {
+  --gaip-status-tag-fg: var(--gaip-status-tag-warning-fg);
+  --gaip-status-tag-bg: var(--gaip-status-tag-warning-bg);
+}

@@ -16,7 +16,7 @@ function add(name, sent = false, skill = false) {
 (async () => {
   try {
     const nativeClip = d.querySelector('.attachmentToggle___m40lT .anticon');
-    w.eval(fs.readFileSync(require('node:path').join(__dirname, '../AI Agent/AI Agent本地Mock.js'), 'utf8'));
+    w.eval(fs.readFileSync(require('node:path').join(__dirname, '../components/ai-agent/AI Agent本地Mock.js'), 'utf8'));
     await tick();
     assert.equal(nativeClip.parentElement, d.querySelector('.attachmentToggle___m40lT'));
     nativeClip.parentElement.removeChild(nativeClip); // React's upload-to-spinner transition must still own this node.

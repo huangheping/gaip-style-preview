@@ -2,169 +2,285 @@
   'use strict';
 
   var channels = [
-    {
-      key: 'workspace',
-      label: '工作台总览',
-      route: '/workspace',
-      entry: '工作台.html',
-      icon: 'workspace',
-      type: 'dashboard'
-    },
-    {
-      key: 'customer',
-      label: '客户中心360',
-      route: '/customer',
-      entry: '客户中心360.html',
-      icon: 'customer-360',
-      type: 'master-detail',
-      assets: {
-        styles: ['shared/styles/global-modal.css?v=20260909-project-font-1', 'features/customer/customer-center.css?v=20260825-1'],
-        scripts: ['shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'features/customer/customer-center.js?v=20260904-3']
-      }
-    },
-    {
-      key: 'policy',
-      label: '保单列表',
-      route: '/policy',
-      entry: '保单列表.html',
-      icon: 'quality-control',
-      type: 'catalog'
-    },
-    {
-      key: 'proposal',
-      label: '方案中心',
-      route: '/proposal',
-      entry: '方案中心.html',
-      icon: 'proposal-center',
-      type: 'master-detail',
-      assets: {
-        styles: ['shared/styles/global-tabs.css?v=20260915-tabs-five-channels-8', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'features/proposal-center/proposal-center.css?v=20260908-owner-frame-1'],
-        scripts: ['shared/scripts/global-tabs.js?v=20260915-tabs-five-channels-8', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'features/proposal-center/proposal-center.js?v=20260915-tabs-1']
-      }
-    },
-    {
-      key: 'product',
-      label: '产品中心',
-      route: '/product',
-      entry: '产品中心.html',
-      icon: 'sales-enablement',
-      type: 'catalog',
-      assets: {
-        bootstrapScripts: ['shared/scripts/expert-directory.js?v=20260916-tags-2'],
-        styles: [
-          'web/p__dashboard__product__index.48332667.chunk.css?v=20260915-mb-plan-flag-1',
-          'shared/styles/product-card-logo.css?v=20260915-restore-1',
-          'shared/styles/global-tabs.css?v=20260915-tabs-five-channels-8'
-        ],
-        scripts: [
-          'shared/scripts/global-tabs.js?v=20260915-tabs-five-channels-8',
-          'shared/scripts/product-card-logo.js?v=20260915-restore-1'
-        ]
-      }
-    },
-    {
-      key: 'activity',
-      label: '活动中心',
-      route: '/activity',
-      entry: '活动中心.html',
-      icon: 'activity-center',
-      type: 'dashboard',
-      assets: {
-        styles: ['shared/styles/global-carousel-controls.css?v=20260917-carousel-1', 'features/activity/activity-sync.css?v=20260917-carousel-1'],
-        scripts: ['shared/scripts/global-carousel-controls.js?v=20260917-carousel-1', 'features/activity/activity-sync.js?v=20260917-carousel-1']
-      }
-    },
-    {
-      key: 'news',
-      label: '资讯中心',
-      route: '/workspace',
-      entry: '资讯中心.html',
-      icon: 'news-center',
-      type: 'dashboard',
-      virtual: true,
-      query: 'gaip-channel=news',
-      assets: {
-        styles: ['features/news-center/news-center.css?v=20260827-1'],
-        scripts: [
-          'features/news-center/mock-data.js?v=20260826-2',
-          'features/news-center/news-center.js?v=20260901-1'
-        ]
-      }
-    },
-    {
-      key: 'wealth',
-      label: '财富值中心',
-      route: '/workspace',
-      entry: '财富值中心.html',
-      icon: 'wealth',
-      type: 'operations',
-      virtual: true,
-      query: 'gaip-channel=wealth',
-      assets: {
-        styles: ['features/wealth-center/wealth-center.css?v=20260908-form-scroll-1'],
-        scripts: [
-          'features/wealth-center/mock-data.js?v=20260825-9',
-          'features/wealth-center/wealth-center.js?v=20260901-1',
-          'features/wealth-center/wealth-nav.js?v=20260901-3'
-        ]
-      }
-    },
-    {
-      key: 'config',
-      label: '配置中心',
-      route: '/workspace',
-      entry: '配置中心.html',
-      icon: 'organization',
-      type: 'operations',
-      virtual: true,
-      query: 'gaip-channel=config',
-      views: [
-        { key: 'organization', label: '组织架构' },
-        { key: 'announcement-management', label: '公告管理' },
-        { key: 'operation-log', label: '操作日志' }
+  {
+    "key": "workspace",
+    "assets": { "bootstrapScripts": ["shared/scripts/html-view.js?v=20260925-1", "shared/runtime/page-vendor.js?v=20260925-1"], "styles": ["components/status-tag/global-status-tag.css?v=20261008-1", "components/table/global-table-tag.css?v=20261009-draft-solid-1"], "scripts": ["components/table/global-table-tag.js?v=20261009-draft-solid-1"] },
+    "label": "工作台总览",
+    "route": "/workspace",
+    "entry": "channels/workspace/index.html",
+    "icon": "workspace",
+    "type": "dashboard",
+    "directory": "channels/workspace",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "customer",
+    "label": "客户中心360",
+    "route": "/customer",
+    "entry": "channels/customer/index.html",
+    "icon": "customer-360",
+    "type": "master-detail",
+    "assets": {
+      "styles": [
+        "components/modal/global-modal.css?v=20261008-product-details-1",
+        "channels/customer/customer-center.css?v=20260922-style-separation-1"
       ],
-      assets: {
-        styles: ['shared/styles/global-tabs.css?v=20260915-tabs-five-channels-8', 'features/config-center/ant-source.css?v=20260831-1', 'features/config-center/announcement-management.css?v=20260908-form-scroll-1', 'features/config-center/config-center-content.css?v=20260921-admin-hint-1', 'shared/styles/global-modal.css?v=20260909-project-font-1', 'shared/styles/global-filter-bar.css?v=20260921-popup-search-1', 'features/config-center/config-center.css?v=20260921-shared-dropdown-1'],
-        scripts: ['shared/scripts/global-tabs.js?v=20260915-tabs-five-channels-8', 'shared/scripts/global-modal.js?v=20260908-inline-validation-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260915-collapsed-picker-1', 'features/config-center/source-markup.js?v=20260922-admin-icon-1', 'features/config-center/announcement-management-data.js?v=20260903-2', 'features/config-center/announcement-management-view.js?v=20260908-form-validation-1', 'features/config-center/config-center.js?v=20260921-shared-dropdown-1']
-      }
+      "scripts": [
+        "components/modal/global-modal.js?v=20261008-close-2",
+        "channels/customer/customer-center.js?v=20260925-html-structure-1"
+      ]
     },
-    {
-      key: 'induction',
-      label: '薄荷入职引导',
-      aliases: ['薄荷入职指引'],
-      route: '/induction',
-      entry: '薄荷入职指引.html',
-      icon: 'induction-guide',
-      type: 'guided-learning',
-      assets: {
-        bootstrapScripts: ['shared/scripts/expert-directory.js?v=20260916-tags-2', 'features/induction/induction-update.js?v=20260915-2'],
-        styles: ['shared/styles/global-tabs.css?v=20260915-tabs-five-channels-8'],
-        scripts: ['shared/scripts/global-tabs.js?v=20260915-tabs-five-channels-8']
-      }
+    "directory": "channels/customer",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "policy",
+    "label": "保单列表",
+    "route": "/policy",
+    "entry": "channels/policy/index.html",
+    "icon": "quality-control",
+    "type": "catalog",
+    "directory": "channels/policy",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "proposal",
+    "label": "方案中心",
+    "route": "/proposal",
+    "entry": "channels/proposal-center/index.html",
+    "icon": "proposal-center",
+    "type": "master-detail",
+    "assets": {
+      "styles": [
+        "components/tabs/global-tabs.css?v=20261008-proposal-clean-1",
+        "components/modal/global-modal.css?v=20261008-product-details-1",
+        "channels/proposal-center/proposal-center.css?v=20261008-typography-1"
+      ],
+      "scripts": [
+        "components/tabs/global-tabs.js?v=20261008-product-details-1",
+        "components/modal/global-modal.js?v=20261008-close-2",
+        "channels/proposal-center/proposal-center.js?v=20261008-status-tag-1"
+      ]
     },
-    {
-      key: 'clues',
-      label: '线索中心',
-      route: '/clues',
-      entry: '线索中心.html',
-      icon: 'channel-clues',
-      type: 'dashboard'
+    "directory": "channels/proposal-center",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "product",
+    "label": "产品中心",
+    "route": "/product",
+    "entry": "channels/product/index.html",
+    "icon": "sales-enablement",
+    "type": "catalog",
+    "assets": {
+      "bootstrapScripts": [
+        "components/expert-directory/expert-directory.js?v=20260922-style-separation-1"
+      ],
+      "styles": [
+        "components/expert-directory/expert-directory.css?v=20260922-style-separation-1",
+        "web/p__dashboard__product__index.48332667.chunk.css?v=20260915-mb-plan-flag-1",
+        "channels/product/product-card-logo.css?v=20260915-restore-1",
+        "components/tabs/global-tabs.css?v=20261008-proposal-clean-1"
+      ],
+      "scripts": [
+        "components/tabs/global-tabs.js?v=20261008-product-details-1",
+        "channels/product/product-card-logo.js?v=20260930-local-icons-3"
+      ]
     },
-    {
-      key: 'learning',
-      label: '学习中心',
-      route: '/workspace',
-      entry: '学习中心.html',
-      icon: 'learning',
-      type: 'guided-learning',
-      virtual: true,
-      query: 'gaip-channel=learning',
-      assets: {
-        styles: ['shared/styles/global-carousel-controls.css?v=20260917-carousel-1', 'shared/styles/global-tabs.css?v=20260915-tabs-five-channels-8', 'shared/styles/global-date-picker.css?v=20260909-date-color-2', 'shared/styles/global-multi-select.css?v=20260915-multi-filter-1', 'shared/styles/organization-tree.css?v=20260910-org-1', 'shared/styles/global-filter-bar.css?v=20260921-popup-search-1', 'features/learning-center/learning-center.css?v=20260917-card-hover-1', 'features/learning-center/learning-v11.css?v=20260910-study-detail-modal-1', 'features/learning-center/learning-live.css?v=20260917-live-gold-1', 'shared/styles/global-modal.css?v=20260910-discard-outline-1', 'shared/styles/global-page-form.css?v=20260910-feedback-1', 'shared/styles/global-table.css?v=20260910-row-align-1'],
-        scripts: ['shared/scripts/global-carousel-controls.js?v=20260917-carousel-1', 'shared/scripts/global-tabs.js?v=20260915-tabs-five-channels-8', 'shared/scripts/global-date-picker.js?v=20260909-date-1', 'shared/scripts/operation-log-xlsx.js?v=20260909-v11', 'shared/scripts/global-multi-select.js?v=20260909-controls-2', 'shared/scripts/global-filter-bar.js?v=20260910-tree-combobox-1', 'shared/scripts/organization-store.js?v=20260910-org-1', 'shared/scripts/organization-tree.js?v=20260915-collapsed-picker-1', 'features/learning-center/learning-data.js?v=20260910-org-1', 'shared/scripts/global-table.js?v=20260916-no-pagination-1', 'features/learning-center/learning-live-data.js?v=20260917-live-copy-1', 'features/learning-center/learning-live.js?v=20260917-live-gold-1', 'features/learning-center/learning-app.js?v=20260917-live-gold-1', 'features/learning-center/learning-center.js?v=20260917-live-gold-1']
+    "directory": "channels/product",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "activity",
+    "label": "活动中心",
+    "route": "/activity",
+    "entry": "channels/activity/index.html",
+    "icon": "activity-center",
+    "type": "dashboard",
+    "assets": {
+      "styles": [
+        "components/carousel-controls/global-carousel-controls.css?v=20261008-icon-standard-1",
+        "channels/activity/activity-sync.css?v=20260922-style-separation-1"
+      ],
+      "scripts": [
+        "components/carousel-controls/global-carousel-controls.js?v=20260930-local-icons-3",
+        "channels/activity/activity-sync.js?v=20260925-html-structure-1"
+      ]
+    },
+    "directory": "channels/activity",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "news",
+    "label": "资讯中心",
+    "route": "/workspace",
+    "entry": "channels/news-center/index.html",
+    "icon": "news-center",
+    "type": "dashboard",
+    "virtual": true,
+    "query": "gaip-channel=news",
+    "assets": {
+      "styles": [
+        "channels/news-center/news-center.css?v=20261008-icon-standard-1"
+      ],
+      "scripts": [
+        "channels/news-center/templates.generated.js?v=20260922-1",
+        "channels/news-center/news-center.js?v=20261001-merge-2"
+      ]
+    },
+    "directory": "channels/news-center",
+    "implementation": "local-renderer"
+  },
+  {
+    "key": "wealth",
+    "label": "财富值中心",
+    "route": "/workspace",
+    "entry": "channels/wealth-center/index.html",
+    "icon": "wealth",
+    "type": "operations",
+    "virtual": true,
+    "query": "gaip-channel=wealth",
+    "assets": {
+      "styles": [
+        "channels/wealth-center/wealth-center.css?v=20261008-icon-standard-1"
+      ],
+      "scripts": [
+        "channels/wealth-center/wealth-center.js?v=20260930-local-icons-3",
+        "channels/wealth-center/wealth-nav.js?v=20260930-local-icons-3"
+      ]
+    },
+    "directory": "channels/wealth-center",
+    "implementation": "local-renderer"
+  },
+  {
+    "key": "config",
+    "label": "配置中心",
+    "route": "/workspace",
+    "entry": "channels/config-center/index.html",
+    "icon": "organization",
+    "type": "operations",
+    "virtual": true,
+    "query": "gaip-channel=config",
+    "views": [
+      {
+        "key": "organization",
+        "label": "组织架构"
+      },
+      {
+        "key": "announcement-management",
+        "label": "公告管理"
+      },
+      {
+        "key": "operation-log",
+        "label": "操作日志"
       }
-    }
-  ];
+    ],
+    "assets": {
+      "styles": [
+        "components/tabs/global-tabs.css?v=20261008-proposal-clean-1",
+        "channels/config-center/ant-source.css?v=20260930-local-icons-3",
+        "channels/config-center/templates.css",
+        "channels/config-center/announcement-management.css?v=20261001-merge-3",
+        "channels/config-center/config-center-content.css?v=20261008-icon-standard-1", "components/table/global-table.css?v=20261009-action-hover-1",
+        "components/modal/global-modal.css?v=20261008-product-details-1",
+        "components/filter-bar/global-filter-bar.css?v=20261008-expand-1",
+        "channels/config-center/config-center.css?v=20260930-local-icons-3"
+      ],
+      "scripts": [
+        "components/tabs/global-tabs.js?v=20261008-product-details-1",
+        "components/modal/global-modal.js?v=20261008-close-2",
+        "components/table/global-table.js?v=20260929-course-menu-1",
+        "shared/scripts/organization-store.js?v=20260910-org-1",
+        "components/organization-tree/organization-tree.js?v=20261001-merge-1",
+        "channels/config-center/source-markup.js?v=20261008-expand-1",
+        "channels/config-center/announcement-management-view.js?v=20261008-icon-standard-1",
+        "channels/config-center/config-center.js?v=20261008-expand-1"
+      ]
+    },
+    "directory": "channels/config-center",
+    "implementation": "local-renderer"
+  },
+  {
+    "key": "induction",
+    "label": "薄荷入职引导",
+    "aliases": [
+      "薄荷入职指引"
+    ],
+    "route": "/induction",
+    "entry": "channels/induction/index.html",
+    "icon": "induction-guide",
+    "type": "guided-learning",
+    "assets": {
+      "bootstrapScripts": [
+        "components/expert-directory/expert-directory.js?v=20260922-style-separation-1",
+        "channels/induction/induction-update.js?v=20260925-html-structure-1"
+      ],
+      "styles": [
+        "components/expert-directory/expert-directory.css?v=20260922-style-separation-1",
+        "components/tabs/global-tabs.css?v=20261008-proposal-clean-1"
+      ],
+      "scripts": [
+        "components/tabs/global-tabs.js?v=20261008-product-details-1"
+      ]
+    },
+    "directory": "channels/induction",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "clues",
+    "assets": { "styles": ["channels/clues/layout-patch.css?v=20260922-style-separation-1"] },
+    "label": "线索中心",
+    "route": "/clues",
+    "entry": "channels/clues/index.html",
+    "icon": "channel-clues",
+    "type": "dashboard",
+    "directory": "channels/clues",
+    "implementation": "html-views-with-umi-adapter"
+  },
+  {
+    "key": "learning",
+    "label": "学习中心",
+    "route": "/workspace",
+    "entry": "channels/learning-center/index.html",
+    "icon": "learning",
+    "type": "guided-learning",
+    "virtual": true,
+    "query": "gaip-channel=learning",
+    "assets": {
+      "styles": [
+        "components/carousel-controls/global-carousel-controls.css?v=20261008-icon-standard-1",
+        "components/tabs/global-tabs.css?v=20261008-proposal-clean-1",
+        "components/date-picker/global-date-picker.css?v=20260930-local-icons-3",
+        "components/multi-select/global-multi-select.css?v=20261008-expand-1",
+        "components/organization-tree/organization-tree.css?v=20261008-icon-standard-1",
+        "components/filter-bar/global-filter-bar.css?v=20261008-expand-1",
+        "channels/learning-center/learning-center.css?v=20261009-delete-solid-1",
+        "components/modal/global-modal.css?v=20261008-product-details-1",
+        "shared/styles/global-page-form.css?v=20260910-feedback-1",
+        "components/table/global-table.css?v=20261009-action-hover-1"
+      ],
+      "scripts": [
+        "components/carousel-controls/global-carousel-controls.js?v=20260930-local-icons-3",
+        "components/tabs/global-tabs.js?v=20261008-product-details-1",
+        "components/date-picker/global-date-picker.js?v=20260909-date-1",
+        "components/operation-log/operation-log-xlsx.js?v=20260909-v11",
+        "components/multi-select/global-multi-select.js?v=20260925-html-structure-1",
+        "components/filter-bar/global-filter-bar.js?v=20260910-tree-combobox-1",
+        "shared/scripts/organization-store.js?v=20260910-org-1",
+        "components/organization-tree/organization-tree.js?v=20261001-merge-1",
+        "channels/learning-center/learning-data.js?v=20260922-asset-paths-1",
+        "components/table/global-table.js?v=20260929-course-menu-1",
+        "channels/learning-center/learning-live-data.js?v=20261002-live-remock-1",
+        "channels/learning-center/learning-live.js?v=20261009-live-delete-1",
+        "channels/learning-center/learning-app.js?v=20261009-delete-solid-1",
+        "channels/learning-center/templates.generated.js",
+        "channels/learning-center/learning-center.js?v=20260930-learning-scroll-1"
+      ]
+    },
+    "directory": "channels/learning-center",
+    "implementation": "local-renderer"
+  }
+];
 
   var byKey = {};
   var byRoute = {};
@@ -185,6 +301,7 @@
 
   window.__GAIP_CHANNEL_CONFIG__ = {
     list: channels,
+    standaloneEntries: [{id: 'login', directory: 'channels/login', entry: 'channels/login/index.html'}, {id: 'login-video-test', directory: 'channels/login-video-test', entry: 'channels/login-video-test/index.html', localOnly: true}],
     // 仅决定主导航视觉顺序，不改变频道资源加载和原生路由的顺序。
     sidebarOrder: ['workspace', 'clues', 'customer', 'proposal', 'product', 'policy',
       'news', 'activity', 'learning', 'induction', 'wealth', 'config'],

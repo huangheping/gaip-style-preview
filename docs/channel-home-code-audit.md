@@ -15,7 +15,7 @@
 9. 学习中心
 
 审计以 `样式优化html/` 中的 HTML、CSS、JavaScript 和稳定区域标识为主要依据。
-`qa/channel-home-audit-20260731/` 中的截图只作为视觉基线，不作为结构规范的唯一依据。
+`docs/archive/qa/channel-home-audit-20260731/` 中的截图只作为视觉基线，不作为结构规范的唯一依据。
 
 ## 现有代码结构
 

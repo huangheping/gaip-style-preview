@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/aoci-spec/aoci-code",
+  "commit": "a24fb8bb802b725379192345b946968e371a3c29",
+  "distribution": "official-source-development-build",
+  "reported_version": "dev",
+  "platform": "darwin-amd64",
+  "binary_sha256": "45d47aaea3eb6f878fb6088ce388912d2b9447412c28f32ef3c0e4d03dbf6c64",
+  "go_version": "1.27.1",
+  "source_modified": false,
+  "verification": [
+    "go mod verify",
+    "official Held/Skipped/Curation targeted tests",
+    "isolated JS+JPG Verify/Check/Guide aligned"
+  ],
+  "rollback": "outputs/standardization-finish-20260925/aoci-rc14"
+}

@@ -1,3 +1,16 @@
+/* @gaip-markup-cache:start */
+// Generated from the owned templates/markup-*.html; run npm run build:templates.
+var __gaipMarkup_267cfd4faf = (function () {
+  var templates = {"fragment-1":"<script data-gaip-bootstrap=\"{{gaip:0}}\" src=\"{{gaip:1}}\"></script>","detailHtml-2":"<div class=\"gaip-product-detail\"><section id=\"m1\" class=\"gaip-product-section\"><h2 class=\"gaip-product-heading\">产品特点（vs行业竞品差异）</h2><div class=\"gaip-product-card\"><h3>产品特点（vs行业竞品差异）</h3><h4>【核心卖点】</h4><ul><li>{{gaip:0}}</li><li>{{gaip:1}}</li><li>{{gaip:2}}</li></ul><h4>【适配场景】</h4><ul>{{gaip:3}}</ul></div></section><section id=\"m2\" class=\"gaip-product-section\"><h2 class=\"gaip-product-heading\">签单要素（条件 · 需求与愿景 · 风险）</h2><div class=\"gaip-product-card\"><h4>条件（签单核实 · 防退件）</h4><p class=\"gaip-product-plain\">{{gaip:4}}</p></div></section><section id=\"m3\" class=\"gaip-product-section\"><h2 class=\"gaip-product-heading\">营销亮点</h2><div class=\"gaip-product-card\"><p class=\"gaip-product-plain\">{{gaip:5}}</p></div></section><section id=\"m4\" class=\"gaip-product-section\"><h2 class=\"gaip-product-heading\">详细信息</h2><div class=\"gaip-product-card\"><p class=\"gaip-product-plain\">{{gaip:6}}</p></div></section></div>","detailHtml-3":"<li>{{gaip:0}}</li>"};
+  return function (id, values) {
+    if (!Object.prototype.hasOwnProperty.call(templates, id)) throw new Error("Missing HTML template: " + id);
+    return templates[id].replace(/\{\{gaip:(\d+)\}\}/g, function (_, index) {
+      if (!values || !Object.prototype.hasOwnProperty.call(values, index)) throw new Error("Missing HTML binding: " + id + ":" + index);
+      return values[index];
+    });
+  };
+}());
+/* @gaip-markup-cache:end */
 (function () {
   'use strict';
 
@@ -14,7 +27,7 @@
         var url = new URL(path, previewRoot).href;
         if (bootstrapped[url]) return;
         bootstrapped[url] = true;
-        document.write('<script data-gaip-bootstrap="' + channel.key + '" src="' + url.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '"><\/script>');
+        document.write(__gaipMarkup_267cfd4faf("fragment-1", [('' + (channel.key)), ('' + (url.replace(/&/g, '&amp;').replace(/"/g, '&quot;')))]));
       });
     });
   }
@@ -228,45 +241,7 @@
       '签约前请核对客户身份、资金来源、受益安排和跨境合规要求。',
       '本地 mock 内容用于产品中心样式预览，正式材料以后台上传文件为准。'
     ];
-    return [
-      '<div class="gaip-product-detail">',
-      '<section id="m1" class="gaip-product-section">',
-      '<h2 class="gaip-product-heading">产品特点（vs行业竞品差异）</h2>',
-      '<div class="gaip-product-card">',
-      '<h3>产品特点（vs行业竞品差异）</h3>',
-      '<h4>【核心卖点】</h4>',
-      '<ul>',
-      '<li>' + product.feature1 + '</li>',
-      '<li>' + product.feature2 + '</li>',
-      '<li>' + product.feature3 + '</li>',
-      '</ul>',
-      '<h4>【适配场景】</h4>',
-      '<ul>',
-      detailItems.map(function (item) { return '<li>' + item + '</li>'; }).join(''),
-      '</ul>',
-      '</div>',
-      '</section>',
-      '<section id="m2" class="gaip-product-section">',
-      '<h2 class="gaip-product-heading">签单要素（条件 · 需求与愿景 · 风险）</h2>',
-      '<div class="gaip-product-card">',
-      '<h4>条件（签单核实 · 防退件）</h4>',
-      '<p class="gaip-product-plain">' + product.signing + '</p>',
-      '</div>',
-      '</section>',
-      '<section id="m3" class="gaip-product-section">',
-      '<h2 class="gaip-product-heading">营销亮点</h2>',
-      '<div class="gaip-product-card">',
-      '<p class="gaip-product-plain">' + product.marketing + '</p>',
-      '</div>',
-      '</section>',
-      '<section id="m4" class="gaip-product-section">',
-      '<h2 class="gaip-product-heading">详细信息</h2>',
-      '<div class="gaip-product-card">',
-      '<p class="gaip-product-plain">' + product.detail + '</p>',
-      '</div>',
-      '</section>',
-      '</div>'
-    ].join('');
+    return __gaipMarkup_267cfd4faf("detailHtml-2", [('' + (product.feature1)), ('' + (product.feature2)), ('' + (product.feature3)), ('' + (detailItems.map(function (item) { return __gaipMarkup_267cfd4faf("detailHtml-3", [('' + (item))]); }).join(''))), ('' + (product.signing)), ('' + (product.marketing)), ('' + (product.detail))]);
   }
 
   function mockAttachments(product) {

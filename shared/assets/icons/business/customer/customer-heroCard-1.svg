@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="115" data-ui-view-box="0 0 210 115" data-children="array" data-kind="jsxs">
+          <path data-ui-d="M 6 107 A 99 99 0 0 1 204 107" data-ui-fill="none" data-ui-stroke="#1f6e64" data-ui-stroke-width="7" data-ui-stroke-dasharray="8 15.3" data-ui-stroke-linecap="round" data-kind="jsx"></path>
+          <path data-ui-d="M 28 107 A 77 77 0 0 1 182 107" data-ui-fill="none" data-ui-stroke="#c8cfcb" data-ui-stroke-width="6" data-ui-stroke-dasharray="6 17.6" data-ui-stroke-linecap="butt" data-kind="jsx"></path>
+          <template data-slot="svgContent"></template>
+        </svg>

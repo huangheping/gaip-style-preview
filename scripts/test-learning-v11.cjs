@@ -5,16 +5,17 @@ const path = require('node:path');
 const { JSDOM } = require('jsdom');
 (async function () {
 const root = path.resolve(__dirname, '..');
-const dom = new JSDOM('<!doctype html><body><section id="page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section></body>', { url: 'https://local.example/学习中心.html', runScripts: 'outside-only', pretendToBeVisual: true });
+const dom = new JSDOM('<!doctype html><body><section id="page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section></body>', { url: 'https://local.example/channels/learning-center/index.html', runScripts: 'outside-only', pretendToBeVisual: true });
 const w = dom.window;
 w.TextEncoder = TextEncoder;
 w.HTMLElement.prototype.scrollIntoView = function () {};
 w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
 w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
 function load(file) { Object.defineProperty(w.document, 'currentScript', { configurable: true, value: { src: 'https://local.example/' + file } }); w.eval(fs.readFileSync(path.join(root, file), 'utf8')); }
-load('shared/scripts/global-modal.js');
-load('shared/scripts/operation-log-xlsx.js');
-load('shared/scripts/organization-store.js');load('shared/scripts/organization-tree.js');load('features/learning-center/learning-data.js');
+load('shared/assets/icons/local-icons.generated.js');
+load('components/modal/global-modal.js');
+load('components/operation-log/operation-log-xlsx.js');
+load('shared/scripts/organization-store.js');load('components/organization-tree/organization-tree.js');load('channels/learning-center/learning-data.js');
 const D = w.__GAIP_LEARNING_DATA__;
 const c = D.course('c1');
 assert.equal(D.active(c).length, 12);
@@ -26,7 +27,7 @@ D.progress(s, 180, false); assert.equal(D.record(c,c.lessons[0]).progress,100);
 s = D.openSession('c1','c1l1'); assert.equal(s.position,0); D.progress(s,20,true);assert.equal(D.record(c,c.lessons[0]).progress,100);assert.equal(D.record(c,c.lessons[0]).highWater,180);
 const optional = D.course('c2'), ol = optional.lessons[0]; s=D.openSession(optional.id,ol.id);D.progress(s,90,true);assert.equal(D.record(optional,ol).progress,50);D.progress(s,18,true);assert.equal(D.record(optional,ol).progress,10);assert.equal(D.record(optional,ol).highWater,90);
 const pdf=optional.lessons[2];s=D.openSession(optional.id,pdf.id);D.progress(s,90,false);assert.equal(D.record(optional,pdf).progress,0);D.progress(s,180,false);assert.equal(D.record(optional,pdf).progress,100);
-let draft = D.newCourse();draft.title='测试课程';draft.description='用于业务回归';draft.image='assets/learning/course-01-arkos.jpg';draft.groups=['all'];draft.required=true;
+let draft = D.newCourse();draft.title='测试课程';draft.description='用于业务回归';draft.image='channels/learning-center/assets/images/course-01-arkos.jpg';draft.groups=['all'];draft.required=true;
 draft=D.save(draft);assert.equal(draft.lessons.length,0);assert.throws(()=>D.publish(draft.id,true),/至少/);
 let l=D.newLesson();assert.equal(l.type,null);l.type='video';l.title='测'.repeat(100);l.file={name:'mock.mp4',mock:true};draft.lessons.push(l);draft=D.save(draft);
 const before=JSON.stringify(D.state().records);s=D.openSession(draft.id,l.id);D.progress(s,180,true);assert.equal(JSON.stringify(D.state().records),before);assert.equal(D.course(draft.id).status,'draft');
@@ -52,16 +53,16 @@ D.setUser('u1');
 let ed=D.clone(D.course('c1'));const originalSecond=ed.lessons[1].title;ed.lessons[0].title='独立保存的名称';ed.lessons[1].title='尚未保存名称';D.save(ed,ed.lessons[0].id);assert.equal(D.course('c1').lessons[1].title,originalSecond);
 D.saveOrder('c1',D.course('c1').lessons.map(x=>x.id).reverse());assert.equal(D.course('c1').lessons.at(-1).title,'独立保存的名称');assert.equal(D.record(D.course('c1'),D.course('c1').lessons.at(-1)).progress,100);
 // DOM behavior, event delegation, shared confirmation lifecycle.
-load('shared/scripts/global-multi-select.js');
-load('shared/scripts/global-date-picker.js'); load('shared/scripts/global-filter-bar.js');
-load('shared/scripts/global-table.js');load('features/learning-center/learning-app.js');const A=w.__GAIP_LEARNING_APP__,host=w.document.getElementById('page');A.mount(host);
+load('components/multi-select/global-multi-select.js');
+load('components/date-picker/global-date-picker.js'); load('components/filter-bar/global-filter-bar.js');
+load('components/table/global-table.js');load('channels/learning-center/learning-app.js');const A=w.__GAIP_LEARNING_APP__,host=w.document.getElementById('page');A.mount(host);
 function click(selector) { const node=w.document.querySelector(selector);assert.ok(node,selector);node.click(); }
 click('[data-learning-action="课程管理"]');assert.ok(host.querySelector('main[aria-label="课程管理"]'));click('[data-lc="create"]');assert.ok(host.querySelector('[data-field="title"]').maxLength===100);
 function fill(selector,value) {const el=host.querySelector(selector);el.value=value;el.dispatchEvent(new w.Event('input',{bubbles:true}));}
 fill('[data-field="title"]','新的草稿');click('[data-lc="leave-editor"]');assert.equal(w.document.querySelectorAll('dialog[open]').length,1);assert.ok(w.document.querySelector('dialog').textContent.includes('放弃修改并离开'));click('dialog .gaip-modal__close');assert.equal(w.document.querySelectorAll('dialog').length,0);assert.equal(host.querySelector('[data-field="title"]').value,'新的草稿');
 click('[data-lc="save-course"]');assert.equal(host.querySelector('#lc-course-description').getAttribute('aria-invalid'),'true');assert.equal(host.querySelector('[data-field="title"]').value,'新的草稿');
 fill('[data-field="description"]','描述');click('[data-lc="sample-cover"]');click('[data-editor-groups] [data-value="all"]');click('[data-course-boolean="required"][value="false"]');click('[data-lc="save-draft-return"]');assert.ok(D.state().courses.some(x=>x.title==='新的草稿'&&x.lessons.length===0));assert.equal(host.dataset.learningView,'manage');
-click('[data-lc="edit"][data-id="c1"]');const one=host.querySelector('[data-field="title"][data-lesson]');const savedId=one.dataset.lesson;fill('[data-field="title"][data-lesson="'+savedId+'"]','只保存这一节');click('[data-lc="save-lesson"][data-id="'+savedId+'"]');assert.equal(A.canLeave(),true,'single saved lesson alone must not leave a phantom dirty state');click('[data-lc="move-down"][data-id="'+savedId+'"]');assert.equal(A.canLeave(),false);click('[data-lc="save-order"]');assert.equal(A.canLeave(),true,'saved order alone must be clean');click('[data-lc="leave-editor"]');
+click('[data-lc="edit"][data-id="c1"]');const one=host.querySelector('[data-field="title"][data-lesson]');const savedId=one.dataset.lesson;fill('[data-field="title"][data-lesson="'+savedId+'"]','只保存这一节');click('[data-lc="save-lesson"][data-id="'+savedId+'"]');assert.equal(A.canLeave(),true,'single saved lesson alone must not leave a phantom dirty state');assert.equal(host.querySelectorAll('[data-lc="move-up"],[data-lc="move-down"]').length,0);click('[data-lc="save-order"]');assert.equal(A.canLeave(),true,'saved order alone must be clean');click('[data-lc="leave-editor"]');
 click('[data-lc="list"]');click('[data-learning-action="学情管理"]');assert.ok(host.textContent.includes('累计学习时长'));click('[data-lc="stats-detail"]');assert.ok(w.document.querySelector('.lc-study-detail-modal[open]'));click('[data-close]');click('[data-lc="stats-tab"][data-id="courses"]');assert.ok(host.textContent.includes('应学人数'));click('[data-lc="stats-detail"]');assert.ok(w.document.querySelector('.lc-study-detail-modal').textContent.includes('首次完成'));click('[data-close]');
 click('[data-lc="list"]');click('[data-lc="course"][data-id="c2"]');click('[data-lc="lesson"][data-id="c2l1"]');assert.ok(host.querySelector('.lc-watermark'));const seek=host.querySelector('[data-seek]');assert.equal(seek.disabled,false);seek.value='90';seek.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(D.record(D.course('c2'),D.course('c2').lessons[0]).progress,50);
 click('[data-lc="detail"]');click('[data-lc="lesson"][data-id="c2l3"]');assert.equal(host.querySelectorAll('.lc-pdf-page').length,4);assert.equal(host.querySelectorAll('iframe').length,0);click('[data-lc="zoom-in"]');assert.equal(host.querySelector('[data-zoom]').textContent,'120%');
@@ -80,12 +81,12 @@ const bytes=await new Promise((resolve,reject)=>{const reader=new w.FileReader()
 const xml=new TextDecoder().decode(bytes);assert.ok(xml.includes('name="学情统计"'));assert.ok(xml.includes('<oddHeader>&amp;C机密文件</oddHeader>'));assert.ok(xml.includes('<oddFooter>'));assert.ok(xml.includes('autoFilter ref="A1:B2"'));
 // Real lifecycle must initialize the replacement app and cleanly leave/re-enter.
 host.remove();w.document.body.insertAdjacentHTML('afterbegin','<header class="header___tcVAl"></header><aside class="ant-layout-sider"></aside><div id="root"></div>');w.scrollTo=()=>{};
-load('features/learning-center/learning-center.js');w.__GAIP_LEARNING_CENTER__.open();assert.equal(w.location.hash,'#/workspace?gaip-channel=learning');assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,1);assert.ok(w.document.querySelector('[data-lc="course"]'));w.__GAIP_LEARNING_CENTER__.open();assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,1);w.__GAIP_LEARNING_CENTER__.closeForNavigation('/clues');assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,0);assert.ok(!w.document.documentElement.classList.contains('gaip-learning-scroll-lock'));
+load('channels/learning-center/templates.generated.js');load('channels/learning-center/learning-center.js');w.__GAIP_LEARNING_CENTER__.open();assert.equal(w.location.hash,'#/workspace?gaip-channel=learning');assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,1);assert.ok(w.document.querySelector('[data-lc="course"]'));w.__GAIP_LEARNING_CENTER__.open();assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,1);w.__GAIP_LEARNING_CENTER__.closeForNavigation('/clues');assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,0);assert.ok(!w.document.documentElement.classList.contains('gaip-learning-scroll-lock'));
 w.__GAIP_LEARNING_CENTER__.open();click('[data-learning-action="课程管理"]');click('[data-lc="create"]');const unsaved=w.document.querySelector('[data-field="title"]');unsaved.value='跨 Hash 未保存';unsaved.dispatchEvent(new w.Event('input',{bubbles:true}));
 w.history.replaceState(null,'','#/clues');w.__GAIP_LEARNING_CENTER__.sync();await new Promise(resolve=>setTimeout(resolve,45));assert.ok(w.location.hash.includes('gaip-channel=learning'),'history leave restores URL until confirmed');assert.ok(w.document.querySelector('dialog[open]'));click('dialog .gaip-modal__close');assert.ok(w.document.querySelector('[data-field="title"]'));
 w.history.replaceState(null,'','#/clues');w.__GAIP_LEARNING_CENTER__.sync();await new Promise(resolve=>setTimeout(resolve,45));w.document.querySelector('dialog [data-learning-discard]').click();assert.equal(w.location.hash,'#/clues');assert.equal(w.document.querySelectorAll('[data-gaip-learning-overlay]').length,0);
 load('shared/config/channels.js');const registered=w.__GAIP_CHANNEL_CONFIG__.list.find(x=>x.key==='learning');assert.ok(registered.assets.scripts.find(x=>x.includes('learning-data.js')));assert.ok(registered.assets.scripts.findIndex(x=>x.includes('learning-data.js'))<registered.assets.scripts.findIndex(x=>x.includes('learning-app.js')));for(const file of registered.assets.styles.concat(registered.assets.scripts))assert.ok(fs.existsSync(path.join(root,file.split('?')[0])),file);
-const source=fs.readFileSync(path.join(root,'features/learning-center/learning-app.js'),'utf8');assert.ok(!/fetch\(|XMLHttpRequest|<video|<audio/.test(source));
+const source=fs.readFileSync(path.join(root,'channels/learning-center/learning-app.js'),'utf8');assert.ok(!/fetch\(|XMLHttpRequest|<video|<audio/.test(source));
 console.log('PASS learning V1.1: domain rules, permission scope, preview isolation, lifecycle, editor, stats, reader, export. DOM-only; not a browser visual test.');
 dom.window.close();
 })().catch(error=>{console.error(error);process.exitCode=1;});

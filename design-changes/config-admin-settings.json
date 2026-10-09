@@ -27,7 +27,7 @@
         "icon.asset": {
           "before": null,
           "initialLocal": null,
-          "target": "features/config-center/assets/提示2.svg（用户原附件，页面内联相同SVG几何）",
+          "target": "channels/config-center/assets/icons/提示2.svg（用户原附件，页面内联相同SVG几何）",
           "status": "active",
           "basis": "source",
           "reason": "new"
@@ -50,9 +50,9 @@
         }
       },
       "sources": [
-        "features/config-center/source-markup.js",
-        "features/config-center/config-center-content.css",
-        "features/config-center/assets/提示2.svg"
+        "channels/config-center/source-markup.js",
+        "channels/config-center/config-center-content.css",
+        "channels/config-center/assets/icons/提示2.svg"
       ],
       "verification": {
         "level": "source-only",

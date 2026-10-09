@@ -1,0 +1,17 @@
+<!-- HTML structure source for components/弹窗预览.script-2.js. Slots are rendered by the original JS expressions. -->
+<!-- source function near original line 77 -->
+<template data-gaip-markup="renderParent-1"><header class="hero"><div><p class="eyebrow">GAIP · SOURCE-CONNECTED MODAL PREVIEW</p><h1>真实弹窗预览</h1><p class="intro">这里只展示能够调用真实源入口的当前弹窗。每项滚动到可见区域后才创建独立 iframe：共享组件直接调用原控制器，频道弹窗打开正式 Hash 页面并执行真实按钮流程；预览页不保存弹窗 DOM 或视觉样式。</p></div><div class="counts"><div class="count"><span>真实可预览</span><strong>{{gaip:0}}</strong></div><div class="count"><span>待接入</span><strong>{{gaip:1}}</strong></div><div class="count"><span>不进入预览</span><strong>{{gaip:2}}</strong></div></div></header><aside class="rule"><strong>当前约束：</strong>已明确排除的业务主面板和抽屉不展示；已被现行页面替换、页面不可达或并非独立弹层的旧登记项也不生成假预览。其余项目全部调用当前真实源。</aside><section class="categoryOverview"><header class="overviewHeading"><div><h2>分类总览</h2><p>先在这里核对 {{gaip:3}} 个弹窗的归类；编号与下方真实预览一致。</p></div><span class="overviewHint">点击名称可定位到真实弹窗</span></header><div class="overviewGrid" id="categoryOverviewGrid"></div></section><nav class="categoryToolbar" aria-label="弹窗用途筛选">{{gaip:4}}</nav><section><h2 class="sectionTitle">真实源预览</h2><p class="sectionIntro">按交互用途分为三类，原清单编号保持不变。源组件修改结构或 CSS 后，刷新本页即可同步。</p><div id="categoryLists"></div></section>{{gaip:5}}</template>
+<!-- source function near original line 82 -->
+<template data-gaip-markup="renderParent-2"><button class="categoryFilter" type="button" data-category="{{gaip:0}}" aria-pressed="false">{{gaip:1}} {{gaip:2}}</button></template>
+<!-- source function near original line 84 -->
+<template data-gaip-markup="renderParent-3"><section><h2 class="sectionTitle">待接入真实入口</h2><p class="sectionIntro">这些弹窗已盘点，但在拥有完整 open()/mount() 入口前不展示视觉结果。</p><div class="pendingGrid" id="pendingList"></div></section></template>
+<!-- source function near original line 95 -->
+<template data-gaip-markup="renderParent-4"><header class="overviewCardHeader"><h3>{{gaip:0}}</h3><span>{{gaip:1}} 个</span></header><ol class="overviewList">{{gaip:2}}</ol></template>
+<!-- source function near original line 95 -->
+<template data-gaip-markup="renderParent-5"><li><button class="overviewLink" type="button" data-target="modal-preview-{{gaip:0}}"><span class="overviewIndex">{{gaip:1}}</span><span class="overviewName">{{gaip:2}}</span></button></li></template>
+<!-- source function near original line 100 -->
+<template data-gaip-markup="renderParent-6"><header class="categoryHeader"><div><h2>{{gaip:0}}</h2><p>{{gaip:1}}</p></div><span class="categoryTotal"><strong>{{gaip:2}}</strong> 个弹窗</span></header><div class="categoryList"></div></template>
+<!-- source function near original line 209 -->
+<template data-gaip-markup="renderParent-7"><header class="previewCardHeader"><div><div class="titleRow"><span class="index">{{gaip:0}}</span><h2>{{gaip:1}}</h2></div><p><span class="categoryTag">{{gaip:2}}</span><span>{{gaip:3}}</span></p></div><code>{{gaip:4}}</code></header><div class="frameWrap" data-load-state="idle"><div class="frameStatus"><span class="frameStatusText">滚动到此处后加载真实弹窗</span><button class="frameLoad" type="button">立即加载</button></div></div></template>
+<!-- source function near original line 242 -->
+<template data-gaip-markup="renderParent-8"><h3>{{gaip:0}}</h3><p>{{gaip:1}}{{gaip:2}}</p><code>{{gaip:3}}</code></template>

@@ -1,0 +1,9 @@
+.gaipMultiSelect__arrow::before{
+  width: 12px;
+  height: 12px;
+  transform: none;
+  border: 0;
+  background: url('../shared/modal-down.svg?v=20261008-expand-1') center / 16.970563px no-repeat;
+  content: '';
+  transition: transform 0.2s ease;
+}

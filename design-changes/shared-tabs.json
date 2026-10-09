@@ -91,8 +91,8 @@
         }
       },
       "sources": [
-        "shared/styles/global-tabs.css",
-        "shared/scripts/global-tabs.js",
+        "components/tabs/global-tabs.css",
+        "components/tabs/global-tabs.js",
         "web/p__induction__index.ec144457.chunk.css（只读初始值）"
       ]
     },
@@ -106,13 +106,17 @@
       },
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-15",
+        "checkedAt": "2026-10-08",
         "gaps": [
-          "原页面结构独立浏览器夹具：样式/数量/锁定/键盘通过；非完整React与方案业务页验收。"
+          "两个真实file入口1440/480px顶部Tab及原切换验证；非方案全业务验收。"
+        ],
+        "evidence": [
+          "design-changes/evidence/proposal-tabs-20261008.png",
+          "scripts/test-tabs-additional-channels-browser.cjs"
         ]
       },
       "status": "active",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-08",
       "id": "shared-tabs.proposal",
       "element": "方案中心视图切换",
       "locator": {
@@ -137,7 +141,7 @@
         "min-width": {
           "before": null,
           "initialLocal": "124px",
-          "target": "0",
+          "target": "auto（无局部最小宽度）",
           "status": "active",
           "basis": "source"
         },
@@ -182,39 +186,171 @@
           "target": "居中71px×4px，圆角2px，静态",
           "status": "active",
           "basis": "source"
+        },
+        "indicator.visible-height": {
+          "before": null,
+          "initialLocal": "3px（4px指示条被容器裁掉1px）",
+          "target": "4px完整显示",
+          "status": "active",
+          "basis": "computed"
+        },
+        "container.divider": {
+          "before": null,
+          "initialLocal": "border-bottom: 1px solid rgba(47,54,64,.08)",
+          "target": "box-shadow: inset 0 -1px rgba(47,54,64,.08)；不占高度",
+          "status": "active",
+          "basis": "mixed"
         }
       },
       "sources": [
-        "features/proposal-center/proposal-center.js",
-        "shared/styles/global-tabs.css",
-        "shared/scripts/global-tabs.js"
+        "channels/proposal-center/proposal-center.js",
+        "components/tabs/global-tabs.css",
+        "components/tabs/global-tabs.js",
+        "channels/proposal-center/proposal-center.css"
       ]
     },
     {
       "id": "shared-tabs.skin",
       "element": "三频道共用下划线Tab",
-      "locator": { "selector": "[data-gaip-tabs] > [data-gaip-tab]", "representative": "组件库下划线Tab" },
-      "state": { "channel": "shared", "variant": "default / selected / hover / focus / disabled", "viewport": "480–1920px" },
-      "appliesTo": ["产品中心分类Tab", "组织架构渠道Tab", "学情统计维度Tab", "组件库下划线Tab"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "font-size": { "before": null, "initialLocal": "三处16px", "target": "16px", "status": "active", "basis": "mixed", "reason": "统一组件规范；线上基准未采集" },
-        "font-family": { "before": null, "initialLocal": "继承全局HarmonyOS Sans SC", "target": "inherit，继承全局字体", "status": "active", "basis": "source" },
-        "font-weight": { "before": null, "initialLocal": "全局规则400（覆盖旧局部500）", "target": "标签非当前400、当前700；.gaip-tabs-quantity及产品原数量外层span:has(> .val___uBwax)中括号/数字始终400；通过局部--gaip-global-font-weight继承全局字体，原产品React节点不拆改", "status": "active", "basis": "mixed" },
-        "line-height": { "before": null, "initialLocal": null, "target": "22px", "status": "active", "basis": "computed", "reason": "new shared component" },
-        "text.color": { "before": null, "initialLocal": "产品默认/选中#2f3640、计数#025b52；组织/学情默认#2f3640，选中/hover#025b52", "target": "默认/选中（含选中hover）#2f3640；未选中hover及计数保留#025b52", "status": "active", "basis": "source" },
-        "padding": { "before": null, "initialLocal": "产品0 14px；组织/学情0 12px", "target": "0 12px", "status": "active", "basis": "mixed" },
-        "spacing": { "before": null, "initialLocal": "产品相邻margin-left8px；组织/学情gap0", "target": "gap0；margin0", "status": "active", "basis": "mixed" },
-        "quantity.margin-inline-start": { "before": null, "initialLocal": "0（仅文本空格，flex边缘不可见）", "target": "4px", "status": "active", "basis": "source" },
-        "height": { "before": null, "initialLocal": "产品按钮22px，外栏70px border-box；组织/学情按钮64px", "target": "按钮64px；产品栏64px content-box加上下1px边框（外高66px）", "status": "active", "basis": "mixed" },
-        "product.band.padding": { "before": null, "initialLocal": "22px 24px", "target": "0 24px", "status": "active", "basis": "source" },
-        "background.border.radius": { "before": null, "initialLocal": "按钮透明、无边框、无圆角", "target": "transparent；border0；radius0（产品外围装饰保留）", "status": "active", "basis": "source" },
-        "indicator": { "before": null, "initialLocal": "三处选中71px × 4px，#3ba297，radius2px", "target": "选中71px × 4px，未选中宽0，#3ba297，radius2px", "status": "active", "basis": "mixed" },
-        "focus.outline": { "before": null, "initialLocal": "学情2px solid #1dceca，offset-4px；其他未统一", "target": "2px solid #1dceca；offset-4px", "status": "active", "basis": "source" },
-        "disabled.opacity": { "before": null, "initialLocal": null, "target": "0.38", "status": "active", "basis": "source", "reason": "new disabled variant in component library" }
+      "locator": {
+        "selector": "[data-gaip-tabs] > [data-gaip-tab]",
+        "representative": "组件库下划线Tab"
       },
-      "sources": ["shared/styles/global-tabs.css", "shared/scripts/global-tabs.js", "web/p__dashboard__product__index.48332667.chunk.css（只读原基线）", "features/config-center/config-center.css（原基线）", "design-changes/learning-center.json#learning.study.header-tabs（保留更早学习页首次本地值）"],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-15", "gaps": ["三处真实结构的计算样式、字重、静态下划线、键盘与节点生命周期已在本机 Chrome 119 核验；线上视觉基准未采集。"] },
+      "state": {
+        "channel": "shared",
+        "variant": "default / selected / hover / focus / disabled",
+        "viewport": "480–1920px"
+      },
+      "appliesTo": [
+        "产品中心分类Tab",
+        "组织架构渠道Tab",
+        "学情统计维度Tab",
+        "组件库下划线Tab"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": "三处16px",
+          "target": "16px",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "统一组件规范；线上基准未采集"
+        },
+        "font-family": {
+          "before": null,
+          "initialLocal": "继承全局HarmonyOS Sans SC",
+          "target": "inherit，继承全局字体",
+          "status": "active",
+          "basis": "source"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": "全局规则400（覆盖旧局部500）",
+          "target": "标签非当前400、当前700；.gaip-tabs-quantity及产品原数量外层span:has(> .val___uBwax)中括号/数字始终400；通过局部--gaip-global-font-weight继承全局字体，原产品React节点不拆改",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "computed",
+          "reason": "new shared component"
+        },
+        "text.color": {
+          "before": null,
+          "initialLocal": "产品默认/选中#2f3640、计数#025b52；组织/学情默认#2f3640，选中/hover#025b52",
+          "target": "默认/选中（含选中hover）#2f3640；未选中hover及计数保留#025b52",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "产品0 14px；组织/学情0 12px",
+          "target": "0 12px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "spacing": {
+          "before": null,
+          "initialLocal": "产品相邻margin-left8px；组织/学情gap0",
+          "target": "gap0；margin0",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "quantity.margin-inline-start": {
+          "before": null,
+          "initialLocal": "0（仅文本空格，flex边缘不可见）",
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "产品按钮22px，外栏70px border-box；组织/学情按钮64px",
+          "target": "按钮64px；产品栏64px content-box加上下1px边框（外高66px）",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "product.band.padding": {
+          "before": null,
+          "initialLocal": "22px 24px",
+          "target": "0 24px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background.border.radius": {
+          "before": null,
+          "initialLocal": "按钮透明、无边框、无圆角",
+          "target": "transparent；border0；radius0（产品外围装饰保留）",
+          "status": "active",
+          "basis": "source"
+        },
+        "indicator": {
+          "before": null,
+          "initialLocal": "三处选中71px × 4px，#3ba297，radius2px",
+          "target": "选中71px × 4px，未选中宽0，#3ba297，radius2px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "focus.outline": {
+          "before": null,
+          "initialLocal": "学情2px solid #1dceca，offset-4px；其他未统一",
+          "target": "2px solid #1dceca；offset-4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "disabled.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0.38",
+          "status": "active",
+          "basis": "source",
+          "reason": "new disabled variant in component library"
+        }
+      },
+      "sources": [
+        "components/tabs/global-tabs.css",
+        "components/tabs/global-tabs.js",
+        "web/p__dashboard__product__index.48332667.chunk.css（只读原基线）",
+        "channels/config-center/config-center.css（原基线）",
+        "design-changes/learning-center.json#learning.study.header-tabs（保留更早学习页首次本地值）"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-15",
+        "gaps": [
+          "三处真实结构的计算样式、字重、静态下划线、键盘与节点生命周期已在本机 Chrome 119 核验；线上视觉基准未采集。"
+        ]
+      },
       "status": "active",
       "updatedAt": "2026-09-15"
     }

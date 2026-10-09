@@ -1,0 +1,8 @@
+.gaip-modal-form.gaip-modal-form.gaip-modal-form .gaip-modal__close-icon svg,
+.gaip-modal .gaip-modal__close-icon svg{
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  transform: none;
+}

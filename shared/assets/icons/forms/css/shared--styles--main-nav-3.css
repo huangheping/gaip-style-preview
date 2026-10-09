@@ -1,0 +1,18 @@
+.ant-layout-sider .gaip-main-nav-icon{
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--gaip-nav-icon-size) !important;
+  height: var(--gaip-nav-icon-size) !important;
+  min-width: var(--gaip-nav-icon-size);
+  flex: 0 0 var(--gaip-nav-icon-size);
+  color: var(--gaip-nav-icon-default) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+  filter: none !important;
+  transition: none !important;
+  line-height: 0;
+}

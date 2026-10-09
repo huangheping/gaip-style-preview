@@ -1,0 +1,7 @@
+.homeInfoShare svg{
+  display: block;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}

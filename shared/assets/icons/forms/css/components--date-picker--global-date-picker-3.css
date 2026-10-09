@@ -1,0 +1,1 @@
+.gaip-date-panel__arrow.is-double::after{ content: ''; position: absolute; width: 7px; height: 7px; left: 3px; top: -4.5px; border: solid currentColor; border-width: 0 0 1.5px 1.5px; }

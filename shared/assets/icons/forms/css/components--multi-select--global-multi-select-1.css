@@ -1,0 +1,14 @@
+.gaipMultiSelect__clear,
+.gaipMultiSelect__arrow{
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  color: rgba(0, 0, 0, 0.25);
+  background: transparent;
+}

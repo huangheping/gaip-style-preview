@@ -1,0 +1,105 @@
+.gaip-ai-notice-root,
+.gaip-ai-notice-root * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.gaip-ai-notice-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.gaip-ai-notice {
+  position: relative;
+  display: block;
+  width: min(878px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #025b52;
+}
+
+.gaip-ai-notice-surface {
+  display: grid;
+  grid-template-columns: minmax(0, 594fr) minmax(0, 284fr);
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  background: #025b52;
+}
+
+.gaip-ai-notice-body {
+  min-width: 0;
+  padding: 36px 36px 32px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.gaip-ai-notice-title {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.gaip-ai-notice-subtitle {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.gaip-ai-notice-warning {
+  margin: 30px 0 6px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.gaip-ai-notice-copy {
+  color: rgba(255, 255, 255, .55);
+  font-size: 14px;
+  line-height: 22px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.gaip-ai-notice-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(228px, 100%);
+  height: 48px;
+  margin: 24px auto 0;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  color: #025b52;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.gaip-ai-notice-confirm:hover { background: #f0f7f6; }
+.gaip-ai-notice-confirm:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+.gaip-ai-notice-art {
+  min-height: 100%;
+  background: #001c21 url('assets/ai-notice-bank-technology.jpg') center / cover no-repeat;
+}
+
+@media (max-width: 680px) {
+  .gaip-ai-notice-backdrop { padding: 12px; }
+  .gaip-ai-notice { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); }
+  .gaip-ai-notice-surface { grid-template-columns: minmax(0, 1fr); max-height: calc(100dvh - 24px); }
+  .gaip-ai-notice-body { padding: 28px 24px; }
+  .gaip-ai-notice-art { display: none; }
+}

@@ -1,0 +1,356 @@
+{
+  "version": 1,
+  "description": "仅准入逐项审查的运行时数据或几何值；不允许整文件豁免自有代码。compiled 是字节锁定的原站/第三方遗留，尚未完成样式抽离。",
+  "dynamic": {
+    "channels/config-center/announcement-management-view.js": [
+      {
+        "expression": "tooltip.style.left = left + 'px'",
+        "reason": "公告提示根据触发器定位；标题高度根据实际 scrollHeight 自适应，最多 112px。"
+      },
+      {
+        "expression": "tooltip.style.top = top + 'px'",
+        "reason": "公告提示根据触发器定位；标题高度根据实际 scrollHeight 自适应，最多 112px。"
+      },
+      {
+        "expression": "input.style.height = Math.min(Math.max(contentHeight, 48), 112) + 'px'",
+        "reason": "公告提示根据触发器定位；标题高度根据实际 scrollHeight 自适应，最多 112px。"
+      }
+    ],
+    "channels/config-center/config-center.js": [
+      {
+        "expression": "row.style.setProperty('--adjust-node-depth', String(Number(row.dataset.adjustNodeDepth) || 0))",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "row.style.setProperty('--bulk-node-depth', String(Number(row.dataset.bulkNodeDepth) || 0))",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "page.style.top = (header ? header.getBoundingClientRect().bottom : 56) + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "page.style.left = (sidebar ? sidebar.getBoundingClientRect().right : 208) + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "departmentMenu.style.left = Math.max(8, Math.min(rect.left, innerWidth - box.width - 8)) + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "departmentMenu.style.top = (rect.bottom + box.height + 4 < innerHeight ? rect.bottom + 4 : Math.max(8, rect.top - box.height - 4)) + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "dropdown.style.top = rect.bottom + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      },
+      {
+        "expression": "dropdown.style.left = Math.min(rect.left, innerWidth - 100) + 'px'",
+        "reason": "组织树变量是当前数据深度；频道边界跟随导航尺寸，菜单坐标根据触发节点和视口避让计算。"
+      }
+    ],
+    "channels/learning-center/learning-app.js": [
+      {
+        "expression": "bar.style.setProperty('--gaip-lesson-progress', Number(bar.dataset.lessonProgress) + '%')",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "range.style.setProperty('--gaip-player-progress', (session.position / session.duration * 100) + '%')",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "pagesEl.style.setProperty('--pdf-width',z+'%')",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "state.marker.style.left = rect.left + 'px'",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "state.marker.style.top = ((before ? rect.top : rect.bottom) - 2) + 'px'",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "state.marker.style.width = rect.width + 'px'",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "ghost.style.width = state.rect.width+'px'",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      },
+      {
+        "expression": "state.ghost.style.transform = 'translate3d('+(state.rect.left+state.x-state.startX)+'px,'+(state.rect.top+state.y-state.startY)+'px,0)'",
+        "reason": "课节/播放器进度来自学习状态，PDF 宽度来自缩放操作；拖拽标记、浮层大小和位置来自指针与元素实时坐标。"
+      }
+    ],
+    "channels/learning-center/learning-center.js": [
+      {
+        "expression": "page.style.top = Math.max(0, Math.round(headerRect.height)) + 'px'",
+        "reason": "频道叠层需跟随真实顶部和可收起侧栏；最小页面宽度扣除实测侧栏。"
+      },
+      {
+        "expression": "page.style.left = sidebarWidth + 'px'",
+        "reason": "频道叠层需跟随真实顶部和可收起侧栏；最小页面宽度扣除实测侧栏。"
+      },
+      {
+        "expression": "page.style.width = pageWidth + 'px'",
+        "reason": "频道叠层需跟随真实顶部和可收起侧栏；最小页面宽度扣除实测侧栏。"
+      },
+      {
+        "expression": "page.style.height = Math.max(0, window.innerHeight - Math.round(headerRect.height)) + 'px'",
+        "reason": "频道叠层需跟随真实顶部和可收起侧栏；最小页面宽度扣除实测侧栏。"
+      },
+      {
+        "expression": "page.style.setProperty(\n      '--gaip-learning-min-page-width',\n      Math.max(0, 1440 - sidebarWidth) + 'px'\n    )",
+        "reason": "频道叠层需跟随真实顶部和可收起侧栏；最小页面宽度扣除实测侧栏。"
+      }
+    ],
+    "channels/learning-center/learning-live.js": [
+      {
+        "expression": "popup.style.width=w+'px'",
+        "reason": "直播日期菜单根据触发器和当前视口定位、限宽，防止越界。"
+      },
+      {
+        "expression": "popup.style.left=Math.max(16,Math.min(r.left,window.innerWidth-w-16))+'px'",
+        "reason": "直播日期菜单根据触发器和当前视口定位、限宽，防止越界。"
+      },
+      {
+        "expression": "popup.style.top=Math.max(16,Math.min(r.bottom+8,window.innerHeight-popup.offsetHeight-16))+'px'",
+        "reason": "直播日期菜单根据触发器和当前视口定位、限宽，防止越界。"
+      }
+    ],
+    "channels/news-center/news-center.js": [
+      {
+        "expression": "page.style.top = Math.max(0, Math.round(headerRect.height)) + 'px'",
+        "reason": "资讯叠层跟随真实顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.left = Math.max(0, Math.round(sidebarRect.width)) + 'px'",
+        "reason": "资讯叠层跟随真实顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.width = Math.max(0, window.innerWidth - Math.round(sidebarRect.width)) + 'px'",
+        "reason": "资讯叠层跟随真实顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.height = Math.max(0, window.innerHeight - Math.round(headerRect.height)) + 'px'",
+        "reason": "资讯叠层跟随真实顶部、侧栏和视口尺寸。"
+      }
+    ],
+    "channels/wealth-center/wealth-center.js": [
+      {
+        "expression": "bar.style.setProperty('--wealth-progress', Number(bar.dataset.wealthProgress) + '%')",
+        "reason": "构成比例来自财富值数据；频道边界跟随顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.top = Math.max(0, Math.round(headerRect.height)) + 'px'",
+        "reason": "构成比例来自财富值数据；频道边界跟随顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.left = Math.max(0, Math.round(sidebarRect.width)) + 'px'",
+        "reason": "构成比例来自财富值数据；频道边界跟随顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.width = Math.max(1180, window.innerWidth - Math.round(sidebarRect.width)) + 'px'",
+        "reason": "构成比例来自财富值数据；频道边界跟随顶部、侧栏和视口尺寸。"
+      },
+      {
+        "expression": "page.style.height = Math.max(0, window.innerHeight - Math.round(headerRect.height)) + 'px'",
+        "reason": "构成比例来自财富值数据；频道边界跟随顶部、侧栏和视口尺寸。"
+      }
+    ],
+    "channels/workspace/workspace-update.js": [
+      {
+        "expression": "probe.style.width = width + 'px'",
+        "reason": "先以当前文章宽度测量所有新闻，再统一高度以防轮播跳动；测量副本的固定视觉已移至 CSS。"
+      },
+      {
+        "expression": "article.style.minHeight = maxHeight + 'px'",
+        "reason": "先以当前文章宽度测量所有新闻，再统一高度以防轮播跳动；测量副本的固定视觉已移至 CSS。"
+      }
+    ],
+    "components/ai-agent/AI Agent本地Mock.js": [
+      {
+        "expression": "menu.style.left = Math.round(rect.right - 116) + 'px'",
+        "reason": "会话菜单跟随被点击的会话按钮定位。"
+      },
+      {
+        "expression": "menu.style.top = Math.round(rect.bottom + 6) + 'px'",
+        "reason": "会话菜单跟随被点击的会话按钮定位。"
+      }
+    ],
+    "components/filter-bar/global-filter-bar.js": [
+      {
+        "expression": "panel.style.width = width + 'px'",
+        "reason": "筛选弹出框依据触发器宽度、实际高度和视口空间定位；包含上下翻转。"
+      },
+      {
+        "expression": "panel.style.maxHeight = Math.max(100, window.innerHeight - 24) + 'px'",
+        "reason": "筛选弹出框依据触发器宽度、实际高度和视口空间定位；包含上下翻转。"
+      },
+      {
+        "expression": "panel.style.left = Math.max(12, Math.min(r.left, window.innerWidth - width - 12)) + 'px'",
+        "reason": "筛选弹出框依据触发器宽度、实际高度和视口空间定位；包含上下翻转。"
+      },
+      {
+        "expression": "panel.style.top = Math.max(12, Math.min(r.bottom + 4, window.innerHeight - height - 12)) + 'px'",
+        "reason": "筛选弹出框依据触发器宽度、实际高度和视口空间定位；包含上下翻转。"
+      },
+      {
+        "expression": "panel.style.top = (r.top - height - 4) + 'px'",
+        "reason": "筛选弹出框依据触发器宽度、实际高度和视口空间定位；包含上下翻转。"
+      }
+    ],
+    "components/modal-controls/modal-controls.js": [
+      {
+        "expression": "el.style.height = Math.round(Math.max(min, Math.min(max, value))) + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "state.button.style.left = left + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "state.button.style.top = top + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.width = width + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.left = '0px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.top = '0px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.width = width / sx + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.left = (Math.max(12, Math.min(r.left, w.innerWidth - width - 12)) - ox) / sx + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.maxHeight = height / sy + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      },
+      {
+        "expression": "p.style.top = (top - oy) / sy + 'px'",
+        "reason": "表单输入高度与清除按钮实时定位；原生菜单含变换坐标系校正。临时 left/top=0px 用于测量坐标原点，不是固定视觉设计。"
+      }
+    ],
+    "components/table/global-table.js": [
+      {
+        "expression": "table.style.minWidth = config.minWidth + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "cell.style.setProperty('--fixed-offset', (col.offset || 0) + 'px')",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "width.style.width = col.width + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "picker.style.maxHeight = Math.max(36, below ? availableBelow : availableAbove) + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "picker.style.width = Math.min(Math.max(112, r.width), window.innerWidth - 16) + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "picker.style.left = Math.max(8, Math.min(r.left, window.innerWidth - picker.offsetWidth - 8)) + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "picker.style.top = Math.max(8, below ? r.bottom + gap : r.top - picker.offsetHeight - gap) + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "root.style.maxHeight = maximum + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "headerViewport.style.marginRight = Math.max(0, scroll.offsetWidth - scroll.clientWidth) + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "headerTable.style.width = table.getBoundingClientRect().width + 'px'",
+        "reason": "表格列宽、固定偏移由调用配置提供；复制表头跟随实测滚动条和列宽，分页菜单根据视口空间定位。"
+      },
+      {
+        "expression": "panel.style.left = left + 'px'",
+        "reason": "显式接入的表格操作菜单，按触发按钮和面板实测宽度在当前视口内计算位置。"
+      },
+      {
+        "expression": "panel.style.top = top + 'px'",
+        "reason": "显式接入的表格操作菜单，按按钮、面板实测高度及视口高度上下避让。"
+      }
+    ],
+    "shared/scripts/channel-regions.js": [
+      {
+        "expression": "item.style.order = value",
+        "reason": "按唯一频道注册表计算侧栏 order；不移动 React 管理的节点，不改路由事件。"
+      }
+    ],
+    "channels/workspace/page.js": [
+      {
+        "expression": "el.style.setProperty(\"--workspace-bar-height\", t + \"%\")",
+        "reason": "行情柱高来自当前业务数据的百分比，固定视觉在 page.css。"
+      },
+      {
+        "expression": "el.style.setProperty(\n                              \"--workspace-text-lines\",\n                              String(l),\n                            )",
+        "reason": "省略文本的行数参数；当前消费者为两行。"
+      },
+      {
+        "expression": "el.style.setProperty(\n                              \"--workspace-text-line-height\",\n                              i + \"px\",\n                            )",
+        "reason": "省略文本的行高参数，供溢出测量使用；当前消费者为 24px。"
+      },
+      {
+        "expression": "el.style.setProperty(\n                              \"--workspace-text-max-height\",\n                              i * l + \"px\",\n                            )",
+        "reason": "省略文本的几何上限，由行数与行高相乘；固定视觉在 page.css。"
+      }
+    ],
+    "components/components-preview.js": [
+      {
+        "expression": "tooltip.style.left = left + 'px'",
+        "reason": "预览标签来源浮层按当前标签、浮层实测宽度和视口边界计算横向位置。"
+      },
+      {
+        "expression": "tooltip.style.top = top + 'px'",
+        "reason": "预览标签来源浮层按标签和浮层实测高度上下避让，限制在视口范围内。"
+      }
+    ],
+    "components/table/global-table-tag.js": [
+      {
+        "expression": "fullTip.style.left = left + 'px'",
+        "reason": "长标签全文提示根据触发标签、提示实际尺寸与视口边缘动态定位。"
+      },
+      {
+        "expression": "fullTip.style.top = top + 'px'",
+        "reason": "长标签全文提示根据触发标签、提示实际尺寸与视口边缘动态定位。"
+      }
+    ]
+  },
+  "compiled": {
+    "components/ai-agent/素材/lottie.min.js": {
+      "sha256": "2eb762973aec914d981f426123040bfac9d26217239605e225ddc7cee17618ac",
+      "reason": "第三方 Lottie 动画库，保留原始运行实现；未宣称样式分离。"
+    },
+    "shared/runtime/umi.0b0663b5.js": {
+      "sha256": "34a9c220b964e01a9101ea5c7462c320530bd24c5ffae6734042d0c15367b1a4",
+      "reason": "原站编译页面/框架运行时；本轮不重写编译代码，仍有样式遗留。；2026-09-30仅将图标定义接到本地SVG生成缓存并安装React图标属性适配，原有样式表达式保持。；2026-10-01仅按用户编号合并图标URL，与任务前源码按确定路径替换逐字核对，未变更样式表达式。"
+    },
+    "shared/runtime/page-vendor.js": {
+      "sha256": "b4707646bd9f9df2b9c9d4b7e82a8a6b838064c3c4936e6f265e129a3205c841",
+      "reason": "原频道编译包中第三方 Ant Watermark 与 Popconfirm 的原字节提取，业务页面与固定样式已移出；仅保留第三方绘制/定位契约。"
+    }
+  }
+}

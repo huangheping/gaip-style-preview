@@ -1,0 +1,7 @@
+.gaip-lesson-progress-icon{
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  background: url("../../business/learning-center/icon-lesson-progress.svg") center / 16px 16px no-repeat;
+}

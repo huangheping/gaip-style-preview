@@ -1,19 +1,21 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright-core');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const output=path.join(root,'outputs/standardization/20260922/root-entry-migration/learning-browser');fs.mkdirSync(output,{recursive:true});
 (async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});try{
 const p=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
 await p.setContent('<body></body>');
+await p.evaluate(source => window.eval(source), read('channels/learning-center/templates.generated.js'));
 // Use the real channel header, including its title, subtitle and permission buttons.
-const channelSource=read('features/learning-center/learning-center.js');
-const pageFactory=channelSource.slice(channelSource.indexOf('  function createLearningPage()'),channelSource.indexOf('  function currentBaseHash()'));
+const channelSource=read('channels/learning-center/learning-center.js');
+const pageFactory=channelSource.slice(0,channelSource.indexOf('/* @gaip-markup-cache:end */')+'/* @gaip-markup-cache:end */'.length)+'\n'+channelSource.slice(channelSource.indexOf('  function createLearningPage()'),channelSource.indexOf('  function currentBaseHash()'));
 await p.evaluate(source=>{const page=new Function(source+'; return createLearningPage();')();page.id='page';document.body.append(page);},pageFactory);
 await p.evaluate(()=>{const storage={};Object.defineProperty(window,'localStorage',{value:{getItem:k=>storage[k]||null,setItem:(k,v)=>storage[k]=v}});});
 // Keep existing empty/single/multiple-state assertions independent of the shipped example batch.
 if(!process.env.LIVE_MOCK_SEED)await p.evaluate(()=>localStorage.setItem('gaip-learning-live-v12',JSON.stringify({version:1,banners:[],logs:[],mockBatches:{'live-examples-20260916':true}})));
-await p.route('https://local.example/assets/learning/**',route=>{const filename=path.basename(new URL(route.request().url()).pathname),asset=path.join(root,'assets/learning',filename);return fs.existsSync(asset)?route.fulfill({body:fs.readFileSync(asset),contentType:filename.endsWith('.svg')?'image/svg+xml':'image/jpeg'}):route.abort();});
-for(const f of ['shared/styles/global-carousel-controls.css','shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/global-modal-position.css','shared/styles/global-modal-mask.css','shared/styles/global-page-form.css','shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','shared/styles/global-date-picker.css','shared/styles/modal-controls.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','features/learning-center/learning-live.css'])await p.addStyleTag({content:read(f)});
-for(const f of ['shared/scripts/global-carousel-controls.js','shared/scripts/global-modal.js','shared/scripts/global-modal-position.js','shared/scripts/global-multi-select.js','shared/scripts/global-date-picker.js','shared/scripts/modal-controls.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-live-data.js','features/learning-center/learning-live.js','features/learning-center/learning-app.js'])await p.evaluate(({s,f})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});window.eval(s);},{s:read(f),f});
+await p.route('https://local.example/channels/learning-center/assets/**',route=>{const filename=path.basename(new URL(route.request().url()).pathname),asset=path.join(root,'channels/learning-center/assets',filename.endsWith('.svg')?'icons':'images',filename);return fs.existsSync(asset)?route.fulfill({body:fs.readFileSync(asset),contentType:filename.endsWith('.svg')?'image/svg+xml':'image/jpeg'}):route.abort();});
+for(const f of ['components/carousel-controls/global-carousel-controls.css','shared/styles/global-font.css','components/modal/global-modal.css','components/modal/global-modal-position.css','components/modal/global-modal-mask.css','shared/styles/global-page-form.css','components/multi-select/global-multi-select.css','components/filter-bar/global-filter-bar.css','components/table/global-table.css','components/date-picker/global-date-picker.css','components/modal-controls/modal-controls.css','channels/learning-center/learning-center.css'])await p.addStyleTag({content:read(f)});
+for(const f of ['components/carousel-controls/global-carousel-controls.js','components/modal/global-modal.js','components/modal/global-modal-position.js','components/multi-select/global-multi-select.js','components/date-picker/global-date-picker.js','components/modal-controls/modal-controls.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','channels/learning-center/learning-data.js','channels/learning-center/learning-live-data.js','channels/learning-center/learning-live.js','channels/learning-center/learning-app.js'])await p.evaluate(({s,f})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});window.eval(s);},{s:read(f),f});
 const originalHeaderHeight=(await p.locator('.gaip-learning-header').boundingBox()).height;
 const originalData=await p.evaluate(()=>JSON.stringify({courses:__GAIP_LEARNING_DATA__.state().courses,records:__GAIP_LEARNING_DATA__.state().records,logs:__GAIP_LEARNING_DATA__.state().logs}));
 // Even a previously saved learner identity should start as local preview administrator.
@@ -22,23 +24,33 @@ assert.equal(await p.evaluate(()=>window.__GAIP_LEARNING_DATA__.user().id),'u1')
 assert.equal(await p.locator('.lc-demo,[data-profile]').count(),0);
 assert.equal(await p.locator('.lc-live-banner').count(),0,'home uses horizontal cards, not the previous carousel');
 assert.equal(await p.locator('[data-learning-action="直播管理"]:visible').count(),1);
+await p.waitForFunction(()=>{const icon=document.querySelector('[data-learning-action="直播管理"] img');return icon&&icon.complete&&icon.naturalWidth===20;});
+assert.deepEqual(await p.locator('[data-learning-action="直播管理"]').evaluate(n=>{const i=getComputedStyle(n.querySelector('img'));return {width:i.width,height:i.height,gap:getComputedStyle(n).gap,text:n.textContent};}),{width:'20px',height:'20px',gap:'8px',text:'直播管理'});
+await p.locator('[data-learning-action="直播管理"] img').click();
+assert.equal(await p.locator('[data-live-new]').count(),1,'clicking supplied icon opens live management');
+await p.locator('[data-live-back]').click();
 assert.equal((await p.locator('.gaip-learning-header').boundingBox()).height,originalHeaderHeight);
 assert.equal(await p.evaluate(()=>JSON.stringify({courses:__GAIP_LEARNING_DATA__.state().courses,records:__GAIP_LEARNING_DATA__.state().records,logs:__GAIP_LEARNING_DATA__.state().logs})),originalData,'home restoration preserves course and learning data');
 const switchPreview=async id=>p.evaluate(({id,source})=>{window.__GAIP_LEARNING_APP__.destroy();window.__GAIP_LEARNING_DATA__.setUser(id);const old=document.querySelector('#page'),next=new Function(source+'; return createLearningPage();')();next.id='page';old.replaceWith(next);window.__GAIP_LEARNING_APP__.mount(next);},{id,source:pageFactory});
 if(process.env.LIVE_MOCK_SEED){
   assert.equal(await p.locator('[data-learning-action]:visible').count(),3);
+  assert.deepEqual(await p.locator('.gaip-learning-header').evaluate(n=>({background:getComputedStyle(n).backgroundColor,image:getComputedStyle(n).backgroundImage,decoration:getComputedStyle(n,'::after').content})),{background:'rgb(255, 255, 255)',image:'none',decoration:'none'});
+  assert.deepEqual(await p.locator('[data-learning-action]:visible').evaluateAll(ns=>ns.map(n=>getComputedStyle(n).backgroundColor)),Array(3).fill('rgb(2, 91, 82)'));
+  assert.equal(await p.locator('.lc-live-section').evaluate(n=>getComputedStyle(n).backgroundColor),'rgb(255, 255, 255)');
+  assert.deepEqual(await p.locator('.lc-live-card').first().evaluate(n=>({background:getComputedStyle(n).backgroundColor,border:getComputedStyle(n).borderTopWidth})),{background:'rgb(255, 255, 255)',border:'0px'});
+  assert.deepEqual(await p.locator('.gaip-learning-header').evaluate(n=>({width:getComputedStyle(n).borderTopWidth,color:getComputedStyle(n).borderTopColor,style:getComputedStyle(n).borderTopStyle})),{width:'1px',color:'rgba(47, 54, 64, 0.12)',style:'solid'},'divider at the top of the channel header');
   const before=await p.evaluate(()=>JSON.stringify(__GAIP_LEARNING_LIVE_DATA__.list()));
   assert.equal(JSON.parse(before).length,8,'live examples retained, not deleted');
   const title=await p.locator('.gaip-learning-title').boundingBox(),header=await p.locator('.gaip-learning-header').boundingBox();
   assert.equal(title.x-header.x,24,'original left title inset');
   assert.equal(await p.locator('.lc-live-card').count(),2);
   assert.equal(await p.locator('.lc-live-card-title').first().textContent(),'GLORY产品及服务说明会预告：全球视野 · 传承洞察');
-  assert.equal(await p.locator('.lc-live-card-summary').first().textContent(),'每周四早八点不见不散');
+  assert.equal(await p.locator('.lc-live-card-summary').count(),0,'subtitle removed from rendering');
   await p.waitForFunction(()=>Array.from(document.querySelectorAll('.lc-live-card-label-icon')).every(n=>n.complete&&n.naturalWidth===14));
-  assert.deepEqual(await p.locator('.lc-live-card-label').first().evaluate(n=>({background:getComputedStyle(n).backgroundColor,color:getComputedStyle(n).color})),{background:'rgb(17, 17, 17)',color:'rgb(239, 206, 136)'});
-  assert.match(read('assets/learning/live-video-label.svg'),/fill="#EFCE88"/,'icon uses exact requested gold');
+  assert.deepEqual(await p.locator('.lc-live-card-label').first().evaluate(n=>({background:getComputedStyle(n).backgroundColor,color:getComputedStyle(n).color})),{background:'rgb(2, 91, 82)',color:'rgb(255, 255, 255)'});
+  assert.match(read('shared/assets/icons/business/learning-center/live-video-label.svg'),/fill="#FFFFFF"/,'icon uses requested white');
   assert.equal(await p.locator('.gaip-carousel-dots').count(),1);
-  assert.equal(await p.locator('.lc-live-courses-heading').isVisible(),true);
+  assert.equal(await p.locator('.lc-live-courses-heading').count(),0,'course heading removed, not merely hidden');
   const hoverStyles=async(selector,image)=>{
     await p.locator(selector).first().hover();await p.waitForTimeout(400);
     return p.locator(selector).first().evaluate((el,img)=>{const s=getComputedStyle(el),i=getComputedStyle(el.querySelector(img));return {background:s.backgroundColor,shadow:s.boxShadow,transform:s.transform,transition:s.transition,imageTransform:i.transform,imageTransition:i.transition};},image);
@@ -46,8 +58,8 @@ if(process.env.LIVE_MOCK_SEED){
   const courseHover=await hoverStyles('.gaip-course-card','.gaip-course-image');
   const liveHover=await hoverStyles('.lc-live-card','.lc-live-card-cover img');
   assert.deepEqual(liveHover,courseHover,'live and course hover use identical visual rules');
-  assert.equal(await p.locator('.lc-live-card').first().evaluate(n=>getComputedStyle(n).borderColor),'rgb(229, 231, 231)','no special green border');
-  await p.screenshot({path:'/tmp/gaip-learning-live-hover.png'});
+  assert.equal(await p.locator('.lc-live-card').first().evaluate(n=>getComputedStyle(n).borderTopWidth),'0px','hover retains borderless live card');
+  await p.screenshot({path:output+'/gaip-learning-live-hover.png'});
   await p.mouse.move(0,0);await p.keyboard.press('Tab');
   const focusStyles=async selector=>{
     await p.locator(selector).first().focus();await p.waitForTimeout(400);
@@ -58,22 +70,29 @@ if(process.env.LIVE_MOCK_SEED){
   await p.evaluate(()=>document.activeElement.blur());await p.waitForTimeout(400);
   for(const width of [1920,1440,900,480,320]) {
     await p.setViewportSize({width,height:1000});
+    assert.equal(await p.locator('.lc-live-section').evaluate(n=>{const dot=n.querySelector('.gaip-carousel-dot'),r=dot.getBoundingClientRect(),h=parseFloat(getComputedStyle(dot,'::after').height),top=r.top+(r.height-h)/2,bottom=top+h;return Math.abs((top-n.querySelector('.lc-live-card-stage').getBoundingClientRect().bottom)-(n.getBoundingClientRect().bottom-bottom))<1;}),true,'indicator visual top/bottom whitespace matches '+width);
+    const columns=await p.locator('.gaip-learning-grid').evaluate(n=>getComputedStyle(n).gridTemplateColumns.split(' ').length);
+    assert.equal(columns,width>900?3:width>560?2:1,'responsive course columns '+width);
+    assert.equal(await p.locator('.gaip-course-body').evaluateAll(nodes=>nodes.every(n=>{const title=n.querySelector('.gaip-course-title').getBoundingClientRect(),description=n.querySelector('.gaip-course-description').getBoundingClientRect(),footer=n.querySelector('.gaip-course-footer').getBoundingClientRect();return Math.abs(description.top-title.bottom-12)<1&&Math.abs(footer.top-description.bottom-24)<1;})),true,'all course descriptions have 12px above and 24px below '+width);
+    assert.equal(await p.locator('.lc-live-section').evaluate(n=>{const r=n.getBoundingClientRect(),s=n.parentElement.getBoundingClientRect();return Math.abs(r.left-s.left)<1&&Math.abs(r.width-n.parentElement.clientWidth)<1;}),true,'live white surface spans content '+width);
+    assert.equal(await p.locator('.gaip-learning-header').evaluate(n=>Math.abs(n.getBoundingClientRect().width-n.parentElement.clientWidth)<1),true,'top divider spans content '+width);
+    assert.equal(await p.locator('.gaip-learning-grid').evaluate(n=>n.previousElementSibling.matches('.lc-live-section')&&Math.abs(n.getBoundingClientRect().top-n.previousElementSibling.getBoundingClientRect().bottom)<1),true,'course grid follows live section without heading space '+width);
     assert.equal(await p.locator('.lc-live-cards').evaluate(n=>n.scrollWidth>n.clientWidth+1),false,'cards fit '+width);
     assert.equal(await p.locator('.lc-live-section').evaluate(n=>Array.from(n.querySelectorAll('.gaip-carousel-arrow')).some(b=>{const r=b.getBoundingClientRect(),s=n.closest('.gaip-learning-scroll').getBoundingClientRect();return r.left<s.left||r.right>s.right;})),false,'edge arrows stay inside scroll viewport '+width);
     assert.equal(await p.locator('.gaip-learning-header').evaluate(n=>{const r=n.getBoundingClientRect();return Array.from(n.querySelectorAll('h1,p,button')).filter(el=>!el.hidden).some(el=>{const b=el.getBoundingClientRect();return b.top<r.top-1||b.bottom>r.bottom+1||b.right>r.right+1;});}),false,'visible header content not clipped '+width);
     const cards=await p.locator('.lc-live-card').all();
     const first=await cards[0].boundingBox(),second=await cards[1].boundingBox();
-    if(width>=900){const cover=await cards[0].locator('.lc-live-card-cover').boundingBox();assert.ok(Math.abs(cover.width-(first.width-34)*.46)<1,'larger cover is 46% of card content');}
+    if(width>=900){const cover=await cards[0].locator('.lc-live-card-cover').boundingBox();assert.ok(Math.abs(cover.width-(first.width-32)*.46)<1,'larger cover is 46% of borderless card content');}
     if(width>=1440)assert.equal(first.y,second.y,'two columns on wide content');
     else assert.ok(second.y>first.y,'narrow content stacks cards');
-    if(width===1440||width===480)await p.screenshot({path:'/tmp/gaip-learning-live-cards-'+width+'.png'});
+    if(width===1440||width===480)await p.screenshot({path:output+'/gaip-learning-live-cards-'+width+'.png'});
   }
   await p.setViewportSize({width:1440,height:1000});
   await p.getByRole('button',{name:'下一组',exact:true}).click();
   assert.equal(await p.locator('.lc-live-card').count(),1);
   assert.equal(await p.evaluate(()=>document.activeElement.dataset.carouselControl),'next','paging preserves control focus');
   assert.equal(await p.locator('.gaip-carousel-dot[aria-current="true"]').getAttribute('data-carousel-index'),'1');
-  await p.screenshot({path:'/tmp/gaip-learning-live-last-group.png'});
+  await p.screenshot({path:output+'/gaip-learning-live-last-group.png'});
   await p.getByRole('button',{name:'下一组',exact:true}).click();
   assert.equal(await p.locator('.lc-live-card').count(),2,'last group wraps to first');
   await p.getByRole('button',{name:'切换到第 2 组',exact:true}).click();
@@ -89,7 +108,8 @@ if(process.env.LIVE_MOCK_SEED){
   assert.match(await statusCard.locator('.lc-live-card-status').textContent(),/距开播/);
   await p.evaluate(id=>{Date.now=()=>Date.parse(__GAIP_LEARNING_LIVE_DATA__.get(id).liveStartAt)+1;},liveId);
   await p.waitForTimeout(1200);
-  assert.equal(await statusCard.locator('.lc-live-card-status').textContent(),'直播中');
+  assert.equal(await statusCard.locator('.lc-live-card-status').textContent(),'正在直播中');
+  assert.equal(await statusCard.locator('.lc-live-card-status').evaluate(n=>getComputedStyle(n).color),'rgb(47, 54, 64)');
   assert.equal(await p.evaluate(()=>document.activeElement.dataset.liveCard),liveId);
   await p.evaluate(()=>Date.now=window.realNow);
   await switchPreview('u2');
@@ -101,29 +121,33 @@ if(process.env.LIVE_MOCK_SEED){
   assert.equal(await p.evaluate(()=>JSON.stringify(__GAIP_LEARNING_LIVE_DATA__.list())),before);
   await p.evaluate(()=>{const L=__GAIP_LEARNING_LIVE_DATA__;L.visible().slice(1).forEach(b=>L.offline(b.id));});
   assert.equal(await p.locator('.lc-live-card').count(),1);
-  const card=await p.locator('.lc-live-card').boundingBox(),section=await p.locator('.lc-live-section').boundingBox();
+  const card=await p.locator('.lc-live-card').boundingBox(),section=await p.locator('.lc-live-card-stage').boundingBox();
   assert.ok(Math.abs(card.width-(section.width-24)/2)<1,'single card keeps double-column width');
   assert.ok(Math.abs(card.x-section.x)<1,'single card stays left aligned');
   const poster=await p.locator('.lc-live-card-cover').boundingBox();assert.ok(Math.abs(poster.width/poster.height-750/320)<.02);
   assert.equal(await p.locator('.gaip-carousel-dots').count(),0);
-  await p.screenshot({path:'/tmp/gaip-learning-live-single.png'});
+  await p.screenshot({path:output+'/gaip-learning-live-single.png'});
   await p.setViewportSize({width:480,height:1000});
-  const narrowCard=await p.locator('.lc-live-card').boundingBox(),narrowSection=await p.locator('.lc-live-section').boundingBox();
+  const narrowCard=await p.locator('.lc-live-card').boundingBox(),narrowSection=await p.locator('.lc-live-card-stage').boundingBox();
   assert.ok(Math.abs(narrowCard.width-narrowSection.width)<1,'single card follows shared narrow-screen layout');
   await p.setViewportSize({width:1440,height:1000});
   const headerBefore=await p.locator('.gaip-learning-header').boundingBox();
   await p.locator('.gaip-learning-scroll').evaluate(n=>n.scrollTop=250);
-  assert.deepEqual(await p.locator('.gaip-learning-header').boundingBox(),headerBefore,'live area scrolls, header unchanged');
+  const scrolledBy = await p.locator('.gaip-learning-scroll').evaluate(n=>n.scrollTop);
+  assert.ok(scrolledBy > 0, 'scroll fixture contains enough course content');
+  const headerAfter = await p.locator('.gaip-learning-header').boundingBox();
+  assert.ok(Math.abs(headerBefore.y - headerAfter.y - scrolledBy) < 1, 'whole header moves with the live/course scroll content');
+  assert.equal(headerAfter.height, headerBefore.height, 'scrolling preserves header size');
   await p.evaluate(()=>{const L=__GAIP_LEARNING_LIVE_DATA__;L.offline(L.visible()[0].id);});
   assert.equal(await p.locator('.lc-live-section').isVisible(),false);
-  assert.equal(await p.locator('.lc-live-courses-heading').isVisible(),false);
+  assert.equal(await p.locator('.lc-live-courses-heading').count(),0);
   assert.equal((await p.locator('.gaip-learning-header').boundingBox()).height,originalHeaderHeight);
   await p.locator('.gaip-learning-scroll').evaluate(n=>n.scrollTop=0);
-  await p.screenshot({path:'/tmp/gaip-learning-live-empty.png'});
+  await p.screenshot({path:output+'/gaip-learning-live-empty.png'});
   await p.locator('[data-learning-action="课程管理"]').click();
   assert.ok(await p.locator('tbody tr').count()>0);
   await p.evaluate(()=>window.__GAIP_LEARNING_APP__.destroy());assert.deepEqual(errors,[]);
-  console.log('PASS live cards: single/double/empty/paging, countdown transition, permissions, data preservation, unchanged fixed header, 320–1920px');return;
+  console.log('PASS live cards: single/double/empty/paging, countdown transition, permissions, data preservation, header scrolling with courses, 320–1920px');return;
 }
 // Live module stays available for later work; test it in isolation, not through the withdrawn home entry.
 await p.evaluate(()=>{
@@ -150,25 +174,25 @@ await p.locator('#live-startAt').click();await p.locator('.gaip-native-popup .ga
 assert.equal(await p.locator('.lc-live-editor').isVisible(),true,'calendar Escape must not close editor');
 await p.locator('[data-live-save]').click();assert.equal(await p.locator('#live-name').getAttribute('aria-invalid'),'true');
 await p.locator('#live-name').fill('直播浏览器测试');await p.locator('[name="live-type"][value="url"]').check();await p.locator('#live-content').fill('https://example.com/live-test');
-await p.locator('#live-publicTitle').fill('面向学员的直播标题');await p.locator('#live-summary').fill('本地展示简介');
-await p.locator('#live-image').setInputFiles({name:'Banner.jpg',mimeType:'image/jpeg',buffer:fs.readFileSync(path.join(root,'assets/learning/course-01-arkos.jpg'))});await p.locator('.lc-live-image-slot img').waitFor();
+await p.locator('#live-publicTitle').fill('面向学员的直播标题');assert.equal(await p.locator('#live-summary,[data-live-field="summary"]').count(),0);
+await p.locator('#live-image').setInputFiles({name:'Banner.jpg',mimeType:'image/jpeg',buffer:fs.readFileSync(path.join(root,'channels/learning-center/assets/images/course-01-arkos.jpg'))});await p.locator('.lc-live-image-slot img').waitFor();
 await p.locator('#live-groups [role="combobox"]').click();await p.locator('#live-groups [data-value="all"]').click();await p.keyboard.press('Escape');
 // Set the real datetime inputs and dispatch their normal value event; calendar is shared.
 await p.evaluate(()=>{for(const [key,delta] of [['startAt',300000],['endAt',3600000],['liveStartAt',1800000]]){const n=document.querySelector('#live-'+key),d=new Date(Date.now()+delta);n.value=new Date(d-d.getTimezoneOffset()*60000).toISOString().slice(0,16);n.dispatchEvent(new Event('input',{bubbles:true}));n.dispatchEvent(new Event('change',{bubbles:true}));}});
 await p.locator('.lc-live-editor .ant-modal-body').evaluate(n=>n.scrollTop=0);
-await p.screenshot({path:'/tmp/gaip-live-editor.png'});
-for(const width of [1440,480]){await p.setViewportSize({width,height:1000});assert.equal(await p.locator('.lc-live-editor').evaluate(n=>n.scrollWidth>n.clientWidth+1),false);if(width===480)await p.screenshot({path:'/tmp/gaip-live-editor-mobile.png'});}
+await p.screenshot({path:output+'/gaip-live-editor.png'});
+for(const width of [1440,480]){await p.setViewportSize({width,height:1000});assert.equal(await p.locator('.lc-live-editor').evaluate(n=>n.scrollWidth>n.clientWidth+1),false);if(width===480)await p.screenshot({path:output+'/gaip-live-editor-mobile.png'});}
 await p.setViewportSize({width:1440,height:1000});await p.locator('[data-live-save]').click();await p.locator('.lc-live-editor').waitFor({state:'detached'});
 assert.equal(await p.evaluate(()=>__GAIP_LEARNING_LIVE_DATA__.list()[0].publicTitle),'面向学员的直播标题');
 assert.ok(await p.evaluate(()=>Date.parse(__GAIP_LEARNING_LIVE_DATA__.list()[0].liveStartAt)>Date.now()));
 await p.locator('[data-live-table] tbody').getByRole('button',{name:'上架',exact:true}).click();await p.locator('[name="live-publish-mode"][value="now"]').check();await p.getByRole('button',{name:'确认上架',exact:true}).click();
 assert.match(await p.locator('[data-live-table] tbody').textContent(),/已上架/);
 await p.locator('.lc-live-url').click();assert.equal(await p.locator('.lc-live-url-value').textContent(),'https://example.com/live-test');await p.keyboard.press('Escape');assert.equal(await p.locator('.lc-live-url-value').count(),0);
-await p.screenshot({path:'/tmp/gaip-live-manager.png'});
+await p.screenshot({path:output+'/gaip-live-manager.png'});
 await p.locator('[data-live-back]').click();assert.equal(await p.locator('.lc-live-banner').isVisible(),true);assert.equal(await p.locator('.lc-live-arrow').count(),0);
 assert.ok(await p.locator('.lc-live-banner img').evaluate(n=>n.complete&&n.naturalWidth>0));
 const r=await p.locator('.lc-live-banner').boundingBox();assert.ok(Math.abs(r.width/r.height-750/320)<0.01);
-await p.screenshot({path:'/tmp/gaip-live-banner.png'});
+await p.screenshot({path:output+'/gaip-live-banner.png'});
 await p.evaluate(()=>{const L=window.__GAIP_LEARNING_LIVE_DATA__,b=L.list()[0],n=L.fresh();Object.assign(n,{name:'第二场',image:b.image,type:'url',content:'https://example.com/second',groups:['all'],startAt:new Date(Date.now()+300000).toISOString(),endAt:b.endAt});L.save(n);L.publish(n.id,'now');});
 assert.equal(await p.locator('.lc-live-arrow').count(),2);assert.equal(await p.locator('.lc-live-dot').count(),2);
 await p.getByRole('button',{name:'下一张直播 Banner'}).click();const label=await p.locator('.lc-live-banner-link').getAttribute('aria-label');await p.waitForTimeout(3200);assert.notEqual(await p.locator('.lc-live-banner-link').getAttribute('aria-label'),label);

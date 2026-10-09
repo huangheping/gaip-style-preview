@@ -55,7 +55,7 @@ async function main() {
       return { destroy() { host.replaceChildren(); } };
     }
   };
-  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js', 'features/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
+  for (const file of ['shared/assets/icons/local-icons.generated.js', 'shared/config/channels.js', 'components/modal/global-modal.js', 'components/table/global-table.js', 'shared/scripts/organization-store.js', 'components/organization-tree/organization-tree.js', 'channels/config-center/source-markup.js', 'channels/config-center/announcement-management-view.js', 'channels/config-center/config-center.js']) w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   await tick();
   const one = selector => { const el = d.querySelector(selector); assert.ok(el, selector); return el; };
   const click = selector => one(selector).click();
@@ -92,7 +92,7 @@ async function main() {
   assert.equal(d.querySelectorAll('[data-department]').length, 23);
   assert.equal(one('[data-department="all"]').getAttribute('aria-expanded'), 'true', 'root channel is expanded initially');
   assert.equal(one('[data-department="department-1"]').getAttribute('aria-expanded'), 'false', 'first-level department starts collapsed');
-  assert.match(one('[data-department="all"] .folderIcon___yjhFX').getAttribute('src'), /folder-open\.svg(?:\?[^#]*)?$/, 'expanded root uses the open-folder icon');
+  assert.match(one('[data-department="all"] .folderIcon___yjhFX').getAttribute('src'), /third-party\/ant-design\/folder-open-outlined\.svg(?:\?[^#]*)?$/, 'expanded root uses the open-folder icon');
   assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /folder\.png(?:\?[^#]*)?$/, 'collapsed branch uses the closed-folder icon');
   assert.match(one('[data-department="department-11"] .folderIcon___yjhFX').getAttribute('src'), /folder\.png(?:\?[^#]*)?$/, 'leaf nodes keep the closed-folder icon');
   assert.equal(one('[data-department="department-2"]').hidden, true, 'second-level department is hidden initially');
@@ -101,7 +101,7 @@ async function main() {
   assert.equal(d.querySelector('.table___BX44I .ant-pagination'), null, 'member table does not render pagination controls');
   click('[data-collapse="department-1"]');
   assert.equal(one('[data-department="department-2"]').hidden, false, 'first-level department can expand');
-  assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /folder-open\.svg(?:\?[^#]*)?$/, 'expanding a branch switches its folder icon');
+  assert.match(one('[data-department="department-1"] .folderIcon___yjhFX').getAttribute('src'), /third-party\/ant-design\/folder-open-outlined\.svg(?:\?[^#]*)?$/, 'expanding a branch switches its folder icon');
   assert.equal(one('[data-department="mock-level-3-east"]').hidden, true, 'third-level mock node stays hidden while its parent is collapsed');
   click('[data-collapse="department-2"]');
   assert.equal(one('[data-department="mock-level-3-east"]').hidden, false, 'third-level mock node appears when its parent is expanded');
@@ -170,9 +170,9 @@ async function main() {
   });
   click('[data-config-channel="0"]');
   assert.equal(one('.ant-table').classList.contains('ant-table-ping-left'), false, 'table at its left edge has no left shadow');
-  const configCss = fs.readFileSync(path.join(root, 'features/config-center/config-center.css'), 'utf8');
-  const configContentCss = fs.readFileSync(path.join(root, 'features/config-center/config-center-content.css'), 'utf8');
-  const globalModalCss = fs.readFileSync(path.join(root, 'shared/styles/global-modal.css'), 'utf8');
+  const configCss = fs.readFileSync(path.join(root, 'channels/config-center/config-center.css'), 'utf8');
+  const configContentCss = fs.readFileSync(path.join(root, 'channels/config-center/config-center-content.css'), 'utf8');
+  const globalModalCss = fs.readFileSync(path.join(root, 'components/modal/global-modal.css'), 'utf8');
   assert.match(configCss, /tab___UxqK9\.tabActive___H5olV::after\s*\{\s*width:\s*71px/);
   assert.match(configCss, /tab___UxqK9::after\s*\{\s*height:\s*4px/);
   assert.match(configContentCss, /mainHeader___QGD6D \.exportBtn___RDhet,[\s\S]*mainHeader___QGD6D \.gaip-config-admin-button\s*\{[^}]*width:\s*112px;[^}]*height:\s*40px;[^}]*font-size:\s*14px/);
@@ -269,7 +269,7 @@ async function main() {
   assert.match(configContentCss, /gaip-bulk-template-bar\s*\{[^}]*min-height:\s*64px;[^}]*background:\s*rgba\(59,176,97,\.09\)/);
   assert.match(configContentCss, /gaip-bulk-template-icon img\s*\{[^}]*width:\s*32px;[^}]*height:\s*32px/);
   assert.match(configContentCss, /gaip-bulk-upload-button\s*\{[^}]*height:\s*34px;[^}]*border:\s*1px solid rgba\(47,54,64,\.2\)/);
-  assert.match(configContentCss, /gaip-bulk-upload-icon img\s*\{[^}]*width:\s*14px;[^}]*height:\s*14px/);
+  assert.match(configContentCss, /gaip-bulk-upload-icon img\s*\{[^}]*width:\s*16px;[^}]*height:\s*16px/);
   assert.match(configContentCss, /gaip-bulk-drop-overlay\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*0;[^}]*border:\s*2px solid #24d4c9;[^}]*background:\s*rgba\(36,212,201,\.14\)/);
   assert.match(configContentCss, /gaip-bulk-import-dialog\.is-dragging-file \.gaip-bulk-drop-overlay\s*\{[^}]*opacity:\s*1;[^}]*visibility:\s*visible/);
   assert.match(configContentCss, /gaip-bulk-button-count\s*\{[^}]*min-width:\s*26px;[^}]*height:\s*18px;[^}]*background:\s*rgba\(255,255,255,\.18\);[^}]*font-size:\s*11px/);
@@ -346,7 +346,7 @@ async function main() {
   assert.equal(bulkImportButton.nextElementSibling, organizationLogButton, 'batch import sits immediately before organization log');
   assert.equal(bulkImportButton.lastElementChild.textContent.trim(), '批量导入成员');
   assert.equal(bulkImportButton.getAttribute('aria-label'), '批量导入成员');
-  assert.match(bulkImportButton.querySelector('.ant-btn-icon img').src, /features\/config-center\/assets\/bulk-import-upload\.svg$/, 'top-level batch import reuses the user-provided upload SVG');
+  assert.match(bulkImportButton.querySelector('.ant-btn-icon img').src, /shared\/assets\/icons\/operations\/config-center\/bulk-import-upload\.svg$/, 'top-level batch import reuses the user-provided upload SVG');
   assert.equal(bulkImportButton.className.replace(' gaip-config-bulk-import-button', ''), organizationLogButton.className, 'batch import reuses the organization log button styling');
   assert.equal(d.querySelector('.mainHeader___QGD6D .searchWrap___gp0a3'), null, 'search leaves the table toolbar');
   const toolbar = one('.mainHeader___QGD6D');
@@ -692,9 +692,9 @@ async function main() {
   click('[data-bulk-department-option="all"]');
   assert.equal(bulkDialog.querySelector('[data-bulk-file]').accept, '.xlsx,.xls');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-template-link').getAttribute('download'), '批量人员导入模板.xlsx');
-  assert.match(bulkDialog.querySelector('.gaip-bulk-template-icon img').src, /features\/config-center\/assets\/bulk-import-template-xlsx\.svg$/, 'template download uses the user-provided SVG asset');
+  assert.match(bulkDialog.querySelector('.gaip-bulk-template-icon img').src, /shared\/assets\/icons\/business\/config-center\/bulk-import-template-xlsx\.svg$/, 'template download uses the user-provided SVG asset');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-upload-button').textContent.trim(), '上传文件', 'compact upload button keeps the reference label');
-  assert.match(bulkDialog.querySelector('.gaip-bulk-upload-icon img').src, /features\/config-center\/assets\/bulk-import-upload\.svg$/, 'upload button uses the user-provided SVG asset');
+  assert.match(bulkDialog.querySelector('.gaip-bulk-upload-icon img').src, /shared\/assets\/icons\/operations\/config-center\/bulk-import-upload\.svg$/, 'upload button uses the user-provided SVG asset');
   assert.equal(bulkDialog.querySelector('.gaip-bulk-upload-limit').textContent, '文件大小不得超过10MB，支持 .xlsx、.xls', 'size and format guidance stay beside the upload button');
   assert.equal(bulkDialog.querySelector('[data-bulk-upload-file]'), null, 'file row stays hidden before a file is selected');
   assert.match(bulkDialog.textContent, /单次最多导入 100 人/);
@@ -756,7 +756,7 @@ async function main() {
     const rule = configContentCss.match(new RegExp('\\.gaip-config-page \\.' + cls + ' \\{[^}]*\\}'));
     assert.ok(rule); return rule[0];
   }).join('\n');
-  const layoutDom = new JSDOM('<style>' + fs.readFileSync(path.join(root, 'shared/styles/global-modal.css'), 'utf8') + '\n' + footerRules + '</style><section class="gaip-config-page">' + bulkDialog.outerHTML + '</section>');
+  const layoutDom = new JSDOM('<style>' + fs.readFileSync(path.join(root, 'components/modal/global-modal.css'), 'utf8') + '\n' + footerRules + '</style><section class="gaip-config-page">' + bulkDialog.outerHTML + '</section>');
   const layoutStyle = selector => layoutDom.window.getComputedStyle(layoutDom.window.document.querySelector(selector));
   assert.equal(layoutStyle('[data-bulk-download-fail]').order, '1', 'shared secondary button ordering is present in this regression');
   assert.equal(layoutStyle('.gaip-bulk-footer-leading').order || '0', '0', 'secondary button order cannot move the leading group');
@@ -905,10 +905,11 @@ async function main() {
   click('[data-config-log]');
   const organizationLogDialog = one('.gaip-organization-log-dialog[aria-label="组织架构操作日志"]');
   assert.equal(sharedLogOpened, 0, 'organization log button does not open the shared config log controller');
-  assert.deepEqual(Array.from(organizationLogDialog.querySelectorAll('thead th'), el => el.textContent.trim()), ['时间', '操作人', '操作类型', '渠道', '节点路径', '来源', '变更前 / 变更后']);
-  assert.deepEqual(Array.from(organizationLogDialog.querySelectorAll('colgroup col'), el => el.style.width), ['150px', '120px', '112px', '128px', '220px', '96px', '280px'], 'organization log uses a stable seven-column grid');
-  assert.equal(organizationLogDialog.querySelector('table').style.minWidth, '1106px');
-  assert.match(configContentCss, /gaip-organization-log-dialog \.logTable___m61B9 tbody td\s*\{[^}]*vertical-align:\s*middle;[^}]*line-height:\s*22px/);
+  assert.deepEqual(Array.from(organizationLogDialog.querySelectorAll('.gaip-table__head th'), el => el.textContent.trim()), ['时间', '操作人', '操作类型', '渠道', '节点路径', '来源', '变更前 / 变更后']);
+  const migratedStyle = d.createElement('style'); migratedStyle.textContent = configContentCss.split('/* Static declarations moved unchanged from markup. */')[1]; d.head.appendChild(migratedStyle);
+  assert.deepEqual(Array.from(organizationLogDialog.querySelectorAll('.gaip-table__head colgroup col'), el => w.getComputedStyle(el).width), ['150px', '120px', '112px', '128px', '220px', '96px', '280px'], 'organization log uses a stable seven-column grid');
+  assert.equal(w.getComputedStyle(organizationLogDialog.querySelector('table')).minWidth, '1106px');
+  assert.equal(organizationLogDialog.querySelector('.gaip-table__table').dataset.rowVerticalAlign, 'top');
   assert.match(configContentCss, /gaip-organization-log-dialog \.nodePath___leilu,[\s\S]*changeCell___R8IRq\s*\{\s*line-height:\s*22px/);
   assert.equal(organizationLogDialog.querySelectorAll('tbody tr').length, 10, 'organization log uses its own ten-row page');
   assert.doesNotMatch(organizationLogDialog.textContent, /公告管理|资讯中心/, 'organization log contains only organization records');
@@ -927,15 +928,15 @@ async function main() {
   assert.equal(exportLogRow.children[5].textContent.trim(), '成员导出');
   assert.match(exportLogRow.children[6].textContent, /—.*导出节点「Glory品牌顾问 \/ 销售中心」及其所有子节点成员名单，共 36 条/s);
   assert.doesNotMatch(configContentCss, /organizationLogType___d8KpQ\.is-export/);
-  assert.match(configContentCss, /gaip-organization-log-dialog\s*\{[^}]*width:\s*min\(calc\(100vw - 48px\), 1360px\);[^}]*height:\s*min\(800px, calc\(100dvh - 48px\)\)/);
-  assert.match(configContentCss, /gaip-organization-log-dialog \.ant-table-content\s*\{[^}]*flex:\s*1 1 auto;[^}]*overflow:\s*auto;/);
-  assert.match(configContentCss, /gaip-organization-log-dialog \.paginationWrap___GPhUS\s*\{[^}]*flex:\s*0 0 auto;[^}]*background:\s*#fff/);
-  assert.match(configContentCss, /logTable___m61B9 thead th\s*\{[^}]*position:\s*sticky;[^}]*top:\s*0;/);
-  assert.match(configContentCss, /logTable___m61B9 thead th\s*\{[^}]*background:\s*#f5f5f5;[^}]*box-shadow:\s*inset 0 -1px 0 rgba\(47,54,64,\.08\)/);
-  assert.match(configContentCss, /logTable___m61B9 table\s*\{[^}]*border-collapse:\s*separate;[^}]*border-spacing:\s*0/);
-  click('[data-organization-log-next]');
-  assert.equal(one('[data-organization-log-page]').value, '2');
+  const logHost = organizationLogDialog.querySelector('.gaip-table');
+  assert.ok(w.__GAIP_TABLE__.get(logHost), 'organization log owns a complete shared table instance');
+  assert.equal(logHost.querySelector('.gaip-table__head-band').parentElement, logHost);
+  assert.equal(logHost.querySelector('.gaip-table__pagination').parentElement, logHost);
+  assert.ok(logHost.querySelector('.gaip-table__semantic-head'), 'accessible headers remain in data table');
+  click('[data-table-action="next"]');
+  assert.equal(w.__GAIP_TABLE__.get(logHost).getState().page, 2);
   click('[data-organization-log-close]');
+  assert.equal(w.__GAIP_TABLE__.get(logHost), undefined, 'table is destroyed on close');
   assert.equal(d.querySelector('.gaip-organization-log-dialog'), null, 'organization log closes independently');
   w.location.hash = '#/workspace?gaip-channel=config&gaip-view=announcement-management'; await tick();
   assert.ok(d.querySelector('.gaip-announcement-page'), 'announcement management mounts as an independent config subpage');
@@ -969,14 +970,14 @@ async function main() {
 
 async function testDialogPreviewController() {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', {
-    url: 'file://' + root + '/全局组件/弹窗预览.html?embed=config-member',
+    url: 'file://' + root + '/components/弹窗预览.html?embed=config-member',
     runScripts: 'outside-only', pretendToBeVisual: true
   });
   const w = dom.window, d = w.document;
   w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-  for (const file of ['shared/config/channels.js', 'shared/scripts/global-modal.js', 'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js']) {
+  for (const file of ['shared/assets/icons/local-icons.generated.js', 'shared/config/channels.js', 'components/modal/global-modal.js', 'components/table/global-table.js', 'shared/scripts/organization-store.js', 'components/organization-tree/organization-tree.js', 'channels/config-center/source-markup.js', 'channels/config-center/config-center.js']) {
     w.eval(fs.readFileSync(path.join(root, file), 'utf8'));
   }
   const controller = w.__GAIP_CONFIG_DIALOGS__;
@@ -1063,7 +1064,7 @@ async function testDialogPreviewController() {
   dialog = controller.openOrganizationLog();
   assert.equal(dialog.open, true);
   assert.equal(dialog.getAttribute('aria-label'), '组织架构操作日志');
-  assert.equal(dialog.querySelectorAll('thead th').length, 7);
+  assert.equal(dialog.querySelectorAll('.gaip-table__head th').length, 7);
   dialog.querySelector('[data-organization-log-close]').click();
   dialog = controller.openBulkImport();
   assert.equal(dialog.open, true);

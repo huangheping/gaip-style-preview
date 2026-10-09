@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "meaning": "日历",
+      "number": 1,
+      "versions": [
+        "icon-f6e1976f67d7fbe0",
+        "icon-3e487ba1d4df0942",
+        "icon-73775c2a4b912e24",
+        "icon-3cb2c476c77ad91b"
+      ]
+    },
+    {
+      "meaning": "时间",
+      "number": 2,
+      "versions": [
+        "icon-03a1381b25ae48f9",
+        "icon-c43de6663960cbfd"
+      ]
+    },
+    {
+      "meaning": "搜索",
+      "number": 3,
+      "versions": [
+        "icon-1fae7acf5ef4a9f2",
+        "icon-ff2f9d745a6693d0",
+        "icon-43dfc3e82aa2fd1f",
+        "icon-03046290ec7d14a9",
+        "icon-c56034a61b27f9b5",
+        "icon-4917ff2c5d2d38bb",
+        "icon-4d23db403598ba11"
+      ]
+    },
+    {
+      "meaning": "下拉",
+      "number": 4,
+      "versions": [
+        "icon-d08c28689e474b75",
+        "icon-4f52b68d3c0be399",
+        "icon-cc91701fa4a79207",
+        "icon-d2fd6908b3d14227",
+        "icon-6a18348b61a79eab",
+        "css-select-down"
+      ]
+    },
+    {
+      "meaning": "播放",
+      "number": 5,
+      "versions": [
+        "icon-7a99c3d804c23fc2",
+        "icon-252f12180e3f755b",
+        "icon-1f48991dd45d711a",
+        "icon-c54e1dbcc4265e93"
+      ]
+    },
+    {
+      "meaning": "返回",
+      "number": 6,
+      "versions": [
+        "icon-584212a89617824e",
+        "icon-41ac2191056b5b66",
+        "icon-db59e77ba2ad106c"
+      ]
+    },
+    {
+      "meaning": "分享",
+      "number": 7,
+      "versions": [
+        "icon-c9d5b8d0f22e112f",
+        "icon-33cfd452dec2dc4a"
+      ]
+    },
+    {
+      "meaning": "复制",
+      "number": 8,
+      "versions": [
+        "icon-5d41499e63c1c4bc",
+        "icon-7795fc48c3d57140",
+        "icon-3b0d0558731b2255"
+      ]
+    },
+    {
+      "meaning": "关闭",
+      "number": 9,
+      "versions": [
+        "icon-251dd1d04e638b1f",
+        "icon-3c6fcb1fb707b162",
+        "icon-9a66d0935f2dbfcf",
+        "icon-8e3aff34352f88db",
+        "icon-4ad48888a2f0c17a",
+        "icon-de6ee38f320ac019",
+        "icon-402e9abaf0e4e749",
+        "icon-ccd80ce3b9744ac6"
+      ]
+    },
+    {
+      "meaning": "进入",
+      "number": 10,
+      "versions": [
+        "icon-ac5e56551474a06e",
+        "icon-a609f01df7395f74",
+        "icon-714f5c70e3c46481",
+        "icon-bb3d5135fc7f254c"
+      ]
+    },
+    {
+      "meaning": "删除",
+      "number": 11,
+      "versions": [
+        "icon-70ae41eafa150f5b",
+        "icon-917e3896c5766bec",
+        "icon-4818f1f86dc4c0e2",
+        "icon-90c281163cb26fb8"
+      ]
+    },
+    {
+      "meaning": "下载",
+      "number": 12,
+      "versions": [
+        "icon-6de7ca34bd93f293",
+        "icon-4b2502caebdec706",
+        "icon-8be3309a83099a9f",
+        "icon-ad19e85afba3275b",
+        "icon-bc42dec1dbe589c2"
+      ]
+    },
+    {
+      "meaning": "组织文件夹",
+      "number": 13,
+      "versions": [
+        "icon-29fe91add567d07e",
+        "icon-d8931f4632723688"
+      ]
+    },
+    {
+      "meaning": "dropdownIcon___khfyv ant dropdown menu item icon",
+      "number": 14,
+      "versions": [
+        "icon-4aa9a6ae0218fda2",
+        "icon-64dee65bd523ed11",
+        "icon-c5d48c48ef5695b2"
+      ]
+    },
+    {
+      "meaning": "方案",
+      "number": 15,
+      "versions": [
+        "icon-4a5f894e8c367d1a",
+        "icon-a3bc2e4f92d9a160",
+        "icon-a85c446ff732380f"
+      ]
+    },
+    {
+      "meaning": "客户",
+      "number": 16,
+      "versions": [
+        "icon-f18c43112162b068",
+        "icon-0d2c00fbc7b1f16a"
+      ]
+    },
+    {
+      "meaning": "附件",
+      "number": 17,
+      "versions": [
+        "icon-745d7a544c1b2948",
+        "icon-3259b7386d35859a",
+        "icon-a34670e7955e096d"
+      ]
+    },
+    {
+      "meaning": "PDF 文件",
+      "number": 18,
+      "versions": [
+        "icon-8bfb1ed05f16cbc7",
+        "icon-42ed0f7abf2fb3ef"
+      ]
+    },
+    {
+      "meaning": "分类标签",
+      "number": 19,
+      "versions": [
+        "icon-154cd391b199c051",
+        "icon-9c9cad42effd3bee"
+      ]
+    },
+    {
+      "meaning": "更多",
+      "number": 20,
+      "versions": [
+        "icon-36a6c815c0c3b16b",
+        "icon-e6f7d3acfe3bf9e8"
+      ]
+    },
+    {
+      "meaning": "警告",
+      "number": 21,
+      "versions": [
+        "icon-94663ee005974040",
+        "icon-1e91c08983bc3ab3",
+        "icon-eab77bb84da3b02f"
+      ]
+    },
+    {
+      "meaning": "空状态",
+      "number": 22,
+      "versions": [
+        "icon-90410eba061603ca",
+        "icon-dff1cad15cc97a05"
+      ]
+    },
+    {
+      "meaning": "全屏",
+      "number": 23,
+      "versions": [
+        "icon-17f5fc0993352634",
+        "icon-7e5c5b3bd63585a2"
+      ]
+    },
+    {
+      "meaning": "上传",
+      "number": 24,
+      "versions": [
+        "icon-a14d71366a003b10",
+        "icon-a20397af6a6d00eb",
+        "icon-67397a77fb6ad1c7",
+        "icon-3a3f837e06ce2991"
+      ]
+    },
+    {
+      "meaning": "设置",
+      "number": 25,
+      "versions": [
+        "icon-1f30c6c64021a008",
+        "icon-dbda0e749a06b613"
+      ]
+    },
+    {
+      "meaning": "提示",
+      "number": 26,
+      "versions": [
+        "icon-0f35adf493bbed91",
+        "icon-225f35cdf05d7ac7",
+        "icon-a56602a238e50598",
+        "icon-d30befcdf5f5b983",
+        "icon-d78ade540ee40708"
+      ]
+    },
+    {
+      "meaning": "完成",
+      "number": 27,
+      "versions": [
+        "icon-1008130a9a300797",
+        "icon-64f0f5c326932aa7",
+        "icon-8ffbbe796be60c4e",
+        "icon-e5a0db571b4c833c",
+        "icon-2319892a326dd84a",
+        "icon-0d0018ea196dbb2d"
+      ]
+    },
+    {
+      "meaning": "晚报",
+      "number": 28,
+      "versions": [
+        "icon-a2cac30aa164be06",
+        "icon-05bfa1c29705a19f"
+      ]
+    },
+    {
+      "meaning": "午报",
+      "number": 29,
+      "versions": [
+        "icon-69dce1a4a5f12562",
+        "icon-c47154c540a4df15"
+      ]
+    },
+    {
+      "meaning": "下午茶",
+      "number": 30,
+      "versions": [
+        "icon-28612d3ccedb5f5b",
+        "icon-0d2a8e55495c519f"
+      ]
+    },
+    {
+      "meaning": "早报",
+      "number": 31,
+      "versions": [
+        "icon-87550bc25a9782b7",
+        "icon-916419cafcbce673"
+      ]
+    },
+    {
+      "meaning": "filter",
+      "number": 32,
+      "versions": [
+        "icon-f820e7e129fc42e3",
+        "icon-077c92add89e5b6e"
+      ]
+    },
+    {
+      "meaning": "folder",
+      "number": 33,
+      "versions": [
+        "icon-edb91c48b0252702",
+        "raster-21e93d2d4740f8b6"
+      ]
+    },
+    {
+      "meaning": "精选",
+      "number": 34,
+      "versions": [
+        "icon-4e8b467a0137b417",
+        "icon-3c6a1311092a7350"
+      ]
+    }
+  ]
+}

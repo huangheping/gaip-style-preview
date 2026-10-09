@@ -1,0 +1,412 @@
+/* 主导航唯一自有样式源。频道只提供菜单内容与状态，不另写导航皮肤。
+ * 保留既有 Umi/Ant DOM 与选择器优先级；字体从 global-font.css 继承。 */
+
+/* 图标与一级叶子 */
+/* Shared main-navigation icon contract. SVG editing sources: shared/assets/icons/navigation/.
+ * All 12 glyphs are inline SVG templates owned by markup-learning-nav.html. */
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-1.css */.ant-layout-sider{
+  --gaip-nav-row-height: 32px;
+  --gaip-nav-parent-height: 36px;
+  --gaip-nav-icon-size: 18px;
+  --gaip-nav-glyph-size: 16px;
+  --gaip-nav-icon-default: #2f3640;
+  --gaip-nav-icon-hover: #025b52;
+  --gaip-nav-icon-current: #025b52;
+}/* @gaip-icon:end */
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-2.css */.ant-layout-sider .ant-pro-base-menu-inline-item-icon{
+  width: var(--gaip-nav-icon-size);
+  height: var(--gaip-nav-icon-size);
+  opacity: 1 !important;
+}/* @gaip-icon:end */
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-3.css */.ant-layout-sider .gaip-main-nav-icon{
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--gaip-nav-icon-size) !important;
+  height: var(--gaip-nav-icon-size) !important;
+  min-width: var(--gaip-nav-icon-size);
+  flex: 0 0 var(--gaip-nav-icon-size);
+  color: var(--gaip-nav-icon-default) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+  filter: none !important;
+  transition: none !important;
+  line-height: 0;
+}/* @gaip-icon:end */
+
+.ant-layout-sider .ant-menu-root > .ant-menu-item:is(:hover, :focus-visible, .ant-menu-item-active) .gaip-main-nav-icon,
+.ant-layout-sider .gaip-main-menu-parent:is(:hover, :focus-visible) .gaip-main-nav-icon {
+  color: var(--gaip-nav-icon-hover) !important;
+}
+
+.ant-layout-sider .ant-menu-root > .ant-menu-item.ant-menu-item-selected .gaip-main-nav-icon,
+.ant-layout-sider .gaip-main-menu-group.is-current .gaip-main-menu-parent .gaip-main-nav-icon {
+  color: var(--gaip-nav-icon-current) !important;
+}
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-4.css */.ant-layout-sider .gaip-main-nav-icon > .gaip-main-nav-svg{
+  display: block !important;
+  width: var(--gaip-nav-glyph-size) !important;
+  height: var(--gaip-nav-glyph-size) !important;
+  flex: none;
+  color: inherit;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transition: none !important;
+}/* @gaip-icon:end */
+
+.gaip-learning-menu-item .ant-menu-title-content {
+  display: block;
+  min-width: 0;
+}
+
+.gaip-learning-menu-link {
+  display: block;
+  color: inherit;
+}
+
+.gaip-learning-menu-title {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-5.css */.gaip-learning-menu-icon{
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: inherit;
+  place-items: center;
+}/* @gaip-icon:end */
+
+.ant-menu-item.gaip-learning-menu-item.ant-menu-item-selected,
+.ant-menu-item.gaip-news-menu-item.ant-menu-item-selected {
+  color: #025b52 !important;
+  background: rgba(36, 212, 201, 0.1) !important;
+}
+
+/* 侧栏底部、排序、滚动及公共父项几何 */
+.ant-pro-layout .ant-pro-sider-footer.gaip-sidebar-hub {
+  box-sizing: border-box;
+  padding-block-end: 0 !important;
+}
+
+.gaip-sidebar-hub > p {
+  display: none !important;
+}
+
+.gaip-sidebar-hub-link {
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+}
+
+.gaip-sidebar-hub-link .gaip-sidebar-hub-image {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  object-fit: cover;
+}
+
+/* 本地排序预览：不动节点、宽度、图标、字号、颜色及点击区域。
+   flex 不再折叠相邻外边距，必要的边距归一仅用于保留原 4px 间距与
+   父项设定高度；子菜单不参与重排。展开与折叠侧栏保持同一视觉顺序。 */
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered {
+  display: flex !important;
+  flex-direction: column;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li {
+  flex-shrink: 0;
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li:first-child {
+  margin-top: 4px !important;
+}
+#root .ant-layout-sider .ant-menu-root.gaip-main-menu-ordered > li > .gaip-main-menu-parent.ant-menu-submenu-title {
+  margin-block: 0 !important;
+}
+
+/* 菜单滚动层贴近侧栏右缘，并始终显示在百宝箱的上延底图之上。 */
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin-right: -8px;
+  padding-right: 12px;
+  scrollbar-color: rgba(47, 54, 64, 0.14) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb {
+  min-height: 40px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(47, 54, 64, 0.14) !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(47, 54, 64, 0.28) !important;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-nav-scroll::-webkit-scrollbar-thumb:active {
+  background: rgba(47, 54, 64, 0.4) !important;
+}
+
+.ant-layout-sider-children > .ant-pro-sider-footer {
+  position: relative;
+  z-index: 0;
+}
+
+.ant-layout-sider-children > .gaip-sidebar-hub::before {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 只调整侧栏菜单行的高度/行高；不限制包含二级菜单的分组容器高度。 */
+#root .ant-layout-sider .ant-menu-root .ant-menu-item,
+#root .ant-layout-sider .ant-menu-root .ant-menu-submenu-title {
+  height: var(--gaip-nav-row-height) !important;
+  line-height: var(--gaip-nav-row-height) !important;
+}
+
+/* 可展开的主导航父项共用同一布局和箭头动效。 */
+#root .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-main-menu-parent.ant-menu-submenu-title {
+  position: relative;
+  display: flex !important;
+  box-sizing: border-box;
+  width: calc(100% - 8px) !important;
+  height: var(--gaip-nav-parent-height) !important;
+  align-items: center;
+  margin: 4px 0 !important;
+  padding: 0 40px 0 24px !important;
+  cursor: pointer;
+  line-height: var(--gaip-nav-parent-height) !important;
+  text-align: left;
+}
+
+#root .gaip-main-menu-parent > .ant-menu-title-content {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+#root .gaip-main-menu-title {
+  display: grid !important;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 13px !important;
+}
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-6.css */#root .gaip-main-menu-leading-icon{
+  display: grid !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  align-items: center;
+  justify-items: center;
+  line-height: 0;
+}/* @gaip-icon:end */
+
+#root .gaip-main-menu-label {
+  min-width: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow {
+  position: absolute !important;
+  inset-inline-end: 16px !important;
+  top: 50% !important;
+  right: 16px !important;
+  display: grid !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 !important;
+  color: currentColor;
+  place-items: center;
+  transform: translateY(-50%) rotate(0deg) !important;
+  transform-origin: 50% 50%;
+  transition: transform 180ms cubic-bezier(.2, 0, 0, 1), color 160ms ease;
+}
+
+#root .gaip-main-menu-group.is-open .gaip-main-menu-caret.ant-menu-submenu-arrow {
+  transform: translateY(-50%) rotate(180deg) !important;
+}
+
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow::before,
+#root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow::after {
+  display: none !important;
+}
+
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-7.css */#root .gaip-main-menu-caret-icon{
+  display: block;
+  width: 12px !important;
+  height: 12px !important;
+}/* @gaip-icon:end */
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-parent.ant-menu-submenu-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0 !important;
+}
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-parent > .ant-menu-title-content,
+#root .ant-layout-sider-collapsed .gaip-main-menu-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+#root .ant-layout-sider-collapsed .gaip-main-menu-label,
+#root .ant-layout-sider-collapsed .gaip-main-menu-caret {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #root .gaip-main-menu-group .gaip-main-menu-caret.ant-menu-submenu-arrow {
+    transition: none;
+  }
+}
+
+/* 父项共用悬停状态 */
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:hover,
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-toggle.ant-menu-submenu-title:hover {
+  color: rgba(0,0,0,.88);
+  background-color: rgba(0,0,0,.03) !important;
+}
+
+/* 财富值组：原节点与展开状态适配 */
+.gaip-wealth-menu-group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title {
+  color: rgba(0, 0, 0, 0.65);
+  background: transparent;
+  border-left: 4px solid transparent !important;
+  border-radius: 0;
+  font-size: 14px;
+  pointer-events: auto;
+}
+
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-parent.ant-menu-submenu-title {
+  background-color: transparent !important;
+  border-left-color: transparent !important;
+  color: #025b52;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-parent.ant-menu-submenu-title:hover {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  color: #025b52;
+}
+
+.gaip-wealth-menu-icon {
+  color: currentColor;
+}
+
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:active .gaip-wealth-menu-caret,
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-parent.ant-menu-submenu-title:hover .gaip-wealth-menu-caret {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-current .gaip-wealth-menu-caret {
+  color: #025b52;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group > .gaip-wealth-submenu {
+  display: none !important;
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+  background: transparent !important;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group.is-open > .gaip-wealth-submenu {
+  display: block !important;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group > .gaip-wealth-submenu > .gaip-wealth-subitem.ant-menu-item {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 0 55px !important;
+  border-left: 4px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+.gaip-wealth-subitem.ant-menu-item::after {
+  display: none !important;
+}
+
+.gaip-wealth-subitem a {
+  display: block;
+  height: 100%;
+  color: inherit;
+}
+
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-wealth-menu-group > .gaip-wealth-submenu > .gaip-wealth-subitem.ant-menu-item-selected {
+  color: #025b52 !important;
+  background: rgba(36, 212, 201, 0.1) !important;
+  border-left-color: #24d4c9 !important;
+}
+
+
+/* 配置组：原节点与 hidden 状态适配 */
+.gaip-config-menu { list-style: none; }
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-toggle.ant-menu-submenu-title {
+  pointer-events: auto !important; background: transparent; border-left: 4px solid transparent !important;
+  color: rgba(0,0,0,.65); border-radius: 0;
+}
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-menu.is-current .gaip-config-toggle.ant-menu-submenu-title {
+  color: #025b52 !important; background-color: transparent !important; border-left-color: transparent !important;
+}
+.ant-pro-layout .ant-layout-sider:not(.ant-layout-sider-collapsed) .gaip-config-menu.is-current .gaip-config-toggle.ant-menu-submenu-title:hover {
+  color: #025b52 !important; background-color: rgba(0,0,0,.03) !important;
+}
+/* @gaip-icon:start shared/assets/icons/forms/css/shared--styles--main-nav-8.css */.gaip-config-original-icon{ display: grid; width: 18px; height: 18px; color: currentColor; place-items: center; }/* @gaip-icon:end */
+#root .gaip-config-menu .ant-menu-sub .ant-pro-base-menu-inline-item-icon { display: none; }
+#root .gaip-config-menu .ant-menu-sub { background: transparent !important; padding: 0 !important; }
+#gaip-config-submenu[hidden] { display: none !important; }
+#root .gaip-config-menu .ant-menu-sub > .ant-menu-item { margin: 0 !important; padding: 0 0 0 55px !important; width: 100% !important; border-left: 4px solid transparent !important; border-radius: 0 !important; }
+#root .gaip-config-menu .ant-menu-sub > .ant-menu-item-selected { color: #025b52 !important; background: rgba(36,212,201,.1) !important; border-left-color: #24d4c9 !important; }
+.gaip-config-menu .ant-menu-item a { display: block; color: inherit; }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .gaip-wealth-menu-group * {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

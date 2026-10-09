@@ -1,0 +1,1 @@
+.gaip-filter-bar__option[aria-selected="true"]::after{ content: ''; position: absolute; right: 12px; top: 12px; width: 5px; height: 9px; border: solid var(--filter-brand, var(--gaip-color-brand, #025b52)); border-width: 0 2px 2px 0; transform: rotate(45deg); }

@@ -87,9 +87,9 @@
         }
       },
       "sources": [
-        "AI Agent/AI Agent.css",
-        "AI Agent/AI Agent本地Mock.js",
-        "AI Agent/templates/markup-AI Agent本地Mock.html",
+        "components/ai-agent/AI Agent.css",
+        "components/ai-agent/AI Agent本地Mock.js",
+        "components/ai-agent/templates/markup-AI Agent本地Mock.html",
         "shared/assets/icons/operations/ai-agent/语音输入.svg",
         "shared/assets/icons/operations/ai-agent/停止生成.svg"
       ],
@@ -98,7 +98,7 @@
         "level": "needs-recheck",
         "checkedAt": "2026-10-09",
         "evidence": [
-          "knowledge/变更/2026-10-09-Web-AI-Agent上传.md"
+          "outputs/agent-voice-spacing-20261009/acceptance.md"
         ],
         "gaps": [
           "源码与层叠检查通过；此前截图仅为10月8日旧版证据。本次本地file页面被URL安全策略拒绝，当前像素与实际间距未复验。"

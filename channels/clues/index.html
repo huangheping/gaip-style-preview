@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>线索中心 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/clues/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="clues-component-2">
+  <div data-component="componentType" data-kind="jsx"></div>
+</template>
+
+<template id="clues-emptyHint">
+  <div class="emptyHint___O72tt" data-children="single" data-kind="jsx">
+    暂无可分配对象
+  </div>
+</template>
+
+<template id="clues-checkIcon">
+  <div data-component="checkIconType" data-ui-class-name="checkIcon___ugAdf" data-kind="jsx"></div>
+</template>
+
+<template id="clues-div">
+  <div data-children="array" data-props="divProps" data-key="divKey" data-kind="jsxs">
+    <div class="targetInfo___MSu6G" data-children="array" data-kind="jsxs">
+      <span class="targetName___fjI_t" data-children="single" data-kind="jsx">
+        <template data-slot="targetNameContent"></template>
+      </span>
+      <span class="targetRole___nmdYE" data-children="array" data-kind="jsxs">
+        <template data-slot="targetRoleContent"></template>
+        <template data-text=" / "></template>
+        <template data-slot="targetRoleContent2"></template>
+      </span>
+    </div>
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="clues-targetList">
+  <div class="targetList___PWUAa" data-children="single" data-kind="jsx">
+    <template data-slot="targetListContent"></template>
+  </div>
+</template>
+
+<template id="clues-component">
+  <div data-component="componentType" data-ui-title="分配线索" data-children="array" data-props="componentProps2" data-kind="jsxs">
+    <div class="leadInfo___MIupA" data-children="array" data-kind="jsxs">
+      <div class="leadName___JNaBl" data-children="single" data-kind="jsx">
+        <template data-slot="leadNameContent"></template>
+      </div>
+      <div class="leadMeta___lTAwQ" data-children="array" data-kind="jsxs">
+        <span class="leadPhone___QS7EX" data-children="single" data-kind="jsx">
+          <template data-slot="leadPhoneContent"></template>
+        </span>
+        <span class="typeTag___HYqGr" data-children="single" data-kind="jsx">
+          <template data-slot="typeTagContent"></template>
+        </span>
+      </div>
+    </div>
+    <div class="section___YwZl0" data-children="array" data-kind="jsxs">
+      <div class="sectionTitle___psMAJ" data-children="single" data-kind="jsx">
+        <template data-slot="sectionTitleContent"></template>
+      </div>
+      <div data-component="componentType2" data-children="array" data-props="componentProps" data-kind="jsxs">
+        <template data-slot="componentContent"></template>
+        <template data-slot="componentContent2"></template>
+      </div>
+    </div>
+    <div class="section___YwZl0" data-children="array" data-kind="jsxs">
+      <div class="sectionTitle___psMAJ" data-children="single" data-kind="jsx">
+        分配备注
+      </div>
+      <textarea class="textarea___dx4G8" placeholder="请输入备注内容" data-props="textareaProps" data-kind="jsx"></textarea>
+    </div>
+    <div class="footer___amsp6" data-children="array" data-kind="jsxs">
+      <button type="button" class="btnCancel___BC6q2" data-children="single" data-props="btnCancelProps" data-kind="jsx">
+        取消
+      </button>
+      <button type="button" class="btnConfirm___j71RF" data-children="single" data-props="btnConfirmProps" data-kind="jsx">
+        <template data-slot="btnConfirmContent"></template>
+      </button>
+    </div>
+  </div>
+</template>
+
+<template id="clues-span">
+  <span data-children="single" data-props="spanProps" data-kind="jsx">
+    <template data-slot="spanContent"></template>
+  </span>
+</template>
+
+<template id="clues-component-4">
+  <div data-component="componentType" data-kind="jsx"></div>
+</template>
+
+<template id="clues-field">
+  <div class="field___liuLu" data-children="array" data-kind="jsxs">
+    <label class="label___X8DRm" data-children="array" data-kind="jsxs">
+      关闭原因
+      <span class="required___AKcPW" data-children="single" data-kind="jsx">
+        *
+      </span>
+    </label>
+    <div data-component="selType" data-ui-class-name="sel___BcaOJ" data-ui-placeholder="请选择关闭原因" data-props="selProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-previewItem">
+  <div class="previewItem___ARNp7" data-children="array" data-key="previewItemKey" data-kind="jsxs">
+    <img class="previewImg___PEirZ" data-props="previewImgProps" data-kind="jsx" />
+    <div data-component="removeIconType" data-ui-class-name="removeIcon___A9kHf" data-props="removeIconProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-uploadBtn">
+  <label class="uploadBtn___WBpgy" data-children="array" data-kind="jsxs">
+    <div data-component="uploadPlusType" data-ui-class-name="uploadPlus___y6lZP" data-kind="jsx"></div>
+    <span class="uploadText___VRcVH" data-children="single" data-kind="jsx">
+      上传图片
+    </span>
+    <input type="file" data-ui-accept=".jpg,.jpeg,.png" class="gaip-clues-source-style-1" data-props="gaip_clues_source_style_1Props" data-kind="jsx" />
+  </label>
+</template>
+
+<template id="clues-component-5">
+  <div data-component="componentType" data-props="componentProps" data-key="componentKey" data-kind="jsx"></div>
+</template>
+
+<template id="clues-errorBar">
+  <div class="errorBar___Y__NS" data-children="single" data-kind="jsx">
+    <template data-slot="errorBarContent"></template>
+  </div>
+</template>
+
+<template id="clues-component-3">
+  <div data-component="componentType" data-children="array" data-props="componentProps2" data-kind="jsxs">
+    <div class="leadInfo___JO_ec" data-children="array" data-kind="jsxs">
+      <div class="leadName___U6FIn" data-children="single" data-kind="jsx">
+        <template data-slot="leadNameContent"></template>
+      </div>
+      <div class="leadPhone___yN61k" data-children="single" data-kind="jsx">
+        <template data-slot="leadPhoneContent"></template>
+      </div>
+    </div>
+    <template data-slot="componentContent"></template>
+    <div class="field___liuLu" data-children="array" data-kind="jsxs">
+      <label class="label___X8DRm" data-children="array" data-kind="jsxs">
+        <template data-slot="labelContent"></template>
+        <span class="required___AKcPW" data-children="single" data-kind="jsx">
+          *
+        </span>
+      </label>
+      <textarea class="textarea___Rf4rJ" data-props="textareaProps" data-kind="jsx"></textarea>
+    </div>
+    <div class="field___liuLu" data-children="array" data-kind="jsxs">
+      <label class="label1___rlkAs" data-children="array" data-kind="jsxs">
+        截图凭证
+        <span class="required___AKcPW" data-children="single" data-kind="jsx">
+          *
+        </span>
+      </label>
+      <div class="tipBar___WqW5B" data-children="single" data-kind="jsx">
+        终态必须有文字说明和截图凭证，提交后将保留在详情中用于复盘。
+      </div>
+      <div class="previewGrid___Oiidc" data-children="array" data-kind="jsxs">
+        <template data-slot="previewGridContent"></template>
+        <template data-slot="previewGridContent2"></template>
+      </div>
+      <div class="uploadHint___UFRFL" data-children="single" data-kind="jsx">
+        支持.jpg .jpeg .png格式
+      </div>
+      <div class="gaip-clues-source-style-2" data-children="single" data-kind="jsx">
+        <div data-component="componentType2" data-children="single" data-props="componentProps" data-kind="jsx">
+          <template data-slot="componentContent2"></template>
+        </div>
+      </div>
+    </div>
+    <template data-slot="componentContent3"></template>
+    <div class="footer___pW89H" data-children="array" data-kind="jsxs">
+      <button type="button" class="btnCancel___JnnA7" data-children="single" data-props="btnCancelProps" data-kind="jsx">
+        取消
+      </button>
+      <button type="button" data-children="single" data-props="buttonProps" data-kind="jsx">
+        <template data-slot="buttonContent"></template>
+      </button>
+    </div>
+  </div>
+</template>
+
+<template id="clues-gaip-clues-source-style-3">
+  <div data-component="gaip_clues_source_style_3Type" data-ui-class-name="gaip-clues-source-style-3" data-props="gaip_clues_source_style_3Props" data-kind="jsx"></div>
+</template>
+
+<template id="clues-evidenceImagePlaceholder">
+  <span class="evidenceImagePlaceholder___uoLWm" data-kind="jsx"></span>
+</template>
+
+<template id="clues-closeReasonRow">
+  <div class="closeReasonRow___IssOb" data-children="array" data-kind="jsxs">
+    <span class="closeReasonLabel___IhFYI" data-children="single" data-kind="jsx">
+      关闭原因：
+    </span>
+    <span class="closeReasonValue___FzUPH" data-children="single" data-kind="jsx">
+      <template data-slot="closeReasonValueContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="clues-recordContent">
+  <div class="recordContent___C6blV" data-children="single" data-kind="jsx">
+    <template data-slot="recordContentContent"></template>
+  </div>
+</template>
+
+<template id="clues-evidenceImageWrap">
+  <div class="evidenceImageWrap___IukFa" data-children="single" data-key="evidenceImageWrapKey" data-kind="jsx">
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-evidenceImages">
+  <div class="evidenceImages___c6G2_" data-children="single" data-kind="jsx">
+    <div data-component="componentType" data-children="single" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="clues-evidenceCard">
+  <div class="evidenceCard___BpXYu" data-children="array" data-kind="jsxs">
+    <h4 class="cardTitle___Vxq6D" data-children="single" data-kind="jsx">
+      <template data-slot="cardTitleContent"></template>
+    </h4>
+    <template data-slot="evidenceCardContent"></template>
+    <div data-children="array" data-props="divProps" data-kind="jsxs">
+      <div class="recordHeader___M2m98" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-props="spanProps" data-kind="jsx">
+          <template data-slot="spanContent"></template>
+        </span>
+        <span data-children="single" data-props="spanProps2" data-kind="jsx">
+          <template data-slot="spanContent2"></template>
+        </span>
+      </div>
+      <template data-slot="divContent"></template>
+    </div>
+    <template data-slot="evidenceCardContent2"></template>
+  </div>
+</template>
+
+<template id="clues-loadingWrap">
+  <div class="loadingWrap___L2kv8" data-children="single" data-kind="jsx">
+    暂无数据
+  </div>
+</template>
+
+<template id="clues-loadingOverlay">
+  <div class="loadingOverlay___uPSwR" data-children="single" data-kind="jsx">
+    <div data-component="componentType" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-component-7">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="clues-component-8">
+  <div data-component="componentType" data-ui-title="超时未跟进" data-children="single" data-kind="jsx">
+    <img alt="超时" class="timeoutIcon___mKeOt" data-props="timeoutIconProps" data-kind="jsx" />
+  </div>
+</template>
+
+<template id="clues-duplicateRow">
+  <div class="duplicateRow___azDd8" data-children="array" data-props="duplicateRowProps" data-key="duplicateRowKey" data-kind="jsxs">
+    <span class="dupName___zQzMJ" data-children="single" data-kind="jsx">
+      <template data-slot="dupNameContent"></template>
+    </span>
+    <span class="dupMobile___tcNSc" data-children="single" data-kind="jsx">
+      <template data-slot="dupMobileContent"></template>
+    </span>
+    <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+    <span class="dupSource___YT__y" data-children="single" data-kind="jsx">
+      <template data-slot="dupSourceContent"></template>
+    </span>
+    <span class="dupDate___gF76a" data-children="single" data-kind="jsx">
+      <template data-slot="dupDateContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="clues-duplicateListWrap">
+  <div class="duplicateListWrap___GADGw" data-children="single" data-kind="jsx">
+    <template data-slot="duplicateListWrapContent"></template>
+  </div>
+</template>
+
+<template id="clues-duplicateAlert">
+  <div class="duplicateAlert___soPjy" data-children="array" data-kind="jsxs">
+    <div class="duplicateAlertHeader___DWYfY" data-children="array" data-kind="jsxs">
+      <span class="duplicateAlertText___oe8zr" data-children="array" data-kind="jsxs">
+        <img alt="" class="tipsIcon___E0PuJ" data-props="tipsIconProps" data-kind="jsx" />
+        <template data-text="检测到 "></template>
+        <template data-slot="duplicateAlertTextContent"></template>
+        <template data-text=" 条重复线索（手机号或邮箱相同）"></template>
+      </span>
+      <span class="duplicateToggle___XFYLS" data-children="array" data-props="duplicateToggleProps" data-kind="jsxs">
+        <template data-slot="duplicateToggleContent"></template>
+        <template data-text=" >"></template>
+      </span>
+    </div>
+    <template data-slot="duplicateAlertContent"></template>
+  </div>
+</template>
+
+<template id="clues-component-9">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="clues-changeTypeRow">
+  <span class="changeTypeRow___Jp5X5" data-children="array" data-kind="jsxs">
+    <span class="changeTypeBox___yLB68" data-children="array" data-kind="jsxs">
+      <div data-component="changeTypeSelectType" data-ui-size="small" data-ui-class-name="changeTypeSelect___MbOaX" data-ui-variant="borderless" data-props="changeTypeSelectProps" data-kind="jsx"></div>
+      <span class="changeTypeConfirmBtn___CzKa4" data-children="single" data-props="changeTypeConfirmBtnProps" data-kind="jsx">
+        <template data-slot="changeTypeConfirmBtnContent"></template>
+      </span>
+    </span>
+    <span class="changeCancelLink___hrSTt" data-children="single" data-props="changeCancelLinkProps" data-kind="jsx">
+      取消
+    </span>
+  </span>
+</template>
+
+<template id="clues-changeTypeBox">
+  <span class="changeTypeBox___yLB68" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+    <span class="changeTypeConfirmBtn___CzKa4" data-children="single" data-props="changeTypeConfirmBtnProps" data-kind="jsx">
+      变更
+    </span>
+  </span>
+</template>
+
+<template id="clues-component-10">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="clues-extraInfoRow">
+  <div class="extraInfoRow___qMwId" data-children="array" data-key="extraInfoRowKey" data-kind="jsxs">
+    <span class="extraInfoLabel___rZ82i" data-children="single" data-kind="jsx">
+      <template data-slot="extraInfoLabelContent"></template>
+    </span>
+    <span class="extraInfoValue___MEk6s" data-children="single" data-kind="jsx">
+      <template data-slot="extraInfoValueContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="clues-card">
+  <div class="card___NbYXL" data-children="array" data-kind="jsxs">
+    <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+      表单原始信息
+    </h4>
+    <div class="extraInfoList____hbxE" data-children="single" data-kind="jsx">
+      <template data-slot="extraInfoListContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="clues-component-11">
+  <div data-component="componentType" data-ui-title="转化凭证" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-component-12">
+  <div data-component="componentType" data-ui-title="关闭凭证" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-btnOutlineGreen">
+  <button type="button" class="btnOutlineGreen___txBCo" data-children="array" data-props="btnOutlineGreenProps" data-kind="jsxs">
+    <img alt="" class="btnIcon___mKIW3" data-props="btnIconProps" data-kind="jsx" />
+    <template data-text=" 分配给"></template>
+  </button>
+</template>
+
+<template id="clues-btnOutlineBlue">
+  <button type="button" class="btnOutlineBlue____jOSD" data-children="array" data-props="btnOutlineBlueProps" data-kind="jsxs">
+    <img alt="" class="btnIcon___mKIW3" data-props="btnIconProps" data-kind="jsx" />
+    <template data-text=" 标记已转化"></template>
+  </button>
+</template>
+
+<template id="clues-btnOutlineRed">
+  <button type="button" class="btnOutlineRed___bMaQv" data-children="array" data-props="btnOutlineRedProps" data-kind="jsxs">
+    <img alt="" class="btnIcon___mKIW3" data-props="btnIconProps" data-kind="jsx" />
+    <template data-text=" 标记已关闭"></template>
+  </button>
+</template>
+
+<template id="clues-card-2">
+  <div class="card___NbYXL" data-children="array" data-kind="jsxs">
+    <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+      操作
+    </h4>
+    <div class="actionBtns___SYMAT" data-children="array" data-kind="jsxs">
+      <template data-slot="actionBtnsContent"></template>
+      <template data-slot="actionBtnsContent2"></template>
+      <template data-slot="actionBtnsContent3"></template>
+    </div>
+  </div>
+</template>
+
+<template id="clues-recordContent-2">
+  <div class="recordContent___gNmgS" data-children="single" data-kind="jsx">
+    <template data-slot="recordContentContent"></template>
+  </div>
+</template>
+
+<template id="clues-div-2">
+  <div data-children="array" data-props="divProps" data-key="divKey" data-kind="jsxs">
+    <div class="recordHeader___pvvGi" data-children="array" data-kind="jsxs">
+      <span data-children="single" data-props="spanProps" data-kind="jsx">
+        <template data-slot="spanContent"></template>
+      </span>
+      <span data-children="single" data-props="spanProps2" data-kind="jsx">
+        <template data-slot="spanContent2"></template>
+      </span>
+    </div>
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="clues-emptyTip">
+  <div class="emptyTip___dcIf2" data-children="single" data-kind="jsx">
+    暂无跟进记录
+  </div>
+</template>
+
+<template id="clues-followInputRow">
+  <div class="followInputRow___P7fg4" data-children="array" data-kind="jsxs">
+    <input class="followInput___J_xv2" placeholder="添加跟进记录，按Enter提交" data-props="followInputProps" data-kind="jsx" />
+    <button type="button" class="followSubmitBtn___FXZil" data-children="single" data-props="followSubmitBtnProps" data-kind="jsx">
+      提交
+    </button>
+  </div>
+</template>
+
+<template id="clues-div-3">
+  <div data-children="array" data-props="divProps" data-key="divKey" data-kind="jsxs">
+    <div class="recordHeader___pvvGi" data-children="array" data-kind="jsxs">
+      <span data-children="single" data-props="spanProps" data-kind="jsx">
+        <template data-slot="spanContent"></template>
+      </span>
+      <span data-children="single" data-props="spanProps2" data-kind="jsx">
+        <template data-slot="spanContent2"></template>
+      </span>
+    </div>
+    <div class="recordContent___gNmgS" data-children="array" data-kind="jsxs">
+      <template data-slot="recordContentContent"></template>
+      <template data-slot="recordContentContent2"></template>
+    </div>
+  </div>
+</template>
+
+<template id="clues-emptyTip-2">
+  <div class="emptyTip___dcIf2" data-children="single" data-kind="jsx">
+    暂无操作记录
+  </div>
+</template>
+
+<template id="clues-container">
+  <div class="container___X7rje" data-children="array" data-kind="jsxs">
+    <template data-slot="containerContent"></template>
+    <div class="header___HuGgz" data-children="array" data-kind="jsxs">
+      <div class="headerLeft___E4K6S" data-children="array" data-kind="jsxs">
+        <span class="headerName___XO9tb" data-children="single" data-kind="jsx">
+          <template data-slot="headerNameContent"></template>
+        </span>
+        <template data-slot="headerLeftContent"></template>
+        <template data-slot="headerLeftContent2"></template>
+      </div>
+      <div data-component="closeIconType" data-ui-class-name="closeIcon___rVNfD" data-props="closeIconProps" data-kind="jsx"></div>
+    </div>
+    <template data-slot="containerContent2"></template>
+    <div class="scrollBody___dC0Eq" data-children="array" data-kind="jsxs">
+      <div class="card___NbYXL" data-children="array" data-kind="jsxs">
+        <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+          基础信息
+        </h4>
+        <div class="infoGrid___S3abZ" data-children="array" data-kind="jsxs">
+          <div data-children="array" data-props="divProps" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              姓名：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent"></template>
+            </span>
+          </div>
+          <div data-children="array" data-props="divProps2" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              邮箱：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent2"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              手机号：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent3"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              所在地区：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent4"></template>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="card___NbYXL" data-children="array" data-kind="jsxs">
+        <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+          线索信息
+        </h4>
+        <div class="infoGrid___S3abZ" data-children="array" data-kind="jsxs">
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              线索类型：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent5"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              线索来源：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent6"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              规划方向：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent7"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              资产层级：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent8"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              归属负责人：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent9"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              跟进人：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent10"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              创建人：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent11"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              录入方式：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent12"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              创建时间：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent13"></template>
+            </span>
+          </div>
+          <div class="infoRow___dk1yx" data-children="array" data-kind="jsxs">
+            <span class="infoLabel___vfDg6" data-children="single" data-kind="jsx">
+              最近更新：
+            </span>
+            <span class="infoValue___Iw3sG" data-children="single" data-kind="jsx">
+              <template data-slot="infoValueContent14"></template>
+            </span>
+          </div>
+        </div>
+      </div>
+      <template data-slot="scrollBodyContent"></template>
+      <template data-slot="scrollBodyContent2"></template>
+      <template data-slot="scrollBodyContent3"></template>
+      <template data-slot="scrollBodyContent4"></template>
+      <div data-children="array" data-props="divProps3" data-kind="jsxs">
+        <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+          跟进记录
+        </h4>
+        <div class="recordList___Bx3vk" data-children="single" data-kind="jsx">
+          <template data-slot="recordListContent"></template>
+        </div>
+        <template data-slot="divContent"></template>
+      </div>
+      <div data-children="array" data-props="divProps4" data-kind="jsxs">
+        <h4 class="cardTitle___iWC09" data-children="single" data-kind="jsx">
+          操作记录
+        </h4>
+        <div class="recordList___Bx3vk" data-children="single" data-kind="jsx">
+          <template data-slot="recordListContent2"></template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="clues-component-6">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="clueDetailModalType" data-ui-class-name="clueDetailModal___rYROg" data-ui-width="70%" data-children="single" data-props="clueDetailModalProps" data-kind="jsx">
+      <div data-props="componentProps" data-component="componentType2" data-kind="jsx"></div>
+    </div>
+    <div data-component="componentType3" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType4" data-props="componentProps3" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-component-13">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <span data-children="single" data-props="spanProps" data-kind="jsx">
+      <template data-slot="spanContent"></template>
+    </span>
+  </div>
+</template>
+
+<template id="clues-modalTitle">
+  <div class="modalTitle___Z70wr" data-children="single" data-kind="jsx">
+    <div class="title___SrY2M" data-children="single" data-kind="jsx">
+      新增线索
+    </div>
+  </div>
+</template>
+
+<template id="clues-footerBtns">
+  <div class="footerBtns___wyrn2" data-children="array" data-kind="jsxs">
+    <button type="button" class="cancelBtn___mjxUZ" data-children="single" data-props="cancelBtnProps" data-kind="jsx">
+      取消
+    </button>
+    <button type="button" class="submitBtn___T1eTe" data-children="single" data-props="submitBtnProps" data-kind="jsx">
+      <template data-slot="submitBtnContent"></template>
+    </button>
+  </div>
+</template>
+
+<template id="clues-createClueWrapper">
+  <div data-component="createClueWrapperType" data-ui-class-name="createClueWrapper___mpoSg" data-ui-width="70%" data-children="single" data-props="createClueWrapperProps" data-kind="jsx">
+    <div data-component="componentType" data-ui-layout="vertical" data-children="single" data-props="componentProps28" data-kind="jsx">
+      <div data-component="componentType2" data-children="array" data-props="componentProps27" data-kind="jsxs">
+        <div data-component="componentType3" data-children="single" data-props="componentProps3" data-kind="jsx">
+          <div data-component="componentType4" data-ui-label="线索类型" data-ui-name="clueType" data-children="single" data-props="componentProps2" data-kind="jsx">
+            <div data-component="componentType5" data-ui-placeholder="请选择" data-props="componentProps" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType6" data-children="single" data-props="componentProps6" data-kind="jsx">
+          <div data-component="componentType7" data-ui-label="线索来源" data-ui-name="clueSource" data-children="single" data-props="componentProps5" data-kind="jsx">
+            <div data-component="componentType8" data-ui-placeholder="请选择" data-props="componentProps4" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType9" data-children="single" data-props="componentProps9" data-kind="jsx">
+          <div data-component="componentType10" data-ui-label="姓名" data-ui-name="contactName" data-children="single" data-props="componentProps8" data-kind="jsx">
+            <div data-component="componentType11" data-ui-placeholder="请输入姓名" data-props="componentProps7" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType12" data-children="single" data-props="componentProps12" data-kind="jsx">
+          <div data-component="componentType13" data-ui-label="邮箱" data-ui-name="email" data-children="single" data-props="componentProps11" data-kind="jsx">
+            <div data-component="componentType14" data-ui-placeholder="name@example.com" data-props="componentProps10" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType15" data-children="single" data-props="componentProps15" data-kind="jsx">
+          <div data-component="componentType16" data-ui-label="手机号" data-ui-name="mobile" data-children="single" data-props="componentProps14" data-kind="jsx">
+            <div data-component="componentType17" data-ui-placeholder="请输入手机号" data-props="componentProps13" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType18" data-children="single" data-props="componentProps18" data-kind="jsx">
+          <div data-component="componentType19" data-ui-label="所在地区" data-ui-name="region" data-children="single" data-props="componentProps17" data-kind="jsx">
+            <div data-component="componentType20" data-ui-placeholder="请选择" data-props="componentProps16" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType21" data-children="single" data-props="componentProps21" data-kind="jsx">
+          <div data-component="componentType22" data-ui-label="规划方向" data-ui-name="planDirection" data-children="single" data-props="componentProps20" data-kind="jsx">
+            <div data-component="componentType23" data-ui-placeholder="请选择" data-props="componentProps19" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType24" data-children="single" data-props="componentProps24" data-kind="jsx">
+          <div data-component="componentType25" data-ui-label="资产层级" data-ui-name="assetTier" data-children="single" data-props="componentProps23" data-kind="jsx">
+            <div data-component="componentType26" data-ui-placeholder="请选择" data-props="componentProps22" data-kind="jsx"></div>
+          </div>
+        </div>
+        <div data-component="componentType27" data-children="single" data-props="componentProps26" data-kind="jsx">
+          <div data-component="componentType28" data-ui-label="备注" data-ui-name="remark" data-children="single" data-kind="jsx">
+            <div data-component="componentType29" data-ui-placeholder="补充说明，例如客户来自哪场活动、初步沟通情况等" data-props="componentProps25" data-kind="jsx"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="clues-gaip-clues-source-style-5">
+  <img alt="" class="gaip-clues-source-style-5" data-props="gaip_clues_source_style_5Props" data-kind="jsx" />
+</template>
+
+<template id="clues-gaip-clues-source-style-6">
+  <img alt="" class="gaip-clues-source-style-6" data-props="gaip_clues_source_style_6Props" data-kind="jsx" />
+</template>
+
+<template id="clues-gaip-clues-source-style-7">
+  <img alt="" class="gaip-clues-source-style-7" data-props="gaip_clues_source_style_7Props" data-kind="jsx" />
+</template>
+
+<template id="clues-gaip-clues-source-style-8">
+  <img alt="" class="gaip-clues-source-style-8" data-props="gaip_clues_source_style_8Props" data-kind="jsx" />
+</template>
+
+<template id="clues-gaip-clues-source-style-9">
+  <img alt="" class="gaip-clues-source-style-9" data-props="gaip_clues_source_style_9Props" data-kind="jsx" />
+</template>
+
+<template id="clues-gaip-clues-source-style-10">
+  <img alt="" class="gaip-clues-source-style-10" data-props="gaip_clues_source_style_10Props" data-kind="jsx" />
+</template>
+
+<template id="clues-component-14">
+  <div data-component="componentType" data-ui-title="超时未跟进" data-children="single" data-kind="jsx">
+    <img alt="" class="nameIcon___yE3G_" data-props="nameIconProps" data-kind="jsx" />
+  </div>
+</template>
+
+<template id="clues-statusWrap">
+  <span class="statusWrap____YlrO" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+    <template data-slot="statusWrapContent"></template>
+  </span>
+</template>
+
+<template id="clues-component-15">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <img alt="" class="statusIcon___UQawr" data-props="statusIconProps" data-kind="jsx" />
+  </div>
+</template>
+
+<template id="clues-nameWrap">
+  <span class="nameWrap___JEbAj" data-children="array" data-kind="jsxs">
+    <div data-component="nameLinkType" data-ui-class-name="nameLink___npxe5" data-props="nameLinkProps" data-kind="jsx"></div>
+    <template data-slot="nameWrapContent"></template>
+  </span>
+</template>
+
+<template id="clues-component-16">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-component-17">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="clues-component-18">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-component-19">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-badge">
+  <div data-component="badgeType" data-ui-class-name="badge___QDrJm" data-children="array" data-props="badgeProps" data-kind="jsxs">
+    <template data-slot="badgeContent"></template>
+    <div data-component="ellipsisTextType" data-ui-class-name="ellipsisText___gp7Ub" data-props="ellipsisTextProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="clues-component-20">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-component-21">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-actionGreen">
+  <a class="actionGreen____lJ6Q" data-children="single" data-props="actionGreenProps" data-kind="jsx">
+    分配
+  </a>
+</template>
+
+<template id="clues-actionBlue">
+  <a class="actionBlue___y4QUU" data-children="single" data-props="actionBlueProps" data-kind="jsx">
+    转化
+  </a>
+</template>
+
+<template id="clues-actionCell">
+  <div class="actionCell___JCOWx" data-children="array" data-props="actionCellProps" data-kind="jsxs">
+    <a class="actionGreen____lJ6Q" data-children="single" data-props="actionGreenProps" data-kind="jsx">
+      详情
+    </a>
+    <template data-slot="actionCellContent"></template>
+    <template data-slot="actionCellContent2"></template>
+  </div>
+</template>
+
+<template id="clues-component-22">
+  <div data-component="componentType" data-kind="jsx"></div>
+</template>
+
+<template id="clues-createBtn">
+  <div data-component="createBtnType" data-ui-type="primary" data-ui-class-name="createBtn___kEsUH" data-children="single" data-props="createBtnProps" data-kind="jsx">
+    新增线索
+  </div>
+</template>
+
+<template id="clues-component-23">
+  <div data-component="componentType" data-kind="jsx"></div>
+</template>
+
+<template id="clues-searchIcon">
+  <div data-component="searchIconType" data-ui-class-name="searchIcon___Bdq_U" data-kind="jsx"></div>
+</template>
+
+<template id="clues-statIcon">
+  <img class="statIcon___rZ7CU" data-props="statIconProps" data-kind="jsx" />
+</template>
+
+<template id="clues-div-4">
+  <div data-children="array" data-props="divProps3" data-key="divKey" data-kind="jsxs">
+    <div data-children="array" data-props="divProps" data-kind="jsxs">
+      <template data-slot="divContent"></template>
+      <template data-slot="divContent2"></template>
+    </div>
+    <div data-children="single" data-props="divProps2" data-kind="jsx">
+      <template data-slot="divContent3"></template>
+    </div>
+  </div>
+</template>
+
+<template id="clues-button">
+  <button type="button" data-children="array" data-props="buttonProps" data-key="buttonKey" data-kind="jsxs">
+    <template data-slot="buttonContent"></template>
+    <span data-children="single" data-props="spanProps" data-kind="jsx">
+      <template data-slot="spanContent"></template>
+    </span>
+  </button>
+</template>
+
+<template id="clues-tabBar">
+  <div class="tabBar___p90CZ" data-children="single" data-kind="jsx">
+    <template data-slot="tabBarContent"></template>
+  </div>
+</template>
+
+<template id="clues-sel">
+  <div data-component="selType" data-ui-class-name="sel___DDV2_" data-props="selProps" data-kind="jsx"></div>
+</template>
+
+<template id="clues-filterRow2">
+  <div class="filterRow2___sN_me" data-children="array" data-kind="jsxs">
+    <span class="filterLabelPlaceholder___XKQHK" data-kind="jsx"></span>
+    <div data-children="array" data-props="divProps" data-kind="jsxs">
+      <div data-component="selType" data-ui-class-name="sel___DDV2_" data-props="selProps" data-kind="jsx"></div>
+      <template data-slot="divContent"></template>
+    </div>
+    <div class="filterRightPlaceholder___crHKz" aria-hidden="true" data-children="array" data-kind="jsxs">
+      <button type="button" class="expandBtn___id88t" data-children="array" data-props="expandBtnProps" data-kind="jsxs">
+        <div data-component="componentType" data-kind="jsx"></div>
+        <span data-children="single" data-kind="jsx">
+          收起筛选
+        </span>
+      </button>
+      <button type="button" class="clearBtn___SiYbP" data-children="single" data-props="clearBtnProps" data-kind="jsx">
+        清空
+      </button>
+    </div>
+  </div>
+</template>
+
+<template id="clues-pageContainer">
+  <div class="pageContainer____08lw" data-children="array" data-kind="jsxs">
+    <div class="topSection___pb9om" data-children="array" data-props="topSectionProps" data-kind="jsxs">
+      <div class="pageHeader___jxWpX" data-children="array" data-kind="jsxs">
+        <div class="headerLeft___KH19U" data-children="array" data-kind="jsxs">
+          <div class="headerTitleBlock___qlCUQ" data-children="array" data-kind="jsxs">
+            <h1 class="pageTitle___i7v9z" data-children="single" data-kind="jsx">
+              线上渠道线索
+            </h1>
+            <p class="pageDesc___BzY4N" data-children="single" data-kind="jsx">
+              统一管理渠道线索的接收、分配、跟进与转化
+            </p>
+          </div>
+          <div class="headerBtnRow___UCvHV" data-children="array" data-kind="jsxs">
+            <template data-slot="headerBtnRowContent"></template>
+            <div data-component="exportBtnType" data-ui-class-name="exportBtn___GeeCs" data-children="single" data-props="exportBtnProps" data-kind="jsx">
+              导出Excel
+            </div>
+          </div>
+        </div>
+        <div class="headerSpacer___TS59M" data-kind="jsx"></div>
+        <div class="headerRight___s36Pi" data-children="single" data-kind="jsx">
+          <div class="searchWrap___dAQEx" data-children="single" data-kind="jsx">
+            <div data-component="searchInputType" data-ui-class-name="searchInput___cEsde" data-ui-placeholder="搜索姓名/手机号/邮箱" data-props="searchInputProps" data-kind="jsx"></div>
+          </div>
+        </div>
+      </div>
+      <div class="statCards___UGL6H" data-children="single" data-kind="jsx">
+        <template data-slot="statCardsContent"></template>
+      </div>
+    </div>
+    <div class="listCard___Ac5Te" data-children="array" data-kind="jsxs">
+      <template data-slot="listCardContent"></template>
+      <div class="filterArea___vgGng" data-children="array" data-kind="jsxs">
+        <div class="filterRow1___XLMmH" data-children="array" data-kind="jsxs">
+          <span class="filterLabel___DX_8h" data-children="single" data-kind="jsx">
+            筛选
+          </span>
+          <div class="filterSelGroup___LNDT9" data-children="array" data-kind="jsxs">
+            <div data-component="selType" data-ui-class-name="sel___DDV2_" data-props="selProps" data-kind="jsx"></div>
+            <div data-component="selType2" data-ui-class-name="sel___DDV2_" data-props="selProps2" data-kind="jsx"></div>
+            <div data-component="selType3" data-ui-class-name="sel___DDV2_" data-props="selProps3" data-kind="jsx"></div>
+            <div data-component="selType4" data-ui-class-name="sel___DDV2_" data-props="selProps4" data-kind="jsx"></div>
+            <div data-component="selType5" data-ui-class-name="sel___DDV2_" data-props="selProps5" data-kind="jsx"></div>
+            <div data-component="selType6" data-ui-class-name="sel___DDV2_" data-props="selProps6" data-kind="jsx"></div>
+          </div>
+          <div class="filterRight___w0cqE" data-children="array" data-kind="jsxs">
+            <button type="button" class="expandBtn___id88t" data-children="array" data-props="expandBtnProps" data-kind="jsxs">
+              <span data-children="single" data-kind="jsx">
+                <template data-slot="spanContent"></template>
+              </span>
+              <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+            </button>
+            <button type="button" class="clearBtn___SiYbP" data-children="single" data-props="clearBtnProps" data-kind="jsx">
+              清空
+            </button>
+          </div>
+        </div>
+        <template data-slot="filterAreaContent"></template>
+      </div>
+    </div>
+    <div class="tableCard___WPK5W" data-children="single" data-kind="jsx">
+      <div class="tableWrap___O01G_" data-children="single" data-kind="jsx">
+        <div data-component="componentType2" data-ui-row-key="clueCode" data-ui-size="small" data-props="componentProps2" data-kind="jsx"></div>
+      </div>
+    </div>
+    <div data-component="componentType3" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType4" data-props="componentProps4" data-kind="jsx"></div>
+    <div data-component="componentType5" data-props="componentProps5" data-kind="jsx"></div>
+    <div data-component="componentType6" data-props="componentProps6" data-kind="jsx"></div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

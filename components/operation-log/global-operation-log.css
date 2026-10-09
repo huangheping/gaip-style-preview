@@ -1,0 +1,207 @@
+/* 操作日志唯一共享样式；不覆盖业务页面、全局字体或原站构建产物。 */
+.gaip-log-dialog :focus-visible {
+  outline: 2px solid #00bfb4; outline-offset: 3px;
+}
+html.gaip-log-scroll-lock, html.gaip-log-scroll-lock body { overflow: hidden !important; }
+.gaip-log-dialog {
+  --log-brand: var(--gaip-color-brand, #025b52);
+  box-sizing: border-box; width: min(1680px, calc(100vw - 48px));
+  height: min(920px, calc(100dvh - 48px)); max-width: none; max-height: none;
+  margin: auto; padding: 0; border: 1px solid #dfe8e6; border-radius: 12px;
+  color: #2f3640; background: #fff; overflow: hidden;
+  box-shadow: 0 24px 90px rgba(18, 42, 40, .22);
+  font-size: 14px; line-height: 1.6;
+}
+.gaip-log-dialog[open] { display: flex; flex-direction: column; animation: gaip-log-enter .18s ease-out; }
+.gaip-log-dialog * { box-sizing: border-box; }
+.gaip-log-body { display: contents; }
+.gaip-log-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding: 24px 24px 18px; flex-shrink: 0; }
+.gaip-log-title { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.gaip-log-title h2 { margin: 0; color: #253b39; font-size: 24px; line-height: 1.4; }
+.gaip-log-mock { border: 1px solid #e6d9bd; border-radius: 4px; padding: 1px 7px; color: #8c6d32; background: #fbf7ee; font-size: 12px; }
+.gaip-log-header p { margin: 6px 0 0; color: #7a848e; font-size: 13px; }
+.gaip-log-actions { display: flex; gap: 12px; align-items: center; }
+.gaip-log-dialog button { cursor: pointer; }
+.gaip-log-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 36px; padding: 0 14px; border: 1px solid #bbd3d0;
+  border-radius: 4px; color: var(--log-brand); background: #fff; font-size: 14px; white-space: nowrap;
+}
+.gaip-log-button:hover:not(:disabled) { background: #edf8f7; border-color: var(--log-brand); }
+.gaip-log-export { background: var(--log-brand); color: #fff; border-color: var(--log-brand); }
+.gaip-log-export:hover:not(:disabled) { background: #087268; color: #fff; }
+.gaip-log-export img { width: 14px; height: 14px; }
+.gaip-log-close { border: 0; background: transparent; width: 36px; height: 36px; padding: 2px; border-radius: 4px; }
+.gaip-log-close:hover { background: #f1f5f4; }
+.gaip-log-close img { display: block; width: 16px; height: 16px; }
+.gaip-log-filters { margin: 0 24px 16px; padding: 16px; border: 1px solid #e5eceb; background: #fafcfc; border-radius: 8px; flex-shrink: 0; }
+.gaip-log-filter-row { display: flex; align-items: center; gap: 12px; }
+.gaip-log-filter-row + .gaip-log-filter-row { margin-top: 12px; }
+.gaip-log-filters select, .gaip-log-filters input, .gaip-log-footer select {
+  height: 40px; min-width: 0; padding: 0 12px; border: 1px solid #dce3e5;
+  border-radius: 4px; color: #2f3640; background: #fff; font-size: 14px;
+}
+.gaip-log-filters select { flex: 1; cursor: pointer; }
+/* 复用原站 Ant Design 图形；背景图不拦截原生控件的鼠标或键盘操作。 */
+.gaip-log-filters select, .gaip-log-footer select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  background-image: url('../../shared/assets/icons/forms/shared/modal-down.svg?v=20261008-expand-1');
+  background-position: right 12px center;
+  background-size: 21.333333px 21.333333px;
+  background-repeat: no-repeat;
+}
+.gaip-log-filters .gaip-log-search {
+  padding-left: 36px;
+  background-image: url('../../shared/assets/icons/forms/shared/modal-search.svg');
+  background-position: left 12px center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}
+/* 不支持此原生指示器的浏览器保留自身日历入口，避免叠加两个图标。 */
+@supports selector(input::-webkit-calendar-picker-indicator) {
+  .gaip-log-dates input[type="date"] {
+    position: relative;
+    padding-right: 36px;
+    background-image: url('../../shared/assets/icons/forms/shared/control-calendar.svg');
+    background-position: right 12px center;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+  }
+  .gaip-log-dates input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+.gaip-log-filters input::placeholder { color: #9aa1aa; }
+/* 与项目 Ant 控件一致：品牌绿边框、无阴影；键盘聚焦仍由清晰边框标识。 */
+.gaip-log-filters input:hover:not(:disabled),
+.gaip-log-filters select:hover:not(:disabled),
+.gaip-log-footer select:hover:not(:disabled) { border-color: var(--log-brand); }
+.gaip-log-filters input:focus,
+.gaip-log-filters select:focus,
+.gaip-log-footer select:focus {
+  border-color: var(--log-brand);
+  outline: none;
+  box-shadow: none;
+}
+.gaip-log-filters input[aria-invalid="true"] { border-color: #b63d3d; }
+.gaip-log-dates { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.gaip-log-dates input { width: 152px; cursor: pointer; }
+.gaip-log-dates > span, .gaip-log-dates > label { color: #7a848e; white-space: nowrap; }
+.gaip-log-search { flex: 1; width: 160px; }
+.gaip-log-text-button { padding: 0 4px; border: 0; background: none; color: var(--log-brand); white-space: nowrap; font-size: 13px; }
+.gaip-log-text-button:hover { text-decoration: underline; }
+.gaip-log-filter-mount { flex-shrink: 0; margin: 0 24px 16px; }
+.gaip-log-filters.gaip-filter-bar {
+  margin: 0; padding: 16px; gap: 12px; border-color: rgba(47,54,64,.12);
+  border-radius: 4px; background: #fff;
+}
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__fields {
+  flex: 1 1 auto; flex-wrap: nowrap; gap: 12px; min-width: 0;
+}
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field {
+  flex: 1 1 150px; min-width: 130px; max-width: none;
+}
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="dateRange"] {
+  flex: 1.7 1 300px; min-width: 280px; max-width: 360px;
+}
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="search"] {
+  flex: 1.4 1 220px; min-width: 190px; max-width: none;
+}
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__label { margin-bottom: 6px; }
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__input:hover:not(:disabled) { border-color: #24d4c9; }
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__input:focus,
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__input:focus-visible { border-color: var(--log-brand); }
+.gaip-log-filters.gaip-filter-bar .gaip-filter-bar__actions { align-self: flex-end; gap: 8px; }
+.gaip-log-feedback { min-height: 20px; margin: -6px 24px 10px; color: #7a848e; font-size: 12px; }
+.gaip-log-feedback[data-error="true"] { color: #b63d3d; }
+.gaip-log-table-wrap { flex: 1; min-height: 0; overflow: auto; margin: 0 24px; border: 1px solid #e5eceb; border-radius: 8px 8px 0 0; overscroll-behavior: contain; }
+.gaip-log-table { width: 100%; min-width: 1220px; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 13px; }
+.gaip-log-table th { position: sticky; top: 0; z-index: 1; text-align: left; padding: 12px; color: #657b79; background: #edf6f5; border-bottom: 1px solid #dfe9e7; font-size: 12px; white-space: nowrap; }
+.gaip-log-table td { padding: 16px 12px; border-bottom: 1px solid #edf0f1; vertical-align: top; overflow-wrap: anywhere; }
+.gaip-log-table tbody tr:hover { background: #fafdfc; }
+.gaip-log-table tbody tr:last-child td { border-bottom: 0; }
+.gaip-log-number, .gaip-log-time { color: #89929e; }
+.gaip-log-time { font-size: 12px; white-space: nowrap; }
+.gaip-log-person { display: block; }
+.gaip-log-ip { display: block; margin-top: 4px; color: #8a949e; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gaip-log-tag { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 12px; white-space: nowrap; }
+.gaip-log-tag[data-type="新增"] { color: #087452; background: #e9f8f0; }
+.gaip-log-tag[data-type="编辑"] { color: #345ac6; background: #edf2ff; }
+.gaip-log-tag[data-type="删除"] { color: #bf3e45; background: #fff0f0; }
+.gaip-log-tag[data-type="查看"] { color: #7651b9; background: #f4efff; }
+.gaip-log-copy { white-space: pre-wrap; }
+.gaip-log-copy.is-collapsed { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.gaip-log-copy p { margin: 0 0 4px; }
+.gaip-log-copy p:last-child { margin-bottom: 0; }
+.gaip-log-field { color: #2f3640; }
+.gaip-log-table td:nth-child(7),
+.gaip-log-table td:nth-child(8),
+.gaip-log-table td:nth-child(7) .gaip-log-number,
+.gaip-log-table td:nth-child(8) .gaip-log-number { color: #2f3640; }
+.gaip-log-expand { display: block; margin-top: 6px; padding: 0; }
+.gaip-log-empty { text-align: center; padding: 80px 20px !important; color: #8a949e; }
+.gaip-log-empty strong { display: block; margin-bottom: 8px; color: #536462; font-size: 16px; }
+.gaip-log-footer { margin: 0 24px 24px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 1px solid #e5eceb; border-top: 0; border-radius: 0 0 8px 8px; flex-shrink: 0; font-size: 12px; color: #84918f; }
+.gaip-log-footer-left, .gaip-log-pages { display: flex; align-items: center; gap: 12px; }
+.gaip-log-footer select { height: 32px; font-size: 12px; }
+.gaip-log-pages .gaip-log-button { min-height: 30px; padding: 0 10px; font-size: 12px; border-color: #e0e7e6; }
+.gaip-log-page-current { display: grid; place-items: center; min-width: 30px; height: 30px; border-radius: 4px; background: var(--log-brand); color: white; }
+.gaip-log-dialog button:disabled { opacity: .4; cursor: not-allowed; }
+@keyframes gaip-log-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1000px) {
+  .gaip-log-filter-row:last-child { flex-wrap: wrap; }
+  .gaip-log-search { flex-basis: 160px; }
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__fields { flex-wrap: wrap; }
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field { flex-basis: calc(50% - 6px); max-width: calc(50% - 6px); }
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="dateRange"],
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="search"] { flex-basis: calc(50% - 6px); min-width: 280px; max-width: none; }
+}
+@media (max-width: 600px) {
+  .gaip-log-dialog { width: calc(100vw - 16px); height: calc(100dvh - 16px); }
+  .gaip-log-header { padding: 16px 12px; gap: 8px; }
+  .gaip-log-title h2 { font-size: 20px; }
+  .gaip-log-header p { font-size: 12px; }
+  .gaip-log-actions { gap: 4px; }
+  .gaip-log-export { padding: 0 8px; font-size: 12px; }
+  .gaip-log-filters { margin: 0 12px 12px; padding: 10px; }
+  .gaip-log-filter-mount { margin: 0 12px 12px; }
+  .gaip-log-filters.gaip-filter-bar { padding: 16px; }
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field,
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="dateRange"],
+  .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="search"] { flex-basis: 100%; min-width: 0; max-width: 100%; }
+  .gaip-log-filter-row { gap: 8px; }
+  .gaip-log-dates { flex-wrap: wrap; gap: 6px; width: 100%; }
+  .gaip-log-dates input { width: calc((100% - 96px) / 2); padding: 0 4px; }
+  .gaip-log-feedback { margin: 0 12px 8px; }
+  .gaip-log-table-wrap { margin: 0 12px; }
+  .gaip-log-footer { margin: 0 12px 12px; padding: 10px; flex-wrap: wrap; gap: 8px; }
+}
+/* Keep the two short selectors on one row so the log retains a usable data viewport. */
+@media (max-width: 640px) {
+  .gaip-info-modal .gaip-log-filters.gaip-filter-bar .gaip-filter-bar__field[data-type="select"] {
+    flex: 1 1 calc(50% - 6px); min-width: 0; max-width: calc(50% - 6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gaip-log-dialog[open] { animation: none; }
+}
+
+/* Fixed column proportions; formerly inline markup declarations. */
+.gaip-log-col-width-4 { width: 4%; }
+.gaip-log-col-width-12 { width: 12%; }
+.gaip-log-col-width-13 { width: 13%; }
+.gaip-log-col-width-8 { width: 8%; }
+.gaip-log-col-width-7 { width: 7%; }
+.gaip-log-col-width-18 { width: 18%; }
+.gaip-log-col-width-19 { width: 19%; }

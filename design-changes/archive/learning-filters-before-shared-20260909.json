@@ -72,11 +72,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-manage-filters"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -130,11 +130,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-filter"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -195,11 +195,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-filter > span"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -260,11 +260,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-manage-filter .lc-search, .lc-manage-filter select"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -325,11 +325,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-required > label"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -376,11 +376,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-required input"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -427,11 +427,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-filter-actions"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],

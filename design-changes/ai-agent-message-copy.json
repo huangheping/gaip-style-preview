@@ -26,8 +26,8 @@
           "before": null,
           "initialLocal": "Web 普通消息无复制入口（代码块复制独立保留）",
           "target": [
-            "AI Agent/素材/复制文本.svg",
-            "AI Agent/素材/复制成功.svg（2026-09-21 用户新版）"
+            "components/ai-agent/素材/复制文本.svg",
+            "components/ai-agent/素材/复制成功.svg（2026-09-21 用户新版）"
           ],
           "status": "active",
           "basis": "source",
@@ -56,8 +56,8 @@
         }
       },
       "sources": [
-        "AI Agent/AI Agent本地Mock.js",
-        "AI Agent/AI Agent改版.css"
+        "components/ai-agent/AI Agent本地Mock.js",
+        "components/ai-agent/AI Agent.css"
       ],
       "verification": {
         "level": "browser-checked",

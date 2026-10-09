@@ -1,0 +1,1 @@
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear):focus-visible{ background-color: var(--mc-selection-soft) !important; outline: none !important; box-shadow: none !important; }

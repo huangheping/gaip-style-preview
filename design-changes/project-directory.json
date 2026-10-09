@@ -1,0 +1,3243 @@
+{
+  "schemaVersion": 1,
+  "page": "中文项目目录（独立于登录页）",
+  "records": [
+    {
+      "id": "project-directory.93fdb937ee",
+      "element": "body",
+      "locator": {
+        "selector": "body",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--paper)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "15px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1.6",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.7458c423be",
+      "element": "a",
+      "locator": {
+        "selector": "a",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "inherit",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.c467c8ed43",
+      "element": "a:focus-visible, input:focus-visible",
+      "locator": {
+        "selector": "a:focus-visible, input:focus-visible",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid #025b52",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "outline-offset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "5px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.eb5f1cba6e",
+      "element": ".skip-link",
+      "locator": {
+        "selector": ".skip-link",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "white",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.bd4309ef2f",
+      "element": ".directory-shell",
+      "locator": {
+        "selector": ".directory-shell",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "max-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1180px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 auto",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 36px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.6f2330ccb1",
+      "element": ".directory-header",
+      "locator": {
+        "selector": ".directory-header",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "30px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.c3ab6e7c0a",
+      "element": ".wordmark",
+      "locator": {
+        "selector": ".wordmark",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "26px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "letter-spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "-1px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.c6b904ecbd",
+      "element": ".wordmark span",
+      "locator": {
+        "selector": ".wordmark span",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin-left": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "400",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "letter-spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.d24695cfeb",
+      "element": ".environment",
+      "locator": {
+        "selector": ".environment",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.2d4a938b70",
+      "element": ".environment::before",
+      "locator": {
+        "selector": ".environment::before",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "50%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin-right": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#4c846b",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.2910c96972",
+      "element": ".intro",
+      "locator": {
+        "selector": ".intro",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "58px 0 48px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.f8c657948e",
+      "element": ".eyebrow",
+      "locator": {
+        "selector": ".eyebrow",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 0 12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "letter-spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.eb6c8bad73",
+      "element": "h1",
+      "locator": {
+        "selector": "h1",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "48px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "letter-spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "-2px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1.25",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.7d10af38b4",
+      "element": ".intro-copy",
+      "locator": {
+        "selector": ".intro-copy",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "18px 0 20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.c917854379",
+      "element": ".login-link",
+      "locator": {
+        "selector": ".login-link",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.db797bf6a4",
+      "element": ".section-heading",
+      "locator": {
+        "selector": ".section-heading",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.45d62012e8",
+      "element": "h2",
+      "locator": {
+        "selector": "h2",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.6896bf3a4a",
+      "element": "h2 > span",
+      "locator": {
+        "selector": "h2 > span",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin-left": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "400",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.0cc6b4365a",
+      "element": ".section-heading p",
+      "locator": {
+        "selector": ".section-heading p",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "5px 0 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.22246003dd",
+      "element": ".search-field",
+      "locator": {
+        "selector": ".search-field",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "6px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "260px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.093a8891c3",
+      "element": ".search-field input",
+      "locator": {
+        "selector": ".search-field input",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "100%",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "13px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px 14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.9dac898265",
+      "element": ".result-count",
+      "locator": {
+        "selector": ".result-count",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px 0 10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.09d5fe44f2",
+      "element": ".channel-grid",
+      "locator": {
+        "selector": ".channel-grid",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.a5958594df",
+      "element": ".channel-card",
+      "locator": {
+        "selector": ".channel-card",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "5px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.2892b50148",
+      "element": ".channel-card:focus-within, .channel-card:hover",
+      "locator": {
+        "selector": ".channel-card:focus-within, .channel-card:hover",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#779b8c",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.9c9411413b",
+      "element": ".channel-heading",
+      "locator": {
+        "selector": ".channel-heading",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.acbb4ac7ec",
+      "element": ".channel-number",
+      "locator": {
+        "selector": ".channel-number",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.4f0b7ad36e",
+      "element": "h3",
+      "locator": {
+        "selector": "h3",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "17px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.e260d0645f",
+      "element": "h3 a",
+      "locator": {
+        "selector": "h3 a",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.d14e7d23e1",
+      "element": "h3 a span",
+      "locator": {
+        "selector": "h3 a span",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#789084",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "400",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.912d3d2e09",
+      "element": ".channel-card code",
+      "locator": {
+        "selector": ".channel-card code",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 0 22px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.49883256ee",
+      "element": ".channel-links",
+      "locator": {
+        "selector": ".channel-links",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid #edf0eb",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.955053104a",
+      "element": ".channel-links a:hover, .directory-footer a:hover",
+      "locator": {
+        "selector": ".channel-links a:hover, .directory-footer a:hover",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.7c4b01bf42",
+      "element": ".empty-state",
+      "locator": {
+        "selector": ".empty-state",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "40px 20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px dashed var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.3ee59e47bf",
+      "element": ".resources",
+      "locator": {
+        "selector": ".resources",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "46px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.4b29ba77e0",
+      "element": ".resource-grid",
+      "locator": {
+        "selector": ".resource-grid",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.1e4867b0bd",
+      "element": ".resource-grid a",
+      "locator": {
+        "selector": ".resource-grid a",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "5px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "18px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.5beb442c54",
+      "element": ".resource-grid a:hover",
+      "locator": {
+        "selector": ".resource-grid a:hover",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--ink)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.4ed238ca21",
+      "element": ".resource-grid span",
+      "locator": {
+        "selector": ".resource-grid span",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "10px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "letter-spacing": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.2ba427ae09",
+      "element": ".resource-grid strong",
+      "locator": {
+        "selector": ".resource-grid strong",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "15px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.a3c705dd4e",
+      "element": ".resource-grid small",
+      "locator": {
+        "selector": ".resource-grid small",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.6f503ee38a",
+      "element": ".directory-footer",
+      "locator": {
+        "selector": ".directory-footer",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "48px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px 0 30px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "11px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.3385f655e3",
+      "element": ".directory-shell",
+      "locator": {
+        "selector": ".directory-shell",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.30746da8c9",
+      "element": ".directory-header",
+      "locator": {
+        "selector": ".directory-header",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.2ccce31400",
+      "element": ".intro",
+      "locator": {
+        "selector": ".intro",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.47dac7c09e",
+      "element": "h1",
+      "locator": {
+        "selector": "h1",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "36px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.3bffe39baa",
+      "element": ".section-heading",
+      "locator": {
+        "selector": ".section-heading",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.c0ffb5a08f",
+      "element": ".search-field",
+      "locator": {
+        "selector": ".search-field",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "min-width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.a01e8f1e33",
+      "element": ".channel-card",
+      "locator": {
+        "selector": ".channel-card",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.db168f761a",
+      "element": ".resource-grid",
+      "locator": {
+        "selector": ".resource-grid",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.4736ae46b4",
+      "element": ".directory-footer",
+      "locator": {
+        "selector": ".directory-footer",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "(max-width: 560px)"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "30px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.7b931aab1d",
+      "element": ".folder-guide",
+      "locator": {
+        "selector": ".folder-guide",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "margin-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "46px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.47356d2ac6",
+      "element": ".folder-grid",
+      "locator": {
+        "selector": ".folder-grid",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0 32px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "margin-bottom": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.9b79e69e30",
+      "element": ".folder-grid a",
+      "locator": {
+        "selector": ".folder-grid a",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "3px 16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px 0",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border-top": {
+          "before": null,
+          "initialLocal": null,
+          "target": "1px solid var(--line)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.881a1cc28f",
+      "element": ".folder-grid strong",
+      "locator": {
+        "selector": ".folder-grid strong",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "14px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.3b6e547f3e",
+      "element": ".folder-grid code, .folder-grid span",
+      "locator": {
+        "selector": ".folder-grid code, .folder-grid span",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "var(--muted)",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "project-directory.e4269b431d",
+      "element": "body.project-directory .directory-shell :is(h1, h2, h3, strong, .wordmark)",
+      "locator": {
+        "selector": "body.project-directory .directory-shell :is(h1, h2, h3, strong, .wordmark)",
+        "representative": "中文目录对应元素"
+      },
+      "state": {
+        "variant": "as-selector",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "app/project-index/index.html"
+      ],
+      "baseline": {
+        "kind": "unknown",
+        "ref": null
+      },
+      "properties": {
+        "font-weight": {
+          "before": null,
+          "initialLocal": null,
+          "target": "700",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        "app/project-index/styles.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-22",
+        "gaps": [
+          "页面在1440/390px核验；每条样式值来自源码，非逐属性浏览器采样。"
+        ],
+        "evidence": [
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-1440.png",
+          "outputs/standardization/20260922/root-entry-migration/browser/directory-390.png"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    }
+  ]
+}

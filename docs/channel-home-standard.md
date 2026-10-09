@@ -212,7 +212,7 @@
 | `key` | `workspace` |
 | `label` | `工作台总览` |
 | `route` | `/workspace` |
-| `entry` | `工作台.html` |
+| `entry` | `channels/workspace/index.html` |
 | `icon` | `workspace` |
 | `type` | `dashboard` |
 
@@ -231,7 +231,7 @@ shared/
   styles/
     global-font.css
     channel-foundation.css
-features/
+channels/
   <channel>/
     <channel>.css
     <channel>.js
@@ -239,7 +239,7 @@ features/
 
 - `web/` 为原构建产物，不作为新规范的主要修改位置。
 - 全局变量和跨频道规则放在 `shared/`。
-- 频道专属规则放在 `features/<channel>/`。
+- 频道专属规则放在 `channels/<channel>/`。
 - 不把新业务样式继续追加到无关频道文件。
 
 ## 11. 落地顺序

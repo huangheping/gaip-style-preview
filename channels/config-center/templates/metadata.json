@@ -1,0 +1,153 @@
+{
+  "navClass": "ant-menu-submenu ant-menu-submenu-inline ant-pro-base-menu-inline-submenu ant-pro-base-menu-inline-submenu-has-icon ant-menu-submenu-open ant-menu-submenu-selected gaip-config-menu",
+  "rows": [
+    {
+      "$template": "rows-0.html"
+    },
+    {
+      "$template": "rows-1.html"
+    },
+    {
+      "$template": "rows-2.html"
+    },
+    {
+      "$template": "rows-3.html"
+    },
+    {
+      "$template": "rows-4.html"
+    },
+    {
+      "$template": "rows-5.html"
+    },
+    {
+      "$template": "rows-6.html"
+    },
+    {
+      "$template": "rows-7.html"
+    }
+  ],
+  "departments": [
+    {
+      "id": "all",
+      "name": "薄荷经纪人",
+      "depth": 0
+    },
+    {
+      "id": "department-1",
+      "name": "测试部门",
+      "depth": 1
+    },
+    {
+      "id": "department-2",
+      "name": "测试1部",
+      "depth": 2
+    },
+    {
+      "id": "department-3",
+      "name": "测试-测试1",
+      "depth": 3
+    },
+    {
+      "id": "department-4",
+      "name": "测试2部",
+      "depth": 2
+    },
+    {
+      "id": "department-5",
+      "name": "研发部",
+      "depth": 1
+    },
+    {
+      "id": "department-6",
+      "name": "aabbccddee Jin Ark eeddeedddd Limited（龙马精神同舟有限公司）",
+      "depth": 2
+    },
+    {
+      "id": "department-7",
+      "name": "334567890-0987656789",
+      "depth": 3
+    },
+    {
+      "id": "department-8",
+      "name": "33456789876567876789",
+      "depth": 4
+    },
+    {
+      "id": "department-9",
+      "name": "aabbccddee Jin Ark eeddeedddd Limited（龙马精神同舟有限公司）aabbccddee Jin Ark eeddeedddd Limited（龙马精神同舟有限公司）",
+      "depth": 4
+    },
+    {
+      "id": "department-10",
+      "name": "b",
+      "depth": 2
+    },
+    {
+      "id": "department-11",
+      "name": "分页61213121",
+      "depth": 1
+    },
+    {
+      "id": "department-12",
+      "name": "分页8",
+      "depth": 1
+    },
+    {
+      "id": "department-13",
+      "name": "分页9",
+      "depth": 1
+    },
+    {
+      "id": "department-14",
+      "name": "家族1",
+      "depth": 1
+    },
+    {
+      "id": "department-15",
+      "name": "家族2",
+      "depth": 1
+    },
+    {
+      "id": "department-16",
+      "name": "家族3",
+      "depth": 1
+    },
+    {
+      "id": "department-17",
+      "name": "家族4",
+      "depth": 1
+    },
+    {
+      "id": "department-18",
+      "name": "测试256",
+      "depth": 1
+    }
+  ],
+  "editorClass": "ant-modal css-10wz6x1 formModal____MTrk",
+  "departmentUi": {
+    "menu": {
+      "$template": "departmentUi-menu.html"
+    },
+    "add": {
+      "html": {
+        "$template": "departmentUi-add-html.html"
+      },
+      "classes": "ant-modal css-10wz6x1 departmentModal___uTXrE"
+    },
+    "rename": {
+      "html": {
+        "$template": "departmentUi-rename-html.html"
+      },
+      "classes": "ant-modal css-10wz6x1 departmentModal___uTXrE"
+    },
+    "adminRow": {
+      "$template": "departmentUi-adminRow.html"
+    },
+    "admin": {
+      "html": {
+        "$template": "departmentUi-admin-html.html"
+      },
+      "classes": "ant-modal css-10wz6x1 setAdminModal___LckZs"
+    }
+  }
+}

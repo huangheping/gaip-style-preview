@@ -5,7 +5,7 @@ const fs = require('node:fs'), path = require('node:path'), assert = require('no
   const dom = new JSDOM('<!doctype html><div id="a"></div><div id="b"></div>', { url:'https://local.example/', runScripts:'outside-only', pretendToBeVisual:true });
   const w = dom.window, el = w.document.querySelector('#a');
   const load = file => w.eval(fs.readFileSync(path.join(root,file),'utf8'));
-  load('shared/scripts/organization-store.js');load('shared/scripts/organization-tree.js');load('shared/scripts/global-multi-select.js'); load('shared/scripts/global-date-picker.js'); load('shared/scripts/global-filter-bar.js');
+  load('shared/scripts/organization-store.js');load('components/organization-tree/organization-tree.js');load('components/multi-select/global-multi-select.js'); load('components/date-picker/global-date-picker.js'); load('components/filter-bar/global-filter-bar.js');
   const F = w.__GAIP_FILTER_BAR__, results = [], wait = () => new Promise(r=>setTimeout(r,30));
   const api = F.mount(el, { debounce:10, fields:[
     {key:'q',type:'search',label:'名称'},
@@ -73,8 +73,9 @@ const fs = require('node:fs'), path = require('node:path'), assert = require('no
   }
   stateApi.setValue({q:'   '},{silent:true});assert.equal(stateReset.dataset.active,'false','search whitespace is not an effective filter');stateApi.destroy();
   // Real catalog consumes the same component (no duplicate preview implementation).
-  w.document.body.innerHTML=fs.readFileSync(path.join(root,'全局组件/index.html'),'utf8').match(/<body>([\s\S]*)<\/body>/)[1];
-  load('shared/scripts/global-modal.js'); load('全局组件/components-registry.js'); load('全局组件/components-preview.js');
+  w.document.body.innerHTML=fs.readFileSync(path.join(root,'components/index.html'),'utf8').match(/<body>([\s\S]*)<\/body>/)[1];
+  load('components/icons/icon-catalog-data.js');load('components/icons/icon-catalog.js');
+  load('components/modal/global-modal.js'); load('components/components-registry.js'); load('components/components-preview.js');
   assert.ok(w.document.querySelector('[data-gaip-filter-demo] .gaip-filter-bar'));
   assert.equal(w.__GAIP_GLOBAL_COMPONENTS__.filter(x=>x.id==='filter-bar').length,1);
   for(const id of ['ai-content-notice','responsive-multi-select','poster-share','modal-catalog']) assert.ok(w.__GAIP_GLOBAL_COMPONENTS__.some(x=>x.id===id),'existing catalog '+id);

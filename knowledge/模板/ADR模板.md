@@ -1,7 +1,7 @@
 ---
 type: decision
 status: proposed
-date: YYYY-MM-DD
+date: "{{date:YYYY-MM-DD}}"
 ---
 
 # ADR-编号：决定名称

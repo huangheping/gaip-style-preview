@@ -8,20 +8,34 @@
     "npm": ">=11 <12"
   },
   "scripts": {
-    "test": "npm run test:static && npm run test:dom",
-    "test:static": "npm run check:navigation && npm run check:modals",
+    "test": "npm run check:standards && npm run check:knowledge && npm run test:scaffold && npm run test:static && npm run test:uploads && npm run test:dom",
+    "test:static": "npm run check:navigation && npm run check:modals && node scripts/test-page-views.cjs && node scripts/test-news-templates.cjs && node scripts/test-learning-asset-paths.cjs && node scripts/test-js-style-audit.cjs && node scripts/test-channel-features.cjs && node scripts/test-markup-templates.cjs && npm run test:icons",
     "check:navigation": "sh scripts/verify-local-navigation.sh",
     "check:modals": "node scripts/generate-modal-catalog.cjs --check && node scripts/test-popup-preview.cjs",
     "test:dom": "npm run test:navigation && npm run test:config && npm run test:announcements && npm run test:modal-forms && npm run test:logs && npm run test:agent",
     "test:modal-forms": "node scripts/test-modal-observer-lifecycle.cjs && node scripts/test-modal-form-primitives.cjs && node scripts/test-modal-controls.cjs && npm run test:modal-source",
-    "test:modal-source": "node scripts/test-customer-modal-source.cjs && node scripts/test-clue-terminal-validation.cjs",
+    "test:modal-source": "node scripts/test-customer-modal-source.cjs && node scripts/test-clue-terminal-validation.cjs && node scripts/test-information-modal-lifecycle.cjs",
     "test:navigation": "node scripts/test-sidebar-order.cjs && node scripts/test-expandable-main-nav.cjs",
     "test:config": "node scripts/test-config-center.cjs",
     "test:announcements": "node scripts/test-announcement-management.cjs",
     "test:logs": "node scripts/test-operation-log.cjs",
-    "test:agent": "node scripts/test-agent-entry.cjs && node scripts/test-agent-attachment-icons.cjs && node scripts/test-agent-message-copy.cjs && node scripts/test-agent-plan-picker.cjs && node scripts/test-agent-voice-stop.cjs"
+    "test:agent": "node scripts/test-agent-entry.cjs && node scripts/test-agent-attachment-icons.cjs && node scripts/test-agent-message-copy.cjs && node scripts/test-agent-plan-picker.cjs && node scripts/test-agent-voice-stop.cjs && node scripts/test-agent-composer-hint.cjs",
+    "build:templates": "node scripts/build-local-icons.cjs && node scripts/build-upload-preview.cjs && node scripts/build-html-templates.cjs",
+    "build:entries": "node scripts/sync-entry-aliases.cjs",
+    "check:standards": "node scripts/check-project-structure.cjs && node scripts/build-upload-preview.cjs --check && node scripts/build-html-templates.cjs --check && node scripts/sync-entry-aliases.cjs --check && npm run check:js-styles && node scripts/check-markup-ownership.cjs && npm run check:icons",
+    "check:knowledge": "node scripts/check-knowledge-links.cjs && node scripts/check-knowledge-properties.cjs && node scripts/test-knowledge-properties.cjs",
+    "new:page": "node scripts/scaffold.cjs page",
+    "new:project": "node scripts/scaffold.cjs project",
+    "test:scaffold": "node scripts/test-project-structure.cjs && node scripts/test-project-scaffold.cjs && node scripts/test-entry-aliases.cjs",
+    "check:js-styles": "node scripts/check-js-styles.cjs",
+    "build:icons": "node scripts/build-local-icons.cjs && node scripts/build-icon-catalog.cjs && npm run build:templates && npm run build:entries",
+    "check:icons": "node scripts/build-local-icons.cjs --check && node scripts/build-icon-catalog.cjs --check",
+    "test:icons": "node scripts/test-local-icons.cjs && node scripts/test-component-preview-layout.cjs",
+    "test:uploads": "node scripts/build-upload-preview.cjs --check && node scripts/test-upload-preview.cjs"
   },
   "devDependencies": {
-    "jsdom": "26.1.0"
+    "acorn": "8.15.0",
+    "jsdom": "26.1.0",
+    "yaml": "2.9.1"
   }
 }

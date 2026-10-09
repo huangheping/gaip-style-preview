@@ -5,14 +5,14 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  const p=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.route('https://gaip-preview.test/**',route=>{const relative=decodeURIComponent(new URL(route.request().url()).pathname).slice(1),f=path.resolve(root,relative);if(!f.startsWith(root+path.sep)||!fs.existsSync(f))return route.abort();return route.fulfill({contentType:f.endsWith('.jpg')?'image/jpeg':'application/octet-stream',body:fs.readFileSync(f)});});
  await p.setContent('<style>body{margin:0}#page{margin-left:212px;height:100vh}</style><section id="page" class="gaip-learning-page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section>');
- for(const f of ['shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','features/learning-center/learning-center.css','features/learning-center/learning-v11.css','shared/styles/global-page-form.css'])await p.addStyleTag({content:read(f)});
- for(const f of ['shared/scripts/global-modal.js','shared/scripts/global-multi-select.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
+ for(const f of ['shared/styles/global-font.css','components/modal/global-modal.css','components/multi-select/global-multi-select.css','components/filter-bar/global-filter-bar.css','components/table/global-table.css','channels/learning-center/learning-center.css','shared/styles/global-page-form.css'])await p.addStyleTag({content:read(f)});
+ for(const f of ['components/modal/global-modal.js','components/multi-select/global-multi-select.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','channels/learning-center/learning-data.js','channels/learning-center/learning-app.js'])await p.evaluate(({s,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(s);},{s:read(f),url:'file://'+path.join(root,f)});
  await p.evaluate(()=>{const D=__GAIP_LEARNING_DATA__,c=D.course('c7');D.root='https://gaip-preview.test/';c.lessons=[['video','v'],['audio','a'],['pdf','p']].map(([type,id])=>Object.assign(D.newLesson(),{id,type,title:type+'测试课节'}));D.state().courses=[c];__GAIP_LEARNING_APP__.mount(document.querySelector('#page'));});
  await p.locator('[data-learning-action="课程管理"]').click();await p.locator('[data-lc="edit"]').click();
  assert.equal(await p.locator('.lc-basics-heading').textContent(),'基本信息');
  assert.match(await p.locator('.lc-basics-groups .lc-field-help').textContent(),/向全部学员开放/);
  const card=id=>p.locator('[data-edit-lesson="'+id+'"]'),area=(id,kind)=>card(id).locator('.lc-lesson-file').nth(kind==='content'?0:1);
- const file=(name)=>({name,mimeType:name.endsWith('.pdf')?'application/pdf':'application/octet-stream',buffer:name.endsWith('.pdf')?fs.readFileSync(path.join(root,'assets/learning/lesson-reading-sample.pdf')):Buffer.from('local mock metadata only')});
+ const file=(name)=>({name,mimeType:name.endsWith('.pdf')?'application/pdf':'application/octet-stream',buffer:name.endsWith('.pdf')?fs.readFileSync(path.join(root,'channels/learning-center/assets/documents/lesson-reading-sample.pdf')):Buffer.from('local mock metadata only')});
  const upload=(id,kind,name)=>card(id).locator('[data-upload="'+kind+'"]').setInputFiles(file(name));
  for(const [id,kind,name] of [['v','content','示例视频.mp4'],['a','content','示例音频.mp3'],['p','content','图文阅读.pdf'],['p','handout','补充讲义.pdf']]){
    await upload(id,kind,name);const box=area(id,kind);
@@ -67,7 +67,7 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  await upload('v','content','销毁时取消.mp3');await p.evaluate(()=>__GAIP_LEARNING_APP__.destroy());await p.waitForTimeout(2800);assert.equal(await p.evaluate(()=>__GAIP_LEARNING_DATA__.course('c7').lessons[0].file.name),'新音频.mp3');
  assert.equal(await p.evaluate(()=>JSON.stringify(__GAIP_LEARNING_DATA__.state()).includes('blob:')),false,'temporary URLs never persist in course metadata');
  // A new controller instance represents losing in-memory files after refresh; metadata must not become a fake sample link.
- await p.evaluate(s=>window.eval(s),read('features/learning-center/learning-app.js'));
+ await p.evaluate(s=>window.eval(s),read('channels/learning-center/learning-app.js'));
  await p.evaluate(()=>{document.querySelector('#page').innerHTML='<header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header>';__GAIP_LEARNING_APP__.mount(document.querySelector('#page'));});
  await p.locator('[data-learning-action="课程管理"]').click();await p.locator('[data-lc="edit"]').click();
  assert.equal(await area('v','content').locator('.lc-local-file-link').count(),0);assert.match(await area('v','content').textContent(),/重新选择本地文件/);

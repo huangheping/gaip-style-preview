@@ -1,0 +1,10 @@
+.gaip-course-reader-complete-icon::after{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  content: "✓";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}

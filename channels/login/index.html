@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>登录 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/login/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="login-gaip-login-source-style-1">
+  <div data-component="gaip_login_source_style_1Type" data-ui-class-name="gaip-login-source-style-1" data-props="gaip_login_source_style_1Props" data-kind="jsx"></div>
+</template>
+
+<template id="login-captchaImg">
+  <img class="captchaImg___aJJJ5" alt="验证码" data-props="captchaImgProps" data-kind="jsx" />
+</template>
+
+<template id="login-captchaWrap">
+  <div class="captchaWrap___PjoYB" data-children="single" data-props="captchaWrapProps" data-kind="jsx">
+    <template data-slot="captchaWrapContent"></template>
+  </div>
+</template>
+
+<template id="login-loginBtn">
+  <div data-component="loginBtnType" data-ui-type="primary" data-ui-html-type="submit" data-ui-class-name="loginBtn___IRejT" data-children="array" data-props="loginBtnProps" data-kind="jsxs">
+    <template data-text="立即登录 "></template>
+    <div data-component="componentType" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="login-component-2">
+  <div data-component="componentType" data-ui-size="small" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="login-component">
+  <div data-component="componentType" data-ui-label="验证码" data-ui-name="captcha" data-ui-placeholder="请输入验证码" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="login-pageContainer">
+  <div class="pageContainer___Vztwf" data-children="array" data-kind="jsxs">
+    <img class="logo___Cf9cM" alt="GLORY GAIP" data-props="logoProps" data-kind="jsx" />
+    <img class="slogan___GhIaI" alt="GLORY ADVISOR INTELLIGENCE PLATFORM" data-props="sloganProps" data-kind="jsx" />
+    <div class="loginPanel___JBy38" data-children="array" data-kind="jsxs">
+      <h1 class="title___zhtS2" data-children="array" data-kind="jsxs">
+        登录
+        <span class="subTitle___ljisp" data-children="single" data-kind="jsx">
+          Sign In
+        </span>
+      </h1>
+      <div data-component="componentType" data-ui-tip="登录中..." data-ui-wrapper-class-name="loginSpin___Ieq_Q" data-children="single" data-props="componentProps4" data-kind="jsx">
+        <div data-component="componentType2" data-ui-name="login-form" data-children="array" data-props="componentProps3" data-kind="jsxs">
+          <div data-component="componentType3" data-ui-label="域账号" data-ui-name="domainAccount" data-ui-placeholder="请输入域账号" data-props="componentProps" data-kind="jsx"></div>
+          <div data-component="componentType4" data-ui-label="域账号密码" data-ui-name="password" data-ui-placeholder="请输入域账号密码" data-props="componentProps2" data-kind="jsx"></div>
+          <template data-slot="componentContent"></template>
+        </div>
+      </div>
+      <p class="cprt___jpxO2" data-children="array" data-kind="jsxs">
+        <template data-text="Copyright © "></template>
+        <template data-slot="cprtContent"></template>
+        <template data-text=" Gloryfh Ltd. All Rights Reserved."></template>
+      </p>
+    </div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

@@ -1,0 +1,8 @@
+.delete-btn svg{
+      display: block;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      transform: none;
+      stroke-width: 1.8;
+    }

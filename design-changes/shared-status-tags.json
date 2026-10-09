@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "page": "全局状态标签",
+  "records": [
+    {
+      "id": "shared-status-tags.card-default",
+      "element": "卡片与详情摘要状态标签",
+      "locator": {
+        "selector": "[data-gaip-status-tag]",
+        "representative": "方案中心 > 我的方案记录 > 已归属 / 待确认客户归属"
+      },
+      "state": {
+        "channel": "shared",
+        "variant": "success / warning",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "全局组件目录状态标签预览",
+        "方案中心我的方案记录归属状态"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "height": {
+          "before": null,
+          "initialLocal": "方案中心局部标签24px",
+          "target": "24px",
+          "basis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "方案中心局部标签13px",
+          "target": "12px",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "0 9px",
+          "target": "0 10px",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "12px",
+          "target": "12px",
+          "basis": "source"
+        },
+        "success-color/background": {
+          "before": null,
+          "initialLocal": "#00695f / #e8f6f4",
+          "target": "#087b63 / #dff5ec",
+          "basis": "source"
+        },
+        "warning-color/background": {
+          "before": null,
+          "initialLocal": "#9a6411 / #fff3dc",
+          "target": "#995800 / #fff0d5",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "components/status-tag/global-status-tag.css",
+        "channels/proposal-center/templates/markup-proposal-center.html renderRecords-6"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "scripts/test-component-preview-layout.cjs：组件目录两种语义、文案及24/12/10/12规格通过",
+          "scripts/test-proposal-status-typography.cjs：方案模板唯一状态标签、两种动态语义与15个正式入口资源通过"
+        ],
+        "gaps": [
+          "真实方案页面与组件目录的像素视觉、色彩观感和窄屏表现未在浏览器复验"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    }
+  ]
+}

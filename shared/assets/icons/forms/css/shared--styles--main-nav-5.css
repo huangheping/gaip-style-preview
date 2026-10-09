@@ -1,0 +1,8 @@
+.gaip-learning-menu-icon{
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: inherit;
+  place-items: center;
+}

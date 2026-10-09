@@ -1,0 +1,2 @@
+.gaip-table .gaip-table__row-actions .gaip-table__more[aria-expanded="true"]::after,
+.gaipMultiSelect.isOpen .gaipMultiSelect__arrow::before{ transform: translateY(1px) rotate(225deg); }

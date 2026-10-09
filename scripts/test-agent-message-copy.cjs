@@ -9,7 +9,7 @@ const tick=()=>new Promise(resolve=>setTimeout(resolve,60));
  try {
   let copied='';
   Object.defineProperty(w.navigator,'clipboard',{value:{writeText:async text=>{copied=text}},configurable:true});
-  w.eval(fs.readFileSync(path.join(__dirname,'../AI Agent/AI Agent本地Mock.js'),'utf8'));
+  w.eval(fs.readFileSync(path.join(__dirname,'../components/ai-agent/AI Agent本地Mock.js'),'utf8'));
   await tick();
   d.querySelector('#messages').innerHTML='<li class="msgRow___wswRS msgUser___WR23E"><div class="msgBubble___W9da6"><pre class="userPre___VegVA">我的问题\n第二行</pre><ul><li>附件.pdf</li></ul></div></li><li class="msgRow___wswRS msgAi___JN4kV"><div>推理内容</div><div class="aiContent___cP6kY"><p>第一段</p><p>第二段</p><div class="codeHeader___bcofg">JS<button>复制代码</button></div><pre>example()</pre></div></li><li class="msgRow___wswRS msgUser___WR23E"><pre class="userPre___VegVA"></pre><ul><li>仅附件.pdf</li></ul></li>';
   await tick();

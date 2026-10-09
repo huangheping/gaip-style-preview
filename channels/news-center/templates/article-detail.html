@@ -1,0 +1,55 @@
+<div class="gaip-news-bridge-backdrop" role="presentation" data-news-close-modal>
+<article class="gaip-news-bridge-modal" role="dialog" aria-modal="true" aria-labelledby="gaipNewsModalTitle" data-news-modal-panel>
+<div class="gaip-news-bridge-modal-scroll">
+<header class="pageHeader___SFDaB gaip-news-bridge-modal-head">
+<button class="gaip-news-bridge-close" type="button" aria-label="关闭" data-news-close-modal>{{close}}</button>
+<img class="pageTitle___nxEXS" src="shared/assets/icons/business/news-center/page-title.svg" alt="资讯中心">
+<span class="pageSubtitle___aYKdj">{{slot}}</span>
+</header>
+<div class="articleCard___x4eww gaip-news-bridge-detail-card">
+<div class="gaip-news-bridge-detail-card-head">
+<div class="gaip-news-bridge-detail-main">
+<div class="titleRow___q7CZe">{{featured}}<h2 id="gaipNewsModalTitle" class="articleTitle___aK0_o gaip-news-bridge-detail-title">{{title}}</h2>
+</div>
+<div class="metaRow____mb7R">{{aiScore}}<span class="aiScore___DGCxO">AI评分 {{score}}</span>{{tag}}<span class="tag___hx6FF">{{category}}</span>{{tags}}</div>
+</div>
+<div class="actionBtns____L0Qf gaip-news-bridge-detail-actions">
+<button class="viewOriginal___PiGcQ" type="button" data-news-source="{{id}}">{{source}}<span>查看原文</span>
+</button>
+<button class="shareBtn___gthi6" type="button" data-news-share="{{id2}}">{{share}}<span>分享</span>
+</button>
+</div>
+</div>
+</div>
+<section class="gaip-news-bridge-detail-body">
+<dl>
+<dt>核心摘要</dt>
+<dd>{{summary}}</dd>
+</dl>
+<dl>
+<dt>目标客群画像</dt>
+<dd>{{audience}}</dd>
+</dl>
+<dl>
+<dt>经纪人可用要点</dt>
+<dd>
+<ul>{{bullets}}</ul>
+</dd>
+</dl>
+<dl>
+<dt>建议跟进动作</dt>
+<dd>{{nextAction}}</dd>
+</dl>
+<div class="gaip-news-bridge-talk">
+<div>
+<strong>微信建议开口话术</strong>
+<button type="button" data-news-copy>复制话术 {{copy}}</button>
+</div>
+<p data-news-talk>{{talk}}</p>
+</div>
+</section>
+</div>
+<div class="gaip-news-bridge-modal-disclaimer">以上内容由 GAIP AI 生成，仅供内部参考；涉及保险、税务、法律事项，请以持牌顾问和官方文件为准。<button type="button" data-gaip-ai-notice-trigger>查看详情</button>
+</div>
+</article>
+</div>

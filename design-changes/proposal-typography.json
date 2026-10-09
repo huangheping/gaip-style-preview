@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "page": "方案中心主页面与我的方案记录",
+  "records": [
+    {
+      "id": "proposal.typography.core-scale",
+      "element": "方案中心核心文字层级",
+      "locator": {
+        "selector": ".gaip-proposal-hero h1, .gaip-record-category, .gaip-record-count, .gaip-record-summary, .gaip-record-card h3, .gaip-record-id, .gaip-record-client, .gaip-record-date, .gaip-record-action",
+        "representative": "方案中心主标题、左侧分类、记录卡片标题/元信息/操作"
+      },
+      "state": {
+        "channel": "proposal",
+        "variant": "catalog / records",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "方案中心主页面",
+        "我的方案记录主列表"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "page-title-font-size/line-height": {
+          "before": null,
+          "initialLocal": "21px / 29px",
+          "target": "20px / 28px",
+          "basis": "source"
+        },
+        "sidebar-font-size/line-height": {
+          "before": null,
+          "initialLocal": "15px / 21px",
+          "target": "14px / 22px",
+          "basis": "source"
+        },
+        "record-title-font-size/line-height": {
+          "before": null,
+          "initialLocal": "17px / 25px",
+          "target": "16px / 24px",
+          "basis": "source"
+        },
+        "metadata-font-size/line-height": {
+          "before": null,
+          "initialLocal": "13px / 浏览器默认",
+          "target": "12px / 18px",
+          "basis": "source"
+        },
+        "record-action-font-size": {
+          "before": null,
+          "initialLocal": "13px",
+          "target": "14px",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "channels/proposal-center/proposal-center.css"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-08",
+        "evidence": [
+          "scripts/test-proposal-status-typography.cjs：主页面12/14/16/20px选择器契约、奇数字号排除边界及15个正式入口资源通过"
+        ],
+        "gaps": [
+          "真实页面字号层级、换行和视觉密度未在浏览器复验",
+          "附件预览内部排版明确不在本轮范围"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-08"
+    }
+  ]
+}

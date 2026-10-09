@@ -1,0 +1,4 @@
+.gaip-config-original .gaip-config-bulk-import-button .ant-btn-icon img{
+  display: block; width: 16px; height: 16px; max-width: none; max-height: none;
+  filter: brightness(0) saturate(100%) invert(24%) sepia(30%) saturate(2232%) hue-rotate(128deg) brightness(77%) contrast(98%);
+}

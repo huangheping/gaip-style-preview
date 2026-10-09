@@ -27,7 +27,7 @@ const originalExperts = JSON.parse(JSON.stringify(baseline.Lg[4].sections[1]));
       const qr = card.locator('.expertQrCode___cX0uw img');
       assert.equal(await qr.count(), 1);
       assert.deepEqual(await qr.evaluate(image => [image.complete, image.naturalWidth, image.naturalHeight]), [true, 144, 144]);
-      assert.ok((await qr.getAttribute('src')).endsWith('/shared/assets/expert-directory/zhou-keqin-william-qr.png'), 'use William’s supplied QR');
+      assert.ok((await qr.getAttribute('src')).endsWith('/components/expert-directory/assets/zhou-keqin-william-qr.png'), 'use William’s supplied QR');
       const qrBox = await qr.boundingBox();
       const textBoxes = await card.locator('.expertCardExperiences___sFRaF p').evaluateAll(nodes => nodes.map(node => {
         const box = node.getBoundingClientRect();
@@ -37,7 +37,7 @@ const originalExperts = JSON.parse(JSON.stringify(baseline.Lg[4].sections[1]));
       assert.equal(await card.locator('.expertCardExperiences___sFRaF p').count(), 5);
       const photo = card.locator('.expertCardAvatar___dpYtz img');
       assert.deepEqual(await photo.evaluate(image => [image.complete, image.naturalWidth, image.naturalHeight]), [true, 300, 400]);
-      assert.match(await photo.getAttribute('src'), /shared\/assets\/expert-directory\/zhou-keqin-william.jpg$/);
+      assert.match(await photo.getAttribute('src'), /components\/expert-directory\/assets\/zhou-keqin-william.jpg$/);
       const tags = await card.locator('.expertCardType___CoZU5').evaluateAll(nodes => nodes.map(node => {
         const rect = node.getBoundingClientRect();
         return { left: rect.left, right: rect.right, top: rect.top, background: getComputedStyle(node).backgroundColor };
@@ -62,11 +62,11 @@ const originalExperts = JSON.parse(JSON.stringify(baseline.Lg[4].sections[1]));
       assert.deepEqual(data, originalExperts);
       return card;
     }
-    for (const first of ['产品中心.html', '薄荷入职指引.html']) {
+    for (const first of ['channels/product/index.html', 'channels/induction/index.html']) {
       await page.goto('file://' + path.join(root, first));
       await page.waitForFunction(() => window.__GAIP_WEBPACK_REQUIRE__ && document.querySelector('.ant-menu-item'));
       await page.evaluate(() => { window.__expertDocument = 'same'; });
-      for (const channel of (first === '产品中心.html' ? ['product', 'induction'] : ['induction', 'product'])) {
+      for (const channel of (first === 'channels/product/index.html' ? ['product', 'induction'] : ['induction', 'product'])) {
         const label = channel === 'product' ? '产品中心' : '薄荷入职引导';
         await page.locator('.ant-menu-item').filter({ hasText: new RegExp('^' + label + '$') }).click();
         if (channel === 'product') {

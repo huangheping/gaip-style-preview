@@ -1,0 +1,82 @@
+[
+  {
+    "original": "components/ai-agent/原版备份_20260812/AI Agent.css",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/AI Agent.css",
+    "sha256": "e3d2d4da2825538619a8fcff50940b1a2843d36f0ec57fdb424a0dd77135e9c0"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/AI Agent动画.css",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/AI Agent动画.css",
+    "sha256": "9022ab81b4ab2d865370f14f52a50a136d8a4e7333c7cd112569494accd1db28"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/AI Agent本地Mock.js",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/AI Agent本地Mock.js",
+    "sha256": "b0ffff8e9f932d2598d2880b256acaedab6b7c0b55c75410629401aa57f8855e"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/Agent头像.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/Agent头像.svg",
+    "sha256": "c195ae242e2b589ddf8465d868595af84b4742295c538e9287e85370edaae8bc"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/Agent结果头像.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/Agent结果头像.svg",
+    "sha256": "b63499453ad07bd308688a99568ed3df79d80f503538fd90cf48f26a96638633"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/关闭历史记录.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/关闭历史记录.svg",
+    "sha256": "dde7469811ef11de434432796ca1a4e5de4a87f25ba7b97f8c9b2f51fbc1658b"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/关闭弹窗.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/关闭弹窗.svg",
+    "sha256": "9eb9fe77497b16f0bc209a063c3609d8e8c6185a719a17f5e793dfb1faa3b308"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/完成状态.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/完成状态.svg",
+    "sha256": "f46e104f460658b1c7cd8bc8126f3236f20e46026aa0078e81c5a8683b23bc8d"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/技能-客户录入.png",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/技能-客户录入.png",
+    "sha256": "2ab57656e8bcdc5d9c7b22002ec1dd44a980bddb84686364362c77a98a7e1b1a"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/技能-方案规划.png",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/技能-方案规划.png",
+    "sha256": "0d8eb0be8c12375b80ec48aea9271b806633f95766a1f011e707022b1ccbff52"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/推理中.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/推理中.svg",
+    "sha256": "5aea28871bb5567469bfe6c1a6c2e93026dea925705fcb90af6a61dfab38fa47"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/搜索客户.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/搜索客户.svg",
+    "sha256": "ab1a7eabe4a9fae5c3a937a7e4129f11a2fb86c9340d859df9e8a4218c103122"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/新建对话.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/新建对话.svg",
+    "sha256": "27ee56e15fd210142ebb3b0a1fe5141e010bd3e4985e407efe5adf955a922af0"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/步骤完成.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/步骤完成.svg",
+    "sha256": "c3be13d164ecfc9b4a8d933a78b22480a5cba227f03775e7d1d26198c9848a2d"
+  },
+  {
+    "original": "components/ai-agent/原版备份_20260812/素材/浮标图标.svg",
+    "archived": "docs/archive/历史源码/AI助手原版_20260812/素材/浮标图标.svg",
+    "sha256": "a81693fd20164213a40d3959d43bee38cb4992be657bcce9d48593718b517704"
+  },
+  {
+    "original": "channels/config-center/organization-source.css",
+    "archived": "docs/archive/历史源码/配置中心/organization-source.css",
+    "sha256": "586fa64ba4860a00037ae7a2bcfadbc18d14ff60247970c9efdc79556cd3ad1f"
+  }
+]

@@ -170,10 +170,10 @@
         }
       },
       "sources": [
-        "features/config-center/config-center.css",
-        "features/config-center/config-center.js",
-        "features/config-center/config-center-content.css",
-        "shared/styles/global-filter-bar.css"
+        "channels/config-center/config-center.css",
+        "channels/config-center/config-center.js",
+        "channels/config-center/config-center-content.css",
+        "components/filter-bar/global-filter-bar.css"
       ],
       "verification": {
         "level": "source-only",
@@ -334,9 +334,9 @@
         }
       },
       "sources": [
-        "features/config-center/config-center.css",
-        "features/config-center/config-center.js",
-        "features/config-center/config-center-content.css"
+        "channels/config-center/config-center.css",
+        "channels/config-center/config-center.js",
+        "channels/config-center/config-center-content.css"
       ],
       "verification": {
         "level": "source-only",

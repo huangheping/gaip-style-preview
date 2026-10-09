@@ -1,0 +1,4 @@
+.gaip-table .gaip-table__row-actions .gaip-table__more::after,
+.gaipMultiSelect.isOpen .gaipMultiSelect__arrow::before{ content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); flex: 0 0 6px; }
+
+.gaipMultiSelect.isOpen .gaipMultiSelect__arrow::before{ background: none; }

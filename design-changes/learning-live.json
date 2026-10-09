@@ -3,130 +3,661 @@
   "page": "学习中心 V1.2 直播 Banner",
   "records": [
     {
+      "id": "learning-live.management-icon",
+      "element": "直播管理按钮图标",
+      "locator": {
+        "selector": "[data-learning-action=\"直播管理\"] .gaip-learning-action-icon",
+        "representative": "频道头部直播管理按钮"
+      },
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "320–1920px"
+      },
+      "appliesTo": [
+        "具有直播管理权限的频道头部按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": "无图标",
+          "target": "assets/learning/live-management.svg；保留附件白色原路径",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "20×20px；复用 gaip-learning-action-icon",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "icon.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px；复用 gaip-learning-action",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-app.js",
+          "function": "renderList"
+        },
+        {
+          "file": "assets/learning/live-management.svg",
+          "attachment": "/Users/hhp/Downloads/编组 2.svg",
+          "sha256": "c1ae88360901f064dd0a5256a63a6e5a56864fb3b2dac238b870dae929eab216"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-22",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)",
+          "/tmp/gaip-learning-live-cards-1440.png"
+        ],
+        "gaps": [
+          "独立真实组件验证；完整 file 页面待验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
+    },
+    {
       "id": "learning-live.second-poster-asset",
       "element": "第二个直播示例封面素材",
-      "locator": { "selector": "[data-live-card=\"live-demo-20260916-pathway\"] .lc-live-card-cover img", "representative": "第二个直播封面" },
-      "state": { "channel": "学习中心", "variant": "default", "viewport": "all" },
-      "appliesTo": ["第二个直播示例；不修改课程原图"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "image.asset": { "before": null, "initialLocal": "assets/learning/course-02-pathway.jpg", "target": "assets/learning/live-two-guests-20260917.jpg", "status": "active", "basis": "source" },
-        "image.intrinsic-size": { "before": null, "initialLocal": null, "target": "750×320px", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": "[data-live-card=\"live-demo-20260916-pathway\"] .lc-live-card-cover img",
+        "representative": "第二个直播封面"
       },
-      "sources": [{ "file": "features/learning-center/learning-live-data.js", "function": "seedExamples / replaceSecondDemoCover" }, { "file": "assets/learning/live-two-guests-20260917.jpg", "sha256": "be57c6cb96f48628049bafca7a678ab3c7d7b3fad0a4cce36bc0dceb1bf59936", "attachment": "/Users/hhp/Downloads/2个嘉宾直播750X320banner.jpg" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-mock.cjs", "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)", "附件与项目素材SHA-256一致；已查看双场新封面截图"], "gaps": ["独立组件浏览器验证，完整file页面待刷新验收。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "第二个直播示例；不修改课程原图"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "image.asset": {
+          "before": null,
+          "initialLocal": "assets/learning/course-02-pathway.jpg",
+          "target": "assets/learning/live-two-guests-20260917.jpg",
+          "status": "active",
+          "basis": "source"
+        },
+        "image.intrinsic-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "750×320px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-live-data.js",
+          "function": "seedExamples / replaceSecondDemoCover"
+        },
+        {
+          "file": "assets/learning/live-two-guests-20260917.jpg",
+          "sha256": "be57c6cb96f48628049bafca7a678ab3c7d7b3fad0a4cce36bc0dceb1bf59936",
+          "attachment": "/Users/hhp/Downloads/2个嘉宾直播750X320banner.jpg"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-17",
+        "evidence": [
+          "scripts/test-learning-live-mock.cjs",
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)",
+          "附件与项目素材SHA-256一致；已查看双场新封面截图"
+        ],
+        "gaps": [
+          "独立组件浏览器验证，完整file页面待刷新验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-17"
     },
     {
       "id": "learning-live.first-poster-asset",
       "element": "第一个直播示例封面素材",
-      "locator": { "selector": "[data-live-card=\"live-demo-20260916-arkos\"] .lc-live-card-cover img", "representative": "第一个直播封面" },
-      "state": { "channel": "学习中心", "variant": "default", "viewport": "all" },
-      "appliesTo": ["首个直播示例；不修改课程原图"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "image.asset": { "before": null, "initialLocal": "assets/learning/course-01-arkos.jpg", "target": "assets/learning/live-product-service-20260917.jpg", "status": "active", "basis": "source" },
-        "image.intrinsic-size": { "before": null, "initialLocal": null, "target": "750×320px", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": "[data-live-card=\"live-demo-20260916-arkos\"] .lc-live-card-cover img",
+        "representative": "第一个直播封面"
       },
-      "sources": [{ "file": "features/learning-center/learning-live-data.js", "function": "seedExamples / replaceDemoCover" }, { "file": "assets/learning/live-product-service-20260917.jpg", "sha256": "87875ed6f13480f9a4fe5cb861f87c6d15804265b45b4046d9a4e4ceab30efe9", "attachment": "/Users/hhp/Downloads/产品服务说明会banner.jpg" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-mock.cjs", "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)", "附件与项目素材SHA-256一致；已查看单场新封面截图"], "gaps": ["独立组件浏览器验证，完整file页面待刷新验收。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "default",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "首个直播示例；不修改课程原图"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "image.asset": {
+          "before": null,
+          "initialLocal": "assets/learning/course-01-arkos.jpg",
+          "target": "assets/learning/live-product-service-20260917.jpg",
+          "status": "active",
+          "basis": "source"
+        },
+        "image.intrinsic-size": {
+          "before": null,
+          "initialLocal": null,
+          "target": "750×320px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-live-data.js",
+          "function": "seedExamples / replaceDemoCover"
+        },
+        {
+          "file": "assets/learning/live-product-service-20260917.jpg",
+          "sha256": "87875ed6f13480f9a4fe5cb861f87c6d15804265b45b4046d9a4e4ceab30efe9",
+          "attachment": "/Users/hhp/Downloads/产品服务说明会banner.jpg"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-17",
+        "evidence": [
+          "scripts/test-learning-live-mock.cjs",
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)",
+          "附件与项目素材SHA-256一致；已查看单场新封面截图"
+        ],
+        "gaps": [
+          "独立组件浏览器验证，完整file页面待刷新验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-17"
     },
     {
       "id": "learning-live.horizontal-card",
       "element": "直播横卡",
-      "locator": { "selector": ".lc-live-card", "representative": "单场及双场直播横卡" },
-      "state": { "channel": "学习中心", "variant": "single / multiple / narrow", "viewport": "320/480/900/1440/1920px" },
-      "appliesTo": ["学习中心首页直播卡片"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "width": { "before": null, "initialLocal": "单场100%", "target": "内容容器>1000px：单/双场均为(容器宽度-24px)/2；≤1000px：100%", "status": "active", "basis": "source" },
-        "padding": { "before": null, "initialLocal": null, "target": "16px", "status": "active", "basis": "source", "reason": "new" },
-        "gap": { "before": null, "initialLocal": null, "target": "12px 24px; ≤480px容器12px（单/双场一致）", "status": "active", "basis": "source", "reason": "new" },
-        "border": { "before": null, "initialLocal": null, "target": "1px solid #e5e7e7; hover保持不变", "status": "active", "basis": "source", "reason": "new" },
-        "border-radius": { "before": null, "initialLocal": null, "target": "4px", "status": "active", "basis": "source", "reason": "new" },
-        "background": { "before": null, "initialLocal": null, "target": "#fff", "status": "active", "basis": "source", "reason": "new" },
-        "focus-outline": { "before": null, "initialLocal": null, "target": "none; 使用与课程同源的青色内阴影焦点环", "status": "active", "basis": "source", "reason": "new" },
-        "hover.shadow": { "before": null, "initialLocal": "none", "target": "0 10px 28px rgba(47,54,64,.12)", "status": "active", "basis": "source" },
-        "focus.shadow": { "before": null, "initialLocal": "none", "target": "inset 0 0 0 2px #24d4c9, 0 10px 28px rgba(47,54,64,.12)", "status": "active", "basis": "source" },
-        "hover.background": { "before": null, "initialLocal": "#fff", "target": "#fff", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": ".lc-live-card",
+        "representative": "单场及双场直播横卡"
       },
-      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card" }, { "file": "features/learning-center/learning-center.css", "selector": ".gaip-course-card:hover, .gaip-course-card:focus-visible, .lc-live-card:hover, .lc-live-card:focus-visible (共用)" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["独立真实组件浏览器验证，完整file/Umi页面待用户验收；线上基准未采集。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "single / multiple / narrow",
+        "viewport": "320/480/900/1440/1920px"
+      },
+      "appliesTo": [
+        "学习中心首页直播卡片"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "width": {
+          "before": null,
+          "initialLocal": "单场100%",
+          "target": "内容容器>1000px：单/双场均为(容器宽度-24px)/2；≤1000px：100%",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "16px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px 24px; ≤480px容器12px（单/双场一致）",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0；hover保持无边框",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "focus-outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "none; 使用与课程同源的青色内阴影焦点环",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "hover.shadow": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "0 10px 28px rgba(47,54,64,.12)",
+          "status": "active",
+          "basis": "source"
+        },
+        "focus.shadow": {
+          "before": null,
+          "initialLocal": "none",
+          "target": "inset 0 0 0 2px #24d4c9, 0 10px 28px rgba(47,54,64,.12)",
+          "status": "active",
+          "basis": "source"
+        },
+        "hover.background": {
+          "before": null,
+          "initialLocal": "#fff",
+          "target": "#fff",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".lc-live-card"
+        },
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".gaip-course-card:hover, .gaip-course-card:focus-visible, .lc-live-card:hover, .lc-live-card:focus-visible (共用)"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "channels/learning-center/learning-center.css: .lc-live-card；2026-09-30用户批注默认背景 rgb(245, 244, 242) → #ffffff；修改前原件 outputs/learning-live-white-20260930/before/"
+        ],
+        "gaps": [
+          "本轮只复核卡片默认背景和既有hover/focus规则；真实file页面复验受浏览器工具协议限制，历史浏览器证据不代替本轮复验。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
     },
     {
       "id": "learning-live.horizontal-poster",
       "element": "横卡封面",
-      "locator": { "selector": ".lc-live-card-cover", "representative": "横卡左侧完整封面" },
-      "state": { "channel": "学习中心", "variant": "single / multiple / narrow", "viewport": "320–1920px" },
-      "appliesTo": ["所有直播横卡封面"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "aspect-ratio": { "before": null, "initialLocal": null, "target": "750 / 320", "status": "active", "basis": "source", "reason": "new" },
-        "width": { "before": null, "initialLocal": null, "target": "单/双场横卡均为内容宽度46%且最小160px；≤480px容器100%", "status": "active", "basis": "mixed", "reason": "new" },
-        "border-radius": { "before": null, "initialLocal": null, "target": "4px", "status": "active", "basis": "source", "reason": "new" },
-        "background": { "before": null, "initialLocal": null, "target": "#f8faf9", "status": "active", "basis": "source", "reason": "new" }
+      "locator": {
+        "selector": ".lc-live-card-cover",
+        "representative": "横卡左侧完整封面"
       },
-      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card-cover, .lc-live-card" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["素材为已有课程示例图，非同比例素材完整显示留白；正式直播素材未提供。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "single / multiple / narrow",
+        "viewport": "320–1920px"
+      },
+      "appliesTo": [
+        "所有直播横卡封面"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "aspect-ratio": {
+          "before": null,
+          "initialLocal": null,
+          "target": "750 / 320",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "width": {
+          "before": null,
+          "initialLocal": null,
+          "target": "单/双场横卡均为内容宽度46%且最小160px；≤480px容器100%",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#f8faf9",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".lc-live-card-cover, .lc-live-card"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-17",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"
+        ],
+        "gaps": [
+          "素材为已有课程示例图，非同比例素材完整显示留白；正式直播素材未提供。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-17"
     },
     {
       "id": "learning-live.horizontal-typography",
-      "element": "横卡标题、简介与状态",
-      "locator": { "selector": ".lc-live-card-title, .lc-live-card-summary, .lc-live-card-meta", "representative": "直播标题及倒计时/直播中" },
-      "state": { "channel": "学习中心", "variant": "upcoming / live / unknown", "viewport": "320–1920px" },
-      "appliesTo": ["首页横卡"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "title.font": { "before": null, "initialLocal": null, "target": "继承全局字体; 16px / 24px; 700; #303844", "status": "active", "basis": "source", "reason": "new" },
-        "summary.font": { "before": null, "initialLocal": null, "target": "继承全局字体; 14px / 22px; #747c80", "status": "active", "basis": "source", "reason": "new" },
-        "meta.font": { "before": null, "initialLocal": null, "target": "12px / 20px; #303844; 直播中 #025b52 / 700", "status": "active", "basis": "source", "reason": "new" },
-        "label.skin": { "before": null, "initialLocal": null, "target": "#111111底色/#EFCE88文字; padding 0 6px; radius 2px; 图文gap 4px", "status": "active", "basis": "mixed", "reason": "new" },
-        "label.icon": { "before": null, "initialLocal": "无图标", "target": "assets/learning/live-video-label.svg；14×10px，fill #EFCE88；沿用用户附件原path，仅改项目副本颜色", "status": "active", "basis": "source", "reason": "new" },
-        "copy.gap": { "before": null, "initialLocal": null, "target": "8px", "status": "active", "basis": "source", "reason": "new" },
-        "meta.gap": { "before": null, "initialLocal": null, "target": "8px 12px", "status": "active", "basis": "source", "reason": "new" }
+      "element": "横卡标题与状态",
+      "locator": {
+        "selector": ".lc-live-card-title, .lc-live-card-meta",
+        "representative": "直播标题及倒计时/正在直播中"
       },
-      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-card-title, .lc-live-card-summary, .lc-live-card-meta, .lc-live-card-label, .lc-live-card-label-icon" }, { "file": "assets/learning/live-video-label.svg", "attachment": "/Users/hhp/Downloads/形状.svg" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs"], "gaps": ["完整file页面待验收。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "upcoming / live / unknown",
+        "viewport": "320–1920px"
+      },
+      "appliesTo": [
+        "首页横卡"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "title.font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "继承全局字体; 16px / 24px; 700; #303844",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "meta.font": {
+          "before": null,
+          "initialLocal": null,
+          "target": "12px / 20px; #303844; 正在直播中 #2F3640 / 700",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "label.skin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52底色/#FFFFFF文字; padding 0 6px; radius 2px; 图文gap 4px",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "label.icon": {
+          "before": null,
+          "initialLocal": "无图标",
+          "target": "assets/learning/live-video-label.svg；14×10px，fill #FFFFFF；沿用用户附件原path，仅改项目副本颜色",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "copy.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "meta.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "8px 12px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".lc-live-card-title, .lc-live-card-meta, .lc-live-card-label, .lc-live-card-label-icon"
+        },
+        {
+          "file": "assets/learning/live-video-label.svg",
+          "attachment": "/Users/hhp/Downloads/形状.svg"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-22",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs"
+        ],
+        "gaps": [
+          "完整file页面待验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
     },
     {
       "id": "learning-live.horizontal-spacing",
       "element": "直播区、课程标题、切换及展示字段间距",
-      "locator": { "selector": ".lc-live-section, .lc-live-courses-heading, .lc-live-presentation-fields", "representative": "直播内容区与共享表单新增字段（切换控件参数已迁至shared-carousel-controls.json）" },
-      "state": { "channel": "学习中心", "variant": "default / narrow", "viewport": "320–1920px" },
-      "appliesTo": ["学习中心首页", "直播新增/编辑弹窗"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "section.margin": { "before": null, "initialLocal": null, "target": "24px; ≤640px视口16px", "status": "active", "basis": "source", "reason": "new" },
-        "cards.gap": { "before": null, "initialLocal": null, "target": "24px", "status": "active", "basis": "source", "reason": "new" },
-        "heading.font": { "before": null, "initialLocal": null, "target": "16px / 24px; 700; #303844", "status": "active", "basis": "source", "reason": "new" },
-        "heading.padding": { "before": null, "initialLocal": null, "target": "0 24px 16px; ≤640px视口横向16px", "status": "active", "basis": "source", "reason": "new" },
-        "form.gap": { "before": null, "initialLocal": null, "target": "24px；字段外观复用共享弹窗", "status": "active", "basis": "source", "reason": "new" }
+      "locator": {
+        "selector": ".lc-live-section, .lc-live-presentation-fields",
+        "representative": "直播内容区与共享表单新增字段（切换控件参数已迁至shared-carousel-controls.json）"
       },
-      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": ".lc-live-section, .lc-live-courses-heading, .lc-live-presentation-fields" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs"], "gaps": ["独立浏览器组件验证，完整file页面待验收。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "default / narrow",
+        "viewport": "320–1920px"
+      },
+      "appliesTo": [
+        "学习中心首页",
+        "直播新增/编辑弹窗"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "section.margin": {
+          "before": null,
+          "initialLocal": null,
+          "target": "0",
+          "status": "active",
+          "basis": "mixed",
+          "reason": "new"
+        },
+        "section.padding": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "24px；≤640px视口16px；有指示点时底部统一12px，配合28px热区使图形上下留白均22px",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "section.background": {
+          "before": null,
+          "initialLocal": "transparent，露出课程区浅灰底",
+          "target": "#fff，覆盖整个直播区",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "cards.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        },
+        "form.gap": {
+          "before": null,
+          "initialLocal": null,
+          "target": "24px；字段外观复用共享弹窗",
+          "status": "active",
+          "basis": "source",
+          "reason": "new"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".lc-live-section, .lc-live-presentation-fields"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-22",
+        "evidence": [
+          "scripts/test-learning-live-browser.cjs：通栏几何、底色、无直播隐藏与桌面/480px截图"
+        ],
+        "gaps": [
+          "独立浏览器组件验证，完整file页面待验收。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-22"
     },
     {
       "id": "learning-live.narrow-header",
       "element": "窄容器首页标题栏",
-      "locator": { "selector": ".gaip-course-list-view > .gaip-learning-header", "representative": "≤760px内容容器标题栏" },
-      "state": { "channel": "学习中心", "variant": "narrow", "viewport": "内容容器≤760px" },
-      "appliesTo": ["学习中心首页窄屏；桌面参数不改"],
-      "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
-      "properties": {
-        "min-height": { "before": null, "initialLocal": "103px", "target": "0", "status": "active", "basis": "source" },
-        "height": { "before": null, "initialLocal": "flex-basis:103px", "target": "auto (flex-basis:auto)", "status": "active", "basis": "source" },
-        "padding": { "before": null, "initialLocal": "20px 24px", "target": "16px", "status": "active", "basis": "source" },
-        "gap": { "before": null, "initialLocal": "normal", "target": "12px", "status": "active", "basis": "source" },
-        "actions.gap": { "before": null, "initialLocal": "14px", "target": "8px", "status": "active", "basis": "source" }
+      "locator": {
+        "selector": ".gaip-course-list-view > .gaip-learning-scroll > .gaip-learning-header",
+        "representative": "≤760px内容容器标题栏"
       },
-      "sources": [{ "file": "features/learning-center/learning-live.css", "selector": "@container (max-width:760px)" }, { "file": "features/learning-center/learning-center.css", "selector": ".gaip-learning-header, .gaip-learning-actions (首次本地值)" }],
-      "verification": { "level": "browser-checked", "checkedAt": "2026-09-17", "evidence": ["scripts/test-learning-live-browser.cjs (LIVE_MOCK_SEED=1)"], "gaps": ["独立原组件截图及几何验证，完整file页面待验收。"] },
-      "status": "active", "updatedAt": "2026-09-17"
+      "state": {
+        "channel": "学习中心",
+        "variant": "narrow",
+        "viewport": "内容容器≤760px"
+      },
+      "appliesTo": [
+        "学习中心首页窄屏；桌面参数不改"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": "103px",
+          "target": "0",
+          "status": "active",
+          "basis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "flex-basis:103px",
+          "target": "auto (flex-basis:auto)",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "20px 24px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "gap": {
+          "before": null,
+          "initialLocal": "normal",
+          "target": "12px",
+          "status": "active",
+          "basis": "source"
+        },
+        "actions.gap": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "8px",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": "@container (max-width:760px)"
+        },
+        {
+          "file": "channels/learning-center/learning-center.css",
+          "selector": ".gaip-learning-header, .gaip-learning-actions (首次本地值)"
+        }
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-09-30",
+        "evidence": [
+          "首页HTML两处源的同滚动层结构；沿用原窄容器视觉参数，撤回单独限宽方案"
+        ],
+        "gaps": [
+          "本轮浏览器file协议访问受限，未复验滚动与窄屏布局。"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-30"
     },
     {
       "id": "learning-live.banner",
@@ -202,11 +733,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-banner"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "mountCarousel"
         }
       ],
@@ -275,11 +806,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-banner-link img"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "mountCarousel"
         }
       ],
@@ -372,11 +903,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-arrow"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "mountCarousel"
         }
       ],
@@ -469,11 +1000,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-dot"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "mountCarousel"
         }
       ],
@@ -568,11 +1099,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-editor"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "openEditor"
         }
       ],
@@ -664,11 +1195,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-image-slot"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "openEditor"
         }
       ],
@@ -744,11 +1275,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-form-grid .lc-live-help"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "openEditor"
         }
       ],
@@ -872,11 +1403,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-url-value"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "mountManager"
         }
       ],
@@ -928,11 +1459,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-admin"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "openEditor"
         }
       ],
@@ -1000,11 +1531,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-live-editor, .lc-live-banner"
         },
         {
-          "file": "features/learning-center/learning-live.js",
+          "file": "channels/learning-center/learning-live.js",
           "function": "openEditor"
         }
       ],
@@ -1082,15 +1613,15 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".gaip-learning-header.lc-learning-home-header"
         },
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "renderList"
         },
         {
-          "file": "features/learning-center/learning-center.js",
+          "file": "channels/learning-center/learning-center.js",
           "function": "updateOverlayBounds"
         }
       ],
@@ -1151,15 +1682,15 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-learning-home-top"
         },
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "renderList"
         },
         {
-          "file": "features/learning-center/learning-center.js",
+          "file": "channels/learning-center/learning-center.js",
           "function": "updateOverlayBounds"
         }
       ],
@@ -1243,15 +1774,15 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".gaip-learning-actions.lc-learning-admin-tools"
         },
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "renderList"
         },
         {
-          "file": "features/learning-center/learning-center.js",
+          "file": "channels/learning-center/learning-center.js",
           "function": "updateOverlayBounds"
         }
       ],
@@ -1344,7 +1875,7 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-learning-section-title, .lc-learning-courses-heading"
         }
       ],
@@ -1413,7 +1944,7 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-live.css",
+          "file": "channels/learning-center/learning-center.css",
           "selector": ".lc-learning-live-section"
         }
       ],

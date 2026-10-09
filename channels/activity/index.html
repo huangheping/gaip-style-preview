@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>活动中心 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/activity/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="activity-component">
+  <div data-component="componentType" data-children="array" data-props="componentProps5" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-label="客户姓名" data-ui-name="name" data-ui-placeholder="请输入客户姓名" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-ui-name="人数" data-ui-label="人数" data-ui-placeholder="请输入人数" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType4" data-ui-name="议程选择（多选）" data-ui-label="议程选择（多选）" data-ui-layout="vertical" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType5" data-ui-label="意向业务" data-ui-name="intentionBusiness" data-ui-placeholder="请输入意向业务" data-props="componentProps4" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-3">
+  <div data-component="componentType" data-ui-name="议程选择（多选）" data-ui-label="议程选择（多选）" data-ui-layout="vertical" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-4">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-name="理财师用餐人数（欢迎晚宴）" data-ui-label="理财师用餐人数（欢迎晚宴）" data-ui-placeholder="请选择理财师用餐人数" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-ui-name="客户用餐人数（欢迎晚宴）" data-ui-label="客户用餐人数（欢迎晚宴）" data-ui-placeholder="请选择客户用餐人数" data-props="componentProps2" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-5">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-name="理财师用餐人数（尊享餐叙）" data-ui-label="理财师用餐人数（尊享餐叙）" data-ui-placeholder="请选择理财师用餐人数" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-ui-name="客户用餐人数（尊享餐叙）" data-ui-label="客户用餐人数（尊享餐叙）" data-ui-placeholder="请选择客户用餐人数" data-props="componentProps2" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-2">
+  <div data-component="componentType" data-children="array" data-props="componentProps15" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-name="name" data-ui-label="客户姓名" data-ui-placeholder="请输入客户姓名" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-ui-name="人数" data-ui-label="人数" data-ui-placeholder="请输入人数" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType4" data-children="single" data-props="componentProps3" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+    <div data-component="componentType5" data-children="single" data-props="componentProps4" data-kind="jsx">
+      <template data-slot="componentContent2"></template>
+    </div>
+    <div data-component="componentType6" data-children="single" data-props="componentProps5" data-kind="jsx">
+      <template data-slot="componentContent3"></template>
+    </div>
+    <div data-component="componentType7" data-ui-name="酒店入住人姓名" data-ui-label="酒店入住人姓名" data-ui-placeholder="请输入酒店入住人姓名" data-props="componentProps6" data-kind="jsx"></div>
+    <div data-component="componentType8" data-ui-name="证件类型" data-ui-label="证件类型" data-ui-placeholder="请输入证件类型" data-props="componentProps7" data-kind="jsx"></div>
+    <div data-component="componentType9" data-ui-name="证件号" data-ui-label="证件号" data-ui-placeholder="请输入证件号" data-props="componentProps8" data-kind="jsx"></div>
+    <div data-component="componentType10" data-ui-name="房型" data-ui-label="房型" data-props="componentProps9" data-kind="jsx"></div>
+    <div data-component="componentType11" data-ui-name="早餐数" data-ui-label="早餐数" data-ui-placeholder="请选择早餐数" data-props="componentProps10" data-kind="jsx"></div>
+    <div data-component="componentType12" data-ui-name="intentionBusiness" data-ui-label="意向业务" data-ui-placeholder="活动参与要求：达到3×5以上" data-props="componentProps11" data-kind="jsx"></div>
+    <div data-component="componentType13" data-ui-name="intentionPremium" data-ui-label="意向保额（万/美元）" data-ui-placeholder="请输入意向保额（万/美元）" data-props="componentProps12" data-kind="jsx"></div>
+    <div data-component="componentType14" data-ui-name="paymentTerm" data-ui-label="交费年限" data-ui-placeholder="请输入交费年限" data-props="componentProps13" data-kind="jsx"></div>
+    <div data-component="componentType15" data-ui-name="submitContractPackage" data-ui-label="签约包是否提交" data-props="componentProps14" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-7">
+  <div data-component="componentType" data-ui-name="人数" data-ui-label="人数" data-ui-placeholder="请输入人数" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-8">
+  <div data-component="componentType" data-ui-name="议程选择（多选）" data-ui-label="议程选择（多选）" data-ui-layout="vertical" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-9">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-label="酒店入住人姓名" data-ui-name="酒店入住人姓名" data-ui-placeholder="请输入酒店入住人姓名" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType4" data-ui-label="证件类型" data-ui-name="证件类型" data-ui-placeholder="请输入证件类型" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType5" data-ui-label="证件号" data-ui-name="证件号" data-ui-placeholder="请输入证件号" data-props="componentProps4" data-kind="jsx"></div>
+    <div data-component="componentType6" data-ui-label="入住日期" data-ui-name="入住日期" data-props="componentProps5" data-kind="jsx"></div>
+    <div data-component="componentType7" data-ui-name="入住天数" data-ui-label="入住天数" data-ui-placeholder="请输入入住天数" data-props="componentProps6" data-kind="jsx"></div>
+    <div data-component="componentType8" data-ui-name="入住人数" data-ui-label="入住人数" data-ui-placeholder="请输入入住人数" data-props="componentProps7" data-kind="jsx"></div>
+    <div data-component="componentType9" data-ui-name="房型" data-ui-label="房型" data-props="componentProps8" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-10">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="componentType2" data-ui-label="出发地" data-ui-name="出发地" data-ui-placeholder="请输入出发地" data-props="componentProps" data-kind="jsx"></div>
+    <div data-component="componentType3" data-ui-label="航班号" data-ui-name="航班号" data-ui-placeholder="请输入航班号" data-props="componentProps2" data-kind="jsx"></div>
+    <div data-component="componentType4" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType5" data-ui-name="落地费用支付方式" data-ui-label="落地费用支付方式" data-props="componentProps4" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-component-11">
+  <div data-component="componentType" data-ui-label="备注信息" data-ui-name="remark" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-6">
+  <div data-component="componentType" data-children="single" data-kind="jsx">
+    <div data-component="componentType2" data-children="array" data-props="componentProps6" data-kind="jsxs">
+      <div data-component="componentType3" data-ui-label="客户姓名" data-ui-name="name" data-ui-placeholder="请输入客户姓名" data-props="componentProps" data-kind="jsx"></div>
+      <template data-slot="componentContent"></template>
+      <template data-slot="componentContent2"></template>
+      <template data-slot="componentContent3"></template>
+      <template data-slot="componentContent4"></template>
+      <div data-component="componentType4" data-ui-label="意向业务" data-ui-name="intentionBusiness" data-ui-placeholder="请输入意向业务" data-props="componentProps2" data-kind="jsx"></div>
+      <div data-component="componentType5" data-ui-name="intentionPremium" data-ui-label="意向首保（万/美元）" data-ui-placeholder="请输入意向首保（万/美元）" data-props="componentProps3" data-kind="jsx"></div>
+      <div data-component="componentType6" data-ui-label="交费年限" data-ui-name="paymentTerm" data-ui-placeholder="请输入交费年限" data-props="componentProps4" data-kind="jsx"></div>
+      <div data-component="componentType7" data-ui-name="submitContractPackage" data-ui-label="签约包是否提交" data-props="componentProps5" data-kind="jsx"></div>
+      <template data-slot="componentContent5"></template>
+    </div>
+  </div>
+</template>
+
+<template id="activity-modalHeader">
+  <div class="modalHeader___VQUzD" data-children="array" data-kind="jsxs">
+    <p class="modalHeader_title___BN0EN" data-children="single" data-kind="jsx">
+      填写报名信息
+    </p>
+    <p class="modalHeader_sub___YXbTb" data-children="array" data-kind="jsxs">
+      <template data-text="正在报名： "></template>
+      <template data-slot="modalHeader_subContent"></template>
+    </p>
+  </div>
+</template>
+
+<template id="activity-gaip-activity-source-style-4">
+  <div data-component="gaip_activity_source_style_4Type" data-ui-class-name="gaip-activity-source-style-4" data-kind="jsx"></div>
+</template>
+
+<template id="activity-gaip-activity-source-style-3">
+  <div data-component="gaip_activity_source_style_3Type" data-ui-type="info" data-ui-message="具体议程及报名细节，请企微咨询陈晓" data-ui-class-name="gaip-activity-source-style-3" data-props="gaip_activity_source_style_3Props" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-12">
+  <div data-component="componentType" data-children="single" data-props="componentProps3" data-kind="jsx">
+    <div data-component="componentType2" data-children="array" data-props="componentProps2" data-kind="jsxs">
+      <div data-component="componentType3" data-props="componentProps" data-kind="jsx"></div>
+      <template data-slot="componentContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="activity-activityName">
+  <p class="activityName___fA_jz" data-children="single" data-kind="jsx">
+    <span data-component="gaip_activity_source_style_6Type" data-ui-class-name="gaip-activity-source-style-6" data-children="single" data-props="gaip_activity_source_style_6Props" data-kind="jsx">
+      <template data-slot="gaip_activity_source_style_6Content"></template>
+    </span>
+  </p>
+</template>
+
+<template id="activity-gaip-activity-source-style-5">
+  <div data-component="gaip_activity_source_style_5Type" data-ui-align="middle" data-ui-class-name="gaip-activity-source-style-5" data-children="array" data-props="gaip_activity_source_style_5Props" data-kind="jsxs">
+    <div data-component="componentType" data-ui-flex="120px" data-children="single" data-kind="jsx">
+      <span class="title___tOjjT" data-children="single" data-kind="jsx">
+        报名记录
+      </span>
+    </div>
+    <div data-component="componentType2" data-ui-flex="auto" data-children="single" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+  </div>
+</template>
+
+<template id="activity-component-13">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <div data-component="signUpTableType" data-ui-class-name="signUpTable___OgxHF" data-ui-row-key="signupCode" data-ui-default-size="small" data-props="signUpTableProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="activity-signup-record-table">
+  <section class="gaip-signup-record-table" aria-label="报名记录表格" data-props="hostProps" data-kind="jsx"></section>
+</template>
+
+<template id="activity-div">
+  <div data-children="array" data-kind="jsxs">
+    <p data-children="single" data-kind="jsx">
+      报名请通过对应渠道市场同事处理：
+    </p>
+    <p data-children="single" data-kind="jsx">
+      Minz-Livia、机构渠道-Jade
+    </p>
+  </div>
+</template>
+
+<template id="activity-a">
+  <a data-children="array" data-props="aProps" data-kind="jsxs">
+    <template data-text="已报名 "></template>
+    <template data-slot="aContent"></template>
+    <template data-text=" 组客户"></template>
+  </a>
+</template>
+
+<template id="activity-em">
+  <em data-children="single" data-kind="jsx">
+    未报名
+  </em>
+</template>
+
+<template id="activity-img">
+  <img alt="海报图" data-props="imgProps" data-kind="jsx" />
+</template>
+
+<template id="activity-component-14">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-15">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-16">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-drawerContent">
+  <div data-component="drawerContentType" data-ui-class-name="drawerContent___Raxfz" data-children="array" data-props="drawerContentProps" data-kind="jsxs">
+    <div data-component="cardType" data-ui-class-name="card___Je4dd" data-children="array" data-kind="jsxs">
+      <h2 data-children="single" data-kind="jsx">
+        <template data-slot="h2Content"></template>
+      </h2>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          我的报名：
+        </span>
+        <span class="signupBtn___UeDxi" data-children="single" data-kind="jsx">
+          <template data-slot="signupBtnContent"></template>
+        </span>
+      </div>
+    </div>
+    <div data-component="cardType2" data-ui-class-name="card___Je4dd" data-children="array" data-kind="jsxs">
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          状态：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+            <template data-slot="componentContent"></template>
+          </div>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          活动发起方：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          报名时间：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent2"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          地点：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent3"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          目标客户：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent4"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          类型：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent5"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          活动时间：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent6"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          规模：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent7"></template>
+        </span>
+      </div>
+    </div>
+    <div data-component="cardType3" data-ui-class-name="card___Je4dd" data-children="array" data-kind="jsxs">
+      <h3 data-children="single" data-kind="jsx">
+        嘉宾与资源
+      </h3>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          外部嘉宾：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent8"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          内部讲师：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent9"></template>
+        </span>
+      </div>
+      <div class="cardItem___P1w5k" data-children="array" data-kind="jsxs">
+        <span data-children="single" data-kind="jsx">
+          投放资源：
+        </span>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent10"></template>
+        </span>
+      </div>
+    </div>
+    <template data-slot="drawerContentContent"></template>
+    <div class="footer___xI_PG" data-children="single" data-kind="jsx">
+      <button type="button" data-children="single" data-props="buttonProps" data-kind="jsx">
+        <template data-slot="buttonContent"></template>
+      </button>
+    </div>
+    <template data-slot="drawerContentContent2"></template>
+    <template data-slot="drawerContentContent3"></template>
+  </div>
+</template>
+
+<template id="activity-div-2">
+  <div data-children="array" data-kind="jsxs">
+    <p data-children="single" data-kind="jsx">
+      报名请通过对应渠道市场同事处理：
+    </p>
+    <p data-children="single" data-kind="jsx">
+      Minz-Livia、机构渠道-Jade
+    </p>
+  </div>
+</template>
+
+<template id="activity-img-2">
+  <img data-props="imgProps" data-kind="jsx" />
+</template>
+
+<template id="activity-span">
+  <span data-children="single" data-kind="jsx">
+    <template data-slot="spanContent"></template>
+  </span>
+</template>
+
+<template id="activity-h2">
+  <h2 data-children="array" data-kind="jsxs">
+    <template data-slot="h2Content"></template>
+    <template data-slot="h2Content2"></template>
+  </h2>
+</template>
+
+<template id="activity-h3">
+  <h3 data-children="single" data-kind="jsx">
+    <template data-slot="h3Content"></template>
+  </h3>
+</template>
+
+<template id="activity-h4">
+  <h4 data-children="single" data-kind="jsx">
+    <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+      <template data-slot="componentContent"></template>
+    </div>
+  </h4>
+</template>
+
+<template id="activity-p">
+  <p data-children="array" data-kind="jsxs">
+    地点：
+    <template data-slot="pContent"></template>
+  </p>
+</template>
+
+<template id="activity-p-2">
+  <p data-children="array" data-kind="jsxs">
+    时间：
+    <template data-slot="pContent"></template>
+  </p>
+</template>
+
+<template id="activity-carouselItemWrapper">
+  <div class="carouselItemWrapper___S8kZo" data-children="array" data-props="carouselItemWrapperProps" data-key="carouselItemWrapperKey" data-kind="jsxs">
+    <template data-slot="carouselItemWrapperContent"></template>
+    <div class="carouselItemInfo___ZO_8B" data-children="array" data-kind="jsxs">
+      <div class="logo___igd2B" data-kind="jsx"></div>
+      <template data-slot="carouselItemInfoContent"></template>
+      <template data-slot="carouselItemInfoContent2"></template>
+      <template data-slot="carouselItemInfoContent3"></template>
+      <div class="carouselItemFooter___F64mz" data-children="array" data-kind="jsxs">
+        <button type="button" class="signUp___Od55D" data-children="single" data-props="signUpProps" data-kind="jsx">
+          快速报名 >
+        </button>
+        <div data-children="array" data-kind="jsxs">
+          <template data-slot="divContent"></template>
+          <template data-slot="divContent2"></template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="activity-div-3">
+  <div data-children="array" data-key="divKey" data-kind="jsxs">
+    <div class="activityTitle___KdhCL" data-children="single" data-kind="jsx">
+      <template data-slot="activityTitleContent"></template>
+    </div>
+    <div class="activityNumber___hytqI" data-children="single" data-kind="jsx">
+      <template data-slot="activityNumberContent"></template>
+    </div>
+    <p class="activitySubTitle___RtSzr" data-children="single" data-kind="jsx">
+      <template data-slot="activitySubTitleContent"></template>
+    </p>
+  </div>
+</template>
+
+<template id="activity-activityList">
+  <div class="activityList___BpGkv" data-children="array" data-kind="jsxs">
+    <template data-slot="activityListContent"></template>
+    <div class="activitySummary___MyQJG" data-children="array" data-kind="jsxs">
+      <div data-children="array" data-kind="jsxs">
+        <em data-children="single" data-kind="jsx">
+          本年已办
+        </em>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent"></template>
+        </span>
+      </div>
+      <div data-children="array" data-kind="jsxs">
+        <em data-children="single" data-kind="jsx">
+          报名中
+        </em>
+        <span data-children="single" data-kind="jsx">
+          <template data-slot="spanContent2"></template>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="activity-component-17">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-18">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-container">
+  <div class="container___zJMso" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-children="array" data-props="componentProps2" data-kind="jsxs">
+      <div data-component="componentType2" data-ui-flex="0 0 80%" data-children="single" data-kind="jsx">
+        <div class="carousel___rduL0" data-children="single" data-kind="jsx">
+          <div data-component="componentType3" data-children="single" data-props="componentProps" data-kind="jsx">
+            <template data-slot="componentContent"></template>
+          </div>
+        </div>
+      </div>
+      <div data-component="componentType4" data-ui-flex="1" data-children="single" data-kind="jsx">
+        <div class="myInfo___LiGkO" data-children="single" data-kind="jsx">
+          <div class="signUpContainer___CjH8K" data-children="single" data-props="signUpContainerProps" data-kind="jsx">
+            <div data-children="single" data-kind="jsx">
+              我的报名
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template data-slot="containerContent"></template>
+    <template data-slot="containerContent2"></template>
+    <div data-component="componentType5" data-props="componentProps3" data-kind="jsx"></div>
+    <template data-slot="containerContent3"></template>
+  </div>
+</template>
+
+<template id="activity-reset">
+  <button type="button" class="reset___OIpw8" data-children="single" data-props="resetProps" data-kind="jsx">
+    清除筛选
+  </button>
+</template>
+
+<template id="activity-component-20">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="gaip_activity_source_style_7Type" data-ui-class-name="gaip-activity-source-style-7" data-props="gaip_activity_source_style_7Props" data-kind="jsx"></div>
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="activity-component-21">
+  <div data-component="componentType" data-children="array" data-kind="jsxs">
+    <div data-component="gaip_activity_source_style_8Type" data-ui-class-name="gaip-activity-source-style-8" data-props="gaip_activity_source_style_8Props" data-kind="jsx"></div>
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="activity-searchIcon">
+  <img alt="search" class="searchIcon___t4cf2" data-props="searchIconProps" data-kind="jsx" />
+</template>
+
+<template id="activity-searchBtn">
+  <div data-component="searchBtnType" data-ui-class-name="searchBtn___MTVYP" data-ui-type="primary" data-props="searchBtnProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-component-19">
+  <div data-component="componentType" data-children="single" data-kind="jsx">
+    <div data-component="searchFormType" data-ui-class-name="searchForm___x0Yoy" data-ui-layout="inline" data-ui-size="large" data-children="single" data-props="searchFormProps" data-kind="jsx">
+      <div class="filterBox___kyYDx" data-children="array" data-kind="jsxs">
+        <div class="totalBar___iajUk" data-children="array" data-kind="jsxs">
+          <span class="acount___fnC7o" data-children="array" data-kind="jsxs">
+            显示
+            <span class="val___XFjRO" data-children="single" data-kind="jsx">
+              <template data-slot="valContent"></template>
+            </span>
+            条活动
+          </span>
+          <template data-slot="totalBarContent"></template>
+        </div>
+        <div class="fieldItems___XPZDB" data-children="array" data-kind="jsxs">
+          <div data-component="componentType2" data-ui-name="organizers" data-children="single" data-kind="jsx">
+            <div data-props="componentProps" data-component="componentType3" data-kind="jsx"></div>
+          </div>
+          <div data-component="componentType4" data-ui-name="activityStatuses" data-children="single" data-kind="jsx">
+            <div data-props="componentProps2" data-component="componentType5" data-kind="jsx"></div>
+          </div>
+          <div data-component="componentType6" data-ui-name="keyword" data-children="single" data-kind="jsx">
+            <div data-component="componentType7" data-ui-placeholder="请输入搜索关键字" data-props="componentProps3" data-kind="jsx"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="activity-div-4">
+  <div data-children="array" data-kind="jsxs">
+    <p data-children="single" data-kind="jsx">
+      <span data-component="gaip_activity_source_style_9Type" data-ui-class-name="gaip-activity-source-style-9" data-children="single" data-props="gaip_activity_source_style_9Props" data-kind="jsx">
+        <template data-slot="gaip_activity_source_style_9Content"></template>
+      </span>
+    </p>
+    <p class="gaip-activity-source-style-10" data-children="single" data-kind="jsx">
+      <template data-slot="gaip_activity_source_style_10Content"></template>
+    </p>
+  </div>
+</template>
+
+<template id="activity-div-5">
+  <div data-children="array" data-kind="jsxs">
+    <p data-children="single" data-kind="jsx">
+      <template data-slot="pContent"></template>
+    </p>
+    <p data-children="single" data-kind="jsx">
+      <template data-slot="pContent2"></template>
+    </p>
+  </div>
+</template>
+
+<template id="activity-signedCount">
+  <a class="signedCount___DVADQ" data-children="array" data-props="signedCountProps" data-kind="jsxs">
+    已报名
+    <template data-slot="signedCountContent"></template>
+    组客户
+  </a>
+</template>
+
+<template id="activity-component-22">
+  <div data-component="componentType" data-children="single" data-props="componentProps" data-kind="jsx">
+    <template data-slot="componentContent"></template>
+  </div>
+</template>
+
+<template id="activity-li">
+  <li data-children="single" data-props="liProps" data-key="liKey" data-kind="jsx">
+    <div data-children="array" data-props="divProps" data-kind="jsxs">
+      <span data-children="single" data-kind="jsx">
+        <template data-slot="spanContent"></template>
+      </span>
+      <span data-children="single" data-kind="jsx">
+        <template data-slot="spanContent2"></template>
+      </span>
+    </div>
+  </li>
+</template>
+
+<template id="activity-component-23">
+  <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+</template>
+
+<template id="activity-pageContainer">
+  <div class="pageContainer___mLr1f" data-children="array" data-kind="jsxs">
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+    <div class="details___bfJBJ" data-children="array" data-kind="jsxs">
+      <div class="activityTab___J_bbZ" data-children="single" data-kind="jsx">
+        <ul class="activityTypeList___yoGo1" data-children="single" data-kind="jsx">
+          <template data-slot="activityTypeListContent"></template>
+        </ul>
+      </div>
+      <div class="searchForm___myojJ" data-children="array" data-kind="jsxs">
+        <div data-component="componentType2" data-props="componentProps2" data-kind="jsx"></div>
+        <div data-component="componentType3" data-ui-row-key="activityCode" data-props="componentProps3" data-kind="jsx"></div>
+      </div>
+    </div>
+    <template data-slot="pageContainerContent"></template>
+    <div data-component="componentType4" data-props="componentProps4" data-kind="jsx"></div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

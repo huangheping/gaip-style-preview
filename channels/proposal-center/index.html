@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <base data-gaip-project-base href="../../">
+  <script src="app/entry-base.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>方案中心 - GAIP 本地原样版</title>
+  <link rel="shortcut icon" href="./shared/assets/icons/brand/favicon.ico">
+  <link rel="stylesheet" href="./web/umi.c6286171.css">
+  <link rel="stylesheet" href="./components/ai-agent/AI Agent.css?v=20261009-composer-hint-1">
+  <link rel="stylesheet" href="./channels/workspace/workspace-update.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./shared/styles/global-font.css?v=20260909-project-font-1">
+  <link rel="stylesheet" href="./shared/styles/channel-foundation.css?v=20261008-icon-standard-1">
+  <link rel="stylesheet" href="./shared/styles/main-nav.css?v=20260930-local-icons-3">
+  <link rel="stylesheet" href="./components/ai-notice/global-ai-notice.css?v=20260920-1">
+  <link rel="stylesheet" href="./components/poster-share/global-poster-share.css?v=20260827-1">
+  <link rel="stylesheet" href="./components/table/global-table.css?v=20261009-action-hover-1">
+  <link rel="stylesheet" href="./components/operation-log/global-operation-log.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/modal/global-modal-mask.css?v=20260910-backdrop-1">
+  <link rel="stylesheet" href="./components/modal/global-modal.css?v=20261008-product-details-1">
+  <script defer src="./components/modal/global-modal.js?v=20261008-close-2"></script>
+  <link rel="stylesheet" href="./components/modal-controls/modal-controls.css?v=20261008-expand-1">
+  <link rel="stylesheet" href="./components/date-picker/global-date-picker.css?v=20260930-local-icons-3">
+  <script defer src="./components/date-picker/global-date-picker.js?v=20260909-date-1"></script>
+  <script defer src="./components/modal-controls/modal-controls.js?v=20260909-date-1"></script>
+  <link rel="stylesheet" href="./components/modal/global-modal-position.css?v=20260908-2">
+  <script defer src="./components/modal/global-modal-position.js?v=20260904-1"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="./shared/config/channels.js?v=20261008-status-tags-1"></script>
+  <script src="./shared/scripts/global-breadcrumb.js?v=20260925-html-structure-1"></script>
+  <script src="./components/ai-notice/global-ai-notice.js?v=20260925-html-structure-1"></script>
+  <script src="./components/poster-share/global-poster-share.js?v=20260925-html-structure-1"></script>
+  <script src="channels/proposal-center/entry.js"></script>
+  <script src="./components/ai-agent/AI Agent本地Mock.js?v=20261009-composer-hint-1"></script>
+  <script src="./channels/clues/mock-data.js"></script>
+  <script src="./shared/data/channel-data/mock-data.js?v=20260730-3"></script>
+  <script src="./shared/scripts/local-preview.js?v=20260925-html-structure-1"></script>
+  <script src="./shared/config/channel-bundles.js?v=20261008-product-details-1"></script>
+  <script src="./shared/assets/icons/local-icons.generated.js?v=20260930-d45e7807beba"></script>
+  <script src="./shared/runtime/umi.0b0663b5.js?v=20261001-merge-2"></script>
+  <script src="./components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1"></script>
+  <script src="./channels/workspace/workspace-update.js?v=20260930-local-icons-3"></script>
+  <script src="./channels/clues/layout-patch.js?v=20260922-style-separation-1"></script>
+  <script src="./shared/scripts/learning-nav.js?v=20260930-local-icons-3"></script>
+  <script src="./shared/scripts/channel-entry-navigation.js?v=20260825-2"></script>
+  <script src="./shared/scripts/channel-regions.js?v=20260907-menu-order-1"></script>
+  <script src="./components/operation-log/operation-log-mock.js?v=20260903-2"></script>
+  <script src="./components/operation-log/operation-log-xlsx.js?v=20260909-v11"></script>
+  <script src="./components/table/global-table.js?v=20260929-course-menu-1"></script>
+  <script src="./shared/scripts/channel-features.js?v=20260922-consolidation-1"></script>
+  <script src="./components/operation-log/global-operation-log.js?v=20261001-merge-1"></script>
+<!-- @gaip-page-views:start -->
+<template id="proposal-center-card">
+  <div class="card___rpvCw" data-children="array" data-props="cardProps" data-kind="jsxs">
+    <div class="areaLeft___m1FJV" data-children="array" data-kind="jsxs">
+      <span class="customerName___YzJLR" data-children="single" data-kind="jsx">
+        <template data-slot="customerNameContent"></template>
+      </span>
+      <span class="tag___yODoL" data-children="single" data-kind="jsx">
+        <template data-slot="tagContent"></template>
+      </span>
+    </div>
+    <div class="areaRight___OOn88" data-children="single" data-kind="jsx">
+      <div class="cardMeta___fPjcs" data-children="array" data-kind="jsxs">
+        <span class="matchRate___tbeK2" data-kind="jsx"></span>
+        <span data-children="array" data-props="spanProps" data-kind="jsxs">
+          <template data-text="最后更新 "></template>
+          <template data-slot="spanContent"></template>
+        </span>
+      </div>
+    </div>
+    <div data-component="componentType" data-ui-title="确认删除" data-ui-description="确定要删除该方案吗？" data-ui-ok-text="确认" data-ui-cancel-text="取消" data-children="single" data-props="componentProps" data-kind="jsx">
+      <span class="deleteBtn___GznbY" data-children="single" data-props="deleteBtnProps" data-kind="jsx">
+        <img data-props="imgProps" data-kind="jsx" />
+      </span>
+    </div>
+  </div>
+</template>
+
+<template id="proposal-center-card-2">
+  <div class="card___rpvCw" data-children="array" data-kind="jsxs">
+    <div class="areaLeft___m1FJV" data-children="array" data-kind="jsxs">
+      <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+      <div data-component="gaip_proposal_center_source_style_1Type" data-ui-size="small" data-ui-class-name="gaip-proposal-center-source-style-1" data-props="gaip_proposal_center_source_style_1Props" data-kind="jsx"></div>
+    </div>
+    <div class="areaRight___OOn88" data-children="array" data-kind="jsxs">
+      <div data-component="componentType2" data-props="componentProps2" data-kind="jsx"></div>
+      <div data-component="gaip_proposal_center_source_style_2Type" data-ui-class-name="gaip-proposal-center-source-style-2" data-props="gaip_proposal_center_source_style_2Props" data-kind="jsx"></div>
+    </div>
+  </div>
+</template>
+
+<template id="proposal-center-component">
+  <div data-component="componentType" data-key="componentKey" data-kind="jsx"></div>
+</template>
+
+<template id="proposal-center-cardGrid">
+  <div class="cardGrid___CRNVo" data-children="single" data-kind="jsx">
+    <template data-slot="cardGridContent"></template>
+  </div>
+</template>
+
+<template id="proposal-center-emptyWrap">
+  <div class="emptyWrap___pbf5I" data-children="single" data-kind="jsx">
+    <div data-component="componentType" data-ui-description="开始为客户打造第一个专属方案" data-ui-create-text="新建方案" data-props="componentProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="proposal-center-component-2">
+  <div data-component="componentType" data-ui-main-product="" data-props="componentProps" data-key="componentKey" data-kind="jsx"></div>
+</template>
+
+<template id="proposal-center-cardGrid-2">
+  <div class="cardGrid___CRNVo" data-children="array" data-kind="jsxs">
+    <template data-slot="cardGridContent"></template>
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="proposal-center-categoryItem">
+  <div class="categoryItem___rV2CV" data-children="single" data-key="categoryItemKey" data-kind="jsx">
+    <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+  </div>
+</template>
+
+<template id="proposal-center-sidebar">
+  <div class="sidebar___eufN_" data-children="single" data-kind="jsx">
+    <template data-slot="sidebarContent"></template>
+  </div>
+</template>
+
+<template id="proposal-center-sidebar-2">
+  <div class="sidebar___eufN_" data-kind="jsx"></div>
+</template>
+
+<template id="proposal-center-div">
+  <div data-children="single" data-props="divProps" data-key="divKey" data-kind="jsx">
+    <template data-slot="divContent"></template>
+  </div>
+</template>
+
+<template id="proposal-center-sidebar-3">
+  <div class="sidebar___eufN_" data-children="single" data-kind="jsx">
+    <template data-slot="sidebarContent"></template>
+  </div>
+</template>
+
+<template id="proposal-center-searchIcon">
+  <div data-component="searchIconType" data-ui-class-name="searchIcon___UIMNO" data-kind="jsx"></div>
+</template>
+
+<template id="proposal-center-pageContainer">
+  <div class="pageContainer___JFgl9" data-children="array" data-kind="jsxs">
+    <div class="banner___Q3hi0" data-children="array" data-kind="jsxs">
+      <h1 class="bannerTitle___qF4_x" data-children="single" data-kind="jsx">
+        方案中心 AI
+      </h1>
+      <p class="bannerSubtitle___nOYfq" data-children="single" data-kind="jsx">
+        智能方案匹配，高效解决客户需求，助力您为客户提供更专业的保障规划
+      </p>
+      <div class="bannerActions___WV83u" data-children="array" data-kind="jsxs">
+        <button type="button" class="createBtn___QyNWs" data-children="array" data-props="createBtnProps" data-kind="jsxs">
+          <div data-component="iconType" data-ui-class-name="icon___vFr3X" data-kind="jsx"></div>
+          新建方案
+        </button>
+        <div data-component="searchInputType" data-ui-class-name="searchInput___e9QW8" data-ui-placeholder="搜索客户姓名" data-props="searchInputProps" data-kind="jsx"></div>
+      </div>
+    </div>
+    <div class="mainContent___k6rz5" data-children="array" data-kind="jsxs">
+      <div data-component="componentType" data-props="componentProps" data-kind="jsx"></div>
+      <div class="cardListWrap___r5AGs" data-children="single" data-props="cardListWrapProps" data-kind="jsx">
+        <div data-component="componentType2" data-props="componentProps2" data-kind="jsx"></div>
+      </div>
+    </div>
+    <div data-component="componentType3" data-props="componentProps3" data-kind="jsx"></div>
+    <div data-component="componentType4" data-props="componentProps4" data-kind="jsx"></div>
+    <div data-component="componentType5" data-props="componentProps5" data-kind="jsx"></div>
+  </div>
+</template>
+<!-- @gaip-page-views:end -->
+</body>
+</html>

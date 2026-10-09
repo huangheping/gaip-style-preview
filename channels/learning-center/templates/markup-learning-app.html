@@ -1,0 +1,192 @@
+<!-- HTML structure source for channels/learning-center/learning-app.js?v=20261002-collapse-1 Slots are rendered by the original JS expressions. -->
+<!-- source function near original line 13 -->
+<template data-gaip-markup="btn-1"><button type="button" class="lc-button {{gaip:0}}" data-lc="{{gaip:1}}" data-id="{{gaip:2}}"{{gaip:3}}>{{gaip:4}}</button></template>
+<!-- source function near original line 14 -->
+<template data-gaip-markup="badge-2"><span class="gaip-course-tag gaip-course-tag--{{gaip:0}}">{{gaip:1}}</span></template>
+<!-- source function near original line 24 -->
+<template data-gaip-markup="back-3"><header class="gaip-course-detail-header{{gaip:0}}{{gaip:1}}"><button class="gaip-course-detail-back" type="button" data-lc="{{gaip:2}}"><span class="gaip-course-detail-back-icon" aria-hidden="true"></span>{{gaip:3}}</button>{{gaip:4}}</header></template>
+<!-- source function near original line 24 -->
+<template data-gaip-markup="back-4"><div class="lc-manage-header-actions">{{gaip:0}}</div></template>
+<!-- source function near original line 54 -->
+<template data-gaip-markup="renderList-5"><div class="gaip-course-list-view"><div class="gaip-learning-scroll">{{gaip:0}}<section data-live-cards hidden></section><div class="gaip-learning-grid">{{gaip:1}}</div>{{gaip:2}}</div></div></template>
+<!-- source function near original line 55 -->
+<template data-gaip-markup="renderList-6"><article class="gaip-course-card" role="link" tabindex="0" data-lc="course" data-id="{{gaip:0}}" aria-label="查看课程详情：{{gaip:1}}"><div class="gaip-course-cover"><img class="gaip-course-image" src="{{gaip:2}}" alt="{{gaip:3}}"></div><div class="gaip-course-body"><h2 class="gaip-course-title" title="{{gaip:4}}">{{gaip:5}}</h2><p class="gaip-course-description">{{gaip:6}}</p><div class="gaip-course-footer"><div class="gaip-course-tags">{{gaip:7}}</div></div></div></article></template>
+<!-- source function near original line 56 -->
+<template data-gaip-markup="renderList-7"><div class="lc-empty">当前暂无可学习课程</div></template>
+<!-- source function near original line 62 -->
+<template data-gaip-markup="renderList-8"><img class="gaip-learning-action-icon" src="{{gaip:0}}" alt="" aria-hidden="true"><span>直播管理</span></template>
+<!-- source function near original line 80 -->
+<template data-gaip-markup="renderDetail-9"><section class="gaip-course-detail-page">{{gaip:0}}<div class="gaip-course-detail-scroll"><div class="gaip-course-detail-layout"><aside class="gaip-course-detail-sidebar"><div class="gaip-course-detail-visual"><img class="gaip-course-detail-image" src="{{gaip:1}}" alt="{{gaip:2}}"></div><div class="gaip-course-detail-content"><h2 class="gaip-course-detail-title">{{gaip:3}}</h2><p class="gaip-course-detail-description">{{gaip:4}}</p><div class="gaip-course-detail-tags">{{gaip:5}}</div></div></aside><div class="gaip-course-detail-main">{{gaip:6}}<section class="gaip-course-detail-summary"><div class="gaip-course-detail-stats">{{gaip:7}}</div></section><section class="gaip-course-lessons"><div class="gaip-course-lessons-heading"><h3>全部课节</h3><span class="gaip-course-lessons-count">{{gaip:8}} 个课节{{gaip:9}}</span></div><div class="gaip-course-lesson-list">{{gaip:10}}{{gaip:11}}</div></section></div></div></div></section></template>
+<!-- source function near original line 80 -->
+<template data-gaip-markup="renderDetail-10"><p class="lc-notice">仅限管理员预览 · 不记录学习进度、时长及学情数据</p></template>
+<!-- source function near original line 80 -->
+<template data-gaip-markup="renderDetail-11"><div class="gaip-course-detail-stat"><strong>{{gaip:0}}</strong><span>{{gaip:1}}</span></div></template>
+<!-- source function near original line 82 -->
+<template data-gaip-markup="renderDetail-12"><article class="gaip-course-lesson" role="link" tabindex="0" data-lc="lesson" data-id="{{gaip:0}}"><div class="gaip-lesson-name"><span>{{gaip:1}}</span><i></i><strong title="{{gaip:2}}">{{gaip:3}}</strong></div><div class="gaip-lesson-progress"><span class="gaip-lesson-progress-label"><span class="gaip-lesson-progress-icon"></span>{{gaip:4}}</span><span class="gaip-lesson-progress-track"><i data-lesson-progress="{{gaip:5}}"></i></span></div><div class="gaip-lesson-actions">{{gaip:6}}<button type="button" class="gaip-lesson-action gaip-lesson-action--primary {{gaip:7}}" data-lc="lesson" data-id="{{gaip:8}}">{{gaip:9}}</button></div></article></template>
+<!-- source function near original line 82 -->
+<template data-gaip-markup="renderDetail-13"><button type="button" class="gaip-lesson-action gaip-lesson-action--secondary" data-lc="handout" data-id="{{gaip:0}}">下载/查看讲义</button></template>
+<!-- source function near original line 82 -->
+<template data-gaip-markup="renderDetail-14"><span class="gaip-lesson-action-icon gaip-lesson-action-icon--{{gaip:0}}"></span>{{gaip:1}}</template>
+<!-- source function near original line 83 -->
+<template data-gaip-markup="renderDetail-15"><div class="lc-empty">暂无课节，请在课程管理中添加</div></template>
+<!-- source function near original line 89 -->
+<template data-gaip-markup="watermark-16"><div class="lc-watermark" aria-hidden="true">{{gaip:0}}</div></template>
+<!-- source function near original line 89 -->
+<template data-gaip-markup="watermark-17"><span>{{gaip:0}}</span></template>
+<!-- source function near original line 92 -->
+<template data-gaip-markup="renderPlayer-18"><nav class="gaip-course-player-lesson-nav">{{gaip:0}}{{gaip:1}}</nav></template>
+<!-- source function near original line 95 -->
+<template data-gaip-markup="renderPlayer-19"><section class="gaip-course-reader-page">{{gaip:0}}<div class="gaip-course-reader-scroll lc-pdf-scroll"><div class="gaip-course-reader-shell"><header class="gaip-course-reader-heading"><div><span class="gaip-course-reader-type">PDF 图文课节{{gaip:1}}</span><h2 class="gaip-course-reader-title">{{gaip:2}}</h2></div><div class="lc-reader-tools">{{gaip:3}}<output data-zoom>100%</output>{{gaip:4}}{{gaip:5}}</div></header><div class="lc-pdf-pages" data-zoom-value="100">{{gaip:6}}</div><div class="gaip-course-reader-complete{{gaip:7}}"><span class="gaip-course-reader-complete-icon"></span><strong>{{gaip:8}}</strong></div>{{gaip:9}}</div></div></section></template>
+<!-- source function near original line 95 -->
+<template data-gaip-markup="renderPlayer-20"><figure class="lc-pdf-page"><img width="935" height="1210" src="{{gaip:0}}" alt="本地 PDF 示例第 {{gaip:1}} 页">{{gaip:2}}<figcaption>{{gaip:3}} / 4</figcaption></figure></template>
+<!-- source function near original line 105 -->
+<template data-gaip-markup="renderPlayer-21"><section class="gaip-course-player-page">{{gaip:0}}<div class="gaip-course-player-scroll"><div class="gaip-course-player-shell"><div class="gaip-course-player-stage {{gaip:1}}"><img class="gaip-course-player-poster" src="{{gaip:2}}" alt="{{gaip:3}}">{{gaip:4}}<button class="gaip-course-player-toggle" data-lc="toggle" type="button" aria-label="播放课程" aria-pressed="false"></button>{{gaip:5}}</div><section class="gaip-course-player-controls"><h3 class="gaip-course-player-lesson-title">{{gaip:6}}</h3><input class="gaip-course-player-progress" data-seek type="range" min="0" max="{{gaip:7}}" step="1" value="{{gaip:8}}" aria-label="播放进度"><div class="gaip-course-player-meta"><span><strong data-current>{{gaip:9}}</strong><em>/</em>{{gaip:10}}</span><span data-learned></span></div><div class="gaip-course-player-speed-row"><span>播放速度</span><div class="gaip-course-player-speeds">{{gaip:11}}</div></div><p class="lc-hint">本地模拟播放，不加载真实媒体。{{gaip:12}}</p></section>{{gaip:13}}</div></div></section></template>
+<!-- source function near original line 105 -->
+<template data-gaip-markup="renderPlayer-22"><span class="lc-audio-label">音频课节 · 本地模拟</span></template>
+<!-- source function near original line 105 -->
+<template data-gaip-markup="renderPlayer-23"><button class="gaip-course-player-speed{{gaip:0}}" data-lc="speed" data-id="{{gaip:1}}" aria-pressed="{{gaip:2}}">{{gaip:3}}x</button></template>
+<!-- source function near original line 127 -->
+<template data-gaip-markup="select-24"><select {{gaip:0}}="{{gaip:1}}" aria-label="{{gaip:2}}">{{gaip:3}}</select></template>
+<!-- source function near original line 127 -->
+<template data-gaip-markup="select-25"><option value="{{gaip:0}}"{{gaip:1}}>{{gaip:2}}</option></template>
+<!-- source function near original line 128 -->
+<template data-gaip-markup="search-26"><input class="lc-search" data-search type="search" value="{{gaip:0}}" placeholder="{{gaip:1}}" aria-label="{{gaip:2}}"></template>
+<!-- source function near original line 129 -->
+<template data-gaip-markup="table-27"><div class="lc-table-scroll"><table class="lc-table"><thead><tr>{{gaip:0}}</tr></thead><tbody>{{gaip:1}}</tbody></table></div></template>
+<!-- source function near original line 129 -->
+<template data-gaip-markup="table-28"><th>{{gaip:0}}</th></template>
+<!-- source function near original line 129 -->
+<template data-gaip-markup="table-29"><tr>{{gaip:0}}</tr></template>
+<!-- source function near original line 129 -->
+<template data-gaip-markup="table-30"><td>{{gaip:0}}</td></template>
+<!-- source function near original line 129 -->
+<template data-gaip-markup="table-31"><tr><td colspan="{{gaip:0}}"><div class="lc-empty">暂无符合条件的数据</div></td></tr></template>
+<!-- source function near original line 131 -->
+<template data-gaip-markup="pages-32"><div class="lc-pagination"><span>共 {{gaip:0}} 条 · 每页 10 条</span>{{gaip:1}}<span>{{gaip:2}} / {{gaip:3}}</span>{{gaip:4}}</div></template>
+<!-- source function near original line 132 -->
+<template data-gaip-markup="adminHeader-33"><div class="lc-admin-heading"><h2>{{gaip:0}}</h2><div>{{gaip:1}}{{gaip:2}}</div></div></template>
+<!-- source function near original line 138 -->
+<template data-gaip-markup="course-more"><button type="button" class="lc-link gaip-table__button gaip-table__more" data-lc="more" data-id="{{gaip:0}}" aria-label="{{gaip:1}}的更多操作" aria-haspopup="menu" aria-expanded="false" aria-controls="course-action-menu">更多</button></template>
+<!-- source function near original line 140 -->
+<template data-gaip-markup="updateManageResults-35"><strong class="lc-title-cell" title="{{gaip:0}}">{{gaip:1}}</strong>{{gaip:2}}</template>
+<!-- source function near original line 142 -->
+<template data-gaip-markup="updateManageResults-36"><span class="lc-manage-group">{{gaip:0}}</span></template>
+<!-- source function near original line 145 -->
+<template data-gaip-markup="updateManageResults-37"><span class="lc-manage-time">{{gaip:0}}</span></template>
+<!-- source function near original line 146 -->
+<template data-gaip-markup="updateManageResults-38"><span class="lc-manage-time">{{gaip:0}}</span><small>{{gaip:1}}</small></template>
+<!-- source function near original line 147 -->
+<template data-gaip-markup="updateManageResults-39"><div class="lc-row-actions gaip-table__row-actions">{{gaip:0}}{{gaip:1}}{{gaip:2}}</div></template>
+<!-- source function near original line 163 -->
+<template data-gaip-markup="renderManage-40"><main class="lc-admin lc-manage" aria-label="课程管理"><div class="lc-manage-filter-slot"></div><section class="lc-manage-results" aria-label="课程列表"></section></main><div id="course-action-menu" data-course-action-panel role="menu" aria-orientation="vertical" aria-label="更多课程操作" hidden><button type="button" role="menuitem" tabindex="-1" data-lc="publish">上架</button><button type="button" role="menuitem" tabindex="-1" data-lc="delete" class="is-danger" aria-describedby="course-delete-hint">删除</button><p id="course-delete-hint" class="gaip-table-actions-menu__hint" data-course-delete-hint hidden>仅草稿课程可以删除</p></div></template>
+<!-- source function near original line 178 -->
+<template data-gaip-markup="field-41"><label class="lc-field"><span>{{gaip:0}}</span>{{gaip:1}}</label></template>
+<!-- source function near original line 179 -->
+<template data-gaip-markup="input-42"><input data-field="{{gaip:0}}"{{gaip:1}} value="{{gaip:2}}" maxlength="{{gaip:3}}"><small>{{gaip:4}} / {{gaip:5}}</small></template>
+<!-- source function near original line 181 -->
+<template data-gaip-markup="courseBasics-43"><span class="lc-required" aria-hidden="true">*</span></template>
+<!-- source function near original line 182 -->
+<template data-gaip-markup="courseBasics-44"><section class="lc-panel lc-course-basics" aria-labelledby="lc-basics-title"><div class="lc-basics-heading"><h3 id="lc-basics-title">基本信息</h3></div><div class="lc-basics-content"><div class="lc-basics-copy"><label class="lc-field" for="lc-course-title"><span>{{gaip:0}}课程名称</span><div class="gaip-form-counted lc-counted"><input class="gaip-form-control" id="lc-course-title" data-field="title" value="{{gaip:1}}" maxlength="100" aria-required="true" placeholder="请输入课程名称"><small>{{gaip:2}} / 100</small></div></label><label class="lc-field" for="lc-course-description"><span>{{gaip:3}}课程描述</span><div class="gaip-form-counted lc-counted lc-counted--textarea"><textarea class="gaip-form-control" id="lc-course-description" data-field="description" maxlength="200" rows="4" aria-required="true" placeholder="介绍课程内容与学习收获">{{gaip:4}}</textarea><small>{{gaip:5}} / 200</small></div></label></div><div class="lc-field lc-basics-cover"><span id="lc-cover-label">{{gaip:6}}课程封面</span><label class="lc-cover-picker" aria-labelledby="lc-cover-label" tabindex="0" role="button">{{gaip:7}}<input type="file" accept="image/jpeg,image/png,image/webp" data-upload="cover" hidden></label><div class="lc-cover-help"><span>JPG / PNG / WebP，最大 10MB</span><span>建议使用 16:9 比例图片</span>{{gaip:8}}</div></div></div><section class="lc-basics-settings" aria-labelledby="lc-settings-title"><h3 id="lc-settings-title">学习设置</h3><div class="lc-settings-grid"><div class="lc-field lc-basics-groups"><span id="lc-groups-label">{{gaip:9}}学习群组</span><div data-editor-groups></div><p class="lc-field-help">{{gaip:10}}</p></div><fieldset class="gaip-form-choices lc-basic-radio"><legend>{{gaip:11}}必修属性</legend><div>{{gaip:12}}</div></fieldset><div class="lc-field"><span>精选推荐</span><label class="gaip-filter-bar__switch-line"><input class="gaip-filter-bar__switch-input" type="checkbox" role="switch" data-course-boolean="featured"{{gaip:13}}><span class="gaip-filter-bar__switch-track" aria-hidden="true"></span><span>设为精选</span></label></div></div></section></section></template>
+<!-- source function near original line 186 -->
+<template data-gaip-markup="courseBasics-45"><img src="{{gaip:0}}" alt="当前课程封面"><span class="lc-cover-picker-caption">更换封面</span></template>
+<!-- source function near original line 186 -->
+<template data-gaip-markup="courseBasics-46"><span>上传课程封面</span><span class="lc-cover-picker-caption">点击选择图片</span></template>
+<!-- source function near original line 189 -->
+<template data-gaip-markup="courseBasics-47"><label><input type="radio" name="lc-course-required" data-course-boolean="required" value="{{gaip:0}}"{{gaip:1}}><span>{{gaip:2}}</span></label></template>
+<!-- source function near original line 208 -->
+<!-- source function near original line 213 -->
+<template data-gaip-markup="lessonFilePicker-49"><section class="lc-lesson-file" aria-label="课节内容"><h5><span class="lc-required" aria-hidden="true">*</span>课节内容</h5><div class="lc-lesson-file-box"><p class="lc-field-help">请先选择课节类型，再添加对应内容。</p></div></section></template>
+<!-- source function near original line 216 -->
+<template data-gaip-markup="lessonFilePicker-50"><div class="lc-upload-state is-{{gaip:0}}" data-upload-state="{{gaip:1}}"><p class="lc-upload-status-label" role="status" title="{{gaip:2}}">{{gaip:3}}</p>{{gaip:4}}</div></template>
+<!-- source function near original line 216 -->
+<template data-gaip-markup="lessonFilePicker-51"><!-- @gaip-icon:start shared/assets/icons/business/learning-center/lessonFilePicker-51-2.svg --><svg class="lc-upload-complete-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8,0 C12.3999913,0 16,3.60000457 16,8 C16,12.4000137 12.3999913,16 8,16 C3.59999041,16 0,12.3999954 0,7.99998173 C0,3.60000457 3.59999041,0 8,0 Z M11.3386718,4.45738699 L6.551,9.24338699 L4.61559784,7.30867773 L3,8.92427557 L6.53553391,12.4598095 L6.574,12.420387 L6.59031046,12.4369477 L12.9542715,6.07298667 L11.3386718,4.45738699 Z"></path></svg><!-- @gaip-icon:end --><span>上传成功，待保存</span></template>
+<!-- source function near original line 216 -->
+<template data-gaip-markup="lessonFilePicker-52"><div class="lc-upload-meter"><progress max="100" value="{{gaip:0}}" aria-label="模拟上传进度"></progress><output>{{gaip:1}}%</output></div></template>
+<!-- source function near original line 216 -->
+<template data-gaip-markup="lessonFilePicker-53"><p>{{gaip:0}}</p></template>
+<!-- source function near original line 217 -->
+<template data-gaip-markup="lessonFilePicker-54"><label class="lc-button lc-file-picker{{gaip:0}}" tabindex="0" role="button" title="{{gaip:1}}">{{gaip:2}}<span>{{gaip:3}}</span><input type="file" hidden data-upload="{{gaip:4}}" data-lesson="{{gaip:5}}" accept="{{gaip:6}}"></label></template>
+<!-- source function near original line 219 -->
+<template data-gaip-markup="lessonFilePicker-55"><span class="lc-lesson-locked">已发布，内容不可替换</span></template>
+<!-- source function near original line 219 -->
+<template data-gaip-markup="lessonFilePicker-56"><details class="lc-upload-demo"><summary>演示选项</summary><div>{{gaip:0}}</div></details></template>
+<!-- source function near original line 222 -->
+<template data-gaip-markup="lessonFilePicker-57"><strong title="{{gaip:0}}">{{gaip:1}}</strong></template>
+<!-- source function near original line 222 -->
+<template data-gaip-markup="lessonFilePicker-58"><strong>{{gaip:0}}</strong></template>
+<!-- source function near original line 224 -->
+<template data-gaip-markup="lessonFilePicker-59"><section class="lc-lesson-file" aria-label="{{gaip:0}}"><h5>{{gaip:1}}</h5><div class="lc-lesson-file-box"><div class="lc-lesson-file-description">{{gaip:2}}<p class="lc-field-help">{{gaip:3}}</p></div><div class="lc-upload-feedback">{{gaip:4}}</div><div class="lc-lesson-file-actions">{{gaip:5}}</div></div></section></template>
+<!-- source function near original line 224 -->
+<template data-gaip-markup="lessonFilePicker-60"><span class="lc-required" aria-hidden="true">*</span>课节内容</template>
+<!-- source function near original line 224 -->
+<template data-gaip-markup="lessonFilePicker-61">课节讲义 <span>选填</span></template>
+<!-- source function near original line 224 -->
+<template data-gaip-markup="lessonFilePicker-62"><p class="lc-field-help">{{gaip:0}}</p></template>
+<!-- source function near original line 235 -->
+<template data-gaip-markup="lessonFileName-63"><a class="lc-local-file-link" href="{{gaip:0}}" target="_blank" rel="noopener noreferrer" title="{{gaip:1}}（打开文件）">{{gaip:2}}</a></template>
+<!-- source function near original line 235 -->
+<template data-gaip-markup="lessonFileName-64"><strong title="{{gaip:0}}">{{gaip:1}}</strong></template>
+<!-- source function near original line 240 -->
+<template data-gaip-markup="courseLessonEditor-65"><span class="lc-required" aria-hidden="true">*</span></template>
+<!-- source function near original line 241 -->
+<template data-gaip-markup="courseLessonEditor-66"><article class="lc-edit-lesson" data-edit-lesson="{{gaip:0}}"><header class="lc-lesson-edit-heading"><div class="lc-lesson-identity"><button type="button" class="lc-drag-handle" data-drag="{{gaip:1}}" aria-label="拖动排序" title="拖动排序">⠿</button><span class="lc-lesson-number">{{gaip:2}}</span><h4 data-lesson-heading="{{gaip:3}}">{{gaip:4}}</h4>{{gaip:5}}</div><div class="lc-lesson-heading-actions">{{gaip:6}}{{gaip:7}}{{gaip:8}}</div></header><div class="lc-lesson-edit-body"><div class="lc-lesson-fields"><label class="lc-field" for="{{gaip:9}}"><span>{{gaip:10}}课节名称</span><div class="gaip-form-counted lc-counted"><input class="gaip-form-control" id="{{gaip:11}}" data-field="title" data-lesson="{{gaip:12}}" value="{{gaip:13}}" maxlength="100" aria-required="true" placeholder="请输入课节名称"><small>{{gaip:14}} / 100</small></div></label><fieldset class="gaip-form-choices lc-basic-radio"><legend>{{gaip:15}}课节类型</legend><div>{{gaip:16}}</div>{{gaip:17}}</fieldset></div><div class="lc-lesson-files">{{gaip:18}}{{gaip:19}}</div></div></article></template>
+<!-- source function near original line 243 -->
+<template data-gaip-markup="courseLessonEditor-67"><label><input type="radio" name="lc-lesson-type-{{gaip:0}}" data-lesson-type="{{gaip:1}}" data-lesson="{{gaip:2}}" value="{{gaip:3}}"{{gaip:4}}{{gaip:5}}><span>{{gaip:6}}</span></label></template>
+<!-- source function near original line 243 -->
+<template data-gaip-markup="courseLessonEditor-68"><p class="lc-field-help">已发布课节不可更换类型</p></template>
+<!-- source function near original line 247 -->
+<template data-gaip-markup="courseLessons-69"><section class="lc-panel lc-course-lessons-editor" aria-labelledby="lc-lessons-editor-title"><div class="lc-lessons-toolbar"><h3 id="lc-lessons-editor-title">课节管理 <small>{{gaip:0}} 个课节</small></h3>{{gaip:1}}</div><p class="lc-hint">拖动手柄调整顺序，排序需单独保存；“保存本课节”只保存该课节内容。</p><div class="lc-edit-lessons">{{gaip:2}}</div>{{gaip:3}}</section></template>
+<!-- source function near original line 247 -->
+<template data-gaip-markup="courseLessons-70"><p class="lc-lessons-empty">暂无课节，添加后可上传视频、音频或 PDF 内容。</p></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-71"><main class="lc-admin lc-editor gaip-page-form"><div class="lc-admin-heading"><h2></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-72"></h2></div><p class="lc-notice"></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-73"></p><div class="lc-form-error gaip-form-help--error" role="alert" hidden></div></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-74"></main><footer class="lc-editor-footer</template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-75"><p class="lc-editor-save-hint">保存后课程为草稿，不会对学员展示；可继续添加课节，也可稍后编辑。</p></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-76"><div class="lc-editor-footer-inner"></template>
+<!-- source function near original line 303 -->
+<template data-gaip-markup="renderEditor-77"></div></footer></template>
+<!-- source function near original line 411 -->
+<template data-gaip-markup="studyText-78"><span class="lc-study-text" title="{{gaip:0}}">{{gaip:1}}</span></template>
+<!-- source function near original line 413 -->
+<template data-gaip-markup="studyIdentity-79"><div class="lc-study-identity">{{gaip:0}}<div>{{gaip:1}}</div></div></template>
+<!-- source function near original line 415 -->
+<template data-gaip-markup="statCells-80"><small>{{gaip:0}}</small></template>
+<!-- source function near original line 420 -->
+<template data-gaip-markup="renderStats-81"><div class="lc-stats-tabs" role="tablist" aria-label="统计维度">{{gaip:0}}</div></template>
+<!-- source function near original line 420 -->
+<template data-gaip-markup="renderStats-82"><button type="button" class="lc-stats-tab" id="lc-stats-tab-{{gaip:0}}" role="tab" data-lc="stats-tab" data-id="{{gaip:1}}" aria-controls="lc-stats-panel" aria-selected="{{gaip:2}}" tabindex="{{gaip:3}}">{{gaip:4}}</button></template>
+<!-- source function near original line 423 -->
+<template data-gaip-markup="renderStats-83"><main id="lc-stats-panel" class="lc-admin lc-stats" role="tabpanel" aria-labelledby="lc-stats-tab-</template>
+<!-- source function near original line 423 -->
+<template data-gaip-markup="renderStats-84">"><div class="lc-stats-filter-slot"></div><p class="lc-hint">仅显示当前管理组织及下级在职学员。当前必修与学习中按已上架课程统计。已下架课节不纳入本页及导出统计；历史学习记录保留，重新上架后参与统计。所有数据均为本地 Mock。</p><section class="lc-stats-results" aria-label="学习统计列表"></section></main></template>
+<!-- source function near original line 456 -->
+<template data-gaip-markup="updateStatsResults-85"><div class="gaip-table__row-actions">{{gaip:0}}</div></template>
+<!-- source function near original line 490 -->
+<template data-gaip-markup="openStudyDetail-86"><div class="ant-modal-content"><header class="ant-modal-header"><h2 id="lc-study-detail-title" class="gaip-modal__title" tabindex="-1">{{gaip:0}}</h2></header><button type="button" data-close aria-label="关闭详情"></button><div class="lc-study-detail-body"></div></div></template>
+<!-- source function near original line 497 -->
+<template data-gaip-markup="draw-87"><h3>{{gaip:0}}</h3><dl><div><dt>登录账号</dt><dd>{{gaip:1}}</dd></div><div><dt>所属组织</dt><dd>{{gaip:2}}</dd></div></dl></template>
+<!-- source function near original line 502 -->
+<template data-gaip-markup="draw-88"><h3>{{gaip:0}}</h3><dl><div><dt>课程状态</dt><dd>{{gaip:1}}</dd></div><div><dt>学习群组</dt><dd>{{gaip:2}}</dd></div><div><dt>必修</dt><dd>{{gaip:3}}</dd></div><div><dt>精选</dt><dd>{{gaip:4}}</dd></div></dl></template>
+<!-- source function near original line 509 -->
+<template data-gaip-markup="draw-89"><section class="lc-study-summary" aria-label="{{gaip:0}}">{{gaip:1}}</section><div class="lc-study-detail-filter"></div><section class="lc-study-detail-table" aria-label="学习明细"></section></template>
+<!-- source function near original line 539 -->
+<template data-gaip-markup="openLearningLog-90"><div class="ant-modal-content"><header class="ant-modal-header"><h2 id="lc-course-log-title" class="gaip-modal__title" tabindex="-1">操作日志</h2></header><button type="button" data-log-close aria-label="关闭操作日志"></button><div class="lc-course-log-body"><section class="lc-course-log-table" aria-label="课程操作日志"></section></div></div></template>
+<!-- source function near original line 545 -->
+<template data-gaip-markup="logValue-91"><details><summary>{{gaip:0}}… 展开</summary><pre>{{gaip:1}}</pre></details></template>
+<!-- source function near original line 557 -->
+<template data-gaip-markup="changeValue-92"><div id="{{gaip:0}}" class="lc-log-value is-collapsed">{{gaip:1}}</div><button type="button" class="lc-log-value-toggle" data-log-value-toggle aria-expanded="false" aria-controls="{{gaip:2}}" hidden>展开全部</button></template>
+<!-- source function near original line 595 -->
+<template data-gaip-markup="openLearningLog-93"><div></template>
+<!-- source function near original line 595 -->
+<template data-gaip-markup="openLearningLog-94"></div></template>
+<!-- source function near original line 607 -->
+<template data-gaip-markup="openLearningLog-95"><div></template>
+<!-- source function near original line 607 -->
+<template data-gaip-markup="openLearningLog-96"></div></template>

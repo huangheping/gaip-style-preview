@@ -1,0 +1,994 @@
+#AOCI-CODE-VOLUME: 1
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/===
+.gitattributes[FC7T]: F:统一文本检出为LF以保持跨平台AOCI原始字节基线 | R:- | A:自动识别二进制并保持原字节 | S:-
+.gitignore[FC6T]: F:排除依赖、验证输出、工具二进制及机器绑定工作配置 | R:- | A:项目源码和知识仍由Git跟踪 | S:忽略文件不代表AOCI观察规则必然忽略该文件
+.nojekyll[FV4T]: F:保留静态站点绕过Jekyll处理的部署标记 | R:- | A:- | S:-
+AGENTS.md[SG9S]: F:定义正式项目维护边界、源码归属、验证交付及AOCI运行治理 | R:code:PROJECT_STATE.md,code:docs/maintenance-workflow.md | A:修改前确认仓库与已有工作，按任务读取技能和笔记 | S:允许本地提交但禁止推送部署；web只读且明确排除素材不得混入提交
+PROJECT_STATE.md[SG8T]: F:汇总正式项目能力、迁移成果、未发布改动和验证边界 | R:code:knowledge/变更/当前未发布变更.md,code:docs/table-tag-spec.md | A:标签彩色增强，角色主色黑白字、规划蓝色，三种失败深红与七种SVG同源，当前源码DOM检查通过 | S:历史发布及初版浏览器验收不代表最新效果；候选排除保留，最新标签视觉和全业务分支未全验
+README.md[SG7T]: F:为文稿正式项目提供中文频道对照、登录目录入口与维护命令 | R:code:目录说明.md,code:docs/standardization-status.md | A:根index保留登录，中文目录独立，频道模板和固定资源已分离，索引文本治理已对齐 | S:桌面副本不自动双向同步，频道目录不等于可独立部署的网站，当前授权仅本地提交
+index.html[EU8S]: F:承载生成的正式根登录入口及登录HTML视图模板 | R:code:channels/login/index.html,code:scripts/sync-entry-aliases.cjs | A:base锁定项目根，外置加载Mock与共享Umi和频道资源 | S:由build:entries生成不可手改，必须保留登录而非替换中文目录，现有Hash优先
+package-lock.json[FV7L]: F:锁定开发检查依赖的完整版本、分发地址和完整性摘要 | R:code:package.json | A:lockfile版本3固定Acorn、JSDOM、YAML及传递依赖，全部开发用途 | S:开发依赖不构成file预览前置条件
+package.json[FV8T]: F:声明开发运行版本、标准化构建检查、知识校验及测试与生成器入口 | R:code:scripts/check-project-structure.cjs,code:scripts/scaffold.cjs | A:Node24与npm11，test串联标准知识骨架静态DOM，依赖固定版本 | S:默认npm test不包含真实浏览器，项目private且预览无安装要求
+目录说明.md[SG7T]: F:用中文说明每类目录用途、频道修改入口和桌面文稿差异 | R:code:README.md,code:docs/source-file-inventory.md,code:docs/formal-migration-20260923.md | A:根保留登录，结构改HTML、外观CSS、交互JS，生成缓存不手改，文本索引已对齐 | S:文稿是授权正式迁移目标，不自动覆盖桌面；文件数不是页面数，共享依赖不能按首页是否加载删除
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/.agents/skills/gaip-channel-maintenance/===
+SKILL.md[SU7T]: F:约束频道改版的唯一源码、统一加载与跨入口导航验收 | R:code:shared/config/channels.js,code:docs/maintenance-workflow.md | A:频道与Hash问题按本技能定位和回归 | S:不能用整页跳转或删除跨频道预加载解决旧页面问题
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/.agents/skills/gaip-modal-maintenance/===
+SKILL.md[SU7T]: F:规范真实业务弹窗定位、共享确认组件和关闭生命周期维护 | R:code:docs/maintenance-workflow.md,code:shared/scripts/modal-registry.js | A:弹窗改动须核验开关重开、焦点与真实源预览 | S:AI主面板及抽屉不自动纳入普通弹窗定位
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/.obsidian/===
+app.json[FC5T]: F:设置Obsidian自动更新双链、绝对库内链接和附件归属 | R:code:knowledge/INDEX.md | A:使用Wikilink，附件目录为knowledge/附件 | S:-
+core-plugins.json[FC5T]: F:配置知识库导航检索、双链图谱、属性及画布等核心插件 | R:- | A:启用模板书签和Bases，关闭发布同步、文件恢复及命令面板 | S:核心开关清单不登记第三方插件
+templates.json[FC4T]: F:指定Obsidian笔记模板位于knowledge/模板 | R:code:knowledge/模板/模板索引.md | A:- | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/app/===
+entry-base.js[EG6T]: F:将带项目基准标记的base链接固定为解析后的绝对地址 | R:- | A:只在存在data-gaip-project-base时执行 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/app/project-index/===
+index.html[EU6S]: F:展示由注册表生成的十二频道中文入口与源码、知识和组件导航 | R:code:app/project-index/templates/index.html,code:shared/config/channels.js | A:搜索卡片并访问独立频道入口 | S:这是生成的项目目录，不替换根登录页
+script.js[DU4T]: F:按名称或目录即时过滤频道卡片并更新数量与空态 | R:code:app/project-index/index.html | A:Escape清空搜索；缺少关键节点时退出 | S:-
+styles.css[CU4T]: F:定义中文项目目录的卡片网格、搜索、说明区和响应式排版 | R:code:app/project-index/index.html | A:900及560像素断点，支持可见焦点与减少动效 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/app/project-index/templates/===
+index.html[EU6T]: F:维护中文目录的语义结构和频道卡片、计数、登录地址生成占位 | R:code:scripts/sync-entry-aliases.cjs | A:经build:entries生成目录产物 | S:base指向项目根，资源链接依赖该基准
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/activity/===
+README.md[SG5T]: F:说明活动入口、HTML模板、页面业务、资产和本地适配的维护分工 | R:code:channels/activity/index.html | A:结构修改构建模板，业务变动核验跨频道入口 | S:-
+activity-sync.css[CU6M]: F:控制活动横幅内容裁剪、报名表单、滚动容器、按钮与通知样式 | R:code:channels/activity/activity-sync.js | A:表单容器可收缩，窄屏改单列 | S:表单本身必须允许收缩，否则短视口会裁掉底部按钮
+activity-sync.js[AU7M]: F:替换活动横幅、接入共享轮播并管理本地报名表单与校验 | R:code:channels/activity/templates/markup-activity-sync.html,code:components/carousel-controls/global-carousel-controls.js | A:暴露createSignupModal，提交仅显示本地通知 | S:捕获阶段拦截原报名按钮；关闭延迟160毫秒以匹配遮罩且恢复原焦点
+entry.js[EU5T]: F:为活动频道无Hash直开设置默认活动路由 | R:code:channels/activity/index.html | A:保留已有Hash对应的导航意图 | S:-
+index.html[EU7L]: F:提供活动频道启动入口及报名、列表等编译视图的HTML模板源 | R:code:channels/activity/page.js,code:shared/config/channels.js | A:外置脚本与样式接入共享Umi运行时 | S:已有Hash优先于频道默认入口，模板缓存经构建生成
+page.css[CU6L]: F:定义活动列表、筛选、详情、报名表单和海报卡片的频道样式 | R:code:channels/activity/page.js | A:固定样式与Ant语义槽样式由类控制，图片引用频道独立资产 | S:-
+page.js[DB7L]: F:接入活动查询、详情与多类报名流程并维护筛选分页、权限和报名记录 | R:code:channels/activity/index.html,code:channels/activity/page.css | A:以Umi分包运行，结构从HTML生成缓存，提交字段按活动类型及权限处理 | S:姓名电话使用既有加密接口；海报对象URL须释放，保留共享活动与产品API模块
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/activity/assets/icons/===
+totalIcon.60072284.svg[CU3T]: F:提供18像素深灰半透明收纳盒轮廓图标 | R:- | A:保留原矢量路径与透明度 | S:-
+embedded-100cdb61c868.svg[CU3T]: F:提供活动搜索操作的白色放大镜图标 | R:code:channels/activity/page.js | A:20像素画布，保留原始矢量字节 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/activity/templates/===
+markup-activity-sync.html[EU6T]: F:维护本地活动报名弹窗、横幅链接和提示消息的HTML片段 | R:code:channels/activity/activity-sync.js | A:占位槽绑定动态表单与文字，build:templates写入运行缓存 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/clues/===
+README.md[SG5T]: F:说明线索频道入口、页面源码、布局补丁与Mock数据的维护分工 | R:code:channels/clues/index.html | A:列出样式、业务及模板构建入口 | S:-
+entry.js[EU5T]: F:为线索频道独立入口提供无Hash时的默认路由 | R:code:channels/clues/index.html | A:不覆盖现有Hash | S:-
+index.html[EU7L]: F:承载线索频道入口和创建、分配、终结、详情等业务视图HTML模板 | R:code:channels/clues/page.js,code:shared/config/channels.js | A:由共享加载器加载样式和脚本，模板经构建送入业务分包 | S:不可仅在此入口修复跨频道功能而遗漏统一加载配置
+layout-patch.css[CU5T]: F:调整线索列表工具栏、搜索区域与按钮组的布局和窄屏呈现 | R:code:channels/clues/layout-patch.js | A:作用于补丁添加的布局类 | S:-
+layout-patch.js[AU6T]: F:在线索路由把既有搜索与操作节点重排为统一工具栏 | R:code:channels/clues/layout-patch.css | A:通过MutationObserver与动画帧合并更新 | S:移动现有React节点而非复制按钮，需保留事件与路由守卫
+mock-data.js[DD6M]: F:提供六条本地线索及统计、列表筛选、详情和操作接口响应 | R:code:shared/scripts/local-mock.js | A:按角色页签、字段、关键字与分页返回数据 | S:变更接口只返回成功回执，不持久化；未知详情回退首条样例
+page.css[CU6L]: F:定义线索统计卡、列表、筛选器及创建分配终结详情弹窗的视觉状态 | R:code:channels/clues/page.js | A:以类与data属性表达固定样式，使用频道横幅资产 | S:Ant语义槽规则保留既有important覆盖优先级
+page.js[DB8L]: F:实现线索角色视图、筛选导出、创建分配终结和详情跟进业务 | R:code:channels/clues/index.html,code:channels/clues/mock-data.js | A:按成功码20000处理API；分配携带版本，终结需要说明和证据；固定图片引用频道文件 | S:详情须服从canView权限；证据限四张JPG或PNG且每张5MB；输入法组合期间不提交跟进
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/config-center/===
+README.md[SG5T]: F:说明配置中心频道、子页面、模板、样式与资产维护位置 | R:code:channels/config-center/index.html | A:说明独立入口与共享运行资源关系 | S:-
+announcement-management-view.js[DB7L]: F:管理本地公告列表、检索分页及三语言公告创建编辑删除和预览 | R:code:channels/config-center/announcement-management.css | A:提供挂载销毁生命周期、真实弹窗登记与共享删除确认 | S:启用中公告不能删除；至少填写一种语言且结束时间晚于开始；渲染须转义内容
+announcement-management.css[CU6L]: F:定义公告列表、日期筛选、多语言编辑器和预览弹窗样式 | R:code:channels/config-center/announcement-management-view.js | A:用状态类控制校验、分页与弹窗内容呈现 | S:-
+ant-source.css[CU7S]: F:在配置中心作用域保留Ant表单、输入、按钮、弹窗、表格树与分页的原站基线样式 | R:code:channels/config-center/index.html | A:以Ant变量定义颜色尺寸和交互状态，包含旧业务组件覆盖 | S:所有规则包在gaip-config-page的scope内，不能当作全站样式直接展开
+config-center-content.css[CU7L]: F:定义组织树、成员表格、管理员与导入调整弹窗的内容样式和滚动布局 | R:code:channels/config-center/config-center.js | A:表格固定表头操作列，管理角色分栏，批量导入按步骤切换滚动容器 | S:预览切换控件在结果区外定位，避免改变居中；拖放覆盖层不得截获点击
+config-center.css[CU6S]: F:定义配置中心覆盖页、频道选择、组织分栏与导航状态的框架样式 | R:code:channels/config-center/config-center.js | A:固定覆盖页由运行时测量边界，窄屏调整页头与分栏 | S:预览模式使用独立全屏宿主，不能沿用业务页测量边界
+config-center.js[DB8L]: F:编排组织成员管理、角色权限、节点调整、导入导出及配置子页生命周期 | R:code:channels/config-center/source-markup.js,code:channels/config-center/source-dialogs.js | A:通过Hash挂载覆盖页，维护本地成员与操作记录，接入共享组织与确认组件 | S:上传只校验扩展名和大小，导入使用固定模拟行；佣金归属最多一人且成员编辑不可撤销已有归属；线索管理员和跟进人互斥；卸载须恢复原页面inert与焦点
+entry.js[EU5T]: F:为配置中心无Hash直开提供组织架构默认路由 | R:code:channels/config-center/index.html | A:保留已有Hash | S:-
+index.html[EU7T]: F:提供配置中心独立启动入口并接入共享运行时和频道加载器 | R:code:shared/config/channels.js,code:channels/config-center/entry.js | A:HTML保留根容器，样式脚本均外置，base指向项目根 | S:-
+source-dialogs.js[AU6T]: F:从配置模板构造成员和部门弹窗并升级管理员与线索角色字段 | R:code:channels/config-center/source-markup.js | A:暴露配置弹窗工厂；删除动作复用部门新增模板并替换身份与标题 | S:成员模板旧单管理员行须替换为组织和佣金选项，再插入互斥线索角色
+source-markup.js[FU7S]: F:承载由配置HTML源生成的页头导航、组织树、成员表格和弹窗运行缓存 | R:code:scripts/build-html-templates.cjs,code:channels/config-center/source-dialogs.js | A:向运行时提供源结构对象并包含弹窗工厂 | S:生成产物不可手改，静态结构修改须回到模板再构建
+templates.css[CU6T]: F:保存配置模板抽离的列宽、缩进、可见性、滚动与定位固定样式 | R:code:channels/config-center/source-markup.js | A:用高优先级类保持原模板视觉参数 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/config-center/assets/icons/===
+announcement-calendar.svg[CU3T]: F:提供公告日期字段使用的24像素深色线框日历图标 | R:code:channels/config-center/announcement-management.css | A:保留1.7描边和日期网格 | S:-
+announcement-clock.svg[CU3T]: F:提供公告时间字段使用的24像素圆形时钟轮廓图标 | R:code:channels/config-center/announcement-management.css | A:保留1.7描边与指针路径 | S:-
+bulk-import-template-xlsx.svg[CU3T]: F:提供批量导入模板下载使用的绿色折角表格文件图标 | R:- | A:32像素画布，保留渐变及半透明字形 | S:-
+bulk-import-upload.svg[CU3T]: F:提供批量导入拖放区的深色上箭头托盘图标 | R:- | A:32像素画布和2.4像素描边 | S:-
+delete.svg[CU3T]: F:提供16像素红色垃圾桶删除图标 | R:- | A:保留原矢量路径 | S:-
+folder-open.svg[CU3T]: F:提供组织树的金色展开文件夹图标 | R:- | A:18像素画布，白色纸页叠加双金色文件夹 | S:-
+organization.svg[CU3T]: F:提供组织节点的三圆层级关系图标 | R:- | A:18像素深灰半透明矢量 | S:-
+提示2.svg[CU3T]: F:提供青绿色圆底白色信息提示字形 | R:- | A:16像素画布，保留原路径 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/config-center/templates/===
+departmentUi-add-html.html[EU5T]: F:维护新增下级组织的名称输入和取消保存弹窗结构 | R:code:channels/config-center/config-center.js | A:名称上限100字符，保留清除和关闭动作标记 | S:-
+departmentUi-admin-html.html[EU6T]: F:维护组织、佣金、线索管理和跟进四种角色配置的页签面板结构 | R:code:channels/config-center/config-center.js | A:包含节点路径、权限提示、人员容器与保存取消按钮 | S:模板提示不是权限校验，实际可见性与互斥规则由运行时执行
+departmentUi-adminRow.html[EU4T]: F:提供管理员人员列表复选卡片的姓名账号占位结构 | R:code:channels/config-center/config-center.js | A:由运行时填充人员身份和选择状态 | S:-
+departmentUi-menu.html[EU5T]: F:定义组织节点重命名、新增、管理员设置和删除操作菜单 | R:code:channels/config-center/config-center.js | A:保留菜单角色、键盘焦点和动作标记 | S:-
+departmentUi-rename-html.html[EU5T]: F:维护组织重命名输入与取消保存弹窗结构 | R:code:channels/config-center/config-center.js | A:输入上限100字符并提供清除按钮 | S:-
+editor.html[EU6M]: F:维护成员账号身份、联系方式、持牌区域和推荐人编辑表单结构 | R:code:channels/config-center/source-dialogs.js | A:账号姓名初始禁用，提供地区与推荐人选项及保存取消操作 | S:管理员字段由弹窗工厂升级，模板初始值不代表运行时权限
+header.html[EU5T]: F:维护配置组织渠道页签和操作日志按钮的页头结构 | R:code:channels/config-center/config-center.js | A:六个渠道页签带角色与数据标记 | S:-
+markup-announcement-management-view.html[EU6T]: F:维护公告列表分页、空态、多语言标题表单和删除弹窗的HTML片段 | R:code:channels/config-center/announcement-management-view.js | A:动态槽填充数据，保留字符计数、日期时间和校验提示节点 | S:展示中公告删除按钮使用禁用结构，规则仍须由业务层校验
+markup-config-center.html[EU7T]: F:维护组织搜索、成员节点调整、批量导入和日志等运行界面的HTML片段 | R:code:channels/config-center/config-center.js | A:44个片段经构建生成缓存，动态槽绑定树状态、成员与步骤内容 | S:导入结果切换仅为预览控件；不得把页面提示等同于真实Excel解析能力
+markup-source-dialogs.html[EU6T]: F:维护成员管理的组织与佣金复选框及互斥线索角色单选结构 | R:code:channels/config-center/source-dialogs.js | A:动态槽提供选中禁用状态、字段身份和标签 | S:-
+metadata.json[FC6S]: F:登记组织模板引用、部门层级样例、导航及弹窗样式身份 | R:code:scripts/build-html-templates.cjs | A:以$template引用八条成员行和部门操作弹窗源 | S:部门深度与模板节点身份需一致，运行时可扩展共享组织数据
+nav.html[EU5T]: F:维护配置中心可展开父导航及子菜单容器结构 | R:code:channels/config-center/config-center.js | A:包含键盘焦点、展开状态与受控子菜单标识 | S:-
+navItem.html[EU4T]: F:提供组织架构子导航的菜单项基础结构 | R:code:channels/config-center/config-center.js | A:运行时补充图标、目的路由和当前态 | S:-
+rows-0.html[FU4T]: F:提供首条管理员成员样例行及四地区持牌和内部推荐标签 | R:code:channels/config-center/templates/metadata.json | A:包含脱敏电话、演示邮箱、编辑及更多操作 | S:-
+rows-1.html[FU4T]: F:提供第二条不持牌管理员样例成员行 | R:code:channels/config-center/templates/metadata.json | A:保留脱敏电话、空邮箱及成员操作结构 | S:-
+rows-2.html[FU4T]: F:提供第三条无联系方式和推荐人的不持牌成员样例行 | R:code:channels/config-center/templates/metadata.json | A:保留编辑与更多操作入口 | S:-
+rows-3.html[FU4T]: F:提供第四条新加坡持牌且为外部推荐人的成员样例行 | R:code:channels/config-center/templates/metadata.json | A:持牌图标使用频道本地资产 | S:-
+rows-4.html[FU4T]: F:提供第五条美新百慕大持牌外部推荐人成员样例行 | R:code:channels/config-center/templates/metadata.json | A:包含脱敏电话与固定右侧操作结构 | S:-
+rows-5.html[FU4T]: F:提供第六条美国持牌内部推荐人成员样例行 | R:code:channels/config-center/templates/metadata.json | A:展示脱敏电话和演示邮箱 | S:-
+rows-6.html[FU4T]: F:提供第七条不持牌且无推荐人身份的成员样例行 | R:code:channels/config-center/templates/metadata.json | A:演示邮箱使用省略及完整标题提示 | S:-
+rows-7.html[FU4T]: F:提供第八条百慕大持牌内部推荐人成员样例行 | R:code:channels/config-center/templates/metadata.json | A:包含脱敏联系方式及编辑更多操作 | S:-
+table.html[EU6T]: F:维护成员八列表格、可横向滚动区域与初始分页结构 | R:code:channels/config-center/config-center.js | A:固定操作列，运行时填充表体和分页状态 | S:历史样例行少一列，运行时会补身份列，不可直接当最终表体拼入
+toolbar.html[EU5T]: F:维护组织成员搜索清除、Excel导出和新增操作工具栏 | R:code:channels/config-center/config-center.js | A:使用可访问搜索名称与数据动作标记 | S:-
+tree.html[EU6L]: F:维护组织根和十八个样例部门的树层级、折叠及节点操作结构 | R:code:channels/config-center/templates/metadata.json | A:节点身份深度与展开标记供运行时绑定，文件夹使用频道资产 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/customer/===
+README.md[SG5T]: F:说明客户中心入口、HTML结构、样式业务和共享资源的维护分工 | R:code:channels/customer/index.html | A:列出模板构建及标准和跨入口检查要求 | S:-
+customer-center.css[CU5T]: F:调整客户卡片保单标签与共享确认弹窗的固定视觉状态 | R:code:channels/customer/customer-center.js | A:保单标签参与文档流，隐藏替换前确认层并稳定新确认层透明度 | S:-
+customer-center.js[AU7M]: F:统一客户保单标签位置，并把删除客户与沟通纪要确认接入共享弹窗 | R:code:channels/customer/customer-center.css,code:components/modal/global-modal.js | A:监听DOM与Hash，标记已适配节点避免重复绑定 | S:代理确认须点击原生确认或取消按钮以保留业务回调，隐藏的原弹层须恢复
+entry.js[EU5T]: F:为客户中心无Hash直开提供默认客户路由 | R:code:channels/customer/index.html | A:不覆盖现有Hash | S:-
+index.html[EU7L]: F:承载客户频道入口及画像、资产、纪要、列表和保单卡的HTML视图源 | R:code:channels/customer/page.js,code:shared/config/channels.js | A:组件类型数据事件通过绑定槽传入，结构经构建生成缓存 | S:模板不是脱离共享运行时即可运行的独立业务页面
+page.css[CU6L]: F:定义客户侧栏、画像评分与需求图、资产保单和纪要表单的视觉状态 | R:code:channels/customer/page.js | A:固定样式由类及data属性驱动，背景图归频道资产，分离侧栏和内容滚动 | S:-
+page.js[DB8L]: F:实现客户画像、保单绑定、沟通纪要导入增删改与方案详情编排 | R:code:channels/customer/index.html,code:shared/scripts/local-mock.js | A:保留Umi分包与客户保单API，HTML缓存提供视图，固定图片从频道目录读取 | S:客户及保单姓名电话保留既有加解密；普通历史方案排除三度分析；客户和沟通缓存消费后清除以防重开旧目标
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/customer/templates/===
+markup-customer-center.html[EU5T]: F:维护沟通纪要删除确认代理的遮罩、按钮和对话框结构 | R:code:channels/customer/customer-center.js | A:共享确认组件填充内容，动作回接原业务按钮 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/induction/===
+README.md[SG5T]: F:说明入职引导的页面源码、适配脚本与模板构建维护方法 | R:code:channels/induction/induction-update.js | A:强调适配必须先于Umi初始化，提供检查入口 | S:-
+entry.js[EU5T]: F:为入职引导无Hash直开设置默认路由 | R:code:channels/induction/index.html | A:已有Hash优先 | S:-
+index.html[EU7S]: F:提供入职引导入口和章节进度、下载、步骤切换及完成提示的HTML源 | R:code:channels/induction/page.js | A:共享运行时装配组件，动态绑定交由业务脚本 | S:-
+induction-update.js[AU7S]: F:在模块首次执行前调整培训章节并保持旧进度与新章节坐标兼容 | R:code:channels/induction/page.js,code:channels/induction/templates/markup-induction-update.html | A:包装数据、渲染和进度模块，接入学习中心并移除旧培训小节 | S:旧第二第三小节恢复到新第二小节，保存时映射回旧第三小节；须在Umi初始化前加载
+page.css[CU6L]: F:定义入职页头、章节页签、进度条、底部步骤栏及完成弹窗样式 | R:code:channels/induction/page.js | A:区分当前已学锁定状态，底部操作保持可见，背景图从频道文件读取 | S:-
+page.js[DB7L]: F:驱动入职章节顺序学习、进度读写、手册工具下载和完成后的客户入口 | R:code:channels/induction/index.html,code:channels/induction/induction-update.js | A:进度保存成功后更新游标，下载解析文件名并释放对象URL | S:章节索引由共享数据计算，不能独立改页签而遗漏进度坐标适配
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/induction/templates/===
+markup-induction-update.html[EU5T]: F:维护入职培训步骤进入学习中心的Hash链接片段 | R:code:channels/induction/induction-update.js | A:经构建注入适配脚本缓存 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/learning-center/===
+README.md[SG5T]: F:说明学习频道首页、课程直播数据与交互、统一样式和模板维护分工 | R:code:channels/learning-center/index.html | A:区分可编辑HTML源和生成缓存，列出资源与跨入口检查规则 | S:-
+entry.js[EU5T]: F:为学习中心无Hash直开设置工作台上的学习频道路由 | R:code:channels/learning-center/index.html | A:现有Hash优先 | S:-
+index.html[EU7T]: F:提供学习中心独立启动入口并接入共享运行时与频道加载器 | R:code:shared/config/channels.js,code:channels/learning-center/entry.js | A:外置CSS和脚本，base指向项目根 | S:-
+learning-app.js[AU8L]: F:编排课程列表详情、模拟学习、课程课节编辑、学情统计与日志弹窗 | R:code:channels/learning-center/learning-data.js,code:channels/learning-center/templates/markup-learning-app.html | A:提供挂载销毁与未保存离开确认，复用共享表格筛选和确认组件 | S:媒体播放和上传为本地模拟；文件对象URL仅当前会话有效并须释放；草稿预览不记学习数据；课节和排序可单独保存且保留其他未保存字段；导出覆盖筛选全集而非当前页
+learning-center.css[CU7L]: F:统一学习首页三列课程、详情阅读、课程编辑、直播与学情弹窗的视觉状态 | R:code:channels/learning-center/learning-app.js,code:channels/learning-center/learning-live.js | A:固定样式由类控制，进度和PDF缩放使用运行时变量 | S:覆盖页保留最小内容宽度与独立滚动，拖动副本不接收指针事件
+learning-center.js[AU7S]: F:按Hash挂载学习覆盖页并同步框架边界、面包屑和跨频道离开行为 | R:code:channels/learning-center/learning-app.js,code:channels/learning-center/templates.generated.js | A:监听页面变化与尺寸，卸载清理覆盖层和滚动锁 | S:编辑未保存时恢复原Hash后请求确认，确认后再应用目的路由
+learning-data.js[DD8L]: F:维护本地课程课节、组织权限、学习会话进度和操作记录 | R:code:shared/scripts/organization-store.js,code:channels/learning-center/learning-app.js | A:课程上下架和课节编辑经权限校验，进度与统计写入本地存储 | S:已发布课节类型文件锁定，课程群组只可扩展且已有课节不可删除；最后已上架课节不可单独下架；必修未完成禁止拖进度；预览不记学情；存储失败保留会话内修改并发出错误事件
+learning-live-data.js[DD7L]: F:维护直播横幅草稿、发布计划、展示权限、到期下架与操作日志 | R:code:channels/learning-center/learning-data.js,code:channels/learning-center/learning-live.js | A:克隆状态并先持久化再提交，管理员维护且学员按群组可见 | S:定时任务仅页面运行时模拟；已发布仅可改名称结束时间，下架后只读；广告发布时段与直播开播展示时间独立
+learning-live.js[AU7L]: F:提供直播管理编辑预览、发布确认、链接浮层与学习首页双卡轮播 | R:code:channels/learning-center/learning-live-data.js,code:channels/learning-center/templates/markup-learning-live.html | A:复用共享筛选表格和弹窗，关闭卸载清理事件恢复焦点，保存前复核状态 | S:共享弹窗须调用时取值，顶层缓存可能早于defer执行；图片异步回调防关闭后回写；直播ID仅本地提示
+templates.generated.js[FU6T]: F:保存学习首页HTML生成缓存以供本地文件入口同步挂载 | R:code:channels/learning-center/templates/home.html,code:scripts/build-html-templates.cjs | A:由模板构建命令生成 | S:不可手改缓存替代HTML源
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/learning-center/assets/icons/===
+icon-course-enter.svg[CU3T]: F:提供课程进入按钮的18像素白色向右箭头图标 | R:- | A:保留原多边形及画布 | S:-
+icon-detail-back.svg[CU3T]: F:提供课程详情返回按钮的18像素白色向左箭头图标 | R:- | A:通过水平镜像保留源箭头形状 | S:-
+icon-lesson-play.svg[CU3T]: F:提供课节播放入口的白色圆形播放图标 | R:- | A:18像素矢量，三角播放区留空 | S:-
+icon-lesson-progress.svg[CU3T]: F:提供课节学习进度的深灰半透明展开书本图标 | R:- | A:16像素画布与原填充路径 | S:-
+icon-lesson-review.svg[CU3T]: F:提供课节回看入口的深绿色圆形播放图标 | R:- | A:18像素矢量，沿用播放图形轮廓 | S:-
+icon-menu-learning.svg[CU3T]: F:提供学习导航的深灰书本与竖线图标 | R:- | A:18像素画布，1.35描边和圆端点 | S:-
+icon-video-player-caret.svg[CU3T]: F:提供播放控件的黑色向右三角形矢量 | R:- | A:保留1024画布和原路径 | S:-
+icon-video-player-play.svg[CU3T]: F:提供70像素深灰半透明圆底白色播放按钮图标 | R:code:channels/learning-center/learning-center.css | A:保留圆底透明度及圆角三角形 | S:-
+live-management.svg[CU3T]: F:提供直播管理按钮的白色线框屏幕与播放三角图标 | R:code:channels/learning-center/learning-app.js | A:20像素画布，保留原描边 | S:-
+live-video-label.svg[CU3T]: F:提供直播标签的白色摄像机与镂空播放符号 | R:code:channels/learning-center/learning-live.js | A:14乘10像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/learning-center/templates/===
+home.html[EU6T]: F:维护学习首页标题、管理按钮及课程滚动网格的HTML骨架 | R:code:channels/learning-center/templates.generated.js | A:课程和直播内容由运行时填充，直播按钮按权限插入 | S:-
+markup-learning-app.html[EU7S]: F:维护课程卡片、详情播放器、课节编辑、学情和日志的HTML结构片段 | R:code:channels/learning-center/learning-app.js | A:96个片段由动态槽绑定数据事件，经构建进入运行缓存 | S:部分片段是原字符串拼接的边界，不可独立当完整页面解析；播放器明确为本地模拟
+markup-learning-center.html[EU5T]: F:维护工作台与学习中心的面包屑HTML片段 | R:code:channels/learning-center/learning-center.js | A:运行时绑定工作台返回操作 | S:-
+markup-learning-live.html[EU6T]: F:维护直播编辑表单、发布选项及管理工具栏的HTML片段 | R:code:channels/learning-center/learning-live.js | A:数据槽填入字段、状态与操作，模板构建生成缓存 | S:定时发布提示仅承诺本地模拟执行
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/login-video-test/===
+README.md[SG4T]: F:说明登录视频试验频道的独立入口和本地资源职责 | R:code:channels/login-video-test/index.html | A:声明试验不替换正式登录且不纳入发布 | S:文中根别名为历史说明，需以实际入口为准
+entry.js[EU4T]: F:为登录视频试验无Hash直开设置登录路由 | R:code:channels/login-video-test/index.html | A:保留已有Hash | S:属本地排除试验
+index.html[EU5T]: F:启动带登录主视觉视频试验标记的独立本地登录入口 | R:code:channels/login-video-test/entry.js | A:共享运行时与试验CSS脚本外置加载 | S:用户排除提交的试验文件，不是正式根登录页
+login-video-test.css[CU4S]: F:为本地登录视频试验定义左侧媒体遮罩文案和右侧白色登录面板样式 | R:code:channels/login-video-test/login-video-test.js | A:仅在试验body标记下生效，900像素以下改为全屏背景 | S:属用户排除提交的试验
+login-video-test.js[AU4T]: F:在登录容器插入静音循环视频和欢迎文案用于本地视觉试验 | R:code:channels/login-video-test/login-video-test.css | A:监听容器出现，重复挂载保护，pagehide断开观察器 | S:自动播放失败静默保留画面；属排除提交试验
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/login/===
+README.md[SG5T]: F:说明登录频道HTML模板、样式和业务维护入口及共享运行依赖 | R:code:channels/login/index.html | A:结构修改构建模板并按维护流程验收 | S:根入口保留登录，桌面副本不自动同步
+entry.js[EU5T]: F:为登录频道无Hash直开提供默认登录路由 | R:code:channels/login/index.html | A:保留已有Hash | S:-
+index.html[EU7T]: F:提供登录频道启动入口和账号密码验证码表单的HTML视图源 | R:code:channels/login/page.js,code:shared/config/channels.js | A:动态组件和事件通过绑定槽接入，模板构建生成缓存 | S:不以中文目录页替换登录结构
+page.css[CU6S]: F:定义登录背景、品牌图、右侧表单、验证码和提交加载状态的固定样式 | R:code:channels/login/page.js | A:背景使用登录私有资产，固定字号从业务脚本迁入类选择器 | S:-
+page.js[DI8L]: F:驱动登录表单、账号密码加密、验证码验证及成功或无权限路由跳转 | R:code:channels/login/index.html,code:shared/scripts/local-preview.js | A:登录成功更新用户和初始状态，消费登录前重定向并清除暂存 | S:提交先加密并完成验证回调；失败刷新验证码，特定权限错误进入无权限页；本地预览依赖共享Mock拦截，不能误连真实认证
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/news-center/===
+README.md[SG5T]: F:说明资讯频道HTML模板、统一CSS、数据交互与生成缓存的维护分工 | R:code:channels/news-center/index.html | A:私有资源归频道，改模板后构建并验证跨入口 | S:-
+entry.js[EU5T]: F:为资讯中心无Hash直开设置工作台上的资讯频道路由 | R:code:channels/news-center/index.html | A:保留已有Hash | S:-
+index.html[EU7T]: F:提供资讯中心独立启动入口及共享运行时依赖 | R:code:shared/config/channels.js,code:channels/news-center/entry.js | A:base指向项目根，内容由频道加载器挂载 | S:-
+news-center.css[CU6L]: F:定义资讯分类筛选、时间轴卡片、详情弹层及话术复制提示样式 | R:code:channels/news-center/news-center.js | A:合并原站基线与本地覆盖规则，支持全局详情宿主 | S:页面锁定文档滚动而内容自己滚动，详情层和频道覆盖层使用不同层级
+news-center.js[AU7L]: F:提供本地资讯数据、分类精选检索、按日列表、详情话术与海报分享编排 | R:code:channels/news-center/templates.generated.js,code:components/poster-share/global-poster-share.js | A:按Hash挂载覆盖页并同步导航面包屑，模板槽由调用者转义 | S:原文和内容管理仅提示未接接口；卸载须清空详情分享层及滚动锁；复制话术支持本地文件剪贴板降级
+templates.generated.js[FU6T]: F:保存资讯页面、日期分组、卡片和详情HTML的同步运行缓存 | R:code:channels/news-center/templates/page.html,code:scripts/build-html-templates.cjs | A:供本地file入口使用，结构修改回到HTML后重新构建 | S:不可手改生成缓存
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/news-center/assets/icons/===
+ai-score.svg[CU3T]: F:提供资讯AI评分的红绿渐变四角星图标 | R:- | A:12像素画布 | S:-
+delete.svg[CU3T]: F:提供资讯删除操作的红色垃圾桶线框图标 | R:- | A:16像素画布 | S:-
+featured-ai.svg[CU3T]: F:提供金底棕字的AI精选矢量徽章 | R:- | A:48乘20像素并保留圆角 | S:-
+manage.svg[CU3T]: F:提供资讯管理按钮的白色立方体图标 | R:- | A:16乘17像素画布 | S:-
+page-title.svg[CU3T]: F:提供带红色闪电点缀的资讯中心标题矢量字形 | R:- | A:85乘22像素画布 | S:-
+search.svg[CU3T]: F:提供继承文字颜色的资讯搜索放大镜图标 | R:- | A:15乘16像素，保留椭圆镜框描边 | S:-
+share.svg[CU3T]: F:提供资讯分享的青色外跳箭头与开口方框图标 | R:- | A:16像素画布和1.4描边 | S:-
+source.svg[CU3T]: F:提供资讯原文入口的青色右上箭头图标 | R:- | A:16像素画布 | S:-
+tag.svg[CU3T]: F:提供资讯分类的深灰穿孔标签轮廓图标 | R:- | A:14像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/news-center/templates/===
+article-card.html[EU5T]: F:维护资讯卡片标题摘要、AI评分标签及原文分享操作结构 | R:code:channels/news-center/news-center.js | A:具名槽填入已转义内容与图标 | S:-
+article-detail.html[EU6T]: F:维护资讯详情遮罩、摘要客群要点、跟进话术及免责声明结构 | R:code:channels/news-center/news-center.js | A:保留dialog语义与关闭复制分享动作标记 | S:-
+day-group.html[EU4T]: F:维护资讯按日分组的日期星期时间轴和文章容器 | R:code:channels/news-center/news-center.js | A:具名槽提供日期与卡片集合 | S:-
+markup-news-center.html[EU5T]: F:维护资讯图标、分类按钮、标签要点与主导航链接的HTML片段 | R:code:channels/news-center/news-center.js | A:九个片段经构建写入业务脚本缓存 | S:-
+page.html[EU6T]: F:维护资讯页头、分类、精选开关、检索和列表空态的HTML骨架 | R:code:channels/news-center/templates.generated.js | A:明确本地Mock用途，保留提示与弹层挂载容器 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/policy/===
+README.md[SG5T]: F:说明保单频道HTML结构、样式业务和模板生成的维护分工 | R:code:channels/policy/index.html | A:保留共享运行依赖并按改动验证跨入口 | S:-
+entry.js[EU5T]: F:为保单频道无Hash直开设置默认保单路由 | R:code:channels/policy/index.html | A:已有Hash优先 | S:-
+index.html[EU7S]: F:提供保单频道入口及保单卡、加载空态、客户选择和列表的HTML视图源 | R:code:channels/policy/page.js,code:shared/config/channels.js | A:动态组件数据与事件由绑定槽传入 | S:HTML结构仍依赖共享运行时驱动
+page.css[CU6L]: F:定义保单横幅检索、七字段卡片、客户选择与资料抽屉的视觉状态 | R:code:channels/policy/page.js | A:保单状态使用类映射颜色，列表和抽屉内容独立滚动 | S:-
+page.js[DB7L]: F:读取解密保单列表并提供检索、客户绑定解绑和创建资料流程编排 | R:code:channels/policy/index.html,code:shared/scripts/local-preview.js | A:保留保单列表及绑定API模块，成功变更刷新列表 | S:持有人及客户名称先解密再搜索；现有卡片仅显示关联信息，不应仅凭回调存在声称页面有绑定按钮
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/product/===
+README.md[SG5T]: F:说明产品频道HTML模板、业务样式和机构Logo适配的维护入口 | R:code:channels/product/index.html | A:私有资源归频道，生成缓存回到HTML源修改 | S:-
+entry.js[EU5T]: F:为产品频道无Hash直开设置产品默认路由 | R:code:channels/product/index.html | A:保留已有Hash | S:-
+index.html[EU7L]: F:提供产品频道入口及筛选卡片、详情附件和专家弹窗的HTML视图源 | R:code:channels/product/page.js,code:shared/config/channels.js | A:组件数据与事件通过绑定槽传入，模板经构建生成缓存 | S:HTML模板仍依赖共享Umi运行时，不能直接脱离运行依赖
+page.css[CU6L]: F:定义产品筛选卡片、详情页签、附件列表与专家弹窗的固定样式 | R:code:channels/product/page.js | A:资产由产品频道提供，固定Ant槽样式使用类选择器 | S:-
+page.js[DB8L]: F:编排产品权限筛选、详情页签滚动、附件下载与产品专家入口 | R:code:channels/product/index.html,code:channels/product/page.css | A:类型地区变化重置从属筛选；下载释放对象URL，详情去除内嵌样式，固定图片引用频道文件 | S:保留与活动频道共用的API和枚举模块；海外方案及特定香港持牌条件参与过滤；正则内容清理不能当完整安全净化
+product-card-logo.css[CU5T]: F:定义产品卡右上机构Logo容器并为标题标签预留空间 | R:code:channels/product/product-card-logo.js | A:Logo容器88乘72，隐藏旧装饰 | S:-
+product-card-logo.js[AU5T]: F:从产品卡机构标签匹配本地Logo并监听异步卡片补齐图片 | R:code:channels/product/product-card-logo.css | A:重复挂载保护并暴露刷新入口，未知机构回退GLORY | S:部分机构别名使用演示近似映射，不代表官方品牌归属
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/product/assets/icons/===
+aia.svg[CU3T]: F:提供产品机构列表使用的红色AIA山形品牌矢量 | R:- | A:65像素画布，保留品牌路径 | S:-
+allianz.svg[CU3T]: F:提供深蓝Allianz字标与圆形机构标识 | R:- | A:保留原宽高比和品牌色 | S:-
+axa.svg[CU3T]: F:提供蓝底白字红斜线的AXA及安盛中文字标 | R:- | A:保留原SVG内部颜色与矢量路径 | S:-
+fwd.svg[CU3T]: F:提供深绿FWD字标与橙色播放形品牌符号 | R:- | A:96乘33像素画布 | S:-
+icon-pdf-file.svg[CU3T]: F:提供粉色折角文件底与红色PDF符号图标 | R:- | A:32像素画布，保留渐变 | S:-
+icon-upload-file.svg[CU3T]: F:提供上传附件操作的黑色回形针图标 | R:- | A:16像素画布，保留原透明度 | S:-
+msh.svg[CU3T]: F:提供MSH与Diot-Siaci集团字标及渐变弧形品牌图形 | R:- | A:保留原蓝色字形、渐变与宽高比 | S:-
+sunlife.svg[CU3T]: F:提供深绿Sun Life及永明金融字标和金色太阳品牌图形 | R:- | A:保留原162.4乘48.3画布及矢量色彩 | S:-
+totalIcon.60072284.svg[CU3T]: F:提供产品数量旁的深灰半透明收纳盒轮廓图标 | R:- | A:18像素画布 | S:-
+embedded-29c0e020f818.svg[CU3T]: F:提供产品附件使用的黑色回形针图标 | R:code:channels/product/page.js | A:16像素画布，保留九成填色透明度 | S:-
+embedded-49e2cf3c8308.svg[CU3T]: F:提供产品专家联系按钮的金色对话图标 | R:code:channels/product/page.js | A:20乘17画布，保留对话框与四向符号 | S:-
+embedded-61fda50c3fa7.svg[CU3T]: F:提供产品类型的盾牌轮廓图标 | R:code:channels/product/page.js | A:16像素画布和currentColor填色 | S:-
+embedded-6831f4ff99cc.svg[CU3T]: F:提供产品同类比较的左右框与分隔线图标 | R:code:channels/product/page.js | A:16像素深灰矢量，右框为虚线 | S:-
+embedded-790ca3c1ce16.svg[CU3T]: F:提供产品类型使用的地球轮廓图标 | R:code:channels/product/page.js | A:16像素画布和currentColor填色 | S:-
+embedded-820fbc970547.svg[CU3T]: F:提供产品类型使用的天平轮廓图标 | R:code:channels/product/page.js | A:16像素画布和currentColor填色 | S:-
+embedded-8f7e5232b7df.svg[CU3T]: F:提供产品及共享空态组件使用的白灰收纳盒插图 | R:code:channels/product/page.js | A:96像素画布，保留底部椭圆阴影 | S:-
+embedded-f36d4669e6cb.svg[CU3T]: F:提供产品类型使用的圆形指南针图标 | R:code:channels/product/page.js | A:16像素画布并使用currentColor填色 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/product/templates/===
+mock-detail.html[EU5T]: F:维护本地产品详情的特色场景、投保条件及营销说明结构 | R:code:shared/scripts/local-preview.js | A:动态槽填充演示产品内容并保留m1至m4锚点 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/proposal-center/===
+README.md[SG5T]: F:说明方案中心入口、业务源码、模板和共享资源维护分工 | R:code:channels/proposal-center/index.html | A:模板改动重新构建并按维护流程验证 | S:-
+entry.js[EU5T]: F:为方案中心无Hash直开设置方案默认路由 | R:code:channels/proposal-center/index.html | A:已有Hash优先 | S:-
+index.html[EU7S]: F:提供方案频道入口和原方案列表、分类及创建流程的HTML视图源 | R:code:channels/proposal-center/page.js,code:shared/config/channels.js | A:共享运行时装配动态组件，模板构建生成缓存 | S:本地改版由proposal-center脚本挂载替换频道区域
+page.css[CU5M]: F:定义原方案卡片、分类侧栏、搜索横幅及加载骨架样式 | R:code:channels/proposal-center/page.js | A:固定样式从脚本迁入频道类选择器 | S:-
+page.js[DB7L]: F:驱动原方案分类统计、客户检索、创建删除和详情流程 | R:code:channels/proposal-center/index.html,code:channels/proposal-center/proposal-center.js | A:请求列表和统计，排除三度分析，成功删除后刷新两类数据，图片从频道目录加载 | S:本地新版另由适配脚本挂载；不能因旧首页不显露而删除共享模块依赖
+proposal-center.css[CU6L]: F:定义新版方案目录、记录、客户归属和附件预览弹窗及AI技能标签样式 | R:code:channels/proposal-center/proposal-center.js | A:固定尺寸颜色由CSS维护，状态由类和hidden驱动 | S:客户新建桥接抽屉需高于归属弹窗，隐形桥接按钮不得截获点击
+proposal-center.js[AU8L]: F:挂载新版方案目录与记录并编排客户归属、附件版本预览下载及AI入口 | R:code:channels/proposal-center/templates/markup-proposal-center.html,code:components/modal/global-modal.js | A:提供真实弹窗工厂，客户创建复用原抽屉，封面引用频道文件，PDF或最新版本ZIP下载后释放URL | S:记录仅在内存修改；附件为本地模拟且下载PDF不是完整页面；来源对话只预填新会话而不恢复历史；生成入口不自动发送；关闭须恢复焦点和滚动
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/proposal-center/assets/icons/===
+download2.0d6a1868.svg[CU3T]: F:提供方案附件下载的绿色向下箭头与托盘图标 | R:- | A:14像素画布并保留原透明度 | S:-
+icon-pdf-file.svg[CU3T]: F:提供方案附件的粉色折角文件与红色PDF符号图标 | R:- | A:32像素画布并保留渐变 | S:-
+plan-tag-close.svg[CU3T]: F:提供方案标签使用的灰色圆底白色关闭叉图标 | R:- | A:14像素画布 | S:-
+embedded-2b14832daf2c.svg[CU3T]: F:提供方案删除操作的深绿色垃圾桶图标 | R:code:channels/proposal-center/page.js | A:16像素画布并保留原始路径 | S:-
+embedded-45049ec6a588.svg[CU3T]: F:提供方案界面的白色关闭叉图标 | R:code:channels/proposal-center/page.js | A:12像素画布和1.5像素圆端描边 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/proposal-center/templates/===
+markup-proposal-center.html[EU6T]: F:维护新版方案卡片、记录筛选、客户归属及附件版本弹窗HTML片段 | R:code:channels/proposal-center/proposal-center.js | A:22个具槽片段由构建注入脚本缓存，动态内容由调用者转义 | S:附件预览与生成文案属于本地演示，不证明已接真实AI或文件服务
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/clues/assets/icons/===
+embedded-0a8d471e8cf6.svg[CU3T]: F:提供线索检索的椭圆镜框与斜线放大镜图标 | R:code:channels/clues/page.js | A:15乘16画布，使用currentColor描边 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/customer/assets/icons/===
+embedded-034d3716c7fb.svg[CU3T]: F:提供客户界面的半透明深绿下拉三角图标 | R:code:channels/customer/page.js | A:18像素画布 | S:-
+embedded-47b88a14dbd9.svg[CU3T]: F:提供客户界面的深灰剪贴板清单图标 | R:code:channels/customer/page.js | A:18像素画布，保留原路径 | S:-
+embedded-5a35ec1e5228.svg[CU3T]: F:提供客户界面的深灰公文包图标 | R:code:channels/customer/page.js | A:18像素画布，保留原路径 | S:-
+embedded-7c88c642c24a.svg[CU3T]: F:提供客户界面的双人轮廓图标 | R:code:channels/customer/page.js | A:18像素深灰矢量 | S:-
+embedded-9d244a1e8662.svg[CU3T]: F:提供客户默认头像的米金色圆形人像剪影 | R:code:channels/customer/page.js | A:54像素画布，保留SVG内部路径引用 | S:-
+embedded-ad3ba439d765.svg[CU3T]: F:提供客户联系信息的深灰电话听筒图标 | R:code:channels/customer/page.js | A:18像素画布 | S:-
+embedded-b9031cca43b0.svg[CU3T]: F:提供客户界面的白色四角星与镂空勾形图标 | R:code:channels/customer/page.js | A:22像素画布，保留原路径 | S:-
+embedded-c6ea3642d450.svg[CU3T]: F:提供客户提示信息的深灰圆框小写i图标 | R:code:channels/customer/page.js | A:18像素画布 | S:-
+embedded-de99ec5f5f47.svg[CU3T]: F:提供客户界面的双人相向连接轮廓图标 | R:code:channels/customer/page.js | A:18像素深灰矢量 | S:-
+embedded-ebee3ef87b41.svg[CU3T]: F:提供客户界面的深灰纸钞轮廓图标 | R:code:channels/customer/page.js | A:18像素画布，保留中心圆形与对角折线 | S:-
+embedded-ffb175f21fe0.svg[CU3T]: F:提供客户资产统计使用的深灰饼图轮廓图标 | R:code:channels/customer/page.js | A:18像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/induction/assets/icons/===
+embedded-1515752a0d92.svg[CU3T]: F:提供入职手册下载的白色下箭头与底线图标 | R:code:channels/induction/page.js | A:14像素画布 | S:-
+embedded-8cc0169c8da6.svg[CU3T]: F:提供入职资料下载的深绿箱体与下箭头图标 | R:code:channels/induction/page.js | A:14像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/wealth-center/===
+README.md[SG5T]: F:说明财富值频道入口、页面导航、HTML模板及私有资产的维护分工 | R:code:channels/wealth-center/index.html | A:结构改动构建模板，跨入口使用统一加载配置 | S:-
+entry.js[EU5T]: F:为财富值频道无Hash直开提供默认子视图路由 | R:code:channels/wealth-center/index.html | A:已有Hash优先 | S:-
+index.html[EU7T]: F:提供财富值中心独立启动入口并接入共享运行时和频道加载器 | R:code:shared/config/channels.js,code:channels/wealth-center/entry.js | A:base指向项目根，样式脚本外置加载 | S:-
+wealth-center.css[CU6L]: F:定义财富值导入、记录和个人明细页的布局、表格、抽屉弹窗与导航样式 | R:code:channels/wealth-center/wealth-center.js | A:固定覆盖页内部滚动，进度宽度接受业务变量，背景归频道资产 | S:页面最小宽度1180；弹窗字段不可收缩，仅内容体滚动以保留操作区
+wealth-center.js[AU7L]: F:按Hash挂载财富值三类子视图并提供本地批次筛选、明细检索与弹窗工厂 | R:code:channels/wealth-center/templates/markup-wealth-center.html,code:channels/wealth-center/wealth-nav.js | A:公开虚拟频道开关和同步接口，运行时测量框架边界，卸载清理覆盖页滚动锁和标题 | S:上传、提交、失败下载和关键词保存仅为本地提示或内存状态；月份固定2026年8月；Mock汇总不随筛选重算，不能当真实财务计算
+wealth-nav.js[AU7S]: F:挂载财富值可展开主导航并同步三个子视图的Hash与选中态 | R:code:channels/wealth-center/wealth-center.js,code:channels/wealth-center/templates/markup-wealth-nav.html | A:父项和键盘仅控制开合，叶子调用频道open，监听DOM与历史导航 | S:显式收起偏好独立于当前频道；跨频道关闭只对叶子操作生效，不能把父项点击当离开
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/wealth-center/assets/icons/===
+hkd-currency.svg[CU3T]: F:提供港币标签使用的红底白色洋紫荆图标 | R:code:channels/wealth-center/templates/markup-wealth-center.html | A:12像素圆形画布并保留原矢量路径 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/wealth-center/templates/===
+markup-wealth-center.html[EU6T]: F:维护财富值导入工作台、记录、明细及文件详情和关键词弹窗HTML片段 | R:code:channels/wealth-center/wealth-center.js | A:28个动态槽模板经构建写入脚本缓存，保留数据动作与对话框语义 | S:上传和计算说明属于本地模拟界面，不代表已实现文件解析
+markup-wealth-nav.html[EU5T]: F:维护财富值父导航与子菜单项的HTML片段 | R:code:channels/wealth-center/wealth-nav.js | A:保留共享导航几何类、键盘焦点、展开和当前态标记 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/workspace/===
+README.md[SG5T]: F:说明工作台入口、业务页面、HTML模板与本地覆盖资源的维护分工 | R:code:channels/workspace/index.html | A:保留共享运行依赖并按维护矩阵检查入口和导航 | S:-
+entry.js[EU5T]: F:为工作台无Hash直开提供默认工作台路由 | R:code:channels/workspace/index.html | A:保留已有Hash | S:-
+index.html[EU7S]: F:提供工作台入口和快捷操作、统计漏斗、关注客户与续费列表的HTML视图源 | R:code:channels/workspace/page.js,code:shared/config/channels.js | A:动态数据事件由绑定槽传入，结构经构建生成缓存 | S:保留共享Umi运行依赖，不能当脱离共享资源的独立页面
+page.css[CU6L]: F:定义工作台横幅、指标、漏斗、FYP和客户续保列表的固定视觉状态 | R:code:channels/workspace/page.js | A:阶段颜色用data属性映射，动态柱高和省略测量用CSS变量 | S:-
+page.js[DB7L]: F:加载工作台概览、关注和续保数据并编排客户创建、方案入口与统计漏斗 | R:code:channels/workspace/index.html,code:channels/workspace/workspace-update.js | A:快捷入口受权限控制，客户跳转先写缓存，创建完成可触发刷新 | S:FYP柱图为零值样例且被更新层隐藏；正数成交天数显示由更新层修正；省略测量观察器须清理
+workspace-update.css[CU6L]: F:定义工作台概览覆盖样式、汇率跑马灯和定高资讯轮播样式 | R:code:channels/workspace/workspace-update.js | A:按频道作用域控制布局，悬停暂停汇率动效，隐藏旧FYP区域 | S:资讯隐藏测量副本只用于计算高度，不得遮挡交互
+workspace-update.js[AU7L]: F:为工作台插入本地汇率与四类资讯轮播并修正平均成交天数展示 | R:code:channels/workspace/templates/markup-workspace-update.html,code:components/poster-share/global-poster-share.js | A:八秒轮播，悬停聚焦切换，详情与全部入口接资讯中心，离开路由清理计时器 | S:汇率及资讯为固定本地数据；根据所有资讯的隐藏测量副本取稳定高度，字体就绪和尺寸变化需重测
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/workspace/assets/icons/===
+alert.5d447bdd.svg[CU3T]: F:提供工作台提醒的橙色盾牌与镂空闪电图标 | R:- | A:16像素画布并保留原路径 | S:-
+embedded-64e45355d160.svg[CU3T]: F:提供工作台快捷入口的金色放大镜与人像轮廓图标 | R:code:channels/workspace/page.js | A:45像素画布和3像素描边 | S:-
+embedded-de470cbb4484.svg[CU3T]: F:提供工作台快捷入口的金色叶片图标 | R:code:channels/workspace/page.js | A:46乘43画布并保留原矢量路径 | S:-
+embedded-fe98a045d304.svg[CU3T]: F:提供工作台快捷入口的金色时钟与分段外圈图标 | R:code:channels/workspace/page.js | A:40像素画布 | S:-
+flag-aud.svg[CU3T]: F:提供澳元对应的澳大利亚圆形旗帜图标 | R:- | A:20像素画布，保留蓝底米字与白星 | S:-
+flag-cad.svg[CU3T]: F:提供加元对应的加拿大圆形旗帜图标 | R:- | A:20像素画布，红边白底红枫叶 | S:-
+flag-eur.svg[CU3T]: F:提供欧元对应的欧盟圆形旗帜图标 | R:- | A:20像素画布，蓝底金星环 | S:-
+flag-gbp.svg[CU3T]: F:提供英镑对应的英国圆形旗帜图标 | R:- | A:20像素画布，保留红白蓝米字路径 | S:-
+flag-hkd.svg[CU3T]: F:提供港币对应的香港圆形旗帜图标 | R:- | A:20像素画布，红底白色洋紫荆 | S:-
+flag-jpy.svg[CU3T]: F:提供日元对应的日本圆形旗帜图标 | R:- | A:20像素浅色画布和中心红圆 | S:-
+flag-myr.svg[CU3T]: F:提供马来西亚林吉特对应的圆形旗帜图标 | R:- | A:20像素画布，红白条纹与蓝底黄色星月 | S:-
+flag-nzd.svg[CU3T]: F:提供新西兰元对应的圆形旗帜图标 | R:- | A:20像素蓝底画布，保留米字与红星 | S:-
+flag-sgd.svg[CU3T]: F:提供新加坡元对应的圆形旗帜图标 | R:- | A:20像素画布，上红下白与白色星月 | S:-
+flag-try.svg[CU3T]: F:提供土耳其里拉对应的圆形旗帜图标 | R:- | A:20像素画布，红底白色星月 | S:-
+flag-usd.svg[CU3T]: F:提供美元对应的美国圆形旗帜图标 | R:- | A:20像素画布，保留蓝底白星与红白条纹 | S:-
+iconWarn.5d447bdd.svg[CU3T]: F:提供工作台警示的橙色盾牌与镂空闪电图标 | R:- | A:16像素画布 | S:-
+news-afternoon-inactive.svg[CU3T]: F:提供工作台午报未选中态的黑色咖啡杯图标 | R:- | A:40像素透明画布 | S:-
+news-afternoon.svg[CU3T]: F:提供工作台午报选中态的青色圆底咖啡杯图标 | R:- | A:40像素画布，保留黑色杯形 | S:-
+news-featured.svg[CU3T]: F:提供工作台资讯精选的金底棕字矢量标签 | R:- | A:38乘20画布和4像素圆角 | S:-
+news-morning-inactive.svg[CU3T]: F:提供工作台早报未选中态的黑色日出图标 | R:- | A:40像素透明画布 | S:-
+news-morning.svg[CU3T]: F:提供工作台早报选中态的青色圆底日出图标 | R:- | A:40像素画布，保留原叠加填色 | S:-
+news-night-inactive.svg[CU3T]: F:提供工作台晚报未选中态的黑色月亮星星轮廓图标 | R:- | A:40像素透明画布，保留原描边 | S:-
+news-night.svg[CU3T]: F:提供工作台晚报选中态的黑色圆底金色月亮星星图标 | R:- | A:40像素画布，保留原矢量路径 | S:-
+news-noon-inactive.svg[CU3T]: F:提供工作台正午资讯未选中态的黑色太阳轮廓图标 | R:- | A:40像素透明画布 | S:-
+news-noon.svg[CU3T]: F:提供工作台正午资讯选中态的青色圆底太阳图标 | R:- | A:40像素画布，保留黑色太阳和光线 | S:-
+news-quote.svg[CU3T]: F:提供工作台资讯背景的半透明青色渐变引号图形 | R:- | A:96像素画布，保留镜像双引号 | S:-
+tag-news.svg[CU3T]: F:提供工作台资讯分类的深灰穿孔标签图标 | R:- | A:14像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/channels/workspace/templates/===
+markup-workspace-update.html[EU6T]: F:维护工作台汇率条、资讯卡片、分类切换与分享按钮的HTML片段 | R:code:channels/workspace/workspace-update.js | A:七个片段经构建进入脚本缓存，保留动态数据槽和动作标记 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/===
+README.md[SG6T]: F:说明组件库目录、复用入口、真实业务弹窗与预览维护方法 | R:code:components/ai-agent/README.md,code:components/modal/global-modal.js | A:跨频道UI归组件目录，私有资源随组件维护 | S:网站AI Agent功能目录不是Codex Agent配置
+components-preview.css[CU5L]: F:定义组件目录导航、真实预览容器、接口说明及标签分类布局 | R:code:components/components-preview.js | A:标签分类支持窄屏换行，颜色按钮和搜索有焦点与选中样式 | S:目录只负责摆放，标签与表单本体复用正式共享样式
+components-preview.js[AU6M]: F:按注册表渲染可键盘切换的组件目录并挂载共享示例和标签分类 | R:code:components/components-registry.js,code:components/table/global-table-tag.js | A:分类与颜色数量来自共享groups和工厂，支持搜索过滤及查询参数，模板说明角色黑底与规划蓝底 | S:真实弹窗另页按需预览；不得另抄标签映射，结构缓存由HTML构建
+components-registry.js[FC6S]: F:登记全局组件名称、接口、源码、消费者和预览类型 | R:code:components/components-preview.js | A:六色表格标签作为全局表格子项，链接当前规范及保留的v1方案 | S:登记描述不能替代消费者实际接入证据
+index.html[EU6T]: F:提供全局组件目录结构及同源组件依赖加载入口 | R:code:components/components-preview.js,code:components/table/global-table-tag.js | A:增强彩色与角色黑底标签样式、SVG工厂先于表格和目录加载 | S:目录独立于根登录与频道页面，独立预览的主黑色使用组件变量回退
+table-preview.js[TU4T]: F:在组件目录演示表格少量长列表宽表和加载错误空态 | R:code:components/table/global-table.js | A:切换场景销毁旧实例，操作仅显示演示反馈 | S:-
+弹窗源登记.js[FC7M]: F:登记基线业务弹窗真实调用方式、资源依赖、分类与排除原因 | R:code:shared/scripts/modal-registry.js,code:components/弹窗自动索引.generated.js | A:按baseline-catalog来源批量登记，支持直接调用及正式路由按钮流程 | S:资源从项目根解析；抽屉和AI主面板排除；旧流程不可达项不冒充可预览
+弹窗自动索引.generated.js[FV7L]: F:汇总业务源注解生成的配置和学习弹窗登记、依赖与排序 | R:code:shared/scripts/modal-registry.js,code:channels/learning-center/learning-live.js,code:channels/config-center/config-center.js | A:以source-annotation登记并保留definitionSource追溯真实实现，直播依赖使用修复版本 | S:生成清单不复制弹窗结构，接口变化须改真实源注解后重新构建
+弹窗预览.html[EU6T]: F:加载真实弹窗预览目录及共享弹窗和表格标签资源 | R:code:components/弹窗预览.script-2.js,code:components/table/global-table-tag.js | A:增强彩色、角色黑底和SVG标签共用业务版本，目录脚本填充页面 | S:外置同源资源，不复制业务弹窗
+弹窗预览.script-2.js[AU7M]: F:按用途展示真实弹窗目录并懒加载隔离预览或执行正式路由流程 | R:code:components/templates/markup-弹窗预览.script-2.html,code:shared/scripts/modal-registry.js | A:可见区域才建iframe，路由并发三项，超时可重试，消息按窗口及ID匹配 | S:更改base前锁定已声明资源绝对地址；直接预览顺序加载脚本，不复制业务DOM/CSS；排除项不可借embed打开
+弹窗预览.styles-1.css[CU5S]: F:定义真实弹窗目录的分类导航、总览卡片和预览加载错误状态 | R:code:components/弹窗预览.script-2.js | A:预览视口固定820像素，窄屏改单列并支持减少动效 | S:这里只维护目录外观，不覆盖iframe内业务弹窗视觉
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-agent/===
+AI Agent.css[CU7L]: F:统一AI面板、会话侧栏、方案客户选择、消息附件复制与悬浮入口的视觉状态 | R:code:components/ai-agent/AI Agent本地Mock.js,code:components/ai-agent/AI Agent入口动效.js | A:以class和data切换全屏、收起、最小化及处理完成状态，资源归组件素材目录 | S:保留React原附件节点并用CSS覆盖图形；合并顺序为基础、动画、改版、入口；局部尺寸变量须与滚动区域配合
+AI Agent入口动效.js[AU7L]: F:管理AI悬浮入口的WebGL光球、视频和Lottie动效及处理完成提示 | R:code:components/ai-agent/AI Agent.css,code:components/ai-agent/AI Agent本地Mock.js | A:持久化入口版本，提供状态事件与切换接口，重挂载时释放动画和观察器 | S:首次迁移默认版本二；异步素材加载须校验当前状态与宿主；file协议WebGL纹理可能受浏览器限制；未调用的演示渲染函数不是活动资源入口
+AI Agent本地Mock.js[DA8L]: F:模拟AI会话与流式回答并适配历史侧栏、方案客户选择、草稿和消息复制 | R:code:components/ai-agent/templates/markup-AI Agent本地Mock.html,code:components/ai-agent/AI Agent入口动效.js | A:公开Mock数据与fetch入口，按会话隔离选择和草稿，最小化保留对话并提示完成 | S:会话和固定回答仅内存演示；新建客户桥接工作台按钮；附件原生React节点不可删除；流需支持取消，复制降级恢复焦点和选择，动态菜单坐标须测量
+README.md[SG5T]: F:说明AI组件单一正式样式、业务Mock与入口动效及素材的维护归属 | R:code:components/ai-agent/AI Agent.css,code:components/ai-agent/AI Agent本地Mock.js | A:列出历史归档与回滚依据 | S:候选素材排除规则不因组件整理而改变
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-agent/templates/===
+markup-AI Agent本地Mock.html[EU6T]: F:维护AI本地会话、历史菜单、方案客户选择、空态和复制控件的HTML片段 | R:code:components/ai-agent/AI Agent本地Mock.js | A:24个片段经构建生成运行缓存，动态内容由调用者转义 | S:品牌文案不证明已接对应模型服务；AI主面板不自动加入普通弹窗预览
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-agent/素材/===
+Agent头像.svg[CU3T]: F:提供AI品牌头像的渐变圆环、深绿底与白色像素机器人图形 | R:- | A:36像素画布并保留原渐变 | S:-
+Agent结果头像.svg[CU3T]: F:提供AI结果节点的三路汇聚连接图标 | R:- | A:16像素画布，黑色九成透明填色 | S:-
+ai-agent-completed.json[FU4L]: F:提供AI入口完成态的静态机器人与渐变圆环Lottie数据 | R:code:components/ai-agent/AI Agent入口动效.js | A:68像素画布，单帧完成标记，无外部资产 | S:-
+ai-agent-radar.json[FU4T]: F:提供AI入口处理态的机器人浮动、眼睛扫描和旋转光环动画 | R:code:components/ai-agent/AI Agent入口动效.js | A:68像素画布，30帧每秒共60帧循环，无外部资产 | S:-
+lottie.min.js[LU7T]: F:提供本地Lottie动画加载、播放控制及SVG、Canvas和HTML渲染运行库 | R:code:components/ai-agent/AI Agent入口动效.js | A:版本5.13.0，向浏览器暴露lottie与bodymovin，支持实例销毁 | S:第三方压缩运行库含内部动态样式，不能作为业务脚本固定样式的写法模板
+上传附件.svg[CU3T]: F:提供AI上传附件的黑色回形针图标 | R:- | A:18像素画布，保留原路径 | S:-
+你可以这样问.svg[CU3T]: F:提供AI空会话的渐变文字提问提示 | R:- | A:190乘31画布，十二秒循环渐变动画 | S:使用文字与PingFang字体而非轮廓字形
+做方案.svg[CU3T]: F:提供AI方案选择的深灰立方体轮廓图标 | R:- | A:18像素画布和1.35描边 | S:-
+关闭历史记录.svg[CU3T]: F:提供AI历史侧栏收起的绿色左箭头与竖线图标 | R:- | A:20乘18画布 | S:-
+关闭弹窗.svg[CU3T]: F:提供AI弹窗的深灰关闭叉图标 | R:- | A:32像素画布 | S:-
+复制成功.svg[CU3T]: F:提供消息复制成功的浅灰圆角底双勾图标 | R:- | A:32像素画布，保留深灰描边 | S:-
+复制文本.svg[CU3T]: F:提供消息复制操作的浅灰圆角底重叠方框图标 | R:- | A:32像素画布，保留深灰描边 | S:-
+完成状态.svg[CU3T]: F:提供AI完成状态的深绿色圆形勾图标 | R:- | A:16像素显示尺寸 | S:-
+推理中.svg[CU3T]: F:提供AI推理过程的黑色圆底青色交织轨迹图标 | R:- | A:24像素画布 | S:-
+搜索客户.svg[CU3T]: F:提供AI客户搜索的深灰椭圆放大镜图标 | R:- | A:15乘16画布和半透明描边 | S:-
+收起.svg[CU3T]: F:提供AI侧栏折叠的深灰左右分栏矩形图标 | R:- | A:32像素画布和2像素描边 | S:-
+新建对话.svg[CU3T]: F:提供AI新会话的深灰对话框加号图标 | R:- | A:32像素画布 | S:-
+最小化.svg[CU3T]: F:提供AI面板最小化的深灰横线图标 | R:- | A:32像素画布，横线14乘2 | S:-
+步骤完成.svg[CU3T]: F:提供AI步骤完成的青色圆底白勾图标 | R:- | A:16像素画布 | S:-
+浮标图标.svg[CU3T]: F:提供AI悬浮入口的白色像素机器人图形 | R:- | A:37乘22画布 | S:-
+跳出Icon.svg[CU3T]: F:提供AI建议入口的蓝桃渐变右上箭头图标 | R:- | A:16像素画布，保留原旋转与渐变 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-agent/素材/附件类型/===
+PDF.svg[CU3T]: F:提供AI附件的红色方底白色PDF图形 | R:code:components/ai-agent/AI Agent.css | A:32像素画布和2像素圆角 | S:-
+word.svg[CU3T]: F:提供AI附件的蓝色方底白色W字图标 | R:code:components/ai-agent/AI Agent.css | A:32像素画布和2像素圆角 | S:-
+xlsx.svg[CU3T]: F:提供AI表格附件使用的绿色方底白色字形图标 | R:code:components/ai-agent/AI Agent.css | A:32像素画布，保留素材中的S形字形 | S:-
+图片.svg[CU3T]: F:提供AI图片附件的紫蓝方底白色山日图标 | R:code:components/ai-agent/AI Agent.css | A:32像素画布和2像素圆角 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-notice/===
+README.md[SG5T]: F:说明共享AI内容声明的调用、触发与当前消费者 | R:code:components/ai-notice/global-ai-notice.js | A:业务与组件预览共用实现，HTML片段构建为运行缓存 | S:-
+global-ai-notice.css[CU5S]: F:定义AI声明的绿色说明面板、确认按钮和侧栏配图样式 | R:code:components/ai-notice/global-ai-notice.js | A:窄屏隐藏配图，内容区域限制视口高度并滚动 | S:-
+global-ai-notice.js[AU6T]: F:统一显示AI内容声明并绑定业务触发器、全局事件与关闭操作 | R:code:components/ai-notice/templates/markup-global-ai-notice.html | A:公开show和hide及旧AI入口别名，自定义文案先转义 | S:点击面板内部不关闭，遮罩按钮及Escape关闭；hide清空宿主内容但保留常驻宿主
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/ai-notice/templates/===
+markup-global-ai-notice.html[EU5T]: F:维护AI声明的遮罩、可访问对话框、说明文字和确认按钮HTML | R:code:components/ai-notice/global-ai-notice.js | A:五个动态槽经模板构建注入运行缓存 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/carousel-controls/===
+README.md[SG5T]: F:说明共享轮播箭头与指示点的挂载、复用和销毁规则 | R:code:components/carousel-controls/global-carousel-controls.js | A:活动和学习频道共用，内容与自动播放交业务维护 | S:-
+global-carousel-controls.css[CU5T]: F:定义轮播圆形箭头、当前胶囊指示点及触摸和减少动效状态 | R:code:components/carousel-controls/global-carousel-controls.js | A:单组隐藏，悬停或聚焦显示箭头 | S:相邻按钮各六像素内距共同形成十二像素可见间隔
+global-carousel-controls.js[AU6T]: F:挂载可循环或边界禁用的轮播控件并将切换请求交给业务 | R:code:components/carousel-controls/templates/markup-global-carousel-controls.html | A:按宿主WeakMap去重，返回update和destroy，支持外置指示点与动态getState | S:控件不自行改变内容或自动播放，onChange后业务必须同步当前索引
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/carousel-controls/templates/===
+markup-global-carousel-controls.html[EU4T]: F:维护轮播左右箭头的SVG结构片段 | R:code:components/carousel-controls/global-carousel-controls.js | A:路径槽由运行时选择左右方向 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/date-picker/===
+README.md[SG5T]: F:说明共享日期面板API、现有选择条兼容和消费者 | R:code:components/date-picker/global-date-picker.js | A:业务及预览共用实现，宿主卸载时销毁实例 | S:-
+global-date-picker.css[CU6T]: F:统一自绘日期面板与已接管Ant日历的尺寸、颜色和日期范围状态 | R:code:components/date-picker/global-date-picker.js | A:保留调用方输入样式，日历宽288，日期时间保留原确认和时间控件 | S:Ant定位包装层须透明无阴影，避免重复绘制面板外壳
+global-date-picker.js[DU6T]: F:渲染共享日期年月选择面板并提供严格日期解析与格式化 | R:code:components/date-picker/global-date-picker.css | A:支持今天、可选日期回调、方向键及销毁，年份限制1至9999 | S:只负责日历，输入框弹层与值事件由调用方管理；使用本地正午构造日期并回验年月日
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/expert-directory/===
+README.md[SG5T]: F:说明专家目录在产品与入职页面的共享数据和提前适配约束 | R:code:components/expert-directory/expert-directory.css | A:头像二维码随脚本URL解析，单例安装 | S:必须在原站对应模块首次求值前加载，无独立挂载销毁API
+expert-directory.css[CU4T]: F:为专家卡片右侧二维码保留内容间隔 | R:- | A:右内边距108像素涵盖84像素二维码与24像素间隔 | S:-
+expert-directory.js[AU7S]: F:向产品专家弹窗与入职专家章节注入共享专家档案、头像二维码和双标签 | R:code:components/expert-directory/expert-directory.css,code:channels/induction/page.js | A:包装三个Umi模块工厂，资源按当前脚本URL解析，档案与包装均防重复 | S:须先于对应模块首次执行；只装饰既有React节点，二维码留位由CSS承担
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/filter-bar/===
+README.md[SG5T]: F:说明可配置筛选栏的八类控件、接入范围与实例销毁约定 | R:code:components/filter-bar/global-filter-bar.js | A:由页面显式挂载，学习课程和学情共用 | S:-
+global-filter-bar.css[CU6S]: F:定义页面筛选栏、搜索组织下拉、日期范围和多选控件的响应式样式 | R:code:components/filter-bar/global-filter-bar.js | A:容器查询控制窄区换行，弹出层支持顶层显示，状态类表达禁用和重置状态 | S:容器查询形成层叠上下文，打开多选时须提升筛选栏以越过粘性表格
+global-filter-bar.js[AU7M]: F:按配置构建八类筛选控件并管理即时或提交模式、校验、联动和弹出层 | R:code:components/date-picker/global-date-picker.js,code:components/multi-select/global-multi-select.js,code:components/organization-tree/organization-tree.js | A:公开读写值、显隐禁用、刷新重置销毁，搜索防抖并支持输入法组合 | S:配置隐藏清除条件而收起高级条件仍生效；禁止通用弹窗适配器重复接管；弹出层尺寸位置按视口测量，销毁须清理计时器及全局监听
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/modal-controls/===
+modal-controls.css[CU7M]: F:统一已接入弹窗内部控件与其所属下拉面板的视觉状态 | R:code:components/modal-controls/modal-controls.js,code:components/modal/global-modal.css | A:覆盖日期选择、单复选、清空、上传、表格分页及错误禁用状态 | S:仅作用真实弹窗与明确归属的portal；保留原React节点；错误优先于交互，禁用优先于全部状态
+modal-controls.js[AU8L]: F:适配真实弹窗原生选择日期、清空与拖高控件并定位验证失败字段 | R:code:components/modal/global-modal.js,code:components/date-picker/global-date-picker.js | A:按可见宿主和ARIA关联识别下拉归属，复用原输入事件并提供scan和销毁接口 | S:排除抽屉与AI主面板；不得移动React字段；失效字段只滚动所属表单；popover保留父子关系，回退定位须换算缩放；原控件移回页面须恢复，destroy不是卸除所有匿名全局监听
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/modal/===
+README.md[SG6T]: F:说明共享确认弹窗与真实表单采用接口及业务生命周期责任 | R:code:components/modal/global-modal.js | A:组件管理外壳遮罩定位，业务负责挂载显示提交和销毁 | S:确认结构只能复用，字段反馈实例随宿主清理
+global-modal-mask.css[CU7T]: F:统一原生、Ant及本地业务弹层的遮罩颜色与入场节奏 | R:code:components/modal/global-modal-position.css | A:统一黑色四成五遮罩、160毫秒动画，减少动效设置有降级 | S:只统一视觉不接管层级显隐；原生backdrop变量保留旧Chromium继承失败时的默认值
+global-modal-position.css[CU7T]: F:为明确接入的普通弹窗统一视口居中与安全高度 | R:code:components/modal/global-modal-position.js | A:Ant宿主居中，原生open对话框中心变换，窄屏缩小安全边距 | S:Ant宿主display不可important覆盖关闭的内联none；不接入抽屉和AI主面板
+global-modal-position.js[AU7T]: F:扫描普通弹窗宿主并登记共享居中定位标记 | R:code:components/modal/global-modal-position.css | A:提供adopt和rescan，单例监听新增DOM与Ant宿主 | S:检测到抽屉或AI主面板时移除定位标记；不修改业务开关状态
+global-modal.css[CU7L]: F:定义共享确认与表单的标题按钮、字段反馈、内容区域和内部控件视觉原语 | R:code:components/modal/global-modal.js,code:components/modal-controls/modal-controls.css | A:按语义类覆盖既有结构，统一错误占位、计数和滚动链，保留业务宽高责任 | S:嵌套确认不得继承外层表单角色；关闭图标保留file协议必需的同源data副本；计数在文本框滚动区外；不强行显示隐藏错误
+global-modal.js[AU8L]: F:创建共享确认内容并非破坏式采用真实业务表单、关闭按钮、区域和字段反馈 | R:code:components/modal/templates/markup-global-modal.html,code:components/modal/global-modal.css | A:公开createConfirm、setConfirmState、adoptForm等接口，语义标记幂等应用，反馈实例可销毁 | S:调用方负责showModal及业务事件；React表单采用不能搬移节点；账号切换警告保留原处理且不加取消；客户介绍代理按钮回接原处理；直接adopt确认会规范结构，不适用于任意React表单
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/modal/assets/===
+close.svg[CU3T]: F:提供共享弹窗关闭叉的原始矢量字形 | R:code:components/modal/global-modal.css | A:采用currentColor填色与Ant关闭轮廓 | S:CSS内file兼容副本由检查器逐字节核对
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/modal/templates/===
+markup-global-modal.html[EU6T]: F:维护共享确认弹窗外壳和关闭图形HTML片段 | R:code:components/modal/global-modal.js | A:三段模板生成缓存，标题正文和按钮状态由组件绑定 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/multi-select/===
+README.md[SG5T]: F:说明折叠式多选的共享入口、选项汇总和生命周期约定 | R:code:components/multi-select/global-multi-select.js | A:业务和预览共用实现，结构在HTML模板维护 | S:-
+global-multi-select.css[CU5M]: F:定义多选输入框、可见标签、溢出计数与下拉选项视觉状态 | R:code:components/multi-select/global-multi-select.js | A:支持展开、选中、悬停清除及减少动效，引用共享控件图标 | S:-
+global-multi-select.js[DU6M]: F:挂载多选下拉并维护标签汇总、选项选择、键盘和外部关闭 | R:code:components/multi-select/templates/markup-global-multi-select.html | A:按宿主去重，支持读写值、开关和销毁，用户变更发事件与回调 | S:点击选项时只更新状态不可重建节点，否则冒泡目标脱离DOM被误判外部点击；setValue不触发回调
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/multi-select/templates/===
+markup-global-multi-select.html[EU5T]: F:维护多选combobox、列表、占位及复选标记的HTML结构 | R:code:components/multi-select/global-multi-select.js | A:动态ID绑定aria-controls，文本由业务脚本写入 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/operation-log/===
+global-operation-log.css[CU6S]: F:定义操作日志弹窗、共享筛选接入、粘性表头、详情折叠与分页样式 | R:code:components/filter-bar/global-filter-bar.css | A:表格独立滚动，按操作类型标色，支持窄屏和减少动效 | S:日志滚动锁限定自身打开期间；列宽固定类替代内联声明
+global-operation-log.js[AU7M]: F:展示本地操作日志并提供筛选、分页、长内容展开和Excel导出 | R:code:components/operation-log/operation-log-mock.js,code:components/operation-log/operation-log-xlsx.js | A:支持单例弹窗和独立内嵌挂载，关闭恢复焦点并清理滚动锁 | S:不是实际审计采集；导出筛选全集而非当前页；反向日期范围返回空集并禁用导出
+operation-log-mock.js[DD4T]: F:提供公告与资讯操作日志的二十八条本地模拟记录 | R:code:components/operation-log/global-operation-log.js | A:组合新增编辑删除查看场景，使用演示账号和测试网段IP | S:固定样例不采集用户真实操作
+operation-log-xlsx.js[KV6S]: F:以无压缩ZIP和OOXML构建本地单表操作日志Excel文件 | R:code:components/operation-log/global-operation-log.js | A:返回XLSX Blob，冻结首行并启用筛选，可设置工作表名和机密页眉页脚 | S:所有值写为inlineStr避免公式解释，清除XML非法控制字符；列字母算法仅适用于A至Z，不是通用无限列表格库
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/operation-log/templates/===
+markup-global-operation-log.html[EU6T]: F:维护操作日志筛选、八列表格、内容折叠及分页导出的HTML片段 | R:code:components/operation-log/global-operation-log.js | A:十二片段经构建生成缓存，保留模拟数据提示及可访问状态节点 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/organization-tree/===
+README.md[SG5T]: F:说明组织树挂载、节点渲染、键盘操作和私有资产维护职责 | R:code:components/organization-tree/organization-tree.js | A:数据由消费者提供，宿主卸载须销毁实例 | S:-
+organization-tree.css[CU5T]: F:定义组织树缩进、展开箭头、选中态与筛选栏组织搜索样式 | R:code:components/organization-tree/organization-tree.js | A:树内容独立滚动，搜索图标复用共享资产 | S:-
+organization-tree.js[DU6T]: F:渲染组织层级并提供搜索、选择、展开与键盘导航 | R:code:components/organization-tree/templates/markup-organization-tree.html | A:公开node和mount，实例支持search、setValue及destroy，选中节点自动展开祖先 | S:遍历祖先用集合防循环；搜索保留命中祖先并展开路径；点击箭头仅开合，点击节点才选择
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/organization-tree/assets/===
+folder-open.svg[CU3T]: F:提供组织选择树的金色展开文件夹与白色纸页图标 | R:code:components/organization-tree/organization-tree.js | A:18像素画布并保留原矢量路径 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/organization-tree/templates/===
+markup-organization-tree.html[EU4T]: F:维护组织树节点、缩进单位与展开箭头的HTML结构 | R:code:components/organization-tree/organization-tree.js | A:节点名和资产由运行时绑定，构建生成缓存 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/poster-share/===
+README.md[SG5T]: F:说明海报分享入口、业务与预览共用实现及组件维护归属 | R:code:components/poster-share/global-poster-share.js | A:通过open传入文章，真实模板与导出由海报子页面承担 | S:-
+global-poster-share.css[CU5T]: F:定义海报分享宿主、内嵌页面、加载遮罩及滚动锁的视觉状态 | R:code:components/poster-share/global-poster-share.js | A:开关使用状态类，窄屏缩小视口留白 | S:-
+global-poster-share.js[AU7T]: F:懒加载海报子页面并通过消息传递文章数据与关闭状态 | R:code:components/海报分享/index.html,code:components/poster-share/templates/markup-global-poster-share.html | A:公开open、close、update和isOpen，等待ready后发送当前文章 | S:仅接收对应iframe窗口消息；file协议发送目标为星号；关闭保留iframe并清理滚动锁，不销毁常驻监听
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/poster-share/templates/===
+markup-global-poster-share.html[EU5T]: F:维护海报分享遮罩、对话框、iframe和加载状态HTML结构 | R:code:components/poster-share/global-poster-share.js | A:构建生成运行缓存，内嵌页面有独立标题 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/table/===
+README.md[SG5T]: F:说明共享表格与标签的调用、分类预览和维护入口 | R:code:docs/table-spec.md,code:docs/table-tag-spec.md | A:旧表格采用原节点，图标结构在所属HTML模板维护并构建缓存，来源许可随组件保存 | S:常驻单例不可每次频道切换重复安装
+global-table.css[CU6S]: F:定义共享表格的分离表头、固定列、分页与状态标签样式 | R:code:components/table/global-table.js | A:表体独立滚动，固定组边界仅在存在遮挡内容时显示阴影 | S:展示表头之外保留语义表头；十二像素标签是十四像素表格文字的明确例外
+global-table.js[DU7M]: F:挂载可分页共享表格并管理固定列、数据状态、尺寸及页量选择 | R:code:components/table/global-table-tag.js,code:components/table/global-table.css | A:按宿主去重并提供刷新销毁；tag调用共享工厂，无工厂时保留旧接口降级 | S:renderHTML仅接受已转义模板；表头副本仅展示；页量面板保持弹窗归属，销毁清理观察器监听与尺寸
+global-table-tag.css[CU6T]: F:统一表格标签六色、深底强调、紧凑尺寸和单色SVG | R:code:components/table/global-table-tag.js | A:彩色浅底增强，身份白字复用主文字黑，危险solid白字深红；20像素标签与12像素图标，间距4像素 | S:仅覆盖采用标签；空值透明无内距，hidden优先；旧图标隐藏保留，SVG不单独接收点击
+global-table-tag.js[CU7S]: F:维护标签语义分类、强度、SVG工厂及旧表格原节点适配 | R:code:components/table/global-table-tag.css,code:components/table/templates/markup-global-table-tag.html | A:23类74文案六色，5角色与3失败solid，6规划info；七种默认图标支持白名单或关闭；异步更新与退出清理 | S:仅td候选且排除选择控件；React图片包装保留并标记隐藏，仅删除自有SVG；不监听自身标记，文本安全赋值
+ICONS-LICENSE.txt[SG5T]: F:保存标签所用七个Lucide图标的固定来源提交、整套许可及集成调整说明 | R:code:components/table/templates/markup-global-table-tag.html | A:记录原始路径保留、CSS接管尺寸、装饰属性与空白清理，附ISC及Feather衍生MIT声明 | S:分发图标须保留对应版权和许可，不得把来源模板描述为原PNG的精确矢量原件
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/tabs/===
+README.md[SG5T]: F:说明共享下划线页签的视觉规范、键盘和五类既有页面适配 | R:code:components/tabs/global-tabs.js,code:docs/tabs-spec.md | A:显式挂载或增强原节点，页面负责业务切换 | S:-
+global-tabs.css[CU5T]: F:统一页签高度、当前下划线、数量后缀与禁用焦点样式 | R:code:components/tabs/global-tabs.js | A:当前文字加粗而数量保持常规字重，保留各页面外部布局 | S:复用产品React后缀节点，不能为调整数量样式搬移节点
+global-tabs.js[AU6T]: F:挂载或增强页签并同步既有产品组织学习方案与入职选中状态 | R:code:components/tabs/global-tabs.css | A:方向键与Home和End跳过禁用项并触发原点击，支持读写值和销毁 | S:入职锁定章节不允许键盘切换；setValue不通知业务；DOM重建后恢复相应页签焦点
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/templates/===
+markup-components-preview.html[EU6T]: F:维护组件目录导航、共享示例和标签分类的HTML结构 | R:code:components/components-preview.js | A:31片段构建缓存，标签壳提供搜索过滤和状态说明；角色黑底、规划蓝底、失败红底共用图标规格 | S:模板不复制业务文案映射；首页不预加载所有弹窗iframe
+markup-弹窗预览.script-2.html[EU5T]: F:维护真实弹窗目录的分类总览、懒加载卡片与待接入提示HTML | R:code:components/弹窗预览.script-2.js | A:动态槽绑定登记信息，不复制业务弹窗本体 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/海报分享/===
+README.md[SG5T]: F:说明海报子页面的模板名片导出能力及与共享外壳的调用关系 | R:code:components/海报分享/index.html,code:components/poster-share/global-poster-share.js | A:独立打开或由外壳通过消息复用单一实例 | S:-
+index.html[EU6M]: F:维护海报模板选择、文章预览、个人名片上传与保存界面HTML | R:code:components/海报分享/index.script-3.js,code:components/海报分享/index.styles-1.css | A:十三款模板由脚本渲染，名片字段选填，图标图片归组件资产 | S:手机预览二维码是演示图；独立打开包含背景原型框架
+index.script-2.js[EU4T]: F:根据embed参数在首屏加载前启用海报内嵌布局 | R:code:components/海报分享/index.html | A:仅embed等于1时添加body状态类 | S:-
+index.script-3.js[DU7L]: F:驱动十三款海报选择、文章名片预览、图片上传撤销及PNG导出 | R:code:components/海报分享/index.html,code:components/poster-share/global-poster-share.js | A:Canvas按750乘981绘制并等待项目字体，图片限JPG/PNG/WEBP且5MB，下载URL用后释放 | S:绘图参数属于导出实现不等同DOM样式；空名片不导出占位；父消息更新文章不校验来源；独立预览关闭只提示，内嵌关闭通知宿主
+index.styles-1.css[CU6L]: F:定义海报模板栏、文章预览、名片编辑及移动保存栏的视觉状态 | R:code:components/海报分享/index.html | A:支持十三款主题、上传反馈、窄屏与减少动效，内嵌状态由body类控制 | S:内嵌模式覆盖手机堆叠布局并移除原型背景，不能只按视口断点判断最终布局
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/海报分享/assets/===
+fake-qr.svg[CU3T]: F:提供海报手机预览区域的二维码形状演示插图 | R:code:components/海报分享/index.html | A:94像素白底深灰码形与中心手机符号 | S:演示图不是可识别业务二维码
+featured-ai.svg[CU3T]: F:提供海报AI精选的金底棕色矢量徽章 | R:code:components/海报分享/index.html | A:48乘20画布与4像素圆角 | S:-
+gaip-icon-close.svg[CU3T]: F:提供海报关闭按钮的深灰叉形图标 | R:code:components/海报分享/index.html | A:32像素透明画布 | S:-
+gaip-icon-complete.svg[CU3T]: F:提供海报模板选中态的青色圆底白勾图标 | R:code:components/海报分享/index.script-3.js | A:14像素画布和圆端描边 | S:-
+gaip-icon-download.svg[CU3T]: F:提供保存海报按钮的白色下载箭头及底线图标 | R:code:components/海报分享/index.html | A:14像素透明画布 | S:-
+tag.svg[CU3T]: F:提供海报资讯分类的深灰穿孔标签图标 | R:code:components/海报分享/index.html | A:14像素画布并保留原矢量 | S:-
+tishi-icon.svg[CU3T]: F:提供海报名片提示的青色圆形感叹号图标 | R:code:components/海报分享/index.html | A:12像素画布 | S:-
+up-load-icon1.svg[CU3T]: F:提供海报头像上传空态的深绿色圆形人像轮廓图标 | R:code:components/海报分享/index.html | A:26像素画布并保留原路径 | S:-
+up-load-icon2.svg[CU3T]: F:提供海报二维码上传空态的深绿色码形图标 | R:code:components/海报分享/index.html | A:24像素画布 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/海报分享/templates/===
+markup-index.script-3.html[EU5T]: F:维护海报模板选择按钮、选中标记和头像二维码上传状态HTML片段 | R:code:components/海报分享/index.script-3.js | A:四个片段经构建生成缓存，动态槽绑定图片与状态 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/design-changes/===
+README.md[SG7T]: F:规定页面与共享组件视觉参数的唯一手工台账及基准合并方法 | R:code:docs/visual-change-workflow.md,code:design-changes/_template.json | A:每页或组件一份JSON，归档退出交付，证据不堆积完整源码截图 | S:记录规范不代表已安装监听或标注界面；线上未采集值不能猜填
+_template.json[FC4T]: F:提供空的一级版本视觉变更记录结构 | R:code:design-changes/README.md | A:page待填且records初始为空 | S:-
+ai-agent-attachments.json[SU5S]: F:记录AI附件类型图标与文件名字号的视觉目标和验证依据 | R:code:components/ai-agent/AI Agent.css | A:区分PDF、文档、表格和图片本地素材，保留未知线上基准 | S:HTTP独立浏览器验证不代表file入口验收
+ai-agent-message-copy.json[SU5T]: F:记录用户与AI消息复制控件的尺寸、状态图标和素材哈希 | R:code:components/ai-agent/AI Agent.css | A:合并普通和成功态参数，保留来源与验证边界 | S:-
+component-catalog.json[SU5L]: F:记录组件目录预览容器、表单示例、导航和页签的视觉变更 | R:code:components/components-preview.css | A:分别保留有效目标、撤回方案和各次验证依据 | S:撤回的交付指南与目录布局不应重新作为当前目标
+config-admin-settings.json[SU5T]: F:记录配置角色设置四类提示图标的用户素材与尺寸目标 | R:code:channels/config-center/config-center-content.css | A:使用频道提示2矢量并保留素材身份 | S:仅源码检查，未声称浏览器视觉已验收
+config-bulk-import.json[SU5L]: F:记录批量导入树区域、步骤表面、确认及校验反馈的视觉参数 | R:code:channels/config-center/config-center-content.css | A:逐项保存首次本地值、目标和源码或DOM验证边界 | S:记录不证明真实Excel解析或原生弹层验收
+config-channel-picker.json[SU5L]: F:记录配置频道选择条、下拉面板与组织搜索的视觉规格 | R:code:channels/config-center/config-center.css | A:保留渐变选择条、共享下拉搜索和单层边框参数 | S:线上基准未知且仅源码核验
+config-member-editor.json[SU5M]: F:记录成员编辑佣金提示与禁用复选框的局部视觉目标 | R:code:channels/config-center/config-center-content.css | A:保留提示文字层级及共享控件边框依据 | S:视觉记录不替代角色互斥业务规则
+expert-directory.json[SU5L]: F:记录共享专家头像、双标签、二维码及文本留位的视觉交付依据 | R:code:components/expert-directory/expert-directory.css | A:保留用户素材哈希、150乘200头像及84像素二维码规格 | S:线上基准未采集，独立浏览器结果仅证明所列场景
+global-font.json[SU6S]: F:记录全局HarmonyOS常规与粗体字体收口及验证范围 | R:code:shared/styles/global-font.css | A:正文使用400或700，保留图标字体及图片固有文字 | S:历史入口数量与旧路径是当时证据，不能当当前结构统计
+global-table.json[SU6L]: F:记录共享表格表头正文、分页、固定列阴影及标签视觉参数 | R:code:components/table/global-table.css,code:components/table/global-table-tag.css | A:标签目标接入六色共享规范，保留首次本地值及历次验证边界 | S:删除记录不参与交付；未采集线上值和历史验证不得当作当前全站验收
+learning-center.json[SU6L]: F:记录学习首页、课程课节编辑、管理表格、学情和阅读器的视觉演进依据 | R:code:channels/learning-center/learning-center.css,code:docs/visual-change-workflow.md | A:保存元素状态、基准、首次本地值、目标和逐项验证，覆盖上传拖拽窄屏与全屏状态 | S:包含旧路径和试验阶段记录；基准未采集与独立控制器验证不能当当前完整入口或线上参数证明
+learning-live.json[SU5L]: F:记录学习首页直播横卡、海报素材与直播管理表单的视觉目标 | R:code:channels/learning-center/learning-live.js,code:channels/learning-center/learning-center.css | A:保留横卡响应式参数、素材哈希及撤回布局 | S:旧广告素材保留不等于首页仍使用；撤回方案不参与当前交付
+login-video-test.json[SU4T]: F:记录登录视频试验中右侧面板改纯白的局部样式 | R:code:channels/login-video-test/login-video-test.css | A:保留首次本地半透明白与目标纯白的差异 | S:用户明确排除提交的试验台账，不属于正式登录发布内容
+modal-controls.json[SU6L]: F:记录真实弹窗控件的输入尺寸、状态颜色和本地图标视觉规则 | R:code:components/modal-controls/modal-controls.css | A:覆盖搜索选择日期单复选清空上传，保留源节点和禁用错误优先级依据 | S:既有待复验项仍保留，台账不证明所有弹窗状态已实测
+modal-form-scroll.json[SU6L]: F:记录原生滚动条颜色及客户活动财富公告表单的可收缩区域视觉改动 | R:code:components/modal/global-modal.css | A:保留短视口表面高度、内容内距和各次验证范围 | S:滚动条仅调颜色而非统一宽度；抽屉与AI面板不纳入这些普通表单记录
+modal-interiors.json[SU6T]: F:记录共享确认和表单内部列表、字段、计数、分组及底栏的视觉规范 | R:code:components/modal/global-modal.css,code:design-changes/shared-modal-fields.json | A:保留首次本地值和后续覆盖关系，区分普通表单与确认范围 | S:计数正常流新规则覆盖旧内部定位；不把源码或DOM验证称作真实视觉验收
+product-card-logo.json[SU5T]: F:记录产品机构Logo槽、内容留位和旧装饰隐藏的视觉交付参数 | R:code:channels/product/product-card-logo.css | A:包含直接入口与跨入口浏览器验证及未知线上基准 | S:-
+project-directory.json[SU5L]: F:记录独立中文项目目录的标题、卡片、搜索、资源链接及窄屏视觉规格 | R:code:app/project-index/styles.css | A:五十七项记录保存源码参数和1440及390像素页面证据 | S:目录独立于登录页；页面检查不代表每个属性均已浏览器采样
+proposal-owner-list.json[SU5T]: F:记录方案客户归属弹窗列表容器的边框、内外距及圆角 | R:code:channels/proposal-center/proposal-center.css,code:components/modal/global-modal.css | A:业务及真实源预览共用目标 | S:needs-recheck记录不是已完成视觉验收
+shared-ai-notice.json[SU5L]: F:记录AI内容提示的品牌色文字面板、右侧配图和确认按钮视觉目标 | R:code:components/ai-notice/global-ai-notice.css | A:覆盖桌面、窄屏及按钮交互状态并链接截图 | S:组件目录验证未逐一走查AI和资讯业务页面
+shared-carousel-controls.json[SU5T]: F:记录共享轮播圆形箭头及圆点胶囊的尺寸颜色间距和验证 | R:code:components/carousel-controls/global-carousel-controls.css | A:学习和目录同源，指示点边缘间距由按钮内距组成 | S:活动原生Slick白色指示器不在指示点修改范围
+shared-date-picker.json[SU6M]: F:记录筛选栏、原生及Ant日期面板统一视觉规格和浏览器证据 | R:code:components/date-picker/global-date-picker.css | A:包含年月网格、日期范围、选中今天禁用及清除控件参数 | S:Ant验证来自原客户组件独立上下文，不能据此声称整站验收
+shared-filter-bar.json[SU6L]: F:记录共享筛选栏各类控件、弹出层、宽度响应和目录示例的视觉演进 | R:code:components/filter-bar/global-filter-bar.css,code:components/multi-select/global-multi-select.css | A:保存基准、首次本地参数、状态和逐项验证，涵盖组织搜索及重置激活态 | S:含早期日历及旧路径依据；以当前源码和专属日期台账核对，不把历史目标整体回灌
+shared-main-nav-icons.json[SU6L]: F:记录十二个主导航用户图标的原件哈希、替换目标和状态验证范围 | R:code:shared/styles/learning-nav.css,code:shared/assets/main-nav/workspace.svg | A:原件保存在共享资产，保留财富值内联几何和配置图像滤镜 | S:十个叶子遮罩保留data副本以兼容file；本记录不改变菜单几何
+shared-modal-confirm.json[SU6T]: F:记录共享确认文字字体映射及按钮间距消除Ant叠加的视觉改动 | R:code:components/modal/global-modal.css,code:shared/styles/global-font.css | A:常规400标题700共用本地字体，按钮清零margin由容器提供间距 | S:字体夹具验证不等于全部业务弹窗验收
+shared-modal-fields.json[SU6L]: F:记录表单必填标记、错误占位、输入外壳和状态样式的共享交付依据 | R:code:components/modal/global-modal.js,code:components/modal/global-modal.css | A:保留字段范围、旧值及错误禁用聚焦规则，普通文字字段与搜索上传分开 | S:包含早期计数内嵌定位，后续正常流方案在modal-interiors记录，不能只读旧字段记录恢复已替换实现
+shared-modal-mask.json[SU5T]: F:记录原生dialog遮罩变量继承失败时的颜色与时长回退 | R:code:components/modal/global-modal-mask.css | A:保持四成五黑色和160毫秒规范，附原生与学情独立回归范围 | S:未逐页复测其他频道
+shared-modal-subtitle.json[SU5T]: F:记录方案归属和活动报名标题区辅助说明的共享文字与间距 | R:code:components/modal/global-modal.css | A:适用于明确接入副标题的表单，保留业务换行截断 | S:真实浏览器视觉仍待复验
+shared-modal-title.json[SU5T]: F:记录确认与表单主标题统一真实Bold字体映射的视觉依据 | R:code:shared/styles/global-font.css,code:components/modal/global-modal.css | A:覆盖标题及嵌套文字节点的700字重，避免合成粗体 | S:独立共享工厂实测不代表全部来源页面验收
+shared-multi-select.json[SU5L]: F:记录独立多选与筛选栏多选的边框、箭头和选项状态视觉对齐 | R:code:components/multi-select/global-multi-select.css | A:九项记录覆盖品牌色、悬停、聚焦及选中复选标记 | S:浏览器对照针对独立组件，未逐页验收消费者
+shared-organization-tree.json[SU5T]: F:记录所属组织树下拉的节点缩进、面板、搜索和选中视觉规格 | R:code:components/organization-tree/organization-tree.css,code:components/filter-bar/global-filter-bar.css | A:复用共享输入面板皮肤，保留资源路径和隔离验证边界 | S:隔离文档未读取图片不代表完整file入口图片验收
+shared-tabs.json[SU6M]: F:记录五类页面统一下划线页签的高度、标题数量字重和锁定视觉规则 | R:code:components/tabs/global-tabs.css,code:components/tabs/global-tabs.js | A:当前标题700而数量400，保留产品React数量节点和入职锁定状态 | S:原结构夹具验证与完整业务页验收分开
+shared-table-tags.json[SU5L]: F:保存表格标签几何、六色深底及SVG的基准目标和验证证据 | R:code:components/table/global-table-tag.css,code:docs/table-tag-spec.md | A:合并增强彩色与主黑白字目标，保留首次本地值并记录源码对比度和当前图标继承色 | S:未知线上基准留空；旧截图不证明新配色，源码对比度不等于浏览器采样，统一画布不证明视觉重量
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/design-changes/archive/===
+learning-filters-before-shared-20260909.json[SU4L]: F:保留学习筛选栏迁入共享组件前的历史视觉试验记录 | R:code:design-changes/shared-filter-bar.json | A:归档记录由共享筛选栏台账替代 | S:标记online但未采集的基准不是已验证线上值，不得回灌旧试验
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/===
+README.md[SG6T]: F:说明本地登录、独立频道、Hash导航、开发检查和标准化入口 | R:code:docs/standardization-status.md,code:docs/formal-migration-20260923.md | A:双击HTML无需安装依赖，开发检查不能代替浏览器验收 | S:仅调整本地运行的早期说明不完整反映现有改版，当前事实应核对状态及频道源码
+agent-notes.md[SG2T]: F:保留Agent对话记录用途的一句占位说明 | R:- | A:没有实际对话内容或自动加载配置 | S:-
+agent-skill-audit-2026-09-07.md[SG6S]: F:保存项目Agent规则与两项Skill的官方依据审计、适用边界和改进建议 | R:code:AGENTS.md,code:docs/maintenance-workflow.md | A:区分已实施规则、工程推论、建议和当日验证结果 | S:历史测试失败与发布统计不是当前状态；未实施的CI等建议不得当已安装能力
+aoci-integration-blocker.md[SG7T]: F:记录rc14特殊文件阻塞的复现、固定官方开发构建修复及正式索引对齐证据 | R:code:docs/standardization-status.md,code:tools/aoci/provenance.json | A:762条文本语义通过Verify、Check和Guide，208二进制超大文件由工具技术跳过且保留原件 | S:历史零条与未替换不是当前状态；dev不是稳定发布；未缩小scope或伪造语义；完整交付收据不能替代未来上下文加载
+browser-regression-checklist.md[TQ7T]: F:规定跨入口、Hash刷新、父菜单、弹窗关闭与登录AI的真实浏览器验收 | R:code:docs/maintenance-workflow.md | A:记录版本视口入口与实际点击证据，隔离本地Mock，区分原有错误 | S:历史用户部分确认不代表全部场景通过；工具访问拒绝不得换通道绕过
+carousel-controls-spec.md[SU6T]: F:说明共享轮播挂载、外置指示器、循环边界和销毁契约 | R:code:components/carousel-controls/global-carousel-controls.js | A:业务更新内容索引，控件无自动播放定时器 | S:活动Slick节点和指示器保留，不能用共享皮肤替换React节点
+channel-home-code-audit.md[SG5S]: F:保存九频道首页框架、布局类型与早期规范缺口审计 | R:code:docs/channel-home-standard.md | A:提出唯一注册表、稳定区域、公共变量与分类落地顺序 | S:重复登记和全局加载等为历史调查，不可当当前缺陷直接删除预加载
+channel-home-standard.md[SU6M]: F:定义频道首页框架、区域、设计变量与四种布局的基础规范 | R:code:shared/config/channels.js,code:docs/channel-structure.md | A:按看板、主从、检索、引导选择滚动和区域组合，保留业务差异 | S:早期只用400字重及验收描述须结合现行字体台账和维护规则，不覆盖用户更新
+channel-structure.md[SG6T]: F:定义应用框架与频道区域的稳定名称和选取方式 | R:code:shared/scripts/channel-regions.js,code:shared/config/channels.js | A:用data-gaip-region与区域类描述结构，不改变布局或交互 | S:历史导航清单不等于当前全量频道；文件名同步不得触发文档重载
+date-picker-spec.md[SU6T]: F:规定共享日历与筛选、原生及Ant弹窗日期控件的接入责任 | R:code:components/date-picker/global-date-picker.js,code:components/modal-controls/modal-controls.js | A:日历只拥有面板，调用者管理输入、值事件和弹层；保留日期边界校验 | S:Ant保持原组件事件，纯时间和抽屉不自动接管；历史课程筛选项以当前页面配置为准
+desktop-to-documents-migration.md[SG7T]: F:保存桌面标准化成果迁入文稿前的映射、保护、演练及回退清单 | R:code:docs/formal-migration-20260923.md | A:先备份目标增量再合并方法，重新验证目标入口与存储兼容 | S:迁移前状态和授权仅为历史；不能整包覆盖文稿或复制桌面AOCI收据
+filter-bar-spec.md[SU7S]: F:定义八类共享筛选控件、配置显隐、即时提交及组织选择的行为契约 | R:code:components/filter-bar/global-filter-bar.js,code:docs/date-picker-spec.md | A:业务负责请求分页权限，组件维护条件、校验、焦点与销毁 | S:隐藏配置清值而收起高级条件仍生效；禁用值保留；通用弹窗增强只排除筛选栏自身，历史创建日期描述需核对当前配置
+final-acceptance-20260922.md[TQ6T]: F:保存桌面干净快照十二频道及关键组件的file浏览器验收结果 | R:code:docs/formal-migration-20260923.md | A:记录提交、Chrome版本、视口、日志及已知WebGL和服务边界 | S:这是桌面历史验收，不代替文稿本次结果；旧AOCI阻塞描述应查最新接入记录
+formal-migration-20260923.md[SG7T]: F:记录文稿正式迁移的备份、增量保护、本地合并和入口验收 | R:code:docs/desktop-to-documents-migration.md,code:docs/markup-source-completion-20260925.md | A:保留学习直播及导航更新并提供恢复与后续HTML补齐证据 | S:历史待办不能覆盖后续完成事实；AOCI以当前机器结果为准；回退不得覆盖迁移后工作
+github-sync-rules.md[SG8T]: F:规定本地提交、GitHub同步与发布的授权范围和可验证状态 | R:code:knowledge/变更/当前未发布变更.md,code:docs/maintenance-workflow.md | A:检查依赖增量后明确暂存，正式认知按工具白名单入版本，发布成功才归档相应记录 | S:本地提交不执行fetch、pull、push或部署；历史发布不授权未来同步；候选和机器配置不得混入，不能承诺自动同步全部聊天
+global-style-changelog.md[SU5T]: F:保留早期全局字体字号滚动条及框架规范的历史记录 | R:code:docs/visual-change-workflow.md,code:design-changes/global-font.json | A:开头说明现行Regular400与Bold700和视觉台账入口 | S:历史仅400字重、旧路径及滚动条参数不作为当前目标回灌
+html-source-restoration-20260925.md[SG7T]: F:说明九组编译页面恢复317份HTML视图及独立样式业务的实现和验证 | R:code:shared/scripts/html-view.js,code:scripts/build-html-templates.cjs,code:docs/markup-source-completion-20260925.md | A:保留React组件身份和事件，生成同步缓存兼容file入口，后续343片段迁移另附证据 | S:未恢复原始TSX工程或移除Umi；开发版修复索引阻塞不等于索引已全部完成
+js-style-separation.md[SG8T]: F:规范固定样式归CSS、必要动态写入逐表达式审查及第三方摘要锁定 | R:code:scripts/check-js-styles.cjs,code:shared/config/runtime-style-exceptions.json | A:涵盖HTML与JS注入、别名及组件样式参数，生成器携带同一审计 | S:变量不能隐藏固定样式；70项动态与3个第三方锁定不代表无运行时style；静态检查不是任意动态代码证明
+learning-center-design-qa.md[TU4T]: F:保存课程详情双栏参考设计及当时本地截图受阻的视觉验收缺口 | R:code:channels/learning-center/learning-app.js | A:列出参考图、目标视口和需核对的课节详情区域 | S:旧HTML绝对路径与blocked为当次状态，不能当当前入口或已通过证明
+learning-center-v11-local.md[SB7T]: F:说明课程学习管理、进度、权限、日志与学情导出的本地V1.1规则 | R:code:channels/learning-center/learning-data.js,code:channels/learning-center/learning-app.js | A:按稳定课节ID持久化，发布限制、独立保存、预览隔离和当前上架分母均有验收说明 | S:媒体与上传是模拟，PDF为四页静态资产；历史完成保留而当前统计排除下架课节；早期浏览器缺口与后续验收分开
+learning-center-v12-local.md[SB7T]: F:说明直播横卡、草稿排期、权限、示例增量与合并日志的本地规则 | R:code:channels/learning-center/learning-live-data.js,code:channels/learning-center/learning-live.js | A:公开开播时间独立于广告上下架，停用简介但保留旧数据，存储失败不提交内存 | S:示例不重复恢复删除内容；下架只读；定时仅页面运行补算，直播ID没有真实播放地址；历史未发布措辞不代表当前状态
+maintenance-workflow.md[SG8T]: F:按修改类型规定最小检查、真实弹窗登记与项目知识交付流程 | R:code:AGENTS.md,code:docs/github-sync-rules.md | A:区分源码、DOM和浏览器验收，稳定后同步本任务摘要与模块关系 | S:不把模拟尺寸当真实命中，抽离来源只读；验证通过后不重复无关套件
+markup-source-completion-20260925.md[SG7T]: F:说明343份自有HTML片段迁入29个模板源的绑定、构建和验收 | R:code:shared/config/markup-templates.json,code:scripts/build-html-templates.cjs | A:28个脚本保留业务逻辑，模板逐字生成缓存且参数不二次解析 | S:片段不可独立当页面；转义仍由调用者负责；活动部分采样约1px差异保留，不称全站像素相同
+migration-rehearsal.md[SG6T]: F:保存文稿独立演练的备份、增量合并、file验收和来源保护证据 | R:code:docs/formal-migration-20260923.md | A:演练副本本地提交，候选与来源改动保留，回退在新目录验证 | S:同级路径及零条索引是历史状态，不代表当前正式项目
+modal-control-coverage.md[SU7T]: F:说明共享弹窗输入选择日期上传表格控件的源码覆盖与状态契约 | R:code:components/modal-controls/modal-controls.js,code:docs/modal-textarea-acceptance.md | A:保留原React节点事件，按明确弹窗归属适配portal，区分错误禁用优先级 | S:排除抽屉页面和AI主面板；覆盖规则不是全部真实实例验收；业务数据校验仍由来源控制
+modal-textarea-acceptance.md[SU7T]: F:规定真实多行输入的正文计数分离、单手柄和来源生命周期验收 | R:code:components/modal/global-modal.js,code:components/modal-controls/modal-controls.js | A:自动增高不加手柄，无计数字段明确接入，保留原字段和业务计数 | S:禁止搬动React节点或恢复计数覆盖正文；禁用只读和退出范围清理拖动；历史浏览器缺口不冒充已验收
+official-engineering-baseline.md[SG6T]: F:记录开发依赖、锁文件、相称测试与可选Codex环境接入的官方依据 | R:code:package.json,code:docs/browser-regression-checklist.md | A:开发环境采用Node24、npm11及JSDOM，预览不需要安装依赖 | S:版本是项目已验证选择而非OpenAI强制标准；设置与Worktree建议不表示已执行；历史漏洞及测试结论不代表当前
+owned-image-assets-20260925.md[SG7T]: F:记录57处固定图片迁入频道资产的字节校验、源码减重和浏览器验收 | R:code:docs/js-style-separation.md,code:docs/standardization-status.md | A:七频道资源原字节保留，CSS和JS数量不增加，检查器阻止新增固定内嵌图片 | S:十一处file遮罩缓存与原SVG逐字核验，第三方及用户生成数据不在固定资源迁移范围
+project-standardization-checklist.md[SQ7S]: F:以证据验收频道分离、组件浏览器、知识索引和未来生成器规范 | R:code:docs/project-standardization-spec.md,code:docs/standardization-status.md | A:文本索引和增量维护已对齐，区分通过未验不适用及正式与历史范围 | S:技术跳过不算语义覆盖；Obsidian界面、新机器配置及全业务键盘窄屏仍未全验，静态或DOM不能替代现场
+project-standardization-spec.md[SG8S]: F:统一频道资产与源码归属、项目级知识工具和标准化交付契约 | R:code:docs/project-standardization-checklist.md,code:docs/github-sync-rules.md | A:独立CSS允许link加载，HTML结构固定样式与JS分离，生成器携带规则且索引不跨项目复用 | S:不强制所有语义元素改div；目录独立不等于独立运行包；保留Umi及精确动态例外；官方依据与工程选择分开
+remaining-standardization-audit-20260925.md[SQ6T]: F:保存自有静态HTML片段迁移前的样式检查缺口与文件引用审计 | R:code:docs/markup-source-completion-20260925.md | A:记录模板递归和JS注入检查修复，区分动态节点、导出XML和结构字符串 | S:剩余结构已由后续迁移处理；引用与无重复哈希不证明所有分支可达，不能据首页未加载删除脚本
+source-file-inventory.md[SG7T]: F:解释CSS和JS数量、两轮合并、归档与逐频道维护入口 | R:code:docs/html-source-restoration-20260925.md,code:docs/archive/历史源码/README.md | A:正式跟踪运行源码口径48CSS和88JS，另列桌面历史全盘口径与恢复提交 | S:数量不等于每页下载量；数据域、生成缓存、运行时与入口不能为减数随意合并
+standardization-status.md[SG8T]: F:汇总正式标准化实现、762条文本索引对齐和检查证据及保留边界 | R:code:docs/project-standardization-checklist.md,code:docs/aoci-integration-blocker.md | A:目录结构图片知识及生成器已落地，Verify和Check及Guide一致通过，收尾日志留本项目outputs | S:208个技术跳过含两份Umi大库不算Entry；dev构建不是稳定版；Obsidian现场和全业务分支未全验，历史桌面结果不替代正式结果
+table-spec.md[SU7T]: F:规定共享表格高度、固定列、分页、渲染和消费者责任 | R:code:components/table/global-table.js,code:docs/table-tag-spec.md | A:表体独立滚动并保留语义表头；标签委托六色工厂，v1仍可追溯 | S:renderHTML只接受可信已转义模板；无服务器分页或虚拟列表，历史body面板描述须核对弹窗归属
+table-tag-audit.html[SU4T]: F:展示八组表格标签现状与五色建议的可筛选历史对照报告 | R:code:docs/table-tag-audit.json,code:docs/table-tag-color-mapping-v1.md | A:内置样本按来源和文字过滤，展示原色与建议色，不修改业务组件 | S:历史单文件含内联样式脚本，不是新页面模板；待定配色不构成实施授权
+table-tag-audit.json[FU4L]: F:保存标签审计的来源文字、类名、颜色对和五色建议映射 | R:code:docs/table-tag-audit.html | A:记录八组实现与32种去重配色，缺失值单独建议普通占位 | S:仅当次已核实样本，保单浏览器超时及深层分支未覆盖；建议不是当前业务配置
+table-tag-color-mapping-v1.md[SU5T]: F:存档67种表格标签文案的五色语义映射待定方案 | R:code:docs/table-tag-audit.html,code:docs/table-tag-audit.json | A:角色和状态按显式业务映射，缺失值不画标签 | S:用户要求保留v1，后续调整另存版本；保存不授权批量应用
+tabs-spec.md[SU7T]: F:规定五类页面的共享下划线页签API、原节点增强与键盘生命周期 | R:code:components/tabs/global-tabs.js,code:design-changes/shared-tabs.json | A:业务管理内容，setValue不触发变更，键盘跳过锁定项并保持焦点 | S:React按钮和数量节点不搬移重建；切换保持页签实例，离开才销毁；独立夹具不代表完整业务验收
+visual-change-workflow.md[SG8S]: F:规定视觉参数台账的基准、首次本地值、最终目标及增量交付流程 | R:code:design-changes/_template.json,code:docs/maintenance-workflow.md | A:同基准元素状态属性合并，目标来自实际源码或渲染，明确验证等级 | S:位置交互不记视觉参数；未知线上基准不得猜填；本地提交不重置基准；抽离只在目标记录；规则不是自动标注系统
+usage-acceptance-20260926.md[TQ6T]: F:记录正式file入口布局导航与代表弹窗验收及直播依赖修复证据 | R:code:scripts/test-learning-dialogs-browser.cjs,code:channels/learning-center/learning-live.js | A:区分修复前错误、双入口通过、静态检查与本地提交边界 | S:未找到Obsidian故UI未验；旧WebGL限制和全业务分支不算通过，抽查收据不替代治理核验
+table-tag-spec.md[SU6T]: F:定义六色标签分类、角色失败深底及SVG接口和采用范围 | R:code:components/table/global-table-tag.js,code:components/table/global-table-tag.css | A:74文案同源，角色黑底白字、规划蓝色，8个solid；图标七种允许选择或关闭，结构模板构建维护 | S:v1快照保留；卡片表单筛选不接管；React原图隐藏保留且退出恢复，SVG为同套轮廓替代
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/===
+README.md[SG4T]: F:说明历史WorkBuddy、QA和原版源码的归档用途 | R:code:docs/archive/历史源码/README.md | A:保留原内容与旧路径，当前维护以正式目录说明为准 | S:归档入口不可当当前运行入口
+design-qa.md[SU5T]: F:保存配置中心原站结构恢复和菜单表单视觉修正的历史验收 | R:code:channels/config-center/config-center.js | A:列明当时HTTP视口、原站只读采样及本地Mock边界 | S:当时file自动化受限，HTTP结果不代表file验收；历史建议不覆盖现行规则
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/qa/channel-home-audit-20260731/===
+measurements.json[TU4L]: F:保留九个频道在1440乘900视口的区域几何和滚动样式测量 | R:code:docs/archive/README.md | A:按频道与语义区域记录位置尺寸、内外距、背景和溢出属性 | S:空区域表示当次未测到，不是当前布局规范
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/workbuddy/===
+文件清单与变更记录.md[SG4S]: F:保存20260817文档分析的文件范围、变更归属和检查事实 | R:code:docs/archive/workbuddy/说明书.md | A:仅三份文档为当次产物，原有AI改动单独列示 | S:历史清单和授权不用于当前任务提交范围
+说明书.md[SG4S]: F:说明历史WorkBuddy只读分析的目标、证据和未执行验证范围 | R:code:docs/archive/workbuddy/项目结构分析.md | A:当次仅在文档目录输出分析，区分已有AI改动 | S:历史代理调查和任务边界不构成当前执行授权
+项目结构分析.md[SG5L]: F:保留20260817入口、频道、Umi运行时与本地Mock架构调查 | R:code:docs/archive/workbuddy/说明书.md | A:记录模块替换顺序、旧根别名、资源体积和当时测试限制 | S:目录、数量及改进建议属于历史快照；不能据此删除当前依赖或恢复旧入口
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/历史源码/AI助手原版_20260812/===
+AI Agent.css[CU3T]: F:保存原版AI会话面板、附件、历史侧栏与客户方案弹窗样式 | R:code:docs/archive/历史源码/AI助手原版_20260812/AI Agent本地Mock.js | A:保留原压缩选择器和固定视觉参数用于追溯 | S:只读历史源码，当前样式归正式AI组件
+AI Agent动画.css[CU2T]: F:保存原版AI旋转、扫光、文字点和过程点四种动画 | R:code:docs/archive/历史源码/AI助手原版_20260812/AI Agent.css | A:保留原关键帧用于历史比对 | S:不是当前动画维护源
+AI Agent本地Mock.js[DA5M]: F:保存原版三会话内存数据、历史操作及模拟流式回答接口 | R:code:docs/archive/历史源码/AI助手原版_20260812/AI Agent.css | A:暴露dataFor和fetch，发送返回含推理等待与答案分片的SSE流 | S:不直接替换window.fetch；状态不持久化；取消清理延时；当前扩展功能归正式AI组件
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/历史源码/AI助手原版_20260812/素材/===
+Agent头像.svg[CU2T]: F:保留原版AI头像的渐变圆环、深绿底与白色像素机器人 | R:- | A:36像素历史矢量原件 | S:历史素材，不是当前资产维护源
+Agent结果头像.svg[CU2T]: F:保留原版AI结果头像的三路汇聚连接图形 | R:- | A:16像素画布与黑色九成透明填色 | S:历史素材
+关闭历史记录.svg[CU2T]: F:保留原版历史侧栏关闭的绿色左箭头与竖线图标 | R:- | A:20乘18画布 | S:历史素材
+关闭弹窗.svg[CU2T]: F:保留原版AI弹窗的深灰关闭叉图标 | R:- | A:32像素画布与原路径 | S:历史素材
+完成状态.svg[CU2T]: F:保留原版AI完成态的绿色圆形勾图标 | R:- | A:16像素显示尺寸与原Ant画布 | S:历史素材
+推理中.svg[CU2T]: F:保留原版AI推理态的黑底青色交织路径图标 | R:- | A:24像素画布 | S:历史素材
+搜索客户.svg[CU2T]: F:保留原版客户搜索的椭圆放大镜轮廓 | R:- | A:15乘16画布，灰色半透明描边 | S:历史素材
+新建对话.svg[CU2T]: F:保留原版新会话的深灰对话框与加号图标 | R:- | A:32像素画布 | S:历史素材
+步骤完成.svg[CU2T]: F:保留原版AI步骤完成的青色圆底白勾图标 | R:- | A:16像素画布 | S:历史素材
+浮标图标.svg[CU2T]: F:保留原版悬浮入口的白色像素机器人图形 | R:- | A:37乘22画布 | S:历史素材
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/历史源码/===
+README.md[SG5T]: F:说明退出运行目录的AI原版与配置样式归档和恢复依据 | R:code:docs/archive/历史源码/迁移校验.json | A:正式页面不加载归档，原字节和内部相对路径保留 | S:八月AI原版不是四份CSS合并前版本；合并前基准为5d275e0
+迁移校验.json[FQ5T]: F:记录十六个历史源码和素材的原路径、归档路径及SHA256 | R:code:docs/archive/历史源码/README.md | A:用迁移映射核对移动后字节未变 | S:原路径是追溯字段，不是运行依赖
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/docs/archive/历史源码/配置中心/===
+organization-source.css[CU3T]: F:保留配置组织树、成员列表及部门管理员日志表单的原站样式快照 | R:code:docs/archive/历史源码/README.md | A:原哈希选择器限定在配置页面scope，保留当时本地资源路径 | S:仅对照原件，不是可运行页面或当前样式维护源
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/===
+INDEX.md[SG8T]: F:提供项目Obsidian总索引及按需读取规范、模块、决策和验收的入口 | R:code:PROJECT_STATE.md,code:knowledge/页面/页面索引.md,code:knowledge/公共模块/公共模块索引.md,code:docs/standardization-status.md | A:项目根作为Vault，链接HTML分离、图片归属和AOCI对齐证据 | S:索引不等于自动全量注入或最新事实证明，按任务核对源码和当前状态
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/公共模块/===
+AI Agent.md[SG7T]: F:说明跨频道AI入口、会话复制、附件图标与动效的维护和生命周期边界 | R:code:components/ai-agent/AI Agent入口动效.js,code:components/ai-agent/AI Agent本地Mock.js | A:节点重建后幂等重绑并清理旧动画，图标和复制保留React节点 | S:虚拟页不能inert整个含AI的主区域；候选素材排除；历史入口数量及视频验收结论不当当前证明
+主导航与Hash路由.md[SG9S]: F:定义频道Hash权威、父子导航、当前态、键盘及共享侧栏几何契约 | R:code:shared/config/channels.js,code:shared/scripts/channel-entry-navigation.js | A:父项仅开合，叶子导航，资源与图标单一归属，Hash优先于文件名 | S:捕获监听须排除父项，收起不清当前态；文件同步失败不得覆盖Hash；保持滚动层高于百宝箱背景与原图可见；临时HTTP不得绕过工具拒绝
+全局框架与样式.md[SG8M]: F:说明框架字体、共享组件、弹层和字段样式的职责与接入关系 | R:code:docs/visual-change-workflow.md,code:docs/table-tag-spec.md | A:表格标签独立工厂统一新旧表格，业务和目录同源；视觉参数留台账 | S:保留React节点；确认与表单接口不混用，关闭显隐优先定位，计数与正文分离；历史数量非现状
+公共模块索引.md[SG6T]: F:导航到主导航、资源、框架、弹窗、Mock与AI模块知识 | R:code:knowledge/公共模块/频道资源加载.md,code:knowledge/公共模块/全局框架与样式.md | A:公共改动标明影响范围并跨频道验证 | S:弹窗数量为历史描述，实际以登记表为准
+弹窗视觉规范与盘点.md[SU7S]: F:保存真实弹窗分类、分层标准化草案及确认组件定版依据 | R:code:shared/scripts/modal-registry.js,code:components/modal/global-modal.js | A:信息、表单、确认三类目录复用真实源，尺寸与业务个性分别处理 | S:历史35项和v1.1.3不代表当前版本；不能宽泛覆盖全部弹窗或把草案当已应用，系统警告等须遵守后续非破坏适配
+本地Mock系统.md[SG7T]: F:说明静态file预览的本地认证、接口拦截和频道模拟数据依赖 | R:code:shared/scripts/local-preview.js,code:shared/data/channel-data/mock-data.js | A:字段改动先核对Umi消费者并保留演示状态 | S:Mock不是可随意删除的测试数据，不能恢复真实后端强依赖
+频道资源加载.md[SG8T]: F:说明跨入口统一资源登记、预加载、模板缓存和启动适配时序 | R:code:shared/config/channels.js,code:shared/scripts/channel-features.js,code:shared/config/channel-bundles.js | A:Hash切换不读取目标HTML，资源按完整URL查重并保留版本与顺序 | S:bootstrap适配须在Umi模块首次求值前执行；file不fetch模板；预览桥只在专用参数启用；历史缓存号不能覆盖当前登记
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/决策/===
+ADR-001-继续使用Hash无刷新路由.md[SG7T]: F:记录采用Hash单文档导航以保持全局状态与跨入口一致性的决定 | R:code:shared/scripts/channel-entry-navigation.js,code:knowledge/决策/ADR-003-频道资源统一登记.md | A:文件名只做History同步，频道资源预加载并做跨入口回归 | S:禁止用整页跳转实现频道切换
+ADR-002-web目录保持只读.md[SG7T]: F:记录保留原站编译基线只读以保护哈希映射依赖的决定 | R:code:knowledge/公共模块/频道资源加载.md | A:自有改版放共享、频道和组件目录 | S:只有明确授权且扩展层无法解决时才例外修改；历史assets位置不替代现行资产归属
+ADR-003-频道资源统一登记.md[SG7T]: F:记录频道名称路由入口资源统一登记的架构决定 | R:code:shared/config/channels.js,code:shared/scripts/channel-features.js | A:一个源码由所有初始入口和Hash切换复用 | S:根HTML是入口，不得复制频道实现到多个入口
+ADR-004-弹窗源自登记与自动索引.md[SG8T]: F:记录真实弹窗源注解生成目录和按需预览的架构决定 | R:code:scripts/generate-modal-catalog.cjs,code:shared/scripts/modal-registry.js | A:真实源声明类别依赖和调用，运行时统一合并校验，iframe按需加载 | S:file不能枚举目录，发现必须构建生成；抽屉和AI主面板排除，不可复制DOM伪造不可达项目
+决策索引.md[SG5T]: F:提供四项已采纳架构决定的知识导航 | R:code:knowledge/决策/ADR-001-继续使用Hash无刷新路由.md,code:knowledge/决策/ADR-004-弹窗源自登记与自动索引.md | A:ADR仅记录会约束后续工作的决定 | S:普通样式调整不新建架构决定
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/变更/===
+2026-08-26-资讯中心层叠修复.md[SG4T]: F:保存资讯覆盖层不透明背景、视口尺寸修正的发布记录 | R:code:channels/news-center/news-center.js | A:记录6e6fbe0及当时1280乘720浏览器验证 | S:旧features路径与发布事实仅用于历史追溯
+2026-08-26-频道与全局组件更新.md[SG5T]: F:保存资讯财富频道、客户标签与AI共享组件的发布及依赖修复记录 | R:code:knowledge/公共模块/AI Agent.md | A:记录08a950b与7575d44的范围、验证和排除素材 | S:旧入口与目录是历史，不授权当前推送
+2026-08-31-AI-Agent用户气泡配色.md[SG4T]: F:保存AI用户消息深灰白字配色的单项发布与双入口验证 | R:code:knowledge/公共模块/AI Agent.md | A:记录29e9a8a并区分其他未发布工作 | S:旧独立改版CSS已合并，历史路径不能当当前维护源
+2026-08-31-工作台与共享组件同步.md[SG5T]: F:记录工作台海报分享、侧栏及旧全局日志入口的发布和验收 | R:code:knowledge/公共模块/全局框架与样式.md | A:保存5665580、资源完整性及Hash不重载证据 | S:旧顶栏日志入口和侧栏尺寸不是当前规范，原生键盘验收当时未完成
+2026-08-31-工作台对齐与共享控件修复.md[SG5T]: F:保存工作台图标对齐、日志控件和AI重挂载修复的发布证据 | R:code:knowledge/公共模块/AI Agent.md | A:记录5d597a4及ee5c3e9，区分代码通过和未新增浏览器验证 | S:历史Git API上传是当次故障处理，不是当前同步授权或默认流程
+2026-09-02-弹窗自动索引与配置中心批量导入.md[SG5T]: F:记录批量导入三步演示、独立组织日志与真实弹窗自动目录的发布 | R:code:knowledge/决策/ADR-004-弹窗源自登记与自动索引.md | A:保存d7d6dc5及干净暂存快照检查、构建和排除清单 | S:47类弹层与模拟导入结果是历史范围，不能视为当前目录或真实文件解析
+2026-09-02-虚拟频道刷新路由修复.md[SG5T]: F:记录虚拟入口仅在无Hash时设默认路由的修复与验证 | R:code:knowledge/公共模块/主导航与Hash路由.md | A:保存ac68be7，已有Hash刷新不回旧文件频道 | S:旧根HTML路径是历史，当前入口在channels
+2026-09-02-财富值概览背景替换.md[SG4T]: F:保存财富值超宽原图替换、旧正式副本移除与字节核验记录 | R:code:knowledge/页面/财富值中心.md | A:记录119d196和3416乘420原图，保留候选排除 | S:旧assets路径与删除授权仅描述当次工作
+2026-09-02-配置中心与共享导航更新.md[SG5T]: F:保存配置组织管理、二级日志及父导航开合的发布范围和验证 | R:code:knowledge/公共模块/主导航与Hash路由.md | A:记录716aa78及干净快照检查，区分弹层可预览与排除项 | S:旧根入口数量和路径为历史，原生焦点视频未当时验证，候选排除保持
+2026-09-03-公告管理与配置中心列表优化.md[SG5T]: F:记录三语言公告管理、成员全量列表与二级日志筛选的发布 | R:code:channels/config-center/announcement-management-view.js | A:保存8451acc与真实源弹窗登记验证 | S:启用公告禁止删除；历史独立Mock及目录数量以当前源码为准
+2026-09-03-组织架构节点调整与批量导入交互.md[SG5T]: F:记录成员移动节点、角色清理和导入拖放演示的发布与验证 | R:code:channels/config-center/config-center.js | A:保存3af8237，管理员移动需确认，原节点不可选 | S:六渠道和分页是当时状态；HTTP验收不代替file，导入仍为模拟
+2026-09-03-配置中心弹窗与批量导入结果优化.md[SG5T]: F:记录成员编辑滚动与批量导入结果、按钮和校验文案的局部更新 | R:code:channels/config-center/config-center-content.css | A:保存d843039和c060d6f及源码和DOM检查结果 | S:预览切换置于遮罩层且不影响弹窗居中；未完成真实浏览器验收
+2026-09-07-Agent与Skill维护规则优化.md[SG5T]: F:保存维护规则和两项项目技能精简的范围、依据和验证 | R:code:docs/agent-skill-audit-2026-09-07.md | A:记录06c9e1a，仅六份文档变更，列出当时测试失败 | S:建议不构成全局设置或CI实施；未放宽断言掩盖AI测试问题
+2026-09-07-主导航顺序高度与活动图标.md[SG5T]: F:记录十二项主导航排序、行高和活动图标更新及验证 | R:code:knowledge/公共模块/主导航与Hash路由.md | A:保存67d7c5e，CSS排序复用现有节点并保留原事件 | S:DOM通过不证明原生键盘及真实几何验收
+2026-09-07-官方工程基线与测试依赖.md[SG5T]: F:记录Node与npm工程约束、项目JSDOM依赖和检查文档落地 | R:code:docs/official-engineering-baseline.md | A:保存8b1af87，预览仍无需安装开发依赖 | S:四项用户确认不等于完整原生验收；未改运行源码或建立CI
+2026-09-07-弹窗与配置中心共享组件更新.md[SG5T]: F:记录共享遮罩定位确认组件和配置角色图标的历史发布 | R:code:components/modal/global-modal.js | A:保存c04382d6及六类确认接入与真实源预览结果 | S:当时35可预览和17排除为历史；AI主面板不纳入，旧共享路径已迁移
+2026-09-07-弹窗关闭状态修复.md[SG5T]: F:记录共享居中样式覆盖隐藏状态导致页面被遮挡的修复 | R:code:components/modal/global-modal-position.css | A:保存3d344bf，移除display强制优先级并回归四种状态 | S:关闭的Ant宿主必须允许原内联none生效；旧入口数不是当前目录
+2026-09-15-学习中心与共享组件更新.md[SG5T]: F:保存学习V1.1、共享筛选表格弹窗与字体收口的发布和验收 | R:code:docs/learning-center-v11-local.md | A:记录e3ee5852与167文件范围，区分本地模拟和浏览器结果 | S:Chrome119嵌套popover崩溃路径当时跳过，不代表全部原生弹窗通过
+2026-09-15-配置中心Tab与产品卡片更新.md[SG5T]: F:记录共享页签、导入按钮、佣金归属锁定与产品Logo更新 | R:code:components/tabs/global-tabs.js,code:channels/product/product-card-logo.js | A:保存64a1814c与双入口及去重检查 | S:统计嵌套弹层受Chrome119限制，不能把部分验证写成全量通过
+2026-09-16-薄荷入职引导与共享专家库更新.md[SG5T]: F:记录新版入职章节与共享专家资料的发布及双入口验证 | R:code:channels/induction/induction-update.js,code:components/expert-directory/expert-directory.js | A:保存e0b96beb，旧进度坐标兼容且适配先于Umi求值 | S:下载资料明确不在本次范围；历史Git API回退不是后续同步授权
+2026-09-17-学习中心直播与共享控件更新.md[SG5T]: F:保存学习直播与轮播多选页签等共享控件的发布和验收 | R:code:docs/learning-center-v12-local.md | A:记录b619611a及本地示例、日志迁移与320至1920视口检查 | S:黑金标签和简介为历史方案；真实直播上传排期未接服务，旧Umi验收状态不当当前结论
+2026-09-21-AI-Agent附件与复制统一.md[SG5T]: F:记录Web与独立H5的AI附件图标、消息复制及输入视觉统一发布 | R:code:knowledge/公共模块/AI Agent.md | A:区分Web64d996444与H54c514b161以及各自构建验证 | S:保留React附件节点；H5改动不属于此仓库，不据历史发布执行新推送
+2026-09-22-组织架构渠道与管理员更新.md[SG5T]: F:记录组织渠道选择、跨渠道搜索和管理员提示更新的发布 | R:code:channels/config-center/config-center.js | A:保存c20a020bd及八种弹窗DOM与导航检查 | S:当时未执行浏览器交互，已发布范围不能包含其他未发布工作
+变更索引.md[SG6T]: F:汇集当前未发布工作与历史发布记录并定义可核验的状态词 | R:code:knowledge/变更/当前未发布变更.md,code:docs/github-sync-rules.md | A:按真实Git提交、推送和构建证据区分本地与发布阶段 | S:同一条目按主题维护；历史已发布不授权当前推送
+当前未发布变更.md[SG8S]: F:记录未发布成果、标签样式迭代与验证及排除边界 | R:code:PROJECT_STATE.md,code:docs/table-tag-spec.md | A:9月29日彩色增强、六规划蓝色、五角色黑底白字；74文案8个solid和七SVG经DOM及相关静态检查，初版视觉证据单列 | S:新颜色SVG浏览器视觉未复验；断言更新不代表执行，旧截图不能替代新效果；候选保留且标签未发布
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/模板/===
+ADR模板.md[SG4T]: F:提供架构决定的背景、方案、原因、后果及双链记录模板 | R:code:knowledge/模板/模板索引.md | A:初始状态proposed且日期由Obsidian模板替换 | S:-
+变更记录模板.md[SG4T]: F:提供按主题登记目标、边界、文件、验证和交付状态的字段模板 | R:code:knowledge/变更/当前未发布变更.md | A:区分计划与实际，结论列出未完成和风险 | S:模板字段不构成已验证或已发布事实
+模板索引.md[SG4T]: F:导航到变更、页面与架构决定三类知识模板 | R:code:knowledge/模板/ADR模板.md,code:knowledge/模板/变更记录模板.md | A:新笔记删除示例说明并填写真实项目事实 | S:-
+页面笔记模板.md[SG4T]: F:提供频道笔记的结构化身份、入口、职责、关联与修改边界模板 | R:code:knowledge/模板/模板索引.md | A:为key、route、entry和layout留字段并记录长期风险 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/组件/===
+组件索引.md[SG6T]: F:导航到共享组件的正式源码、接口规范与消费者 | R:code:components/components-registry.js,code:docs/table-tag-spec.md | A:提供表格标签六色分类预览入口，API契约留在所属规范 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/附件/===
+README.md[SG4T]: F:说明知识库长期附件与临时验证输出的归属 | R:code:docs/github-sync-rules.md | A:长期附件留知识目录，截图临时导出备份放outputs | S:同步附件仍受本次授权范围限制
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/knowledge/页面/===
+产品中心.md[SG6T]: F:定位产品频道HTML、页面样式业务、Logo和共享专家页签维护入口 | R:code:channels/product/index.html,code:channels/product/page.js,code:components/expert-directory/expert-directory.js | A:结构从频道HTML构建缓存，资产归频道，资源版本以注册表为准 | S:专家适配在模块首次执行前加载，留位由CSS承担
+保单列表.md[SG5T]: F:说明保单频道入口、列表布局、Mock与共享模块的维护边界 | R:code:channels/policy/index.html,code:shared/data/channel-data/mock-data.js | A:专属改版放频道并登记资源 | S:不得以跳转另一个HTML替代Hash导航
+学习中心.md[SB8S]: F:汇集课程课节、学习进度、学情、直播及共享控件的本地维护契约 | R:code:channels/learning-center/learning-app.js,code:channels/learning-center/learning-live.js,code:docs/usage-acceptance-20260926.md | A:稳定ID关联，统一CSS维护视觉，上传会话与未保存离开由业务管理 | S:下架历史保留但统计分母按当前上架；旧资产显示解析不改存储；直播不可顶层缓存未执行的共享弹窗；历史抽屉与分散CSS不是现状，Mock不是服务
+客户中心360.md[SG6T]: F:说明客户频道入口、保单标签迁移及资料纪要弹窗滚动的源码边界 | R:code:channels/customer/customer-center.js,code:components/modal/global-modal.css | A:频道适配统一登记并与真实预览同源 | S:保留表单原父子关系和校验；根入口不能承载独立频道改版
+工作台总览.md[SG6T]: F:定位工作台改版、资讯分享和Mock依赖的维护入口 | R:code:channels/workspace/workspace-update.js,code:components/poster-share/global-poster-share.js | A:专属视觉与交互留工作台目录 | S:不能改变学习频道复用workspace路由机制
+方案中心.md[SG7T]: F:规定方案改版唯一源码、共享页签和跨入口统一加载边界 | R:code:channels/proposal-center/proposal-center.js,code:shared/config/channels.js | A:所有初始入口通过同一登记取得新版 | S:仅改目标HTML或用location跳文档会造成跨入口回退和全页刷新
+活动中心.md[SG6T]: F:说明活动报名表单、轮播适配、图标与资源登记的维护契约 | R:code:channels/activity/activity-sync.js,code:components/carousel-controls/global-carousel-controls.js | A:共享报名真实源，正文可收缩且备注使用共享手柄 | S:保留Slick原节点与白色指示器，不复制导航顶栏AI；旧图标路径查现行注册
+线索中心.md[SG5T]: F:定位线索入口、布局补丁与专属Mock维护位置 | R:code:channels/clues/layout-patch.js,code:channels/clues/mock-data.js | A:改版资源在频道注册表统一登记 | S:-
+薄荷入职指引.md[SG7T]: F:说明入职章节兼容、共享页签专家与启动时序的维护规则 | R:code:channels/induction/induction-update.js,code:components/expert-directory/expert-directory.js | A:保留解锁进度，别名由注册表维护，资料与专家之外章节保持原数据 | S:适配须先于Umi初始化，升级构建核对三模块ID和群规索引，不能只改显示章节
+财富值中心.md[SG7T]: F:说明财富值三个虚拟子页、父菜单行为及本地素材和数据边界 | R:code:channels/wealth-center/wealth-center.js,code:channels/wealth-center/wealth-nav.js | A:保留Hash和共享菜单几何，私有背景与候选分开 | S:捕获离开监听必须排除父菜单切换，否则点击配置父项会错误卸载当前财富页
+资讯中心.md[SG7T]: F:规定资讯虚拟频道HTML、样式、交互和海报分享的唯一维护入口 | R:code:channels/news-center/news-center.js,code:channels/news-center/templates/page.html | A:模板构建缓存同步加载，内容调用方转义，工作台共用资讯入口 | S:详情关闭恢复当前列表按钮焦点；Mock不接真实内容管理，不能依赖新web分包
+配置中心.md[SB8S]: F:说明组织成员、角色、公告、两类日志和导入的源码及验证契约 | R:code:channels/config-center/config-center.js,code:channels/config-center/templates/metadata.json,code:shared/scripts/organization-store.js | A:HTML模板为结构源，构建生成缓存，三子页独立生命周期并复用真实弹窗 | S:日志状态隔离；角色按成员实际节点，移动清原权限；左侧选择替代旧顶部Tab；不inert全框架；导入仍为Mock，历史HTTP不代替file验收
+页面索引.md[SG6T]: F:按五类布局导航到十二个频道知识笔记和本地入口 | R:code:shared/config/channels.js,code:knowledge/INDEX.md | A:根登录与独立中文目录分开，真实注册表优先 | S:虚拟频道复用workspace Hash而非独立Umi路由
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/scripts/===
+build-html-templates.cjs[XV7T]: F:统一构建自有片段、配置中心、学习资讯模板及旧频道HTML视图缓存 | R:code:scripts/build-markup-templates.cjs,code:scripts/build-page-views.cjs | A:check模式逐字比较产物，配置元数据递归展开模板并拼接弹窗工厂 | S:先构建片段再读取source-dialogs；生成JS为file同步加载，维护必须回HTML源
+build-markup-templates.cjs[XV7T]: F:将所属HTML片段按清单写入原业务脚本的有界同步缓存 | R:code:shared/config/markup-templates.json | A:拒绝重复模板、无效渲染标识和重复边界，check只校验不写入 | S:保留原片段字节而不DOM序列化；槽只替换一次不递归，值转义由调用方负责
+build-page-views.cjs[XV8T]: F:编译频道入口HTML视图为有界运行缓存并检查活动入口壳大小 | R:code:shared/scripts/html-view.js,code:scripts/build-html-templates.cjs | A:校验模板身份、组件绑定、子节点契约和危险属性，保留缓存外业务字节 | S:不允许HTML带执行事件或style，check只比较不写，去除惰性template后入口壳限20KB
+check-js-styles.cjs[TQ8T]: F:审计自有运行JS的样式写入并核对逐表达式例外和第三方文件摘要 | R:code:scripts/js-style-audit.cjs,code:shared/config/runtime-style-exceptions.json | A:扫描频道组件共享应用目录，拒绝未登记、过期或缺失文件规则 | S:仅style-write可由精确表达式及理由放行；第三方字节变化必须重审
+check-knowledge-links.cjs[TQ6T]: F:检查活动文档Wikilink文件目标是否能在根、相邻目录或唯一同名笔记解析 | R:code:knowledge/INDEX.md | A:跳过已发布历史记录及归档正文，失败设置非零退出码 | S:不验证标题锚点内容或Obsidian渲染，不能作为完整双链现场验收
+check-knowledge-properties.cjs[TQ6T]: F:校验文档可选YAML属性的结构、日期及Obsidian支持类型 | R:code:scripts/test-knowledge-properties.cjs | A:拒绝重复键、嵌套对象、非标量列表及无效日期，限制别名展开 | S:没有frontmatter合法；模板日期占位是特定例外，语法通过不证明UI渲染
+check-markup-ownership.cjs[TQ7T]: F:以AST阻止自有业务脚本重新包含静态HTML字符串 | R:code:shared/config/markup-templates.json,code:scripts/build-html-templates.cjs | A:剥除已登记生成缓存后审计字面量与模板段，失败非零退出 | S:生成源由另项逐字校验；Excel导出、锁定第三方及排除登录试验独立处理，非任意字符串净化器
+check-project-structure.cjs[TQ8S]: F:检查频道三类源码、私有资源边界、HTML分离和本地资源存在性 | R:code:shared/config/project-structure.json,code:shared/config/markup-templates.json | A:递归template按所属入口base解析，禁止固定内嵌图片及组件依赖频道资产 | S:十个导航与一个关闭遮罩仅允许独立原件逐字缓存；字面路径检查不能覆盖动态分支，真实加载仍需浏览器
+entry-files.cjs[FQ6T]: F:从结构清单提供正式入口测试覆盖集合并可选加入存在的本地试验 | R:code:shared/config/project-structure.json | A:包含根入口、频道和独立入口 | S:正式入口即使缺失也不得静默过滤，否则测试漏覆盖
+generate-modal-catalog.cjs[XV7T]: F:扫描真实源弹窗注解并生成可追溯的运行登记清单 | R:code:shared/scripts/modal-registry.js,code:components/弹窗源登记.js | A:校验必需字段类别资源和调用，阻止与基线或本批重复ID，check不写入 | S:只生成登记不复制弹窗实现；抽屉及路由触发模式有不同入口要求
+js-style-audit.cjs[TQ8T]: F:解析JS语法树定位固定样式对象、DOM写入、CSS注入与结构字符串 | R:code:scripts/check-js-styles.cjs,code:templates/project-check.cjs | A:解析常量拼接、计算属性、JSX和组件Style参数，输出原表达式及行号 | S:样式对象逃逸别名须审查，styles资源数组与Ant语义槽分开；简单静态分析不证明所有动态程序无注入
+scaffold.cjs[XV8T]: F:生成独立页面或携带规则检查器知识目录的新项目骨架 | R:code:templates/page/index.html.tpl,code:templates/project-check.cjs | A:验证ID和显式项目目标，拒绝已存在目录并独占创建，资产与输出留目标项目 | S:骨架不实现业务、不自动接GAIP导航或Git远端；AOCI须目标重新初始化，不能复制源认知基线
+sync-entry-aliases.cjs[XV8T]: F:从频道配置和登录源生成根登录、中文目录及结构清单 | R:code:shared/config/channels.js,code:app/project-index/templates/index.html | A:按侧栏顺序生成转义卡片，check逐字验证产物且保留原bundleMap | S:禁止旧根HTML别名，根目录不得被中文目录替换；频道HTML是维护源
+tabs-animation-check.cjs[TU5T]: F:在浏览器采样共享页签切换与快速反向时的节点稳定和离散下划线状态 | R:code:components/tabs/global-tabs.js | A:要求同一实例、无宽度过渡且0或71像素帧和正确选中态 | S:历史文件名含animation，但当前契约明确无下划线动画
+test-agent-attachment-icons.cjs[TU6T]: F:回归AI异步附件类型识别、文件名复用和React原图标节点保留 | R:code:components/ai-agent/AI Agent本地Mock.js | A:JSDOM覆盖待发已发、后缀大小写、未知类型与技能排除 | S:模拟React移除原节点以捕获DOM所有权破坏，不是浏览器视觉验收
+test-agent-entry.cjs[TU7S]: F:回归AI入口不同出现顺序、重挂载、状态保留和动效资源清理 | R:code:components/ai-agent/AI Agent入口动效.js,code:scripts/entry-files.cjs | A:JSDOM覆盖登录退出、Hash反复切换、业务无关DOM和所有入口单一引用 | S:WebGL视频Lottie均为桩，不能证明真实Umi交互或媒体播放
+test-agent-message-copy.cjs[TU6T]: F:回归异步消息复制范围、成功恢复、失败降级及空消息按钮清理 | R:code:components/ai-agent/AI Agent本地Mock.js | A:JSDOM模拟剪贴板与execCommand，区分用户正文和AI回答 | S:附件与推理不混入复制，失败不能显示成功图标；未验证原生剪贴板权限
+test-announcement-management.cjs[TQ7S]: F:回归公告状态、语言兜底、分页、多语言提示及增删改表单契约 | R:code:channels/config-center/announcement-management-view.js,code:shared/config/channels.js | A:固定日期夹具，JSDOM验证分组校验、展示中禁删及共享确认和资源登记 | S:原生dialog为桩且CSS为源码断言，不证明真实顶层布局和点击命中
+test-carousel-controls-browser.cjs[TU6T]: F:验证共享轮播保留活动外观与原指示器并在目录中可操作 | R:code:components/carousel-controls/global-carousel-controls.js,code:channels/activity/activity-sync.js | A:固定Git基准比计算样式，覆盖循环键盘单项销毁重挂窄屏及指示器间距 | S:活动用独立夹具，目录请求本地拦截；截图输出不代表完整file频道验收
+test-channel-assets-browser.cjs[TQ7T]: F:在工作台和学习file入口验证资源单次加载及共享组件可用 | R:code:shared/scripts/channel-features.js | A:等待资源就绪与字体，检查一份启用AI样式和无本地文件请求失败并保存结果 | S:覆盖两个直接入口，不证明所有交互及图片内容正确
+test-channel-data-browser.cjs[TQ7T]: F:在财富值和工作台file入口回归财富子页数据及公告弹窗关闭重开 | R:code:channels/wealth-center/wealth-center.js,code:channels/config-center/announcement-management-view.js | A:保持文档session，断言默认数据、无失效本地请求与新增错误 | S:依赖已保存的基线错误报告，既有错误与新错误分别判断
+test-channel-features.cjs[TQ7T]: F:回归统一资源加载器的URL基准、版本去重、脚本顺序与失败标记 | R:code:shared/scripts/channel-features.js | A:JSDOM分别覆盖file和HTTPS，保留已有defer并验证重复运行幂等 | S:preload不能替代stylesheet；不同版本URL必须分别保留
+test-clear-icon-browser.cjs[TU5T]: F:在隔离组件夹具验证筛选多选及弹窗清除按钮的尺寸图形与操作 | R:code:components/modal-controls/modal-controls.css | A:真实浏览器检查24像素命中区、16像素图形和清除后状态 | S:夹具图片转为本地数据，不代表完整业务入口验收
+test-clue-terminal-validation.cjs[TQ7T]: F:回归原线索终结表单的条件校验、证据上传及首次错误焦点 | R:code:channels/clues/page.js | A:JSDOM加载原React组件并隔离请求，验证无效不提交和有效单次提交 | S:原分包只在内存改导出；保留字段父节点与四张证据边界，不证明真实布局
+test-component-preview-layout.cjs[TU6T]: F:回归目录导航、预览容器分离与真实组件挂载销毁 | R:code:components/components-preview.js | A:JSDOM覆盖十一页签、查询参数、键盘、表单恢复以及分类内七个同源SVG | S:首页不得加载全部iframe；AI和海报调用为桩，DOM不证明视觉
+test-config-center.cjs[TQ8L]: F:回归组织成员角色、节点管理、批量导入与配置弹窗完整DOM生命周期 | R:code:channels/config-center/config-center.js,code:shared/scripts/organization-store.js | A:覆盖渠道搜索聚合、角色互斥锁定、管理员移动确认、导入步骤日志和八种预览场景 | S:原生dialog及接口为桩，CSS采用源码断言；预览全成功不改变真实模拟导入数据，不能据此宣称原生布局或Excel解析通过
+test-config-organization-shared.cjs[TQ6T]: F:回归配置组织修改传播至共享树及渠道页签键盘实例稳定 | R:code:shared/scripts/organization-store.js,code:components/organization-tree/organization-tree.js | A:JSDOM验证重命名、祖先展开、搜索及重复动作防护 | S:保留历史页签选择器，须以实际运行结果判断当前兼容
+test-config-tabs-animation-browser.cjs[TU6T]: F:在隔离配置控制器验证渠道下拉搜索键盘和跨渠道定位 | R:code:channels/config-center/config-center.js | A:覆盖六渠道、三种视口边界、Escape焦点及动作去重 | S:历史文件名不代表仍使用动画页签；不是完整file入口
+test-confirm-font-browser.cjs[TU4T]: F:将旧确认字体测试入口委托至全局字体浏览器回归 | R:code:scripts/test-project-font-browser.cjs | A:直接加载统一测试，避免两套字体断言 | S:-
+test-customer-modal-source.cjs[TQ7S]: F:验证客户介绍与沟通纪要原React表单的采用、计数和拖高生命周期 | R:code:components/modal/global-modal.js,code:components/modal-controls/modal-controls.js | A:JSDOM隔离原业务组件，验证上限、只读保存态、关闭回调及重开单手柄 | S:输入父节点不可搬移，拖动尺寸为模拟值，不证明原生布局
+test-date-picker-browser.cjs[TU7T]: F:回归共享日历、原生弹窗与原Ant日期控件的几何和键盘边界 | R:code:components/date-picker/global-date-picker.js,code:components/modal-controls/modal-controls.js | A:覆盖年月闰日限制、清除、父子关闭及课程筛选配置 | S:原客户控件在隔离上下文测试；旧Chrome嵌套popover限制须单独报告
+test-entry-aliases.cjs[TQ7T]: F:在临时工程验证登录与中文目录生成、正式入口清单和旧根别名拒绝 | R:code:scripts/sync-entry-aliases.cjs | A:覆盖本地试验存在与缺失、陈旧根产物和check失败 | S:夹具写outputs，不是业务浏览器验收
+test-entry-display-browser.cjs[TQ7T]: F:验证根登录及学习双入口的新布局图片和旧存储资源兼容 | R:code:shared/scripts/local-preview.js,code:channels/learning-center/learning-center.css | A:真实file入口检查三列课程、横卡按钮、图片加载与文档会话保持 | S:旧图片路径只解析显示，不允许回写清空已有课程进度；基线错误单独比较
+test-expandable-main-nav.cjs[TQ8S]: F:回归财富与配置父菜单开合、叶子Hash导航和共享侧栏保护 | R:code:channels/wealth-center/wealth-nav.js,code:channels/config-center/config-center.js | A:JSDOM验证键盘当前态、图标原件摘要和滚动几何源码约束 | S:父项不能卸载当前频道；测试结束取消帧但不关window以避免观察器卸载时误报，非原生几何验收
+test-expert-directory-browser.cjs[TU7S]: F:验证产品与入职双顺序入口共享专家资料、原件保存及唯一挂载 | R:code:components/expert-directory/expert-directory.js | A:真实file检查新增专家双标签段落、头像二维码间隔、关闭重开和刷新 | S:新增专家之外档案须等于原站基线；已知WebGL错误单独过滤
+test-filter-bar-browser.cjs[TU7S]: F:验证共享筛选控件的弹层点击、键盘、日期和容器响应尺寸 | R:code:components/filter-bar/global-filter-bar.js | A:隔离真实目录组件覆盖组织搜索、多选不重建、清空及320至宽容器边界 | S:独立夹具不是学习业务全入口验收，隐藏配置清值与高级收起保值分别检查
+test-filter-bar.cjs[TQ7T]: F:回归筛选栏配置、值校验、联动、输入法防抖和实例清理 | R:code:components/filter-bar/global-filter-bar.js | A:JSDOM覆盖即时提交、无效范围、显隐禁用、重置和多实例隔离 | S:销毁须清理计时器portal，重复ID配置先拒绝且保留旧实例；不是原生点击验证
+test-final-site-browser.cjs[TQ8T]: F:验收十二个正式file入口、登录后全站Hash旅程和图片资源完整性 | R:code:shared/config/channels.js | A:直接打开刷新与两条导航旅程保持会话，失败也写报告截图，可指定独立预览根 | S:浏览器版本必须匹配错误基线；不覆盖所有业务分支和真实后端
+test-global-table-browser.cjs[TU7T]: F:验证共享表格滚动固定列、分页状态、标签样式和课程消费者布局 | R:code:components/table/global-table.js,code:components/table/global-table-tag.js | A:真实目录与隔离课程检查尺寸焦点销毁及新蓝绿色标签，等待固定列阴影出现再断言 | S:课程数据是夹具；颜色预期更新不等于已运行或全部业务验收
+test-induction-update.cjs[TQ7S]: F:回归入职章节改版的坐标可逆、旧进度兼容及可选双入口浏览器导航 | R:code:channels/induction/induction-update.js | A:默认VM检查十二节与其他章节保留，INDUCTION_BROWSER启用真实file步骤和图片检查 | S:存储仍用旧坐标；默认命令不运行浏览器，不能据默认通过宣称原生验收
+test-js-style-audit.cjs[TQ8T]: F:回归固定样式泄漏识别、精确动态例外退役及关闭遮罩缓存一致性 | R:code:scripts/js-style-audit.cjs,code:scripts/check-js-styles.cjs | A:覆盖直接计算别名和框架槽写法，outputs夹具检查失败与成功退出 | S:例外不能豁免整个文件，legacy命名不能绕过审计；file遮罩副本逐字等于独立SVG
+test-knowledge-properties.cjs[TQ6T]: F:回归Obsidian属性校验的合法标量、双链引用和日期模板边界 | R:code:scripts/check-knowledge-properties.cjs | A:拒绝坏YAML重复键嵌套值和无效日期，允许无属性笔记 | S:日期占位仅模板目录合法，未展开的正式笔记必须失败
+test-learning-asset-paths.cjs[TQ7T]: F:回归旧课程封面路径解析至频道资产且不改存储 | R:code:channels/learning-center/learning-data.js | A:JSDOM逐图检查旧路径新路径和上传远程URL保留，核对两个消费者使用统一解析 | S:只修显示地址，不允许迁移解析清除进度或覆盖原图片字段
+test-learning-confirm-scenes.cjs[TQ7T]: F:比较八类学习业务确认与登记预览的文字按钮危险态和数据隔离 | R:code:channels/learning-center/learning-app.js,code:shared/scripts/modal-registry.js | A:JSDOM逐场景打开真实业务与预览，分别点击两个操作并断言预览不写数据 | S:dialog为桩，内容一致不代表原生弹窗命中和布局通过
+test-learning-course-manage.cjs[TQ7S]: F:回归课程管理字段、群组或匹配筛选、分页及编辑学情日志导航 | R:code:channels/learning-center/learning-app.js | A:JSDOM核对八列表格、取消不写数据、日志保留父页状态和面包屑生命周期 | S:CSS断言及模拟dialog不是浏览器验收；收尾清理观察器与帧防止销毁后工作
+test-learning-create-flow-browser.cjs[TQ7S]: F:验证课程首次保存两分支、独立草稿预览与当前上架学情统计 | R:code:channels/learning-center/learning-app.js,code:channels/learning-center/learning-data.js | A:浏览器拦截全部请求使用本地夹具，检查显式必修选择、新窗口预览、权限和最后课节原子保护 | S:预览只读已保存内容且不写学情；上传与媒体仍为模拟，不是完整Umi入口
+test-learning-editor-browser.cjs[TU7T]: F:验证课程基本信息和课节编辑的保存重开、上传、排序与发布锁定 | R:code:channels/learning-center/learning-app.js | A:独立浏览器控制器覆盖共享多选、类型切换、讲义、删除确认及480至1440宽度 | S:音视频不真实播放，布局夹具不能代替完整频道导航验收
+test-learning-editor-feedback-browser.cjs[TU6T]: F:验证课程编辑首错焦点、字段反馈样式和内部滚动 | R:code:shared/styles/global-page-form.css,code:channels/learning-center/learning-app.js | A:隔离浏览器逐字段检查必填、文件错误、修正清理与右侧底栏位置 | S:错误只滚动编辑器，不带动文档；不接真实服务
+test-learning-editor-interactions-browser.cjs[TU7T]: F:验证课节内部滚动保持、整卡指针拖动和删除确认的焦点与草稿语义 | R:code:channels/learning-center/learning-app.js | A:真实浏览器夹具覆盖取消、越界、边缘自动滚动、排序保存及关闭销毁清理 | S:移动中不得重排或落库，确认删除只改草稿直至保存；已发布课节受保护
+test-learning-editor-layout-browser.cjs[TU6T]: F:验证课程编辑内容居中、独立底栏、共享字段和四类课节状态标签 | R:code:channels/learning-center/learning-center.css,code:shared/styles/global-page-form.css | A:隔离浏览器采样多视口尺寸、字号控件边界与保存后滚动焦点保持 | S:页面表单不应套普通弹窗类，夹具不代表全站布局
+test-learning-group-browser.cjs[TU6T]: F:验证课程群组多选在粘性表格上方可连续点击并保持展开 | R:code:components/filter-bar/global-filter-bar.js,code:channels/learning-center/learning-app.js | A:隔离浏览器选择三群组并检查Escape及重置，没有创建时间额外筛选 | S:测试本地控制器，不访问线上或真实媒体
+test-learning-live-browser.cjs[TU7M]: F:验证直播横卡首页与隔离管理表单的响应、权限、发布和轮播生命周期 | R:code:channels/learning-center/learning-live.js,code:channels/learning-center/learning-live-data.js | A:LIVE_MOCK_SEED选择首页示例分支，默认覆盖独立管理及旧轮播API，输出截图 | S:两个分支需分别运行；日期与发布仅本地模拟，夹具不是完整file入口
+test-learning-live-mock.cjs[TQ7T]: F:回归直播示例与展示文案封面的单次增量迁移和存储失败保护 | R:code:channels/learning-center/learning-live-data.js | A:JSDOM检查八示例十五日志、ID冲突、用户修改删除、上传封面及历史简介保留 | S:配额失败不能标记迁移完成；示例迁移不得影响课程学情日志
+test-learning-live.cjs[TQ7T]: F:回归直播草稿、定时立即发布、到期下架和权限日志领域规则 | R:code:channels/learning-center/learning-live-data.js | A:模拟时钟验证开播展示与广告时段独立、补算幂等、链接校验及存储原子性 | S:保存完整草稿不自动排期；下架只读，上架只改许可字段，课程状态不受影响
+test-learning-log-browser.cjs[TU7T]: F:验证课程日志原生弹窗的九列表格、长文本展开分页及父页保留 | R:code:channels/learning-center/learning-app.js,code:components/table/global-table.js | A:隔离浏览器检查弹窗尺寸、文本转义、层内页量面板、Escape焦点和分类颜色 | S:LOG_MOCK_ONLY单独验示例长文本，查看不能写业务数据；不代表全部频道原生验收
+test-learning-log-data.cjs[TQ7T]: F:回归课程结构化日志的变更差异、历史读取适配和示例增量保护 | R:code:channels/learning-center/learning-data.js | A:检查新增编辑删除上下架排序、无操作不记录、历史快照和权限 | S:显示数据只保留文件名不得泄漏URL或base64，旧日志只读，最后课节被拒不能产生日志
+test-learning-mock-batch.cjs[TQ7T]: F:回归二十四条课程示例的完整数据约束和单次增量迁移 | R:code:channels/learning-center/learning-data.js | A:JSDOM检查三状态数量、唯一课节ID、图片存在及原用户记录保留 | S:重载不得补回已删除示例或覆盖同ID用户编辑
+test-learning-nav-state.cjs[TQ7T]: F:复现Ant悬停重绘旧选中态并验证学习导航修复与观察器收敛 | R:code:shared/scripts/learning-nav.js | A:JSDOM模拟两个入口和全部前置频道，保持同文档及真实悬停状态 | S:不得接管资讯等其他虚拟频道，空闲时不产生循环class写入
+test-learning-organization.cjs[TQ7T]: F:回归学习组织迁移的稳定身份、数据保留、子树权限和重命名传播 | R:code:shared/scripts/organization-store.js,code:channels/learning-center/learning-data.js | A:JSDOM比较启用共享组织前后课程记录日志，验证重载及节点引用 | S:组织改名不得破坏稳定ID或学情记录
+test-learning-study-browser.cjs[TU7S]: F:验证学情页面与详情日志的筛选、组织权限、导出及弹层生命周期 | R:code:channels/learning-center/learning-app.js,code:components/filter-bar/global-filter-bar.js | A:隔离浏览器覆盖键盘输入法、共享页签、父页状态保留、响应布局及真实导出构建 | S:Chrome119及更早跳过会崩溃的嵌套组织popover关闭路径，须报告缺口；读操作不写学情
+test-learning-upload-browser.cjs[TQ7T]: F:验证课节文件本地模拟上传状态、真实文件链接与异步清理 | R:code:channels/learning-center/learning-app.js | A:浏览器夹具覆盖四类型、失败重试取消、替换保留、并行任务及类型切换卸载 | S:链接验证选中字节但不证明媒体播放；blob不持久化，刷新后缺失文件必须提示重选而非伪造样例
+test-learning-v11.cjs[TQ8T]: F:回归课程课节学习进度、发布权限、独立保存及编辑阅读学情生命周期 | R:code:channels/learning-center/learning-data.js,code:channels/learning-center/learning-app.js | A:JSDOM覆盖必修拖动限制、下架访问令牌、PDF完成门槛、OOXML导出和未保存Hash恢复 | S:PDF尺寸加载和dialog均为模拟，不能冒充浏览器验收；历史进度保留但当前分母只用上架课节
+test-markup-templates.cjs[TQ7T]: F:验证HTML片段缓存保留原字节及动态槽单次替换 | R:code:scripts/build-markup-templates.cjs | A:VM检查表格片段、空白实体与类似替换语法的数据，缺失重复模板必须失败 | S:插值不递归解析也不自动转义，调用者负责可信内容
+test-modal-controls.cjs[TQ8L]: F:回归弹窗控件适配范围、portal归属、原事件及拖高和首错焦点清理 | R:code:components/modal-controls/modal-controls.js,code:components/modal-controls/modal-controls.css | A:JSDOM覆盖选择日期时间边界、清空、批量导入单选与父弹窗关闭，核对状态级联和原图 | S:几何与popover是桩，CSS命中不证明浏览器点击；React节点不搬移，离开弹窗须恢复原控件
+test-modal-form-primitives.cjs[TQ8L]: F:回归真实业务表单非破坏接入共享标题字段区域计数反馈与滚动契约 | R:code:components/modal/global-modal.js,code:components/modal/global-modal.css | A:JSDOM和源码覆盖十类工厂及原Ant差异、双CSS顺序真实Bold资产、代理按钮与系统警告 | S:保留原父子关系及事件，嵌套确认排除表单规则；系统警告不得新增取消；尺寸断言不代表原生视觉验收
+test-modal-observer-lifecycle.cjs[TQ7T]: F:捕获弹窗重复采用导致MutationObserver自激循环并验证重绘恢复 | R:code:components/modal/global-modal.js | A:父进程二十秒看门狗保护子JSDOM，重复扫描零class写入且原刷新回调单次 | S:定时器可能被观察器循环饿死，不能仅用子进程自身超时保护
+test-modal-required-marker-browser.cjs[TU6T]: F:验证共享必填星号在旧CSS冲突下的前置位置和标签关联 | R:code:components/modal/global-modal.css | A:隔离浏览器双加载顺序检查原Ant及实际span标记、长文字、颜色间距和点击焦点 | S:保留React源码顺序，页面外范围不接管；不是完整业务页验收
+test-modal-scrollbar-browser.cjs[TU6T]: F:验证弹窗只改原生滚动条颜色而保持平台宽度和关闭状态 | R:code:components/modal/global-modal.css,code:shared/styles/global-font.css | A:隔离浏览器覆盖三种宿主、双CSS顺序、长短内容与文本框滚轮及重开 | S:启动必须移除Playwright默认hide-scrollbars；颜色断言随浏览器支持判断
+test-multi-select-style-browser.cjs[TU6T]: F:比较独立和筛选栏内多选组件在各交互态的真实样式一致性 | R:code:components/multi-select/global-multi-select.css,code:components/filter-bar/global-filter-bar.css | A:隔离浏览器核对箭头、边框选项、持续选择和Escape行为 | S:本地SVG在夹具转为数据URI，不代表业务页面file资源验收
+test-news-templates-browser.cjs[TQ7T]: F:验证资讯HTML模板从直接和工作台file入口加载及详情筛选焦点行为 | R:code:channels/news-center/news-center.js | A:检查开关重开Escape、搜索空态精选过滤与同文档会话并写结果 | S:错误基线必须匹配浏览器版本，已有错误与新错误分别判断
+test-news-templates.cjs[TQ7T]: F:回归资讯真实详情模板的危险文本转义和缺失模板拒绝 | R:code:channels/news-center/news-center.js,code:channels/news-center/templates.generated.js | A:JSDOM检查标题摘要标签不变成执行节点，替换外观字符串保持字面值 | S:不能用模板渲染器替代调用方转义
+test-operation-log.cjs[TQ7M]: F:回归共享日志独立挂载、筛选分页、OOXML导出与弹窗生命周期 | R:code:components/operation-log/global-operation-log.js,code:components/operation-log/operation-log-xlsx.js | A:JSDOM检查原图几何、28样例、筛选全集导出、ZIP校验和唯一ID及全入口依赖顺序 | S:dialog为桩，明确未验原生顶层与Umi；导出所有值无公式；全局顶栏不得恢复日志入口
+test-page-source-browser.cjs[TQ7T]: F:验证HTML视图迁移后的线索客户保单和产品真实file业务交互 | R:code:shared/scripts/html-view.js,code:channels/customer/page.js | A:支持独立预览根，检查输入取消重开、需求柱动态值、检索恢复及无style注入并写报告 | S:仅覆盖列出的代表流程，不等于全部业务分支验收
+test-page-views.cjs[TQ8T]: F:回归HTML视图编译和渲染的结构绑定身份、求值顺序与缓存完整性 | R:code:scripts/build-page-views.cjs,code:shared/scripts/html-view.js | A:VM及outputs夹具验证组件事件ref键、空值数组、危险属性拒绝与陈旧缓存失败 | S:构建必须保持缓存外业务字节，惰性template不算活动入口20KB壳预算
+test-popup-preview.cjs[TQ8M]: F:校验真实弹窗源登记、自动目录、共享层样式与预览入口边界 | R:code:shared/scripts/modal-registry.js,code:components/弹窗预览.script-2.js | A:VM和JSDOM核对70项53可预览17排除、三分类及15个真实路由流程的源契约 | S:源码断言不等于全部流程实际点击通过；首页不得批量iframe，关闭display优先且抽屉AI主面板排除普通定位
+test-project-directory-browser.cjs[TU6T]: F:验证独立中文目录的十二频道链接搜索空态键盘及响应布局 | R:code:app/project-index/index.html,code:app/project-index/script.js | A:真实file检查所有链接存在，1440与390宽度无横溢并输出截图报告 | S:只验目录本身，不替代频道业务回归
+test-project-font-browser.cjs[TU7T]: F:验证全入口共用字体及真实Regular和Bold渲染身份 | R:code:shared/styles/global-font.css,code:components/modal/global-modal.css | A:隔离浏览器拦截本地资源，双加载顺序和宽度检查计算样式与CDP平台字体 | S:原生输入文字在UA影子树，只检查样式不检查实际字体节点；不是全部业务页面验收
+test-project-scaffold.cjs[TQ8T]: F:验证新项目生成器可独立交付且拒绝覆盖路径穿越和样式结构资源泄漏 | R:code:scripts/scaffold.cjs,code:templates/project-check.cjs | A:在outputs生成骨架并逐个注入坏代码验证非零退出和标题转义 | S:骨架检查通过不代表业务完成，固定图片也必须归所有者资产
+test-project-structure.cjs[TQ8T]: F:验证结构检查器拒绝频道资源缺失跨属引用及模板内嵌代码和图片 | R:code:scripts/check-project-structure.cjs | A:outputs最小项目逐项破坏并恢复，覆盖递归template、SVG槽及导航遮罩缓存 | S:名为runtime的自有脚本不能冒充第三方；遮罩必须与独立SVG逐字一致
+test-sidebar-order.cjs[TQ7T]: F:验证十二项侧栏视觉排序不搬移React节点并保持事件及重挂载恢复 | R:code:shared/scripts/channel-regions.js,code:shared/styles/channel-foundation.css | A:JSDOM覆盖别名、折叠态、子菜单排除和未知项末尾保留 | S:DOM和CSS通过不证明原生高度间距或Umi键盘顺序
+test-standardized-entries-browser.cjs[TQ7T]: F:检查结构清单中全部频道file入口的资源、会话和坏图并留截图 | R:code:shared/config/project-structure.json | A:每入口独立浏览器上下文，汇总错误与本地失败请求对比同版本基线 | S:固定等待后的加载检查不证明全部交互，原有WebGL错误单独记录
+test-standardized-navigation-browser.cjs[TQ8T]: F:验证双file入口父菜单开合、子视图刷新历史导航和关闭后真实点击 | R:code:shared/scripts/channel-entry-navigation.js,code:channels/config-center/config-center.js | A:保持文档会话并核对组织日志列比例、提示关闭及窄屏交互，写结果报告 | S:关闭后点击导航用于捕获透明遮罩；浏览器必须匹配错误基线
+test-style-separation-browser.cjs[TQ7T]: F:验证样式抽离后的线索布局、学习进度、树深度及AI海报真实行为 | R:code:channels/clues/layout-patch.css,code:components/ai-agent/AI Agent.css | A:file浏览器检查动态数据与CSS一致、AI响应全屏最小化恢复及海报主题，并留报告 | S:既有WebGL错误按保存基线区分，覆盖代表行为而非所有样式
+test-tabs-additional-channels-browser.cjs[TU6T]: F:验证入职与方案原结构页签皮肤统一、锁定跳过和原节点保留 | R:code:components/tabs/global-tabs.js | A:浏览器夹具覆盖延后加载CSS、数量字重、解锁重同步及键盘 | S:小节胶囊不接管，锁定点击仍给原业务反馈；不是完整业务页面验收
+test-tabs-browser.cjs[TU6T]: F:验证产品配置学情页签皮肤和独立API的键盘状态及重渲染清理 | R:code:components/tabs/global-tabs.js,code:scripts/tabs-animation-check.cjs | A:浏览器夹具检查源按钮身份、数量字重、禁用跳过、无下划线动画和窄屏边界 | S:捕获的源结构不等于正式页面全路径验收
+test-virtual-entry-refresh.cjs[TQ8T]: F:验证虚拟频道入口只为空Hash补默认值且刷新保留其他频道 | R:code:channels/wealth-center/entry.js,code:channels/news-center/entry.js,code:channels/learning-center/entry.js | A:读取真实HTML外置启动脚本并在VM模拟空及已有Hash | S:禁止写粘性频道覆盖标记，否则文件名会错误压过当前路由
+test-virtual-nav-state.cjs[TQ8T]: F:回归四个虚拟频道八种子视图的唯一选中态及Ant旧态重绘修复 | R:code:shared/scripts/learning-nav.js,code:channels/wealth-center/wealth-nav.js | A:JSDOM真实导航控制器检查双入口、原频道返回、父项开合和观察器静止 | S:父项保持当前叶子和Hash；只验DOM不验证原生键盘几何
+verify-local-navigation.sh[TQ8T]: F:保护主导航无刷新Hash契约、统一资源入口和活动壳大小 | R:code:shared/scripts/channel-entry-navigation.js,code:scripts/test-virtual-entry-refresh.cjs | A:拒绝整页跳转与内嵌style，检查所有入口及核心脚本语法并执行虚拟刷新回归 | S:静态和VM检查不能代替实际浏览器导航；惰性模板不算活动壳大小
+test-learning-dialogs-browser.cjs[TU7T]: F:在真实file入口验收课程学情日志与直播编辑校验确认的弹窗生命周期 | R:code:channels/learning-center/learning-live.js,code:channels/learning-center/learning-app.js | A:可指定入口与输出目录，检查焦点恢复、取消放弃重开Escape、存储不变及无刷新导航 | S:隔离浏览器存储，不覆盖真实用户；必须匹配错误基线版本，原有WebGL错误单列，不代表全部业务分支
+test-table-tags-browser.cjs[TU7T]: F:验收file分类预览及多频道表格日志标签的配色几何和图标 | R:code:components/table/global-table-tag.js,code:components/components-preview.js | A:预期增强六色和8个solid，区分角色黑底与失败红底；覆盖SVG唯一性尺寸继承色、过滤窄屏翻页与导航 | S:更新断言不代表已运行；仅排除既有file WebGL错误，不证明真实后端或所有权限分支
+test-table-tags.cjs[TU6T]: F:回归标签语义强度、SVG工厂安全和旧表格节点生命周期 | R:code:components/table/global-table-tag.js,code:docs/table-tag-color-mapping-v1.md | A:74文案与v1核对允许5角色及6规划差异，6色8个solid七SVG；检查原节点事件、异步更新与清理幂等 | S:JSDOM不能证明浏览器视觉；普通文本表外及选择控件不接管
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/assets/===
+control-calendar.svg[CU3T]: F:提供日志日期控件的Ant日历轮廓原图 | R:code:components/operation-log/global-operation-log.css | A:保留原896画布区域与四分之一黑色透明填充 | S:-
+control-down.svg[CU3T]: F:提供日志选择控件的Ant向下箭头原图 | R:code:components/operation-log/global-operation-log.css | A:保留原896画布区域和四分之一黑色透明填充 | S:-
+control-search.svg[CU3T]: F:提供日志搜索控件的Ant放大镜轮廓原图 | R:code:components/operation-log/global-operation-log.css | A:保留原896画布区域及四成五黑色透明填充 | S:-
+modal-calendar.svg[CU3T]: F:提供共享弹窗日期字段的深灰日历图形 | R:- | A:32像素画布，保留顶部挂环和分隔线 | S:-
+modal-clear.svg[CU3T]: F:提供共享控件清空操作的深灰圆底镂空叉图标 | R:- | A:Ant画布及1em尺寸，隐藏辅助焦点 | S:-
+modal-clock.svg[CU3T]: F:提供共享时间字段的深灰圆形时钟图标 | R:- | A:32像素画布和2.4像素描边 | S:-
+modal-down.svg[CU3T]: F:提供共享弹窗选择框的深灰下拉箭头图标 | R:- | A:32像素画布并保留原旋转变换 | S:-
+modal-search.svg[CU3T]: F:提供共享弹窗检索的深灰放大镜图标 | R:- | A:32像素画布，保留原圆框与斜向把手 | S:-
+nav-activity.svg[CU3T]: F:保存活动导航曾用的分段环形数据驾驶舱图标 | R:- | A:18像素深灰矢量，标题保留数据驾驶舱 | S:文件名不能代表原图标题或当前主导航原件
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/assets/fonts/===
+NoahSans-Regular.ttf[FU4T]: F:保存误以字体扩展名下载的原站HTML入口响应 | R:code:docs/archive/workbuddy/项目结构分析.md | A:内容是根容器与原站Umi脚本链接，非TrueType字体 | S:不能作为有效字体加载或证明Noah字体已安装；现有正式字体使用HarmonyOS
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/assets/main-nav/===
+activity-center.svg[CU3T]: F:提供活动主导航的双三角线框原图 | R:- | A:18像素画布，深灰1.6像素描边 | S:-
+channel-clues.svg[CU3T]: F:提供线索主导航的双弯折管线原图 | R:- | A:18像素画布，深灰1.6像素描边 | S:-
+customer-360.svg[CU3T]: F:提供客户主导航的六边形分面盒体原图 | R:- | A:18像素画布，保留原变换和深灰描边 | S:-
+induction-guide.svg[CU3T]: F:提供入职主导航的深灰叶片轮廓原图 | R:- | A:18像素画布，保留用户矢量路径 | S:-
+learning.svg[CU3T]: F:提供学习主导航的羽毛笔形线框原图 | R:- | A:18像素画布，深灰1.6像素描边 | S:-
+news-center.svg[CU3T]: F:提供资讯主导航的球体与曲线原图 | R:- | A:18像素画布，保留圆形和内部弧线 | S:-
+organization.svg[CU3T]: F:提供配置主导航的三组竖向分段调节线原图 | R:- | A:18像素画布，深灰2像素描边 | S:-
+proposal-center.svg[CU3T]: F:提供方案主导航的双手托心轮廓原图 | R:- | A:18像素画布，深灰1.6像素描边 | S:-
+quality-control.svg[CU3T]: F:提供保单主导航的盾形与弧线原图 | R:- | A:18像素画布，保留深灰描边和旋转变换 | S:-
+sales-enablement.svg[CU3T]: F:提供产品主导航的盾形笑脸轮廓原图 | R:- | A:18像素画布，深灰1.6像素描边 | S:-
+wealth.svg[CU3T]: F:提供财富值主导航的钱包线框原图 | R:- | A:18像素画布，深灰1.6描边及右侧扣带 | S:-
+workspace.svg[CU3T]: F:提供工作台主导航的菱形分层线框原图 | R:- | A:18像素画布，深灰1.6描边 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/assets/navigation/===
+channel-clues.svg[CU3T]: F:保存旧线索导航的双圆连接线图标 | R:- | A:18像素画布，深灰1.29像素描边 | S:-
+customer-360.svg[CU3T]: F:保存旧客户导航的分段三角形图标 | R:- | A:18像素画布，深灰填色及原路径 | S:-
+data-cockpit.svg[CU3T]: F:提供数据驾驶舱的分段环形图标原件 | R:- | A:18像素画布与深灰填色 | S:-
+induction-guide.svg[CU3T]: F:保存旧入职导航的大小双叶轮廓图标 | R:- | A:18像素画布，深灰填色 | S:-
+learning.svg[CU3T]: F:保存旧学习导航的竖线书本图标 | R:- | A:18像素画布，1.35像素圆端描边 | S:-
+news-center.svg[CU3T]: F:保存旧资讯导航的文档报纸图标 | R:- | A:18像素画布，深灰填色与右侧折页 | S:-
+organization.svg[CU3T]: F:保存旧配置导航的三节点组织树图标 | R:- | A:18像素画布，深灰圆节点和直角连线 | S:-
+proposal-center.svg[CU3T]: F:保存旧方案导航的交叉圆头带形图标 | R:- | A:18像素画布，深灰填色及中心圆点 | S:-
+quality-control.svg[CU3T]: F:保存旧品控导航的深灰沙漏图标 | R:- | A:18像素画布，保留上下横边及下部沙层 | S:-
+sales-enablement.svg[CU3T]: F:保存旧销售赋能导航的深灰芯片图标 | R:- | A:18像素画布，方形内核与四边引脚 | S:-
+workspace.svg[CU3T]: F:保存旧工作台导航的三向回环连接图标 | R:- | A:18像素画布，深灰填色及原Webhooks图形 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/config/===
+channel-bundles.js[FC8T]: F:把Umi九频道的原哈希分包名映射到所属频道独立CSS和JS | R:code:shared/config/channels.js,code:shared/config/project-structure.json | A:通过webpack运行回调包装u与miniCssF，已登记名称返回相对频道路径和版本参数 | S:必须保留未知分包原路径及web基线；改哈希映射不能遗漏JS或CSS
+channels.js[FC9M]: F:统一登记十二频道身份路由入口、虚拟子视图、依赖与导航顺序 | R:code:shared/scripts/channel-features.js,code:shared/scripts/local-preview.js | A:提供key路由标签查找；规划蓝色及角色黑底SVG标签跨入口共用，独立登录试验单列 | S:sidebarOrder仅视觉；bootstrap早于Umi求值，其余资源预加载；workspace登记共享标签供所有入口，虚拟频道不占普通路由映射
+markup-templates.json[FC8S]: F:绑定29个自有脚本与所属HTML片段源、渲染器及数量 | R:code:scripts/build-markup-templates.cjs,code:scripts/check-markup-ownership.cjs | A:共353片段，含目录31片段及标签7个SVG；额外模板和独立组件documentBase显式登记 | S:新增结构不能只改生成缓存；文档基准决定资源校验地址
+project-structure.json[FC8S]: F:保存由频道注册表生成的正式入口、源码归属和原分包映射清单 | R:code:shared/config/channels.js,code:scripts/sync-entry-aliases.cjs | A:根登录与中文目录分开，十二频道和独立登录入口用于构建检查 | S:生成产物不可手改；localOnly试验不因登记而获提交授权
+runtime-style-exceptions.json[FC8M]: F:逐表达式登记必要动态几何样式并锁定三份第三方运行代码摘要 | R:code:scripts/check-js-styles.cjs,code:docs/js-style-separation.md | A:每条动态写入绑定完整表达式和原因，compiled以SHA256锁定 | S:仅登记动态值不豁免整份自有脚本；不能把固定样式藏入变量；三份遗留仍有运行时样式，不得声称全站零style
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/data/channel-data/===
+mock-data.js[DD7L]: F:提供客户保单方案活动及工作台的关联样例和本地接口分派 | R:code:shared/scripts/local-preview.js | A:五客户六保单五方案六活动，按身份关联并返回handled结果，活动支持类型组织状态关键字筛选 | S:写接口只回执不改变数据；续保姓名为原消费者所需密文；统计日期固定，不代表真实业务
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/runtime/===
+page-vendor.js[LU7T]: F:封装从原频道原字节提取的Ant水印和气泡确认第三方工厂 | R:code:shared/config/runtime-style-exceptions.json,code:shared/scripts/local-preview.js | A:水印绘制Canvas并观察重建覆盖层，确认组件沿用Ant状态和回调，公开__GAIP_PAGE_VENDOR__ | S:内部CSS对象和DOM样式属于摘要锁定第三方例外，不得扩展为业务样式写法
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/scripts/===
+channel-entry-navigation.js[AU8S]: F:随Hash及虚拟频道状态同步地址栏入口文件而保持文档会话 | R:code:shared/config/channels.js | A:从当前脚本定位根，保留查询Hash并使用replaceState，监听历史方法和频道事件合并刷新 | S:file禁止跨文件replaceState时只标unsupported，绝不回退整页跳转或覆盖Hash
+channel-features.js[AU8T]: F:为所有初始入口统一预加载频道样式和有序业务脚本并暴露Umi模块接口 | R:code:shared/config/channels.js | A:以解析后完整URL去重，脚本async为false，错误标记频道身份 | S:Hash切换不读取目标HTML，因此不能只加载当前频道；ready只表示调度完成，不等于所有资源加载成功
+channel-regions.js[AU7M]: F:标注全局与频道语义区域并同步导航视觉排序、滚动层和百宝箱原图 | R:code:shared/config/channels.js,code:shared/styles/channel-foundation.css | A:识别虚拟Hash和当前页面，MutationObserver与动画帧合并更新，公开区域标签和刷新入口 | S:排序只写order不搬移React节点；虚拟覆盖页须清除原页面区域标记；侧栏图片按脚本地址解析
+global-breadcrumb.js[AU7M]: F:按普通及虚拟频道统一面包屑并维护详情父级回调 | R:code:shared/config/channels.js,code:shared/scripts/templates/markup-global-breadcrumb.html | A:公开refresh、setDetail、clearDetail，转义数据，签名避免重复渲染 | S:离开虚拟频道先调用关闭接口再切Hash；详情状态由消费者清理，常驻观察器不是页面级实例
+html-view.js[CU8T]: F:将已注册HTML编译描述与动态绑定还原为原React运行时节点 | R:code:scripts/build-page-views.cjs | A:支持文本动态槽、组件类型、props、子节点数组和key，拒绝重复或缺失视图 | S:按模板顺序求值以保留事件ref和组件身份，不直接fetchHTML或注入执行脚本
+learning-nav.js[AU8M]: F:挂载学习导航并统一叶子图标和虚拟频道选中态修复 | R:code:shared/config/channels.js,code:shared/scripts/templates/markup-learning-nav.html | A:保持原普通频道事件，学习离开回接关闭接口，监听Ant重绘并幂等修复当前态 | S:其他虚拟频道由真实宿主维护子项展开和当前态；只清无关选中类，不清悬停；观察器需避免循环class写入
+local-preview.js[II9L]: F:建立file本地认证、全请求Mock、产品样例及Umi启动兼容层 | R:code:shared/data/channel-data/mock-data.js,code:shared/config/channels.js,code:shared/scripts/popup-preview-bridge.js | A:先加载bootstrap并预缓存完整90894枚举，提供存储回退和模拟验证码，分派AI线索频道数据，统一20000响应 | S:替换全部XHR与fetch而不转发线上，未知接口也回本地空成功；任意非空登录仅演示；必须早于Umi初始化；预览桥只在专用Hash参数加载，固定产品描述不构成实时金融或政策信息
+modal-registry.js[FC8S]: F:校验合并真实弹窗登记并发布分类目录和直接调用入口 | R:code:components/弹窗源登记.js,code:components/弹窗自动索引.generated.js | A:登记深拷贝，重复同内容幂等而不同内容报错，按after排序并发目录事件 | S:ready非抽屉须用途分类；route-trigger必须由桥接器打开；append模式要求真实返回节点，不复制业务结构
+organization-store.js[DD7T]: F:提供六渠道共享组织节点稳定键、层级路径、包含关系与引用查询 | R:code:channels/config-center/config-center.js,code:channels/learning-center/learning-data.js | A:以渠道号加原ID隔离节点，配置拥有变更并广播organization-change | S:数据仅内存，不持久化；祖先查询防循环，引用检查由消费者登记而非扫描所有业务
+popup-preview-bridge.js[AU7M]: F:通过十五种真实页面点击流程打开业务弹窗并隔离预览背景 | R:code:shared/scripts/local-preview.js,code:components/弹窗预览.script-2.js | A:专用预览ID触发，按可见节点轮询并向父窗报告加载成功或失败 | S:隔离会删除弹层之外DOM，仅限预览页；账号切换临时存储后恢复，入职步骤等待React提交；不得在普通业务入口启用
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/scripts/templates/===
+markup-global-breadcrumb.html[EU5T]: F:维护面包屑链接、父级动作、当前文字及分隔结构六片段 | R:code:shared/scripts/global-breadcrumb.js | A:动态槽由调用者转义，经模板构建生成缓存 | S:-
+markup-learning-nav.html[EU5T]: F:维护学习主导航的图标与可点击标题HTML片段 | R:code:shared/scripts/learning-nav.js | A:保留共享图标和学习绑定标记，Hash由运行时提供 | S:-
+markup-local-preview.html[EU6T]: F:维护启动适配脚本的外置src加载结构 | R:code:shared/scripts/local-preview.js | A:构建缓存由解析期间document.write同步插入 | S:没有内联执行内容；src须来自频道bootstrap登记
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/shared/styles/===
+channel-foundation.css[CU8M]: F:定义共享设计变量、顶栏面包屑和主导航排序滚动及父项几何 | R:code:shared/scripts/channel-regions.js,code:channels/wealth-center/wealth-nav.js | A:导航行高36、图标18，折叠态居中，支持减少动效，滚动层高于百宝箱 | S:父组容器不锁行高；排序不移动React节点；原图必须保持可见且背景不得截获点击
+global-font.css[CU7T]: F:统一本地HarmonyOS字体、常规粗体映射与原生滚动条颜色 | R:code:components/modal/global-modal.css | A:加载Regular400与Bold700，字体swap并关闭合成，提供五档字号 | S:图标字体和弹窗标题不受全局400覆盖；滚动条保持平台宽度
+global-page-form.css[CU6T]: F:为显式接入的页面表单复用弹窗字段和反馈视觉规则 | R:code:components/modal/global-modal.css,code:channels/learning-center/learning-app.js | A:限定gaip-page-form，统一48像素控件及128像素起始多行输入 | S:错误状态优先交互，页面表单不接遮罩定位或焦点陷阱
+popup-preview-isolation.css[CU5T]: F:为真实弹窗隔离预览提供浅色背景与前景层级 | R:code:shared/scripts/popup-preview-bridge.js | A:隔离标记下提升Ant弹窗与抽屉并使用相对前景定位 | S:仅服务专用预览，不应在普通业务页激活
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/templates/page/===
+index.html.tpl[EU6T]: F:提供新页面生成器的中文HTML结构与外置资源模板 | R:code:scripts/scaffold.cjs | A:标题与页面ID占位，link加载styles.css且defer加载script.js | S:骨架没有业务实现，不自动接GAIP频道
+script.js.tpl[EU5T]: F:提供生成页面的最小独立脚本启动模板 | R:code:templates/page/index.html.tpl | A:严格模式查询页面ID宿主，缺失则退出，存在时标记ready | S:ready只表示骨架启动，不代表业务已实现
+styles.css.tpl[CU5T]: F:提供生成页面的独立基础排版、内容边框和键盘焦点样式 | R:code:templates/page/index.html.tpl | A:系统字体白底、最大1200像素容器和24像素内距 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/templates/===
+project-check.cjs[TQ7T]: F:为独立生成项目检查三文件结构、私有资源、样式结构分离和知识双链 | R:code:scripts/scaffold.cjs,code:scripts/js-style-audit.cjs | A:递归检查并拒绝符号链接、越界资源、HTML内嵌代码和固定图片及JS违规，失败非零退出 | S:跳过构建运行目录；远程链接不做存在性验证，静态通过不证明浏览器可用
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/tools/aoci/===
+README.md[SG7T]: F:说明项目内AOCI工具的官方开发提交固定、构建依据与回退方法 | R:code:tools/aoci/provenance.json | A:因rc14故障固定未修改官方源码构建，只作用本仓库 | S:dev构建不是正式稳定版；不安装全局钩子或推送
+provenance.json[FQ7T]: F:记录AOCI开发工具的官方源码提交、构建环境与二进制校验身份 | R:code:tools/aoci/README.md | A:固定a24fb8bb802b725379192345b946968e371a3c29及Go1.27.1，记录验证和rc14回退位置 | S:身份用于可追溯构建，不代表所有索引已完成
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/web/===
+106.89b4424f.chunk.css[CU5T]: F:保存入职章节内容、专家卡与工具下载网格的原站样式分包 | R:code:web/106.8af24840.async.js | A:包含章节变体、150乘200专家头像和84像素二维码布局 | S:只读编译基线，当前改版维护在频道和共享专家组件
+106.8af24840.async.js[DB7T]: F:提供原站入职章节数据、章节渲染、专家工具内容及资料下载模块 | R:code:channels/induction/induction-update.js,code:components/expert-directory/expert-directory.js | A:六章节十三小节坐标转换，附件按文件码下载并释放对象URL | S:适配器必须早于模块首次求值；保留原模块身份和资源上下文，不能因已有频道页面而删除
+150.9a6808ff.async.js[DA7T]: F:承载原站风控审查Agent的场景历史、材料提取、报告及流式优化会话 | R:code:web/150.c013593b.chunk.css,code:shared/scripts/local-preview.js | A:材料限20份每份15MB，SSE按事件更新报告，支持取消重置、编辑保存和DOCX下载 | S:编译基线含固定内联样式；本地必须由Mock拦截接口，静态模型标签与示例报告不证明真实模型服务或审查有效性
+150.c013593b.chunk.css[CU5T]: F:保存风控审查工作区历史侧栏、材料上传、提示编辑和报告聊天的样式 | R:code:web/150.9a6808ff.async.js | A:包含模型菜单、进度反馈、全屏编辑及Markdown表格显示 | S:只读原站编译基线，不作为新页面样式维护源
+218.ec6d0281.async.js[LU8T]: F:提供原站ProLayout菜单、响应式框架、面包屑、主题及路由匹配依赖 | R:code:web/281.4c535b34.async.js,code:shared/scripts/channel-entry-navigation.js | A:支持侧顶混合布局、移动抽屉、异步菜单缓存和错误边界 | S:原库包含整页链接默认行为，项目须保持Hash适配；只读框架分包不可按首页加载情况删除
+281.4c535b34.async.js[LU7T]: F:提供Pro组件主题与国际化上下文及颜色、SWR缓存和通用Hook依赖 | R:code:web/218.ec6d0281.async.js | A:合并Ant主题令牌，含中文Dayjs、多语言词典、暗色紧凑算法与请求去重重试 | S:CSS注入和动态样式是只读第三方实现，不能复制为业务样式写法
+370.a407ecf6.async.js[LU6T]: F:提供原站Ant开关组件、图标与主题样式依赖 | R:- | A:支持受控与默认checked或value、左右键切换、禁用加载和尺寸方向 | S:第三方内部CSS动态生成属于原站只读运行依赖
+390.d455266b.async.js[EU5T]: F:为嵌套路由把父Outlet上下文转交子Outlet | R:- | A:读取当前Outlet上下文并传给子路由 | S:微小分包仍承担路由契约，不因体积小而删除
+479.0c71379d.async.js[LU7T]: F:提供图片预览和树组件的原站共享运行依赖 | R:- | A:图片支持分组缩放旋转翻转拖动与触摸；树支持虚拟列表、勾选传导、键盘及异步加载拖放 | S:原树保留受控状态和禁用边界；动态几何及CSS注入属于只读第三方，不能当作无用业务脚本删除
+486.91b76e3a.async.js[LG6T]: F:提供原站Lodash通用集合、对象路径、函数控制与惰性链式工具库 | R:- | A:源码自报4.18.1，包含深拷贝比较、防抖节流和模板编译，导出webpack模块及全局下划线 | S:版本字样不是外部官方版本认证；模板可动态执行代码，不应接收不可信模板，基线保持只读
+518.ff602586.async.js[LU8T]: F:提供原站ProTable、SchemaForm及多布局表单和卡片轮播等共享运行组件 | R:code:web/896.1990e475.async.js,code:web/625.d4fb9118.async.js | A:包含查询筛选、可编辑行、列配置持久化、步骤表单和Slick轮播手势及清理 | S:只读编译依赖含库内样式；轮播React节点须保留；请求取消保护不保证底层网络中止；业务HTML分离不使此分包可删除
+574.53e4b1ee.async.js[LU7T]: F:提供原站Ant与rc抽屉的定位、动画、遮罩和焦点生命周期 | R:- | A:支持四向位置、嵌套推移、键盘焦点哨兵、关闭销毁及原焦点恢复 | S:内部CSS动态注入属于只读第三方实现，抽屉不纳入普通居中弹窗接管
+625.d4fb9118.async.js[LU8T]: F:提供原站rc与Ant表格、分页筛选排序选择及树组件的共享运行依赖 | R:code:web/479.0c71379d.async.js | A:维护树勾选传导、固定列测量、表头滚动同步、虚拟行与展开行，筛选重置页码 | S:隐藏展开行可保留挂载；受控状态和禁用选择规则不可随意重写；内部动态样式保留为只读基线
+699.0c74cbca.async.js[DB8T]: F:提供共享客户创建补全抽屉、客户检索选择及沟通纪要API | R:code:shared/scripts/local-preview.js,code:channels/customer/page.js | A:创建必填姓名性别出生年地区资产，补全校验联系电话等可选信息，姓名电话加密后提交 | S:创建与补全字段契约不同；本地请求必须被Mock拦截，不能因频道拆分删除共用抽屉和API模块
+751.5d6e6563.async.js[LU7T]: F:提供原站气泡确认与rc和Ant页签的共享交互运行依赖 | R:- | A:确认支持异步按钮，页签支持受控当前项、溢出菜单、键盘增删、触摸滚动和隐藏销毁面板 | S:原节点事件与受控状态须保留；计算指示条和主题CSS属于只读第三方内部实现
+794.fca96c4f.async.js[LU6T]: F:提供原站Ant单选组、单选按钮与图标模块依赖 | R:- | A:组上下文维护名称和值，支持受控默认值、禁用、尺寸方向及实体或描边按钮样式 | S:仅值改变通知组回调；第三方动态主题样式不作为自有业务写法
+896.1990e475.async.js[LU8T]: F:提供ProForm与ProField、表单校验存储及日期颜色树选择等基础字段组件 | R:code:web/518.ff602586.async.js | A:维护字段转换格式化、依赖校验、动态列表、请求缓存、受控选择及嵌套表单，附日期颜色和对象工具 | S:内部固定样式与CSS注入是只读第三方依赖；校验须防过期结果，异步请求取消不保证底层中止；本地业务结构迁移不代表可删除此库
+978.0b8a0670.async.js[DB8T]: F:承载原站方案创建、身份信托和融资问卷、结果预览下载及申请文件上传流程 | R:code:web/978.e5ccf054.chunk.css,code:web/699.0c74cbca.async.js,code:shared/scripts/local-preview.js | A:身份29题五步、信托13题三步、融资六字段，按方案类型转换问卷和加密姓名，SSE生成后开详情并释放下载URL | S:五类申请文件每类一份PDF或图片且限2MB；后台运行只隐藏等待层；问卷提示不等于实时合规结论；只读基线含HTML与样式，API在本地须由Mock拦截
+978.e5ccf054.chunk.css[CU6T]: F:保存客户抽屉、身份信托融资问卷、方案创建详情及文件上传的原站样式 | R:code:web/978.0b8a0670.async.js,code:web/699.0c74cbca.async.js | A:固定头尾与独立正文滚动，包含问卷卡片选中态、Markdown正文和上传拖入反馈 | S:只读编译基线仍含内嵌图片和历史字重滚动参数，不是自有业务样式维护源
+index.html[EU5T]: F:保存原站根容器与Umi样式脚本及验证码分析SDK的加载入口 | R:code:web/js/ct4.js,code:web/js/sensorsdata.min.js | A:使用web绝对路径加载原编译资产 | S:这是只读历史入口，不是正式根登录或中文目录；未接本地Mock不可当本地预览入口
+p__agents__layout__index.630f3210.chunk.css[CU5T]: F:保存原站Agent工作区页头、多标签、首页卡片和移动端提示样式 | R:code:web/p__agents__layout__index.cbd830b1.async.js | A:页头50像素，卡片三列，iframe占剩余视口 | S:只读编译基线，不能作为自有频道样式维护源
+p__agents__layout__index.cbd830b1.async.js[AA7T]: F:编排原站Agent目录、权限列表、多标签会话和内嵌或外部Agent页面 | R:code:web/150.9a6808ff.async.js,code:web/p__agents__layout__index.630f3210.chunk.css | A:最多五个标签，sessionStorage保存，查询参数恢复当前项，移动端显示不可用 | S:外部iframe按环境拼接账号且不受XHR Mock全面保护；隐藏标签仍挂载；后台标签与内置禁用标记须共同核对，不凭静态目录认定功能可用
+p__agents__riskAccess__index.2dbc4a51.chunk.css[CU5T]: F:保存风控审查独立路由的移动提示及材料报告聊天工作区样式 | R:code:web/p__agents__riskAccess__index.8e2d8091.async.js,code:web/150.c013593b.chunk.css | A:除移动提示前缀外与共享风控样式字节相同 | S:只读编译基线
+p__agents__riskAccess__index.8e2d8091.async.js[DA7T]: F:实现原站独立风控路由的权限设备门禁、材料提取、报告与流式优化会话 | R:code:web/p__agents__riskAccess__index.2dbc4a51.chunk.css,code:shared/scripts/local-preview.js | A:二十份材料每份15MB，分阶段SSE更新，支持取消重置、历史恢复、编辑保存与DOCX下载 | S:仅静态模型标签和示例报告，不证明真实模型或审查有效性；本地接口须Mock；只读基线保留固定样式，正则清理不等于完整HTML安全净化
+p__clues__index.29eaa724.chunk.css[CU5T]: F:保存原线索统计筛选列表及创建分配终结详情面板样式 | R:code:web/p__clues__index.d44f30db.async.js,code:channels/clues/page.css | A:定义角色卡片、状态标签、独立滚动和表单尺寸 | S:只读编译基线含旧滚动条参数，当前维护归频道CSS
+p__clues__index.d44f30db.async.js[DB8T]: F:保存原站线索角色视图、筛选导出、创建分配终结及详情跟进业务 | R:code:channels/clues/page.js,code:channels/clues/mock-data.js | A:API成功码20000，变更带版本；终结需说明和最多四张5MB的JPG或PNG；重复详情服从查看权限 | S:原站收起筛选会清空条件；导出携带当前分页；包含第三方水印与固定样式，保留只读而由频道自有源维护改版
+p__customer__index.cf63b31b.async.js[DB8T]: F:保存原站客户画像评分、保单关联、沟通纪要与方案详情业务 | R:code:channels/customer/page.js,code:web/699.0c74cbca.async.js | A:姓名电话保留加解密，客户及沟通缓存消费后清除；纪要主题50字正文5000字，普通历史方案排除三度分析 | S:原保单卡接收解绑回调但未呈现按钮；导入为后端识别接口；只读基线包含内嵌结构样式，当前改版维护频道源
+p__customer__index.fa91e9e7.chunk.css[CU5T]: F:保存原站客户画像评分、资产保单及沟通纪要表单的样式 | R:code:web/p__customer__index.cf63b31b.async.js,code:channels/customer/page.css | A:定义侧栏与内容独立滚动、雷达柱形、七字段保单卡和编辑表单 | S:只读基线保留内嵌图片及旧滚动参数，当前维护归频道CSS
+p__dashboard__activity__index.1198cb77.async.js[DB8T]: F:保存活动筛选分页、详情海报和多种报名及记录查询业务 | R:code:channels/activity/page.js,code:web/p__dashboard__product__index.5ead150d.async.js | A:报名按活动码及地区切表单，姓名电话加密，海报下载释放对象URL | S:排序仅作用当前页；权限和报名开放状态共同门控；包含固定结构样式的只读基线，当前本地报名由频道适配
+p__dashboard__activity__index.2dae1e6c.chunk.css[CU5T]: F:保存活动轮播统计、分类列表、详情抽屉和报名表单的原站样式 | R:code:web/p__dashboard__activity__index.1198cb77.async.js | A:定义左分类右表格、独立正文滚动和固定详情底栏 | S:只读编译基线保留嵌入图片与历史滚动参数
+p__dashboard__product__index.48332667.chunk.css[CU5L]: F:保存产品分类地区筛选、双列卡片、详情附件和专家弹窗样式 | R:code:web/p__dashboard__product__index.5ead150d.async.js,code:channels/product/page.css | A:详情头部固定正文滚动，附件分区，含不同视口筛选宽度和申请按钮视觉 | S:只读基线，当前改版和图标维护在频道目录
+p__dashboard__product__index.5ead150d.async.js[DB8T]: F:保存产品权限筛选、详情附件专家入口及与活动共享的API枚举模块 | R:code:channels/product/page.js,code:web/p__dashboard__activity__index.1198cb77.async.js | A:过滤海外方案及受限制香港保险，类型地区变化清下级筛选；附件下载释放URL | S:只读原实现会提取详情style并重新注入，自有频道已另行分离；正则净化不等于完整安全净化；共享API不能随首页拆分删除
+p__induction__index.04bbc58b.async.js[DB7T]: F:保存入职顺序学习、进度保存、资料下载和完成跳转业务 | R:code:web/106.8af24840.async.js,code:channels/induction/induction-update.js | A:未来章节锁定，前进先保存进度，完成后可进入客户频道，下载解析文件名并释放URL | S:只读基线，章节坐标适配必须先于原模块求值；完成存储与显示游标有不同用途
+p__induction__index.ec144457.chunk.css[CU5T]: F:保存入职章节页签、小节进度、底部步骤操作与完成弹窗的原站样式 | R:code:web/p__induction__index.04bbc58b.async.js | A:内容独立滚动，章节下划线和完成插图保留原视觉 | S:只读历史动画及嵌入图片不作为当前维护目标
+p__login__index.365b806e.async.js[DI8T]: F:保存原站账号密码加密、验证码登录及成功和无权限跳转流程 | R:code:channels/login/page.js,code:shared/scripts/local-preview.js | A:登录成功保存用户和初始状态并消费重定向，权限错误跳无权限页，失败刷新验证码 | S:验证码SDK回调须清理；原实现包含固定内联样式，本地认证必须由Mock接管，不连接真实登录接口
+p__login__index.6320a9c4.chunk.css[CU5T]: F:保存原站登录背景、品牌图、右侧表单和验证码状态样式 | R:code:web/p__login__index.365b806e.async.js | A:最小高度800，面板464宽，输入下划线与错误态保留 | S:只读基线，正式根登录样式来自频道CSS
+p__news__index.f64a0a2e.async.js[DB6T]: F:保存候选原站资讯列表分类搜索、滚动加载和管理下架业务分包 | R:code:channels/news-center/news-center.js | A:按普通或管理权限调用不同列表，观察器加载更多，原文分享详情分别处理 | S:用户排除提交的参考文件，不是当前虚拟资讯实现；旧分包模块依赖不能直接替换现有运行时
+p__no-permission__index.62711291.async.js[EU5T]: F:呈现原站无权限页的共享页头及联系科技部提示 | R:code:web/p__no-permission__index.ef424f8a.chunk.css | A:由Umi分包挂载无权限图标和说明 | S:只读运行依赖，不是独立静态站点
+p__no-permission__index.ef424f8a.chunk.css[CU4T]: F:定义无权限提示页的满高居中布局与红色图标 | R:code:web/p__no-permission__index.62711291.async.js | A:扣除56像素顶栏，图标64文字18 | S:只读原站样式
+p__policy__index.109db1c0.async.js[DB7T]: F:保存保单列表检索、客户绑定解绑及客户创建补全流程 | R:code:channels/policy/page.js,code:web/699.0c74cbca.async.js | A:持有人客户先解密再搜索，成功变更刷新列表，包含共享七字段保单卡 | S:卡片接收绑定回调但不渲染操作按钮，不能据回调存在宣称可操作；基线含固定样式
+p__policy__index.599aa5be.chunk.css[CU5T]: F:保存保单横幅搜索、状态卡片、客户选择与资料抽屉样式 | R:code:web/p__policy__index.109db1c0.async.js | A:列表与抽屉正文独立滚动，固定底栏和双列字段布局 | S:只读基线保留历史尺寸和内嵌图片
+p__proposal__index.0e756085.async.js[DB7T]: F:保存原方案分类统计、客户检索、创建删除详情及气泡确认依赖 | R:code:channels/proposal-center/page.js,code:channels/proposal-center/proposal-center.js | A:列表和统计排除三度分析，删除成功同时刷新两者，客户创建复用共享抽屉 | S:新版由频道适配挂载；内含第三方CSS生成与固定骨架样式，只读保留而不作为新页面写法
+p__proposal__index.fa9c3807.chunk.css[CU5T]: F:保存原方案分类侧栏、搜索横幅、双列方案卡与删除按钮样式 | R:code:web/p__proposal__index.0e756085.async.js | A:左右内容独立滚动，卡片标签和悬停删除保留原视觉 | S:只读基线不是当前新版方案维护源
+p__train__claude__index.ecb6f2c6.async.js[EU4T]: F:在原培训路由挂载指向Claude培训HTML的iframe | R:- | A:挂载后设置绝对地址/web/html/train/claude/index.html并占满视口 | S:分包存在不证明目标资源可用或接入真实Claude服务
+p__workspace__index.9d8a5f47.chunk.css[CU5T]: F:保存工作台横幅、统计漏斗、FYP柱图及关注续保列表样式 | R:code:web/p__workspace__index.b984c5d7.async.js | A:定义双栏面板、图表和固定列表滚动区域 | S:只读基线保留内嵌图片与旧滚动参数，当前改版由工作台目录维护
+p__workspace__index.b984c5d7.async.js[DB7T]: F:保存工作台概览关注续保数据、统计漏斗和客户方案快捷业务 | R:code:channels/workspace/page.js,code:channels/workspace/workspace-update.js | A:快捷操作按权限，客户跳转先写缓存，省略提示使用ResizeObserver并清理 | S:原FYP全零样例被更新层隐藏，成交天数缺失数字由更新层修正；含固定样式的只读基线
+t__plugin-layout__Layout.27a4847f.async.js[AU8T]: F:连接Umi路由与ProLayout框架并提供权限缺页、用户区和退出入口 | R:code:web/218.ec6d0281.async.js,code:web/t__plugin-layout__Layout.5012e1ab.chunk.css | A:展开包装路由、恢复originPath、匹配当前子路由，布局插件覆盖默认配置，菜单使用路由Link | S:退出由运行配置回调负责；不同Ant版本使用不同菜单接口；只读编译依赖仍含固定加载样式，不可因频道拆分删除
+t__plugin-layout__Layout.5012e1ab.chunk.css[CU5T]: F:定义Umi布局用户头像姓名、退出菜单和窄屏下拉容器样式 | R:code:web/t__plugin-layout__Layout.27a4847f.async.js | A:用户区保持整高右对齐，480像素内菜单全宽无圆角 | S:只读框架样式，业务改版通过自有共享样式维护
+umi.c6286171.css[CU8T]: F:保存全局重置、原站框架导航顶栏和免责声明的基础样式 | R:code:shared/styles/channel-foundation.css,code:shared/styles/global-font.css | A:包含Normalize8.0.1、隐藏属性规则、菜单当前态与原站背景资产链接 | S:原规则会禁用展开父菜单交互，现行共享层负责恢复；历史最小宽1440及字号字重不能当当前规范；保留只读且注意加载覆盖顺序
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/web/homepage/===
+flag-aud.svg[CU3T]: F:保留澳元对应的澳大利亚圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-aud.svg | A:20像素蓝底画布，米字与白星，频道副本字节一致 | S:-
+flag-cad.svg[CU3T]: F:保留加元对应的加拿大圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-cad.svg | A:20像素画布，红边白底红枫叶，频道副本字节一致 | S:-
+flag-eur.svg[CU3T]: F:保留欧元对应的欧盟圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-eur.svg | A:20像素蓝底金星环，频道副本字节一致 | S:-
+flag-gbp.svg[CU3T]: F:保留英镑对应的英国圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-gbp.svg | A:20像素红白蓝米字画布，频道副本字节一致 | S:-
+flag-hkd.svg[CU3T]: F:保留港币对应的香港圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-hkd.svg | A:20像素红底白色洋紫荆，频道副本字节一致 | S:-
+flag-jpy.svg[CU3T]: F:保留日元对应的日本圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-jpy.svg | A:20像素浅底中心红圆，频道副本字节一致 | S:-
+flag-myr.svg[CU3T]: F:保留林吉特对应的马来西亚圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-myr.svg | A:20像素红白条纹蓝底黄色星月，频道副本字节一致 | S:-
+flag-nzd.svg[CU3T]: F:保留新西兰元对应的圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-nzd.svg | A:20像素蓝底米字红星，频道副本字节一致 | S:-
+flag-sgd.svg[CU3T]: F:保留新加坡元对应的圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-sgd.svg | A:20像素上红下白与白色星月，频道副本字节一致 | S:-
+flag-try.svg[CU3T]: F:保留土耳其里拉对应的圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-try.svg | A:20像素红底白色星月，频道副本字节一致 | S:-
+flag-usd.svg[CU3T]: F:保留美元对应的美国圆形旗帜原图 | R:code:channels/workspace/assets/icons/flag-usd.svg | A:20像素蓝底白星红白条纹，频道副本字节一致 | S:-
+news-afternoon-inactive.svg[CU3T]: F:保留原工作台午报未选中态的黑色咖啡杯图标 | R:- | A:40像素透明画布，保留杯身把手与底线矢量 | S:-
+news-afternoon.svg[CU3T]: F:保留工作台午报选中态的青色圆底咖啡杯图标 | R:code:channels/workspace/assets/icons/news-afternoon.svg | A:40像素画布，频道副本字节一致 | S:-
+news-featured.svg[CU3T]: F:保留工作台资讯精选的金底棕字标签原图 | R:code:channels/workspace/assets/icons/news-featured.svg | A:38乘20画布及四像素圆角，频道副本字节一致 | S:-
+news-morning-inactive.svg[CU3T]: F:保留原工作台早报未选中态的日出轮廓图标 | R:- | A:40像素透明画布，深色地平线及黑色半日和光线 | S:-
+news-morning.svg[CU3T]: F:保留工作台早报选中态的青色圆底日出图标 | R:code:channels/workspace/assets/icons/news-morning.svg | A:40像素画布，频道副本字节一致 | S:-
+news-night-inactive.svg[CU3T]: F:保留原工作台晚报未选中态的黑色月亮星星图标 | R:- | A:40像素透明画布，月亮1.56描边与填色星形 | S:-
+news-night.svg[CU3T]: F:保留工作台晚报选中态的黑底金色月亮星星图标 | R:code:channels/workspace/assets/icons/news-night.svg | A:40像素画布，频道副本字节一致 | S:-
+news-noon-inactive.svg[CU3T]: F:保留原工作台正午资讯未选中态的黑色太阳轮廓图标 | R:- | A:40像素透明画布，保留圆心与八向光线 | S:-
+news-noon.svg[CU3T]: F:保留工作台正午资讯选中态的青色圆底太阳图标 | R:code:channels/workspace/assets/icons/news-noon.svg | A:40像素画布，频道副本字节一致 | S:-
+news-quote.svg[CU3T]: F:保留工作台资讯背景的半透明青色渐变引号图形 | R:code:channels/workspace/assets/icons/news-quote.svg | A:96像素画布，频道副本字节一致 | S:-
+tag-news.svg[CU3T]: F:保留工作台资讯分类的深灰穿孔标签图标 | R:code:channels/workspace/assets/icons/tag-news.svg | A:14像素画布，频道副本字节一致 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/web/js/===
+ct4.js[IN7T]: F:加载原站验证码配置、外部脚本和验证引擎并排队初始化实例 | R:code:shared/scripts/local-preview.js | A:暴露initAlicom4，JSONP域名回退、加载超时及错误回调，按设备选择引擎 | S:只读第三方加载器会动态请求外部脚本；本地验证码由Mock提供，不应为验证页面而启动真实服务
+sensorsdata.min.js[LO7T]: F:提供原站用户标识、事件画像、页面点击停留与可视化分析SDK | R:code:web/index.html | A:主版本自报1.27.5，支持浏览器与App桥、Cookie和批量存储及图像XHR和Beacon发送 | S:只读SDK含DOM样式与动态脚本；XHR和fetch拦截不涵盖全部发送方式；Cookie混淆不等于安全加密；审计不应初始化真实分析上报
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/web/logos/===
+aia.svg[CU3T]: F:保留红色AIA山形品牌矢量原图 | R:code:channels/product/assets/icons/aia.svg | A:65像素画布，频道副本字节一致 | S:-
+allianz.svg[CU3T]: F:保留深蓝Allianz字标与圆形品牌原图 | R:code:channels/product/assets/icons/allianz.svg | A:保留宽高比与品牌色，频道副本字节一致 | S:-
+axa.svg[CU3T]: F:保留蓝底白字红斜线的AXA及安盛品牌原图 | R:code:channels/product/assets/icons/axa.svg | A:保留内部颜色与路径，频道副本字节一致 | S:-
+fwd.svg[CU3T]: F:保留深绿FWD字标与橙色播放形品牌原图 | R:code:channels/product/assets/icons/fwd.svg | A:96乘33画布，频道副本字节一致 | S:-
+msh.svg[CU3T]: F:保留MSH与Diot-Siaci字标及渐变弧形品牌原图 | R:code:channels/product/assets/icons/msh.svg | A:保留蓝色字形与渐变，频道副本字节一致 | S:-
+sunlife.svg[CU3T]: F:保留深绿Sun Life和永明金融字标及金色太阳品牌原图 | R:code:channels/product/assets/icons/sunlife.svg | A:162.4乘48.3画布，频道副本字节一致 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/web/static/===
+USAGE:[EU3T]: F:保存被误命名为USAGE的原站HTML入口响应 | R:code:web/index.html | A:正文为root容器及web绝对路径Umi、验证码和分析脚本，与原入口相同 | S:不是命令使用说明，也不是正式本地预览入口
+alert.5d447bdd.svg[CU3T]: F:保留原站橙色盾牌与镂空闪电提醒图标 | R:- | A:16像素画布，保留原路径与填色 | S:-
+download1.c0be9d90.svg[CU3T]: F:保留原站绿色箱体与向下箭头下载图标 | R:- | A:14像素画布和深绿填色 | S:-
+download2.0d6a1868.svg[CU3T]: F:保留原站半透明绿色向下箭头与底线下载图标 | R:- | A:14像素画布，透明度0.493 | S:-
+download3.5da96bf2.svg[CU3T]: F:保留原站白色向下箭头与底线下载图标 | R:- | A:14像素画布，保留原矢量路径 | S:-
+icon-pdf-file.svg[CU3T]: F:保留原产品附件的粉色折角文件与红色PDF图标 | R:code:channels/product/assets/icons/icon-pdf-file.svg | A:32像素画布，保留渐变与路径 | S:-
+icon-upload-file.svg[CU3T]: F:保留原产品附件上传的黑色回形针图标 | R:code:channels/product/assets/icons/icon-upload-file.svg | A:16像素画布和九成填色透明度 | S:-
+icon01.db13aa1c.svg[CU3T]: F:保留原站绿色圆框勾形图标 | R:- | A:18像素画布，保留环形和勾路径 | S:-
+icon02.43656001.svg[CU3T]: F:保留原站绿色双回环线条图形 | R:- | A:36像素画布，圆端圆角描边1.692 | S:-
+icon03.299e0465.svg[CU3T]: F:保留原站倒三角外框与内弧线图形 | R:- | A:36像素画布，绿色圆端描边1.675 | S:-
+icon04.41644b7b.svg[CU3T]: F:保留原站三叶汇聚轮廓图形 | R:- | A:36像素画布，绿色圆端圆角描边1.692 | S:-
+iconClose.52084494.svg[CU3T]: F:保留原站侧栏收起的绿色左箭头与竖线图标 | R:- | A:16像素画布，保留原填色路径 | S:-
+iconCreate.d102150b.svg[CU3T]: F:保留原站新建会话的深灰对话框与加号图标 | R:- | A:24像素透明画布 | S:-
+iconExisted.dc80dd88.svg[CU3T]: F:保留原站绿色圆底白色勾形状态图标 | R:- | A:16像素画布，白勾圆端描边0.96 | S:-
+iconSkill.544dec61.svg[CU3T]: F:保留原站技能标记的深灰圆框终端提示符图形 | R:- | A:14像素画布，包含箭头和下划线 | S:-
+iconWarn.5d447bdd.svg[CU3T]: F:保留原站橙色盾牌与闪电警示图标 | R:- | A:16像素画布，与alert图形相同 | S:-
+totalIcon.60072284.svg[CU3T]: F:保留原站数量标签旁的深灰收纳盒轮廓图标 | R:- | A:18像素画布，填色透明度0.65 | S:-
+
+===/Users/hhp/Documents/GAIP项目集/样式优化html/components/table/templates/===
+markup-global-table-tag.html[EU5T]: F:维护持牌及六种规划方向共用的七个单色SVG结构模板 | R:code:components/table/global-table-tag.js,code:components/table/ICONS-LICENSE.txt | A:Lucide原始路径使用24画布、2单位描边与currentColor，装饰图标隐藏辅助语义；构建为同步运行缓存 | S:不使用外部sprite或运行时fetch；移除图形间空白避免污染标签textContent

@@ -81,4 +81,4 @@ async function run(entry) {
     console.log('PASS learning selection/hover redraw, reverse navigation and idle observer:', entry);
   } finally { w.close(); }
 }
-(async () => { await run('登录.html'); await run('财富值中心.html'); })().catch(error => { console.error(error); process.exitCode = 1; });
+(async () => { await run('channels/login/index.html'); await run('channels/wealth-center/index.html'); })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,0 +1,5 @@
+.ant-layout-sider .ant-pro-base-menu-inline-item-icon{
+  width: var(--gaip-nav-icon-size);
+  height: var(--gaip-nav-icon-size);
+  opacity: 1 !important;
+}

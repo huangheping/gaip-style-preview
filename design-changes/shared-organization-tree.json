@@ -17,7 +17,7 @@
       "icon.folder": { "before": null, "initialLocal": null, "target": "配置中心assets/folder.png与folder-open.svg，18×18px", "basis": "source", "reason": "new", "status": "active" },
       "search": { "before": null, "initialLocal": null, "target": "36px高、4px圆角、1px #d9dddc边框、8px外边距；搜索图标16px；清除复用modal-clear.svg 16px及24px热区", "basis": "source", "reason": "new", "status": "active" }
     },
-    "sources": ["shared/styles/organization-tree.css", "shared/styles/global-filter-bar.css", "shared/scripts/organization-tree.js", "shared/scripts/global-filter-bar.js"],
+    "sources": ["components/organization-tree/organization-tree.css", "components/filter-bar/global-filter-bar.css", "components/organization-tree/organization-tree.js", "components/filter-bar/global-filter-bar.js"],
     "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["隔离浏览器核验布局及交互；本地图片在隔离文档无访问源，仅核对资源路径。完整file入口受浏览器策略限制，线上视觉基准未采集"] },
     "status": "active",
     "updatedAt": "2026-09-10"

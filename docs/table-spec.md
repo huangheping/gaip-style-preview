@@ -1,6 +1,6 @@
 # GAIP 全局表格
 
-首版：2026-09-09。预览入口：`全局组件/index.html?component=global-table`。首个业务消费者是课程管理；其他表格按页面逐步接入。
+首版：2026-09-09。预览入口：`components/index.html?component=global-table`。首个业务消费者是课程管理；其他表格按页面逐步接入。
 
 ## 当前实现与 Ant 的关系
 
@@ -14,7 +14,7 @@
 
 ## 使用
 
-按顺序加载 `shared/styles/global-table.css` 和 `shared/scripts/global-table.js`。课程管理资源通过 `shared/config/channels.js` 登记；组件目录加载同一份文件。
+按顺序加载 `components/table/global-table.css` 和 `components/table/global-table.js`。课程管理资源通过 `shared/config/channels.js` 登记；组件目录加载同一份文件。
 
 ```js
 const table = window.__GAIP_TABLE__.mount(root, {
@@ -46,6 +46,7 @@ table.destroy(); // 离开视图时释放观察器、事件和动画帧
 
 ## 验证
 
+- 03共享操作日志与14组织架构日志弹窗已接入完整工厂（页面内联日志保持原样），与37课程/46学情日志共用表头、滚动层和分页。信息外壳不覆盖表格及滚动区的 `flex-grow:0`；高度受正文剩余空间约束、少量记录自然收拢。`scripts/test-information-log-browser.cjs` 在隔离文档加载真实登记资源检查四例的表头边界、水平同步、背景通栏、空表收缩和关闭生命周期，不替代完整页面验收。
 - `node scripts/test-learning-course-manage.cjs`：字段/业务动作、筛选和分页、取消确认、视图切换和销毁。
 - `node scripts/test-learning-v11.cjs`：领域规则、权限和学习流程回归。
 - `node scripts/test-global-table-browser.cjs`：依赖 playwright-core 与 Chromium，可通过 PLAYWRIGHT_MODULE、CHROME_PATH 指定本地已有依赖。真实 file 组件目录，课程控制器使用隔离页面壳；检查少量/长列表/宽表、表头与固定列、页码/条数/单页简化、空态/加载/错误重试、缩放及筛选收拢。
@@ -88,15 +89,16 @@ Chromium148验证组件目录全部场景、固定列与表头对齐、分页及
 
 ## 表格内标签
 
-`__GAIP_TABLE__.tag(text, { tone })` 返回静态 span，可直接用于列的 `render`；`tone` 支持 `neutral`（默认）、`success`、`highlight`。非法 tone 回退 neutral，文本用 textContent 写入，不解析 HTML。标签不是按钮，不带关闭或选中交互。
+`__GAIP_TABLE__.tag(text, { tone })` 委托共享标签工厂；已收录文案按统一映射取色。六色、分类、兼容及旧表格接入范围见[全局表格标签规范](table-tag-spec.md)。标签保留紧凑字号，作为表格正文统一字号的例外。
 
-```js
-{ key: 'status', label: '状态', render: row =>
-  __GAIP_TABLE__.tag(row.statusText, { tone: row.active ? 'success' : 'neutral' }) }
-```
+已于 2026-09-28 按用户要求应用六色方案，并补齐当前学情与上下架操作文案；[v1 方案](table-tag-color-mapping-v1.md) 保留原存档状态供回溯，不代表当前实现尚未应用。
 
-标签 CSS 仅在 `.gaip-table` 内生效；课程管理状态与精选标签、组件目录示例共用此入口。课程卡片/详情原有标签及组织架构保持原实现。尺寸和文字排版参考实际加载的 `features/config-center/config-center-content.css` 中的成员标签及其最终覆盖规则（非 organization-source.css 旧快照）；标签使用紧凑字号，作为正文统一字号的例外，颜色取当前课程管理标签，不采用组织架构配色。参数统一记于 `design-changes/global-table.json` 的 tag 记录。
+## 更多操作菜单（课程管理与组件预览）
 
-## 待定配色方案
+`__GAIP_TABLE__.createActionMenu(root, panel, options)` 显式挂载纵向点击菜单，返回 `open(button, last)`、`close(restoreFocus)`、`isOpen(button)` 和 `destroy()`。调用者在HTML源维护面板和按钮，提供 `role="menu"` / `role="menuitem"`，触发按钮关联 `aria-controls` 和 `aria-haspopup="menu"`。`triggerSelector` 可委托行按钮；`onOpen` 填充本行内容并可返回false拒绝打开；`onSelect` 交给原有业务处理。预览通过 `visibilityRoot` 监听所属组件的隐藏。
 
-用户要求保留的完整文案与颜色映射见[表格标签五色映射方案v1](table-tag-color-mapping-v1.md)。该方案尚未应用；后续调整另存新版本，保留v1，不将存档视为实施授权。
+点击“更多＋下箭头”打开，再次点击、外部点击、Esc、外部滚动、翻页或行重绘关闭。鼠标移开保持展开；方向键、Home/End跳过禁用项，Esc返回触发器；选择动作先关闭并恢复触发器，再打开原业务确认，以便确认取消后正确恢复焦点。支持的浏览器使用原生popover顶层，其余使用body浮层；离开页面须独立调用菜单 `destroy()` 清理portal、观察器与事件。固定样式归共享表格CSS，定位按按钮和视口测量。
+
+课程管理：草稿保留编辑、预览；已上架和已下架保留编辑。菜单按当前状态提供上架或下架及删除；非草稿删除禁用并显示原因，保留原确认弹窗、权限和数据校验。直播与其他业务表格不自动采用此菜单。
+
+组件目录仍只演示编辑、学情及菜单内预览、复制、操作日志，点击仅反馈，不修改业务数据。目录与课程管理使用同一菜单控制器和按钮皮肤。当前DOM回归覆盖菜单、筛选分页、确认取消和生命周期，原生顶层、视觉及真实点击命中未验证。

@@ -1,0 +1,8 @@
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-input-clear-icon, .ant-select-clear, .ant-picker-clear, .gaipMultiSelect__clear, [data-bulk-search-clear], [data-adjust-node-search-clear], .gaip-mc-clear){
+  box-sizing: border-box !important;
+  width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; max-width: 24px !important; max-height: 24px !important; padding: 0 !important;
+  border: 0 !important; border-radius: 4px !important; background: #fff !important;
+  color: var(--mc-placeholder) !important; font-size: 0 !important; line-height: 0 !important;
+  cursor: pointer; flex-shrink: 0;
+  display: inline-flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important; overflow: visible !important;
+}

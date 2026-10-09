@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..');
 (async()=>{const dom=new JSDOM('<div id="root"><header data-gaip-region="app-header"></header><aside class="ant-layout-sider"><ul class="ant-menu-root"></ul></aside><main class="ant-pro-layout-content"></main></div>',{url:'https://local.example/index.html#/workspace?gaip-channel=config&gaip-view=organization',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window,d=w.document;
 try{
  w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};w.HTMLDialogElement.prototype.close=function(){this.open=false;this.dispatchEvent(new w.Event('close'));};
- for(const f of ['shared/config/channels.js','shared/scripts/global-tabs.js','shared/scripts/global-modal.js','shared/scripts/organization-store.js','shared/scripts/organization-tree.js','features/config-center/source-markup.js','features/config-center/config-center.js']){Object.defineProperty(d,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});w.eval(fs.readFileSync(path.join(root,f),'utf8'));}
+ for(const f of ['shared/config/channels.js','components/tabs/global-tabs.js','components/modal/global-modal.js','shared/scripts/organization-store.js','components/organization-tree/organization-tree.js','channels/config-center/source-markup.js','channels/config-center/config-center.js']){Object.defineProperty(d,'currentScript',{configurable:true,value:{src:'https://local.example/'+f}});w.eval(fs.readFileSync(path.join(root,f),'utf8'));}
  await new Promise(r=>setTimeout(r,60));
  const O=w.__GAIP_ORGANIZATION__,one=s=>{const n=d.querySelector(s);assert.ok(n,s);return n;},click=s=>one(s).click();
  assert.equal(d.querySelectorAll('[data-config-tree] .gaip-org-node').length,O.sets[0].length);

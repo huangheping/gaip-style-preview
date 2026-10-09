@@ -4,14 +4,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'features/learning-center/learning-data.js'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'channels/learning-center/learning-data.js'), 'utf8');
 const key = 'gaip-learning-v11';
 const batch = 'course-management-20260909';
 function load(saved) {
   const dom = new JSDOM('', { url: 'https://local.example/', runScripts: 'outside-only' });
   const w = dom.window;
   if (saved) w.localStorage.setItem(key, JSON.stringify(saved));
-  Object.defineProperty(w.document, 'currentScript', { value: { src: 'https://local.example/features/learning-center/learning-data.js' } });
+  Object.defineProperty(w.document, 'currentScript', { value: { src: 'https://local.example/channels/learning-center/learning-data.js' } });
   w.eval(source);
   const state = JSON.parse(JSON.stringify(w.__GAIP_LEARNING_DATA__.state()));
   const stored = JSON.parse(w.localStorage.getItem(key));

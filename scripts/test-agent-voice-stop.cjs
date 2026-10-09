@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { JSDOM } = require('jsdom');
-const source = fs.readFileSync('AI Agent/AI Agent本地Mock.js','utf8');
+const source = fs.readFileSync('components/ai-agent/AI Agent本地Mock.js','utf8');
 const tick = () => new Promise(r => setTimeout(r,70));
 (async()=>{
  const dom = new JSDOM('<div class="ant-modal-root"><div class="ant-modal-mask"></div><div class="ant-modal-wrap"><section class="agentModal___Nxp06"><div class="modalRenderWrapper___qz3XP"><div id="agentModalContentArea"><div class="chatPanel___qIDO_" data-gaip-empty-session="true"><ul class="msgBox___NYtlO"><li>Existing message</li></ul></div></div><div class="inputRow___Sqmy8"><textarea class="textarea___GMXtD"></textarea><button class="sendBtn___m_z0G">Send</button></div><img class="closeIcon___X96Lj"></div></section></div></div>',{url:'http://localhost/channels/workspace/index.html#/workspace',runScripts:'outside-only',pretendToBeVisual:true});

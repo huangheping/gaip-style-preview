@@ -4,3 +4,13 @@
 # Development-only dependencies and npm logs; not website assets.
 /node_modules/
 /npm-debug.log*
+
+# Project-local generated evidence, caches, and verified tool binaries.
+/outputs/
+/tools/aoci/aoci
+/.obsidian/workspace*.json
+/.obsidian/cache/
+
+# AOCI agent host integration (machine-bound; do not commit)
+.codex/config.toml
+.codex/config.toml.backup.*

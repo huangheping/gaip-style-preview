@@ -23,7 +23,7 @@
 
 - 改前：1 份根 `AGENTS.md`（8,025 字节），没有仓库级 `SKILL.md`、`.agents/skills`、`.codex` 配置或 `.github` 工作流；没有 package.json/测试依赖锁文件。
 - 改后：根规则 4,987 字节，缩减约 38%；新增频道维护、弹窗维护 2 个仓库级 Skill。细节按需读 `docs/maintenance-workflow.md`，导航几何继续以原模块笔记为准。
-- `AI Agent/` 是网页助手及本地 Mock，不是 Codex 配置。`docs/agent-notes.md` 只有一句说明，也不是自动加载的 Skill。
+- `components/ai-agent/` 是网页助手及本地 Mock，不是 Codex 配置。`docs/agent-notes.md` 只有一句说明，也不是自动加载的 Skill。
 - 当前会话工作目录为 Git 根的父目录 `GAIP项目集`；Git 根实际是其下的 `样式优化html`。官方的向上/沿路径发现规则不等于递归发现所有子仓库，因此不能保证从父目录启动时自动加载子仓库 Skill。建议将保存的 Codex 项目指向实际 Git 根。此次未更改应用项目设置。
 - 个人 `~/.codex/AGENTS.md` 当前为空。本次阅读了相关个人 `frontend-design`、`obsidian-markdown`、`obsidian-cli` 以检查适配风险；未审计所有个人/插件技能全文，也未修改其源文件或全局启用状态。仓库外技能不随仓库提交。
 

@@ -8,13 +8,23 @@ const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 
 function checkTypographyAndPreviewPaths() {
   const font = read('shared/styles/global-font.css');
-  const modal = read('shared/styles/global-modal.css');
+  const modal = read('components/modal/global-modal.css');
   // Latest contract: native width and behavior, only a shared modal palette.
   assert.doesNotMatch(font, /::-webkit-scrollbar|--gaip-scrollbar-size|--gaip-scrollbar-thumb-hover/);
   assert.match(font, /scrollbar-width:\s*auto\s*!important/);
   assert.match(font, /scrollbar-color:\s*var\(--gaip-scrollbar-thumb\) var\(--gaip-scrollbar-track\)\s*!important/);
-  assert.doesNotMatch(modal, /::-webkit-scrollbar|--gaip-modal-scrollbar-size|--gaip-modal-scrollbar-hover/);
-  assert.doesNotMatch(read('features/config-center/config-center-content.css'), /\.formModal____MTrk[^\n]*::-webkit-scrollbar/);
+  assert.doesNotMatch(modal, /--gaip-modal-scrollbar-size|--gaip-modal-scrollbar-hover/);
+  // Detail modals already restore native scrollbar values using revert. Permit
+  // that bounded reset, while rejecting custom sizes, hidden tracks or paint.
+  const scrollbarReset = new JSDOM('<style>' + modal + '</style>');
+  const scrollbarRules = [...scrollbarReset.window.document.styleSheets[0].cssRules].filter(r=>r.selectorText?.includes('::-webkit-scrollbar'));
+  assert.equal(scrollbarRules.length, 2, 'only the two existing native detail resets are allowed');
+  for(const rule of scrollbarRules){
+    assert.ok(rule.selectorText.split(',\n').every(s=>s.trim().startsWith('.gaip-info-modal.gaip-info-modal :is(')), 'native reset stays within adopted detail scroll owners');
+    for(const property of Array.from(rule.style))assert.equal(rule.style.getPropertyValue(property), 'revert', 'native defaults cannot become custom scrollbar styling');
+  }
+  scrollbarReset.window.close();
+  assert.doesNotMatch(read('channels/config-center/config-center-content.css'), /\.formModal____MTrk[^\n]*::-webkit-scrollbar/);
   // Both loading orders must select the same contract, including nested spans.
   // JSDOM retains var() expressions; this is not a font-rendering test.
   for (const order of [[font, modal], [modal, font]]) {
@@ -35,18 +45,19 @@ function checkTypographyAndPreviewPaths() {
   assert.match(modal, /--gaip-modal-title-line-height:\s*28px/);
   assert.match(font, /font-family: "HarmonyOS Sans SC";[\s\S]*?HarmonyOS_Sans_SC_Bold\.ttf[\s\S]*?font-weight: 700/);
   assert.match(font, /--gaip-modal-title-font:\s*var\(--gaip-global-font\)/);
-  const ttf = fs.readFileSync(path.join(root, 'assets/fonts/HarmonyOS_Sans_SC_Bold.ttf'));
+  const ttf = fs.readFileSync(path.join(root, 'shared/assets/fonts/HarmonyOS_Sans_SC_Bold.ttf'));
   let weight;
   for (let i = 0; i < ttf.readUInt16BE(4); i++) {
     const offset = 12 + i * 16;
     if (ttf.toString('ascii', offset, offset + 4) === 'OS/2') weight = ttf.readUInt16BE(ttf.readUInt32BE(offset + 8) + 4);
   }
   assert.equal(weight, 700, 'actual local font contains bold weight, not synthetic regular');
-  const html = read('全局组件/弹窗预览.html');
-  const dom = new JSDOM(html, { url: 'file://' + root + '/全局组件/弹窗预览.html?embed=config-member', runScripts: 'outside-only' });
+  const html = read('components/弹窗预览.html');
+  const dom = new JSDOM(html, { url: 'file://' + root + '/components/弹窗预览.html?embed=config-member', runScripts: 'outside-only' });
   const assets = [...dom.window.document.querySelectorAll('link[href], script[src]')];
   const urls = assets.map(el => el.tagName === 'LINK' ? el.href : el.src);
-  const setup = html.match(/document\.querySelectorAll\('link\[href\], script\[src\]'\)[\s\S]*?document\.head\.insertBefore\(base, document\.head\.firstChild\);/);
+  const setupSource = [...dom.window.document.querySelectorAll('script[src]')].map(el => read(path.relative(root, decodeURI(new URL(el.src).pathname)))).join('\n');
+  const setup = setupSource.match(/document\.querySelectorAll\('link\[href\], script\[src\]'\)[\s\S]*?document\.head\.insertBefore\(base, document\.head\.firstChild\);/);
   assert.ok(setup, 'preview freezes existing URLs before changing base');
   dom.window.eval(setup[0]);
   assert.deepEqual(assets.map(el => el.tagName === 'LINK' ? el.href : el.src), urls, 'changing base must not redirect existing CSS/JS outside the project');
@@ -57,7 +68,7 @@ function checkTypographyAndPreviewPaths() {
 
 async function main() {
   checkTypographyAndPreviewPaths();
-  const formCss = '/* Form content hierarchy only.' + read('shared/styles/global-modal.css').split('/* Form content hierarchy only.')[1].split('/* All ordinary modal scroll layers')[0];
+  const formCss = '/* Form content hierarchy only.' + read('components/modal/global-modal.css').split('/* Form content hierarchy only.')[1].split('/* All ordinary modal scroll layers')[0];
   const scopeDom = new JSDOM('<style>' + formCss + '</style><div class="gaip-modal-form gaip-modal-kit"><div class="gaip-modal gaip-modal-kit"><div class="gaip-modal__form-body gaip-kit-section-heading gaip-kit-section-title gaip-kit-field-grid clueRoleHint___L8f3v gaip-bulk-upload-content">确认内容</div></div></div>');
   // A confirmation can be nested inside a form; descendant selectors must not
   // accidentally restyle its copy, headings or spacing.
@@ -67,12 +78,12 @@ async function main() {
       assert.ok(!node.matches(rule.selectorText), 'form-only rule excludes nested confirmation: ' + rule.selectorText);
     }
   }
-  assert.ok(fs.existsSync(path.join(root, 'assets/fonts/HarmonyOS_Sans_SC_Bold.ttf')), 'section titles reuse the project bold face');
+  assert.ok(fs.existsSync(path.join(root, 'shared/assets/fonts/HarmonyOS_Sans_SC_Bold.ttf')), 'section titles reuse the project bold face');
   assert.doesNotMatch(formCss, /@font-face|Medium\.ttf|GAIP Form Section/);
   assert.match(formCss, /font-family:\s*var\(--gaip-global-font\) !important;\s*font-weight:\s*700 !important/);
   scopeDom.window.close();
   const dom = new JSDOM('<!doctype html><body></body>', {
-    url: 'file://' + root + '/登录.html#/workspace', runScripts: 'outside-only', pretendToBeVisual: true
+    url: 'file://' + root + '/channels/login/index.html#/workspace', runScripts: 'outside-only', pretendToBeVisual: true
   });
   const w = dom.window, d = w.document;
   const load = p => w.eval(read(p));
@@ -80,15 +91,15 @@ async function main() {
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
   w.__GAIP_CONFIG_DIALOG_PREVIEW__ = true;
   [
-    'shared/scripts/global-modal.js', 'shared/scripts/global-date-picker.js', 'shared/scripts/modal-controls.js', 'shared/config/channels.js',
-    'shared/scripts/organization-store.js', 'shared/scripts/organization-tree.js', 'features/config-center/source-markup.js', 'features/config-center/config-center.js',
-    'features/config-center/announcement-management-data.js', 'features/config-center/announcement-management-view.js',
-    'features/proposal-center/proposal-center.js', 'features/activity/activity-sync.js',
-    'features/wealth-center/mock-data.js', 'features/wealth-center/wealth-center.js'
+    'components/modal/global-modal.js', 'components/date-picker/global-date-picker.js', 'components/modal-controls/modal-controls.js', 'shared/config/channels.js',
+    'shared/scripts/organization-store.js', 'components/organization-tree/organization-tree.js', 'channels/config-center/source-markup.js', 'channels/config-center/config-center.js',
+    'channels/config-center/announcement-management-view.js',
+    'channels/proposal-center/proposal-center.js', 'channels/activity/activity-sync.js',
+    'channels/wealth-center/wealth-center.js'
   ].forEach(load);
   await new Promise(resolve => w.setTimeout(resolve, 30));
   const api = w.__GAIP_MODAL_COMPONENT__;
-  const styleRules = new JSDOM('<style>' + read('shared/styles/global-modal.css') + '</style>');
+  const styleRules = new JSDOM('<style>' + read('components/modal/global-modal.css') + '</style>');
   // JSDOM is not a full cascade engine. Assert source rule + real-node match and
   // !important against the normal legacy declarations, never claim pixel QA.
   const rules = [...styleRules.window.document.styleSheets[0].cssRules];
@@ -118,7 +129,7 @@ async function main() {
   sharedRule(antControl.querySelector('.ant-form-item-explain'), 'margin', '0');
   sharedRule(antControl.querySelector('.ant-form-item-extra'), 'margin', '0');
   sharedRule(antField.querySelector('.ant-form-item-margin-offset'), 'display', 'none');
-  assert.match(read('shared/styles/global-modal.css'), /:has\(> \.ant-form-item-extra\):not\(:has\(> \.ant-form-item-explain\)\)::before/, 'permanent extra help does not consume the reserved error line');
+  assert.match(read('components/modal/global-modal.css'), /:has\(> \.ant-form-item-extra\):not\(:has\(> \.ant-form-item-explain\)\)::before/, 'permanent extra help does not consume the reserved error line');
   function countedPaddingContract(area) {
     // Inspect the competing shorthand declarations, not just the existence of
     // the desired rule. The old later inner-textarea rule tied specificity and
@@ -136,16 +147,16 @@ async function main() {
     const plainInner = rules.find(rule => rule.selectorText && rule.selectorText.endsWith('.gaip-form-textarea-shell:not(.gaip-kit-counted) textarea.gaip-form-control--inner'));
     assert.ok(plainInner && !area.matches(plainInner.selectorText), 'ordinary inner padding must exclude counted fields');
   }
-  load('shared/scripts/global-modal.js');
+  load('components/modal/global-modal.js');
   assert.equal(w.__GAIP_MODAL_COMPONENT__, api, 'duplicate channel loading retains one controller');
   const activityApi = w.__GAIP_ACTIVITY_SYNC__;
-  load('features/activity/activity-sync.js');
+  load('channels/activity/activity-sync.js');
   assert.equal(w.__GAIP_ACTIVITY_SYNC__, activityApi, 'activity runtime is idempotent across entry/preview loads');
   const activityAssets = w.__GAIP_CHANNEL_CONFIG__.getByKey('activity').assets;
-  assert.ok(activityAssets.styles.some(p => p.startsWith('features/activity/activity-sync.css?')));
-  assert.ok(activityAssets.scripts.some(p => p.startsWith('features/activity/activity-sync.js?')));
-  assert.doesNotMatch(read('活动中心.html'), /(?:href|src)="\.\/features\/activity\/activity-sync\./, 'channel registry is the sole activity entry asset owner');
-  const localStyles = new JSDOM('<head>' + ['features/activity/activity-sync.css', 'features/wealth-center/wealth-center.css', 'features/config-center/announcement-management.css'].map(p => '<style>' + read(p) + '</style>').join('') + '</head>');
+  assert.ok(activityAssets.styles.some(p => p.startsWith('channels/activity/activity-sync.css?')));
+  assert.ok(activityAssets.scripts.some(p => p.startsWith('channels/activity/activity-sync.js?')));
+  assert.doesNotMatch(read('channels/activity/index.html'), /(?:href|src)="\.\/channels\/activity\/activity-sync\./, 'channel registry is the sole activity entry asset owner');
+  const localStyles = new JSDOM('<head>' + ['channels/activity/activity-sync.css', 'channels/wealth-center/wealth-center.css', 'channels/config-center/announcement-management.css'].map(p => '<style>' + read(p) + '</style>').join('') + '</head>');
   const localRules = [...localStyles.window.document.styleSheets].flatMap(sheet => [...sheet.cssRules]);
   function localRule(node, property, value) {
     assert.ok(localRules.some(r => r.selectorText && !r.selectorText.includes('::') && r.style.getPropertyValue(property) === value && node.matches(r.selectorText)), node.className + ' source has ' + property + ': ' + value);
@@ -652,7 +663,7 @@ async function main() {
   assert.equal(parts.regions.body.dataset.gaipModalRegion, 'body');
   assert.equal(parts.regions.footer.dataset.gaipModalRegion, 'footer');
   assert.equal(parts.regions.close.dataset.gaipModalControl, 'close');
-  const css = read('shared/styles/global-modal.css');
+  const css = read('components/modal/global-modal.css');
   assert.match(css, /\.gaip-modal-form\.gaip-modal-form\.gaip-modal-form \.gaip-modal__close:where\(\.gaip-form-part\),\s*\.gaip-modal \.gaip-modal__close\s*\{/);
   assert.match(css, /\.gaip-modal-form\.gaip-modal-form\.gaip-modal-form \.gaip-modal__button:where\(\.gaip-form-part\),\s*\.gaip-modal \.gaip-modal__button\s*\{/);
   assert.match(css, /--gaip-form-control-height:\s*48px/);

@@ -9,7 +9,7 @@
 - 字段宽度按类型设上限：普通单选/单日期基础220px、最大280px；多选280/320px；搜索或`wide:true`为300/360px；日期与数字区间420/480px。开关按内容占位，不参与剩余空间拉伸。区间两端等宽，更多字段独占一行时也不无限撑满。
 - 根据筛选栏自身内容宽度适配（命名容器`gaip-filter`），不是只看窗口：容器≤640px时非开关字段占满一行，保留区间组合，开关保持内容宽度。更宽容器按现有顺序自然换行，空白可保留，操作区继续靠右。窗口≤640px仍沿用原内边距。
 
-- 一套 `shared/scripts/global-filter-bar.js` + `shared/styles/global-filter-bar.css`，样式只在 `.gaip-filter-bar` 内生效；页面不再自行拼筛选控件皮肤。
+- 一套 `components/filter-bar/global-filter-bar.js` + `components/filter-bar/global-filter-bar.css`，样式只在 `.gaip-filter-bar` 内生效；页面不再自行拼筛选控件皮肤。
 - 默认控件 40px 高，使用项目共享字体、品牌色 `--gaip-color-brand`、文字色和 4px 控件圆角。标签在上，标签与控件相距 8px；横向间距24px，换行间距16px，容器内边距20px，小屏16px。
 - 控件按配置顺序排列；不足时换行，不挤压开关、不省略字段标签。范围字段可占更宽空间；重置/查询属于筛选栏，不与新增/导出等页面操作混排。
 - 状态覆盖：默认、悬停、聚焦、选中、禁用、错误、空值。输入控件以边框区分聚焦，按钮和开关保留键盘焦点提示。
@@ -82,7 +82,7 @@ bar.destroy(); // 离开页面必须清理搜索延迟及多选的document监听
 
 主控件为可编辑的组合输入框：点击展开组织树，直接在该输入框输入名称筛选节点；面板不再放第二个搜索框。搜索时保持输入焦点，中文输入法组合完成后更新结果；输入关键词不提交业务筛选，选择节点才回填组织路径并生效。Escape、点击外部或失焦收起时丢弃未确认关键词、恢复已选名称；清除按钮恢复不限，箭头与清除图标不重叠。方向键可进入树选择，其他单选/多选行为不变。学情主页面、课程学习详情和组件库均复用同一实现。
 
-显式加载`shared/scripts/organization-store.js`、`organization-tree.js`和`shared/styles/organization-tree.css`。字段配置`{key:'org',type:'treeSelect',label:'所属组织',nodes:()=>nodes}`；节点为`{id,parent,name,path}`，支持静态数组或每次打开读取的函数。值是稳定ID，不是路径文字。空值入口使用placeholder文案；首次打开只展示顶级节点，所有父节点默认收起；已有下级选中值时只展开其祖先路径，选中节点自身仍保持收起。树内搜索保留匹配节点及其祖先、自动展开匹配路径；展开箭头和选择分开操作，选择后关闭。支持上下/左右/Home/End/Enter键与Escape关闭、焦点返回，清空搜索不清除原选择。显隐、禁用、重置、销毁与其他筛选项一致。
+显式加载`shared/scripts/organization-store.js`、`organization-tree.js`和`components/organization-tree/organization-tree.css`。字段配置`{key:'org',type:'treeSelect',label:'所属组织',nodes:()=>nodes}`；节点为`{id,parent,name,path}`，支持静态数组或每次打开读取的函数。值是稳定ID，不是路径文字。空值入口使用placeholder文案；首次打开只展示顶级节点，所有父节点默认收起；已有下级选中值时只展开其祖先路径，选中节点自身仍保持收起。树内搜索保留匹配节点及其祖先、自动展开匹配路径；展开箭头和选择分开操作，选择后关闭。支持上下/左右/Home/End/Enter键与Escape关闭、焦点返回，清空搜索不清除原选择。显隐、禁用、重置、销毁与其他筛选项一致。
 
 组件只负责节点选择；学情页通过`organizationNodes()`提供权限内的节点，用`matchesOrg()`执行父节点及后代过滤。组织架构主树与筛选下拉共用`__GAIP_ORG_TREE__.node`，主树保留原管理菜单和排版，选择器为紧凑密度；二者数据均取`__GAIP_ORGANIZATION__.sets`。配置中心原批量导入/调整节点树同样读取该数据，不改变其既有操作。
 

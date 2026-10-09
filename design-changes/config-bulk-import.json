@@ -15,7 +15,7 @@
         "tree.height": { "before": null, "initialLocal": "144px；紧凑桌面112px", "target": "224px；紧凑桌面192px；保留overflow-y:auto", "basis": "source" },
         "node-label-row.gap": { "before": null, "initialLocal": null, "target": "16px；左侧标签不收缩，右侧路径占剩余空间并省略", "reason": "new", "basis": "source" }
       },
-      "sources": ["features/config-center/config-center-content.css", "features/config-center/config-center.js:renderBulkImportStep/updateBulkImportDepartmentTree"],
+      "sources": ["channels/config-center/config-center-content.css", "channels/config-center/config-center.js:renderBulkImportStep/updateBulkImportDepartmentTree"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知；实际高度、文字对齐和滚动需浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -30,7 +30,7 @@
         "host.height": { "before": null, "initialLocal": "min(884px,calc(100dvh - 24px))，另受共享max-height限制；小屏calc(100dvh - 12px)", "target": "min(840px,calc(100dvh - 92px))；小屏calc(100dvh - 92px)，为面板外结果切换器保留可视空间", "basis": "source" },
         "surface.height": { "before": null, "initialLocal": "calc(100% - 44px)", "target": "100%，可见白色面板与共享居中宿主等高；宽度不变", "basis": "source" }
       },
-      "sources": ["features/config-center/config-center-content.css"],
+      "sources": ["channels/config-center/config-center-content.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知；原生顶层面板居中及面板外切换按钮点击需要浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -49,7 +49,7 @@
         "close": { "before": null, "initialLocal": "无右上关闭按钮", "target": "共享关闭SVG：32px热区/16px图形，默认透明，hover为rgba(47,54,64,.06)，active为rgba(47,54,64,.1)", "basis": "source" },
         "surface": { "before": null, "initialLocal": "24px内距、8px圆角、白底、阴影0 16px 48px rgba(22,31,38,.24)", "target": "共享24px内距、8px圆角、白底、阴影0 12px 32px rgba(17,35,39,.18)；遮罩继续使用公共规则", "basis": "source" }
       },
-      "sources": ["shared/scripts/global-modal.js:createConfirm/setConfirmState", "shared/styles/global-modal.css", "features/config-center/config-center.js:showBulkImportReturnConfirm"],
+      "sources": ["components/modal/global-modal.js:createConfirm/setConfirmState", "components/modal/global-modal.css", "channels/config-center/config-center.js:showBulkImportReturnConfirm"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "真实源共享部件/生命周期及独立预览DOM回归通过；原生顶层、焦点限制与像素视觉需浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -64,7 +64,7 @@
         "width": { "before": null, "initialLocal": "auto，与统计说明同排争用剩余宽度；仅视口<=960px时分行", "target": "100%，路径strong使用flex:1 1 0%和min-width:0占满标签以外空间；保留单行溢出省略", "basis": "source" },
         "gap": { "before": null, "initialLocal": "摘要gap:24px；视口<=960px为4px", "target": "目标与统计说明之间gap:8px；所有视口一致", "basis": "source" }
       },
-      "sources": ["features/config-center/config-center-content.css"],
+      "sources": ["channels/config-center/config-center-content.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "源码宽度/分行约束、深层完整路径title和重开DOM检查通过；实际布局与原生悬停提示需浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -76,7 +76,7 @@
       "appliesTo": ["15校验表格该状态的全部9个单元格；不影响其他表格"],
       "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
       "properties": { "background-color": { "before": null, "initialLocal": "无状态底色，白色表格背景；只有状态文字为绿色", "target": "default:rgba(2,118,107,.06)；hover:rgba(2,118,107,.1)，沿用原成功色相", "basis": "source" } },
-      "sources": ["features/config-center/config-center-content.css"],
+      "sources": ["channels/config-center/config-center-content.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "全部单元格状态选择器与hover源码声明检查通过；实际整行及hover视觉需浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -88,7 +88,7 @@
       "appliesTo": ["15校验表格该状态的全部9个单元格；不影响其他表格"],
       "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
       "properties": { "background-color": { "before": null, "initialLocal": "无状态底色，白色表格背景；状态及原因文字为红色", "target": "default:rgba(207,19,34,.06)；hover:rgba(207,19,34,.1)，沿用原失败色相", "basis": "source" } },
-      "sources": ["features/config-center/config-center-content.css"],
+      "sources": ["channels/config-center/config-center-content.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "全部单元格状态选择器与hover源码声明检查通过；实际整行及hover视觉需浏览器验收"] },
       "status": "active", "updatedAt": "2026-09-08"
     },
@@ -107,7 +107,7 @@
           "basis": "source"
         }
       },
-      "sources": ["features/config-center/config-center-content.css"],
+      "sources": ["channels/config-center/config-center-content.css"],
       "verification": { "level": "source-only", "checkedAt": "2026-09-08", "gaps": ["线上基准未知", "15与16宽度约束相等、滚动边界源码断言及真实流程DOM回归通过；file访问工具受限，实际尺寸观感与表格滚动需刷新验收"] },
       "status": "active",
       "updatedAt": "2026-09-08"

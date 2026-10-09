@@ -1,0 +1,13 @@
+'use strict';
+const assert = require('node:assert/strict'), vm = require('node:vm');
+const {readTemplates, cache} = require('./build-markup-templates.cjs');
+const values = readTemplates('<template data-gaip-markup="row"><tr><td>{{gaip:0}}</td><td>{{gaip:1}}</td></tr></template>\n<template data-gaip-markup="space"> A &amp; B\n </template>');
+const context = {};
+vm.runInNewContext(cache('__gaipMarkup_ab12',values),context);
+const render = context.__gaipMarkup_ab12;
+assert.equal(render('row',['$&{{gaip:1}}','<b>safe pre-escaped value</b>']),'<tr><td>$&{{gaip:1}}</td><td><b>safe pre-escaped value</b></td></tr>', 'bindings are inserted once, not recursively interpreted or replacement-expanded');
+assert.equal(render('space'),' A &amp; B\n ', 'table fragments, entities and whitespace are not normalized by an HTML parser');
+assert.throws(()=>render('missing'),/Missing HTML template/);
+assert.throws(()=>render('row',['one']),/Missing HTML binding/);
+assert.throws(()=>readTemplates('<template data-gaip-markup="a">one</template><template data-gaip-markup="a">two</template>'),/Duplicate/);
+console.log('PASS: markup rendering preserves raw table fragments, whitespace, entities and literal binding content; missing/duplicate bindings fail.');

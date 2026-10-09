@@ -260,8 +260,8 @@
         "modal": "332px 宽 / 8px 内边距 / 年份输入框 / 32px 日期格 / 无相邻月份日期 / 清空底栏"
       },
       "sources": [
-        "shared/scripts/global-date-picker.js",
-        "shared/styles/global-date-picker.css"
+        "components/date-picker/global-date-picker.js",
+        "components/date-picker/global-date-picker.css"
       ],
       "verification": {
         "level": "browser-checked",

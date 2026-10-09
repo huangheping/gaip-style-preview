@@ -12,11 +12,11 @@ risk: high
 ## 主要文件
 
 - `shared/scripts/local-preview.js`：登录、本地存储兼容、XHR/fetch 拦截和基础响应。
-- `features/channel-data/mock-data.js`：工作台、客户、保单、方案、产品和活动等频道数据。
-- `features/clues/mock-data.js`：线索中心数据。
-- `features/wealth-center/mock-data.js`：财富值导入批次、文件校验、导入记录和个人财富值明细。
-- `features/news-center/mock-data.js`：资讯分类、时间分组、文章、详情与分享演示数据。
-- `AI Agent/AI Agent本地Mock.js`：AI Agent 对话、历史与状态模拟。
+- `shared/data/channel-data/mock-data.js`：工作台、客户、保单、方案、产品和活动等频道数据。
+- `channels/clues/mock-data.js`：线索中心数据。
+- `channels/wealth-center/wealth-center.js` 的开头数据段：财富值导入批次、文件校验、导入记录和个人财富值明细。
+- `channels/news-center/news-center.js` 的开头数据段：资讯分类、时间分组、文章、详情与分享演示数据。
+- `components/ai-agent/AI Agent本地Mock.js`：AI Agent 对话、历史与状态模拟。
 
 ## 修改规则
 

@@ -7,7 +7,7 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
  const errors=[];
  try {
   const page=await browser.newPage({viewport:{width:1280,height:900}});page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('file://'+path.join(root,'全局组件/index.html')+'?component=date-picker');
+  await page.goto('file://'+path.join(root,'components/index.html')+'?component=date-picker');
   const input=page.locator('[data-gaip-date-demo] [data-filter-key="date"] input[type="text"]');
   await input.waitFor();
   const before=await input.evaluate(n=>{const s=getComputedStyle(n);return [s.height,s.borderRadius,s.fontSize,s.backgroundImage];});
@@ -37,8 +37,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   await input.click();await page.locator('[data-component="filter-bar"]').click();assert.equal(await panel.count(),0,'hidden catalog tab closes its popover');
   // Actual modal adapter with a native top-layer dialog, min/max and datetime validation.
   await page.setContent('<button id="outside">外部按钮</button><dialog id="modal" style="width:480px;padding:28px"><h2>日期字段</h2><label>日期<input id="date" type="date" min="2024-02-01" max="2024-03-31" value="2024-02-29" style="width:260px;height:48px"></label><label>日期时间<input id="datetime" type="datetime-local" min="2024-02-29T10:00" max="2024-02-29T12:00" value="2024-02-29T11:00"></label></dialog>');
-  for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/modal-controls.css','shared/styles/global-date-picker.css'])await page.addStyleTag({content:read(f)});
-  for(const f of ['shared/scripts/global-date-picker.js','shared/scripts/modal-controls.js'])await page.addScriptTag({content:read(f)});
+  for(const f of ['web/umi.c6286171.css','shared/styles/global-font.css','components/modal/global-modal.css','components/modal-controls/modal-controls.css','components/date-picker/global-date-picker.css'])await page.addStyleTag({content:read(f)});
+  for(const f of ['components/date-picker/global-date-picker.js','components/modal-controls/modal-controls.js'])await page.addScriptTag({content:read(f)});
   await page.evaluate(()=>document.querySelector('dialog').showModal());await page.locator('#date').click();
   assert.equal(await panel.locator('[data-date="2024-01-31"]').isDisabled(),true);assert.equal(await panel.locator('[data-date="2024-02-29"]').isEnabled(),true);
   await panel.locator('[data-date="2024-02-29"]').focus();await page.keyboard.press('ArrowRight');
@@ -51,11 +51,11 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   // Render the real read-only customer/Ant DatePicker, using the project's bundled React.
   await page.goto('about:blank');
   await page.setContent('<div id="root"></div>');
-  for(const f of ['web/umi.c6286171.css','web/p__customer__index.fa91e9e7.chunk.css','shared/styles/global-font.css','shared/styles/global-modal.css','shared/styles/modal-controls.css','shared/styles/global-date-picker.css'])await page.addStyleTag({content:read(f)});
+  for(const f of ['web/umi.c6286171.css','web/p__customer__index.fa91e9e7.chunk.css','shared/styles/global-font.css','components/modal/global-modal.css','components/modal-controls/modal-controls.css','components/date-picker/global-date-picker.css'])await page.addStyleTag({content:read(f)});
   const runtime=read('web/umi.0b0663b5.js'),boot=runtime.indexOf('var __webpack_exports__={};');assert.ok(boot>0);
   await page.addScriptTag({content:runtime.slice(0,boot)+'window.__sourceRequire=__webpack_require__;})();'});
   for(const name of fs.readdirSync(path.join(root,'web')).filter(n=>n.endsWith('.async.js')))await page.addScriptTag({content:read('web/'+name)});
-  for(const f of ['shared/scripts/global-modal.js','shared/scripts/global-date-picker.js','shared/scripts/modal-controls.js'])await page.addScriptTag({content:read(f)});
+  for(const f of ['components/modal/global-modal.js','components/date-picker/global-date-picker.js','components/modal-controls/modal-controls.js'])await page.addScriptTag({content:read(f)});
   await page.evaluate(()=>{
    const req=window.__sourceRequire,source=req.m[25021].toString();req.m[25021]=eval('('+source.replace('return yn','return {Meeting:_a}')+')');
    req.m[92016]=module=>{module.exports={useModel:()=>({dictionaryData:{}}),useRequest:()=>({loading:false,run(){},data:[]})};};
@@ -72,7 +72,7 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   await page.locator('.modal___wKSui .ant-picker input').first().click();await page.keyboard.press('Escape');
   assert.deepEqual(errors,[],'isolated shared and original Ant controls');
   errors.length=0;
-  await page.goto('file://'+path.join(root,'学习中心.html'));
+  await page.goto('file://'+path.join(root,'channels/learning-center/index.html'));
   await page.locator('[data-learning-action="课程管理"]').click();
   const filters=page.locator('.lc-manage-filter-slot');
   assert.equal(await filters.locator('[data-gaip-filter-action="more"]').isVisible(),false,'course management has no advanced filters');

@@ -1,0 +1,7 @@
+.upload-visual .upload-placeholder-icon{
+      display: block;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      object-fit: contain;
+    }

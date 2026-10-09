@@ -1,0 +1,11 @@
+.ant-layout-sider .gaip-main-nav-icon > .gaip-main-nav-svg{
+  display: block !important;
+  width: var(--gaip-nav-glyph-size) !important;
+  height: var(--gaip-nav-glyph-size) !important;
+  flex: none;
+  color: inherit;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transition: none !important;
+}

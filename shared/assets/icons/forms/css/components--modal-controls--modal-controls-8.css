@@ -1,0 +1,1 @@
+.gaip-modal-controls.gaip-modal-controls.gaip-modal-controls :is(.ant-select-arrow, .gaipMultiSelect__arrow){ background: transparent var(--mc-down) center/16px 16px no-repeat !important; mask: none; -webkit-mask: none; }

@@ -1,0 +1,5 @@
+[data-gaip-table-tag] > .gaip-table-tag__icon{
+  display: block; width: 12px !important; height: 12px !important;
+  min-width: 12px; flex: 0 0 12px; margin: 0 !important;
+  color: inherit !important; pointer-events: none;
+}

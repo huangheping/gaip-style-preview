@@ -43,7 +43,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect"
         }
       ],
@@ -91,7 +91,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__control:hover"
         }
       ],
@@ -139,7 +139,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect.isOpen .gaipMultiSelect__control,\n.gaipMultiSelect__control:focus-visible"
         }
       ],
@@ -208,7 +208,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__arrow::before"
         }
       ],
@@ -277,7 +277,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__dropdown"
         }
       ],
@@ -339,7 +339,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__option"
         }
       ],
@@ -387,7 +387,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__option:hover,\n.gaipMultiSelect__option:focus-visible"
         }
       ],
@@ -435,7 +435,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__option[aria-selected='true']"
         }
       ],
@@ -490,7 +490,7 @@
       },
       "sources": [
         {
-          "path": "shared/styles/global-multi-select.css",
+          "path": "components/multi-select/global-multi-select.css",
           "selector": ".gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox"
         }
       ],

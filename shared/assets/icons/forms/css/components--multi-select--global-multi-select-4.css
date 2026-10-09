@@ -1,0 +1,11 @@
+.gaipMultiSelect__option[aria-selected='true'] .gaipMultiSelect__checkbox::after{
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  transform: rotate(45deg);
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  content: '';
+}

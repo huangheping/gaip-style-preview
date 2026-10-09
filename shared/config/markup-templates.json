@@ -1,0 +1,186 @@
+[
+  {
+    "script": "channels/config-center/config-center.js",
+    "template": "channels/config-center/templates/markup-config-center.html",
+    "renderer": "__gaipMarkup_e3c4676437",
+    "count": 44
+  },
+  {
+    "script": "channels/learning-center/learning-app.js",
+    "template": "channels/learning-center/templates/markup-learning-app.html",
+    "renderer": "__gaipMarkup_7d705d818f",
+    "count": 95
+  },
+  {
+    "script": "channels/wealth-center/wealth-center.js",
+    "template": "channels/wealth-center/templates/markup-wealth-center.html",
+    "renderer": "__gaipMarkup_86da0c9d70",
+    "count": 22
+  },
+  {
+    "script": "channels/proposal-center/proposal-center.js",
+    "template": "channels/proposal-center/templates/markup-proposal-center.html",
+    "renderer": "__gaipMarkup_c5ef867ad8",
+    "count": 22
+  },
+  {
+    "script": "channels/config-center/announcement-management-view.js",
+    "template": "channels/config-center/templates/markup-announcement-management-view.html",
+    "renderer": "__gaipMarkup_9e3f9856aa",
+    "count": 17
+  },
+  {
+    "script": "components/ai-agent/AI Agent本地Mock.js",
+    "template": "components/ai-agent/templates/markup-AI Agent本地Mock.html",
+    "renderer": "__gaipMarkup_cc3534331f",
+    "count": 24
+  },
+  {
+    "script": "components/components-preview.js",
+    "template": "components/templates/markup-components-preview.html",
+    "additionalTemplates": ["components/uploads/templates/markup-upload-controls.generated.html"],
+    "renderer": "__gaipMarkup_8f984da1c5",
+    "count": 54,
+    "documentBase": "components/index.html"
+  },
+  {
+    "script": "channels/workspace/workspace-update.js",
+    "template": "channels/workspace/templates/markup-workspace-update.html",
+    "renderer": "__gaipMarkup_b368ad75a9",
+    "count": 7
+  },
+  {
+    "script": "channels/activity/activity-sync.js",
+    "template": "channels/activity/templates/markup-activity-sync.html",
+    "renderer": "__gaipMarkup_3c8cf438de",
+    "count": 1
+  },
+  {
+    "script": "components/operation-log/global-operation-log.js",
+    "template": "components/operation-log/templates/markup-global-operation-log.html",
+    "renderer": "__gaipMarkup_2e008a53a1",
+    "count": 12
+  },
+  {
+    "script": "components/弹窗预览.script-2.js",
+    "template": "components/templates/markup-弹窗预览.script-2.html",
+    "renderer": "__gaipMarkup_de58466f7e",
+    "count": 8
+  },
+  {
+    "script": "channels/learning-center/learning-live.js",
+    "template": "channels/learning-center/templates/markup-learning-live.html",
+    "renderer": "__gaipMarkup_6568e3130e",
+    "count": 11
+  },
+  {
+    "script": "channels/wealth-center/wealth-nav.js",
+    "template": "channels/wealth-center/templates/markup-wealth-nav.html",
+    "renderer": "__gaipMarkup_12d80b3b4e",
+    "count": 14
+  },
+  {
+    "script": "channels/config-center/source-dialogs.js",
+    "template": "channels/config-center/templates/markup-source-dialogs.html",
+    "renderer": "__gaipMarkup_73fb1f22c5",
+    "count": 4
+  },
+  {
+    "script": "components/modal/global-modal.js",
+    "template": "components/modal/templates/markup-global-modal.html",
+    "renderer": "__gaipMarkup_2464aa8ae6",
+    "count": 3
+  },
+  {
+    "script": "shared/scripts/local-preview.js",
+    "template": "shared/scripts/templates/markup-local-preview.html",
+    "renderer": "__gaipMarkup_267cfd4faf",
+    "count": 3,
+    "additionalTemplates": [
+      "channels/product/templates/mock-detail.html"
+    ]
+  },
+  {
+    "script": "channels/customer/customer-center.js",
+    "template": "channels/customer/templates/markup-customer-center.html",
+    "renderer": "__gaipMarkup_58f29e4bb6",
+    "count": 1
+  },
+  {
+    "script": "channels/news-center/news-center.js",
+    "template": "channels/news-center/templates/markup-news-center.html",
+    "renderer": "__gaipMarkup_758b12bd5a",
+    "count": 6
+  },
+  {
+    "script": "components/ai-notice/global-ai-notice.js",
+    "template": "components/ai-notice/templates/markup-global-ai-notice.html",
+    "renderer": "__gaipMarkup_3a0a9165fc",
+    "count": 1
+  },
+  {
+    "script": "components/海报分享/index.script-3.js",
+    "template": "components/海报分享/templates/markup-index.script-3.html",
+    "renderer": "__gaipMarkup_89dd6f4797",
+    "count": 4,
+    "documentBase": "components/海报分享/index.html"
+  },
+  {
+    "script": "components/poster-share/global-poster-share.js",
+    "template": "components/poster-share/templates/markup-global-poster-share.html",
+    "renderer": "__gaipMarkup_c7cb76be37",
+    "count": 1
+  },
+  {
+    "script": "shared/scripts/learning-nav.js",
+    "template": "shared/scripts/templates/markup-learning-nav.html",
+    "renderer": "__gaipMarkup_1499ca173e",
+    "count": 2
+  },
+  {
+    "script": "components/multi-select/global-multi-select.js",
+    "template": "components/multi-select/templates/markup-global-multi-select.html",
+    "renderer": "__gaipMarkup_acc14505f4",
+    "count": 3
+  },
+  {
+    "script": "components/organization-tree/organization-tree.js",
+    "template": "components/organization-tree/templates/markup-organization-tree.html",
+    "renderer": "__gaipMarkup_1b7d3a35a6",
+    "count": 3
+  },
+  {
+    "script": "channels/learning-center/learning-center.js",
+    "template": "channels/learning-center/templates/markup-learning-center.html",
+    "renderer": "__gaipMarkup_e87e3f1d55",
+    "count": 1
+  },
+  {
+    "script": "shared/scripts/global-breadcrumb.js",
+    "template": "shared/scripts/templates/markup-global-breadcrumb.html",
+    "renderer": "__gaipMarkup_e817834a30",
+    "count": 6
+  },
+  {
+    "script": "channels/induction/induction-update.js",
+    "template": "channels/induction/templates/markup-induction-update.html",
+    "renderer": "__gaipMarkup_07832dafd6",
+    "count": 1
+  },
+  {
+    "script": "components/table/global-table-tag.js",
+    "template": "components/table/templates/markup-global-table-tag.html",
+    "renderer": "__gaipMarkup_c463e8d710",
+    "count": 14
+  },
+  {
+    "script": "components/icons/icon-catalog.js",
+    "template": "components/icons/templates/markup-icon-catalog.html",
+    "additionalTemplates": [
+      "components/icons/templates/markup-icon-assets.html"
+    ],
+    "renderer": "__gaipMarkup_a14c092ec8",
+    "count": 154,
+    "documentBase": "components/index.html"
+  }
+]

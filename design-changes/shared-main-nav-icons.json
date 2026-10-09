@@ -1,0 +1,1195 @@
+{
+  "schemaVersion": 1,
+  "page": "共享主导航图标",
+  "notes": "2026-09-29：12份新版原附件逐字节保存；12项统一内联SVG/currentColor、图形16×16px（原18px）、容器18×18px居中、默认#2F3640、hover/当前#025B52、opacity 1。原稿几何保留（薄荷0.4px白色轮廓不作主题色）。双真实file入口96组状态实测；未改菜单几何/顺序/Hash逻辑。",
+  "records": [
+    {
+      "id": "main-nav.workspace.icon",
+      "element": "工作台总览主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"workspace\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "56a316ca6744819088da0c98f3a540614c4949cd4b2f2cf9a882efb77365199c"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/workspace.svg",
+            "sha256": "ddb48efaa91d2e6074626dd1cbf75e91dc27f8f475d7d35f8b3a4056179ba795"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/workspace.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.customer-360.icon",
+      "element": "客户中心360主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"customer-360\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "835c6fdfc869a444bd0ea313fbcc79e67d55231e22fe7feace7924e5179bf358"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/customer-360.svg",
+            "sha256": "0fed8bff2e3210481fa5e650c17915f01c7ed442ed6a128a48b9d0839f232a6b"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/customer-360.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.quality-control.icon",
+      "element": "保单列表主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"quality-control\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "95b8e9fe9acff511af0608ecd763744f02a3e33db689b286b387fec18474c9c1"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/quality-control.svg",
+            "sha256": "c44e525ad7c9608586cc79a2147c3a4d4ffa0a2ccfd393b7d48f9ade6d3bc778"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/quality-control.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.proposal-center.icon",
+      "element": "方案中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"proposal-center\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "cfa9015a031cb66495e3b16cfd49124423dc8b2e7dc32b57192428dd9f13469e"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/proposal-center.svg",
+            "sha256": "1e49b52c6eee4e20819f5386ff3531e8f8426c46d7c8ac84ec2b22ae127df723"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/proposal-center.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.sales-enablement.icon",
+      "element": "产品中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"sales-enablement\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "7456b8fa7c2f6ab07da729586517179199a85e14f45361e96540534dfc1699ed"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/sales-enablement.svg",
+            "sha256": "3d9aa0459e0ab99328507ac1fe0ed75ee66ccbd66f39b165a7e3cc2cf784258f"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/sales-enablement.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.activity-center.icon",
+      "element": "活动中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"activity-center\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "1f2fd61300fb9fbe0c6c6dfdccf40561aa0ae43154e41e45dbb5aab60d9f7b06"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/activity-center.svg",
+            "sha256": "50c31591a54c51741121ba0c8c8a639489c430fdaf5add63477c00a85f88198c"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/activity-center.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.news-center.icon",
+      "element": "资讯中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"news-center\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "aea037c88f2e667126f68b4dc4271692871ae1806794c4d6a72121d813795aac"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/news-center.svg",
+            "sha256": "947bde71095a585d2741ae7c382bed54e12608f069056b2bb489037fcc487ef0"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/news-center.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.induction-guide.icon",
+      "element": "薄荷入职引导主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"induction-guide\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "1542467e23c13471f9be55a731ae6c93bfc20a180b58343f89191b1948824ed2"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/induction-guide.svg",
+            "sha256": "808f16b8d8e7ded7d49d45729b54dd52cfd50d84f613b0964a00ff9a61384225"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/induction-guide.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.channel-clues.icon",
+      "element": "线索中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"channel-clues\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "c152608489a17a374f42f66528595e4d70ac2a137993d194dccf982be437058f"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/channel-clues.svg",
+            "sha256": "138aa96d781a321d3e8bb92819a0c4281963d0a7e1bc234c96e150843748ba46"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/channel-clues.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.learning.icon",
+      "element": "学习中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"learning\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "shared/styles/learning-nav.css",
+            "sha256": "0e0ccb68eb33323de83243e3fc4a34872948f739c119308ced5e7e0b6d1708a5"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/learning.svg",
+            "sha256": "fa8ea6382053a13c0c1bda242a8584f0d195ad4e4dac9e2343df59463964f9ea"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/learning.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.wealth.icon",
+      "element": "财富中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"wealth\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "features/wealth-center/wealth-nav.js",
+            "sha256": "ebc21b1dadd6cb66ae46fa2c6cfa988a06bba384e91b6859c1a5e312a922d276"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/wealth.svg",
+            "sha256": "1526b6d031300b8dfebd269efbaf0660ac66f8356a65add6d1724b48f25e0fa9"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/wealth.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    },
+    {
+      "id": "main-nav.organization.icon",
+      "element": "配置中心主导航图标",
+      "locator": {
+        "selector": "[data-gaip-nav-icon=\"organization\"]"
+      },
+      "state": {
+        "channel": "all",
+        "variant": "default / hover / current",
+        "viewport": null
+      },
+      "appliesTo": [
+        "全部正式HTML入口主导航"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": null,
+          "initialLocal": {
+            "source": "features/config-center/assets/organization.svg",
+            "sha256": "1a4d8a89c5db7291afe6aa59cf9078e1715416700698d5aeb9a2198b896d9c59"
+          },
+          "target": {
+            "source": "shared/assets/main-nav/organization.svg",
+            "sha256": "d8ea2b54aca366a22722e70c7c2712c0bda1f61c0c0c9dc81be2a0ab86cdafb6"
+          },
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.width": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.height": {
+          "before": null,
+          "initialLocal": "18px",
+          "target": "16px",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.opacity": {
+          "before": null,
+          "initialLocal": null,
+          "target": 1,
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.default": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#2F3640",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.hover": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        },
+        "icon.color.current": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#025B52",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "shared/assets/main-nav/organization.svg",
+        "shared/scripts/templates/markup-learning-nav.html",
+        "shared/scripts/learning-nav.js",
+        "shared/styles/main-nav.css"
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-09-29",
+        "gaps": [
+          "工作台/产品两个真实file入口1440×1000下四种状态通过；不是全频道业务验收。折叠仅CSS尺寸检查。"
+        ],
+        "evidence": [
+          "design-changes/evidence/main-nav-icons-20260929-16px-workspace.png",
+          "design-changes/evidence/main-nav-icons-20260929-16px-product.png",
+          "scripts/test-main-nav-icons-browser.cjs"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-09-29"
+    }
+  ]
+}

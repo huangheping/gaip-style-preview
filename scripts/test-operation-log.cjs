@@ -14,13 +14,13 @@ async function main() {
     '<button class="gaip-log-trigger">旧日志入口</button><span class="date___mF83s">2026年08月31日</span><div class="userInfo___Kwuov">本地预览用户</div>' +
     '</div></header><input id="retained-value" value="未提交内容"></main></body></html>';
   const dom = new JSDOM(html, {
-    url: 'file://' + root + '/工作台.html#/workspace',
+    url: 'file://' + root + '/channels/workspace/index.html#/workspace',
     runScripts: 'outside-only', pretendToBeVisual: true
   });
   const w = dom.window, d = w.document;
   const style = d.createElement('style');
   style.textContent = read('shared/styles/channel-foundation.css') + '\n' +
-    read('shared/styles/global-filter-bar.css') + '\n' + read('shared/styles/global-operation-log.css');
+    read('components/filter-bar/global-filter-bar.css') + '\n' + read('components/operation-log/global-operation-log.css');
   d.head.appendChild(style);
   let blob, download;
   const observers = [];
@@ -41,16 +41,17 @@ async function main() {
     this.open = false;
     this.dispatchEvent(new w.Event('close'));
   };
-  for (const file of ['shared/scripts/global-date-picker.js', 'shared/scripts/global-filter-bar.js']) {
+  // Exercise the native fallback first; mount the shared filter for the inline consumer below.
+  for (const file of ['components/modal/global-modal.js', 'components/table/global-table.js']) {
     Object.defineProperty(d, 'currentScript', {
       configurable: true, value: { src: 'file://' + path.join(root, file) }
     });
     w.eval(read(file));
   }
   const loaded = [
-    'shared/data/operation-log-mock.js',
-    'shared/scripts/operation-log-xlsx.js',
-    'shared/scripts/global-operation-log.js'
+    'components/operation-log/operation-log-mock.js',
+    'components/operation-log/operation-log-xlsx.js',
+    'components/operation-log/global-operation-log.js'
   ];
   for (const file of loaded) {
     Object.defineProperty(d, 'currentScript', {
@@ -94,25 +95,37 @@ async function main() {
   assert.equal(Array.from(compactHeader.cssRules).find(rule => rule.selectorText === '.header___tcVAl .right___fv3yS .userInfo___Kwuov').style.getPropertyValue('margin-left'), '20px');
   w.__GAIP_OPERATION_LOG__.show();
   assert.equal(find('dialog').open, true);
-  // Reuse the baseline Ant Design geometry, rather than drawing lookalike icons.
+  // Calendar retains baseline geometry; search/down use selected 03-2/04-2.
   const baselineIcons = read('web/umi.0b0663b5.js');
-  for (const name of ['down', 'search', 'calendar']) {
+  for (const name of ['calendar']) {
     const end = baselineIcons.indexOf('name:"' + name + '",theme:"outlined"');
     assert.ok(end > 0);
     const definition = baselineIcons.slice(baselineIcons.lastIndexOf('icon:{', end), end);
-    const iconDoc = new w.DOMParser().parseFromString(read('shared/assets/control-' + name + '.svg'), 'image/svg+xml');
+    const iconDoc = new w.DOMParser().parseFromString(read('shared/assets/icons/forms/shared/control-' + name + '.svg'), 'image/svg+xml');
     assert.equal(iconDoc.querySelector('parsererror'), null);
     assert.equal(iconDoc.documentElement.getAttribute('viewBox'), definition.match(/viewBox:"([^"]+)"/)[1]);
     assert.equal(iconDoc.querySelector('path').getAttribute('d'), definition.match(/d:"([^"]+)"/)[1]);
   }
+  const selectedDown = new w.DOMParser().parseFromString(read('shared/assets/icons/forms/shared/modal-down.svg'), 'image/svg+xml');
+  assert.equal(selectedDown.querySelector('parsererror'), null);
+  assert.equal(selectedDown.documentElement.getAttribute('viewBox'), '0 0 32 32', '04-2 keeps its source canvas');
+  const downPoints=selectedDown.querySelector('polygon').getAttribute('points').split(' ').map(p=>p.split(',').map(Number));
+  const lowest=downPoints.reduce((a,b)=>a[1]>b[1]?a:b);
+  assert.equal(lowest[0],16,'selected More silhouette points down at the canvas centre');
+  assert.equal(Math.max(...downPoints.map(p=>p[0]))-Math.min(...downPoints.map(p=>p[0])),16,'compact consumers retain the fitted visible width');
+  assert.equal(selectedDown.querySelector('polygon').hasAttribute('transform'),false,'no retired 04-2 rotation survives');
+  const selectedSearch = new w.DOMParser().parseFromString(read('shared/assets/icons/forms/shared/modal-search.svg'), 'image/svg+xml');
+  assert.equal(selectedSearch.querySelector('parsererror'), null);
+  assert.equal(selectedSearch.documentElement.getAttribute('viewBox'), '0 0 32 32', '03-2 keeps its source canvas');
+  assert.equal(selectedSearch.querySelector('g[transform]').getAttribute('transform'), 'translate(3, 3)', '03-2 retains its drawing placement');
   for (const select of d.querySelectorAll('.gaip-log-filters select, .gaip-log-footer select')) {
     const css = w.getComputedStyle(select);
-    assert.ok(css.backgroundImage.includes('control-down.svg'));
+    assert.ok(css.backgroundImage.includes('modal-down.svg'));
     assert.equal(css.paddingRight, '36px');
     assert.equal(css.appearance, 'none');
   }
   const searchStyle = w.getComputedStyle(find('.gaip-log-search'));
-  assert.ok(searchStyle.backgroundImage.includes('control-search.svg'));
+  assert.ok(searchStyle.backgroundImage.includes('modal-search.svg'));
   assert.equal(searchStyle.paddingLeft, '36px');
   assert.equal(find('.gaip-log-search').placeholder, '请输入姓名/域账号/操作内容');
   assert.equal(find('.gaip-log-search').getAttribute('aria-label'), '姓名、域账号或操作内容');
@@ -141,21 +154,23 @@ async function main() {
   assert.equal(tableHeaderRule.style.getPropertyValue('white-space'), 'nowrap');
   assert.equal(find('dialog').getAttribute('aria-labelledby'), 'gaip-log-title');
   assert.equal(d.querySelectorAll('tbody tr').length, 10);
-  assert.match(text('[data-log-summary]'), /共 28 条，第 1 \/ 3 页/);
+  assert.match(text('.gaip-table__total'), /共 28 条/);
+  assert.equal(w.__GAIP_TABLE__.get(find('.gaip-log-results')).getState().page, 1);
   assert.equal(w.location.href, initialUrl);
   assert.equal(find('#root'), originalRoot);
-  click('[data-log-next]');
+  click('[data-table-action="next"]');
   assert.equal(text('tbody td'), '11');
-  click('[data-log-next]');
+  click('[data-table-action="next"]');
   assert.equal(d.querySelectorAll('tbody tr').length, 8);
-  assert.equal(find('[data-log-next]').disabled, true);
-  click('[data-log-prev]');
+  assert.equal(find('[data-table-action="next"]').disabled, true);
+  click('[data-table-action="previous"]');
   assert.equal(text('tbody td'), '11');
-  const pageSize = find('.gaip-log-footer select');
-  pageSize.value = '20';
-  pageSize.dispatchEvent(new w.Event('change', { bubbles: true }));
+  // jsdom has no layout; keep this trigger visible to the portal's geometry guard.
+  find('[data-table-size]').getClientRects = () => [{ width: 108, height: 32 }];
+  click('[data-table-size]');
+  d.querySelectorAll('.gaip-table-size-popup__option')[1].click();
   assert.equal(d.querySelectorAll('tbody tr').length, 20);
-  assert.match(text('[data-log-summary]'), /第 1 \/ 2 页/);
+  assert.equal(w.__GAIP_TABLE__.get(find('.gaip-log-results')).getState().page, 1);
   set('module', '公告管理');
   set('type', '编辑');
   assert.equal(d.querySelectorAll('tbody tr').length, 4);
@@ -164,7 +179,7 @@ async function main() {
   set('end', '2026-08-31');
   assert.equal(d.querySelectorAll('tbody tr').length, 1);
   set('query', ' DEMO_EDITOR02 ');
-  assert.match(text('[data-log-summary]'), /共 1 条/);
+  assert.match(text('.gaip-table__total'), /共 1 条/);
   set('query', '不存在');
   assert.match(text('tbody'), /暂无匹配/);
   assert.equal(find('[data-log-export]').disabled, true);
@@ -173,10 +188,10 @@ async function main() {
   assert.equal(find('[name="start"]').getAttribute('aria-invalid'), 'true');
   click('[data-log-reset]');
   assert.equal(find('[name="query"]').value, '');
-  assert.match(text('[data-log-summary]'), /共 28 条/);
+  assert.match(text('.gaip-table__total'), /共 28 条/);
   assert.equal(find('[name="start"]').getAttribute('aria-invalid'), 'false');
   set('query', '查看原文');
-  assert.match(text('[data-log-summary]'), /共 4 条/);
+  assert.match(text('.gaip-table__total'), /共 4 条/);
   assert.match(text('tbody'), /资讯标题：全球市场周报：汇率变化与资产配置观察/);
   assert.match(text('tbody'), /原文链接：https:\/\/example\.com\/market-weekly/);
   assert.match(text('tbody'), /资讯日期：2026-08-31/);
@@ -275,6 +290,10 @@ async function main() {
   // A mounted page and the existing modal must have independent filters and IDs.
   const host = d.createElement('main');
   d.body.appendChild(host);
+  for (const file of ['components/date-picker/global-date-picker.js', 'components/filter-bar/global-filter-bar.js']) {
+    Object.defineProperty(d, 'currentScript', { configurable: true, value: { src: 'file://' + path.join(root, file) } });
+    w.eval(read(file));
+  }
   const inline = w.__GAIP_OPERATION_LOG__.mount(host);
   assert.equal(host.querySelector('dialog'), null);
   assert.equal(host.querySelector('[data-log-close]'), null);
@@ -309,24 +328,20 @@ async function main() {
   click('[data-log-close]');
   header.remove();
   await tick();
-  // Root shells all load exactly one copy in the correct data/export/UI order.
-  for (const entry of fs.readdirSync(root).filter(file => file.endsWith('.html') && file !== 'index-login-video-test.html')) {
+  // Canonical channel shells all load exactly one copy in the correct data/export/UI order.
+  for (const entry of require('./entry-files.cjs')(root)) {
     const source = read(entry);
-    if (entry === '配置中心.html') {
-      assert.ok(source.includes('global-operation-log.css?v=20260915-shared-filter-1'), entry + ': shared filter log CSS');
-    } else {
-      assert.ok(source.includes('global-operation-log.css?v=20260903-1'), entry + ': latest inline log CSS');
-    }
+    assert.ok(source.includes('global-operation-log.css?v=20261008-expand-1'), entry + ': latest shared log CSS');
     assert.ok(source.includes('operation-log-mock.js?v=20260903-2'), entry + ': latest inline log mock');
-    if (entry === '配置中心.html') {
-      assert.ok(source.includes('global-filter-bar.css?v=20260921-popup-search-1'), entry + ': shared filter styles');
+    if (entry === 'channels/config-center/index.html') {
+      assert.ok(source.includes('global-filter-bar.css?v=20261008-expand-1'), entry + ': shared filter styles');
       assert.ok(source.includes('global-filter-bar.js?v=20260910-tree-combobox-1'), entry + ': shared filter script');
-      assert.ok(source.includes('global-operation-log.js?v=20260915-shared-filter-1'), entry + ': shared log filter');
+      assert.ok(source.includes('global-operation-log.js?v=20261001-merge-1'), entry + ': shared log filter');
     } else {
-      assert.ok(source.includes('global-operation-log.js?v=20260903-2'), entry + ': top trigger removed');
+      assert.ok(source.includes('global-operation-log.js?v=20261001-merge-1'), entry + ': top trigger removed');
     }
     let previous = -1;
-    for (const resource of ['shared/styles/global-operation-log.css', ...loaded]) {
+    for (const resource of ['components/operation-log/global-operation-log.css', ...loaded]) {
       assert.equal(source.split(resource).length - 1, 1, entry + ': ' + resource);
       assert.ok(fs.existsSync(path.join(root, resource)));
       assert.ok(source.indexOf(resource) > previous, entry);

@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { JSDOM } = require('jsdom');
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'AI Agent/AI Agent入口动效.js'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'components/ai-agent/AI Agent入口动效.js'), 'utf8');
 const header = '<header><div class="right___fv3yS"><span class="date___mF83s">2026年08月31日 星期一</span></div></header>';
 const entry = '<div class="globalButton___DVYbX"><div class="aiIcon___EMC2z"></div><div class="tipCard___OaM88"><span class="tipText___XhZAA">AI助手</span></div></div>';
 const tick = () => new Promise(resolve => setTimeout(resolve, 80));
@@ -188,10 +188,10 @@ async function scenario(mode) {
 
 (async () => {
   for (const mode of ['direct', 'header-first', 'entry-first']) await scenario(mode);
-  for (const file of fs.readdirSync(root).filter(file => file.endsWith('.html'))) {
+  for (const file of require('./entry-files.cjs')(root, { includeLocal: true })) {
     const html = fs.readFileSync(path.join(root, file), 'utf8');
-    assert.equal(html.split('AI Agent/AI Agent入口动效.js').length - 1, 1, file);
-    assert.ok(html.includes('AI Agent/AI Agent入口动效.js?v=20261008-entry-mask-1'), file);
+    assert.equal(html.split('components/ai-agent/AI Agent入口动效.js').length - 1, 1, file);
+    assert.ok(html.includes('components/ai-agent/AI Agent入口动效.js?v=20261008-entry-mask-1'), file);
   }
   console.log('PASS: all entry shells use the updated shared script.');
   console.log('NOT VERIFIED: actual Umi login/navigation, video playback or WebGL rendering.');

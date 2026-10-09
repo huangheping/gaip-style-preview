@@ -3,6 +3,477 @@
   "page": "learning-center",
   "records": [
     {
+      "id": "learning.live.table-delete",
+      "element": "直播管理表格删除操作",
+      "locator": {
+        "selector": ".lc-live-admin .gaip-table__row-actions .gaip-table__button.is-danger",
+        "representative": "首个草稿行删除按钮"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "default / hover",
+        "viewport": "all"
+      },
+      "appliesTo": [
+        "直播管理草稿表格行操作；不影响课节实色删除与直播卡片"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "继承默认文字色（仅 is-danger，未匹配共享规则）",
+          "target": "#b82e24",
+          "status": "active",
+          "basis": "mixed"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "32px",
+          "status": "active",
+          "basis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": null,
+          "target": "4px",
+          "status": "active",
+          "basis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "transparent",
+          "status": "active",
+          "basis": "source"
+        },
+        "hover.background": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#fff0ee",
+          "status": "active",
+          "basis": "mixed"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-live.js",
+          "symbol": "mountManager/actions"
+        },
+        {
+          "path": "components/table/global-table.css",
+          "selector": ".gaip-table .gaip-table__row-actions .gaip-table__button.is-danger"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "完整file入口颜色、hover、取消/确认及已上架无删除入口已核验；线上基准未知"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.lesson.header-actions.size",
+      "element": "课节标题栏按钮",
+      "locator": {
+        "selector": ".lc-lesson-heading-actions .lc-button",
+        "representative": "首个已保存课节/新增未保存课节"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "default",
+        "viewport": "沿用 lc-editor 600px 容器断点，窄容器操作组换行"
+      },
+      "appliesTo": [
+        "课程编辑课节标题栏，不影响课程底栏与其他频道按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "min-height": {
+          "before": null,
+          "initialLocal": "36px",
+          "target": "32px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "height": {
+          "before": null,
+          "initialLocal": "auto",
+          "target": "32px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "padding": {
+          "before": null,
+          "initialLocal": "6px 16px（上下架/保存）；0 4px（删除）",
+          "target": "4px 12px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "font-size": {
+          "before": null,
+          "initialLocal": "14px",
+          "target": "14px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "line-height": {
+          "before": null,
+          "initialLocal": null,
+          "target": "22px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions .lc-button"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "线上基准未知；尺寸/状态使用专项 Chromium 测试，不代表全站验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.lesson.header-actions.danger",
+      "element": "课节标题栏按钮",
+      "locator": {
+        "selector": ".lc-lesson-heading-actions .lc-danger",
+        "representative": "首个已保存课节/新增未保存课节"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "default",
+        "viewport": "沿用 lc-editor 600px 容器断点，窄容器操作组换行"
+      },
+      "appliesTo": [
+        "课程编辑课节标题栏，不影响课程底栏与其他频道按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#006d62",
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "1px solid #cf3d31",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "transparent",
+          "target": "#cf3d31",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions .lc-danger"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "线上基准未知；尺寸/状态使用专项 Chromium 测试，不代表全站验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.lesson.header-actions.danger-hover",
+      "element": "课节标题栏按钮",
+      "locator": {
+        "selector": ".lc-lesson-heading-actions .lc-danger:hover:not(:disabled)",
+        "representative": "首个已保存课节/新增未保存课节"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "hover",
+        "viewport": "沿用 lc-editor 600px 容器断点，窄容器操作组换行"
+      },
+      "appliesTo": [
+        "课程编辑课节标题栏，不影响课程底栏与其他频道按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#006d62",
+          "target": "#ffffff",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "border-color": {
+          "before": null,
+          "initialLocal": null,
+          "target": "#b32d23",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "transparent",
+          "target": "#b32d23",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions .lc-danger:hover:not(:disabled)"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "线上基准未知；尺寸/状态使用专项 Chromium 测试，不代表全站验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.lesson.header-actions.disabled",
+      "element": "课节标题栏按钮",
+      "locator": {
+        "selector": ".lc-lesson-heading-actions .lc-button:disabled",
+        "representative": "首个已保存课节/新增未保存课节"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "disabled",
+        "viewport": "沿用 lc-editor 600px 容器断点，窄容器操作组换行"
+      },
+      "appliesTo": [
+        "课程编辑课节标题栏，不影响课程底栏与其他频道按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "color": {
+          "before": null,
+          "initialLocal": "#006d62（删除）",
+          "target": "#a3aaa7",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "border": {
+          "before": null,
+          "initialLocal": "0（删除）",
+          "target": "1px solid #d9dddc",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "background": {
+          "before": null,
+          "initialLocal": "transparent（删除）",
+          "target": "#f5f5f5",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "opacity": {
+          "before": null,
+          "initialLocal": "0.38",
+          "target": "1",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions .lc-button:disabled"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "线上基准未知；尺寸/状态使用专项 Chromium 测试，不代表全站验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.lesson.header-actions.focus",
+      "element": "课节标题栏按钮",
+      "locator": {
+        "selector": ".lc-lesson-heading-actions .lc-button:focus-visible",
+        "representative": "首个已保存课节/新增未保存课节"
+      },
+      "state": {
+        "channel": "learning",
+        "variant": "focus-visible",
+        "viewport": "沿用 lc-editor 600px 容器断点，窄容器操作组换行"
+      },
+      "appliesTo": [
+        "课程编辑课节标题栏，不影响课程底栏与其他频道按钮"
+      ],
+      "baseline": {
+        "id": null,
+        "kind": "unknown",
+        "ref": null,
+        "capturedAt": null,
+        "evidence": []
+      },
+      "properties": {
+        "outline": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px solid var(--gaip-color-accent, #24d4c9)",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        },
+        "outline-offset": {
+          "before": null,
+          "initialLocal": null,
+          "target": "2px",
+          "status": "active",
+          "basis": "mixed",
+          "beforeBasis": "source",
+          "targetBasis": "source"
+        }
+      },
+      "sources": [
+        {
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions .lc-button:focus-visible"
+        }
+      ],
+      "verification": {
+        "level": "browser-checked",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "线上基准未知；尺寸/状态使用专项 Chromium 测试，不代表全站验收"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "learning.home.course-description-spacing",
+      "element": "课程简介上下留白",
+      "locator": {"selector": ".gaip-course-title, .gaip-course-footer", "representative": "首页课程卡片标题与标签区"},
+      "state": {"channel": "learning", "variant": "default / narrow", "viewport": "320–1920px"},
+      "appliesTo": ["所有首页课程卡片；直播卡片不变"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "title.margin-bottom": {"before": null, "initialLocal": "4px", "target": "12px", "status": "active", "basis": "source"},
+        "footer.margin-top": {"before": null, "initialLocal": "16px", "target": "24px", "status": "active", "basis": "source"}
+      },
+      "sources": [{"file": "channels/learning-center/learning-center.css", "selector": ".gaip-course-title, .gaip-course-footer"}],
+      "verification": {"level": "browser-checked", "checkedAt": "2026-09-22", "evidence": ["scripts/test-learning-live-browser.cjs：320–1920px所有课程卡片简介上下实际几何断言", "/tmp/gaip-learning-live-cards-1440.png"], "gaps": ["完整file/Umi页面待刷新验收"]},
+      "status": "active", "updatedAt": "2026-09-22"
+    },
+    {
+      "id": "learning.home.header-and-grid",
+      "element": "频道首页头部、管理按钮与课程列宽",
+      "locator": {"selector": ".gaip-learning-header, .gaip-learning-action, .gaip-learning-grid", "representative": "学习中心首页"},
+      "state": {"channel": "learning", "variant": "default / narrow", "viewport": "320–1920px"},
+      "appliesTo": ["学习中心首页；不影响管理详情页或其他频道"],
+      "baseline": {"id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": []},
+      "properties": {
+        "header.background": {"before": null, "initialLocal": "浅灰渐变与斜线伪元素", "target": "#fff；background-image:none；after content:none", "status": "active", "basis": "mixed"},
+        "header.border-top": {"before": null, "initialLocal": "0", "target": "1px solid rgba(47,54,64,.12)；使用既有learning-line，与配置中心一致", "status": "active", "basis": "mixed"},
+        "actions.background": {"before": null, "initialLocal": "学情#025B52，直播/课程#190f07", "target": "三个按钮均为#025B52，图标/文字保持白色", "status": "active", "basis": "mixed"},
+        "course.column-width": {"before": null, "initialLocal": "默认4等分，≤1519px视口3等分", "target": "默认3等分；内容容器≤900px为2等分，≤560px为1列；gap0", "status": "active", "basis": "mixed"}
+      },
+      "sources": [{"file": "channels/learning-center/learning-center.css"}, {"file": "channels/learning-center/learning-center.css", "selector": ".gaip-learning-v11 .gaip-course-list-view（已有container）"}],
+      "verification": {"level": "browser-checked", "checkedAt": "2026-09-22", "evidence": ["scripts/test-learning-live-browser.cjs：默认底色、按钮与320–1920px列数断言", "/tmp/gaip-learning-live-cards-1440.png", "/tmp/gaip-learning-live-cards-480.png"], "gaps": ["完整file/Umi页面待刷新验收；既有overlay最小页面宽度规则未改"]},
+      "status": "active", "updatedAt": "2026-09-22"
+    },
+    {
       "id": "learning.study.detail-modal-surface",
       "element": "学情详情共享信息弹窗表面",
       "locator": {"selector": ".lc-study-detail-modal > .ant-modal-content", "representative": "学员学习详情"},
@@ -15,7 +486,7 @@
         "box-shadow": {"before": null, "initialLocal": "-8px 0 30px #0002", "target": "0 12px 32px rgba(17,35,39,.18)", "status": "active", "basis": "source"},
         "height": {"before": null, "initialLocal": "100dvh", "target": "min(720px, var(--gaip-modal-max-height, calc(100dvh - 48px)))", "status": "active", "basis": "mixed"}
       },
-      "sources": ["shared/styles/global-modal.css", "shared/styles/global-modal-position.css", "features/learning-center/learning-v11.css"],
+      "sources": ["shared/styles/global-modal.css", "shared/styles/global-modal-position.css", "channels/learning-center/learning-v11.css"],
       "verification": {"level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["独立真实控制器截图与布局检查通过；完整file入口待现场验收；线上基准未采集。"]},
       "status": "active", "updatedAt": "2026-09-10"
     },
@@ -33,7 +504,7 @@
         "identity.account-gap": { "before": null, "initialLocal": "主表0；详情small4px", "target": "统一4px", "status": "active", "basis": "source" },
         "numeric.font-variant": { "before": null, "initialLocal": "normal", "target": "tabular-nums", "status": "active", "basis": "source" }
       },
-      "sources": ["features/learning-center/learning-app.js: studyText / studyIdentity / openDrawer", "features/learning-center/learning-v11.css: .lc-study-summary / .lc-study-text / .lc-study-identity"],
+      "sources": ["channels/learning-center/learning-app.js: studyText / studyIdentity / openDrawer", "channels/learning-center/learning-v11.css: .lc-study-summary / .lc-study-text / .lc-study-identity"],
       "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["独立真实控制器截图/交互验证；完整file入口受策略限制待验收；线上基准未采集。"] },
       "status": "active",
       "updatedAt": "2026-09-10"
@@ -91,8 +562,8 @@
         }
       },
       "sources": [
-        "features/learning-center/learning-v11.css: .lc-stats",
-        "features/learning-center/learning-app.js: renderStats / back",
+        "channels/learning-center/learning-v11.css: .lc-stats",
+        "channels/learning-center/learning-app.js: renderStats / back",
         "shared/styles/global-table.css"
       ],
       "verification": {
@@ -122,7 +593,7 @@
         "indicator": { "before": null, "initialLocal": "无", "target": "71px × 4px; #3ba297; radius2px", "status": "active", "basis": "source" },
         "toolbar.border-bottom": { "before": null, "initialLocal": "无", "target": "1px solid #e4e4e2", "status": "active", "basis": "source" }
       },
-      "sources": ["features/learning-center/learning-v11.css: .lc-stats-header（页面布局）", "shared/styles/global-tabs.css（Tab皮肤已抽为共享源码；保留本条首次本地值）", "design-changes/shared-tabs.json（共享参数）"],
+      "sources": ["channels/learning-center/learning-v11.css: .lc-stats-header（页面布局）", "shared/styles/global-tabs.css（Tab皮肤已抽为共享源码；保留本条首次本地值）", "design-changes/shared-tabs.json（共享参数）"],
       "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["独立控制器宽度与键盘测试通过；完整file入口受浏览器安全策略限制；线上精确参数未采集"] },
       "status": "active",
       "updatedAt": "2026-09-10"
@@ -218,7 +689,7 @@
         }
       },
       "sources": [
-        "features/learning-center/learning-app.js: renderStats / openDrawer / openLearningLog",
+        "channels/learning-center/learning-app.js: renderStats / openDrawer / openLearningLog",
         "shared/styles/global-filter-bar.css",
         "docs/filter-bar-spec.md"
       ],
@@ -329,8 +800,8 @@
         }
       },
       "sources": [
-        "features/learning-center/learning-app.js: updateStatsResults / openDrawer / openLearningLog",
-        "features/learning-center/learning-v11.css: .lc-stats / .lc-study-detail-table",
+        "channels/learning-center/learning-app.js: updateStatsResults / openDrawer / openLearningLog",
+        "channels/learning-center/learning-v11.css: .lc-stats / .lc-study-detail-table",
         "shared/styles/global-table.css"
       ],
       "verification": {
@@ -424,8 +895,8 @@
         }
       },
       "sources": [
-        "features/learning-center/learning-app.js: openLearningLog",
-        "features/learning-center/learning-v11.css: .lc-course-log-modal / .lc-log-value",
+        "channels/learning-center/learning-app.js: openLearningLog",
+        "channels/learning-center/learning-v11.css: .lc-course-log-modal / .lc-log-value",
         "shared/styles/global-modal.css"
       ],
       "verification": {
@@ -514,11 +985,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "openCourseLog/logAction，复用__GAIP_TABLE__.tag"
         },
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-log-action-tag"
         },
         {
@@ -636,11 +1107,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "openCourseLog/changeValue"
         },
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-log-value, .lc-log-value-toggle"
         },
         {
@@ -717,7 +1188,7 @@
           "selector": ".gaip-modal__button--danger-outline"
         },
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "confirm"
         }
       ],
@@ -802,11 +1273,11 @@
           "sha256": "0d2d42010a1cc818d08888bb567965a134b80f2143ed818494ef6d3a6490ec39"
         },
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "lessonFilePicker"
         },
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-upload-complete-icon"
         }
       ],
@@ -950,7 +1421,7 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file-description, .lc-upload-feedback"
         }
       ],
@@ -1068,7 +1539,7 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-upload-demo"
         }
       ],
@@ -1144,11 +1615,11 @@
       },
       "sources": [
         {
-          "file": "features/learning-center/learning-app.js",
+          "file": "channels/learning-center/learning-app.js",
           "function": "lessonFileName"
         },
         {
-          "file": "features/learning-center/learning-v11.css",
+          "file": "channels/learning-center/learning-v11.css",
           "selector": ".lc-local-file-link"
         }
       ],
@@ -1207,7 +1678,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-file-picker.lc-file-replace"
         }
       ],
@@ -1327,7 +1798,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-upload-state, .lc-upload-meter"
         }
       ],
@@ -1354,7 +1825,7 @@
         "color": { "before": null, "initialLocal": null, "target": "rgba(47,54,64,.65)", "status": "active", "basis": "mixed", "reason": "new" },
         "margin": { "before": null, "initialLocal": null, "target": "0", "status": "active", "basis": "mixed", "reason": "new" }
       },
-      "sources": [{ "path": "features/learning-center/learning-v11.css", "selector": ".lc-editor-save-hint" }, { "path": "web/p__induction__index.ec144457.chunk.css", "selector": ".bottomBarText___gc6nv p", "role": "read-only-reference" }],
+      "sources": [{ "path": "channels/learning-center/learning-v11.css", "selector": ".lc-editor-save-hint" }, { "path": "web/p__induction__index.ec144457.chunk.css", "selector": ".bottomBarText___gc6nv p", "role": "read-only-reference" }],
       "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["线上对应元素未采集；本地完整file入口及独立控制器截图已检查。"] },
       "status": "active",
       "updatedAt": "2026-09-10"
@@ -1371,7 +1842,7 @@
         "padding": { "before": null, "initialLocal": "16px 28px", "target": "0 24px；视口≤1100px为12px 24px", "status": "active", "basis": "mixed" },
         "gap": { "before": null, "initialLocal": "normal", "target": "24px；视口≤1100px为12px", "status": "active", "basis": "source" }
       },
-      "sources": [{ "path": "features/learning-center/learning-v11.css", "selector": ".lc-editor-footer--draft" }, { "path": "web/p__induction__index.ec144457.chunk.css", "selector": ".bottomBar___ipcrV", "role": "read-only-reference" }],
+      "sources": [{ "path": "channels/learning-center/learning-v11.css", "selector": ".lc-editor-footer--draft" }, { "path": "web/p__induction__index.ec144457.chunk.css", "selector": ".bottomBar___ipcrV", "role": "read-only-reference" }],
       "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["实测薄荷底栏作本地参考；窄屏换行保护不改变保存逻辑。"] },
       "status": "active", "updatedAt": "2026-09-10"
     },
@@ -1383,7 +1854,7 @@
       "appliesTo": ["新增及编辑课程学习设置"],
       "baseline": { "id": null, "kind": "unknown", "ref": null, "capturedAt": null, "evidence": [] },
       "properties": { "margin-top": { "before": null, "initialLocal": "4px", "target": "12px", "status": "active", "basis": "source" } },
-      "sources": [{ "path": "features/learning-center/learning-v11.css", "selector": ".lc-settings-grid > .lc-basic-radio > .lc-field-help" }],
+      "sources": [{ "path": "channels/learning-center/learning-v11.css", "selector": ".lc-settings-grid > .lc-basic-radio > .lc-field-help" }],
       "verification": { "level": "browser-checked", "checkedAt": "2026-09-10", "gaps": ["线上基准未采集；浏览器断言三列说明顶部误差小于1px。"] },
       "status": "active",
       "updatedAt": "2026-09-10"
@@ -1505,7 +1976,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor-header"
         }
       ],
@@ -1566,7 +2037,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor-footer-inner"
         }
       ],
@@ -2115,7 +2586,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-drag-handle"
         },
         {
@@ -2174,7 +2645,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-drag-handle:hover"
         },
         {
@@ -2240,7 +2711,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-edit-lesson.is-drag-source"
         },
         {
@@ -2292,7 +2763,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-drag-layer"
         },
         {
@@ -2365,7 +2836,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-drag-layer .lc-edit-lesson"
         },
         {
@@ -2431,7 +2902,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-drop-marker"
         },
         {
@@ -2483,7 +2954,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-drag-layer"
         },
         {
@@ -2512,7 +2983,7 @@
       "properties": {
         "background/border-color": {"before": null, "initialLocal": "共享品牌色：默认#025b52、hover#01483f、active#013a33", "target": "复用共享tone:danger：默认#cf1322、hover#a8071a、active#820014；不复制CSS或覆盖全局token", "basis": "computed", "status": "active"}
       },
-      "sources": ["features/learning-center/learning-app.js confirmScene", "shared/styles/global-modal.css（现有危险按钮规则，只读复用）"],
+      "sources": ["channels/learning-center/learning-app.js confirmScene", "shared/styles/global-modal.css（现有危险按钮规则，只读复用）"],
       "verification": {"level": "browser-checked", "checkedAt": "2026-09-09", "gaps": ["独立真实源组件验证了两宽度按钮颜色、数量、边界、关闭重开；并非完整学习中心整页视觉验收", "线上交付基准未采集"]},
       "status": "active",
       "updatedAt": "2026-09-09"
@@ -2550,7 +3021,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor"
         },
         {
@@ -2601,7 +3072,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lessons-toolbar"
         },
         {
@@ -2652,7 +3123,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lessons-toolbar h3"
         },
         {
@@ -2703,7 +3174,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lessons-toolbar h3 small"
         },
         {
@@ -2761,7 +3232,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor > .lc-hint"
         },
         {
@@ -2812,7 +3283,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-edit-lesson"
         },
         {
@@ -2884,7 +3355,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-edit-heading"
         },
         {
@@ -2942,7 +3413,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-identity"
         },
         {
@@ -3000,7 +3471,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-identity h4"
         },
         {
@@ -3065,7 +3536,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-number"
         },
         {
@@ -3085,9 +3556,9 @@
     },
     {
       "id": "learning.editor.lessons.11",
-      "element": ".lc-lesson-order-actions",
+      "element": "课节标题栏操作组",
       "locator": {
-        "selector": ".lc-lesson-order-actions",
+        "selector": ".lc-lesson-heading-actions",
         "representative": "课程编辑课节管理，同类课节共用"
       },
       "state": {
@@ -3109,30 +3580,26 @@
         "gap": {
           "before": null,
           "initialLocal": null,
-          "target": "12px",
+          "target": "8px",
           "status": "active",
           "basis": "source"
         }
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
-          "selector": ".lc-lesson-order-actions"
-        },
-        {
-          "path": "../本地回退备份/课节管理排版-20260909-grOMW2/learning-v11.css",
-          "note": "修改前本地快照；新选择器无直接旧声明的值为 null，不冒充线上基准"
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions"
         }
       ],
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09",
+        "checkedAt": "2026-10-09",
         "gaps": [
-          "独立控制器 Chromium 验证 480–1440px，不等同完整 Umi/file 入口；线上视觉基准未采集"
+          "独立 Chromium 控制器 480–1708px 内容宽度核验；线上基准未知"
         ]
       },
       "status": "active",
-      "updatedAt": "2026-09-09"
+      "updatedAt": "2026-10-09"
     },
     {
       "id": "learning.editor.lessons.12",
@@ -3167,7 +3634,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-edit-body"
         },
         {
@@ -3225,7 +3692,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-fields"
         },
         {
@@ -3283,7 +3750,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-required"
         },
         {
@@ -3348,7 +3815,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-counted input"
         },
         {
@@ -3424,7 +3891,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-counted small"
         },
         {
@@ -3493,7 +3960,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-counted input:focus"
         },
         {
@@ -3548,7 +4015,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-basic-radio > div"
         },
         {
@@ -3599,7 +4066,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-basic-radio input:disabled + span"
         },
         {
@@ -3650,7 +4117,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-files"
         },
         {
@@ -3701,7 +4168,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file"
         },
         {
@@ -3773,7 +4240,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file h5"
         },
         {
@@ -3838,7 +4305,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file h5 > span:not(.lc-required)"
         },
         {
@@ -3910,7 +4377,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file-box"
         },
         {
@@ -3968,7 +4435,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file-description"
         },
         {
@@ -4033,7 +4500,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file-description strong"
         },
         {
@@ -4105,7 +4572,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-field-help"
         },
         {
@@ -4163,7 +4630,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-file-actions"
         },
         {
@@ -4228,7 +4695,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-locked"
         },
         {
@@ -4286,7 +4753,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-file-picker:focus-visible"
         },
         {
@@ -4351,7 +4818,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-lesson-footer"
         },
         {
@@ -4366,8 +4833,9 @@
           "独立控制器 Chromium 验证 480–1440px，不等同完整 Umi/file 入口；线上视觉基准未采集"
         ]
       },
-      "status": "active",
-      "updatedAt": "2026-09-09"
+      "status": "removed",
+      "updatedAt": "2026-10-09",
+      "removalReason": "2026-10-09 用户要求移除课节底部操作区；非恢复交付基准。"
     },
     {
       "id": "learning.editor.lessons.32",
@@ -4409,7 +4877,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-primary"
         },
         {
@@ -4481,7 +4949,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lessons-empty"
         },
         {
@@ -4532,7 +5000,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-fields"
         },
         {
@@ -4583,7 +5051,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor"
         },
         {
@@ -4641,7 +5109,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-edit-heading"
         },
         {
@@ -4661,9 +5129,9 @@
     },
     {
       "id": "learning.editor.lessons.37",
-      "element": ".lc-lesson-order-actions",
+      "element": "课节标题栏操作组",
       "locator": {
-        "selector": ".lc-lesson-order-actions",
+        "selector": ".lc-lesson-heading-actions",
         "representative": "课程编辑课节管理，同类课节共用"
       },
       "state": {
@@ -4692,23 +5160,19 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
-          "selector": ".lc-lesson-order-actions"
-        },
-        {
-          "path": "../本地回退备份/课节管理排版-20260909-grOMW2/learning-v11.css",
-          "note": "修改前本地快照；新选择器无直接旧声明的值为 null，不冒充线上基准"
+          "path": "channels/learning-center/learning-center.css",
+          "selector": ".lc-lesson-heading-actions"
         }
       ],
       "verification": {
         "level": "browser-checked",
-        "checkedAt": "2026-09-09",
+        "checkedAt": "2026-10-09",
         "gaps": [
-          "独立控制器 Chromium 验证 480–1440px，不等同完整 Umi/file 入口；线上视觉基准未采集"
+          "独立 Chromium 控制器 480–1708px 内容宽度核验；线上基准未知"
         ]
       },
       "status": "active",
-      "updatedAt": "2026-09-09"
+      "updatedAt": "2026-10-09"
     },
     {
       "id": "learning.editor.lessons.38",
@@ -4743,7 +5207,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-edit-body"
         },
         {
@@ -4794,7 +5258,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-files"
         },
         {
@@ -4845,7 +5309,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-lessons-editor .lc-lesson-footer"
         },
         {
@@ -4860,8 +5324,9 @@
           "独立控制器 Chromium 验证 480–1440px，不等同完整 Umi/file 入口；线上视觉基准未采集"
         ]
       },
-      "status": "active",
-      "updatedAt": "2026-09-09"
+      "status": "removed",
+      "updatedAt": "2026-10-09",
+      "removalReason": "2026-10-09 用户要求移除课节底部操作区；非恢复交付基准。"
     },
     {
       "id": "learning.editor.basics.c5c3f4b7",
@@ -4903,7 +5368,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor > .lc-admin-heading, .lc-editor > .lc-notice, .lc-editor > .lc-panel"
         },
         {
@@ -4911,7 +5376,7 @@
           "note": "首次本地样式快照；未采集值留空，不冒充线上基准"
         },
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor > .lc-admin-heading, .lc-editor > .lc-notice, .lc-editor > .lc-panel, .lc-editor > .lc-form-error"
         }
       ],
@@ -4993,7 +5458,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor > .lc-notice"
         },
         {
@@ -5051,7 +5516,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor > .lc-admin-heading .lc-primary"
         },
         {
@@ -5102,7 +5567,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics"
         },
         {
@@ -5160,7 +5625,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-heading"
         },
         {
@@ -5211,7 +5676,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-heading h3"
         },
         {
@@ -5269,7 +5734,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-heading > span, .lc-cover-help"
         },
         {
@@ -5320,7 +5785,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-content"
         },
         {
@@ -5371,7 +5836,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-copy"
         },
         {
@@ -5429,7 +5894,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-required"
         },
         {
@@ -5494,7 +5959,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-counted input"
         },
         {
@@ -5556,7 +6021,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-counted textarea"
         },
         {
@@ -5632,7 +6097,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-counted small"
         },
         {
@@ -5701,7 +6166,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-counted input:focus, .lc-course-basics .lc-counted textarea:focus"
         },
         {
@@ -5791,7 +6256,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-picker"
         },
         {
@@ -5849,7 +6314,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-picker:hover, .lc-cover-picker:focus-visible"
         },
         {
@@ -5907,7 +6372,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-picker img"
         },
         {
@@ -5965,7 +6430,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-picker-caption"
         },
         {
@@ -6030,7 +6495,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-picker img + .lc-cover-picker-caption"
         },
         {
@@ -6088,7 +6553,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-help"
         },
         {
@@ -6153,7 +6618,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-help .lc-link"
         },
         {
@@ -6218,7 +6683,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-settings"
         },
         {
@@ -6269,7 +6734,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-settings-grid"
         },
         {
@@ -6341,7 +6806,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .lc-field-help"
         },
         {
@@ -6413,7 +6878,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio"
         },
         {
@@ -6485,7 +6950,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio legend"
         },
         {
@@ -6543,7 +7008,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio > div"
         },
         {
@@ -6551,7 +7016,7 @@
           "note": "首次本地样式快照；未采集值留空，不冒充线上基准"
         },
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio > div"
         }
       ],
@@ -6598,7 +7063,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio label"
         },
         {
@@ -6663,7 +7128,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basic-radio input"
         },
         {
@@ -6735,7 +7200,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics .gaip-filter-bar__switch-input"
         },
         {
@@ -6786,7 +7251,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-groups .gaipMultiSelect"
         },
         {
@@ -6837,7 +7302,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-groups .gaipMultiSelect__control:hover, .lc-basics-groups .gaipMultiSelect.isOpen .gaipMultiSelect__control, .lc-basics-groups .gaipMultiSelect__control:focus-visible"
         },
         {
@@ -6892,7 +7357,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-groups .gaipMultiSelect__option[aria-selected=\"true\"]"
         },
         {
@@ -6954,7 +7419,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-groups .gaipMultiSelect__option[aria-selected=\"true\"] .gaipMultiSelect__checkbox"
         },
         {
@@ -7009,7 +7474,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-content"
         },
         {
@@ -7060,7 +7525,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-settings-grid"
         },
         {
@@ -7118,7 +7583,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-groups"
         },
         {
@@ -7169,7 +7634,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-course-basics"
         },
         {
@@ -7227,7 +7692,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-basics-cover"
         },
         {
@@ -7285,7 +7750,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin.lc-manage"
         }
       ],
@@ -7339,7 +7804,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-app.js",
+          "path": "channels/learning-center/learning-app.js",
           "selector": "openCourseLog / logTable columns"
         }
       ],
@@ -7435,7 +7900,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-modal.lc-course-log-modal"
         }
       ],
@@ -7482,7 +7947,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .gaip-table__table"
         }
       ],
@@ -7529,7 +7994,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .gaip-table td small"
         }
       ],
@@ -7590,11 +8055,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-header"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/channels/learning-center/learning-v11.css",
           "note": "本轮首次本地值快照，不作线上值"
         }
       ],
@@ -7641,11 +8106,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-header-actions .lc-button"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/channels/learning-center/learning-v11.css",
           "note": "本轮首次本地值快照，不作线上值"
         }
       ],
@@ -7699,11 +8164,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-header-actions .lc-primary"
         },
         {
-          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/features/learning-center/learning-v11.css",
+          "path": "/Users/hhp/Documents/GAIP项目集/本地回退备份/课程管理顶部合并-20260909-TkLXi7/before/channels/learning-center/learning-v11.css",
           "note": "本轮首次本地值快照，不作线上值"
         }
       ],
@@ -7764,11 +8229,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-results"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -7822,11 +8287,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-results-heading"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -7880,11 +8345,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-results-heading h3"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -7938,11 +8403,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-results-heading > span"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8003,11 +8468,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table-scroll"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8047,30 +8512,34 @@
         "min-width": {
           "before": null,
           "initialLocal": null,
-          "target": "1192px",
+          "target": "1208px",
           "status": "active",
           "basis": "source"
         }
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        },
+        {
+          "path": "channels/learning-center/learning-app.js",
+          "note": "本轮改前minWidth1192见outputs/table-actions/course-before/learning-app.js"
         }
       ],
       "verification": {
         "level": "source-only",
-        "checkedAt": "2026-09-09",
+        "checkedAt": "2026-09-29",
         "gaps": [
           "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
         ]
       },
       "status": "active",
-      "updatedAt": "2026-09-09"
+      "updatedAt": "2026-09-29"
     },
     {
       "id": "learning.manage-trial.14",
@@ -8112,11 +8581,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th, .lc-manage .lc-table td"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8163,11 +8632,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(1)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8214,11 +8683,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(2)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8265,11 +8734,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(3)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8316,11 +8785,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(4)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8367,11 +8836,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(5)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8418,11 +8887,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(6)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8469,11 +8938,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(7)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8513,30 +8982,38 @@
         "width": {
           "before": null,
           "initialLocal": null,
-          "target": "176px",
+          "target": "192px",
           "status": "active",
           "basis": "source"
         }
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:nth-child(8)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
+        },
+        {
+          "path": "channels/learning-center/learning-app.js",
+          "note": "共享表格列配置；本轮改前176px见outputs/table-actions/course-before/learning-app.js"
         }
       ],
       "verification": {
         "level": "source-only",
-        "checkedAt": "2026-09-09",
+        "checkedAt": "2026-09-29",
         "gaps": [
           "线上精确基准未采集；原 file 页面访问受限，实际视觉与滚动布局待本地验收"
+        ],
+        "evidence": [
+          "scripts/test-learning-course-manage.cjs",
+          "outputs/table-actions/course-before/learning-app.js"
         ]
       },
       "status": "active",
-      "updatedAt": "2026-09-09"
+      "updatedAt": "2026-09-29"
     },
     {
       "id": "learning.manage-trial.23",
@@ -8571,11 +9048,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table td"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8622,11 +9099,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table tbody tr:hover td"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8673,11 +9150,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table tbody tr:last-child td"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8724,11 +9201,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:first-child, .lc-manage .lc-table td:first-child:not([colspan])"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8775,11 +9252,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-table th:last-child, .lc-manage .lc-table td:last-child:not([colspan])"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8840,11 +9317,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-title-cell"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8891,11 +9368,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-title-cell + .gaip-course-tag"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -8949,11 +9426,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-time"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         },
         {
@@ -9005,11 +9482,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-row-actions"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9063,11 +9540,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-row-actions .lc-button"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9114,11 +9591,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-manage-delete:not(:disabled)"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9165,11 +9642,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage-disabled-action"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9223,11 +9700,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-pagination"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9274,11 +9751,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-manage .lc-pagination > span:first-child"
         },
         {
-          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/features/learning-center/learning-v11.css",
+          "path": "../本地回退备份/课程管理排列试版-20260909-9mzqen/before/channels/learning-center/learning-v11.css",
           "note": "首次本地规则快照；null 为新增容器或未采集精确旧值，不冒充线上参数"
         }
       ],
@@ -9334,7 +9811,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11"
         }
       ],
@@ -9382,7 +9859,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 button, .lc-drawer button"
         }
       ],
@@ -9470,7 +9947,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-demo"
         }
       ],
@@ -9558,7 +10035,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-demo select"
         }
       ],
@@ -9622,7 +10099,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin"
         }
       ],
@@ -9686,7 +10163,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin h2"
         }
       ],
@@ -9750,7 +10227,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin h3"
         }
       ],
@@ -9806,7 +10283,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin-heading"
         }
       ],
@@ -9854,7 +10331,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin-heading > div"
         }
       ],
@@ -9902,7 +10379,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin-heading h3, .lc-admin-heading h4"
         }
       ],
@@ -9974,7 +10451,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-admin small, .lc-table small"
         }
       ],
@@ -10070,7 +10547,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-button"
         }
       ],
@@ -10126,7 +10603,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-button:hover:not(:disabled)"
         }
       ],
@@ -10190,7 +10667,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-button.lc-primary, .lc-button.is-selected"
         }
       ],
@@ -10246,7 +10723,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-button.lc-primary:hover:not(:disabled)"
         }
       ],
@@ -10318,7 +10795,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-button.lc-link"
         }
       ],
@@ -10374,7 +10851,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-toolbar"
         }
       ],
@@ -10470,7 +10947,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-toolbar input:not([type=checkbox]), .lc-toolbar select, .lc-field input:not([type=file]), .lc-field select, .lc-field textarea"
         }
       ],
@@ -10526,7 +11003,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-toolbar .lc-search"
         }
       ],
@@ -10582,7 +11059,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table-scroll"
         }
       ],
@@ -10646,7 +11123,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table"
         }
       ],
@@ -10710,7 +11187,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table th"
         }
       ],
@@ -10766,7 +11243,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table th, .lc-table td"
         }
       ],
@@ -10814,7 +11291,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table td"
         }
       ],
@@ -10862,7 +11339,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table tbody tr:hover"
         }
       ],
@@ -10926,7 +11403,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-title-cell"
         }
       ],
@@ -10974,7 +11451,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-row-actions"
         }
       ],
@@ -11038,7 +11515,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pagination"
         }
       ],
@@ -11094,7 +11571,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-empty"
         }
       ],
@@ -11166,7 +11643,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-panel"
         }
       ],
@@ -11214,7 +11691,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-form-grid"
         }
       ],
@@ -11270,7 +11747,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-field"
         }
       ],
@@ -11318,7 +11795,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-field > span"
         }
       ],
@@ -11366,7 +11843,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-field input, .lc-field textarea, .lc-field select"
         }
       ],
@@ -11414,7 +11891,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-field textarea"
         }
       ],
@@ -11470,7 +11947,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-field input:disabled, .lc-field select:disabled"
         }
       ],
@@ -11518,7 +11995,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-upload"
         }
       ],
@@ -11582,7 +12059,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-cover-upload img"
         }
       ],
@@ -11646,7 +12123,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-group-field"
         }
       ],
@@ -11718,7 +12195,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-group-field legend"
         }
       ],
@@ -11774,7 +12251,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-group-field label"
         }
       ],
@@ -11870,7 +12347,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-notice"
         }
       ],
@@ -11942,7 +12419,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-hint"
         }
       ],
@@ -12022,7 +12499,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-form-error"
         }
       ],
@@ -12094,7 +12571,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-edit-lesson"
         }
       ],
@@ -12158,7 +12635,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-edit-lesson h4"
         }
       ],
@@ -12214,7 +12691,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-edit-lesson [draggable]"
         }
       ],
@@ -12262,7 +12739,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-file-line"
         }
       ],
@@ -12318,7 +12795,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-file-line > span"
         }
       ],
@@ -12374,7 +12851,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-lesson-footer"
         }
       ],
@@ -12385,8 +12862,9 @@
           "线上精确视觉参数未采集；浏览器工具拒绝 file://，实际视觉及全屏待验收"
         ]
       },
-      "status": "active",
-      "updatedAt": "2026-09-09"
+      "status": "removed",
+      "updatedAt": "2026-10-09",
+      "removalReason": "2026-10-09 用户要求移除课节底部操作区；非恢复交付基准。"
     },
     {
       "id": "learning.v11.19bfe0ed",
@@ -12438,7 +12916,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-add-lesson"
         }
       ],
@@ -12525,11 +13003,11 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor-footer"
         },
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-editor-footer"
         }
       ],
@@ -12593,7 +13071,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-tabs"
         }
       ],
@@ -12657,7 +13135,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-table pre"
         }
       ],
@@ -12778,7 +13256,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-modal"
         },
         {
@@ -12835,7 +13313,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-modal::backdrop"
         },
         {
@@ -12907,7 +13385,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-modal .ant-modal-header"
         },
         {
@@ -12986,7 +13464,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-modal .gaip-modal__title"
         },
         {
@@ -13087,7 +13565,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-modal [data-close]"
         },
         {
@@ -13144,7 +13622,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-study-detail-body"
         },
         {
@@ -13224,7 +13702,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-watermark"
         }
       ],
@@ -13272,7 +13750,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-course-player-stage .lc-watermark"
         }
       ],
@@ -13336,7 +13814,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-fullscreen"
         }
       ],
@@ -13400,7 +13878,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-course-player-stage:fullscreen"
         }
       ],
@@ -13448,7 +13926,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-course-player-stage.lc-audio"
         }
       ],
@@ -13504,7 +13982,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-audio-label"
         }
       ],
@@ -13560,7 +14038,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 .gaip-course-player-toggle.is-playing"
         }
       ],
@@ -13632,7 +14110,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 .gaip-course-player-toggle.is-playing::after"
         }
       ],
@@ -13688,7 +14166,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-reader-tools"
         }
       ],
@@ -13744,7 +14222,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pdf-pages"
         }
       ],
@@ -13816,7 +14294,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pdf-page"
         }
       ],
@@ -13872,7 +14350,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pdf-page img"
         }
       ],
@@ -13936,7 +14414,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pdf-page figcaption"
         }
       ],
@@ -13992,7 +14470,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".lc-pdf-scroll:fullscreen"
         }
       ],
@@ -14040,7 +14518,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 .gaip-course-reader-complete-icon"
         }
       ],
@@ -14087,7 +14565,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 .gaip-course-lesson"
         }
       ],
@@ -14134,7 +14612,7 @@
       },
       "sources": [
         {
-          "path": "features/learning-center/learning-v11.css",
+          "path": "channels/learning-center/learning-v11.css",
           "selector": ".gaip-learning-v11 .gaip-course-detail-main"
         }
       ],

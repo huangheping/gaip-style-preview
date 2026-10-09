@@ -7,8 +7,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
   try {
     const p=await browser.newPage({viewport:{width:1440,height:1000}});
     await p.setContent('<section id="page"><header class="gaip-learning-header"><button data-learning-action="学情管理">学情管理</button><button data-learning-action="课程管理">课程管理</button></header></section>');
-    for(const f of ['shared/styles/global-multi-select.css','shared/styles/global-filter-bar.css','shared/styles/global-table.css','features/learning-center/learning-v11.css'])await p.addStyleTag({content:read(f)});
-    for(const f of ['shared/scripts/global-multi-select.js','shared/scripts/global-filter-bar.js','shared/scripts/global-table.js','features/learning-center/learning-data.js','features/learning-center/learning-app.js'])await p.evaluate(({source,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(source);},{source:read(f),url:'file://'+path.join(root,f)});
+    for(const f of ['components/multi-select/global-multi-select.css','components/filter-bar/global-filter-bar.css','components/table/global-table.css','channels/learning-center/learning-center.css'])await p.addStyleTag({content:read(f)});
+    for(const f of ['components/multi-select/global-multi-select.js','components/filter-bar/global-filter-bar.js','components/table/global-table.js','channels/learning-center/learning-data.js','channels/learning-center/learning-app.js'])await p.evaluate(({source,url})=>{Object.defineProperty(document,'currentScript',{configurable:true,value:{src:url}});window.eval(source);},{source:read(f),url:'file://'+path.join(root,f)});
     await p.evaluate(()=>window.__GAIP_LEARNING_APP__.mount(document.querySelector('#page')));
     await p.locator('[data-learning-action="课程管理"]').click();
     const group=p.locator('[data-filter-key="group"]');
