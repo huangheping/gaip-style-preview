@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "page": "ai-agent-avatar",
+  "records": [
+    {
+      "id": "ai-agent.sidebar.cat-avatar",
+      "element": "Web侧栏猫头像",
+      "locator": {
+        "selector": ".gaip-agent-brand > img",
+        "representative": "GAIP Agent助手左侧品牌头像"
+      },
+      "state": {
+        "channel": "shared-web",
+        "variant": "default",
+        "viewport": null
+      },
+      "appliesTo": [
+        "Web AI Agent原版及过渡版共享侧栏"
+      ],
+      "baseline": {
+        "id": "user-screenshot-20261009",
+        "kind": "agreed-local",
+        "ref": "用户附件codex-clipboard-89853bab-2fa2-42df-9a26-dc002c076ebf.png",
+        "capturedAt": "2026-10-09",
+        "evidence": []
+      },
+      "properties": {
+        "icon.asset": {
+          "before": "shared/assets/icons/business/ai-agent/Agent头像.svg",
+          "initialLocal": "shared/assets/icons/business/ai-agent/Agent头像.svg",
+          "target": "shared/assets/icons/business/ai-agent/入口版本2.png",
+          "status": "active",
+          "basis": "source",
+          "beforeSha256": "c195ae242e2b589ddf8465d868595af84b4742295c538e9287e85370edaae8bc",
+          "targetSha256": "fec4621efd70023d5ad416302486387897e7e1e25d27ce143db38721ee9f58b7"
+        },
+        "border-radius": {
+          "before": null,
+          "initialLocal": "0",
+          "target": "50%",
+          "status": "active",
+          "basis": "source"
+        },
+        "object-fit": {
+          "before": null,
+          "initialLocal": "fill",
+          "target": "cover",
+          "status": "active",
+          "basis": "source"
+        }
+      },
+      "sources": [
+        "AI Agent/templates/markup-AI Agent本地Mock.html",
+        "AI Agent/AI Agent.css",
+        "AI Agent/AI Agent入口动效.js"
+      ],
+      "verification": {
+        "level": "source-only",
+        "checkedAt": "2026-10-09",
+        "gaps": [
+          "实际渲染像素未验证；图片原件已查看，模板及资源哈希与入口V2一致，40px样式和原位置规则保留。"
+        ],
+        "evidence": [
+          "outputs/agent-cat-avatar-20261009/acceptance.md"
+        ]
+      },
+      "status": "active",
+      "updatedAt": "2026-10-09"
+    }
+  ]
+}
